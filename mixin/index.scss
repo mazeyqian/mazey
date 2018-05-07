@@ -1,0 +1,16 @@
+@mixin m-icon ($w: auto, $h: auto, $url: "") {
+    display: inline-block;
+    width: $w;
+    height: $h;
+    background: url($url) no-repeat;
+    vertical-align: middle;
+}
+
+@mixin m-circle ($len, $color) {
+    display: inline-block;
+    width: $len;
+    height: $len;
+    background-color: $color;
+    border-radius: 50%;
+    vertical-align: middle;
+  }
