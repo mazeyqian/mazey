@@ -13,4 +13,16 @@
     background-color: $color;
     border-radius: 50%;
     vertical-align: middle;
-  }
+}
+
+@mixin m-row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+@mixin m-col ($percent) {
+    display: block;
+    position: relative;
+    max-width: $percent;
+    flex: 0 0 $percent;
+}

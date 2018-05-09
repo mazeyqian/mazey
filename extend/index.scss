@@ -1,3 +1,19 @@
 %m-pointer {
     cursor: pointer;
 }
+
+%m-flex-middle {
+    display: flex;
+    align-items: center;
+}
+
+%m-flex-center {
+    display: flex;
+    justify-content: center;
+}
+
+%m-flex-centre {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
