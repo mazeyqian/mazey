@@ -17,3 +17,6 @@ selenium-debug.log
 *.ntvs*
 *.njsproj
 *.sln
+
+# cache
+.sass-cache/
