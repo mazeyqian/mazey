@@ -1,2 +1,3 @@
-# mazey.scss
-我的Scss库。
+# mazey-ui
+
+我的前端UI库。
