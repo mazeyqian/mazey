@@ -1,7 +1,7 @@
 function mRenderTable (tbID = null, data = [], property = []) {
-    const TBODY = $(`#${tbID} tbody`)
+    const TBODY = document.querySelector(`#${tbID} tbody`)
     let content = ''
-    TBODY.html('')
+    TBODY.innerHTML = ''
     // 无数据
     if (!data.length) {
         content = `<tr><td colspan="${property.length}">无数据</td></tr>`
@@ -15,7 +15,7 @@ function mRenderTable (tbID = null, data = [], property = []) {
             content += `</tr>`
         }
     }
-    TBODY.html(content)
+    TBODY.innerHTML = content
 }
 function mNullToNA (str) {
     return str === null ? 'N.A.' : str
