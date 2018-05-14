@@ -17,6 +17,9 @@ function mRenderTable (tbID = null, data = [], property = []) {
     }
     TBODY.innerHTML = content
 }
+
+
+
 function mNullToNA (str) {
     return str === null ? 'N.A.' : str
 }
