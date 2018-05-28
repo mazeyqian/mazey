@@ -1,4 +1,4 @@
-function mRenderTable (tbID = null, data = [], property = []) {
+export const mRenderTable = (tbID = null, data = [], property = []) => {
     const TBODY = document.querySelector(`#${tbID} tbody`)
     let content = ''
     TBODY.innerHTML = ''
@@ -18,8 +18,6 @@ function mRenderTable (tbID = null, data = [], property = []) {
     TBODY.innerHTML = content
 }
 
-
-
-function mNullToNA (str) {
+export const mNullToNA = (str) => {
     return str === null ? 'N.A.' : str
 }
