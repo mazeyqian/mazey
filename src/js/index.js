@@ -18,6 +18,6 @@ export const mRenderTable = (tbID = null, data = [], property = []) => {
     TBODY.innerHTML = content
 }
 
-export const mNullToNA = (str) => {
+const mNullToNA = (str) => {
     return str === null ? 'N.A.' : str
 }
