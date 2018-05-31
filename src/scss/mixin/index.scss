@@ -26,3 +26,9 @@
     max-width: $percent;
     flex: 0 0 $percent;
 }
+
+@mixin m-hr ($w, $color) {
+    width: $w;
+    height: 1px;
+    background-color: $color;
+}
