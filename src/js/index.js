@@ -1,5 +1,9 @@
+// 渲染表格
 export const mRenderTable = (tbID = null, data = [], property = []) => {
     const TBODY = document.querySelector(`#${tbID} tbody`)
+    const mNullToNA = str => {
+        return str === null ? 'N.A.' : str
+    }
     let content = ''
     TBODY.innerHTML = ''
     // 无数据
@@ -18,6 +22,13 @@ export const mRenderTable = (tbID = null, data = [], property = []) => {
     TBODY.innerHTML = content
 }
 
-const mNullToNA = (str) => {
-    return str === null ? 'N.A.' : str
+// 获取地址栏参数
+export const getQueryParam = param => {
+    let hashs = window.location.hash.split('?')
+    if (hashs.length === 1) {
+        return null
+    }
+    let reg = new RegExp(`(^|&)${param}=([^&]*)(&|$)`)
+    let ret = hashs[1].match(reg)
+    return ret ? ret[2] : null
 }

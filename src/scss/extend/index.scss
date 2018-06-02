@@ -2,6 +2,14 @@
     cursor: pointer;
 }
 
+%m-show{
+    display: block;
+}
+
+%m-hide{
+    display: none;
+}
+
 %m-flex-middle {
     display: flex;
     align-items: center;
@@ -22,12 +30,4 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-}
-
-%m-show{
-    display: block;
-}
-
-%m-hide{
-    display: none;
 }
