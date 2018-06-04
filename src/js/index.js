@@ -23,7 +23,7 @@ export const mRenderTable = (tbID = null, data = [], property = []) => {
 }
 
 // 获取地址栏参数
-export const getQueryParam = param => {
+export const mGetQueryParam = param => {
   let hashs = window.location.hash.split('?')
   if (hashs.length === 1) {
     return null
@@ -37,4 +37,10 @@ export const getQueryParam = param => {
 export const camelCaseToKebabCase = camelCase => {
   let kebabCase = camelCase.replace(/([A-Z])/g, '-$1').toLowerCase()
   return kebabCase[0] === '-' ? kebabCase.substr(1) : kebabCase
+}
+
+// 数据结构
+import MSet from './data-structure/set'
+export const mDataStructure = {
+  MSet: MSet
 }
