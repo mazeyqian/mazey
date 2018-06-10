@@ -48,8 +48,24 @@ export const mGetDomain = url => {
 }
 
 // 去除左右空格
-export const getTrim = str => {
-  return str.replace(/^\s+|\s+$/gm,'')
+export const mGetTrim = str => {
+  return str.replace(/^\s+|\s+$/gm, '')
+}
+
+/*
+* 重置表单输入值为原始（空）状态。
+* 参数: name1,name2,name3...NAME属性，可以多个。
+* */
+export const mResetForm = () => {
+  for(let i = 0; i < arguments.length; i++){
+    let tagMz = document.getElementsByName(arguments[i])[0] //tag object
+    let tagNameMz = tagMz.tagName.toLowerCase() //tag name
+    if ('input' === tagNameMz) {
+      tagMz.value = ''
+    } else if ('select' === tagNameMz){
+      tagMz.options[0].selected = true
+    }
+  }
 }
 
 // 数据结构
