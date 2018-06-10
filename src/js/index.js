@@ -56,9 +56,9 @@ export const mGetTrim = str => {
 * 重置表单输入值为原始（空）状态。
 * 参数: name1,name2,name3...NAME属性，可以多个。
 * */
-export const mResetForm = () => {
-  for (let i = 0; i < arguments.length; i++) {
-    let tagMz = document.getElementsByName(arguments[i])[0] // tag object
+export const mResetForm = (...rest) => {
+  for (let i = 0; i < rest.length; i++) {
+    let tagMz = document.getElementsByName(rest[i])[0] // tag object
     let tagNameMz = tagMz.tagName.toLowerCase() // tag name
     if (tagNameMz === 'input') {
       tagMz.value = ''
