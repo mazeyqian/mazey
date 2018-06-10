@@ -57,12 +57,12 @@ export const mGetTrim = str => {
 * 参数: name1,name2,name3...NAME属性，可以多个。
 * */
 export const mResetForm = () => {
-  for(let i = 0; i < arguments.length; i++){
-    let tagMz = document.getElementsByName(arguments[i])[0] //tag object
-    let tagNameMz = tagMz.tagName.toLowerCase() //tag name
-    if ('input' === tagNameMz) {
+  for (let i = 0; i < arguments.length; i++) {
+    let tagMz = document.getElementsByName(arguments[i])[0] // tag object
+    let tagNameMz = tagMz.tagName.toLowerCase() // tag name
+    if (tagNameMz === 'input') {
       tagMz.value = ''
-    } else if ('select' === tagNameMz){
+    } else if (tagNameMz === 'select') {
       tagMz.options[0].selected = true
     }
   }
