@@ -40,11 +40,16 @@ export const mCamelCaseToKebabCase = camelCase => {
   return kebabCase[0] === '-' ? kebabCase.substr(1) : kebabCase
 }
 
-// 获取一个地址中的域名
+// 获取地址中的域名
 export const mGetDomain = url => {
   let aEl = document.createElement('a')
   aEl.href = url
   return aEl.hostname
+}
+
+// 去除左右空格
+export const getTrim = str => {
+  return str.replace(/^\s+|\s+$/gm,'')
 }
 
 // 数据结构
