@@ -1,3 +1,4 @@
+import MSet from './data-structure/set'
 // 渲染表格
 export const mRenderTable = (tbID = null, data = [], property = []) => {
   const TBODY = document.querySelector(`#${tbID} tbody`)
@@ -34,13 +35,19 @@ export const mGetQueryParam = param => {
 }
 
 // 驼峰转连接线
-export const camelCaseToKebabCase = camelCase => {
+export const mCamelCaseToKebabCase = camelCase => {
   let kebabCase = camelCase.replace(/([A-Z])/g, '-$1').toLowerCase()
   return kebabCase[0] === '-' ? kebabCase.substr(1) : kebabCase
 }
 
+// 获取一个地址中的域名
+export const mGetDomain = url => {
+  let aEl = document.createElement('a')
+  aEl.href = url
+  return aEl.hostname
+}
+
 // 数据结构
-import MSet from './data-structure/set'
 export const mDataStructure = {
   MSet: MSet
 }
