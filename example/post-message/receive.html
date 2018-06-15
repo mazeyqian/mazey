@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>receive</title>
+</head>
+<body>
+<script>
+  // 监听
+  window.addEventListener(
+    'message',
+    event => {
+      let origin = event.origin || event.originalEvent.origin
+      console.log(event, origin, event.data) // MessageEvent{...} "http://example0.mazey.cn" "Message From Mazey."
+    }
+  )
+  // 加载 iframe
+  let iframeEle = document.createElement('iframe')
+  iframeEle.src = 'http://example0.mazey.cn/post-message/send.html'
+  iframeEle.style = 'border: none;width: 0;height: 0;'
+  document.body.insertBefore(iframeEle, document.body.firstChild)
+</script>
+</body>
+</html>

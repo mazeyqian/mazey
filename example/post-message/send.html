@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>send</title>
+</head>
+<body>
+<script>
+  window.onload = function () {
+    window.parent.postMessage(
+      'Message From Mazey.',
+      '*'
+    )
+  }
+</script>
+</body>
+</html>
