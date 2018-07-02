@@ -84,7 +84,39 @@
         }
     }
     // 排序
-    .m-table-sort{
-        
+    .m-table-is-sort{
+        @extend %m-pointer;
+        .m-table-sort{
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            height: 34px;
+            width: 24px;
+            vertical-align: middle;
+            cursor: pointer;
+            overflow: initial;
+            position: relative;
+            >i{
+                width: 0;
+                height: 0;
+                border: 5px solid transparent;
+                position: absolute;
+                left: 7px;
+                &.sort-ascend{
+                    border-bottom-color: #c0c4cc;
+                    top: 5px;
+                    &.active{
+                        border-bottom-color: #409EFF;
+                    }
+                }
+                &.sort-descend{
+                    border-top-color: #c0c4cc;
+                    bottom: 7px;
+                    &.active{
+                        border-top-color: #409EFF;
+                    }
+                }
+            }
+        }
     }
 }
