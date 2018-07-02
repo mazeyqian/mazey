@@ -1,4 +1,3 @@
-// class begin
 %m-pointer {
     cursor: pointer;
 }
@@ -10,8 +9,6 @@
 %m-hide{
     display: none;
 }
-// class end
-
 
 %m-flex-middle {
     display: flex;
@@ -33,4 +30,61 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+%m-table{
+    width: 100%;
+    //border: 1px solid #E4EBEE;
+    background: 0 0;
+    font-size: 12px;
+    border-collapse: collapse;
+    %unity{
+        text-align: left;
+        padding: 10px 15px;
+    }
+    >thead{
+        >tr{
+            >th{
+                @extend %unity;
+                color: #242a30;
+                font-weight: 600;
+                border-bottom: 1px solid #b6c2c9 !important;
+            }
+        }
+    }
+    >tbody{
+        >tr{
+            >td{
+                @extend %unity;
+                color: #707478;
+                border-top: 1px solid #dee2e6;
+            }
+        }
+    }
+    // 斑马线
+    &.table-striped tbody tr{
+        &:nth-of-type(odd) {
+            background-color: rgba(0,0,0,.05);
+        }
+        >td{
+            border-top-width: 0;
+        }
+    }
+    // 悬浮变色
+    &.table-hover tbody tr{
+        &:hover{
+            background-color: rgba(0,0,0,.05);
+        }
+    }
+    // 有框
+    &.table-bordered{
+        th,
+        td{
+            border: 1px solid #dee2e6;
+        }
+    }
+    // 排序
+    .m-table-sort{
+        
+    }
 }

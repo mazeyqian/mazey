@@ -3,29 +3,3 @@
 @import "extend/index";
 @import "mixin/index";
 // @import "font/iconfont";
-
-.m-table{
-    width: 100%;
-    border: 1px solid #E4EBEE;
-    >thead{
-        >tr{
-            >th{
-                background-color: #E4EBEE;
-                text-align: center;
-                padding: 8px;
-                font-weight: 700;
-                color: #929495;
-            }
-        }
-    }
-    >tbody{
-        >tr{
-            border-bottom: 1px solid #E4EBEE;
-            >td{
-                text-align: center;
-                padding: 8px;
-                color: #929495;
-            }
-        }
-    }
-}
