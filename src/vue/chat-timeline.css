@@ -1,0 +1,145 @@
+@charset "UTF-8";
+.mv-chat-timeline .message-list {
+  overflow-y: auto;
+  /*滚动条的宽度*/
+  /* 滚动条的滑轨背景颜色 */
+  /* 滑块颜色 */ }
+  .mv-chat-timeline .message-list::-webkit-scrollbar {
+    width: 6px; }
+  .mv-chat-timeline .message-list::-webkit-scrollbar-track {
+    background-color: transparent;
+    -webkit-border-radius: 2em;
+    -moz-border-radius: 2em;
+    border-radius: 2em; }
+  .mv-chat-timeline .message-list::-webkit-scrollbar-thumb {
+    background-color: #d5d5d5;
+    -webkit-border-radius: 2em;
+    -moz-border-radius: 2em;
+    border-radius: 2em; }
+
+.mv-chat-timeline {
+  width: 450px;
+  height: 100%; }
+  .mv-chat-timeline .message-list {
+    height: calc(100vh - 50px - 20px - 32px - 67px - 48px - 20px);
+    padding-right: 5px; }
+    .mv-chat-timeline .message-list > div[class^="message"] {
+      position: relative; }
+      .mv-chat-timeline .message-list > div[class^="message"] > a > img {
+        width: 50px;
+        height: 50px;
+        border: 3px solid #fff;
+        box-shadow: 0 4px 5px rgba(0, 0, 0, 0.1);
+        border-radius: 50%;
+        position: absolute;
+        top: 0; }
+    .mv-chat-timeline .message-list .message-left {
+      padding: 7px 0 15px 60px; }
+      .mv-chat-timeline .message-list .message-left > a > img {
+        left: 0; }
+      .mv-chat-timeline .message-list .message-left .message-content {
+        border-radius: 0 4px 4px 4px; }
+        .mv-chat-timeline .message-list .message-left .message-content:before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -7px;
+          border-top: 10px solid #eee;
+          border-left: 7px solid transparent; }
+    .mv-chat-timeline .message-list .message-right {
+      padding: 7px 60px 15px 0; }
+      .mv-chat-timeline .message-list .message-right > a > img {
+        right: 0; }
+      .mv-chat-timeline .message-list .message-right > div.nickname {
+        text-align: right; }
+      .mv-chat-timeline .message-list .message-right .message-content {
+        border-radius: 4px 0 4px 4px;
+        float: right; }
+        .mv-chat-timeline .message-list .message-right .message-content:after {
+          content: '';
+          position: absolute;
+          top: 0;
+          right: -7px;
+          border-top: 10px solid #eee;
+          border-right: 7px solid transparent; }
+    .mv-chat-timeline .message-list .message-content {
+      position: relative;
+      display: inline-block;
+      margin-top: 5px;
+      padding: 5px 12px;
+      color: #888;
+      font-size: 14px;
+      line-height: 1.5;
+      background: #eee;
+      word-break: break-word;
+      font-weight: 400; }
+  .mv-chat-timeline .message-tag .tag-content {
+    margin-top: 3px;
+    display: inline-flex;
+    align-items: center;
+    background: #CCCCCC;
+    color: #ffffff;
+    border-radius: 4px;
+    font-size: 12px;
+    line-height: 8px;
+    padding: 5px; }
+    .mv-chat-timeline .message-tag .tag-content > .tag-content-text {
+      padding-left: 3px; }
+  .mv-chat-timeline .message-time {
+    display: flex;
+    justify-content: center; }
+    .mv-chat-timeline .message-time > span {
+      background: #CCCCCC;
+      color: #ffffff;
+      border-radius: 4px;
+      font-size: 12px;
+      line-height: 8px;
+      padding: 5px; }
+  .mv-chat-timeline .message-send {
+    display: flex; }
+  .mv-chat-timeline .send-portrait {
+    display: inline-block; }
+  .mv-chat-timeline .send-portrait > img {
+    width: 38px;
+    height: 38px;
+    border: 3px solid #fff;
+    border-radius: 50%;
+    margin-right: 12px; }
+  .mv-chat-timeline .send-text {
+    padding: 10px 15px;
+    width: 100%;
+    height: 67px;
+    font-size: 13px;
+    border: 1px solid #dcdcdc;
+    border-radius: 4px;
+    background-color: #F9F9F9;
+    resize: none;
+    display: inline-block;
+    vertical-align: top;
+    outline-style: none; }
+  .mv-chat-timeline .message-submit {
+    display: flex;
+    padding-left: 50px;
+    flex-direction: row-reverse; }
+  .mv-chat-timeline .message-btn-submit {
+    width: 67px;
+    margin: 10px 0;
+    padding: 4px 18px;
+    font-size: 14px;
+    border: none;
+    border-radius: 14px;
+    color: #fff !important;
+    background-color: #42c02e;
+    cursor: pointer;
+    outline: none;
+    display: block;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle; }
+  .mv-chat-timeline .message-btn-cancel {
+    margin: 14px 14px 0 0;
+    font-size: 14px;
+    color: #969696;
+    cursor: pointer; }
+
+/*# sourceMappingURL=chat-timeline.css.map */

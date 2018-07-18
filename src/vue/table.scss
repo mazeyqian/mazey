@@ -1,0 +1,9 @@
+@import "mazey-ui/src/scss/index.scss";
+
+.mv-table{
+  overflow-x: auto;
+  >table{
+    @extend %m-table;
+  }
+}
+
