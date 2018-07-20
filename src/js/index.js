@@ -64,8 +64,12 @@ export const newLine = str => {
 // 对象深拷贝
 export const deepCopyObject = obj => JSON.parse(JSON.stringify(obj))
 
-// 生成随机数
-export const generateRndNum = n => {
+/**
+ * @method mGenerateRndNum
+ * @description 生成随机数。
+ * @param {Number} n 随机数的长度
+ * */
+export const mGenerateRndNum = n => {
     let ret = ''
     while (n--) {
         ret += Math.floor(Math.random() * 10)
@@ -73,10 +77,11 @@ export const generateRndNum = n => {
     return ret
 }
 
-/*
-* 重置表单输入值为原始（空）状态。
-* 参数: name1,name2,name3...NAME属性，可以多个。
-* */
+/**
+ * @method mResetForm
+ * @description 重置表单输入值为原始（空）状态。
+ * @param {String} rest name1,name2,name3...NAME属性，可以多个。
+ * */
 export const mResetForm = (...rest) => {
   for (let i = 0; i < rest.length; i++) {
     let tagMz = document.getElementsByName(rest[i])[0] // tag object
