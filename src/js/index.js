@@ -94,6 +94,16 @@ export const mResetForm = (...rest) => {
   }
 }
 
+/**
+ * @method mFloatToPercent
+ * @description 浮点数转为百分比。
+ * @param {Number} 浮点数。
+ * */
+export const mFloatToPercent = num => {
+    num = Math.floor(num * 100)
+    return `${num}%`
+}
+
 // hasClass
 export function hasCls(obj, cls){
     var oriCls = obj.className, //获取对象的class值
