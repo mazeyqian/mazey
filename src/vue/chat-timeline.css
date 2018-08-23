@@ -1,9 +1,9 @@
 /*
-Error: File to import not found or unreadable: mazey-ui/src/scss/index.scss.
+Error: File to import not found or unreadable: mazey-ui-pinnacle/src/scss/index.scss.
         on line 1 of chat-timeline.scss
 
-1: @import "mazey-ui/src/scss/index.scss";
-2: 
+1: @import "mazey-ui-pinnacle/src/scss/index.scss";
+2:
 3: .mv-chat-timeline{
 4:   width: 450px;
 5:   height: 100%;
