@@ -1,6 +1,7 @@
 <template>
   <div class="vue-screenfull">
-    <button type="button" @click="request()">全屏</button>
+    <button type="button" @click="request()" v-show="!fullStatus">全屏</button>
+    <button type="button" @click="exit()" v-show="fullStatus">退出全屏</button>
   </div>
 </template>
 
@@ -10,8 +11,8 @@
     data () {
       return {
         prefixArr: ['', 'webkit', 'moz', 'ms'], // 浏览器前缀
-        requestSuffixArr: ['RequestFullscreen', 'RequestFullScreen'], // 后缀
-        exitSuffixArr: ['ExitFullscreen', 'CancelFullScreen'], // 后缀
+        requestSuffixArr: ['RequestFullscreen', 'RequestFullScreen'], // 请求全屏后缀
+        exitSuffixArr: ['ExitFullscreen', 'CancelFullScreen'], // 退出全屏后缀
         request: null,
         exit: null,
         fullStatus: false
@@ -36,9 +37,11 @@
       this.request = function (element) {
         let domEle = document.querySelector(element) || document.documentElement
         domEle[requestMethod]()
+        this.fullStatus = true
       }
       this.exit = function () {
         document[exitMethod]()
+        this.fullStatus = false
       }
     },
     methods: {
