@@ -104,6 +104,12 @@ export const mFloatToPercent = num => {
     return `${num}%`
 }
 
+/**
+ * @method mFloatFixed
+ * @description 浮点数保留指定位。
+ * */
+export const mFloatFixed = (num, size) => parseFloat(num, 10).toFixed(size)
+
 // hasClass
 export function hasCls(obj, cls){
     var oriCls = obj.className, //获取对象的class值
