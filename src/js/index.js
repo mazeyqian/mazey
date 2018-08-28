@@ -54,11 +54,11 @@ export const mGetTrim = str => {
 
 // html换行
 export const newLine = str => {
-    if (!str) {
-        return ''
-    }
-    let reg = new RegExp('\n', 'g')
-    return str.replace(reg, '<br />')
+  if (!str) {
+    return ''
+  }
+  let reg = new RegExp('\\n', 'g')
+  return str.replace(reg, '<br />')
 }
 
 // 对象深拷贝
@@ -70,11 +70,11 @@ export const deepCopyObject = obj => JSON.parse(JSON.stringify(obj))
  * @param {Number} n 随机数的长度
  * */
 export const mGenerateRndNum = n => {
-    let ret = ''
-    while (n--) {
-        ret += Math.floor(Math.random() * 10)
-    }
-    return ret
+  let ret = ''
+  while (n--) {
+    ret += Math.floor(Math.random() * 10)
+  }
+  return ret
 }
 
 /**
@@ -128,114 +128,116 @@ export const mJoin = (...rest) => {
 }
 
 // hasClass
-export function hasCls(obj, cls){
-    var oriCls = obj.className, //获取对象的class值
-        oriClsArr = oriCls.split(/\s+/); //分隔空格转换成数组
-    for(var i = 0; i < oriClsArr.length; i++){
-        if(oriClsArr[i] === cls){
-            return true; //若匹配到class则返回True
-        }
+export function hasCls (obj, cls) {
+  let oriCls = obj.className // 获取对象的class值
+  let oriClsArr = oriCls.split(/\s+/) // 分隔空格转换成数组
+  for (var i = 0; i < oriClsArr.length; i++) {
+    if (oriClsArr[i] === cls) {
+      return true // 若匹配到class则返回True
     }
-    return false; //否则返回False
+  }
+  return false // 否则返回False
 }
 
 // addClass
-export function addCls(obj, cls){
-    var oriCls = obj.className, space = '', newCls; //获取对象的class值
-    if(oriCls !== ''){
-        space = ' '; //若原来的class不为空，跟一个空格
-    }
-    newCls = oriCls + space + cls; //将新的class加进去
-    obj.className = newCls; //替换新class
+export function addCls (obj, cls) {
+  let oriCls = obj.className
+  let space = ''
+  let newCls // 获取对象的class值
+  if (oriCls !== '') {
+    space = ' ' // 若原来的class不为空，跟一个空格
+  }
+  newCls = oriCls + space + cls // 将新的class加进去
+  obj.className = newCls // 替换新class
 }
 
 // removeClass
-export function removeCls(obj, cls){
-    var oriCls = obj.className, newCls; //获取对象的class值
-    newCls = ' ' + oriCls + ' '; //前后加空格
-    newCls = newCls.replace(/(\s+)/gi, ' '); //将多余的空格替换成一个空格
-    newCls = newCls.replace(' ' + cls + ' ', ' '); //将加了前后空格的cls替换成空格' '
-    newCls = newCls.replace(/(^\s+)|(\s+$)/g, ''); //去掉前后空格
-    obj.className = newCls;
+export function removeCls (obj, cls) {
+  let oriCls = obj.className
+  let newCls // 获取对象的class值
+  newCls = ' ' + oriCls + ' ' // 前后加空格
+  newCls = newCls.replace(/(\s+)/gi, ' ') // 将多余的空格替换成一个空格
+  newCls = newCls.replace(' ' + cls + ' ', ' ') // 将加了前后空格的cls替换成空格' '
+  newCls = newCls.replace(/(^\s+)|(\s+$)/g, '') // 去掉前后空格
+  obj.className = newCls
 }
 
 // 时间戳
-const mNow = Date.now || function() {
-    return new Date().getTime()
+const mNow = Date.now || function () {
+  return new Date().getTime()
 }
 
 // 节流
 export const throttle = function (func, wait, options) {
-    let [context, args, result, timeout, previous] = [null, null, null, null, 0]
-    if (!options) {
-        options = {}
+  let [context, args, result, timeout, previous] = [null, null, null, null, 0]
+  if (!options) {
+    options = {}
+  }
+  let later = function () {
+    previous = options.leading === false ? 0 : mNow()
+    timeout = null
+    result = func.apply(context, args)
+    if (!timeout) {
+      context = args = null
     }
-    let later = function() {
-        previous = options.leading === false ? 0 : mNow()
+  }
+  return function () {
+    let now = mNow()
+    if (!previous && options.leading === false) {
+      previous = now
+    }
+    let remaining = wait - (now - previous)
+    context = this
+    args = arguments
+    if (remaining <= 0 || remaining > wait) {
+      if (timeout) {
+        clearTimeout(timeout)
         timeout = null
-        result = func.apply(context, args)
-        if (!timeout) {
-            context = args = null
-        }
+      }
+      previous = now
+      result = func.apply(context, args)
+      if (!timeout) {
+        context = args = null
+      }
+    } else if (!timeout && options.trailing !== false) {
+      timeout = setTimeout(later, remaining)
     }
-    return function() {
-        let now = mNow()
-        if (!previous && options.leading === false) {
-            previous = now
-        }
-        let remaining = wait - (now - previous)
-        context = this
-        args = arguments
-        if (remaining <= 0 || remaining > wait) {
-            if (timeout) {
-                clearTimeout(timeout)
-                timeout = null
-            }
-            previous = now
-            result = func.apply(context, args)
-            if (!timeout) {
-                context = args = null
-            }
-        } else if (!timeout && options.trailing !== false) {
-            timeout = setTimeout(later, remaining)
-        }
-        return result
-    }
+    return result
+  }
 }
 
 // 防抖
-export const debounce = function(func, wait, immediate) {
-    let [timeout, args, context, timestamp, result] = [null, null, null, null, null]
-    let later = function () {
-        let last = mNow() - timestamp
-        if (last < wait && last >= 0) {
-            timeout = setTimeout(later, wait - last)
-        } else {
-            timeout = null
-            if (!immediate) {
-                result = func.apply(context, args)
-                if (!timeout) {
-                    context = args = null
-                }
-            }
-        }
-    }
-
-    return function() {
-        context = this
-        args = arguments
-        timestamp = mNow()
-        let callNow = immediate && !timeout
+export const debounce = function (func, wait, immediate) {
+  let [timeout, args, context, timestamp, result] = [null, null, null, null, null]
+  let later = function () {
+    let last = mNow() - timestamp
+    if (last < wait && last >= 0) {
+      timeout = setTimeout(later, wait - last)
+    } else {
+      timeout = null
+      if (!immediate) {
+        result = func.apply(context, args)
         if (!timeout) {
-            timeout = setTimeout(later, wait)
+          context = args = null
         }
-        if (callNow) {
-            result = func.apply(context, args)
-            context = args = null
-        }
-
-        return result
+      }
     }
+  }
+
+  return function () {
+    context = this
+    args = arguments
+    timestamp = mNow()
+    let callNow = immediate && !timeout
+    if (!timeout) {
+      timeout = setTimeout(later, wait)
+    }
+    if (callNow) {
+      result = func.apply(context, args)
+      context = args = null
+    }
+    return result
+  }
 }
 
 // 数据结构
