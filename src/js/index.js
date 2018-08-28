@@ -110,6 +110,23 @@ export const mFloatToPercent = num => {
  * */
 export const mFloatFixed = (num, size) => parseFloat(num, 10).toFixed(size)
 
+/**
+ * @method mJoin
+ * @description 把几个变量衔接成字符串。
+ * */
+export const mJoin = (...rest) => {
+    let [ret, joinStr, arr] = ['', rest[0], rest.slice(1)]
+    for (let v of arr) {
+        if (v) {
+            ret += `${joinStr}${v}`
+        }
+    }
+    if (ret) {
+        ret = ret.substring(joinStr.length)
+    }
+    return ret
+}
+
 // hasClass
 export function hasCls(obj, cls){
     var oriCls = obj.className, //获取对象的class值
