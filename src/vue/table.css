@@ -1,8 +1,8 @@
 /*
-Error: File to import not found or unreadable: mazey-ui/src/scss/index.scss.
+Error: File to import not found or unreadable: mazey-ui-pinnacle/src/scss/index.scss.
         on line 1 of table.scss
 
-1: @import "mazey-ui/src/scss/index.scss";
+1: @import "mazey-ui-pinnacle/src/scss/index.scss";
 2: 
 3: .mv-table{
 4:   overflow-x: auto;
@@ -53,4 +53,4 @@ table.scss:1
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: File to import not found or unreadable: mazey-ui/src/scss/index.scss.\A         on line 1 of table.scss\A \A 1: @import \"mazey-ui/src/scss/index.scss\";\A 2: \A 3: .mv-table{\A 4:   overflow-x: auto;\A 5:   >table{\A 6:     @extend %m-table;"; }
+  content: "Error: File to import not found or unreadable: mazey-ui-pinnacle/src/scss/index.scss.\A         on line 1 of table.scss\A \A 1: @import \"mazey-ui-pinnacle/src/scss/index.scss\";\A 2: \A 3: .mv-table{\A 4:   overflow-x: auto;\A 5:   >table{\A 6:     @extend %m-table;"; }
