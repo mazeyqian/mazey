@@ -99,8 +99,12 @@ export const mResetForm = (...rest) => {
  * @description 浮点数转为百分比。
  * @param {Number} 浮点数。
  * */
-export const mFloatToPercent = num => {
-    num = Math.floor(num * 100)
+export const mFloatToPercent = (num, isFix) => {
+    if (isFix) {
+      num = (num * 100).toFixed(isFix)
+    } else {
+      num = Math.floor(num * 100)
+    }
     return `${num}%`
 }
 
