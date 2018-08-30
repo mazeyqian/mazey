@@ -131,6 +131,20 @@ export const mJoin = (...rest) => {
     return ret
 }
 
+/**
+ * @method mCompatibleExist
+ * @description 不存在返回 ——。
+ * */
+export const mCompatibleExist = (instance, replaceStr) => {
+  let ret = ''
+  try {
+      ret = instance ? instance : replaceStr || '——'
+  } catch (e) {
+      ret = '——'
+  }
+  return ret
+}
+
 // hasClass
 export function hasCls (obj, cls) {
   let oriCls = obj.className // 获取对象的class值
