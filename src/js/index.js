@@ -61,7 +61,7 @@ export const mTrim = str => {
   str = str.replace(/^\s+/, '') // 去除头部空格
   let [end, ws] = [str.length - 1, /\s/]
   while (ws.test(str.charAt(end))) {
-    end--
+    end-- // 最后一个非空格字符的索引
   }
   return str.slice(0, end + 1)
 }
