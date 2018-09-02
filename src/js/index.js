@@ -52,6 +52,20 @@ export const mGetTrim = str => {
   return str.replace(/^\s+|\s+$/gm, '')
 }
 
+/**
+ * @method mTrim
+ * @description 去除左右空格。
+ * @param {String} str 需要去除两边空格的字符串。
+ * */
+export const mTrim = str => {
+  str = str.replace(/^\s+/, '') // 去除头部空格
+  let [end, ws] = [str.length - 1, /\s/]
+  while (ws.test(str.charAt(end))) {
+    end--
+  }
+  return str.slice(0, end + 1)
+}
+
 // html换行
 export const newLine = str => {
   if (!str) {
