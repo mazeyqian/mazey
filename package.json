@@ -1,0 +1,27 @@
+{
+  "name": "mazey-ui",
+  "version": "1.0.0",
+  "description": "Mazey's UI.",
+  "main": "src/js/index.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mazeyqian/mazey-ui.git"
+  },
+  "keywords": [
+    "JavaScript",
+    "Vue",
+    "Scss"
+  ],
+  "author": "MazeyQian",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mazeyqian/mazey-ui/issues"
+  },
+  "homepage": "https://github.com/mazeyqian/mazey-ui#readme"
+}

@@ -1,0 +1,4 @@
+*.yml
+build/
+node_modules/
+test/
