@@ -1,4 +1,24 @@
 import MSet from './data-structure/set'
+
+/**
+ * @method mJoin
+ * @description 将一系列值连接成固定字符分隔的字符串 123,456 => 123 - 456。
+ * @param {String} joinStr 连接值的字符串。
+ * @param {Rest} ...rest 需要连接的值 。
+ * */
+export const mJoin = (joinStr, ...rest) => {
+    let [ret, len] = ['', joinStr.length]
+    for (let v of rest) {
+        if (v) {
+            ret += `${joinStr}${v}`
+        }
+    }
+    if (ret) {
+        ret = ret.substring(len)
+    }
+    return ret
+}
+
 // 渲染表格
 export const mRenderTable = (tbID = null, data = [], property = []) => {
   const TBODY = document.querySelector(`#${tbID} tbody`)
@@ -80,7 +100,7 @@ export const deepCopyObject = obj => JSON.parse(JSON.stringify(obj))
 
 /**
  * @method mGenerateRndNum
- * @description 生成随机数。
+ * @description 生成随机数 mGenerateRndNum(7) => 7658495。
  * @param {Number} n 随机数的长度
  * */
 export const mGenerateRndNum = n => {
@@ -110,7 +130,7 @@ export const mResetForm = (...rest) => {
 
 /**
  * @method mFloatToPercent
- * @description 浮点数转为百分比。
+ * @description 浮点数转为百分比 0.2 => 20%。
  * @param {Number} 浮点数。
  * */
 export const mFloatToPercent = (num, isFix) => {
@@ -127,23 +147,6 @@ export const mFloatToPercent = (num, isFix) => {
  * @description 浮点数保留指定位。
  * */
 export const mFloatFixed = (num, size) => parseFloat(num, 10).toFixed(size)
-
-/**
- * @method mJoin
- * @description 把几个变量衔接成字符串。
- * */
-export const mJoin = (...rest) => {
-    let [ret, joinStr, arr] = ['', rest[0], rest.slice(1)]
-    for (let v of arr) {
-        if (v) {
-            ret += `${joinStr}${v}`
-        }
-    }
-    if (ret) {
-        ret = ret.substring(joinStr.length)
-    }
-    return ret
-}
 
 /**
  * @method mCompatibleExist
@@ -255,7 +258,6 @@ export const debounce = function (func, wait, immediate) {
       }
     }
   }
-
   return function () {
     context = this
     args = arguments

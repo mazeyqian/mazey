@@ -1,6 +1,6 @@
 {
   "name": "mazey-ui",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Mazey's UI.",
   "main": "src/js/index.js",
   "directories": {
@@ -19,7 +19,7 @@
     "Scss"
   ],
   "author": "MazeyQian",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/mazeyqian/mazey-ui/issues"
   },
