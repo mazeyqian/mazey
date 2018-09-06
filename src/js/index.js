@@ -19,7 +19,13 @@ export const mJoin = (joinStr, ...rest) => {
     return ret
 }
 
-// 渲染表格
+/**
+ * @method mRenderTable
+ * @description 渲染表格
+ * @param {DOM Object} tbID
+ * @param {Array} data
+ * @param {Array} property
+ */
 export const mRenderTable = (tbID = null, data = [], property = []) => {
   const TBODY = document.querySelector(`#${tbID} tbody`)
   const mNullToNA = str => {
