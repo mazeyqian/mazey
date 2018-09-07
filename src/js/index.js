@@ -49,7 +49,11 @@ export const mRenderTable = (tbID = null, data = [], property = []) => {
   TBODY.innerHTML = content
 }
 
-// 获取地址栏参数
+/**
+ * @method mGetQueryParam
+ * @description 获取地址栏 hash 后面的参数。
+ * @param {String} param 获取参数的名字。
+ */
 export const mGetQueryParam = param => {
   let hashs = window.location.hash.split('?')
   if (hashs.length === 1) {
@@ -60,20 +64,32 @@ export const mGetQueryParam = param => {
   return ret ? ret[2] : null
 }
 
-// 驼峰转连接线
+/**
+ * @method mCamelCaseToKebabCase
+ * @description 驼峰转连接线。
+ * @param {String} camelCase
+ * */
 export const mCamelCaseToKebabCase = camelCase => {
   let kebabCase = camelCase.replace(/([A-Z])/g, '-$1').toLowerCase()
   return kebabCase[0] === '-' ? kebabCase.substr(1) : kebabCase
 }
 
-// 获取地址中的域名
+/**
+ * @method mGetDomain
+ * @description 获取地址中的域名。
+ * @param {String} url
+ * */
 export const mGetDomain = url => {
   let aEl = document.createElement('a')
   aEl.href = url
   return aEl.hostname
 }
 
-// 去除左右空格
+/**
+ * @method mGetTrim
+ * @description 去除左右空格 To Remove!。
+ * @param {String} str
+ * */
 export const mGetTrim = str => {
   return str.replace(/^\s+|\s+$/gm, '')
 }
@@ -92,7 +108,11 @@ export const mTrim = str => {
   return str.slice(0, end + 1)
 }
 
-// html换行
+/**
+ * @method newLine
+ * @description html换行。
+ * @param {String} str
+ * */
 export const newLine = str => {
   if (!str) {
     return ''
@@ -101,7 +121,12 @@ export const newLine = str => {
   return str.replace(reg, '<br />')
 }
 
-// 对象深拷贝
+/**
+ * @method deepCopyObject
+ * @description 对象深拷贝。
+ * @param {Object} obj 被拷贝的对象。
+ * @return {Object}
+ * */
 export const deepCopyObject = obj => JSON.parse(JSON.stringify(obj))
 
 /**
