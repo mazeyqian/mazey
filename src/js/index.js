@@ -143,6 +143,13 @@ export const mGenerateRndNum = n => {
 }
 
 /**
+ * @method mGenerateUniqueNum
+ * @description 根据时间生成唯一标志的数字 mGenerateUniqueNum() => 。
+ * @param {Number} n 随机数的长度
+ * */
+// TODO: ...
+
+/**
  * @method mResetForm
  * @description 重置表单输入值为原始（空）状态。
  * @param {String} rest name1,name2,name3...NAME属性，可以多个。
