@@ -133,6 +133,7 @@ export const deepCopyObject = obj => JSON.parse(JSON.stringify(obj))
  * @method mGenerateRndNum
  * @description 生成随机数 mGenerateRndNum(7) => 7658495。
  * @param {Number} n 随机数的长度
+ * @return {String}
  * */
 export const mGenerateRndNum = n => {
   let ret = ''
@@ -144,10 +145,13 @@ export const mGenerateRndNum = n => {
 
 /**
  * @method mGenerateUniqueNum
- * @description 根据时间生成唯一标志的数字 mGenerateUniqueNum() => 。
+ * @description 根据时间生成唯一标志的数字 mGenerateUniqueNum() => 1538324722364123。
  * @param {Number} n 随机数的长度
  * */
-// TODO: ...
+export const mGenerateUniqueNum = n => {
+  let [now, rnd] = [mNow(), mGenerateRndNum(n || 3)]
+  return now + rnd
+}
 
 /**
  * @method mResetForm
