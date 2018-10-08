@@ -204,6 +204,19 @@ export const mCompatibleExist = (instance, replaceStr) => {
   return ret
 }
 
+/**
+ * @method mCancelBubble
+ * @description 阻止冒泡。
+ * */
+export function mCancelBubble (e) {
+  const ev = e ? e : window.event
+  if (ev.stopPropagation) { // W3C
+    ev.stopPropagation()
+  } else { // IE
+    ev.cancelBubble = true
+  }
+}
+
 // hasClass
 export function hasCls (obj, cls) {
   let oriCls = obj.className // 获取对象的class值
