@@ -257,8 +257,13 @@ const mNow = Date.now || function () {
   return new Date().getTime()
 }
 
-// 节流
-export const throttle = function (func, wait, options) {
+/**
+ * @method mThrottle
+ * @description 节流。
+ * */
+export const mThrottle = function (func, wait, options) {
+  // timeout: setTimeout Handle
+  // previous: 上次时间戳
   let [context, args, result, timeout, previous] = [null, null, null, null, 0]
   if (!options) {
     options = {}
@@ -296,8 +301,11 @@ export const throttle = function (func, wait, options) {
   }
 }
 
-// 防抖
-export const debounce = function (func, wait, immediate) {
+/**
+ * @method mDebounce
+ * @description 去抖。
+ * */
+export const mDebounce = function (func, wait, immediate) {
   let [timeout, args, context, timestamp, result] = [null, null, null, null, null]
   let later = function () {
     let last = mNow() - timestamp
