@@ -337,18 +337,21 @@ export const mDebounce = function (func, wait, immediate) {
   }
 }
 
-// 获取间隔时间
+/**
+ * @method mFriendlyInterval
+ * @description 获取间隔时间。
+ * */
 export const mFriendlyInterval = (start, end) => {
-  var t = new Date().getTime() - start.getTime();
-  var ret = '未来不可期';
+  const t = end.getTime() - start.getTime()
+  let ret = '未来不可期'
   if (t >= 0) {
-    var d = Math.floor(t / 1000 / 60 / 60 / 24);
-    var h = Math.floor(t / 1000 / 60 / 60 % 24);
-    var m = Math.floor(t / 1000 / 60 % 60);
-    var s = Math.floor(t / 1000 % 60);
-    ret = d + ' 天 ' + h + ' 时 ' + m + ' 分 ' + s + ' 秒';
+    const d = Math.floor(t / 1000 / 60 / 60 / 24)
+    const h = Math.floor(t / 1000 / 60 / 60 % 24)
+    const m = Math.floor(t / 1000 / 60 % 60)
+    const s = Math.floor(t / 1000 % 60)
+    ret = d + ' 天 ' + h + ' 时 ' + m + ' 分 ' + s + ' 秒'
   }
-  return ret;
+  return ret
 }
 
 // 数据结构
