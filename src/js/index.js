@@ -337,6 +337,20 @@ export const mDebounce = function (func, wait, immediate) {
   }
 }
 
+// 获取间隔时间
+export const mFriendlyInterval = (start, end) => {
+  var t = new Date().getTime() - start.getTime();
+  var ret = '未来不可期';
+  if (t >= 0) {
+    var d = Math.floor(t / 1000 / 60 / 60 / 24);
+    var h = Math.floor(t / 1000 / 60 / 60 % 24);
+    var m = Math.floor(t / 1000 / 60 % 60);
+    var s = Math.floor(t / 1000 % 60);
+    ret = d + ' 天 ' + h + ' 时 ' + m + ' 分 ' + s + ' 秒';
+  }
+  return ret;
+}
+
 // 数据结构
 export const mDataStructure = {
   MSet: MSet
