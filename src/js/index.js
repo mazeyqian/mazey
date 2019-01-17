@@ -122,12 +122,13 @@ export const newLine = str => {
 }
 
 /**
- * @method deepCopyObject
+ * @method mDeepCopyObject
  * @description 对象深拷贝。
  * @param {Object} obj 被拷贝的对象。
  * @return {Object}
  * */
-export const deepCopyObject = obj => JSON.parse(JSON.stringify(obj))
+export const mDeepCopyObject = obj => JSON.parse(JSON.stringify(obj))
+export const deepCopyObject = mDeepCopyObject
 
 /**
  * @method mGenerateRndNum
