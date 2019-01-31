@@ -127,7 +127,9 @@ export const newLine = str => {
  * @param {Object} obj 被拷贝的对象。
  * @return {Object}
  * */
-export const mDeepCopyObject = obj => JSON.parse(JSON.stringify(obj))
+export function mDeepCopyObject (obj) {
+  return JSON.parse(JSON.stringify(obj))
+}
 export const deepCopyObject = mDeepCopyObject
 
 /**
