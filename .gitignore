@@ -21,4 +21,4 @@ selenium-debug.log
 
 # cache
 .sass-cache/
-.package.json
+package-lock.json

@@ -1,14 +1,14 @@
 {
   "name": "mazey-ui",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "description": "Mazey's UI.",
-  "main": "src/js/index.js",
+  "main": "src/js/index.ori.js",
   "directories": {
     "example": "example"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build-js": "npx babel index.ori.js -o index.bundle.js && uglifyjs index.bundle.js -o index.js"
+    "build-js": "npx babel src/js/index.ori.js -o src/js/index.bundle.js && uglifyjs src/js/index.bundle.js -o src/js/index.js"
   },
   "repository": {
     "type": "git",
