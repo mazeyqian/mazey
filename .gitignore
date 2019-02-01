@@ -1,3 +1,4 @@
+# server
 server/
 
 .DS_Store
@@ -20,3 +21,4 @@ selenium-debug.log
 
 # cache
 .sass-cache/
+.package.json

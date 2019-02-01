@@ -7,7 +7,8 @@
     "example": "example"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-js": "npx babel index.ori.js -o index.bundle.js && uglifyjs index.bundle.js -o index.js"
   },
   "repository": {
     "type": "git",
@@ -23,5 +24,11 @@
   "bugs": {
     "url": "https://github.com/mazeyqian/mazey-ui/issues"
   },
-  "homepage": "https://github.com/mazeyqian/mazey-ui#readme"
+  "homepage": "https://github.com/mazeyqian/mazey-ui#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "uglify-js": "^3.4.7",
+    "uglifycss": "0.0.29"
+  }
 }
