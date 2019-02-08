@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.mDataStructure = exports.mFriendlyInterval = exports.mDebounce = exports.mThrottle = exports.mCompatibleExist = exports.mFloatFixed = exports.mFloatToPercent = exports.mResetForm = exports.mGenerateUniqueNum = exports.mGenerateRndNum = exports.deepCopyObject = exports.newLine = exports.mTrim = exports.mGetTrim = exports.mGetDomain = exports.mCamelCaseToKebabCase = exports.mGetQueryParam = exports.mRenderTable = exports.mJoin = undefined;
+exports.mFriendlyInterval = exports.mDebounce = exports.mThrottle = exports.mCompatibleExist = exports.mFloatFixed = exports.mFloatToPercent = exports.mResetForm = exports.mGenerateUniqueNum = exports.mGenerateRndNum = exports.deepCopyObject = exports.newLine = exports.mTrim = exports.mGetTrim = exports.mGetDomain = exports.mCamelCaseToKebabCase = exports.mGetQueryParam = exports.mRenderTable = exports.mJoin = undefined;
 exports.mDeepCopyObject = mDeepCopyObject;
 exports.mCancelBubble = mCancelBubble;
 exports.hasCls = hasCls;
@@ -434,9 +434,4 @@ var mFriendlyInterval = exports.mFriendlyInterval = function mFriendlyInterval(s
     ret = d + ' 天 ' + h + ' 时 ' + m + ' 分 ' + s + ' 秒';
   }
   return ret;
-};
-
-// 数据结构
-var mDataStructure = exports.mDataStructure = {
-  MSet: _set2.default
 };
