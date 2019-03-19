@@ -1,4 +1,4 @@
-import MSet from './data-structure/set'
+import MSet from './js/data-structure/set'
 
 /**
  * @method mJoin
@@ -356,3 +356,5 @@ export const mFriendlyInterval = (start, end) => {
   }
   return ret
 }
+
+export const mSet = MSet

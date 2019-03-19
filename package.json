@@ -8,7 +8,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build-js": "npx babel src/js/index.ori.js -o src/js/index.bundle.js && uglifyjs src/js/index.bundle.js -o src/js/index.js"
+    "build-js": "npx babel src/js/index.ori.js -o src/js/index.bundle.js && uglifyjs src/js/index.bundle.js -o src/js/index.js",
+    "start": "webpack --config webpack.config.js"
   },
   "repository": {
     "type": "git",
@@ -29,6 +30,8 @@
     "babel-cli": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
     "uglify-js": "^3.4.7",
-    "uglifycss": "0.0.29"
+    "uglifycss": "0.0.29",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0"
   }
 }
