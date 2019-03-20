@@ -357,4 +357,19 @@ export const mFriendlyInterval = (start, end) => {
   return ret
 }
 
+/**
+ * @method mUpdateQueryStringParameter
+ * @description 替换或添加地址栏参数。
+ * */
+export function mUpdateQueryStringParameter (uri, key, value) {
+  var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
+  var separator = uri.indexOf('?') !== -1 ? "&" : "?";
+  if (uri.match(re)) {
+    return uri.replace(re, '$1' + key + "=" + value + '$2');
+  }
+  else {
+    return uri + separator + key + "=" + value;
+  }
+}
+
 export const mSet = MSet
