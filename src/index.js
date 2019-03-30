@@ -1,4 +1,10 @@
-import MSet from './js/data-structure/set'
+// import MSet from './js/data-structure/set'
+// import Deal from './js/deal'
+//
+// export default {
+//   MSet,
+//   Deal
+// }
 
 /**
  * @method mJoin
@@ -371,5 +377,3 @@ export function mUpdateQueryStringParameter (uri, key, value) {
     return uri + separator + key + "=" + value;
   }
 }
-
-export const mSet = MSet

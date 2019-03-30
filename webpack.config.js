@@ -3,10 +3,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
+  mode: 'production',
   entry: {
     index: './src/index.js',
   },
   output: {
+    libraryTarget: "umd",
     filename: '[name].js',
     path: path.resolve(__dirname, 'dist')
   },
