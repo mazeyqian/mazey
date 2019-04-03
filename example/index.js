@@ -1,1 +1,1 @@
-import {Deal} from '../dist/index'
+import M from '../dist/index'

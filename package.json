@@ -1,6 +1,6 @@
 {
   "name": "mazey-ui",
-  "version": "1.2.13",
+  "version": "1.2.14",
   "description": "Mazey's UI.",
   "main": "dist/index.js",
   "directories": {
