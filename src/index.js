@@ -1,15 +1,15 @@
-// import MSet from './js/data-structure/set'
-// import Deal from './js/deal'
-//
-// export default {
-//   MSet,
-//   Deal
-// }
+import MSet from './js/data-structure/set'
+import mJoin from './js/deal/mJoin'
 
 export default {
-  MSet: require('./js/data-structure/set'),
-  mJoin: require('./js/deal/mJoin')
+  MSet,
+  mJoin
 }
+
+// export default {
+//   MSet: require('./js/data-structure/set'),
+//   mJoin: require('./js/deal/mJoin')
+// }
 
 // /**
 //  * @method mJoin
