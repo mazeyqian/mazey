@@ -6,6 +6,10 @@ module.exports = {
   mode: 'production',
   entry: {
     index: './src/index.js',
+    test: './src/test.js',
+  },
+  devServer: {
+    contentBase: './dist'
   },
   output: {
     libraryTarget: "umd",
@@ -25,6 +29,12 @@ module.exports = {
     ]
   },
   plugins: [
-    new CleanWebpackPlugin(['dist'])
+    new CleanWebpackPlugin(['dist']),
+    new HtmlWebpackPlugin({
+      filename: path.resolve(__dirname, 'dist/test.html'),
+      template: path.resolve(__dirname, 'src/test.html'),
+      inject: true,
+      chunksSortMode: 'dependency'
+    }),
   ]
 };
