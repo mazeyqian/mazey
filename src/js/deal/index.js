@@ -4,7 +4,7 @@
  * @param {String} joinStr 连接值的字符串。
  * @param {Rest} ...rest 需要连接的值 。
  * */
-export default function mJoin (joinStr, ...rest) {
+function mJoin (joinStr, ...rest) {
   let [ret, len] = ['', joinStr.length]
   for (let v of rest) {
     if (v) {
@@ -15,4 +15,8 @@ export default function mJoin (joinStr, ...rest) {
     ret = ret.substring(len)
   }
   return ret
+}
+
+export default {
+  mJoin
 }

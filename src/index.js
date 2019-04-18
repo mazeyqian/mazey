@@ -1,10 +1,7 @@
 import MSet from './js/data-structure/set'
-import mJoin from './js/deal/mJoin'
+import Deal from './js/deal/index'
 
-export default {
-  MSet,
-  mJoin
-}
+export const mJoin = Deal.mJoin
 
 // export default {
 //   MSet: require('./js/data-structure/set'),

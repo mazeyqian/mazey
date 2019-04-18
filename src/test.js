@@ -1,3 +1,3 @@
-import m from './index'
+import {mJoin} from './index'
 
-console.log(m.mJoin('-', 1, 2, 3))
+console.log(mJoin('-', 1, 2, 3))
