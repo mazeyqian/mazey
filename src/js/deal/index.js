@@ -222,7 +222,9 @@ export function mCancelBubble (e) {
   }
 }
 
-// hasClass
+/**
+ * @method mHasClass
+ * */
 export function mHasClass (obj, cls) {
   let oriCls = obj.className // 获取对象的class值
   let oriClsArr = oriCls.split(/\s+/) // 分隔空格转换成数组
@@ -234,7 +236,9 @@ export function mHasClass (obj, cls) {
   return false // 否则返回False
 }
 
-// addClass
+/**
+ * @method mAddClass
+ * */
 export function mAddClass (obj, cls) {
   let oriCls = obj.className
   let space = ''
@@ -246,7 +250,9 @@ export function mAddClass (obj, cls) {
   obj.className = newCls // 替换新class
 }
 
-// removeClass
+/**
+ * @method mRemoveClass
+ * */
 export function mRemoveClass (obj, cls) {
   let oriCls = obj.className
   let newCls // 获取对象的class值
