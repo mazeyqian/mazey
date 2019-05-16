@@ -1,5 +1,15 @@
-import MSet from './js/data-structure/set'
+/**
+ * @module mazey-ui/js
+ * @author 钱程 <mazey@mazey.net>
+ * @description 常用的数据结构, 方法
+ * */
+
+import DataStructure from './js/data-structure/index'
 import Deal from './js/deal/index'
+
+// Data structure
+// 集合
+export const MSet = DataStructure.MSet
 
 // Deal
 export const mJoin = Deal.mJoin

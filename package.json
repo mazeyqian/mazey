@@ -9,7 +9,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build-js": "npx babel src/js/index.ori.js -o src/js/index.bundle.js && uglifyjs src/js/index.bundle.js -o src/js/index.js",
-    "start": "webpack --config webpack.config.js",
+    "build": "webpack --config webpack.config.js",
     "server": "webpack-dev-server --open"
   },
   "repository": {
