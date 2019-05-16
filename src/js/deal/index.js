@@ -112,11 +112,11 @@ export const mTrim = str => {
 }
 
 /**
- * @method newLine
+ * @method mNewLine
  * @description html换行。
  * @param {String} str
  * */
-export const newLine = str => {
+export const mNewLine = str => {
   if (!str) {
     return ''
   }
@@ -223,7 +223,7 @@ export function mCancelBubble (e) {
 }
 
 // hasClass
-export function hasCls (obj, cls) {
+export function mHasClass (obj, cls) {
   let oriCls = obj.className // 获取对象的class值
   let oriClsArr = oriCls.split(/\s+/) // 分隔空格转换成数组
   for (var i = 0; i < oriClsArr.length; i++) {
@@ -235,7 +235,7 @@ export function hasCls (obj, cls) {
 }
 
 // addClass
-export function addCls (obj, cls) {
+export function mAddClass (obj, cls) {
   let oriCls = obj.className
   let space = ''
   let newCls // 获取对象的class值
@@ -247,7 +247,7 @@ export function addCls (obj, cls) {
 }
 
 // removeClass
-export function removeCls (obj, cls) {
+export function mRemoveClass (obj, cls) {
   let oriCls = obj.className
   let newCls // 获取对象的class值
   newCls = ' ' + oriCls + ' ' // 前后加空格
@@ -377,7 +377,7 @@ export default {
   mGetDomain,
   mGetTrim,
   mTrim,
-  newLine,
+  mNewLine,
   mDeepCopyObject,
   mGenerateRndNum,
   mGenerateUniqueNum,
@@ -386,9 +386,9 @@ export default {
   mFloatFixed,
   mCompatibleExist,
   mCancelBubble,
-  hasCls,
-  addCls,
-  removeCls,
+  mHasClass,
+  mAddClass,
+  mRemoveClass,
   mThrottle,
   mDebounce,
   mFriendlyInterval,
