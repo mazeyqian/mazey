@@ -193,7 +193,7 @@ export const mFloatToPercent = (num, isFix) => {
  * @method mFloatFixed
  * @description 浮点数保留指定位。
  * */
-export const mFloatFixed = (num, size) => parseFloat(num, 10).toFixed(size)
+export const mFloatFixed = (num, size) => parseFloat(num).toFixed(size)
 
 /**
  * @method mCompatibleExist
