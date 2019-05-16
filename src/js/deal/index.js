@@ -375,6 +375,53 @@ export function mUpdateQueryStringParameter (uri, key, value) {
   }
 }
 
+/**
+ * @method mIsJsonString
+ * @description 判断是否合法 JSON 字符串。
+ * */
+export function mIsJsonString(str) {
+  try {
+    if (typeof JSON.parse(str) === "object") {
+      return true;
+    }
+  } catch(e) {}
+  return false;
+}
+
+/**
+ * @method mGetUrlParam
+ * @description 链接参数。
+ * */
+export function mGetUrlParam(sUrl,sKey){
+  var result = {};
+  sUrl.replace(/\??(\w+)=(\w+)&?/g,function(a,k,v){
+    if(result[k] !== void 0){
+      var t = result[k];
+      result[k] = [].concat(t,v);
+    }else{
+      result[k] = v;
+    }
+  });
+  if(sKey === void 0){
+    return result;
+  }else{
+    return result[sKey] || '';
+  }
+}
+
+/**
+ * @method mGetSearchQueryParam
+ * @description 地址栏参数。
+ * */
+export function mGetSearchQueryParam(name) {
+  var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+  var r = window.location.search.substr(1).match(reg);
+  if (r != null) {
+    return decodeURIComponent(unescape(r[2]));
+  }
+  return null;
+}
+
 export default {
   mJoin,
   mRenderTable,
@@ -398,5 +445,8 @@ export default {
   mThrottle,
   mDebounce,
   mFriendlyInterval,
-  mUpdateQueryStringParameter
+  mUpdateQueryStringParameter,
+  mIsJsonString,
+  mGetUrlParam,
+  mGetSearchQueryParam
 }

@@ -35,3 +35,6 @@ export const mThrottle = Deal.mThrottle
 export const mDebounce = Deal.mDebounce
 export const mFriendlyInterval = Deal.mFriendlyInterval
 export const mUpdateQueryStringParameter = Deal.mUpdateQueryStringParameter
+export const mIsJsonString = Deal.mIsJsonString
+export const mGetUrlParam = Deal.mGetUrlParam
+export const mGetSearchQueryParam = Deal.mGetSearchQueryParam
