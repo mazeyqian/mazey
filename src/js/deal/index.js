@@ -53,11 +53,11 @@ export const mRenderTable = (tbID = null, data = [], property = []) => {
 }
 
 /**
- * @method mGetQueryParam
+ * @method mGetHashQueryParam
  * @description 获取地址栏 hash 后面的参数。
  * @param {String} param 获取参数的名字。
  */
-export const mGetQueryParam = param => {
+export const mGetHashQueryParam = param => {
   let hashs = window.location.hash.split('?')
   if (hashs.length === 1) {
     return null
@@ -425,7 +425,7 @@ export function mGetSearchQueryParam(name) {
 export default {
   mJoin,
   mRenderTable,
-  mGetQueryParam,
+  mGetHashQueryParam,
   mCamelCaseToKebabCase,
   mGetDomain,
   mGetTrim,
