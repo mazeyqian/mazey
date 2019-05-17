@@ -228,7 +228,7 @@ export function mCancelBubble (e) {
 export function mHasClass (obj, cls) {
   let oriCls = obj.className // 获取对象的class值
   let oriClsArr = oriCls.split(/\s+/) // 分隔空格转换成数组
-  for (var i = 0; i < oriClsArr.length; i++) {
+  for (let i = 0; i < oriClsArr.length; i++) {
     if (oriClsArr[i] === cls) {
       return true // 若匹配到class则返回True
     }
@@ -365,8 +365,8 @@ export const mFriendlyInterval = (start, end) => {
  * @description 替换或添加地址栏参数。
  * */
 export function mUpdateQueryStringParameter (uri, key, value) {
-  var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
-  var separator = uri.indexOf('?') !== -1 ? "&" : "?";
+  let re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
+  let separator = uri.indexOf('?') !== -1 ? "&" : "?";
   if (uri.match(re)) {
     return uri.replace(re, '$1' + key + "=" + value + '$2');
   }
@@ -393,10 +393,10 @@ export function mIsJsonString(str) {
  * @description 链接参数。
  * */
 export function mGetUrlParam(sUrl,sKey){
-  var result = {};
+  let result = {};
   sUrl.replace(/\??(\w+)=(\w+)&?/g,function(a,k,v){
     if(result[k] !== void 0){
-      var t = result[k];
+      let t = result[k];
       result[k] = [].concat(t,v);
     }else{
       result[k] = v;
@@ -414,8 +414,8 @@ export function mGetUrlParam(sUrl,sKey){
  * @description 地址栏参数。
  * */
 export function mGetSearchQueryParam(name) {
-  var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-  var r = window.location.search.substr(1).match(reg);
+  let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+  let r = window.location.search.substr(1).match(reg);
   if (r != null) {
     return decodeURIComponent(unescape(r[2]));
   }
