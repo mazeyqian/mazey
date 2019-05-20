@@ -1,3 +1,3 @@
-# mazey-ui
+# mazey
 
-我的前端UI库。
+Mazey's library for front end.

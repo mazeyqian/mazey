@@ -3,3 +3,9 @@ build/
 node_modules/
 test/
 package-lock.json
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
