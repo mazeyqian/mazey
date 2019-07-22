@@ -79,13 +79,17 @@ export const mCamelCaseToKebabCase = camelCase => {
 
 /**
  * @method mGetDomain
- * @description 获取地址中的域名。
+ * @description 获取地址中的域名（及其他参数）。
  * @param {String} url
+ * @param {Array} rules ['hostname', 'pathname'] = 'km.mazey.net/plugins/servlet/mobile'
  * */
-export const mGetDomain = url => {
-  let aEl = document.createElement('a')
+export const mGetDomain = ({url, rules = ['hostname']} = {}) => {
+  let [aEl, ret] = [document.createElement('a'), '']
   aEl.href = url
-  return aEl.hostname
+  return rules.reduce((ret, v, index) => {
+    ret += aEl[v]
+    return ret
+  }, '')
 }
 
 /**
