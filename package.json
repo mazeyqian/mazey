@@ -10,7 +10,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build-js": "npx babel src/js/index.ori.js -o src/js/index.bundle.js && uglifyjs src/js/index.bundle.js -o src/js/index.js",
     "build": "webpack --config webpack.config.js",
-    "server": "webpack-dev-server --open"
+    "server": "webpack-dev-server --open",
+    "doc": "npx jsdoc -c ./jsdoc.config.json -d ./doc"
   },
   "repository": {
     "type": "git",
@@ -41,6 +42,7 @@
     "css-loader": "^2.1.0",
     "html-webpack-plugin": "^3.2.0",
     "http-server": "^0.11.1",
+    "jsdoc": "^3.6.3",
     "node-sass": "^4.11.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
