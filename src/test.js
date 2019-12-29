@@ -15,6 +15,7 @@ aa.add(1)
 aa.add(3)
 aa.add(2)
 aa.add(5)
+aa.add(6)
 
 aa.remove(1)
 
