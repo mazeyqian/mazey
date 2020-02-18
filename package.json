@@ -1,6 +1,6 @@
 {
   "name": "mazey",
-  "version": "1.2.0",
+  "version": "1.2.5",
   "description": "Mazey's library for front end.",
   "main": "src/index.js",
   "module": "lib/index.cjs.js",
@@ -12,7 +12,8 @@
     "build-js": "npx babel src/js/index.ori.js -o src/js/index.bundle.js && uglifyjs src/js/index.bundle.js -o src/js/index.js",
     "build": "webpack --config webpack.config.js",
     "server": "webpack-dev-server --open",
-    "doc": "npx jsdoc -c ./jsdoc.config.json -d ./doc"
+    "doc": "npx jsdoc -c ./jsdoc.config.json -d ./doc",
+    "release": "npx rollup -c && npm publish"
   },
   "repository": {
     "type": "git",
