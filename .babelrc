@@ -6,8 +6,5 @@
       },
       "useBuiltIns": false
     }]
-  ],
-  "plugins": [
-    "@babel/plugin-transform-runtime"
   ]
 }
