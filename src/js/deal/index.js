@@ -3,13 +3,13 @@
 import {mNow} from "../service/common";
 
 /**
- * @method mJoin
+ * @method join
  * @description 将一系列值连接成固定字符分隔的字符串 123,456 => 123 - 456。
  * @param {String} joinStr 连接值的字符串。
  * @param {Rest} ...rest 需要连接的值 。
  * */
 
-function mJoin (joinStr, ...rest) {
+export function join (joinStr, ...rest) {
   let [ret, len] = ['', joinStr.length]
   for (let v of rest) {
     if (v) {
@@ -23,13 +23,13 @@ function mJoin (joinStr, ...rest) {
 }
 
 /**
- * @method mRenderTable
+ * @method renderTable
  * @description 渲染表格
  * @param {DOM Object} tbID
  * @param {Array} data
  * @param {Array} property
  */
-export const mRenderTable = (tbID = null, data = [], property = []) => {
+export function renderTable (tbID = null, data = [], property = []) {
   const TBODY = document.querySelector(`#${tbID} tbody`)
   const mNullToNA = str => {
     return str === null ? 'N.A.' : str
@@ -53,11 +53,11 @@ export const mRenderTable = (tbID = null, data = [], property = []) => {
 }
 
 /**
- * @method mGetHashQueryParam
+ * @method getHashQueryParam
  * @description 获取地址栏 hash 后面的参数。
  * @param {String} param 获取参数的名字。
  */
-export const mGetHashQueryParam = param => {
+export function getHashQueryParam (param) {
   let hashs = window.location.hash.split('?')
   if (hashs.length === 1) {
     return null
@@ -68,22 +68,22 @@ export const mGetHashQueryParam = param => {
 }
 
 /**
- * @method mCamelCaseToKebabCase
+ * @method camelCaseToKebabCase
  * @description 驼峰转连接线。
  * @param {String} camelCase
  * */
-export const mCamelCaseToKebabCase = camelCase => {
+export function camelCaseToKebabCase (camelCase) {
   let kebabCase = camelCase.replace(/([A-Z])/g, '-$1').toLowerCase()
   return kebabCase[0] === '-' ? kebabCase.substr(1) : kebabCase
 }
 
 /**
- * @method mGetDomain
+ * @method getDomain
  * @description 获取地址中的域名（及其他参数）。
  * @param {String} url
  * @param {Array} rules ['hostname', 'pathname'] = 'km.mazey.net/plugins/servlet/mobile'
  * */
-export const mGetDomain = ({url, rules = ['hostname']} = {}) => {
+export function getDomain ({url, rules = ['hostname']} = {}) {
   let [aEl, ret] = [document.createElement('a'), '']
   aEl.href = url
   return rules.reduce((ret, v, index) => {
@@ -93,20 +93,11 @@ export const mGetDomain = ({url, rules = ['hostname']} = {}) => {
 }
 
 /**
- * @method mGetTrim
- * @description 去除左右空格 To Remove!。
- * @param {String} str
- * */
-export const mGetTrim = str => {
-  return str.replace(/^\s+|\s+$/gm, '')
-}
-
-/**
- * @method mTrim
+ * @method trim
  * @description 去除左右空格。
  * @param {String} str 需要去除两边空格的字符串。
  * */
-export const mTrim = str => {
+export function trim (str) {
   str = str.replace(/^\s+/, '') // 去除头部空格
   let [end, ws] = [str.length - 1, /\s/]
   while (ws.test(str.charAt(end))) {
@@ -116,11 +107,11 @@ export const mTrim = str => {
 }
 
 /**
- * @method mNewLine
+ * @method newLine
  * @description html换行。
  * @param {String} str
  * */
-export const mNewLine = str => {
+export function newLine (str) {
   if (!str) {
     return ''
   }
@@ -129,22 +120,22 @@ export const mNewLine = str => {
 }
 
 /**
- * @method mDeepCopyObject
+ * @method deepCopyObject
  * @description 对象深拷贝。
  * @param {Object} obj 被拷贝的对象。
  * @return {Object}
  * */
-export function mDeepCopyObject (obj) {
+export function deepCopyObject (obj) {
   return JSON.parse(JSON.stringify(obj))
 }
 
 /**
- * @method mGenerateRndNum
+ * @method generateRndNum
  * @description 生成随机数 mGenerateRndNum(7) => 7658495。
  * @param {Number} n 随机数的长度
  * @return {String}
  * */
-export const mGenerateRndNum = n => {
+export function generateRndNum (n) {
   let ret = ''
   while (n--) {
     ret += Math.floor(Math.random() * 10)
@@ -153,21 +144,21 @@ export const mGenerateRndNum = n => {
 }
 
 /**
- * @method mGenerateUniqueNum
+ * @method generateUniqueNum
  * @description 根据时间生成唯一标志的数字 mGenerateUniqueNum() => 1538324722364123。
  * @param {Number} n 随机数的长度
  * */
-export const mGenerateUniqueNum = n => {
-  let [now, rnd] = [mNow(), mGenerateRndNum(n || 3)]
+export function generateUniqueNum (n) {
+  let [now, rnd] = [mNow(), generateRndNum(n || 3)]
   return now + rnd
 }
 
 /**
- * @method mResetForm
+ * @method resetForm
  * @description 重置表单输入值为原始（空）状态。
  * @param {String} rest name1,name2,name3...NAME属性，可以多个。
  * */
-export const mResetForm = (...rest) => {
+export function resetForm (...rest) {
   for (let i = 0; i < rest.length; i++) {
     let tagMz = document.getElementsByName(rest[i])[0] // tag object
     let tagNameMz = tagMz.tagName.toLowerCase() // tag name
@@ -180,11 +171,11 @@ export const mResetForm = (...rest) => {
 }
 
 /**
- * @method mFloatToPercent
+ * @method floatToPercent
  * @description 浮点数转为百分比 0.2 => 20%。
  * @param {Number} 浮点数。
  * */
-export const mFloatToPercent = (num, isFix) => {
+export function floatToPercent (num, isFix) {
   if (isFix) {
     num = (num * 100).toFixed(isFix)
   } else {
@@ -194,16 +185,18 @@ export const mFloatToPercent = (num, isFix) => {
 }
 
 /**
- * @method mFloatFixed
+ * @method floatFixed
  * @description 浮点数保留指定位。
  * */
-export const mFloatFixed = (num, size) => parseFloat(num).toFixed(size)
+export function floatFixed (num, size) {
+  return parseFloat(num).toFixed(size)
+}
 
 /**
- * @method mCompatibleExist
+ * @method compatibleExist
  * @description 不存在返回 ——。
  * */
-export const mCompatibleExist = (instance, replaceStr) => {
+export function compatibleExist (instance, replaceStr) {
   let ret = ''
   try {
     ret = instance ? instance : replaceStr || '——'
@@ -214,10 +207,10 @@ export const mCompatibleExist = (instance, replaceStr) => {
 }
 
 /**
- * @method mCancelBubble
+ * @method cancelBubble
  * @description 阻止冒泡。
  * */
-export function mCancelBubble (e) {
+export function cancelBubble (e) {
   const ev = e ? e : window.event
   if (ev.stopPropagation) { // W3C
     ev.stopPropagation()
@@ -227,9 +220,9 @@ export function mCancelBubble (e) {
 }
 
 /**
- * @method mHasClass
+ * @method hasClass
  * */
-export function mHasClass (obj, cls) {
+export function hasClass (obj, cls) {
   let oriCls = obj.className // 获取对象的class值
   let oriClsArr = oriCls.split(/\s+/) // 分隔空格转换成数组
   for (let i = 0; i < oriClsArr.length; i++) {
@@ -241,9 +234,9 @@ export function mHasClass (obj, cls) {
 }
 
 /**
- * @method mAddClass
+ * @method addClass
  * */
-export function mAddClass (obj, cls) {
+export function addClass (obj, cls) {
   let oriCls = obj.className
   let space = ''
   let newCls // 获取对象的class值
@@ -255,9 +248,9 @@ export function mAddClass (obj, cls) {
 }
 
 /**
- * @method mRemoveClass
+ * @method removeClass
  * */
-export function mRemoveClass (obj, cls) {
+export function removeClass (obj, cls) {
   let oriCls = obj.className
   let newCls // 获取对象的class值
   newCls = ' ' + oriCls + ' ' // 前后加空格
@@ -268,10 +261,10 @@ export function mRemoveClass (obj, cls) {
 }
 
 /**
- * @method mThrottle
+ * @method throttle
  * @description 节流。
  * */
-export const mThrottle = function (func, wait, options) {
+export function throttle (func, wait, options) {
   // timeout: setTimeout Handle
   // previous: 上次时间戳
   let [context, args, result, timeout, previous] = [null, null, null, null, 0]
@@ -312,10 +305,10 @@ export const mThrottle = function (func, wait, options) {
 }
 
 /**
- * @method mDebounce
+ * @method debounce
  * @description 去抖。
  * */
-export const mDebounce = function (func, wait, immediate) {
+export function debounce (func, wait, immediate) {
   let [timeout, args, context, timestamp, result] = [null, null, null, null, null]
   let later = function () {
     let last = mNow() - timestamp
@@ -348,10 +341,10 @@ export const mDebounce = function (func, wait, immediate) {
 }
 
 /**
- * @method mFriendlyInterval
+ * @method friendlyInterval
  * @description 获取间隔时间。
  * */
-export const mFriendlyInterval = (start, end) => {
+export function friendlyInterval (start, end) {
   const t = end.getTime() - start.getTime()
   let ret = '未来不可期'
   if (t >= 0) {
@@ -365,10 +358,10 @@ export const mFriendlyInterval = (start, end) => {
 }
 
 /**
- * @method mUpdateQueryStringParameter
+ * @method updateQueryStringParameter
  * @description 替换或添加地址栏参数。
  * */
-export function mUpdateQueryStringParameter (uri, key, value) {
+export function updateQueryStringParameter (uri, key, value) {
   let re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
   let separator = uri.indexOf('?') !== -1 ? "&" : "?";
   if (uri.match(re)) {
@@ -380,10 +373,10 @@ export function mUpdateQueryStringParameter (uri, key, value) {
 }
 
 /**
- * @method mIsJsonString
+ * @method isJsonString
  * @description 判断是否合法 JSON 字符串。
  * */
-export function mIsJsonString(str) {
+export function isJsonString (str) {
   try {
     if (typeof JSON.parse(str) === "object") {
       return true;
@@ -393,10 +386,10 @@ export function mIsJsonString(str) {
 }
 
 /**
- * @method mGetUrlParam
+ * @method getUrlParam
  * @description 链接参数。
  * */
-export function mGetUrlParam(sUrl,sKey){
+export function getUrlParam (sUrl, sKey) {
   let result = {};
   sUrl.replace(/\??(\w+)=(\w+)&?/g,function(a,k,v){
     if(result[k] !== void 0){
@@ -414,10 +407,10 @@ export function mGetUrlParam(sUrl,sKey){
 }
 
 /**
- * @method mGetSearchQueryParam
+ * @method getSearchQueryParam
  * @description 地址栏参数。
  * */
-export function mGetSearchQueryParam(name) {
+export function getSearchQueryParam (name) {
   let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
   let r = window.location.search.substr(1).match(reg);
   if (r != null) {
@@ -426,31 +419,15 @@ export function mGetSearchQueryParam(name) {
   return null;
 }
 
-export default {
-  mJoin,
-  mRenderTable,
-  mGetHashQueryParam,
-  mCamelCaseToKebabCase,
-  mGetDomain,
-  mGetTrim,
-  mTrim,
-  mNewLine,
-  mDeepCopyObject,
-  mGenerateRndNum,
-  mGenerateUniqueNum,
-  mResetForm,
-  mFloatToPercent,
-  mFloatFixed,
-  mCompatibleExist,
-  mCancelBubble,
-  mHasClass,
-  mAddClass,
-  mRemoveClass,
-  mThrottle,
-  mDebounce,
-  mFriendlyInterval,
-  mUpdateQueryStringParameter,
-  mIsJsonString,
-  mGetUrlParam,
-  mGetSearchQueryParam
+/**
+ * @method doFn
+ * @description 执行有效函数
+ * @param {Function} fn 等待被执行的未知是否有效的函数
+ * */
+export function doFn (fn) {
+  let ret = null
+  if (fn && typeof fn === 'function') {
+    ret = fu()
+  }
+  return ret
 }
