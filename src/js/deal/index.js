@@ -8,7 +8,6 @@ import {mNow} from "../service/common";
  * @param {String} joinStr 连接值的字符串。
  * @param {Rest} ...rest 需要连接的值 。
  * */
-
 export function join (joinStr, ...rest) {
   let [ret, len] = ['', joinStr.length]
   for (let v of rest) {
