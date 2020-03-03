@@ -449,11 +449,42 @@ export function setSessionStorage (key, value = null) {
  * @description 存储数据到 sessionStorage
  * @param {String} key 键
  * @param {String} value 值
+ * @return {Any} 返回值
  * */
 export function getSessionStorage (key) {
   let ret = null;
   if (key) {
     const value = sessionStorage.getItem(key);
+    if (value) {
+      ret = JSON.parse(value);
+    }
+  }
+  return ret;
+}
+
+/**
+ * @method setLocalStorage
+ * @description 存储数据到 localStorage
+ * @param {String} key 键
+ * @param {String} value 值
+ * */
+export function setLocalStorage (key, value = null) {
+  if (key) {
+    localStorage.setItem(key, JSON.stringify(value));
+  }
+}
+
+/**
+ * @method getLocalStorage
+ * @description 存储数据到 localStorage
+ * @param {String} key 键
+ * @param {String} value 值
+ * @return {Any} 返回值
+ * */
+export function getLocalStorage (key) {
+  let ret = null;
+  if (key) {
+    const value = localStorage.getItem(key);
     if (value) {
       ret = JSON.parse(value);
     }
