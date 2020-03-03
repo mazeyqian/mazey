@@ -1,6 +1,6 @@
-/*Deal*/
+/* Deal */
 
-import {mNow} from "../service/common";
+import { mNow } from '../service/common';
 
 /**
  * @method join
@@ -9,16 +9,16 @@ import {mNow} from "../service/common";
  * @param {Rest} ...rest 需要连接的值 。
  * */
 export function join (joinStr, ...rest) {
-  let [ret, len] = ['', joinStr.length]
-  for (let v of rest) {
+  let [ret, len] = ['', joinStr.length];
+  for (const v of rest) {
     if (v) {
-      ret += `${joinStr}${v}`
+      ret += `${joinStr}${v}`;
     }
   }
   if (ret) {
-    ret = ret.substring(len)
+    ret = ret.substring(len);
   }
-  return ret
+  return ret;
 }
 
 /**
@@ -29,26 +29,26 @@ export function join (joinStr, ...rest) {
  * @param {Array} property
  */
 export function renderTable (tbID = null, data = [], property = []) {
-  const TBODY = document.querySelector(`#${tbID} tbody`)
+  const TBODY = document.querySelector(`#${tbID} tbody`);
   const mNullToNA = str => {
-    return str === null ? 'N.A.' : str
-  }
-  let content = ''
-  TBODY.innerHTML = ''
+    return str === null ? 'N.A.' : str;
+  };
+  let content = '';
+  TBODY.innerHTML = '';
   // 无数据
   if (!data.length) {
-    content = `<tr><td colspan="${property.length}">无数据</td></tr>`
+    content = `<tr><td colspan="${property.length}">无数据</td></tr>`;
   } else {
     for (let [i, max] = [0, data.length]; i < max; ++i) {
-      let item = data[i]
-      content += `<tr>`
+      const item = data[i];
+      content += '<tr>';
       for (let [i, max] = [0, property.length]; i < max; ++i) {
-        content += `<td>${mNullToNA(item[property[i]])}</td>`
+        content += `<td>${mNullToNA(item[property[i]])}</td>`;
       }
-      content += `</tr>`
+      content += '</tr>';
     }
   }
-  TBODY.innerHTML = content
+  TBODY.innerHTML = content;
 }
 
 /**
@@ -57,13 +57,13 @@ export function renderTable (tbID = null, data = [], property = []) {
  * @param {String} param 获取参数的名字。
  */
 export function getHashQueryParam (param) {
-  let hashs = window.location.hash.split('?')
+  const hashs = window.location.hash.split('?');
   if (hashs.length === 1) {
-    return null
+    return null;
   }
-  let reg = new RegExp(`(^|&)${param}=([^&]*)(&|$)`)
-  let ret = hashs[1].match(reg)
-  return ret ? ret[2] : null
+  const reg = new RegExp(`(^|&)${param}=([^&]*)(&|$)`);
+  const ret = hashs[1].match(reg);
+  return ret ? ret[2] : null;
 }
 
 /**
@@ -72,8 +72,8 @@ export function getHashQueryParam (param) {
  * @param {String} camelCase
  * */
 export function camelCaseToKebabCase (camelCase) {
-  let kebabCase = camelCase.replace(/([A-Z])/g, '-$1').toLowerCase()
-  return kebabCase[0] === '-' ? kebabCase.substr(1) : kebabCase
+  const kebabCase = camelCase.replace(/([A-Z])/g, '-$1').toLowerCase();
+  return kebabCase[0] === '-' ? kebabCase.substr(1) : kebabCase;
 }
 
 /**
@@ -82,13 +82,13 @@ export function camelCaseToKebabCase (camelCase) {
  * @param {String} url
  * @param {Array} rules ['hostname', 'pathname'] = 'km.mazey.net/plugins/servlet/mobile'
  * */
-export function getDomain ({url, rules = ['hostname']} = {}) {
-  let [aEl, ret] = [document.createElement('a'), '']
-  aEl.href = url
+export function getDomain ({ url, rules = ['hostname'] } = {}) {
+  const [aEl] = [document.createElement('a')];
+  aEl.href = url;
   return rules.reduce((ret, v, index) => {
-    ret += aEl[v]
-    return ret
-  }, '')
+    ret += aEl[v];
+    return ret;
+  }, '');
 }
 
 /**
@@ -97,12 +97,12 @@ export function getDomain ({url, rules = ['hostname']} = {}) {
  * @param {String} str 需要去除两边空格的字符串。
  * */
 export function trim (str) {
-  str = str.replace(/^\s+/, '') // 去除头部空格
-  let [end, ws] = [str.length - 1, /\s/]
+  str = str.replace(/^\s+/, ''); // 去除头部空格
+  let [end, ws] = [str.length - 1, /\s/];
   while (ws.test(str.charAt(end))) {
-    end-- // 最后一个非空格字符的索引
+    end--; // 最后一个非空格字符的索引
   }
-  return str.slice(0, end + 1)
+  return str.slice(0, end + 1);
 }
 
 /**
@@ -112,10 +112,10 @@ export function trim (str) {
  * */
 export function newLine (str) {
   if (!str) {
-    return ''
+    return '';
   }
-  let reg = new RegExp('\\n', 'g')
-  return str.replace(reg, '<br />')
+  const reg = new RegExp('\\n', 'g');
+  return str.replace(reg, '<br />');
 }
 
 /**
@@ -125,7 +125,7 @@ export function newLine (str) {
  * @return {Object}
  * */
 export function deepCopyObject (obj) {
-  return JSON.parse(JSON.stringify(obj))
+  return JSON.parse(JSON.stringify(obj));
 }
 
 /**
@@ -135,11 +135,11 @@ export function deepCopyObject (obj) {
  * @return {String}
  * */
 export function generateRndNum (n) {
-  let ret = ''
+  let ret = '';
   while (n--) {
-    ret += Math.floor(Math.random() * 10)
+    ret += Math.floor(Math.random() * 10);
   }
-  return ret
+  return ret;
 }
 
 /**
@@ -148,8 +148,8 @@ export function generateRndNum (n) {
  * @param {Number} n 随机数的长度
  * */
 export function generateUniqueNum (n) {
-  let [now, rnd] = [mNow(), generateRndNum(n || 3)]
-  return now + rnd
+  const [now, rnd] = [mNow(), generateRndNum(n || 3)];
+  return now + rnd;
 }
 
 /**
@@ -159,12 +159,12 @@ export function generateUniqueNum (n) {
  * */
 export function resetForm (...rest) {
   for (let i = 0; i < rest.length; i++) {
-    let tagMz = document.getElementsByName(rest[i])[0] // tag object
-    let tagNameMz = tagMz.tagName.toLowerCase() // tag name
+    const tagMz = document.getElementsByName(rest[i])[0]; // tag object
+    const tagNameMz = tagMz.tagName.toLowerCase(); // tag name
     if (tagNameMz === 'input') {
-      tagMz.value = ''
+      tagMz.value = '';
     } else if (tagNameMz === 'select') {
-      tagMz.options[0].selected = true
+      tagMz.options[0].selected = true;
     }
   }
 }
@@ -176,11 +176,11 @@ export function resetForm (...rest) {
  * */
 export function floatToPercent (num, isFix) {
   if (isFix) {
-    num = (num * 100).toFixed(isFix)
+    num = (num * 100).toFixed(isFix);
   } else {
-    num = Math.floor(num * 100)
+    num = Math.floor(num * 100);
   }
-  return `${num}%`
+  return `${num}%`;
 }
 
 /**
@@ -188,7 +188,7 @@ export function floatToPercent (num, isFix) {
  * @description 浮点数保留指定位。
  * */
 export function floatFixed (num, size) {
-  return parseFloat(num).toFixed(size)
+  return parseFloat(num).toFixed(size);
 }
 
 /**
@@ -196,13 +196,13 @@ export function floatFixed (num, size) {
  * @description 不存在返回 ——。
  * */
 export function compatibleExist (instance, replaceStr) {
-  let ret = ''
+  let ret = '';
   try {
-    ret = instance ? instance : replaceStr || '——'
+    ret = instance || replaceStr || '——';
   } catch (e) {
-    ret = '——'
+    ret = '——';
   }
-  return ret
+  return ret;
 }
 
 /**
@@ -210,11 +210,13 @@ export function compatibleExist (instance, replaceStr) {
  * @description 阻止冒泡。
  * */
 export function cancelBubble (e) {
-  const ev = e ? e : window.event
-  if (ev.stopPropagation) { // W3C
-    ev.stopPropagation()
-  } else { // IE
-    ev.cancelBubble = true
+  const ev = e || window.event;
+  if (ev.stopPropagation) {
+    // W3C
+    ev.stopPropagation();
+  } else {
+    // IE
+    ev.cancelBubble = true;
   }
 }
 
@@ -222,41 +224,41 @@ export function cancelBubble (e) {
  * @method hasClass
  * */
 export function hasClass (obj, cls) {
-  let oriCls = obj.className // 获取对象的class值
-  let oriClsArr = oriCls.split(/\s+/) // 分隔空格转换成数组
+  const oriCls = obj.className; // 获取对象的class值
+  const oriClsArr = oriCls.split(/\s+/); // 分隔空格转换成数组
   for (let i = 0; i < oriClsArr.length; i++) {
     if (oriClsArr[i] === cls) {
-      return true // 若匹配到class则返回True
+      return true; // 若匹配到class则返回True
     }
   }
-  return false // 否则返回False
+  return false; // 否则返回False
 }
 
 /**
  * @method addClass
  * */
 export function addClass (obj, cls) {
-  let oriCls = obj.className
-  let space = ''
-  let newCls // 获取对象的class值
+  const oriCls = obj.className;
+  let space = '';
+  let newCls = ''; // 获取对象的class值
   if (oriCls !== '') {
-    space = ' ' // 若原来的class不为空，跟一个空格
+    space = ' '; // 若原来的class不为空，跟一个空格
   }
-  newCls = oriCls + space + cls // 将新的class加进去
-  obj.className = newCls // 替换新class
+  newCls = oriCls + space + cls; // 将新的class加进去
+  obj.className = newCls; // 替换新class
 }
 
 /**
  * @method removeClass
  * */
 export function removeClass (obj, cls) {
-  let oriCls = obj.className
-  let newCls // 获取对象的class值
-  newCls = ' ' + oriCls + ' ' // 前后加空格
-  newCls = newCls.replace(/(\s+)/gi, ' ') // 将多余的空格替换成一个空格
-  newCls = newCls.replace(' ' + cls + ' ', ' ') // 将加了前后空格的cls替换成空格' '
-  newCls = newCls.replace(/(^\s+)|(\s+$)/g, '') // 去掉前后空格
-  obj.className = newCls
+  const oriCls = obj.className;
+  let newCls; // 获取对象的class值
+  newCls = ' ' + oriCls + ' '; // 前后加空格
+  newCls = newCls.replace(/(\s+)/gi, ' '); // 将多余的空格替换成一个空格
+  newCls = newCls.replace(' ' + cls + ' ', ' '); // 将加了前后空格的cls替换成空格' '
+  newCls = newCls.replace(/(^\s+)|(\s+$)/g, ''); // 去掉前后空格
+  obj.className = newCls;
 }
 
 /**
@@ -266,41 +268,41 @@ export function removeClass (obj, cls) {
 export function throttle (func, wait, options) {
   // timeout: setTimeout Handle
   // previous: 上次时间戳
-  let [context, args, result, timeout, previous] = [null, null, null, null, 0]
+  let [context, args, result, timeout, previous] = [null, null, null, null, 0];
   if (!options) {
-    options = {}
+    options = {};
   }
-  let later = function () {
-    previous = options.leading === false ? 0 : mNow()
-    timeout = null
-    result = func.apply(context, args)
+  const later = function () {
+    previous = options.leading === false ? 0 : mNow();
+    timeout = null;
+    result = func.apply(context, args);
     if (!timeout) {
-      context = args = null
+      context = args = null;
     }
-  }
+  };
   return function () {
-    let now = mNow()
+    const now = mNow();
     if (!previous && options.leading === false) {
-      previous = now
+      previous = now;
     }
-    let remaining = wait - (now - previous)
-    context = this
-    args = arguments
+    const remaining = wait - (now - previous);
+    context = this;
+    args = arguments;
     if (remaining <= 0 || remaining > wait) {
       if (timeout) {
-        clearTimeout(timeout)
-        timeout = null
+        clearTimeout(timeout);
+        timeout = null;
       }
-      previous = now
-      result = func.apply(context, args)
+      previous = now;
+      result = func.apply(context, args);
       if (!timeout) {
-        context = args = null
+        context = args = null;
       }
     } else if (!timeout && options.trailing !== false) {
-      timeout = setTimeout(later, remaining)
+      timeout = setTimeout(later, remaining);
     }
-    return result
-  }
+    return result;
+  };
 }
 
 /**
@@ -308,35 +310,35 @@ export function throttle (func, wait, options) {
  * @description 去抖。
  * */
 export function debounce (func, wait, immediate) {
-  let [timeout, args, context, timestamp, result] = [null, null, null, null, null]
-  let later = function () {
-    let last = mNow() - timestamp
+  let [timeout, args, context, timestamp, result] = [null, null, null, null, null];
+  const later = function () {
+    const last = mNow() - timestamp;
     if (last < wait && last >= 0) {
-      timeout = setTimeout(later, wait - last)
+      timeout = setTimeout(later, wait - last);
     } else {
-      timeout = null
+      timeout = null;
       if (!immediate) {
-        result = func.apply(context, args)
+        result = func.apply(context, args);
         if (!timeout) {
-          context = args = null
+          context = args = null;
         }
       }
     }
-  }
+  };
   return function () {
-    context = this
-    args = arguments
-    timestamp = mNow()
-    let callNow = immediate && !timeout
+    context = this;
+    args = arguments;
+    timestamp = mNow();
+    const callNow = immediate && !timeout;
     if (!timeout) {
-      timeout = setTimeout(later, wait)
+      timeout = setTimeout(later, wait);
     }
     if (callNow) {
-      result = func.apply(context, args)
-      context = args = null
+      result = func.apply(context, args);
+      context = args = null;
     }
-    return result
-  }
+    return result;
+  };
 }
 
 /**
@@ -344,16 +346,16 @@ export function debounce (func, wait, immediate) {
  * @description 获取间隔时间。
  * */
 export function friendlyInterval (start, end) {
-  const t = end.getTime() - start.getTime()
-  let ret = '未来不可期'
+  const t = end.getTime() - start.getTime();
+  let ret = '未来不可期';
   if (t >= 0) {
-    const d = Math.floor(t / 1000 / 60 / 60 / 24)
-    const h = Math.floor(t / 1000 / 60 / 60 % 24)
-    const m = Math.floor(t / 1000 / 60 % 60)
-    const s = Math.floor(t / 1000 % 60)
-    ret = d + ' 天 ' + h + ' 时 ' + m + ' 分 ' + s + ' 秒'
+    const d = Math.floor(t / 1000 / 60 / 60 / 24);
+    const h = Math.floor((t / 1000 / 60 / 60) % 24);
+    const m = Math.floor((t / 1000 / 60) % 60);
+    const s = Math.floor((t / 1000) % 60);
+    ret = d + ' 天 ' + h + ' 时 ' + m + ' 分 ' + s + ' 秒';
   }
-  return ret
+  return ret;
 }
 
 /**
@@ -361,13 +363,12 @@ export function friendlyInterval (start, end) {
  * @description 替换或添加地址栏参数。
  * */
 export function updateQueryStringParameter (uri, key, value) {
-  let re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
-  let separator = uri.indexOf('?') !== -1 ? "&" : "?";
+  const re = new RegExp('([?&])' + key + '=.*?(&|$)', 'i');
+  const separator = uri.indexOf('?') !== -1 ? '&' : '?';
   if (uri.match(re)) {
-    return uri.replace(re, '$1' + key + "=" + value + '$2');
-  }
-  else {
-    return uri + separator + key + "=" + value;
+    return uri.replace(re, '$1' + key + '=' + value + '$2');
+  } else {
+    return uri + separator + key + '=' + value;
   }
 }
 
@@ -377,10 +378,10 @@ export function updateQueryStringParameter (uri, key, value) {
  * */
 export function isJsonString (str) {
   try {
-    if (typeof JSON.parse(str) === "object") {
+    if (typeof JSON.parse(str) === 'object') {
       return true;
     }
-  } catch(e) {}
+  } catch (e) {}
   return false;
 }
 
@@ -389,18 +390,18 @@ export function isJsonString (str) {
  * @description 链接参数。
  * */
 export function getUrlParam (sUrl, sKey) {
-  let result = {};
-  sUrl.replace(/\??(\w+)=(\w+)&?/g,function(a,k,v){
-    if(result[k] !== void 0){
-      let t = result[k];
-      result[k] = [].concat(t,v);
-    }else{
+  const result = {};
+  sUrl.replace(/\??(\w+)=(\w+)&?/g, function (a, k, v) {
+    if (result[k] !== undefined) {
+      const t = result[k];
+      result[k] = [].concat(t, v);
+    } else {
       result[k] = v;
     }
   });
-  if(sKey === void 0){
+  if (sKey === undefined) {
     return result;
-  }else{
+  } else {
     return result[sKey] || '';
   }
 }
@@ -410,8 +411,8 @@ export function getUrlParam (sUrl, sKey) {
  * @description 地址栏参数。
  * */
 export function getSearchQueryParam (name) {
-  let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-  let r = window.location.search.substr(1).match(reg);
+  const reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)');
+  const r = window.location.search.substr(1).match(reg);
   if (r != null) {
     return decodeURIComponent(unescape(r[2]));
   }
@@ -424,9 +425,38 @@ export function getSearchQueryParam (name) {
  * @param {Function} fn 等待被执行的未知是否有效的函数
  * */
 export function doFn (fn) {
-  let ret = null
+  let ret = null;
   if (fn && typeof fn === 'function') {
-    ret = fu()
+    ret = fn();
   }
-  return ret
+  return ret;
+}
+
+/**
+ * @method setSessionStorage
+ * @description 存储数据到 sessionStorage
+ * @param {String} key 键
+ * @param {String} value 值
+ * */
+export function setSessionStorage (key, value = null) {
+  if (key) {
+    sessionStorage.setItem(key, JSON.stringify(value));
+  }
+}
+
+/**
+ * @method getSessionStorage
+ * @description 存储数据到 sessionStorage
+ * @param {String} key 键
+ * @param {String} value 值
+ * */
+export function getSessionStorage (key) {
+  let ret = null;
+  if (key) {
+    const value = sessionStorage.getItem(key);
+    if (value) {
+      ret = JSON.parse(value);
+    }
+  }
+  return ret;
 }

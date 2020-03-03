@@ -1,6 +1,6 @@
 {
   "name": "mazey",
-  "version": "1.3.3",
+  "version": "1.3.5",
   "description": "Mazey's library for front end.",
   "main": "src/index.js",
   "module": "lib/index.cjs.js",
