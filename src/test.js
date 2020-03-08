@@ -13,3 +13,13 @@ m.setSessionStorage('aaa123', aaa);
 setTimeout(() => {
   console.log('bbb', m.getSessionStorage('aaa123'));
 }, 1000);
+
+m.loadCSS({
+  url: '//static-oss.qutoutiao.net/game/ad/ka.css',
+  callback: () => {
+    console.log('load css end');
+  },
+  id: 'load-css'
+});
+
+console.log('end');
