@@ -603,3 +603,32 @@ export function loadCSS ({ url, callback, id }) {
     }, 20);
   }
 }
+
+/*
+ * @method loadScript
+ * @description 动态加载js文件
+ * @param {String} url -- js资源路径
+ * @param {Function} callback -- 加载后回调函数
+ */
+export function loadScript ({ url, callback }) {
+  const script = document.createElement('script');
+  // 如果没有 script 标签，那么代码就不会运行。可以利用这一事实，在页面的第一个 script 标签上使用 insertBefore()。
+  const firstScript = document.getElementsByTagName('script')[0];
+  script.type = 'text/javascript';
+  if (script.readyState) {
+    // IE
+    script.onreadystatechange = function () {
+      if (script.readyState === 'loaded' || script.readyState === 'complete') {
+        script.onreadystatechange = null;
+        doFn(callback);
+      }
+    };
+  } else {
+    // Others
+    script.onload = function () {
+      doFn(callback);
+    };
+  }
+  script.src = url;
+  firstScript && firstScript.parentNode.insertBefore(script, firstScript);
+}

@@ -23,3 +23,10 @@ m.loadCSS({
 });
 
 console.log('end');
+
+m.loadScript({
+  url: 'http://mazey.cn/static/js/polestar.bundle.js',
+  callback: () => {
+    console.log('ok');
+  }
+});
