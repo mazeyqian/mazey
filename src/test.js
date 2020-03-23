@@ -30,3 +30,6 @@ m.loadScript({
     console.log('ok');
   }
 });
+
+const id = m.getQueryParam('id');
+console.log('id', id);

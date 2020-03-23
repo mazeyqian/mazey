@@ -420,6 +420,14 @@ export function getSearchQueryParam (name) {
 }
 
 /**
+ * @method getQueryParam
+ * @description 地址栏参数，getSearchQueryParam 的别名。
+ * */
+export function getQueryParam (name) {
+  return getSearchQueryParam(name);
+}
+
+/**
  * @method doFn
  * @description 执行有效函数
  * @param {Function} fn 等待被执行的未知是否有效的函数
