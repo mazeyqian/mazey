@@ -344,18 +344,48 @@ export function debounce (func, wait, immediate) {
 /**
  * @method friendlyInterval
  * @description 获取间隔时间。
+ * @param {Number/Date} start 开始时间戳 1585325367122
+ * @param {Number/Date} end 结束时间戳 1585325367122
+ * @type {String} type 返回类型 d: 2(天) text: 2 天 4 时...
+ * @return {String/Number} 取决于 type
  * */
-export function friendlyInterval (start, end) {
-  const t = end.getTime() - start.getTime();
-  let ret = '未来不可期';
+export function friendlyInterval ({ start, end, type = 'd' } = {}) {
+  if (!isNumber(start)) start = new Date(start).getTime();
+  if (!isNumber(end)) end = new Date(end).getTime();
+  const t = end - start;
+  let ret = null;
+  let [d, h, m, s] = new Array(4).fill(0);
   if (t >= 0) {
-    const d = Math.floor(t / 1000 / 60 / 60 / 24);
-    const h = Math.floor((t / 1000 / 60 / 60) % 24);
-    const m = Math.floor((t / 1000 / 60) % 60);
-    const s = Math.floor((t / 1000) % 60);
-    ret = d + ' 天 ' + h + ' 时 ' + m + ' 分 ' + s + ' 秒';
+    d = Math.floor(t / 1000 / 60 / 60 / 24);
+    h = Math.floor(t / 1000 / 60 / 60);
+    m = Math.floor(t / 1000 / 60);
+    s = Math.floor(t / 1000);
+    switch (type) {
+    case 'd':
+      ret = d;
+      break;
+    case 'text':
+      d = Math.floor(t / 1000 / 60 / 60 / 24);
+      h = Math.floor((t / 1000 / 60 / 60) % 24);
+      m = Math.floor((t / 1000 / 60) % 60);
+      s = Math.floor((t / 1000) % 60);
+      ret = d + ' 天 ' + h + ' 时 ' + m + ' 分 ' + s + ' 秒';
+      break;
+    default:
+      ret = s;
+    }
   }
   return ret;
+}
+
+/**
+ * @method isNumber
+ * @description 判断是否数字
+ * @param {Any} 被判断的值
+ * @return {Boolean} true 是数字
+ */
+export function isNumber (v) {
+  return typeof v === 'number' && isFinite(v);
 }
 
 /**

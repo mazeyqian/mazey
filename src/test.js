@@ -33,3 +33,5 @@ m.loadScript({
 
 const id = m.getQueryParam('id');
 console.log('id', id);
+
+console.log(m.friendlyInterval({ start: 1585000000000, end: 1585317875430, type: 'text' }));
