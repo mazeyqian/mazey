@@ -3,6 +3,45 @@
 import { mNow } from '../service/common';
 
 /**
+ * @method calLongestCommonSubSequence
+ * @description 计算两个字符串的最长公共子序列
+ * @param {String} aStr 字符串
+ * @param {String} bStr 字符串
+ * @return {Number} 长度
+ */
+export function calLongestCommonSubSequence (aStr, bStr) {
+  const aLen = aStr.length;
+  const bLen = bStr.length;
+  // 创建二维数组并且深拷贝
+  const arr = deepCopyObject(new Array(aLen).fill(new Array(bLen).fill(0)));
+  for (let i = 0; i < aLen; ++i) {
+    for (let j = 0; j < bLen; ++j) {
+      if (aStr[i] === bStr[j]) {
+        let baseNum = 0;
+        if (i > 0 && j > 0) {
+          baseNum = arr[i - 1][j - 1];
+        }
+        arr[i][j] = baseNum + 1;
+      } else {
+        let [leftValue, topValue] = [0, 0];
+        if (j > 0) {
+          leftValue = arr[i][j - 1];
+        }
+        if (i > 0) {
+          topValue = arr[i - 1][j];
+        }
+        arr[i][j] = Math.max(leftValue, topValue);
+      }
+    }
+  }
+  // 二维数组转一维数组
+  const arr1 = Array.prototype.concat.apply([], arr);
+  // 获取最长公共子串
+  const maxLong = Math.max(...arr1);
+  return maxLong;
+}
+
+/**
  * @method join
  * @description 将一系列值连接成固定字符分隔的字符串 123,456 => 123 - 456。
  * @param {String} joinStr 连接值的字符串。
