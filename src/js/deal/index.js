@@ -3,13 +3,43 @@
 import { mNow } from '../service/common';
 
 /**
- * @method calLongestCommonSubSequence
+ * @method calLongestCommonSubstring
+ * @description 计算两个字符串的最长公共子串
+ * @param {String} aStr 字符串
+ * @param {String} bStr 字符串
+ * @return {Number} 长度
+ */
+export function calLongestCommonSubstring (aStr, bStr) {
+  const aLen = aStr.length;
+  const bLen = bStr.length;
+  // 创建二维数组并且深拷贝
+  const arr = deepCopyObject(new Array(aLen).fill(new Array(bLen).fill(0)));
+  for (let i = 0; i < aLen; ++i) {
+    for (let j = 0; j < bLen; ++j) {
+      if (aStr[i] === bStr[j]) {
+        let baseNum = 0;
+        if (i > 0 && j > 0) {
+          baseNum = arr[i - 1][j - 1];
+        }
+        arr[i][j] = baseNum + 1;
+      }
+    }
+  }
+  // 二维数组转一维数组
+  const arr1 = Array.prototype.concat.apply([], arr);
+  // 获取最长公共子串
+  const maxLong = Math.max(...arr1);
+  return maxLong;
+}
+
+/**
+ * @method calLongestCommonSubsequence
  * @description 计算两个字符串的最长公共子序列
  * @param {String} aStr 字符串
  * @param {String} bStr 字符串
  * @return {Number} 长度
  */
-export function calLongestCommonSubSequence (aStr, bStr) {
+export function calLongestCommonSubsequence (aStr, bStr) {
   const aLen = aStr.length;
   const bLen = bStr.length;
   // 创建二维数组并且深拷贝
@@ -39,6 +69,14 @@ export function calLongestCommonSubSequence (aStr, bStr) {
   // 获取最长公共子串
   const maxLong = Math.max(...arr1);
   return maxLong;
+}
+
+/**
+ * @method calLongestCommonSubSequence
+ * @description 向前兼容，calLongestCommonSubsequence 的别名
+ */
+export function calLongestCommonSubSequence (aStr, bStr) {
+  return calLongestCommonSubsequence(aStr, bStr);
 }
 
 /**
