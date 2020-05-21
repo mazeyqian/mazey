@@ -539,10 +539,10 @@ export function getQueryParam (name) {
  * @description 执行有效函数
  * @param {Function} fn 等待被执行的未知是否有效的函数
  * */
-export function doFn (fn) {
+export function doFn (fn, ...params) {
   let ret = null;
   if (fn && typeof fn === 'function') {
-    ret = fn();
+    ret = fn(...params);
   }
   return ret;
 }
