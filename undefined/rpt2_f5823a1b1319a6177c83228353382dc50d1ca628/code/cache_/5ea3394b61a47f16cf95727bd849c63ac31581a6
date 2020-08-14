@@ -1,0 +1,1 @@
+{"code":"/**\r\n * @module mazey-ui/js\r\n * @author 钱程 <mazey@mazey.net>\r\n * @description 常用的数据结构, 方法\r\n * */\r\nimport { __assign } from \"tslib\";\r\nimport * as Deal from './js/deal/index';\r\n// import MSet from './js/data-structure/MSet'\r\n// default\r\nexport default __assign({}, Deal);\r\n","references":["/Users/mazey/Web/mazey-ui/src/js/deal/index.ts"]}
