@@ -345,7 +345,8 @@ export function throttle (func: any, wait: number, options: any) {
   // previous: 上次时间戳
   let context: any = null
   let args: any = null
-  let [result, timeout, previous] = [null, null, 0];
+  let timeout: any = null
+  let [result, previous] = [null, 0];
   if (!options) {
     options = {};
   }
@@ -388,7 +389,10 @@ export function throttle (func: any, wait: number, options: any) {
  * */
 export function debounce (func: any, wait: number, immediate: any) {
   let context: any = null
-  let [timeout, args, timestamp, result] = [null, null, null, null];
+  let timeout: any = null
+  let timestamp: any = null
+  let args: any = null
+  let [result] = [null];
   const later = function () {
     const last = mNow() - timestamp;
     if (last < wait && last >= 0) {
@@ -498,8 +502,8 @@ export function isJsonString (str: string) {
  * @description 链接参数。
  * */
 export function getUrlParam (sUrl: string, sKey: string) {
-  const result = {};
-  sUrl.replace(/\??(\w+)=(\w+)&?/g, function (a, k, v) {
+  const result: any = {};
+  sUrl.replace(/\??(\w+)=(\w+)&?/g, function (a, k, v): any {
     if (result[k] !== undefined) {
       const t = result[k];
       result[k] = [].concat(t, v);
@@ -615,7 +619,7 @@ export function getLocalStorage (key: string) {
  * @param {Function} callback -- 加载后回调函数
  * @param {String} id -- link标签id
  */
-export function loadCSS ({ url: string, callback: any, id }) {
+export function loadCSS ({ url = '', callback = function () {}, id = '' }) {
   callback = typeof callback === 'function' ? callback : function () {};
   let node: any = document.createElement('link');
   const supportOnload = 'onload' in node;
@@ -672,7 +676,7 @@ export function loadCSS ({ url: string, callback: any, id }) {
    */
   function pollCss (node: any, callback: any, step: number) {
     const sheet = node.sheet;
-    let isLoaded;
+    let isLoaded: any;
 
     step += 1;
 
@@ -726,10 +730,10 @@ export function loadCSS ({ url: string, callback: any, id }) {
  * @param {String} url -- js资源路径
  * @param {Function} callback -- 加载后回调函数
  */
-export function loadScript ({ url: string, callback: any }) {
+export function loadScript ({ url = '', callback = function () {} }) {
   const script: any = document.createElement('script');
   // 如果没有 script 标签，那么代码就不会运行。可以利用这一事实，在页面的第一个 script 标签上使用 insertBefore()。
-  const firstScript = document.getElementsByTagName('script')[0];
+  const firstScript: any = document.getElementsByTagName('script')[0];
   script.type = 'text/javascript';
   if (script.readyState) {
     // IE

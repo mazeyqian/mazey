@@ -1,12 +1,1 @@
-{
-    "*.js": [
-        "prettier-eslint --write",
-        "eslint --fix",
-        "git add"
-    ],
-    "*.es6": [
-        "prettier-eslint --write",
-        "eslint --fix",
-        "git add"
-    ]
-}
+{}
