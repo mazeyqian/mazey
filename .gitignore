@@ -23,5 +23,7 @@ lib/
 
 # cache
 .sass-cache/
+undefined/
+temp/
 # package-lock.json
 yarn-error.log
