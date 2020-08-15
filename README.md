@@ -8,4 +8,4 @@ Mazey's library for front end.
 npm i mazey -S
 ```
 
-入口：[Deal](./src/js/deal/index.ts)
+入口：[index](./src/index.ts)
