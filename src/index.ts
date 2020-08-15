@@ -70,14 +70,6 @@ export function calLongestCommonSubsequence (aStr: any, bStr: any) {
 }
 
 /**
- * @method calLongestCommonSubSequence
- * @description 向前兼容，calLongestCommonSubsequence 的别名
- */
-export function calLongestCommonSubSequence (aStr: any, bStr: any) {
-  return calLongestCommonSubsequence(aStr, bStr);
-}
-
-/**
  * @method join
  * @description 将一系列值连接成固定字符分隔的字符串 123,456 => 123 - 456。
  * @param {String} joinStr 连接值的字符串。
