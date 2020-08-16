@@ -12,3 +12,5 @@ package-lock.json
 doc/
 undefined/
 temp/
+yarn.lock
+package-lock.json
