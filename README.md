@@ -21,12 +21,12 @@ import { loadScript, loadCSS } from 'mazey';
 loadScript({
     url: 'https://blog.mazey.net',
     callback: () => console.log('ok')
-})
+});
 // 加载 CSS
 loadCSS({
     url: 'https://blog.mazey.net',
     callback: () => console.log('ok')
-})
+});
 ```
 
 ### 存储数据
