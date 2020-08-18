@@ -1,14 +1,11 @@
 {
   "name": "mazey",
-  "version": "1.4.3-alpha-1",
+  "version": "1.4.4",
   "description": "Mazey's library for front end.",
   "main": "lib/index.cjs.js",
   "module": "lib/index.esm.js",
   "typings": "lib/index.d.ts",
   "mainEntryPointFilePath": "lib/index.d.ts",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
   "directories": {
     "example": "example"
   },
@@ -22,7 +19,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mazeyqian/mazey-ui.git"
+    "url": "git+https://github.com/mazeyqian/mazey.git"
   },
   "keywords": [
     "JavaScript",
@@ -32,9 +29,9 @@
   "author": "MazeyQian",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mazeyqian/mazey-ui/issues"
+    "url": "https://github.com/mazeyqian/mazey/issues"
   },
-  "homepage": "https://github.com/mazeyqian/mazey-ui#readme",
+  "homepage": "https://mazey.cn/docs/mazey/",
   "devDependencies": {
     "@babel/core": "7.8.4",
     "@babel/preset-env": "7.8.4",
