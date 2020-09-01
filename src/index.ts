@@ -763,8 +763,8 @@ export function mNow() {
  * @method setCookie
  * @description 设置 Cookie
  */
-export function setCookie(name: string, value: string, days: number) {
-  let domain, domainParts, expires, host;
+export function setCookie(name: string, value: string, days: number, domain: string) {
+  let domainParts, expires, host;
   let date: any
   if (days) {
     date = new Date();
