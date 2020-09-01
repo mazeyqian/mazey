@@ -7,7 +7,7 @@
  * @param {String} bStr 字符串
  * @return {Number} 长度
  */
-export function calLongestCommonSubstring (aStr: any, bStr: any) {
+export function calLongestCommonSubstring(aStr: any, bStr: any) {
   const aLen = aStr.length;
   const bLen = bStr.length;
   // 创建二维数组并且深拷贝
@@ -37,7 +37,7 @@ export function calLongestCommonSubstring (aStr: any, bStr: any) {
  * @param {String} bStr 字符串
  * @return {Number} 长度
  */
-export function calLongestCommonSubsequence (aStr: any, bStr: any) {
+export function calLongestCommonSubsequence(aStr: any, bStr: any) {
   const aLen = aStr.length;
   const bLen = bStr.length;
   // 创建二维数组并且深拷贝
@@ -75,7 +75,7 @@ export function calLongestCommonSubsequence (aStr: any, bStr: any) {
  * @param {String} joinStr 连接值的字符串。
  * @param {Rest} ...rest 需要连接的值 。
  * */
-export function join (joinStr: any, ...rest: any[]) {
+export function join(joinStr: any, ...rest: any[]) {
   let [ret, len] = ['', joinStr.length];
   for (const v of rest) {
     if (v) {
@@ -95,9 +95,9 @@ export function join (joinStr: any, ...rest: any[]) {
  * @param {Array} data
  * @param {Array} property
  */
-export function renderTable (tbID = null, data = [], property = []) {
+export function renderTable(tbID = null, data = [], property = []) {
   const TBODY: any = document.querySelector(`#${tbID} tbody`);
-  function mNullToNA (str: any) {
+  function mNullToNA(str: any) {
     return str === null ? 'N.A.' : str;
   };
   let content = '';
@@ -123,7 +123,7 @@ export function renderTable (tbID = null, data = [], property = []) {
  * @description 获取地址栏 hash 后面的参数。
  * @param {String} param 获取参数的名字。
  */
-export function getHashQueryParam (param: string) {
+export function getHashQueryParam(param: string) {
   const hashs = window.location.hash.split('?');
   if (hashs.length === 1) {
     return null;
@@ -138,7 +138,7 @@ export function getHashQueryParam (param: string) {
  * @description 驼峰转连接线。
  * @param {String} camelCase
  * */
-export function camelCaseToKebabCase (camelCase: string) {
+export function camelCaseToKebabCase(camelCase: string) {
   const kebabCase = camelCase.replace(/([A-Z])/g, '-$1').toLowerCase();
   return kebabCase[0] === '-' ? kebabCase.substr(1) : kebabCase;
 }
@@ -149,7 +149,7 @@ export function camelCaseToKebabCase (camelCase: string) {
  * @param {String} url
  * @param {Array} rules ['hostname', 'pathname'] = 'km.mazey.net/plugins/servlet/mobile'
  * */
-export function getDomain ({ url = '', rules = ['hostname'] } = {}) {
+export function getDomain({ url = '', rules = ['hostname'] } = {}) {
   const aEl: any = document.createElement('a');
   aEl.href = url;
   return rules.reduce((ret, v, index) => {
@@ -163,7 +163,7 @@ export function getDomain ({ url = '', rules = ['hostname'] } = {}) {
  * @description 去除左右空格。
  * @param {String} str 需要去除两边空格的字符串。
  * */
-export function trim (str: string) {
+export function trim(str: string) {
   str = str.replace(/^\s+/, ''); // 去除头部空格
   let [end, ws] = [str.length - 1, /\s/];
   while (ws.test(str.charAt(end))) {
@@ -177,7 +177,7 @@ export function trim (str: string) {
  * @description html换行。
  * @param {String} str
  * */
-export function newLine (str: string) {
+export function newLine(str: string) {
   if (!str) {
     return '';
   }
@@ -191,7 +191,7 @@ export function newLine (str: string) {
  * @param {Object} obj 被拷贝的对象。
  * @return {Object}
  * */
-export function deepCopyObject (obj: any) {
+export function deepCopyObject(obj: any) {
   return JSON.parse(JSON.stringify(obj));
 }
 
@@ -201,7 +201,7 @@ export function deepCopyObject (obj: any) {
  * @param {Number} n 随机数的长度
  * @return {String}
  * */
-export function generateRndNum (n: number) {
+export function generateRndNum(n: number) {
   let ret = '';
   while (n--) {
     ret += Math.floor(Math.random() * 10);
@@ -214,7 +214,7 @@ export function generateRndNum (n: number) {
  * @description 根据时间生成唯一标志的数字 mGenerateUniqueNum() => 1538324722364123。
  * @param {Number} n 随机数的长度
  * */
-export function generateUniqueNum (n: number) {
+export function generateUniqueNum(n: number) {
   const [now, rnd] = [mNow(), generateRndNum(n || 3)];
   return now + rnd;
 }
@@ -224,7 +224,7 @@ export function generateUniqueNum (n: number) {
  * @description 重置表单输入值为原始（空）状态。
  * @param {String} rest name1,name2,name3...NAME属性，可以多个。
  * */
-export function resetForm (...rest: any[]) {
+export function resetForm(...rest: any[]) {
   for (let i = 0; i < rest.length; i++) {
     const tagMz: any = document.getElementsByName(rest[i])[0]; // tag object
     const tagNameMz = tagMz.tagName.toLowerCase(); // tag name
@@ -241,7 +241,7 @@ export function resetForm (...rest: any[]) {
  * @description 浮点数转为百分比 0.2 => 20%。
  * @param {Number} 浮点数。
  * */
-export function floatToPercent (num: any, isFix: any) {
+export function floatToPercent(num: any, isFix: any) {
   if (isFix) {
     num = (num * 100).toFixed(isFix);
   } else {
@@ -254,7 +254,7 @@ export function floatToPercent (num: any, isFix: any) {
  * @method floatFixed
  * @description 浮点数保留指定位。
  * */
-export function floatFixed (num: any, size: any) {
+export function floatFixed(num: any, size: any) {
   return parseFloat(num).toFixed(size);
 }
 
@@ -262,7 +262,7 @@ export function floatFixed (num: any, size: any) {
  * @method compatibleExist
  * @description 不存在返回 ——。
  * */
-export function compatibleExist (instance: string, replaceStr: string) {
+export function compatibleExist(instance: string, replaceStr: string) {
   let ret = '';
   try {
     ret = instance || replaceStr || '——';
@@ -276,7 +276,7 @@ export function compatibleExist (instance: string, replaceStr: string) {
  * @method cancelBubble
  * @description 阻止冒泡。
  * */
-export function cancelBubble (e: any) {
+export function cancelBubble(e: any) {
   const ev = e || window.event;
   if (ev.stopPropagation) {
     // W3C
@@ -290,7 +290,7 @@ export function cancelBubble (e: any) {
 /**
  * @method hasClass
  * */
-export function hasClass (obj: any, cls: string) {
+export function hasClass(obj: any, cls: string) {
   const oriCls = obj.className; // 获取对象的class值
   const oriClsArr = oriCls.split(/\s+/); // 分隔空格转换成数组
   for (let i = 0; i < oriClsArr.length; i++) {
@@ -304,7 +304,7 @@ export function hasClass (obj: any, cls: string) {
 /**
  * @method addClass
  * */
-export function addClass (obj: any, cls: string) {
+export function addClass(obj: any, cls: string) {
   const oriCls = obj.className;
   let space = '';
   let newCls = ''; // 获取对象的class值
@@ -318,7 +318,7 @@ export function addClass (obj: any, cls: string) {
 /**
  * @method removeClass
  * */
-export function removeClass (obj: any, cls: string) {
+export function removeClass(obj: any, cls: string) {
   const oriCls = obj.className;
   let newCls; // 获取对象的class值
   newCls = ' ' + oriCls + ' '; // 前后加空格
@@ -332,7 +332,7 @@ export function removeClass (obj: any, cls: string) {
  * @method throttle
  * @description 节流。
  * */
-export function throttle (func: any, wait: number, options: any) {
+export function throttle(func: any, wait: number, options: any) {
   // timeout: setTimeout Handle
   // previous: 上次时间戳
   let context: any = null
@@ -379,7 +379,7 @@ export function throttle (func: any, wait: number, options: any) {
  * @method debounce
  * @description 去抖。
  * */
-export function debounce (func: any, wait: number, immediate: any) {
+export function debounce(func: any, wait: number, immediate: any) {
   let context: any = null
   let timeout: any = null
   let timestamp: any = null
@@ -423,7 +423,7 @@ export function debounce (func: any, wait: number, immediate: any) {
  * @type {String} type 返回类型 d: 2(天) text: 2 天 4 时...
  * @return {String/Number} 取决于 type
  * */
-export function friendlyInterval ({ start = 0, end = 0, type = 'd' } = {}) {
+export function friendlyInterval({ start = 0, end = 0, type = 'd' } = {}) {
   if (!isNumber(start)) start = new Date(start).getTime();
   if (!isNumber(end)) end = new Date(end).getTime();
   const t = end - start;
@@ -435,18 +435,18 @@ export function friendlyInterval ({ start = 0, end = 0, type = 'd' } = {}) {
     m = Math.floor(t / 1000 / 60);
     s = Math.floor(t / 1000);
     switch (type) {
-    case 'd':
-      ret = d;
-      break;
-    case 'text':
-      d = Math.floor(t / 1000 / 60 / 60 / 24);
-      h = Math.floor((t / 1000 / 60 / 60) % 24);
-      m = Math.floor((t / 1000 / 60) % 60);
-      s = Math.floor((t / 1000) % 60);
-      ret = d + ' 天 ' + h + ' 时 ' + m + ' 分 ' + s + ' 秒';
-      break;
-    default:
-      ret = s;
+      case 'd':
+        ret = d;
+        break;
+      case 'text':
+        d = Math.floor(t / 1000 / 60 / 60 / 24);
+        h = Math.floor((t / 1000 / 60 / 60) % 24);
+        m = Math.floor((t / 1000 / 60) % 60);
+        s = Math.floor((t / 1000) % 60);
+        ret = d + ' 天 ' + h + ' 时 ' + m + ' 分 ' + s + ' 秒';
+        break;
+      default:
+        ret = s;
     }
   }
   return ret;
@@ -458,7 +458,7 @@ export function friendlyInterval ({ start = 0, end = 0, type = 'd' } = {}) {
  * @param {Any} 被判断的值
  * @return {Boolean} true 是数字
  */
-export function isNumber (v: any) {
+export function isNumber(v: any) {
   return typeof v === 'number' && isFinite(v);
 }
 
@@ -466,7 +466,7 @@ export function isNumber (v: any) {
  * @method updateQueryStringParameter
  * @description 替换或添加地址栏参数。
  * */
-export function updateQueryStringParameter (uri: string, key: string, value: string) {
+export function updateQueryStringParameter(uri: string, key: string, value: string) {
   const re = new RegExp('([?&])' + key + '=.*?(&|$)', 'i');
   const separator = uri.indexOf('?') !== -1 ? '&' : '?';
   if (uri.match(re)) {
@@ -480,12 +480,12 @@ export function updateQueryStringParameter (uri: string, key: string, value: str
  * @method isJsonString
  * @description 判断是否合法 JSON 字符串。
  * */
-export function isJsonString (str: string) {
+export function isJsonString(str: string) {
   try {
     if (typeof JSON.parse(str) === 'object') {
       return true;
     }
-  } catch (e) {}
+  } catch (e) { }
   return false;
 }
 
@@ -493,7 +493,7 @@ export function isJsonString (str: string) {
  * @method getUrlParam
  * @description 链接参数。
  * */
-export function getUrlParam (sUrl: string, sKey: string) {
+export function getUrlParam(sUrl: string, sKey: string) {
   const result: any = {};
   sUrl.replace(/\??(\w+)=(\w+)&?/g, function (a, k, v): any {
     if (result[k] !== undefined) {
@@ -514,7 +514,7 @@ export function getUrlParam (sUrl: string, sKey: string) {
  * @method getSearchQueryParam
  * @description 地址栏参数。
  * */
-export function getSearchQueryParam (name: string) {
+export function getSearchQueryParam(name: string) {
   const reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)');
   const r = window.location.search.substr(1).match(reg);
   if (r != null) {
@@ -527,7 +527,7 @@ export function getSearchQueryParam (name: string) {
  * @method getQueryParam
  * @description 地址栏参数，getSearchQueryParam 的别名。
  * */
-export function getQueryParam (name: string) {
+export function getQueryParam(name: string) {
   return getSearchQueryParam(name);
 }
 
@@ -536,7 +536,7 @@ export function getQueryParam (name: string) {
  * @description 执行有效函数
  * @param {Function} fn 等待被执行的未知是否有效的函数
  * */
-export function doFn (fn: any, ...params: any[]) {
+export function doFn(fn: any, ...params: any[]) {
   let ret = null;
   if (fn && typeof fn === 'function') {
     ret = fn(...params);
@@ -550,7 +550,7 @@ export function doFn (fn: any, ...params: any[]) {
  * @param {String} key 键
  * @param {String} value 值
  * */
-export function setSessionStorage (key: string, value: any = null) {
+export function setSessionStorage(key: string, value: any = null) {
   if (key) {
     sessionStorage.setItem(key, JSON.stringify(value));
   }
@@ -563,7 +563,7 @@ export function setSessionStorage (key: string, value: any = null) {
  * @param {String} value 值
  * @return {Any} 返回值
  * */
-export function getSessionStorage (key: string) {
+export function getSessionStorage(key: string) {
   let ret = null;
   if (key) {
     const value = sessionStorage.getItem(key);
@@ -580,7 +580,7 @@ export function getSessionStorage (key: string) {
  * @param {String} key 键
  * @param {String} value 值
  * */
-export function setLocalStorage (key: string, value: any = null) {
+export function setLocalStorage(key: string, value: any = null) {
   if (key) {
     localStorage.setItem(key, JSON.stringify(value));
   }
@@ -593,7 +593,7 @@ export function setLocalStorage (key: string, value: any = null) {
  * @param {String} value 值
  * @return {Any} 返回值
  * */
-export function getLocalStorage (key: string) {
+export function getLocalStorage(key: string) {
   let ret = null;
   if (key) {
     const value = localStorage.getItem(key);
@@ -611,8 +611,8 @@ export function getLocalStorage (key: string) {
  * @param {Function} callback -- 加载后回调函数
  * @param {String} id -- link标签id
  */
-export function loadCSS ({ url = '', callback = function () {}, id = '' }) {
-  callback = typeof callback === 'function' ? callback : function () {};
+export function loadCSS({ url = '', callback = function () { }, id = '' }) {
+  callback = typeof callback === 'function' ? callback : function () { };
   let node: any = document.createElement('link');
   const supportOnload = 'onload' in node;
   const isOldWebKit = +navigator.userAgent.replace(/.*(?:AppleWebKit|AndroidWebKit)\/?(\d+).*/i, '$1') < 536; // webkit旧内核做特殊处理
@@ -650,7 +650,7 @@ export function loadCSS ({ url = '', callback = function () {}, id = '' }) {
     };
   }
 
-  function onload () {
+  function onload() {
     // 确保只跑一次下载操作
     node.onload = node.onerror = node.onreadystatechange = null;
 
@@ -666,7 +666,7 @@ export function loadCSS ({ url = '', callback = function () {}, id = '' }) {
    * @param callback -- 回调函数
    * @param step -- 计步器，避免无限循环
    */
-  function pollCss (node: any, callback: any, step: number) {
+  function pollCss(node: any, callback: any, step: number) {
     const sheet = node.sheet;
     let isLoaded: any;
 
@@ -722,7 +722,7 @@ export function loadCSS ({ url = '', callback = function () {}, id = '' }) {
  * @param {String} url -- js资源路径
  * @param {Function} callback -- 加载后回调函数
  */
-export function loadScript ({ url = '', callback = function () {} }) {
+export function loadScript({ url = '', callback = function () { } }) {
   const script: any = document.createElement('script');
   // 如果没有 script 标签，那么代码就不会运行。可以利用这一事实，在页面的第一个 script 标签上使用 insertBefore()。
   const firstScript: any = document.getElementsByTagName('script')[0];
@@ -749,7 +749,7 @@ export function loadScript ({ url = '', callback = function () {} }) {
  * @method mNow
  * @description 获取时间戳
  */
-export function mNow () {
+export function mNow() {
   let ret = 0
   if (Date.now) {
     ret = Date.now()
@@ -757,4 +757,63 @@ export function mNow () {
     ret = new Date().getTime()
   }
   return ret
+}
+
+/*
+ * @method setCookie
+ * @description 设置 Cookie
+ */
+export function setCookie(name: string, value: string, days: number) {
+  let domain, domainParts, expires, host;
+  let date: any
+  if (days) {
+    date = new Date();
+    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+    expires = "; expires=" + date.toGMTString();
+  } else {
+    expires = "";
+  }
+  host = location.host;
+  if (host.split('.').length === 1) {
+    // no "." in a domain - it's localhost or something similar
+    document.cookie = name + "=" + value + expires + "; path=/";
+  } else {
+    // Remember the cookie on all subdomains.
+    //
+    // Start with trying to set cookie to the top domain.
+    // (example: if user is on foo.com, try to set
+    //  cookie to domain ".com")
+    //
+    // If the cookie will not be set, it means ".com"
+    // is a top level domain and we need to
+    // set the cookie to ".foo.com"
+    domainParts = host.split('.');
+    domainParts.shift();
+    domain = '.' + domainParts.join('.');
+    document.cookie = name + "=" + value + expires + "; path=/; domain=" + domain;
+    // check if cookie was successfuly set to the given domain
+    // (otherwise it was a Top-Level Domain)
+    if (getCookie(name) === null || getCookie(name) !== value) {
+      // append "." to current domain
+      domain = '.' + host;
+      document.cookie = name + "=" + value + expires + "; path=/; domain=" + domain;
+    }
+  }
+}
+
+/*
+ * @method getCookie
+ * @description 获取 Cookie
+ */
+function getCookie (name: string) {
+  var nameEQ = name + "=";
+  var ca = document.cookie.split(';');
+  for (var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1, c.length);
+    }
+    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+  }
+  return null;
 }
