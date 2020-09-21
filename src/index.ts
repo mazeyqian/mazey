@@ -789,13 +789,13 @@ export function setCookie(name: string, value: string, days: number, domain: str
     // set the cookie to ".foo.com"
     domainParts = host.split('.');
     domainParts.shift();
-    domain = '.' + domainParts.join('.');
+    domain = domain || ('.' + domainParts.join('.'));
     document.cookie = name + "=" + value + expires + "; path=/; domain=" + domain;
     // check if cookie was successfuly set to the given domain
     // (otherwise it was a Top-Level Domain)
     if (getCookie(name) === null || getCookie(name) !== value) {
       // append "." to current domain
-      domain = '.' + host;
+      domain = domain || ('.' + host);
       document.cookie = name + "=" + value + expires + "; path=/; domain=" + domain;
     }
   }
