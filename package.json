@@ -1,6 +1,6 @@
 {
   "name": "mazey",
-  "version": "1.4.4",
+  "version": "1.4.7",
   "description": "Mazey's library for front end.",
   "main": "lib/index.cjs.js",
   "module": "lib/index.esm.js",
@@ -34,7 +34,7 @@
   "homepage": "https://mazey.cn/docs/mazey/",
   "devDependencies": {
     "@babel/core": "7.8.4",
-    "@babel/preset-env": "7.8.4",
+    "@babel/preset-env": "7.5.5",
     "@commitlint/cli": "8.3.5",
     "@commitlint/config-conventional": "8.3.4",
     "@microsoft/api-extractor": "7.9.4",
