@@ -805,7 +805,7 @@ export function setCookie(name: string, value: string, days: number, domain: str
  * @method getCookie
  * @description 获取 Cookie
  */
-function getCookie (name: string) {
+export function getCookie (name: string) {
   var nameEQ = name + "=";
   var ca = document.cookie.split(';');
   for (var i = 0; i < ca.length; i++) {
