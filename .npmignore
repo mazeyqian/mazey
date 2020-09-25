@@ -2,7 +2,6 @@
 build/
 node_modules/
 test/
-package-lock.json
 .idea
 .vscode
 *.suo
@@ -10,7 +9,10 @@ package-lock.json
 *.njsproj
 *.sln
 doc/
+docs/
 undefined/
 temp/
 yarn.lock
+yarn-error.lock
 package-lock.json
+api-extractor.json
