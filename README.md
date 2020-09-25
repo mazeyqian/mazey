@@ -14,8 +14,9 @@ npm install mazey --save
 
 ### 加载资源
 
+加载 JavaScript
+
 ```
-// 加载 JavaScript
 import { loadScript } from 'mazey';
 
 loadScript({
@@ -33,8 +34,9 @@ loadScript({
   );
 ```
 
+加载 CSS
+
 ```
-// 加载 CSS
 import { loadCSS } from 'mazey';
 
 loadCSS({
@@ -54,8 +56,9 @@ loadCSS({
 
 ### 存储数据
 
+Storage
+
 ```
-// Storage
 import { setSessionStorage, getSessionStorage, setLocalStorage, getLocalStorage } from 'mazey';
 
 setSessionStorage('test', '123');
@@ -64,8 +67,9 @@ setLocalStorage('test', '123');
 getLocalStorage('test'); // 123
 ```
 
+Cookie
+
 ```
-// Cookie
 import { setCookie, getCookie } from 'mazey';
 
 setCookie('test', '123', 30, 'mazey.net'); // key value day domain
@@ -74,15 +78,17 @@ getCookie('test'); // 123
 
 ### 公式计算
 
+计算两个字符串的最长公共子串
+
 ```
-// 计算两个字符串的最长公共子串
 import { calLongestCommonSubstring } from 'mazey';
 
 calLongestCommonSubstring('fish', 'finish'); // 3
 ```
 
+计算两个字符串的最长公共子序列
+
 ```
-// 计算两个字符串的最长公共子序列
 import { calLongestCommonSubsequence } from 'mazey';
 
 calLongestCommonSubsequence('fish', 'finish'); // 4
