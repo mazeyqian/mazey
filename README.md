@@ -15,29 +15,55 @@ npm install mazey --save
 ### 加载资源
 
 ```
-import { loadScript, loadCSS } from 'mazey';
-
 // 加载 JavaScript
+import { loadScript } from 'mazey';
+
 loadScript({
-    url: 'https://blog.mazey.net',
-    callback: () => console.log('ok')
-});
+  url: 'http://www.mazey.net/js/plugin/jquery/jquery-2.1.1.min.js'
+})
+  .then(
+    res => {
+      console.log(`加载 JavaScript: ${res}`);
+    }
+  )
+  .catch(
+    err => {
+      console.error(`加载 JavaScript Error: ${err}`)
+    }
+  );
+
 // 加载 CSS
+import { loadCSS } from 'mazey';
+
 loadCSS({
-    url: 'https://blog.mazey.net',
-    callback: () => console.log('ok')
-});
+  url: 'http://www.mazey.net/css/mazey-base.css'
+})
+  .then(
+    res => {
+      console.log(`加载 CSS: ${res}`);
+    }
+  )
+  .catch(
+    err => {
+      console.error(`加载 CSS Error: ${err}`)
+    }
+  );
 ```
 
 ### 存储数据
 
 ```
+// Storage
 import { setSessionStorage, getSessionStorage, setLocalStorage, getLocalStorage } from 'mazey';
+setSessionStorage('test', '123');
+getSessionStorage('test'); // 123
+setLocalStorage('test', '123');
+getLocalStorage('test'); // 123
 
-setSessionStorage('key', 'value');
-console.log(getSessionStorage('key')); // value
-setLocalStorage('key', 'value');
-console.log(getLocalStorage('key')); // value
+// Cookie
+import { setCookie, getCookie } from 'mazey';
+setCookie('test', '123', 30, 'mazey.net'); // key value day domain
+getCookie('test'); // 123
 ```
 
 ### 公式计算

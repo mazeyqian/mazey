@@ -608,11 +608,19 @@ export function getLocalStorage(key: string) {
  * @method loadCSS
  * @description 动态加载css文件
  * @param {String} url -- css资源路径
- * @param {Function} callback -- 加载后回调函数
  * @param {String} id -- link标签id
+ * @return {Promise<Boolean>} true -- 加载成功
  */
-export function loadCSS({ url = '', callback = function () { }, id = '' }) {
-  callback = typeof callback === 'function' ? callback : function () { };
+export function loadCSS({ url = '', id = '' } = {}) {
+  let success:any = null;
+  let fail:any = null;
+  const status = new Promise((resolve, reject) => {
+    ([success, fail] = [resolve, reject]);
+  });
+  // const tempCB = (typeof callback === 'function' ? callback : function () { });
+  const callback = function () {
+    doFn(success, true);
+  };
   let node: any = document.createElement('link');
   const supportOnload = 'onload' in node;
   const isOldWebKit = +navigator.userAgent.replace(/.*(?:AppleWebKit|AndroidWebKit)\/?(\d+).*/i, '$1') < 536; // webkit旧内核做特殊处理
@@ -632,7 +640,7 @@ export function loadCSS({ url = '', callback = function () { }, id = '' }) {
     setTimeout(function () {
       pollCss(node, callback, 0);
     }, 1);
-    return;
+    return status;
   }
 
   if (supportOnload) {
@@ -714,6 +722,7 @@ export function loadCSS({ url = '', callback = function () { }, id = '' }) {
       }
     }, 20);
   }
+  return status;
 }
 
 /*
@@ -721,8 +730,11 @@ export function loadCSS({ url = '', callback = function () { }, id = '' }) {
  * @description 动态加载js文件
  * @param {String} url -- js资源路径
  * @param {Function} callback -- 加载后回调函数
+ * @param {Number} timeout -- 超时时长
  */
-export function loadScript({ url = '', callback = function () { } }) {
+export function loadScript({ url = '', callback = function () { }, timeout = 5000 }) {
+  let success:any = null;
+  let fail:any = null;
   const script: any = document.createElement('script');
   // 如果没有 script 标签，那么代码就不会运行。可以利用这一事实，在页面的第一个 script 标签上使用 insertBefore()。
   const firstScript: any = document.getElementsByTagName('script')[0];
@@ -733,16 +745,24 @@ export function loadScript({ url = '', callback = function () { } }) {
       if (script.readyState === 'loaded' || script.readyState === 'complete') {
         script.onreadystatechange = null;
         doFn(callback);
+        doFn(success, true)
       }
     };
   } else {
     // Others
     script.onload = function () {
       doFn(callback);
+      doFn(success, true)
     };
   }
   script.src = url;
   firstScript && firstScript.parentNode.insertBefore(script, firstScript);
+  return new Promise((resolve, reject) => {
+    ([success, fail] = [resolve, reject]);
+    if (timeout) {
+      setTimeout(fail.bind(null, 'timeout'), timeout);
+    }
+  })
 }
 
 /*
