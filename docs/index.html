@@ -1,0 +1,188 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>mazey</title>
+	<meta name="description" content="Documentation for mazey">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">mazey</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="globals.html">Globals</a>
+				</li>
+			</ul>
+			<h1>mazey</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<a href="#mazey" id="mazey" style="color: inherit; text-decoration: none;">
+					<h1>Mazey</h1>
+				</a>
+				<p>Mazey&#39;s library for front end.</p>
+				<a href="#install" id="install" style="color: inherit; text-decoration: none;">
+					<h2>Install</h2>
+				</a>
+				<p>You can get Mazey via <a href="https://www.npmjs.com/package/mazey">npm</a>.</p>
+				<pre><code>npm <span class="hljs-keyword">install</span> mazey <span class="hljs-comment">--save</span></code></pre>
+				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+					<h2>Usage</h2>
+				</a>
+				<a href="#加载资源" id="加载资源" style="color: inherit; text-decoration: none;">
+					<h3>加载资源</h3>
+				</a>
+				<pre><code><span class="hljs-comment">// 加载 JavaScript</span>
+<span class="hljs-keyword">import</span> { loadScript } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;mazey&#x27;</span>;
+
+loadScript({
+  <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;http://www.mazey.net/js/plugin/jquery/jquery-2.1.1.min.js&#x27;</span>
+})
+  .then(
+    <span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> {
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`加载 JavaScript: <span class="hljs-subst">${res}</span>`</span>);
+    }
+  )
+  .catch(
+    <span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
+      <span class="hljs-built_in">console</span>.error(<span class="hljs-string">`加载 JavaScript Error: <span class="hljs-subst">${err}</span>`</span>)
+    }
+  );</code></pre>
+				<pre><code><span class="hljs-comment">// 加载 CSS</span>
+<span class="hljs-keyword">import</span> { loadCSS } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;mazey&#x27;</span>;
+
+loadCSS({
+  <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;http://www.mazey.net/css/mazey-base.css&#x27;</span>
+})
+  .then(
+    <span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> {
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`加载 CSS: <span class="hljs-subst">${res}</span>`</span>);
+    }
+  )
+  .catch(
+    <span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
+      <span class="hljs-built_in">console</span>.error(<span class="hljs-string">`加载 CSS Error: <span class="hljs-subst">${err}</span>`</span>)
+    }
+  );</code></pre>
+				<a href="#存储数据" id="存储数据" style="color: inherit; text-decoration: none;">
+					<h3>存储数据</h3>
+				</a>
+				<pre><code><span class="hljs-regexp">//</span> Storage
+import { setSessionStorage, getSessionStorage, setLocalStorage, getLocalStorage } from <span class="hljs-string">&#x27;mazey&#x27;</span>;
+
+setSessionStorage(<span class="hljs-string">&#x27;test&#x27;</span>, <span class="hljs-string">&#x27;123&#x27;</span>);
+getSessionStorage(<span class="hljs-string">&#x27;test&#x27;</span>); <span class="hljs-regexp">//</span> <span class="hljs-number">123</span>
+setLocalStorage(<span class="hljs-string">&#x27;test&#x27;</span>, <span class="hljs-string">&#x27;123&#x27;</span>);
+getLocalStorage(<span class="hljs-string">&#x27;test&#x27;</span>); <span class="hljs-regexp">//</span> <span class="hljs-number">123</span></code></pre>
+				<pre><code><span class="hljs-regexp">//</span> Cookie
+import { setCookie, getCookie } from <span class="hljs-string">&#x27;mazey&#x27;</span>;
+
+setCookie(<span class="hljs-string">&#x27;test&#x27;</span>, <span class="hljs-string">&#x27;123&#x27;</span>, <span class="hljs-number">30</span>, <span class="hljs-string">&#x27;mazey.net&#x27;</span>); <span class="hljs-regexp">//</span> key value day domain
+getCookie(<span class="hljs-string">&#x27;test&#x27;</span>); <span class="hljs-regexp">//</span> <span class="hljs-number">123</span></code></pre>
+				<a href="#公式计算" id="公式计算" style="color: inherit; text-decoration: none;">
+					<h3>公式计算</h3>
+				</a>
+				<pre><code><span class="hljs-regexp">//</span> 计算两个字符串的最长公共子串
+import { calLongestCommonSubstring } from <span class="hljs-string">&#x27;mazey&#x27;</span>;
+
+calLongestCommonSubstring(<span class="hljs-string">&#x27;fish&#x27;</span>, <span class="hljs-string">&#x27;finish&#x27;</span>); <span class="hljs-regexp">//</span> <span class="hljs-number">3</span></code></pre>
+				<pre><code><span class="hljs-regexp">//</span> 计算两个字符串的最长公共子序列
+import { calLongestCommonSubsequence } from <span class="hljs-string">&#x27;mazey&#x27;</span>;
+
+calLongestCommonSubsequence(<span class="hljs-string">&#x27;fish&#x27;</span>, <span class="hljs-string">&#x27;finish&#x27;</span>); <span class="hljs-regexp">//</span> <span class="hljs-number">4</span></code></pre>
+				<p><a href="https://mazey.cn/docs/mazey/modules/_index_.html">More API</a></p>
+				<a href="#develop" id="develop" style="color: inherit; text-decoration: none;">
+					<h2>Develop</h2>
+				</a>
+				<pre><code><span class="hljs-comment"># dev</span>
+npm <span class="hljs-keyword">run</span><span class="bash"> dev</span>
+
+<span class="hljs-comment"># build</span>
+npm <span class="hljs-keyword">run</span><span class="bash"> build</span>
+
+<span class="hljs-comment"># documentation</span>
+npm <span class="hljs-keyword">run</span><span class="bash"> docs</span></code></pre>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="globals.html"><em>Globals</em></a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_index_.html">&quot;index&quot;</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

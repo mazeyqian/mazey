@@ -4,7 +4,7 @@ Mazey's library for front end.
 
 ## Install
 
-You can get Mazey via [npm](http://npmjs.com).
+You can get Mazey via [npm](https://www.npmjs.com/package/mazey).
 
 ```
 npm install mazey --save
