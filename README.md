@@ -77,12 +77,14 @@ getCookie('test'); // 123
 ```
 // 计算两个字符串的最长公共子串
 import { calLongestCommonSubstring } from 'mazey';
+
 calLongestCommonSubstring('fish', 'finish'); // 3
 ```
 
 ```
 // 计算两个字符串的最长公共子序列
 import { calLongestCommonSubsequence } from 'mazey';
+
 calLongestCommonSubsequence('fish', 'finish'); // 4
 ```
 
