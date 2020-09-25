@@ -31,7 +31,9 @@ loadScript({
       console.error(`加载 JavaScript Error: ${err}`)
     }
   );
+```
 
+```
 // 加载 CSS
 import { loadCSS } from 'mazey';
 
@@ -55,13 +57,17 @@ loadCSS({
 ```
 // Storage
 import { setSessionStorage, getSessionStorage, setLocalStorage, getLocalStorage } from 'mazey';
+
 setSessionStorage('test', '123');
 getSessionStorage('test'); // 123
 setLocalStorage('test', '123');
 getLocalStorage('test'); // 123
+```
 
+```
 // Cookie
 import { setCookie, getCookie } from 'mazey';
+
 setCookie('test', '123', 30, 'mazey.net'); // key value day domain
 getCookie('test'); // 123
 ```
@@ -69,12 +75,15 @@ getCookie('test'); // 123
 ### 公式计算
 
 ```
-import { calLongestCommonSubstring, calLongestCommonSubsequence } from 'mazey';
-
 // 计算两个字符串的最长公共子串
-console.log(calLongestCommonSubstring('fish', 'finish')); // 3
+import { calLongestCommonSubstring } from 'mazey';
+calLongestCommonSubstring('fish', 'finish'); // 3
+```
+
+```
 // 计算两个字符串的最长公共子序列
-console.log(calLongestCommonSubsequence('fish', 'finish')); // 4
+import { calLongestCommonSubsequence } from 'mazey';
+calLongestCommonSubsequence('fish', 'finish'); // 4
 ```
 
 [More API](https://mazey.cn/docs/mazey/modules/_index_.html)
