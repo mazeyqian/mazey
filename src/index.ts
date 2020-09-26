@@ -144,6 +144,16 @@ export function camelCaseToKebabCase(camelCase: string) {
 }
 
 /**
+ * @method camelCase2Underscore
+ * @description 驼峰转下划线。
+ * @param {String} camelCase
+ * */
+export function camelCase2Underscore(camelCase: string) {
+  const kebabCase = camelCase.replace(/([A-Z])/g, '_$1').toLowerCase();
+  return kebabCase[0] === '_' ? kebabCase.substr(1) : kebabCase;
+}
+
+/**
  * @method getDomain
  * @description 获取地址中的域名（及其他参数）。
  * @param {String} url
@@ -612,8 +622,8 @@ export function getLocalStorage(key: string) {
  * @return {Promise<Boolean>} true -- 加载成功
  */
 export function loadCSS({ url = '', id = '' } = {}) {
-  let success:any = null;
-  let fail:any = null;
+  let success: any = null;
+  let fail: any = null;
   const status = new Promise((resolve, reject) => {
     ([success, fail] = [resolve, reject]);
   });
@@ -731,10 +741,11 @@ export function loadCSS({ url = '', id = '' } = {}) {
  * @param {String} url -- js资源路径
  * @param {Function} callback -- 加载后回调函数
  * @param {Number} timeout -- 超时时长
+ * @return {Promise<Boolean>} -- true 成功
  */
 export function loadScript({ url = '', callback = function () { }, timeout = 5000 }) {
-  let success:any = null;
-  let fail:any = null;
+  let success: any = null;
+  let fail: any = null;
   const script: any = document.createElement('script');
   // 如果没有 script 标签，那么代码就不会运行。可以利用这一事实，在页面的第一个 script 标签上使用 insertBefore()。
   const firstScript: any = document.getElementsByTagName('script')[0];
@@ -825,7 +836,7 @@ export function setCookie(name: string, value: string, days: number, domain: str
  * @method getCookie
  * @description 获取 Cookie
  */
-export function getCookie (name: string) {
+export function getCookie(name: string) {
   let nameEQ = name + "=";
   let ca = document.cookie.split(';');
   for (let i = 0; i < ca.length; i++) {
@@ -836,4 +847,204 @@ export function getCookie (name: string) {
     if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
   }
   return null;
+}
+
+/*
+ * @method getPerformance
+ * @description 获取页面加载相关的各项数据
+ * @param {Boolean} camelCase -- true（默认） 以驼峰形式返回数据 false 以下划线形式返回数据
+ * @return {Promise<Object>} 加载数据
+ */
+export function getPerformance({ camelCase = true } = {}) {
+  let success: any;
+  let fail: any;
+  const status = new Promise((resolve, reject) => {
+    ([success, fail] = [resolve, reject]);
+  });
+  const timing = window.performance.timing;
+  let startTime = timing.navigationStart || timing.fetchStart;
+  let firstPaintTime: any;
+  let firstContentfulPaintTime: any;
+  // 是否已经形成数据（页面加载完成之后）
+  if (window.performance && window.performance.timing && window.performance.timing.loadEventEnd > 0) {
+    // console.log('created')
+    getTiming();
+  } else {
+    // console.log('creating')
+    window.addEventListener("load", function() {
+      //不能影响最后的时间计算
+      window.setTimeout(function() {
+        getTiming();
+      }, 0);
+    });
+  }
+  // performance
+  function getTiming() {
+    // 获取首次渲染时间
+    try {
+      if (window.performance && window.performance.getEntriesByType) {
+        let performance = window.performance;
+        let performanceEntries = performance.getEntriesByType('paint');
+        performanceEntries.forEach((performanceEntry, i, entries) => {
+          const startTime = Math.round(performanceEntry.startTime);
+          if (performanceEntry.name === 'first-paint')
+            firstPaintTime = startTime;
+          else if (performanceEntry.name === 'first-contentful-paint')
+            firstContentfulPaintTime = startTime;
+        });
+      } else {
+        console.error('paint')
+      }
+    } catch (e) {
+      console.error(e.message);
+    }
+    // 获取加载时间
+    if (
+      window.performance &&
+      typeof window.performance.getEntries === 'function'
+    ) {
+      let performanceNavigationTiming: any =
+        (window.performance.getEntries() || [])[0] || {};
+      let data: any = {
+        // url: encodeURI(location.href),
+        // ua: navigator.userAgent,
+        os: getOS(),
+        osVersion: getOSVersion(),
+        deviceType: getDeviceType(),
+        network: getNetWork(),
+        screenDirection: getOrientationStatu(),
+        unloadTime: timing.unloadEventEnd - timing.unloadEventStart, //上个文档的卸载时间
+        redirectTime: timing.redirectEnd - timing.redirectStart, //*重定向时间
+        dnsTime: timing.domainLookupEnd - timing.domainLookupStart, //*DNS查询时间
+        tcpTime: timing.connectEnd - timing.connectStart, //*服务器连接时间
+        sslTime: getSSLTime(timing.connectEnd, timing.secureConnectionStart), //*ssl连接时间
+        responseTime: timing.responseStart - timing.requestStart, //*服务器响应时间
+        downloadTime: timing.responseEnd - timing.responseStart, //*网页下载时间
+        firstPaintTime: firstPaintTime, //*首次渲染时间
+        firstContentfulPaintTime: firstContentfulPaintTime, //*首次渲染内容时间
+        domreadyTime: timing.domContentLoadedEventStart - startTime || 0, //*dom ready时间（总和）
+        onloadTime: timing.loadEventStart - startTime || 0, //*onload时间（总和）
+        whiteTime: timing.responseStart - startTime, //*白屏时间
+        renderTime: timing.loadEventEnd - startTime || 0, //整个过程的时间之和
+        decodedBodySize: performanceNavigationTiming.decodedBodySize || '', //页面压缩前大小
+        encodedBodySize: performanceNavigationTiming.encodedBodySize || '', //页面压缩后大小
+      };
+      // Performance.data = data;
+      if (startTime > 0) {
+        let Underscore: any;
+        if (!camelCase) {
+          Object.keys(data).forEach(k => {
+            if (!Underscore) Underscore = {};
+            // console.log('camelCase2Underscore', k, data, )
+            Underscore[camelCase2Underscore(k)] = data[k];
+          })
+        }
+        success(Underscore || data);
+      } else {
+        fail('startTime')
+      }
+    } else {
+      fail('getEntries')
+    }
+  }
+  //获取当前操作系统
+  function getOS() {
+    let os;
+    if (navigator.userAgent.indexOf('Android') > -1 || navigator.userAgent.indexOf('Linux') > -1) {
+      os = 'android';
+    } else if (navigator.userAgent.indexOf('iPhone') > -1) {
+      os = 'ios';
+    } else if (navigator.userAgent.indexOf('Windows Phone') > -1) {
+      os = 'wp';
+    } else {
+      os = 'others';
+    }
+    return os;
+  }
+  // 获取操作系统版本
+  function getOSVersion() {
+    let OSVision: any;
+    let u = navigator.userAgent;
+    let isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //Android
+    let isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+    if (isAndroid) {
+      OSVision = (navigator.userAgent.split(';')[1].match(/\d+\.\d+/g) || [])[0];
+    }
+    if (isIOS) {
+      OSVision = (navigator.userAgent.split(';')[1].match(/(\d+)_(\d+)_?(\d+)?/) || [])[0];
+    }
+    return OSVision;
+  }
+  //获取设备类型
+  function getDeviceType() {
+    let deviceType;
+    let sUserAgent = navigator.userAgent.toLowerCase();
+    let bIsIpad = sUserAgent.match(/(ipad)/i) && 'ipad';
+    let bIsIphoneOs = sUserAgent.match(/iphone os/i) && 'iphone os';
+    let bIsMidp = sUserAgent.match(/midp/i) && 'midp';
+    let bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) && 'rv:1.2.3.4';
+    let bIsUc = sUserAgent.match(/ucweb/i) && 'ucweb';
+    let bIsAndroid = sUserAgent.match(/android/i) && 'android';
+    let bIsCE = sUserAgent.match(/windows ce/i) && 'windows ce';
+    let bIsWM = sUserAgent.match(/windows mobile/i) && 'windows mobile';
+    if (!(bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM)) {
+      deviceType = 'pc'; //pc
+    } else if (bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) {
+      deviceType = 'phone'; //phone
+    } else if (bIsIpad) {
+      deviceType = 'ipad'; //ipad
+    } else {
+      deviceType = undefined;
+    }
+    return deviceType;
+  }
+  // 获取网络状态
+  function getNetWork() {
+    let netWork: any;
+    if ((navigator as any).connection && (navigator as any).connection.effectiveType) {
+      switch ((navigator as any).connection.effectiveType) {
+        case 'wifi':
+          netWork = 'wifi'; // wifi
+          break;
+        case '4g':
+          netWork = '4g'; // 4g
+          break;
+        case '2g':
+          netWork = '2g'; // 2g
+          break;
+        case '3g':
+          netWork = '3g'; // 3g
+          break;
+        case 'ethernet':
+          netWork = 'ethernet'; // ethernet
+          break;
+        case 'default':
+          netWork = undefined; // 未知
+          break;
+      }
+    }
+    return netWork
+  }
+  // 获取横竖屏状态
+  function getOrientationStatu() {
+    let orientationStatu: any;
+    if (window.screen && window.screen.orientation && window.screen.orientation.angle) {
+      if (window.screen.orientation.angle === 180 || window.screen.orientation.angle === 0) { // 竖屏
+        orientationStatu = '|';
+      }
+      if (window.screen.orientation.angle === 90 || window.screen.orientation.angle === -90) { // 横屏
+        orientationStatu = '-';
+      }
+    }
+    return orientationStatu;
+  }
+  // 获取ssl连接时间
+  function getSSLTime(connectEnd: any, secureConnectionStart: any) {
+    let ssl_time: any;
+    if (secureConnectionStart) {
+      ssl_time = connectEnd - secureConnectionStart;
+    }
+    return ssl_time;
+  }
+  return status;
 }

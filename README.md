@@ -76,6 +76,21 @@ setCookie('test', '123', 30, 'mazey.net'); // key value day domain
 getCookie('test'); // 123
 ```
 
+### 网站性能
+
+获取加载时间
+
+```
+import { getPerformance } from 'mazey';
+
+getPerformance({ camelCase: true })
+ .then(res => {
+  console.log(JSON.stringify(res));
+  // {"os":"others","deviceType":"pc","network":"3g","unloadTime":0,"redirectTime":0,"dnsTime":0,"tcpTime":0,"responseTime":65,"downloadTime":1,"domreadyTime":369,"onloadTime":441,"whiteTime":94,"renderTime":441,"decodedBodySize":210,"encodedBodySize":210}
+ })
+ .catch(console.error);
+```
+
 ### 公式计算
 
 计算两个字符串的最长公共子串
