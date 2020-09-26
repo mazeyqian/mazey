@@ -13,6 +13,6 @@ docs/
 undefined/
 temp/
 yarn.lock
-yarn-error.lock
+yarn-error.log
 package-lock.json
 api-extractor.json
