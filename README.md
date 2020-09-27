@@ -112,7 +112,7 @@ calLongestCommonSubsequence('fish', 'finish'); // 4
 命中概率（1% ~ 100%）
 
 ```
-import { calLongestCommonSubsequence } from 'mazey';
+import { inRate } from 'mazey';
 
 inRate(0.5); // 0.01 ~ 1 true / false
 
