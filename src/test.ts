@@ -5,6 +5,7 @@ import {
   camelCaseToKebabCase,
   camelCase2Underscore,
   deepCopyObject,
+  inRate,
  } from './index';
 
 // 计算两个字符串的最长公共子串
@@ -27,3 +28,17 @@ window.addEventListener('load', () => {
 console.log(camelCaseToKebabCase('cccAaaaBBB'));
 console.log(camelCase2Underscore('cccAaaaBBB'));
 console.log(camelCase2Underscore('os'));
+
+console.log(inRate(0.0));
+
+// let trueCount = 0;
+// let falseCount = 0;
+// new Array(1000000).fill(0).forEach(() => {
+//   if (inRate(0.5)) {
+//     trueCount++;
+//   } else {
+//     falseCount++;
+//   }
+// });
+// // 测试准确性
+// console.log(trueCount, falseCount); // 499994 500006

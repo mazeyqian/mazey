@@ -109,6 +109,26 @@ import { calLongestCommonSubsequence } from 'mazey';
 calLongestCommonSubsequence('fish', 'finish'); // 4
 ```
 
+命中概率（1% ~ 100%）
+
+```
+import { calLongestCommonSubsequence } from 'mazey';
+
+inRate(0.5); // 0.01 ~ 1 true / false
+
+// 测试准确性
+let trueCount = 0;
+let falseCount = 0;
+new Array(1000000).fill(0).forEach(() => {
+  if (inRate(0.5)) {
+    trueCount++;
+  } else {
+    falseCount++;
+  }
+});
+console.log(trueCount, falseCount); // 499994 500006
+```
+
 [More API](https://mazey.cn/docs/mazey/modules/_index_.html)
 
 ## Develop

@@ -1048,3 +1048,16 @@ export function getPerformance({ camelCase = true } = {}) {
   }
   return status;
 }
+
+/*
+ * @method inRate
+ * @description 百分位概率
+ * @param {Number} rate -- 0.1 ~ 1 => 1% ~ 100%
+ * @return {Boolean} true 命中
+ */
+export function inRate(rate: number): boolean {
+  if(Math.random() < rate) {
+    return true;
+  }
+  return false;
+}
