@@ -1,5 +1,13 @@
 # Mazey
 
+[![NPM version][npm-image]][npm-url]
+[![l][l-image]][l-url]
+
+[npm-image]: https://img.shields.io/npm/v/mazey
+[npm-url]: https://npmjs.org/package/mazey
+[l-image]: https://img.shields.io/npm/l/mazey
+[l-url]: https://github.com/mazeyqian/mazey
+
 Mazey's library for front end.
 
 ## Install

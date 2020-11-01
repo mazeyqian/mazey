@@ -1,6 +1,7 @@
 import babel from 'rollup-plugin-babel';
 import rollupTypescript from 'rollup-plugin-typescript2'
 import { DEFAULT_EXTENSIONS } from '@babel/core'
+import commonjs from 'rollup-plugin-commonjs';
 
 export default {
   input: 'src/index.ts',
@@ -16,6 +17,9 @@ export default {
   ],
   plugins: [
     rollupTypescript(),
+    commonjs({
+      include: /node_modules/
+    }),
     babel({
       runtimeHelpers: true,
       // 只转换源代码，不运行外部依赖
@@ -26,5 +30,6 @@ export default {
         '.ts',
       ],
     })
-  ]
+  ],
+  external: []
 };

@@ -35,7 +35,11 @@
   "homepage": "https://mazey.cn/docs/mazey/",
   "devDependencies": {
     "@babel/core": "7.8.4",
+    "@babel/plugin-proposal-class-properties": "7.10.4",
+    "@babel/plugin-proposal-object-rest-spread": "7.11.0",
+    "@babel/plugin-transform-runtime": "7.11.0",
     "@babel/preset-env": "7.5.5",
+    "@babel/preset-typescript": "7.10.4",
     "@commitlint/cli": "8.3.5",
     "@commitlint/config-conventional": "8.3.4",
     "@microsoft/api-extractor": "7.9.4",
@@ -56,6 +60,7 @@
     "prettier-eslint-cli": "5.0.0",
     "rollup": "1.31.1",
     "rollup-plugin-babel": "4.3.3",
+    "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-typescript2": "0.27.2",
     "ts-loader": "8.0.2",
     "typedoc": "0.18.0",
@@ -71,5 +76,8 @@
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
       "pre-commit": "lint-staged"
     }
+  },
+  "dependencies": {
+    "@babel/runtime-corejs3": "7.11.2"
   }
 }
