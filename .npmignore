@@ -16,3 +16,13 @@ yarn.lock
 yarn-error.log
 package-lock.json
 api-extractor.json
+.editorconfig
+.eslintignore
+.lintstagedrc
+.prettierignore
+.prettierrc
+.eslintrc.js
+commitlint.config.js
+rollup.config.js
+webpack.config.js
+jsdoc.config.json
