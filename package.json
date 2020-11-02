@@ -1,6 +1,6 @@
 {
   "name": "mazey",
-  "version": "1.4.13",
+  "version": "1.4.15",
   "description": "Mazey's library for front end.",
   "main": "lib/index.cjs.js",
   "module": "lib/index.esm.js",
@@ -78,6 +78,7 @@
     }
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "7.11.2"
+    "@babel/runtime-corejs3": "7.11.2",
+    "core-js": "3.6.5"
   }
 }
