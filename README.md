@@ -137,7 +137,7 @@ new Array(1000000).fill(0).forEach(() => {
 console.log(trueCount, falseCount); // 499994 500006
 ```
 
-[More API](https://mazey.cn/docs/mazey/modules/_index_.html)
+[更多接口>>](https://mazey.cn/docs/mazey/modules/_index_.html)
 
 ## Develop
 
