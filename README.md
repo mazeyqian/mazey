@@ -84,6 +84,23 @@ setCookie('test', '123', 30, 'mazey.net'); // key value day domain
 getCookie('test'); // 123
 ```
 
+### 操作 DOM
+
+修改 `class`
+
+```
+import { addClass,  } from 'mazey';
+
+const dom = document.querySelector('#box');
+
+// 判断 class
+hasClass(dom, 'test');
+// 增加 class
+addClass(dom, 'test');
+// 删除 class
+removeClass(dom, 'test');
+```
+
 ### 网站性能
 
 获取加载时间
