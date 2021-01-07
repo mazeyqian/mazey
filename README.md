@@ -8,17 +8,17 @@
 [l-image]: https://img.shields.io/npm/l/mazey
 [l-url]: https://github.com/mazeyqian/mazey
 
-后除的前端函数库
+Mazey's library for front end.
 
-## 安装
+## Install
 
-通过 [NPM](https://www.npmjs.com/package/mazey) 安装
+You can get Mazey via [npm](https://www.npmjs.com/package/mazey).
 
 ```
 npm install mazey --save
 ```
 
-## 使用
+## Usage
 
 ### 加载资源
 
@@ -156,7 +156,7 @@ console.log(trueCount, falseCount); // 499994 500006
 
 [更多接口>>](https://mazey.cn/docs/mazey/modules/_index_.html)
 
-## 开发
+## Develop
 
 ```
 # dev
