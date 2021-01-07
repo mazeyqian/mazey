@@ -89,7 +89,7 @@ getCookie('test'); // 123
 修改 `class`
 
 ```
-import { addClass,  } from 'mazey';
+import { hasClass, addClass, removeClass } from 'mazey';
 
 const dom = document.querySelector('#box');
 
