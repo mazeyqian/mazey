@@ -8,17 +8,17 @@
 [l-image]: https://img.shields.io/npm/l/mazey
 [l-url]: https://github.com/mazeyqian/mazey
 
-Mazey's library for front end.
+后除的前端函数库
 
-## Install
+## 安装
 
-You can get Mazey via [npm](https://www.npmjs.com/package/mazey).
+通过 [NPM](https://www.npmjs.com/package/mazey) 安装
 
 ```
 npm install mazey --save
 ```
 
-## Usage
+## 使用
 
 ### 加载资源
 
@@ -91,6 +91,7 @@ getCookie('test'); // 123
 ```
 import { getPerformance } from 'mazey';
 
+// camelCase：true（默认） 以驼峰形式返回数据 / false 以下划线形式返回数据
 getPerformance({ camelCase: true })
  .then(res => {
   console.log(JSON.stringify(res));
@@ -98,6 +99,22 @@ getPerformance({ camelCase: true })
  })
  .catch(console.error);
 ```
+
+| 指标 | 字段 | 计算⽅法 |
+| --- | --- | --- |
+| * DNS 查询时间 | dns_time | domainLookupEnd - domainLookupStart |
+| * 服务器连接时间 | tcp_time | connectEnd - connectStart |
+| * 服务器响应时间 | response_time | responseStart - requestStart |
+| * ⽩屏时间 | white_time | responseStart - navigationStart |
+| * DomReady 总时间 | domready_time  | domContentLoadedEventStart - navigationStart |
+| * 页面加载时间 | onload_time | loadEventStart - navigationStart |
+| * EventEnd 总时间 | render_time | loadEventEnd -navigationStart |
+| 上个⽂档卸载时间 | unload_time | unloadEventEnd - unloadEventStart |
+| 重定向时间 | redirect_time | redirectEnd - redirectStart |
+| 客户端⽩屏时间 | custom_white_time | renderTiming - navigationStart |
+| SSL连接时间 | ssl_time | connectEnd - secureConnectionStart |
+| ⽹⻚下载时间 | download_time | responseEnd - responseStart |
+| FCP | first_contentful_paint_time | firstPaintTime |
 
 ### 公式计算
 
@@ -139,7 +156,7 @@ console.log(trueCount, falseCount); // 499994 500006
 
 [更多接口>>](https://mazey.cn/docs/mazey/modules/_index_.html)
 
-## Develop
+## 开发
 
 ```
 # dev
