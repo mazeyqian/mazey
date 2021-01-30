@@ -501,11 +501,13 @@ export function isJsonString(str: string) {
 
 /**
  * @method getUrlParam
- * @description 链接参数。
+ * @description 链接参数
+ * @param {String} sUrl 链接
+ * @param {String} sKey 参数
  * */
 export function getUrlParam(sUrl: string, sKey: string) {
   const result: any = {};
-  sUrl.replace(/\??(\w+)=(\w+)&?/g, function (a, k, v): any {
+  sUrl.replace(/\??(\w+)=([^&]*)&?/g, function (a, k, v): any {
     if (result[k] !== undefined) {
       const t = result[k];
       result[k] = [].concat(t, v);
