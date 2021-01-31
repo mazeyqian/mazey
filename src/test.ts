@@ -7,6 +7,7 @@ import {
   deepCopyObject,
   inRate,
   getUrlParam,
+  loadScript,
  } from './index';
 
 // 计算两个字符串的最长公共子串
@@ -18,3 +19,8 @@ const url = 'https://www.bilibili.com/bangumi/play/ss28296?bsource=douban&topic=
 
 console.log(getUrlParam(url, 'bsource'))
 console.log(getUrlParam(url, 'topic'))
+
+loadScript({
+  url: 'https://www.bilibili.com/bangumi/play/ss28296?bsource=douban&topic=blog.mazey.net',
+  id: 'abbb',
+})

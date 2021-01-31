@@ -572,7 +572,6 @@ export function setSessionStorage(key: string, value: any = null) {
  * @method getSessionStorage
  * @description 存储数据到 sessionStorage
  * @param {String} key 键
- * @param {String} value 值
  * @return {Any} 返回值
  * */
 export function getSessionStorage(key: string) {
@@ -602,7 +601,6 @@ export function setLocalStorage(key: string, value: any = null) {
  * @method getLocalStorage
  * @description 存储数据到 localStorage
  * @param {String} key 键
- * @param {String} value 值
  * @return {Any} 返回值
  * */
 export function getLocalStorage(key: string) {
@@ -741,17 +739,21 @@ export function loadCSS({ url = '', id = '' } = {}) {
  * @method loadScript
  * @description 动态加载js文件
  * @param {String} url -- js资源路径
+ * @param {String} id -- DOM ID
  * @param {Function} callback -- 加载后回调函数
  * @param {Number} timeout -- 超时时长
  * @return {Promise<Boolean>} -- true 成功
  */
-export function loadScript({ url = '', callback = function () { }, timeout = 5000 }) {
+export function loadScript({ url = '', id = '', callback = function () { }, timeout = 5000 } = {}) {
   let success: any = null;
   let fail: any = null;
   const script: any = document.createElement('script');
   // 如果没有 script 标签，那么代码就不会运行。可以利用这一事实，在页面的第一个 script 标签上使用 insertBefore()。
   const firstScript: any = document.getElementsByTagName('script')[0];
   script.type = 'text/javascript';
+  if (id) {
+    script.id = id;
+  }
   if (script.readyState) {
     // IE
     script.onreadystatechange = function () {
