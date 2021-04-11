@@ -1065,3 +1065,42 @@ export function inRate(rate: number): boolean {
   }
   return false;
 }
+
+/*
+ * @method isSafePWAEnv
+ * @description 判断是否是安全的 PWA 环境
+ * @return {Boolean} true 是
+ */
+export function isSafePWAEnv(): boolean {
+  // 判断是否支持 async await
+  function isSupportAsyncAwait() {
+    var func;
+    try {
+      eval("func = async function(){};");
+    } catch (e) {
+      return false;
+    }
+    // 由于async函数的构造器不是全局对象，所以我们需要由下面代码来获取async函数的构造器
+    // 具体可以查看以下MDN上有关于AsyncFunction的说明，
+    // 地址：https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/AsyncFunction
+    return Object.getPrototypeOf(func).constructor != null;
+  }
+  // 判断是否支持 Promise
+  function isSupportPromise() {
+    if(typeof Promise !== "undefined" && Promise.toString().indexOf("[native code]") !== -1){
+      return true;
+    }
+    return false;
+  }
+  if (
+    ('serviceWorker' in navigator) &&
+    isSupportAsyncAwait() &&
+    isSupportPromise() &&
+    Boolean(window.fetch) &&
+    Boolean(window.indexedDB) &&
+    Boolean(window.caches)
+  ) {
+    return true;
+  }
+  return false;
+}
