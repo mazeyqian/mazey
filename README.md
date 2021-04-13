@@ -171,6 +171,25 @@ new Array(1000000).fill(0).forEach(() => {
 console.log(trueCount, falseCount); // 499994 500006
 ```
 
+### 操作系统
+
+```
+import { showBrowserType } from 'mazey';
+
+showBrowserType(); // {"engine":"webkit","engineVs":"537.36","platform":"desktop","supporter":"chrome","supporterVs":"85.0.4183.121","system":"windows","systemVs":"10"}
+// 外壳和外壳版本 { shell: 'wechat', shellVs: '20' } shell: wechat qq uc 360 2345 sougou liebao maxthon
+```
+
+### 安全边际
+
+判断是否是安全的 PWA 运行环境
+
+```
+import { isSafePWAEnv } from 'mazey';
+
+isSafePWAEnv(); // true
+```
+
 [更多接口>>](https://mazey.cn/docs/mazey/modules/_index_.html)
 
 ## Develop
