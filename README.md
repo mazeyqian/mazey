@@ -171,7 +171,7 @@ new Array(1000000).fill(0).forEach(() => {
 console.log(trueCount, falseCount); // 499994 500006
 ```
 
-### 操作系统
+### 浏览器信息
 
 ```
 import { showBrowserType } from 'mazey';
