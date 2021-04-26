@@ -933,7 +933,12 @@ export function getPerformance({ camelCase = true } = {}) {
         decodedBodySize: performanceNavigationTiming.decodedBodySize || '', //页面压缩前大小
         encodedBodySize: performanceNavigationTiming.encodedBodySize || '', //页面压缩后大小
       };
-      // Performance.data = data;
+      // 过滤掉 <0 的数据
+      Object.keys(data).forEach(k => {
+        if (isNumber(data[k]) && data[k] < 0) {
+          data[k] = 0;
+        }
+      });
       if (startTime > 0) {
         let Underscore: any;
         if (!camelCase) {
