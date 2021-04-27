@@ -16,7 +16,7 @@
     "doc": "npx jsdoc -c ./jsdoc.config.json -d ./doc",
     "docs": "npx typedoc --out docs/ src/",
     "release": "npm run build && npm publish",
-    "lint-and-fix": "eslint . --ext 'ts,tsx' --fix"
+    "lint-and-fix": "eslint ./src/index.ts --ext 'ts,tsx' --fix"
   },
   "repository": {
     "type": "git",
