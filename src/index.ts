@@ -1082,7 +1082,7 @@ export function isSafePWAEnv(): boolean {
     let func;
     try {
       // eval("func = async function(){};");
-      new Function("func = async function(){};");
+      new Function("var isSupportAsyncAwaitFunc = async function(){};");
     } catch (e) {
       return false;
     }
