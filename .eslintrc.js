@@ -23,10 +23,11 @@ module.exports = {
     'no-extend-native': 'off', // 允许扩展原生对象
     'no-floating-decimal': 'off', //  允许省去小数点前的0
     'no-multi-str': 'off', // 允许多行字符串
-    semi: 'off', // 允许使用分号
-
     // allow async-await
     'generator-star-spacing': 'off', // 关闭
+
+    semi: ['error', 'always'], // 使用分号
+    'no-unused-vars': ['warn', 'always'], // 未使用变量
     // 最大长度 120
     'max-len': [
       'warn',
