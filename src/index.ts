@@ -99,7 +99,7 @@ export function renderTable(tbID = null, data = [], property = []) {
   const TBODY: any = document.querySelector(`#${tbID} tbody`);
   function mNullToNA(str: any) {
     return str === null ? 'N.A.' : str;
-  };
+  }
   let content = '';
   TBODY.innerHTML = '';
   // 无数据
@@ -841,8 +841,8 @@ export function setCookie(name: string, value: string, days: number, domain: str
  * @description 获取 Cookie
  */
 export function getCookie(name: string) {
-  let nameEQ = name + "=";
-  let ca = document.cookie.split(';');
+  const nameEQ = name + "=";
+  const ca = document.cookie.split(';');
   for (let i = 0; i < ca.length; i++) {
     let c = ca[i];
     while (c.charAt(0) == ' ') {
@@ -866,7 +866,7 @@ export function getPerformance({ camelCase = true } = {}) {
     ([success, fail] = [resolve, reject]);
   });
   const timing = window.performance.timing;
-  let startTime = timing.navigationStart || timing.fetchStart;
+  const startTime = timing.navigationStart || timing.fetchStart;
   let firstPaintTime: any;
   let firstContentfulPaintTime: any;
   // 是否已经形成数据（页面加载完成之后）
@@ -887,8 +887,8 @@ export function getPerformance({ camelCase = true } = {}) {
     // 获取首次渲染时间
     try {
       if (window.performance && Boolean(window.performance.getEntriesByType)) {
-        let performance = window.performance;
-        let performanceEntries = performance.getEntriesByType('paint');
+        const performance = window.performance;
+        const performanceEntries = performance.getEntriesByType('paint');
         performanceEntries.forEach((performanceEntry, i, entries) => {
           const startTime = Math.round(performanceEntry.startTime);
           if (performanceEntry.name === 'first-paint')
@@ -907,9 +907,9 @@ export function getPerformance({ camelCase = true } = {}) {
       window.performance &&
       typeof window.performance.getEntries === 'function'
     ) {
-      let performanceNavigationTiming: any =
+      const performanceNavigationTiming: any =
         (window.performance.getEntries() || [])[0] || {};
-      let data: any = {
+      const data: any = {
         // url: encodeURI(location.href),
         // ua: navigator.userAgent,
         os: getOS(),
@@ -973,9 +973,9 @@ export function getPerformance({ camelCase = true } = {}) {
   // 获取操作系统版本
   function getOSVersion() {
     let OSVision: any;
-    let u = navigator.userAgent;
-    let isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //Android
-    let isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+    const u = navigator.userAgent;
+    const isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //Android
+    const isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
     if (isAndroid) {
       OSVision = (navigator.userAgent.split(';')[1].match(/\d+\.\d+/g) || [])[0];
     }
@@ -987,15 +987,15 @@ export function getPerformance({ camelCase = true } = {}) {
   //获取设备类型
   function getDeviceType() {
     let deviceType;
-    let sUserAgent = navigator.userAgent.toLowerCase();
-    let bIsIpad = sUserAgent.match(/(ipad)/i) && 'ipad';
-    let bIsIphoneOs = sUserAgent.match(/iphone os/i) && 'iphone os';
-    let bIsMidp = sUserAgent.match(/midp/i) && 'midp';
-    let bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) && 'rv:1.2.3.4';
-    let bIsUc = sUserAgent.match(/ucweb/i) && 'ucweb';
-    let bIsAndroid = sUserAgent.match(/android/i) && 'android';
-    let bIsCE = sUserAgent.match(/windows ce/i) && 'windows ce';
-    let bIsWM = sUserAgent.match(/windows mobile/i) && 'windows mobile';
+    const sUserAgent = navigator.userAgent.toLowerCase();
+    const bIsIpad = sUserAgent.match(/(ipad)/i) && 'ipad';
+    const bIsIphoneOs = sUserAgent.match(/iphone os/i) && 'iphone os';
+    const bIsMidp = sUserAgent.match(/midp/i) && 'midp';
+    const bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) && 'rv:1.2.3.4';
+    const bIsUc = sUserAgent.match(/ucweb/i) && 'ucweb';
+    const bIsAndroid = sUserAgent.match(/android/i) && 'android';
+    const bIsCE = sUserAgent.match(/windows ce/i) && 'windows ce';
+    const bIsWM = sUserAgent.match(/windows mobile/i) && 'windows mobile';
     if (!(bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM)) {
       deviceType = 'pc'; //pc
     } else if (bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) {
@@ -1079,7 +1079,7 @@ export function inRate(rate: number): boolean {
 export function isSafePWAEnv(): boolean {
   // 判断是否支持 async await
   function isSupportAsyncAwait() {
-    var func;
+    let func;
     try {
       eval("func = async function(){};");
     } catch (e) {
