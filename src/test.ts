@@ -28,7 +28,7 @@ import {
 //   id: 'abbb',
 // })
 
-console.log('isSafePWAEnv', isSafePWAEnv())
-console.log('showBrowserType', JSON.stringify(getBrowserType()))
-console.log('getPerformance', getPerformance())
-getPerformance().then(console.log)
+console.log('isSafePWAEnv', isSafePWAEnv());
+console.log('showBrowserType', JSON.stringify(getBrowserType()));
+console.log('getPerformance', getPerformance());
+getPerformance().then(console.log);
