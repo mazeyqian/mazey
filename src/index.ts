@@ -76,7 +76,8 @@ export function calLongestCommonSubsequence(aStr: any, bStr: any) {
  * @param {Rest} ...rest 需要连接的值 。
  * */
 export function join(joinStr: any, ...rest: any[]) {
-  let [ret, len] = ['', joinStr.length];
+  let ret = '';
+  const len = joinStr.length;
   for (const v of rest) {
     if (v) {
       ret += `${joinStr}${v}`;
@@ -99,7 +100,7 @@ export function renderTable(tbID = null, data = [], property = []) {
   const TBODY: any = document.querySelector(`#${tbID} tbody`);
   function mNullToNA(str: any) {
     return str === null ? 'N.A.' : str;
-  };
+  }
   let content = '';
   TBODY.innerHTML = '';
   // 无数据
@@ -175,7 +176,8 @@ export function getDomain({ url = '', rules = ['hostname'] } = {}) {
  * */
 export function trim(str: string) {
   str = str.replace(/^\s+/, ''); // 去除头部空格
-  let [end, ws] = [str.length - 1, /\s/];
+  let end = str.length - 1;
+  const ws = /\s/;
   while (ws.test(str.charAt(end))) {
     end--; // 最后一个非空格字符的索引
   }
@@ -345,9 +347,9 @@ export function removeClass(obj: any, cls: string) {
 export function throttle(func: any, wait: number, options: any) {
   // timeout: setTimeout Handle
   // previous: 上次时间戳
-  let context: any = null
-  let args: any = null
-  let timeout: any = null
+  let context: any = null;
+  let args: any = null;
+  let timeout: any = null;
   let [result, previous] = [null, 0];
   if (!options) {
     options = {};
@@ -360,14 +362,14 @@ export function throttle(func: any, wait: number, options: any) {
       context = args = null;
     }
   };
-  return function () {
+  return function (...argRest: Array<any>) {
     const now = mNow();
     if (!previous && options.leading === false) {
       previous = now;
     }
     const remaining = wait - (now - previous);
     context = this;
-    args = arguments;
+    args = argRest;
     if (remaining <= 0 || remaining > wait) {
       if (timeout) {
         clearTimeout(timeout);
@@ -390,10 +392,10 @@ export function throttle(func: any, wait: number, options: any) {
  * @description 去抖。
  * */
 export function debounce(func: any, wait: number, immediate: any) {
-  let context: any = null
-  let timeout: any = null
-  let timestamp: any = null
-  let args: any = null
+  let context: any = null;
+  let timeout: any = null;
+  let timestamp: any = null;
+  let args: any = null;
   let [result] = [null];
   const later = function () {
     const last = mNow() - timestamp;
@@ -409,9 +411,9 @@ export function debounce(func: any, wait: number, immediate: any) {
       }
     }
   };
-  return function () {
+  return function (...argRest: Array<any>) {
     context = this;
-    args = arguments;
+    args = argRest;
     timestamp = mNow();
     const callNow = immediate && !timeout;
     if (!timeout) {
@@ -495,7 +497,9 @@ export function isJsonString(str: string) {
     if (typeof JSON.parse(str) === 'object') {
       return true;
     }
-  } catch (e) { }
+  } catch (e) {
+    /* pass */
+  }
   return false;
 }
 
@@ -744,7 +748,7 @@ export function loadCSS({ url = '', id = '' } = {}) {
  * @param {Number} timeout -- 超时时长
  * @return {Promise<Boolean>} -- true 成功
  */
-export function loadScript({ url = '', id = '', callback = function () { }, timeout = 5000 } = {}) {
+export function loadScript({ url = '', id = '', callback = function () { /* pass */ }, timeout = 5000 } = {}) {
   let success: any = null;
   let fail: any = null;
   const script: any = document.createElement('script');
@@ -760,14 +764,14 @@ export function loadScript({ url = '', id = '', callback = function () { }, time
       if (script.readyState === 'loaded' || script.readyState === 'complete') {
         script.onreadystatechange = null;
         doFn(callback);
-        doFn(success, true)
+        doFn(success, true);
       }
     };
   } else {
     // Others
     script.onload = function () {
       doFn(callback);
-      doFn(success, true)
+      doFn(success, true);
     };
   }
   script.src = url;
@@ -777,7 +781,7 @@ export function loadScript({ url = '', id = '', callback = function () { }, time
     if (timeout) {
       setTimeout(fail.bind(null, 'timeout'), timeout);
     }
-  })
+  });
 }
 
 /*
@@ -785,13 +789,13 @@ export function loadScript({ url = '', id = '', callback = function () { }, time
  * @description 获取时间戳
  */
 export function mNow() {
-  let ret = 0
+  let ret = 0;
   if (Date.now) {
-    ret = Date.now()
+    ret = Date.now();
   } else {
-    ret = new Date().getTime()
+    ret = new Date().getTime();
   }
-  return ret
+  return ret;
 }
 
 /*
@@ -799,8 +803,8 @@ export function mNow() {
  * @description 设置 Cookie
  */
 export function setCookie(name: string, value: string, days: number, domain: string) {
-  let domainParts, expires, host;
-  let date: any
+  let domainParts, expires;
+  let date: any;
   if (days) {
     date = new Date();
     date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
@@ -808,7 +812,7 @@ export function setCookie(name: string, value: string, days: number, domain: str
   } else {
     expires = "";
   }
-  host = location.host;
+  const host = location.host;
   if (host.split('.').length === 1) {
     // no "." in a domain - it's localhost or something similar
     document.cookie = name + "=" + value + expires + "; path=/";
@@ -841,8 +845,8 @@ export function setCookie(name: string, value: string, days: number, domain: str
  * @description 获取 Cookie
  */
 export function getCookie(name: string) {
-  let nameEQ = name + "=";
-  let ca = document.cookie.split(';');
+  const nameEQ = name + "=";
+  const ca = document.cookie.split(';');
   for (let i = 0; i < ca.length; i++) {
     let c = ca[i];
     while (c.charAt(0) == ' ') {
@@ -866,7 +870,7 @@ export function getPerformance({ camelCase = true } = {}) {
     ([success, fail] = [resolve, reject]);
   });
   const timing = window.performance.timing;
-  let startTime = timing.navigationStart || timing.fetchStart;
+  const startTime = timing.navigationStart || timing.fetchStart;
   let firstPaintTime: any;
   let firstContentfulPaintTime: any;
   // 是否已经形成数据（页面加载完成之后）
@@ -887,8 +891,8 @@ export function getPerformance({ camelCase = true } = {}) {
     // 获取首次渲染时间
     try {
       if (window.performance && Boolean(window.performance.getEntriesByType)) {
-        let performance = window.performance;
-        let performanceEntries = performance.getEntriesByType('paint');
+        const performance = window.performance;
+        const performanceEntries = performance.getEntriesByType('paint');
         performanceEntries.forEach((performanceEntry, i, entries) => {
           const startTime = Math.round(performanceEntry.startTime);
           if (performanceEntry.name === 'first-paint')
@@ -897,7 +901,7 @@ export function getPerformance({ camelCase = true } = {}) {
             firstContentfulPaintTime = startTime;
         });
       } else {
-        console.error('paint')
+        console.error('paint');
       }
     } catch (e) {
       console.error(e.message);
@@ -907,9 +911,9 @@ export function getPerformance({ camelCase = true } = {}) {
       window.performance &&
       typeof window.performance.getEntries === 'function'
     ) {
-      let performanceNavigationTiming: any =
+      const performanceNavigationTiming: any =
         (window.performance.getEntries() || [])[0] || {};
-      let data: any = {
+      const data: any = {
         // url: encodeURI(location.href),
         // ua: navigator.userAgent,
         os: getOS(),
@@ -946,14 +950,14 @@ export function getPerformance({ camelCase = true } = {}) {
             if (!Underscore) Underscore = {};
             // console.log('camelCase2Underscore', k, data, )
             Underscore[camelCase2Underscore(k)] = data[k];
-          })
+          });
         }
         success(Underscore || data);
       } else {
-        fail('startTime')
+        fail('startTime');
       }
     } else {
-      fail('getEntries')
+      fail('getEntries');
     }
   }
   //获取当前操作系统
@@ -973,9 +977,9 @@ export function getPerformance({ camelCase = true } = {}) {
   // 获取操作系统版本
   function getOSVersion() {
     let OSVision: any;
-    let u = navigator.userAgent;
-    let isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //Android
-    let isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+    const u = navigator.userAgent;
+    const isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //Android
+    const isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
     if (isAndroid) {
       OSVision = (navigator.userAgent.split(';')[1].match(/\d+\.\d+/g) || [])[0];
     }
@@ -987,15 +991,15 @@ export function getPerformance({ camelCase = true } = {}) {
   //获取设备类型
   function getDeviceType() {
     let deviceType;
-    let sUserAgent = navigator.userAgent.toLowerCase();
-    let bIsIpad = sUserAgent.match(/(ipad)/i) && 'ipad';
-    let bIsIphoneOs = sUserAgent.match(/iphone os/i) && 'iphone os';
-    let bIsMidp = sUserAgent.match(/midp/i) && 'midp';
-    let bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) && 'rv:1.2.3.4';
-    let bIsUc = sUserAgent.match(/ucweb/i) && 'ucweb';
-    let bIsAndroid = sUserAgent.match(/android/i) && 'android';
-    let bIsCE = sUserAgent.match(/windows ce/i) && 'windows ce';
-    let bIsWM = sUserAgent.match(/windows mobile/i) && 'windows mobile';
+    const sUserAgent = navigator.userAgent.toLowerCase();
+    const bIsIpad = sUserAgent.match(/(ipad)/i) && 'ipad';
+    const bIsIphoneOs = sUserAgent.match(/iphone os/i) && 'iphone os';
+    const bIsMidp = sUserAgent.match(/midp/i) && 'midp';
+    const bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) && 'rv:1.2.3.4';
+    const bIsUc = sUserAgent.match(/ucweb/i) && 'ucweb';
+    const bIsAndroid = sUserAgent.match(/android/i) && 'android';
+    const bIsCE = sUserAgent.match(/windows ce/i) && 'windows ce';
+    const bIsWM = sUserAgent.match(/windows mobile/i) && 'windows mobile';
     if (!(bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM)) {
       deviceType = 'pc'; //pc
     } else if (bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) {
@@ -1032,7 +1036,7 @@ export function getPerformance({ camelCase = true } = {}) {
           break;
       }
     }
-    return netWork
+    return netWork;
   }
   // 获取横竖屏状态
   function getOrientationStatu() {
@@ -1079,9 +1083,10 @@ export function inRate(rate: number): boolean {
 export function isSafePWAEnv(): boolean {
   // 判断是否支持 async await
   function isSupportAsyncAwait() {
-    var func;
+    let func;
     try {
-      eval("func = async function(){};");
+      // eval("func = async function(){};");
+      new Function("var isSupportAsyncAwaitFunc = async function(){};");
     } catch (e) {
       return false;
     }

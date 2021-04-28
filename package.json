@@ -15,7 +15,8 @@
     "build": "npx rollup -c",
     "doc": "npx jsdoc -c ./jsdoc.config.json -d ./doc",
     "docs": "npx typedoc --out docs/ src/",
-    "release": "npm run build && npm publish"
+    "release": "npm run build && npm publish",
+    "lint-and-fix": "eslint ./src/index.ts --ext 'ts,tsx' --fix"
   },
   "repository": {
     "type": "git",
@@ -43,6 +44,8 @@
     "@commitlint/cli": "8.3.5",
     "@commitlint/config-conventional": "8.3.4",
     "@microsoft/api-extractor": "7.9.4",
+    "@typescript-eslint/eslint-plugin": "^4.22.0",
+    "@typescript-eslint/parser": "^4.22.0",
     "babel-eslint": "10.1.0",
     "clean-webpack-plugin": "1.0.1",
     "eslint": "6.8.0",
