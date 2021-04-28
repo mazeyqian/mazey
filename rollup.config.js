@@ -1,6 +1,6 @@
 import babel from 'rollup-plugin-babel';
-import rollupTypescript from 'rollup-plugin-typescript2'
-import { DEFAULT_EXTENSIONS } from '@babel/core'
+import rollupTypescript from 'rollup-plugin-typescript2';
+import { DEFAULT_EXTENSIONS } from '@babel/core';
 import commonjs from 'rollup-plugin-commonjs';
 
 export default {
