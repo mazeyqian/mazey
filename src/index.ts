@@ -1119,11 +1119,11 @@ export function isSafePWAEnv(): boolean {
 }
 
 /*
- * @method showBrowserType
+ * @method getBrowserType
  * @description 返回浏览器信息 https://github.com/JowayYoung/juejin-code/blob/master/browser-type.js
  * @return {Object} 浏览器信息
  */
-export function getBrowserType() {
+export function getBrowserType(): any {
 	// 权重：系统 + 系统版本 > 平台 > 内核 + 载体 + 内核版本 + 载体版本 > 外壳 + 外壳版本
 	const ua: any = navigator.userAgent.toLowerCase();
 	const testUa: (regexp: any) => any = regexp => regexp.test(ua);
