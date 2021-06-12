@@ -1266,3 +1266,20 @@ export function getBrowserType(): any {
 		shellVs
 	});
 }
+
+/*
+ * @method genBookName
+ * @description 生成书名 觉醒 => 《觉醒》
+ * @param {String} bookName 书名
+ * @param {String} tail 后面跟随的字符串 例如作者
+ * @return {String} 修饰过的书名
+ */
+export function genBookName ({ bookName = '', tail = '' } = {}): string {
+  let ret = '';
+  if (bookName.includes('《')) {
+    ret = bookName;
+  } else {
+    ret = `《${bookName}》`;
+  }
+  return `${ret}${tail}`;
+}

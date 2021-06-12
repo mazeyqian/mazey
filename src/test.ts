@@ -10,6 +10,7 @@ import {
   loadScript,
   isSafePWAEnv,
   getBrowserType,
+  genBookName,
   // getPerformance,
  } from './index';
 
@@ -28,7 +29,8 @@ import {
 //   id: 'abbb',
 // })
 
-console.log('isSafePWAEnv', isSafePWAEnv());
-console.log('showBrowserType', JSON.stringify(getBrowserType()));
+// console.log('isSafePWAEnv', isSafePWAEnv());
+// console.log('showBrowserType', JSON.stringify(getBrowserType()));
 console.log('getPerformance', getPerformance());
+console.log('genBookName', genBookName({ bookName: '哈哈哈', tail: ' - 小明\n' }));
 getPerformance().then(console.log);
