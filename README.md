@@ -174,9 +174,9 @@ console.log(trueCount, falseCount); // 499994 500006
 ### 浏览器信息
 
 ```
-import { showBrowserType } from 'mazey';
+import { getBrowserType } from 'mazey';
 
-showBrowserType(); // {"engine":"webkit","engineVs":"537.36","platform":"desktop","supporter":"chrome","supporterVs":"85.0.4183.121","system":"windows","systemVs":"10"}
+getBrowserType(); // {"engine":"webkit","engineVs":"537.36","platform":"desktop","supporter":"chrome","supporterVs":"85.0.4183.121","system":"windows","systemVs":"10"}
 // 外壳和外壳版本 { shell: 'wechat', shellVs: '20' } shell: wechat qq uc 360 2345 sougou liebao maxthon
 ```
 
