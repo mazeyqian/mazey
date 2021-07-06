@@ -29,6 +29,6 @@ import {
 // })
 
 console.log('isSafePWAEnv', isSafePWAEnv());
-console.log('showBrowserType', JSON.stringify(getBrowserType()));
+console.log('getBrowserType', JSON.stringify(getBrowserType()));
 console.log('getPerformance', getPerformance());
 getPerformance().then(console.log);
