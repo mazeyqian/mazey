@@ -1088,7 +1088,7 @@ export function isSafePWAEnv(): boolean {
       // eval("func = async function(){};");
       const fn = new Function("return async function(){};");
       isSupportAsyncAwaitFunc = fn();
-      console.log('isSupportAsyncAwaitFunc', isSupportAsyncAwaitFunc);
+      // console.log('isSupportAsyncAwaitFunc', isSupportAsyncAwaitFunc);
       // 由于async函数的构造器不是全局对象，所以我们需要由下面代码来获取async函数的构造器
       // 具体可以查看以下MDN上有关于AsyncFunction的说明，
       // 地址：https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/AsyncFunction
