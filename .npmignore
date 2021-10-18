@@ -23,6 +23,7 @@ api-extractor.json
 .prettierrc
 .eslintrc.js
 .babelrc
+.eslintrc
 commitlint.config.js
 rollup.config.js
 webpack.config.js
