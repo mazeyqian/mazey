@@ -251,11 +251,12 @@ export function resetForm(...rest: any[]) {
 /**
  * @method floatToPercent
  * @description 浮点数转为百分比 0.2 => 20%。
- * @param {Number} 浮点数。
+ * @param {Number} num 浮点数
+ * @param {Number} fixSize 保留几位浮点数
  * */
-export function floatToPercent(num: any, isFix: any) {
-  if (isFix) {
-    num = (num * 100).toFixed(isFix);
+export function floatToPercent(num: any, fixSize = 0): string {
+  if (fixSize) {
+    num = (num * 100).toFixed(fixSize);
   } else {
     num = Math.floor(num * 100);
   }
@@ -618,7 +619,7 @@ export function getLocalStorage(key: string) {
   return ret;
 }
 
-/*
+/**
  * @method loadCSS
  * @description 动态加载css文件
  * @param {String} url -- css资源路径
@@ -739,7 +740,7 @@ export function loadCSS({ url = '', id = '' } = {}) {
   return status;
 }
 
-/*
+/**
  * @method loadScript
  * @description 动态加载js文件
  * @param {String} url -- js资源路径
@@ -784,7 +785,7 @@ export function loadScript({ url = '', id = '', callback = function () { /* pass
   });
 }
 
-/*
+/**
  * @method mNow
  * @description 获取时间戳
  */
@@ -798,7 +799,7 @@ export function mNow() {
   return ret;
 }
 
-/*
+/**
  * @method setCookie
  * @description 设置 Cookie
  */
@@ -840,7 +841,7 @@ export function setCookie(name: string, value: string, days: number, domain: str
   }
 }
 
-/*
+/**
  * @method getCookie
  * @description 获取 Cookie
  */
@@ -857,7 +858,7 @@ export function getCookie(name: string) {
   return null;
 }
 
-/*
+/**
  * @method getPerformance
  * @description 获取页面加载相关的各项数据
  * @param {Boolean} camelCase -- true（默认） 以驼峰形式返回数据 false 以下划线形式返回数据
@@ -937,12 +938,17 @@ export function getPerformance({ camelCase = true } = {}) {
         decodedBodySize: performanceNavigationTiming.decodedBodySize || '', //页面压缩前大小
         encodedBodySize: performanceNavigationTiming.encodedBodySize || '', //页面压缩后大小
       };
-      // 过滤掉 <0 的数据
+      // 过滤异常数据
       Object.keys(data).forEach(k => {
+        // 过滤掉 <0 的数据
         if (isNumber(data[k]) && data[k] < 0) {
           data[k] = 0;
         }
       });
+      // 过滤掉白屏时间 > onload 的数据
+      if (isNumber(data.whiteTime) && data.whiteTime > data.onloadTime) {
+        data.whiteTime = 0;
+      }
       if (startTime > 0) {
         let Underscore: any;
         if (!camelCase) {
@@ -1062,7 +1068,7 @@ export function getPerformance({ camelCase = true } = {}) {
   return status;
 }
 
-/*
+/**
  * @method inRate
  * @description 百分位概率
  * @param {Number} rate -- 0.1 ~ 1 => 1% ~ 100%
@@ -1075,7 +1081,7 @@ export function inRate(rate: number): boolean {
   return false;
 }
 
-/*
+/**
  * @method isSafePWAEnv
  * @description 判断是否是安全的 PWA 环境
  * @return {Boolean} true 是
@@ -1120,7 +1126,7 @@ export function isSafePWAEnv(): boolean {
   return false;
 }
 
-/*
+/**
  * @method getBrowserType
  * @description 返回浏览器信息 https://github.com/JowayYoung/juejin-code/blob/master/browser-type.js
  * @return {Object} 浏览器信息
@@ -1270,5 +1276,53 @@ export function getBrowserType(): any {
     });
   } catch (err) {
     return {};
+  }
+}
+
+/**
+ * @method clearHtml
+ * @description 去除HTML标签
+ * @param {String} string 带html标签的字符串
+ * @return {String} 字符串
+ */
+export function clearHtml (string = ''): string {
+  return string.replace(/<\/?.+?>/g, '').replace(/[\r\n]/g, '');
+}
+
+/**
+ * @method cutCHSString
+ * @description 截取字符串，中文算2个字节
+ * @param {String} str 要截取的字符串
+ * @param {Number} len
+ * @param {Boolean} hasDot
+ * @returns {String} 返回截取后的字符串
+ */
+export function cutCHSString(str = '', len = str.length, hasDot = false): string {
+  if (str == '' || !str) {
+    return '';
+  } else {
+    let newLength = 0;
+    let newStr = '';
+    // eslint-disable-next-line no-control-regex
+    const chineseRegex = /[^\x00-\xff]/g;
+    let singleChar = '';
+    const strLength = str.replace(chineseRegex, '**').length;
+    for (let i = 0; i < strLength; i++) {
+      singleChar = str.charAt(i).toString();
+      if (singleChar.match(chineseRegex) != null) {
+        newLength += 2;
+      } else {
+        newLength++;
+      }
+      if (newLength > len) {
+        break;
+      }
+      newStr += singleChar;
+    }
+
+    if (hasDot && strLength > len) {
+      newStr += '...';
+    }
+    return newStr;
   }
 }
