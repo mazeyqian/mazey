@@ -749,7 +749,7 @@ export function loadCSS({ url = '', id = '' } = {}) {
  * @param {Number} timeout -- 超时时长
  * @return {Promise<Boolean>} -- true 成功
  */
-export function loadScript({ url = '', id = '', callback = function () { /* pass */ }, timeout = 5000 } = {}, isDefer = false): any {
+export function loadScript({ url = '', id = '', callback = function () { /* pass */ }, timeout = 5000, isDefer = false } = {}): any {
   let success: any = null;
   let fail: any = null;
   const script: any = document.createElement('script');
