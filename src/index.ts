@@ -749,13 +749,16 @@ export function loadCSS({ url = '', id = '' } = {}) {
  * @param {Number} timeout -- 超时时长
  * @return {Promise<Boolean>} -- true 成功
  */
-export function loadScript({ url = '', id = '', callback = function () { /* pass */ }, timeout = 5000 } = {}) {
+export function loadScript({ url = '', id = '', callback = function () { /* pass */ }, timeout = 5000 } = {}, isDefer = false): any {
   let success: any = null;
   let fail: any = null;
   const script: any = document.createElement('script');
   // 如果没有 script 标签，那么代码就不会运行。可以利用这一事实，在页面的第一个 script 标签上使用 insertBefore()。
   const firstScript: any = document.getElementsByTagName('script')[0];
   script.type = 'text/javascript';
+  if (isDefer) {
+    script.defer = 'defer';
+  }
   if (id) {
     script.id = id;
   }
