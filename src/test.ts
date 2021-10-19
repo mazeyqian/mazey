@@ -23,10 +23,11 @@ import {
 // console.log(getUrlParam(url, 'bsource'))
 // console.log(getUrlParam(url, 'topic'))
 
-// loadScript({
-//   url: 'https://www.bilibili.com/bangumi/play/ss28296?bsource=douban&topic=blog.mazey.net',
-//   id: 'abbb',
-// })
+loadScript({
+  url: 'https://www.bilibili.com/bangumi/play/ss28296?bsource=douban&topic=blog.mazey.net',
+  id: 'abbb',
+  isDefer: true,
+});
 
 console.log('isSafePWAEnv', isSafePWAEnv());
 console.log('getBrowserType', JSON.stringify(getBrowserType()));
