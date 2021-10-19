@@ -747,6 +747,7 @@ export function loadCSS({ url = '', id = '' } = {}) {
  * @param {String} id -- DOM ID
  * @param {Function} callback -- 加载后回调函数
  * @param {Number} timeout -- 超时时长
+ * @param {Boolean} isDefer -- 是否添加 defer 标签
  * @return {Promise<Boolean>} -- true 成功
  */
 export function loadScript({ url = '', id = '', callback = function () { /* pass */ }, timeout = 5000, isDefer = false } = {}): any {
