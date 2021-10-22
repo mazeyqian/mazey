@@ -270,6 +270,15 @@ getBrowserType(); <span class="hljs-regexp">//</span> {<span class="hljs-string"
 				<pre><code><span class="hljs-keyword">import</span> { isSafePWAEnv } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;mazey&#x27;</span>;
 
 isSafePWAEnv(); <span class="hljs-comment">// true</span></code></pre>
+				<a href="#函数控制" id="函数控制" style="color: inherit; text-decoration: none;">
+					<h3>函数控制</h3>
+				</a>
+				<p>防抖</p>
+				<pre><code><span class="hljs-keyword">import</span> { debounce } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;mazey&#x27;</span>;
+
+const foo = debounce(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;执行 1 秒内再次执行无反应&#x27;</span>);
+}, <span class="hljs-number">1000</span>, { leading: <span class="hljs-literal">true</span> })</code></pre>
 				<p><a href="https://mazey.cn/docs/mazey/modules/_index_.html">更多接口&gt;&gt;</a></p>
 				<a href="#develop" id="develop" style="color: inherit; text-decoration: none;">
 					<h2>Develop</h2>
@@ -293,6 +302,9 @@ npm <span class="hljs-keyword">run</span><span class="bash"> docs</span></code><
 					<li class=" tsd-kind-module">
 						<a href="modules/_index_.html">&quot;index&quot;</a>
 					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_test_.html">&quot;test&quot;</a>
+					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
@@ -307,6 +319,7 @@ npm <span class="hljs-keyword">run</span><span class="bash"> docs</span></code><
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
 				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
 			</ul>
 		</div>
