@@ -1,6 +1,6 @@
 {
   "name": "mazey",
-  "version": "1.4.27",
+  "version": "1.4.28",
   "description": "Mazey's library for front end.",
   "main": "lib/index.cjs.js",
   "module": "lib/index.esm.js",
@@ -13,7 +13,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack-dev-server --open",
     "build": "npx rollup -c",
-    "doc": "npx jsdoc -c ./jsdoc.config.json -d ./doc",
+    "[已废弃]doc": "npx jsdoc -c ./jsdoc.config.json -d ./doc",
     "docs": "npx typedoc --out docs/ src/",
     "release": "npm run build && npm publish",
     "lint-and-fix": "eslint ./src/index.ts --ext 'ts,tsx' --fix"
