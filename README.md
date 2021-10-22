@@ -190,7 +190,7 @@ import { isSafePWAEnv } from 'mazey';
 isSafePWAEnv(); // true
 ```
 
-### 函数控制
+### 函数
 
 防抖
 
