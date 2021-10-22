@@ -41,6 +41,6 @@ const foo = debounce(() => {
 
 foo();
 
-setTimeout(() => foo(), 500);
+setTimeout(foo, 500);
 
-setTimeout(() => foo(), 2500);
+setTimeout(foo, 2500);
