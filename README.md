@@ -190,6 +190,18 @@ import { isSafePWAEnv } from 'mazey';
 isSafePWAEnv(); // true
 ```
 
+### 函数控制
+
+防抖
+
+```
+import { debounce } from 'mazey';
+
+const foo = debounce(() => {
+  console.log('执行 1 秒内再次执行无反应');
+}, 1000, { leading: true })
+```
+
 [更多接口>>](https://mazey.cn/docs/mazey/modules/_index_.html)
 
 ## Develop

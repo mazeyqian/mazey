@@ -10,6 +10,7 @@ import {
   loadScript,
   isSafePWAEnv,
   getBrowserType,
+  debounce,
   // getPerformance,
  } from './index';
 
@@ -33,3 +34,13 @@ console.log('isSafePWAEnv', isSafePWAEnv());
 console.log('getBrowserType', JSON.stringify(getBrowserType()));
 console.log('getPerformance', getPerformance());
 getPerformance().then(console.log);
+
+const foo = debounce(() => {
+  console.log('执行 1 秒内再次执行无反应');
+}, 1000, { leading: true });
+
+foo();
+
+setTimeout(() => foo(), 500);
+
+setTimeout(() => foo(), 2500);
