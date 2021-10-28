@@ -1330,3 +1330,26 @@ export function cutCHSString(str = '', len = str.length, hasDot = false): string
     return newStr;
   }
 }
+
+/**
+ * @method windowLoaded
+ * @description 页面加载完成
+ * @param {number} timeout 超时时间 / 单位：秒
+ * @return {Promise<string>} document is loaded? 'complete' 'load' / 'timeout'
+*/
+export function windowLoaded({ timeout = 90 } = {}): Promise<string> {
+  let loaded: (value: string) => void = () => undefined;
+  let loadFail: (value: string) => void = () => undefined;
+  const status = new Promise((resolve: (value: string) => void, reject: (value: string) => void) => {
+      loaded = resolve;
+      loadFail = reject;
+  });
+  if (document.readyState === 'complete') {
+      loaded('complete');
+  } else {
+      window.addEventListener('load', () => loaded('load'));
+  }
+  // 超过 timeout 秒后加载失败
+  setTimeout(() => loadFail('timeout'), timeout * 1000);
+  return status;
+}
