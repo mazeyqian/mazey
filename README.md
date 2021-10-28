@@ -62,6 +62,20 @@ loadCSS({
   );
 ```
 
+判断页面是否加载完成（兼容浏览器 `load` 事件已经触发过的情况）
+
+```
+import { loadCSS } from 'mazey';
+
+windowLoaded({ timeout: 30 })
+  .then(res => {
+    console.log(`加载完成：${res}`); // 加载完成：load
+  })
+  .catch(err => {
+    console.log(`加载超时或失败：${err}`);
+  });
+```
+
 ### 存储数据
 
 Storage

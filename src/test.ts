@@ -11,6 +11,7 @@ import {
   isSafePWAEnv,
   getBrowserType,
   debounce,
+  windowLoaded,
   // getPerformance,
  } from './index';
 
@@ -44,3 +45,11 @@ foo();
 setTimeout(foo, 500);
 
 setTimeout(foo, 2500);
+
+windowLoaded({ timeout: 30 })
+  .then(res => {
+    console.log(`加载完成：${res}`);
+  })
+  .catch(err => {
+    console.log(`加载超时：${err}`);
+  });
