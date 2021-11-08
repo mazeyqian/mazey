@@ -481,12 +481,12 @@ export function isNumber(num: any, { isNaNAsNumber = false, isUnFiniteAsNumber =
   }
   // 无限值
   if (isUnFiniteAsNumber === false && !isFinite(num)) {
-    console.log('1333');
+    // console.log('1333');
     ret = false;
   }
   // NaN
   if (isNaNAsNumber === false && isNaN(num)) {
-    console.log('2333');
+    // console.log('2333');
     ret = false;
   }
   return ret;
