@@ -467,12 +467,29 @@ export function friendlyInterval({ start = 0, end = 0, type = 'd' } = {}) {
 
 /**
  * @method isNumber
- * @description 判断是否数字
- * @param {Any} 被判断的值
+ * @description 判断是否有效数字
+ * @param {Any} num 被判断的值
+ * @param {Boolean} isNaNAsNumber 是否 NaN 算数字（默认不算）
+ * @param {Boolean} isUnFiniteAsNumber 是否 无限 算数字（默认不算）
  * @return {Boolean} true 是数字
  */
-export function isNumber(v: any) {
-  return typeof v === 'number' && isFinite(v);
+export function isNumber(num: any, { isNaNAsNumber = false, isUnFiniteAsNumber = false } = {}): boolean {
+  let ret = true;
+  // 数字类型
+  if (typeof num !== 'number') {
+    ret = false;
+  }
+  // 无限值
+  if (isUnFiniteAsNumber === false && !isFinite(num)) {
+    console.log('1333');
+    ret = false;
+  }
+  // NaN
+  if (isNaNAsNumber === false && isNaN(num)) {
+    console.log('2333');
+    ret = false;
+  }
+  return ret;
 }
 
 /**

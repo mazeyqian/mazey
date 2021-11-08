@@ -12,6 +12,7 @@ import {
   getBrowserType,
   debounce,
   windowLoaded,
+  isNumber,
   // getPerformance,
  } from './index';
 
@@ -53,3 +54,6 @@ windowLoaded({ timeout: 30 })
   .catch(err => {
     console.log(`加载超时：${err}`);
   });
+
+// 数字测试
+console.log('数字测试：', isNumber(Infinity, { isUnFiniteAsNumber: true }));
