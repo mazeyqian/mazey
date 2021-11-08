@@ -216,6 +216,20 @@ const foo = debounce(() => {
 }, 1000, { leading: true })
 ```
 
+判断是否是有效数字
+
+```
+import { isNumber } from 'mazey';
+
+isNumber(123); // true
+isNumber('123'); // false
+// 默认情况下 NaN、Infinity 不算有效数字
+isNumber(Infinity); // false
+isNumber(Infinity, { isUnFiniteAsNumber: true }); true
+isNumber(NaN); // false
+isNumber(NaN, { isNaNAsNumber: true, isUnFiniteAsNumber: true }); // true
+```
+
 [更多接口>>](https://mazey.cn/docs/mazey/modules/_index_.html)
 
 ## Develop
