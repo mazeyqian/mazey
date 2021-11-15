@@ -54,6 +54,7 @@ addInlineStyle({
 
 (window as any).addInlineStyle = addInlineStyle;
 
+setTimeout(() => {
 // 获取图片距离顶部的距离
 function getBox2To () {
   const translates = window.getComputedStyle(document.querySelector('.i') as any, null).transform;
@@ -78,8 +79,10 @@ function getTopOverflowPercent () {
     box2To = 0;
   }
   box2To = Math.abs(box2To);
-  const windowHeight = getWindowHeight();
-  const per = floatToPercent(box2To/windowHeight, 2);
+  // const windowHeight = getWindowHeight();
+  // 图片高度
+  const imgHeight = getImgHeight();
+  const per = floatToPercent(box2To/(imgHeight as any), 2);
   return {
     box2To,
     per,
@@ -94,4 +97,14 @@ function getBottomOverflowPercent () {
   const imgHeight = getImgHeight();
   // 上面溢出的高度
   const box2To = getBox2To();
+  // 底部
+  const remindImageHeight = (imgHeight as any) - box2To;
+  const box2ToBottom = remindImageHeight - windowHeight;
+  const per = floatToPercent(box2ToBottom/(imgHeight as any), 2);
+  return {
+    box2ToBottom,
+    per,
+  };
 }
+console.log('获取顶部溢出的百分比', getBottomOverflowPercent());
+}, 1000);
