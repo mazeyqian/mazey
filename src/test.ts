@@ -97,9 +97,9 @@ function getBottomOverflowPercent () {
   const imgHeight = getImgHeight();
   // 上面溢出的高度
   const box2To = getBox2To();
-  // 底部
-  const remindImageHeight = (imgHeight as any) - box2To;
-  const box2ToBottom = remindImageHeight - windowHeight;
+  // 底部(imgHeight as any)
+  const remindImageHeight = windowHeight - box2To;
+  const box2ToBottom = (imgHeight as any) - remindImageHeight;
   const per = floatToPercent(box2ToBottom/(imgHeight as any), 2);
   return {
     box2ToBottom,
