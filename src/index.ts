@@ -1351,7 +1351,7 @@ export function cutCHSString(str = '', len = str.length, hasDot = false): string
 /**
  * @method windowLoaded
  * @description 页面加载完成
- * @param {number} timeout 超时时间 / 单位：秒
+ * @param {Number} timeout 超时时间 / 单位：秒
  * @return {Promise<string>} document is loaded? 'complete' 'load' / 'timeout'
 */
 export function windowLoaded({ timeout = 90 } = {}): Promise<string> {
@@ -1369,4 +1369,42 @@ export function windowLoaded({ timeout = 90 } = {}): Promise<string> {
   // 超过 timeout 秒后加载失败
   setTimeout(() => loadFail('timeout'), timeout * 1000);
   return status;
+}
+
+/**
+ * @method addInlineStyle
+ * @description 添加内联样式
+ * @param {String} inlineStyle 内联样式字符串
+ * @param {String} id <style> 标签的 ID
+ * @return {Boolean} 添加成功/失败 
+*/
+export function addInlineStyle({ inlineStyle = '', id = '' } = {}): boolean {
+  if (!inlineStyle) {
+    return false;
+  }
+  // 创建 style 文档碎片
+  const styleFrag = document.createDocumentFragment();
+  let idDom = null;
+  let domId = '';
+  // Custom Style
+  const customStyle = document.createElement('style');
+  // 如果需要 ID
+  if (id) {
+    domId = `${id}`;
+    idDom = document.getElementById(domId);
+    // 如果 Dom 不存在，插入 style
+    if (!idDom) {
+      customStyle.setAttribute('id', id);
+      customStyle.innerHTML = inlineStyle;
+      styleFrag.appendChild(customStyle);
+      document.head.appendChild(styleFrag);
+    } else { // 如果 Dom 存在，直接更新
+      idDom.innerHTML = inlineStyle;
+    }
+  } else { // 不需要 ID，直接添加新标签
+    customStyle.innerHTML = inlineStyle;
+    styleFrag.appendChild(customStyle);
+    document.head.appendChild(styleFrag);
+  }
+  return true;
 }

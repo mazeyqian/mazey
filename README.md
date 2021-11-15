@@ -115,6 +115,43 @@ addClass(dom, 'test');
 removeClass(dom, 'test');
 ```
 
+添加内联样式
+
+```
+import { addInlineStyle } from 'mazey';
+
+// 添加有 id 的内联样式，重复添加会更新内联样式而不是新增
+addInlineStyle({
+  inlineStyle: `
+    body {
+      background-color: #333;
+    }
+  `,
+  id: 'test',
+});
+
+// <style id="test">
+//   body {
+//     background-color: #333;
+//   }
+// </style>
+
+// 添加无 id 的内联样式，重复添加会新增内联样式
+addInlineStyle({
+  inlineStyle: `
+    body {
+      background-color: #444;
+    }
+  `,
+});
+
+// <style>
+//   body {
+//     background-color: #444;
+//   }
+// </style>
+```
+
 ### 网站性能
 
 获取加载时间
