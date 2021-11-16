@@ -1527,7 +1527,16 @@ export function customScrollBarForTransformEle({ containerClassName = '', imgBox
               display: none;
             }
           `,
-          id: 'bar-hide'
+          id: 'bar-is-hide'
+        });
+      } else {
+        addInlineStyle({
+          inlineStyle: `
+            .${containerClassName}::after {
+              display: block;
+            }
+          `,
+          id: 'bar-is-hide'
         });
       }
       return false;
