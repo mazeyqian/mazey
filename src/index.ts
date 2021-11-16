@@ -1351,7 +1351,7 @@ export function cutCHSString(str = '', len = str.length, hasDot = false): string
 /**
  * @method windowLoaded
  * @description 页面加载完成
- * @param {number} timeout 超时时间 / 单位：秒
+ * @param {Number} timeout 超时时间 / 单位：秒
  * @return {Promise<string>} document is loaded? 'complete' 'load' / 'timeout'
 */
 export function windowLoaded({ timeout = 90 } = {}): Promise<string> {
@@ -1369,4 +1369,193 @@ export function windowLoaded({ timeout = 90 } = {}): Promise<string> {
   // 超过 timeout 秒后加载失败
   setTimeout(() => loadFail('timeout'), timeout * 1000);
   return status;
+}
+
+/**
+ * @method addInlineStyle
+ * @description 添加内联样式
+ * @param {String} inlineStyle 内联样式字符串
+ * @param {String} id <style> 标签的 ID
+ * @return {Boolean} 添加成功/失败 
+*/
+export function addInlineStyle({ inlineStyle = '', id = '' } = {}): boolean {
+  if (!inlineStyle) {
+    return false;
+  }
+  // 创建 style 文档碎片
+  const styleFrag = document.createDocumentFragment();
+  let idDom = null;
+  let domId = '';
+  // Custom Style
+  const customStyle = document.createElement('style');
+  // 如果需要 ID
+  if (id) {
+    domId = `${id}`;
+    idDom = document.getElementById(domId);
+    // 如果 Dom 不存在，插入 style
+    if (!idDom) {
+      customStyle.setAttribute('id', id);
+      customStyle.innerHTML = inlineStyle;
+      styleFrag.appendChild(customStyle);
+      document.head.appendChild(styleFrag);
+    } else { // 如果 Dom 存在，直接更新
+      idDom.innerHTML = inlineStyle;
+    }
+  } else { // 不需要 ID，直接添加新标签
+    customStyle.innerHTML = inlineStyle;
+    styleFrag.appendChild(customStyle);
+    document.head.appendChild(styleFrag);
+  }
+  return true;
+}
+
+/**
+ * @method customScrollBarForTransformEle
+ * @description 为进行变换（transform）的元素设置滚动条
+ * @param {String} containerClassName 进行变换（transform）的元素的容器的类名
+ * @param {String} imgBoxClassName 图片的容器的类名
+ * @param {String} imgClassName 图片的类名
+ * @param {Object} imgDom 图片 Dom 对象
+ * @return {Boolean} 设置成功
+*/
+export function customScrollBarForTransformEle({ containerClassName = '', imgBoxClassName = '', imgClassName = '', imgDom = null } = {}): boolean {
+  // 变量
+  // const containerClassName = 'container';
+  // const imgBoxClassName = 'box';
+  // const imgClassName = 'img';
+  // const imgDom = document.querySelectorAll('.img')[0];
+  setTimeout(() => {
+    // 样式初始化
+    addInlineStyle({
+      inlineStyle: `
+        .${containerClassName}::after {
+          content: ' ';
+          position: fixed;
+          top: 0;
+          right: 5px;
+          min-height: 0vh;
+          max-height: 100vh;
+          width: 12px;
+          border-radius: 10px;
+          box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+          -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+          background-color: #555;
+        }
+      `,
+      id: 'bar-init'
+    });
+    const imgInstance = imgDom || document.querySelector(`.${imgClassName}`);
+    if (!imgInstance) {
+      console.warn('Need image\'s Dom instance.');
+      return false;
+    }
+    const Box2ToRes = getBox2To();
+    console.log('获取图片距离顶部的距离', Box2ToRes);
+    const ImgHeightRes = getImgHeight();
+    console.log('获取图片的高度', ImgHeightRes);
+    const WindowHeightRes = getWindowHeight();
+    console.log('获取窗口的高度', WindowHeightRes);
+    const TopOverflowPercentRes = getTopOverflowPercent();
+    console.log('获取顶部溢出的百分比', TopOverflowPercentRes);
+    const BottomOverflowPercentRes = getBottomOverflowPercent();
+    console.log('获取顶部溢出的百分比', BottomOverflowPercentRes);
+    const hideBarRes = hideBar();
+    console.log('如果都是 0 ，隐藏滚动条', hideBarRes);
+    if (!hideBarRes) {
+      const setBarTopRes = setBarTop();
+      console.log('设置顶部状态栏', setBarTopRes);
+      const setBarBottomRes = setBarBottom();
+      console.log('设置底部状态栏', setBarBottomRes);
+    }
+    // 获取图片距离顶部的距离
+    function getBox2To () {
+      const translates = window.getComputedStyle(document.querySelector(`.${imgBoxClassName}`) as any, null).transform;
+      const tanslateY = parseFloat(translates.substring(6).split(',')[5]);
+      return tanslateY;
+    }
+    // 获取图片的高度
+    function getImgHeight () {
+      return (imgInstance)?.clientHeight;
+    }
+    // 获取窗口的高度
+    function getWindowHeight () {
+      return (document.querySelector(`.${containerClassName}`) as any).clientHeight; // window.outerHeight;
+    }
+    // 获取顶部溢出的百分比
+    function getTopOverflowPercent () {
+      let box2To = Box2ToRes;
+      if (box2To >= 0) {
+        box2To = 0;
+      }
+      box2To = Math.abs(box2To);
+      // 图片高度
+      const imgHeight = ImgHeightRes;
+      const per = floatToPercent(box2To/(imgHeight as any), 2);
+      return {
+        box2To,
+        per,
+      };
+    }
+    // 获取底部溢出的百分比
+    function getBottomOverflowPercent () {
+      // 窗口高度
+      const windowHeight = WindowHeightRes;
+      // 图片高度
+      const imgHeight = ImgHeightRes;
+      // 上面溢出的高度
+      const box2To = Box2ToRes;
+      // 底部
+      const remindImageHeight = windowHeight - box2To;
+      let box2ToBottom = (imgHeight as any) - remindImageHeight;
+      if (box2ToBottom <= 0) {
+        box2ToBottom = 0;
+      }
+      const per = floatToPercent(box2ToBottom/(imgHeight as any), 2);
+      return {
+        box2ToBottom,
+        per,
+      };
+    }
+    // 如果都是 0 ，隐藏滚动条
+    function hideBar () {
+      const { box2To } = TopOverflowPercentRes;
+      const { box2ToBottom } = BottomOverflowPercentRes;
+      if (!box2To && !box2ToBottom) {
+        return addInlineStyle({
+          inlineStyle: `
+            .${containerClassName}::after {
+              display: none;
+            }
+          `,
+          id: 'bar-hide'
+        });
+      }
+      return false;
+    }
+    // 设置顶部状态栏
+    function setBarTop () {
+      const { per } = TopOverflowPercentRes;
+      return addInlineStyle({
+        inlineStyle: `
+          .${containerClassName}::after {
+            top: ${per};
+          }
+        `,
+        id: 'bar-top'
+      });
+    }
+    // 设置底部状态栏
+    function setBarBottom () {
+      const { per } = BottomOverflowPercentRes;
+      return addInlineStyle({
+        inlineStyle: `
+          .${containerClassName}::after {
+            bottom: ${per};
+          }
+        `,
+        id: 'bar-bottom'
+      });
+    }
+  }, 25);
+  return true;
 }

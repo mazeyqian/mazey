@@ -3,8 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <title>Mazey's Test.</title>
+  <style>
+    .container {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: #999;
+      overflow: hidden;
+    }
+    .box {
+      transform: translate3d(0, 200px, 0px) scale(1);
+    }
+    .img {
+      width: 30%;
+      height: 90vh;
+    }
+  </style>
 </head>
 <body>
-    <div class="mask"></div>
+    <div class="container">
+      <div class="box">
+        <img class="img" src="https://i.mazey.net/asset/WechatIMG14200.jpeg" />
+      </div>
+      <div class="s"></div>
+    </div>
 </body>
 </html>
