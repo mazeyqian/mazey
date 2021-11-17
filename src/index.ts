@@ -1435,6 +1435,7 @@ export function customScrollBarForTransformEle({ containerClassName = '', imgBox
       `,
       id: barIsHideId,
     });
+    return true;
   }
   setTimeout(() => {
     // 样式初始化
