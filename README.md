@@ -129,7 +129,6 @@ addInlineStyle({
   `,
   id: 'test',
 });
-
 // <style id="test">
 //   body {
 //     background-color: #333;
@@ -144,7 +143,6 @@ addInlineStyle({
     }
   `,
 });
-
 // <style>
 //   body {
 //     background-color: #444;
