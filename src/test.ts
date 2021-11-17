@@ -58,7 +58,7 @@ addInlineStyle({
 customScrollBarForTransformEle({
   containerClassName: 'container',
   imgBoxClassName: 'box',
-  imgClassName: 'img1',
+  imgClassName: 'img',
   imgDom: null,
 });
 
