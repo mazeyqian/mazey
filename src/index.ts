@@ -1412,15 +1412,16 @@ export function addInlineStyle({ inlineStyle = '', id = '' } = {}): boolean {
 /**
  * @method customScrollBarForTransformEle
  * @description 为进行变换（transform）的元素设置滚动条
- * @param {String} containerClassName 进行变换（transform）的元素的容器的类名
- * @param {String} imgBoxClassName 图片的容器的类名
+ * @param {String} containerClassName 进行变换（transform）的元素↓的容器（Father）的类名
+ * @param {String} imgBoxClassName 图片的容器（transform It's YOU!）的类名
+ * @param {String} imgBoxDom 图片的容器 Dom 对象
  * @param {String} imgClassName 图片的类名
  * @param {Object} imgDom 图片 Dom 对象
  * @param {String} action 操作类型 closeAll 关闭所有滚动条
  * @param {String} customStyle 滚动条的定制样式，会覆盖默认样式
  * @return {Boolean} 设置成功
 */
-export function customScrollBarForTransformEle({ containerClassName = '', imgBoxClassName = '', imgClassName = '', imgDom = null, action = '', customStyle = '' } = {}): boolean {
+export function customScrollBarForTransformEle({ containerClassName = '', imgBoxClassName = '', imgBoxDom = null, imgClassName = '', imgDom = null, action = '', customStyle = '' } = {}): boolean {
   // 变量
   const barIsHideId = 'bar-is-hide';
   const barTopId = 'bar-top';
@@ -1447,10 +1448,10 @@ export function customScrollBarForTransformEle({ containerClassName = '', imgBox
           min-height: 0vh;
           max-height: 100vh;
           width: 6px;
-          border-radius: 10px;
+          border-radius: 3px;
           box-shadow: inset 0 0 6px rgba(0,0,0,.3);
           -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-          background-color: #555;
+          background-color: rgb(109, 108, 109);
           ${customStyle}
         }
       `,
@@ -1459,6 +1460,11 @@ export function customScrollBarForTransformEle({ containerClassName = '', imgBox
     const imgInstance = imgDom || document.querySelector(`.${imgClassName}`);
     if (!imgInstance) {
       console.warn('Need image\'s Dom instance.');
+      return false;
+    }
+    const imgBoxInstance = imgBoxDom || document.querySelector(`.${imgBoxClassName}`);
+    if (!imgBoxInstance) {
+      console.warn('Need image box\'s Dom instance.');
       return false;
     }
     const Box2ToRes = getBox2To();
@@ -1481,7 +1487,7 @@ export function customScrollBarForTransformEle({ containerClassName = '', imgBox
     }
     // 获取图片距离顶部的距离
     function getBox2To () {
-      const translates = window.getComputedStyle(document.querySelector(`.${imgBoxClassName}`) as any, null).transform;
+      const translates = window.getComputedStyle(imgBoxInstance as any, null).transform;
       const tanslateY = parseFloat(translates.substring(6).split(',')[5]);
       return tanslateY;
     }
