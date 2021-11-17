@@ -152,6 +152,32 @@ addInlineStyle({
 // </style>
 ```
 
+添加自定义滚动条（适用于用 `transform` 移动的元素）
+
+```
+import { customScrollBarForTransformEle } from 'mazey';
+
+// 使用类名
+customScrollBarForTransformEle({
+  containerClassName: 'i-am-container',
+  imgBoxClassName: 'i-am-img-father-i-can-transform',
+  imgClassName: 'i-am-img',
+});
+
+// 使用 Dom 对象
+customScrollBarForTransformEle({
+  containerClassName: 'i-am-container',
+  imgBoxDom: document.querySelector('.i-am-img-father-i-can-transform'),
+  imgDom: document.querySelector('.i-am-img-father-i-can-transform'),
+});
+
+// 按需直接隐藏滚动条
+customScrollBarForTransformEle({
+  containerClassName: 'i-am-container',
+  action: 'hideAll',
+});
+```
+
 ### 网站性能
 
 获取加载时间

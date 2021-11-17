@@ -1417,7 +1417,7 @@ export function addInlineStyle({ inlineStyle = '', id = '' } = {}): boolean {
  * @param {String} imgBoxDom 图片的容器 Dom 对象
  * @param {String} imgClassName 图片的类名
  * @param {Object} imgDom 图片 Dom 对象
- * @param {String} action 操作类型 closeAll 关闭所有滚动条
+ * @param {String} action 操作类型 hideAll 隐藏所有滚动条
  * @param {String} customStyle 滚动条的定制样式，会覆盖默认样式
  * @return {Boolean} 设置成功
 */
@@ -1426,7 +1426,7 @@ export function customScrollBarForTransformEle({ containerClassName = '', imgBox
   const barIsHideId = 'bar-is-hide';
   const barTopId = 'bar-top';
   const barBottomId = 'bar-bottom';
-  if (action === 'closeAll') {
+  if (action === 'hideAll') {
     addInlineStyle({
       inlineStyle: `
         .${containerClassName}::after {
@@ -1435,6 +1435,7 @@ export function customScrollBarForTransformEle({ containerClassName = '', imgBox
       `,
       id: barIsHideId,
     });
+    return true;
   }
   setTimeout(() => {
     // 样式初始化
@@ -1459,31 +1460,33 @@ export function customScrollBarForTransformEle({ containerClassName = '', imgBox
     });
     const imgInstance = imgDom || document.querySelector(`.${imgClassName}`);
     if (!imgInstance) {
-      console.warn('Need image\'s Dom instance.');
+      console.warn('Need element\'s Dom instance.');
       return false;
     }
     const imgBoxInstance = imgBoxDom || document.querySelector(`.${imgBoxClassName}`);
     if (!imgBoxInstance) {
-      console.warn('Need image box\'s Dom instance.');
+      console.warn('Need element box\'s Dom instance.');
       return false;
     }
     const Box2ToRes = getBox2To();
-    console.log('获取图片距离顶部的距离', Box2ToRes);
+    // console.log('获取图片距离顶部的距离', Box2ToRes);
     const ImgHeightRes = getImgHeight();
-    console.log('获取图片的高度', ImgHeightRes);
+    // console.log('获取图片的高度', ImgHeightRes);
     const WindowHeightRes = getWindowHeight();
-    console.log('获取窗口的高度', WindowHeightRes);
+    // console.log('获取窗口的高度', WindowHeightRes);
     const TopOverflowPercentRes = getTopOverflowPercent();
-    console.log('获取顶部溢出的百分比', TopOverflowPercentRes);
+    // console.log('获取顶部溢出的百分比', TopOverflowPercentRes);
     const BottomOverflowPercentRes = getBottomOverflowPercent();
-    console.log('获取顶部溢出的百分比', BottomOverflowPercentRes);
+    // console.log('获取顶部溢出的百分比', BottomOverflowPercentRes);
     const hideBarRes = hideBar();
-    console.log('如果都是 0 ，隐藏滚动条', hideBarRes);
+    // console.log('如果都是 0 ，隐藏滚动条', hideBarRes);
     if (!hideBarRes) {
-      const setBarTopRes = setBarTop();
-      console.log('设置顶部状态栏', setBarTopRes);
-      const setBarBottomRes = setBarBottom();
-      console.log('设置底部状态栏', setBarBottomRes);
+      setBarTop();
+      // const setBarTopRes = setBarTop();
+      // console.log('设置顶部状态栏', setBarTopRes);
+      setBarBottom();
+      // const setBarBottomRes = setBarBottom();
+      // console.log('设置底部状态栏', setBarBottomRes);
     }
     // 获取图片距离顶部的距离
     function getBox2To () {

@@ -195,3 +195,15 @@ if (!hideBarRes) {
   console.log('设置底部状态栏', setBarBottomRes);
 }
 }, 10000000000000);
+
+// customScrollBarForTransformEle({
+//   containerClassName: 'i-am-container',
+//   imgBoxDom: document.querySelector('.i-am-img-father-i-can-transform'),
+//   imgDom: document.querySelector('.i-am-img-father-i-can-transform'),
+// });
+
+customScrollBarForTransformEle({
+  containerClassName: 'i-am-container',
+  imgBoxClassName: 'i-am-img-father-i-can-transform',
+  imgClassName: 'i-am-img',
+});
