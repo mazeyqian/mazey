@@ -1416,14 +1416,25 @@ export function addInlineStyle({ inlineStyle = '', id = '' } = {}): boolean {
  * @param {String} imgBoxClassName 图片的容器的类名
  * @param {String} imgClassName 图片的类名
  * @param {Object} imgDom 图片 Dom 对象
+ * @param {String} action 操作类型 closeAll 关闭所有滚动条
+ * @param {String} customStyle 滚动条的定制样式，会覆盖默认样式
  * @return {Boolean} 设置成功
 */
-export function customScrollBarForTransformEle({ containerClassName = '', imgBoxClassName = '', imgClassName = '', imgDom = null } = {}): boolean {
+export function customScrollBarForTransformEle({ containerClassName = '', imgBoxClassName = '', imgClassName = '', imgDom = null, action = '', customStyle = '' } = {}): boolean {
   // 变量
-  // const containerClassName = 'container';
-  // const imgBoxClassName = 'box';
-  // const imgClassName = 'img';
-  // const imgDom = document.querySelectorAll('.img')[0];
+  const barIsHideId = 'bar-is-hide';
+  const barTopId = 'bar-top';
+  const barBottomId = 'bar-bottom';
+  if (action === 'closeAll') {
+    addInlineStyle({
+      inlineStyle: `
+        .${containerClassName}::after {
+          display: none;
+        }
+      `,
+      id: barIsHideId,
+    });
+  }
   setTimeout(() => {
     // 样式初始化
     addInlineStyle({
@@ -1432,14 +1443,15 @@ export function customScrollBarForTransformEle({ containerClassName = '', imgBox
           content: ' ';
           position: fixed;
           top: 0;
-          right: 5px;
+          right: 2px;
           min-height: 0vh;
           max-height: 100vh;
-          width: 12px;
+          width: 6px;
           border-radius: 10px;
           box-shadow: inset 0 0 6px rgba(0,0,0,.3);
           -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
           background-color: #555;
+          ${customStyle}
         }
       `,
       id: 'bar-init'
@@ -1527,7 +1539,7 @@ export function customScrollBarForTransformEle({ containerClassName = '', imgBox
               display: none;
             }
           `,
-          id: 'bar-is-hide'
+          id: barIsHideId
         });
       } else {
         addInlineStyle({
@@ -1536,7 +1548,7 @@ export function customScrollBarForTransformEle({ containerClassName = '', imgBox
               display: block;
             }
           `,
-          id: 'bar-is-hide'
+          id: barIsHideId
         });
       }
       return false;
@@ -1550,7 +1562,7 @@ export function customScrollBarForTransformEle({ containerClassName = '', imgBox
             top: ${per};
           }
         `,
-        id: 'bar-top'
+        id: barTopId
       });
     }
     // 设置底部状态栏
@@ -1562,7 +1574,7 @@ export function customScrollBarForTransformEle({ containerClassName = '', imgBox
             bottom: ${per};
           }
         `,
-        id: 'bar-bottom'
+        id: barBottomId
       });
     }
   }, 25);
