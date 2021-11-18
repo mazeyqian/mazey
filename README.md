@@ -129,7 +129,6 @@ addInlineStyle({
   `,
   id: 'test',
 });
-
 // <style id="test">
 //   body {
 //     background-color: #333;
@@ -144,7 +143,6 @@ addInlineStyle({
     }
   `,
 });
-
 // <style>
 //   body {
 //     background-color: #444;
@@ -174,8 +172,17 @@ customScrollBarForTransformEle({
 // 按需直接隐藏滚动条
 customScrollBarForTransformEle({
   containerClassName: 'i-am-container',
-  action: 'hideAll',
+  action: 'hide',
 });
+```
+
+计算适配容器宽度的图片的尺寸、距离顶部（使其垂直居中）的距离
+
+```
+import { calcContainImageSizeAndPosition } from 'mazey';
+
+calcContainImageSizeAndPosition({ oriImageWidth: 300, oriImageHeight: 300, viewportWidth: 375, viewportHeight: 812 });
+// {"targetImageWidth":375,"targetImageHeight":375,"top":218.5,"wPer":1.25}
 ```
 
 ### 网站性能

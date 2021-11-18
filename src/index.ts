@@ -1417,7 +1417,7 @@ export function addInlineStyle({ inlineStyle = '', id = '' } = {}): boolean {
  * @param {String} imgBoxDom 图片的容器 Dom 对象
  * @param {String} imgClassName 图片的类名
  * @param {Object} imgDom 图片 Dom 对象
- * @param {String} action 操作类型 hideAll 隐藏所有滚动条
+ * @param {String} action 操作类型 hide 隐藏指定 `containerClassName` 滚动条
  * @param {String} customStyle 滚动条的定制样式，会覆盖默认样式
  * @return {Boolean} 设置成功
 */
@@ -1426,7 +1426,7 @@ export function customScrollBarForTransformEle({ containerClassName = '', imgBox
   const barIsHideId = 'bar-is-hide';
   const barTopId = 'bar-top';
   const barBottomId = 'bar-bottom';
-  if (action === 'hideAll') {
+  if (action === 'hide') {
     addInlineStyle({
       inlineStyle: `
         .${containerClassName}::after {
@@ -1588,4 +1588,32 @@ export function customScrollBarForTransformEle({ containerClassName = '', imgBox
     }
   }, 25);
   return true;
+}
+
+
+/**
+ * @method calcContainImageSizeAndPosition
+ * @description 计算适配容器宽度的图片的尺寸、距离顶部（使其垂直居中）的距离
+ * @param {Number} oriImageWidth 图片原始宽度
+ * @param {Number} oriImageHeight 图片原始高度
+ * @param {Number} viewportWidth 可视窗口宽度
+ * @param {Number} viewportHeight 可视窗口高度
+ * @return {Object} 结果 {"targetImageWidth":375,"targetImageHeight":375,"top":218.5,"wPer":1.25}
+*/
+export function calcContainImageSizeAndPosition({ oriImageWidth = 0, oriImageHeight = 0, viewportWidth = 0, viewportHeight = 0 } = {}): any {
+  const targetImageWidth = viewportWidth;
+  let [ targetImageHeight, top, wPer ] = [ 0, 0, 0 ];
+  // 比例
+  wPer = viewportWidth / oriImageWidth; // 1.+ 1.1 1.5
+  targetImageHeight = oriImageHeight * wPer;
+  if (targetImageHeight < viewportHeight) {
+    const doubleGap = viewportHeight - targetImageHeight;
+    top = doubleGap / 2;
+  }
+  return {
+    targetImageWidth,
+    targetImageHeight,
+    top,
+    wPer,
+  };
 }
