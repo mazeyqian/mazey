@@ -176,11 +176,12 @@ customScrollBarForTransformEle({
 });
 ```
 
-计算适配容器宽度的图片的尺寸、距离顶部（使其垂直居中）的距离
+计算适配容器宽度的图片的尺寸、距离顶部的距离
 
 ```
 import { calcContainImageSizeAndPosition } from 'mazey';
 
+// 如果高度不足以占满容器，使其垂直居中；如果高度比容器长，由上向下铺开
 calcContainImageSizeAndPosition({ oriImageWidth: 300, oriImageHeight: 300, viewportWidth: 375, viewportHeight: 812 });
 // {"targetImageWidth":375,"targetImageHeight":375,"top":218.5,"wPer":1.25}
 ```
