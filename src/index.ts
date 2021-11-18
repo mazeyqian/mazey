@@ -1593,7 +1593,7 @@ export function customScrollBarForTransformEle({ containerClassName = '', imgBox
 
 /**
  * @method calcContainImageSizeAndPosition
- * @description 计算适配容器宽度的图片的尺寸、距离顶部（使其垂直居中）的距离
+ * @description 计算适配容器宽度的图片的尺寸、距离顶部的距离。如果高度不足以占满容器，使其垂直居中；如果高度比容器长，由上向下铺开。
  * @param {Number} oriImageWidth 图片原始宽度
  * @param {Number} oriImageHeight 图片原始高度
  * @param {Number} viewportWidth 可视窗口宽度
