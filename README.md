@@ -28,16 +28,19 @@ npm install mazey --save
 import { loadScript } from 'mazey';
 
 loadScript({
-  url: 'http://www.mazey.net/js/plugin/jquery/jquery-2.1.1.min.js'
+  url: 'http://www.mazey.net/js/plugin/jquery/jquery-2.1.1.min.js',
+  id: 'iamid', // 可选，script 标签 ID，默认无 ID
+  timeout: 5000, // 可选，超时时间，默认 5000
+  isDefer: false, // 可选，defer，默认 false
 })
   .then(
     res => {
-      console.log(`加载 JavaScript: ${res}`);
+      console.log(`加载 JavaScript 成功: ${res}`);
     }
   )
   .catch(
     err => {
-      console.error(`加载 JavaScript Error: ${err}`)
+      console.error(`加载 JavaScript 失败: ${err}`)
     }
   );
 ```
@@ -48,16 +51,17 @@ loadScript({
 import { loadCSS } from 'mazey';
 
 loadCSS({
-  url: 'http://www.mazey.net/css/mazey-base.css'
+  url: 'http://www.mazey.net/css/mazey-base.css',
+  id: 'iamid', // 可选，link 标签 ID，默认无 ID
 })
   .then(
     res => {
-      console.log(`加载 CSS: ${res}`);
+      console.log(`加载 CSS 成功: ${res}`);
     }
   )
   .catch(
     err => {
-      console.error(`加载 CSS Error: ${err}`)
+      console.error(`加载 CSS 失败: ${err}`)
     }
   );
 ```
@@ -78,7 +82,7 @@ windowLoaded({ timeout: 30 })
 
 ### 存储数据
 
-Storage
+Storage（兼容 JSON 格式，自行转换）
 
 ```
 import { setSessionStorage, getSessionStorage, setLocalStorage, getLocalStorage } from 'mazey';
