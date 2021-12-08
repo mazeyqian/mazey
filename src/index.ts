@@ -1617,3 +1617,26 @@ export function calcContainImageSizeAndPosition({ oriImageWidth = 0, oriImageHei
     wPer,
   };
 }
+
+/**
+ * @method genCustomConsole
+ * @description 生成自定义控制台打印
+ * @param {String} prefix 前缀
+ * @param {Function} allowFn 允许打印的判断函数
+ * @return {Object} 新实例
+*/
+export function genCustomConsole({ prefix = '' } = {}): any {
+  // ...
+  const methods = ['log', 'info', 'warn', 'error'];
+  const newConsole = Object.create(null);
+  methods.forEach(method => {
+    newConsole[method] = function (...argu: any) {
+      if (prefix) {
+        (console as any)[method](prefix, ...argu);
+      } else {
+        (console as any)[method](...argu);
+      }
+    };
+  });
+  return newConsole;
+}

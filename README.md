@@ -305,6 +305,20 @@ isNumber(NaN); // false
 isNumber(NaN, { isNaNAsNumber: true, isUnFiniteAsNumber: true }); // true
 ```
 
+### 调试
+
+自定义控制台打印（`console`）
+
+```
+import { genCustomConsole } from 'mazey';
+
+const myConsole = genCustomConsole({ prefix: 'MazeyLog:' });
+myConsole.log('I am string.'); // MazeyLog: I am string.
+myConsole.info('I am boolean.', true); // MazeyLog: I am boolean. true
+myConsole.info('I am number.', 123, 456); // MazeyLog: I am number. 123 456
+myConsole.info('I am object.', { a: 123, b: 456}); // MazeyLog: I am object. {a: 123, b: 456}
+```
+
 [更多接口>>](https://mazey.cn/docs/mazey/modules/_index_.html)
 
 ## Develop
