@@ -4,7 +4,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
   entry: {
-    test: './src/test.ts'
+    test: './src/example.ts'
   },
   output: {
     filename: '[name].js',
@@ -25,7 +25,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       filename: path.resolve(__dirname, 'dist/index.html'),
-      template: path.resolve(__dirname, 'src/test.html'),
+      template: path.resolve(__dirname, 'src/example.html'),
       inject: true,
       chunksSortMode: 'dependency'
     }),
