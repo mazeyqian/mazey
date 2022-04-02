@@ -11,7 +11,7 @@ test/unit/coverage
 test/e2e/reports
 selenium-debug.log
 doc/
-lib/
+# lib/
 
 # Editor directories and files
 .idea
@@ -28,4 +28,4 @@ temp/
 # package-lock.json
 yarn-error.log
 yarn.lock
-package-lock.json
+# package-lock.json
