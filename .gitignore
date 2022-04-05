@@ -1,6 +1,4 @@
-# server
-server/
-
+# File&Cache
 .DS_Store
 node_modules/
 dist/
@@ -11,7 +9,9 @@ test/unit/coverage
 test/e2e/reports
 selenium-debug.log
 doc/
-# lib/
+.sass-cache/
+undefined/
+temp/
 
 # Editor directories and files
 .idea
@@ -20,12 +20,3 @@ doc/
 *.ntvs*
 *.njsproj
 *.sln
-
-# cache
-.sass-cache/
-undefined/
-temp/
-# package-lock.json
-yarn-error.log
-yarn.lock
-# package-lock.json
