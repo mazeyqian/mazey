@@ -1,5 +1,3 @@
-English | [简体中文](./README_CN.md)
-
 # Mazey
 
 [![NPM version][npm-image]][npm-url]
@@ -10,7 +8,7 @@ English | [简体中文](./README_CN.md)
 [l-image]: https://img.shields.io/npm/l/mazey
 [l-url]: https://github.com/mazeyqian/mazey
 
-Mazey's library for front end.
+后除的前端函数库
 
 ## Install
 
@@ -22,9 +20,9 @@ npm install mazey --save
 
 ## Usage
 
-### Load
+### 加载资源
 
-Load JavaScript.
+加载 JavaScript
 
 ```
 import { loadScript } from 'mazey';
@@ -47,7 +45,7 @@ loadScript({
   );
 ```
 
-Load CSS.
+加载 CSS
 
 ```
 import { loadCSS } from 'mazey';
@@ -68,7 +66,7 @@ loadCSS({
   );
 ```
 
-Check whether the page is loaded successfully (Keepe the compatibility in case that browser's `load` event has been triggered).
+判断页面是否加载完成（兼容浏览器 `load` 事件已经触发过的情况）
 
 ```
 import { loadCSS } from 'mazey';
@@ -82,9 +80,9 @@ windowLoaded({ timeout: 30 })
   });
 ```
 
-### Store the Data
+### 存储数据
 
-Handle Storage (Keep fit for JSON, it can tansfer format automatically).
+Storage（兼容 JSON 格式，自行转换）
 
 ```
 import { setSessionStorage, getSessionStorage, setLocalStorage, getLocalStorage } from 'mazey';
@@ -95,7 +93,7 @@ setLocalStorage('test', '123');
 getLocalStorage('test'); // 123
 ```
 
-Handle Cookie.
+Cookie
 
 ```
 import { setCookie, getCookie } from 'mazey';
@@ -104,9 +102,9 @@ setCookie('test', '123', 30, 'mazey.net'); // key value day domain
 getCookie('test'); // 123
 ```
 
-### Handle DOM
+### 操作 DOM
 
-Modify `class`.
+修改 `class`
 
 ```
 import { hasClass, addClass, removeClass } from 'mazey';
@@ -121,7 +119,7 @@ addClass(dom, 'test');
 removeClass(dom, 'test');
 ```
 
-Add inline-style.
+添加内联样式
 
 ```
 import { addInlineStyle } from 'mazey';
@@ -156,7 +154,7 @@ addInlineStyle({
 // </style>
 ```
 
-Add custom scrollbars (For elements moved by `transform`).
+添加自定义滚动条（适用于用 `transform` 移动的元素）
 
 ```
 import { customScrollBarForTransformEle } from 'mazey';
@@ -182,7 +180,7 @@ customScrollBarForTransformEle({
 });
 ```
 
-Calculate the size of the picture that fits the width of the container and the distance from the top.
+计算适配容器宽度的图片的尺寸、距离顶部的距离
 
 ```
 import { calcContainImageSizeAndPosition } from 'mazey';
@@ -192,9 +190,9 @@ calcContainImageSizeAndPosition({ oriImageWidth: 300, oriImageHeight: 300, viewp
 // {"targetImageWidth":375,"targetImageHeight":375,"top":218.5,"wPer":1.25}
 ```
 
-### Site Performance
+### 网站性能
 
-Get load time.
+获取加载时间
 
 ```
 import { getPerformance } from 'mazey';
@@ -224,9 +222,9 @@ getPerformance({ camelCase: true })
 | ⽹⻚下载时间 | download_time | responseEnd - responseStart |
 | FCP | first_contentful_paint_time | firstPaintTime |
 
-### The Formula to Calculate
+### 公式计算
 
-Computes the longest common substring of two strings.
+计算两个字符串的最长公共子串
 
 ```
 import { calLongestCommonSubstring } from 'mazey';
@@ -234,7 +232,7 @@ import { calLongestCommonSubstring } from 'mazey';
 calLongestCommonSubstring('fish', 'finish'); // 3
 ```
 
-Computes the longest common subsequence of two strings.
+计算两个字符串的最长公共子序列
 
 ```
 import { calLongestCommonSubsequence } from 'mazey';
@@ -242,7 +240,7 @@ import { calLongestCommonSubsequence } from 'mazey';
 calLongestCommonSubsequence('fish', 'finish'); // 4
 ```
 
-Hit probability (1% ~ 100%).
+命中概率（1% ~ 100%）
 
 ```
 import { inRate } from 'mazey';
@@ -262,7 +260,7 @@ new Array(1000000).fill(0).forEach(() => {
 console.log(trueCount, falseCount); // 499994 500006
 ```
 
-### Browser Information
+### 浏览器信息
 
 ```
 import { getBrowserType } from 'mazey';
@@ -271,9 +269,9 @@ getBrowserType(); // {"engine":"webkit","engineVs":"537.36","platform":"desktop"
 // 外壳和外壳版本 { shell: 'wechat', shellVs: '20' } shell: wechat qq uc 360 2345 sougou liebao maxthon
 ```
 
-### Margin of Safety
+### 安全边际
 
-Determine if it is a secure PWA environment that it can run.
+判断是否是安全的 PWA 运行环境
 
 ```
 import { isSafePWAEnv } from 'mazey';
@@ -281,9 +279,9 @@ import { isSafePWAEnv } from 'mazey';
 isSafePWAEnv(); // true
 ```
 
-### Function
+### 函数
 
-Debounce.
+防抖
 
 ```
 import { debounce } from 'mazey';
@@ -293,7 +291,7 @@ const foo = debounce(() => {
 }, 1000, { leading: true })
 ```
 
-Check whether it is a right number.
+判断是否是有效数字
 
 ```
 import { isNumber } from 'mazey';
@@ -307,9 +305,9 @@ isNumber(NaN); // false
 isNumber(NaN, { isNaNAsNumber: true, isUnFiniteAsNumber: true }); // true
 ```
 
-### Debug
+### 调试
 
-Custom console printing (`console`).
+自定义控制台打印（`console`）
 
 ```
 import { genCustomConsole } from 'mazey';
@@ -321,7 +319,7 @@ myConsole.info('I am number.', 123, 456); // MazeyLog: I am number. 123 456
 myConsole.info('I am object.', { a: 123, b: 456}); // MazeyLog: I am object. {a: 123, b: 456}
 ```
 
-[More API>>](https://mazey.cn/docs/mazey/modules/_index_.html)
+[更多接口>>](https://mazey.cn/docs/mazey/modules/_index_.html)
 
 ## Develop
 
