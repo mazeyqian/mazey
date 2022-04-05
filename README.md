@@ -224,7 +224,7 @@ getPerformance({ camelCase: true })
 | ⽹⻚下载时间 | download_time | responseEnd - responseStart |
 | FCP | first_contentful_paint_time | firstPaintTime |
 
-### The Formula to Calculate
+### Calculate&Formula
 
 Computes the longest common substring of two strings.
 
