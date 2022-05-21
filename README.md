@@ -22,7 +22,7 @@ npm install mazey --save
 
 ## Usage
 
-### Load
+### Load Resource
 
 Load JavaScript.
 
@@ -31,9 +31,9 @@ import { loadScript } from 'mazey';
 
 loadScript({
   url: 'http://www.mazey.net/js/plugin/jquery/jquery-2.1.1.min.js',
-  id: 'iamid', // 可选，script 标签 ID，默认无 ID
-  timeout: 5000, // 可选，超时时间，默认 5000
-  isDefer: false, // 可选，defer，默认 false
+  id: 'iamid', // Optional，script 标签 ID，默认无 ID
+  timeout: 5000, // Optional，超时时间，默认 5000
+  isDefer: false, // Optional，defer，默认 false
 })
   .then(
     res => {
@@ -54,7 +54,7 @@ import { loadCSS } from 'mazey';
 
 loadCSS({
   url: 'http://www.mazey.net/css/mazey-base.css',
-  id: 'iamid', // 可选，link 标签 ID，默认无 ID
+  id: 'iamid', // Optional，link 标签 ID，默认无 ID
 })
   .then(
     res => {
@@ -73,7 +73,7 @@ Check whether the page is loaded successfully (Keepe the compatibility in case t
 ```
 import { loadCSS } from 'mazey';
 
-windowLoaded({ timeout: 30 })
+windowLoaded({ timeout: 30 }) // second
   .then(res => {
     console.log(`加载完成：${res}`); // 加载完成：load
   })
@@ -82,7 +82,7 @@ windowLoaded({ timeout: 30 })
   });
 ```
 
-### Store the Data
+### Browser Data
 
 Handle Storage (Keep fit for JSON, it can tansfer format automatically).
 
@@ -93,6 +93,16 @@ setSessionStorage('test', '123');
 getSessionStorage('test'); // 123
 setLocalStorage('test', '123');
 getLocalStorage('test'); // 123
+
+// or package in usage
+const projectName = 'mazey';
+function mSetLocalStorage (key, value) {
+  return setLocalStorage(`${projectName}_${key}`, value);
+}
+
+function mGetLocalStorage (key) {
+  return getLocalStorage(`${projectName}_${key}`);
+}
 ```
 
 Handle Cookie.
@@ -102,6 +112,42 @@ import { setCookie, getCookie } from 'mazey';
 
 setCookie('test', '123', 30, 'mazey.net'); // key value day domain
 getCookie('test'); // 123
+```
+
+### Function
+
+Debounce.
+
+```
+import { debounce } from 'mazey';
+
+const foo = debounce(() => {
+  console.log('The debounced function will only be invoked in 1000 milliseconds, the other invoking will disappear during the wait time.');
+}, 1000, { leading: true })
+```
+
+Throttle.
+
+```
+import { throttle } from 'mazey';
+
+const foo = throttle(() => {
+  console.log('The function will be invoked at most once per every wait 1000 milliseconds.');
+}, 1000, { leading: true })
+```
+
+Check whether it is a right number.
+
+```
+import { isNumber } from 'mazey';
+
+isNumber(123); // true
+isNumber('123'); // false
+// 默认情况下 NaN、Infinity 不算有效数字
+isNumber(Infinity); // false
+isNumber(Infinity, { isUnFiniteAsNumber: true }); true
+isNumber(NaN); // false
+isNumber(NaN, { isNaNAsNumber: true, isUnFiniteAsNumber: true }); // true
 ```
 
 ### Handle DOM
@@ -279,32 +325,6 @@ Determine if it is a secure PWA environment that it can run.
 import { isSafePWAEnv } from 'mazey';
 
 isSafePWAEnv(); // true
-```
-
-### Function
-
-Debounce.
-
-```
-import { debounce } from 'mazey';
-
-const foo = debounce(() => {
-  console.log('执行 1 秒内再次执行无反应');
-}, 1000, { leading: true })
-```
-
-Check whether it is a right number.
-
-```
-import { isNumber } from 'mazey';
-
-isNumber(123); // true
-isNumber('123'); // false
-// 默认情况下 NaN、Infinity 不算有效数字
-isNumber(Infinity); // false
-isNumber(Infinity, { isUnFiniteAsNumber: true }); true
-isNumber(NaN); // false
-isNumber(NaN, { isNaNAsNumber: true, isUnFiniteAsNumber: true }); // true
 ```
 
 ### Debug
