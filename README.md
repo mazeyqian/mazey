@@ -24,54 +24,56 @@ npm install mazey --save
 
 ### Load Resource
 
-Load JavaScript.
+#### Load JavaScript
 
 ```
 import { loadScript } from 'mazey';
 
 loadScript({
   url: 'http://www.mazey.net/js/plugin/jquery/jquery-2.1.1.min.js',
-  id: 'iamid', // Optional，script 标签 ID，默认无 ID
-  timeout: 5000, // Optional，超时时间，默认 5000
-  isDefer: false, // Optional，defer，默认 false
+  id: 'iamid', // Optional, script ID, default none
+  timeout: 5000, // Optional, timeout, default `5000`
+  isDefer: false, // Optional, defer, default `false`
 })
   .then(
     res => {
-      console.log(`加载 JavaScript 成功: ${res}`);
+      console.log(`Load JavaScript Success: ${res}`);
     }
   )
   .catch(
     err => {
-      console.error(`加载 JavaScript 失败: ${err}`)
+      console.error(`Load JavaScript Fail: ${err}`)
     }
   );
 ```
 
-Load CSS.
+#### Load CSS
 
 ```
 import { loadCSS } from 'mazey';
 
 loadCSS({
   url: 'http://www.mazey.net/css/mazey-base.css',
-  id: 'iamid', // Optional，link 标签 ID，默认无 ID
+  id: 'iamid', // Optional, link ID, default none
 })
   .then(
     res => {
-      console.log(`加载 CSS 成功: ${res}`);
+      console.log(`Load CSS Success: ${res}`);
     }
   )
   .catch(
     err => {
-      console.error(`加载 CSS 失败: ${err}`)
+      console.error(`Load CSS Fail: ${err}`)
     }
   );
 ```
 
+#### Check Load
+
 Check whether the page is loaded successfully (Keepe the compatibility in case that browser's `load` event has been triggered).
 
 ```
-import { loadCSS } from 'mazey';
+import { windowLoaded } from 'mazey';
 
 windowLoaded({ timeout: 30 }) // second
   .then(res => {
