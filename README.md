@@ -77,7 +77,7 @@ import { windowLoaded } from 'mazey';
 
 windowLoaded({ timeout: 30 }) // second
   .then(res => {
-    console.log(`加载完成：${res}`); // 加载完成：load
+    console.log(`Load Success: ${res}`); // Load Success: load
   })
   .catch(err => {
     console.log(`加载超时或失败：${err}`);
