@@ -80,7 +80,7 @@ windowLoaded({ timeout: 30 }) // second
     console.log(`Load Success: ${res}`); // Load Success: load
   })
   .catch(err => {
-    console.log(`加载超时或失败：${err}`);
+    console.log(`Load Timeout or Fail: ${err}`);
   });
 ```
 
@@ -145,7 +145,7 @@ import { isNumber } from 'mazey';
 
 isNumber(123); // true
 isNumber('123'); // false
-// 默认情况下 NaN、Infinity 不算有效数字
+// Default: NaN, Infinity is not Number
 isNumber(Infinity); // false
 isNumber(Infinity, { isUnFiniteAsNumber: true }); true
 isNumber(NaN); // false
