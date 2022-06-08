@@ -118,7 +118,7 @@ getCookie('test'); // 123
 
 ### Function
 
-Debounce.
+#### Debounce
 
 ```
 import { debounce } from 'mazey';
@@ -128,7 +128,7 @@ const foo = debounce(() => {
 }, 1000, { leading: true })
 ```
 
-Throttle.
+#### Throttle
 
 ```
 import { throttle } from 'mazey';
@@ -137,6 +137,8 @@ const foo = throttle(() => {
   console.log('The function will be invoked at most once per every wait 1000 milliseconds.');
 }, 1000, { leading: true })
 ```
+
+#### Check Number
 
 Check whether it is a right number.
 
