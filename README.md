@@ -86,6 +86,8 @@ windowLoaded({ timeout: 30 }) // second
 
 ### Browser Data
 
+#### Storage
+
 Handle Storage (Keep fit for JSON, it can tansfer format automatically).
 
 ```
@@ -106,6 +108,8 @@ function mGetLocalStorage (key) {
   return getLocalStorage(`${projectName}_${key}`);
 }
 ```
+
+#### Cookie
 
 Handle Cookie.
 
