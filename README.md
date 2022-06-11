@@ -158,7 +158,9 @@ isNumber(NaN); // false
 isNumber(NaN, { isNaNAsNumber: true, isUnFiniteAsNumber: true }); // true
 ```
 
-### Handle DOM
+### DOM
+
+#### Class
 
 Modify `class`.
 
@@ -174,6 +176,8 @@ addClass(dom, 'test');
 // 删除 class
 removeClass(dom, 'test');
 ```
+
+#### Style
 
 Add inline-style.
 
@@ -210,43 +214,7 @@ addInlineStyle({
 // </style>
 ```
 
-Add custom scrollbars (For elements moved by `transform`).
-
-```
-import { customScrollBarForTransformEle } from 'mazey';
-
-// 使用类名
-customScrollBarForTransformEle({
-  containerClassName: 'i-am-container',
-  imgBoxClassName: 'i-am-img-father-i-can-transform',
-  imgClassName: 'i-am-img',
-});
-
-// 使用 Dom 对象
-customScrollBarForTransformEle({
-  containerClassName: 'i-am-container',
-  imgBoxDom: document.querySelector('.i-am-img-father-i-can-transform'),
-  imgDom: document.querySelector('.i-am-img-father-i-can-transform'),
-});
-
-// 按需直接隐藏滚动条
-customScrollBarForTransformEle({
-  containerClassName: 'i-am-container',
-  action: 'hide',
-});
-```
-
-Calculate the size of the picture that fits the width of the container and the distance from the top.
-
-```
-import { calcContainImageSizeAndPosition } from 'mazey';
-
-// 如果高度不足以占满容器，使其垂直居中；如果高度比容器长，由上向下铺开
-calcContainImageSizeAndPosition({ oriImageWidth: 300, oriImageHeight: 300, viewportWidth: 375, viewportHeight: 812 });
-// {"targetImageWidth":375,"targetImageHeight":375,"top":218.5,"wPer":1.25}
-```
-
-### Site Performance
+### Performance
 
 Get load time.
 
