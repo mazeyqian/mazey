@@ -83,43 +83,6 @@ windowLoaded({ timeout: 30 }) // second
     console.log(`Load Timeout or Fail: ${err}`);
   });
 ```
-
-### Browser Data
-
-#### Storage
-
-Handle Storage (Keep fit for JSON, it can tansfer format automatically).
-
-```
-import { setSessionStorage, getSessionStorage, setLocalStorage, getLocalStorage } from 'mazey';
-
-setSessionStorage('test', '123');
-getSessionStorage('test'); // 123
-setLocalStorage('test', '123');
-getLocalStorage('test'); // 123
-
-// or package in usage
-const projectName = 'mazey';
-function mSetLocalStorage (key, value) {
-  return setLocalStorage(`${projectName}_${key}`, value);
-}
-
-function mGetLocalStorage (key) {
-  return getLocalStorage(`${projectName}_${key}`);
-}
-```
-
-#### Cookie
-
-Handle Cookie.
-
-```
-import { setCookie, getCookie } from 'mazey';
-
-setCookie('test', '123', 30, 'mazey.net'); // key value day domain
-getCookie('test'); // 123
-```
-
 ### Function
 
 #### Debounce
@@ -156,6 +119,42 @@ isNumber(Infinity); // false
 isNumber(Infinity, { isUnFiniteAsNumber: true }); true
 isNumber(NaN); // false
 isNumber(NaN, { isNaNAsNumber: true, isUnFiniteAsNumber: true }); // true
+```
+
+### Browser Data
+
+#### Storage
+
+Handle Storage (Keep fit for JSON, it can tansfer format automatically).
+
+```
+import { setSessionStorage, getSessionStorage, setLocalStorage, getLocalStorage } from 'mazey';
+
+setSessionStorage('test', '123');
+getSessionStorage('test'); // 123
+setLocalStorage('test', '123');
+getLocalStorage('test'); // 123
+
+// or package in usage
+const projectName = 'mazey';
+function mSetLocalStorage (key, value) {
+  return setLocalStorage(`${projectName}_${key}`, value);
+}
+
+function mGetLocalStorage (key) {
+  return getLocalStorage(`${projectName}_${key}`);
+}
+```
+
+#### Cookie
+
+Handle Cookie.
+
+```
+import { setCookie, getCookie } from 'mazey';
+
+setCookie('test', '123', 30, 'mazey.net'); // key value day domain
+getCookie('test'); // 123
 ```
 
 ### DOM
@@ -304,6 +303,8 @@ isSafePWAEnv(); // true
 ```
 
 ### Debug
+
+#### Print
 
 Custom console printing (`console`).
 
