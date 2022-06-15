@@ -12,10 +12,10 @@
 
 ## Install
 
-You can get Mazey via [npm](https://www.npmjs.com/package/mazey).
+You can get Mazey via [npm](https://www.npmjs.com/package/mazey/v/1.4.39).
 
 ```
-npm install mazey --save
+npm install mazey@1.4.39 --save
 ```
 
 ## Usage
