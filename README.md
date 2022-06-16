@@ -184,6 +184,7 @@ Add inline-style.
 import { addInlineStyle } from 'mazey';
 
 // 添加有 id 的内联样式，重复添加会更新内联样式而不是新增
+// Add an inline style with an ID. Repeated additions update the inline style instead of adding a new one
 addInlineStyle({
   inlineStyle: `
     body {
@@ -199,6 +200,7 @@ addInlineStyle({
 // </style>
 
 // 添加无 id 的内联样式，重复添加会新增内联样式
+// Add an inline style without id. Repeated additions will add an inline style
 addInlineStyle({
   inlineStyle: `
     body {
