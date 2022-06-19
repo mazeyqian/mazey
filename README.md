@@ -1,6 +1,6 @@
 English | [简体中文](./README_CN.md)
 
-# Mazey
+## Mazey
 
 [![NPM version][npm-image]][npm-url]
 [![l][l-image]][l-url]
