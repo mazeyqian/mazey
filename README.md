@@ -121,42 +121,6 @@ isNumber(NaN); // false
 isNumber(NaN, { isNaNAsNumber: true, isUnFiniteAsNumber: true }); // true
 ```
 
-### Browser Data
-
-#### Storage
-
-Handle Storage (Keep fit for JSON, it can tansfer format automatically).
-
-```
-import { setSessionStorage, getSessionStorage, setLocalStorage, getLocalStorage } from 'mazey';
-
-setSessionStorage('test', '123');
-getSessionStorage('test'); // 123
-setLocalStorage('test', '123');
-getLocalStorage('test'); // 123
-
-// or package in usage
-const projectName = 'mazey';
-function mSetLocalStorage (key, value) {
-  return setLocalStorage(`${projectName}_${key}`, value);
-}
-
-function mGetLocalStorage (key) {
-  return getLocalStorage(`${projectName}_${key}`);
-}
-```
-
-#### Cookie
-
-Handle Cookie.
-
-```
-import { setCookie, getCookie } from 'mazey';
-
-setCookie('test', '123', 30, 'mazey.net'); // key value day domain
-getCookie('test'); // 123
-```
-
 ### DOM
 
 #### Class
@@ -213,7 +177,94 @@ addInlineStyle({
 // </style>
 ```
 
-### Performance
+### Calculate&Formula
+
+#### Rate
+
+Hit probability (1% ~ 100%).
+
+```
+import { inRate } from 'mazey';
+
+inRate(0.5); // 0.01 ~ 1 true / false
+
+// 测试准确性
+let trueCount = 0;
+let falseCount = 0;
+new Array(1000000).fill(0).forEach(() => {
+  if (inRate(0.5)) {
+    trueCount++;
+  } else {
+    falseCount++;
+  }
+});
+console.log(trueCount, falseCount); // 499994 500006
+```
+
+#### Algorithm
+
+Computes the longest common substring of two strings.
+
+```
+import { calLongestCommonSubstring } from 'mazey';
+
+calLongestCommonSubstring('fish', 'finish'); // 3
+```
+
+Computes the longest common subsequence of two strings.
+
+```
+import { calLongestCommonSubsequence } from 'mazey';
+
+calLongestCommonSubsequence('fish', 'finish'); // 4
+```
+
+### Cache Data
+
+#### Storage
+
+Handle Storage (Keep fit for JSON, it can tansfer format automatically).
+
+```
+import { setSessionStorage, getSessionStorage, setLocalStorage, getLocalStorage } from 'mazey';
+
+setSessionStorage('test', '123');
+getSessionStorage('test'); // 123
+setLocalStorage('test', '123');
+getLocalStorage('test'); // 123
+
+// or package in usage
+const projectName = 'mazey';
+function mSetLocalStorage (key, value) {
+  return setLocalStorage(`${projectName}_${key}`, value);
+}
+
+function mGetLocalStorage (key) {
+  return getLocalStorage(`${projectName}_${key}`);
+}
+```
+
+#### Cookie
+
+Handle Cookie.
+
+```
+import { setCookie, getCookie } from 'mazey';
+
+setCookie('test', '123', 30, 'mazey.net'); // key value day domain
+getCookie('test'); // 123
+```
+
+### Browser Information
+
+```
+import { getBrowserType } from 'mazey';
+
+getBrowserType(); // {"engine":"webkit","engineVs":"537.36","platform":"desktop","supporter":"chrome","supporterVs":"85.0.4183.121","system":"windows","systemVs":"10"}
+// 外壳和外壳版本 { shell: 'wechat', shellVs: '20' } shell: wechat qq uc 360 2345 sougou liebao maxthon
+```
+
+### Web Performance
 
 Get load time.
 
@@ -244,53 +295,6 @@ getPerformance({ camelCase: true })
 | SSL连接时间 | ssl_time | connectEnd - secureConnectionStart |
 | ⽹⻚下载时间 | download_time | responseEnd - responseStart |
 | FCP | first_contentful_paint_time | firstPaintTime |
-
-### Calculate&Formula
-
-Computes the longest common substring of two strings.
-
-```
-import { calLongestCommonSubstring } from 'mazey';
-
-calLongestCommonSubstring('fish', 'finish'); // 3
-```
-
-Computes the longest common subsequence of two strings.
-
-```
-import { calLongestCommonSubsequence } from 'mazey';
-
-calLongestCommonSubsequence('fish', 'finish'); // 4
-```
-
-Hit probability (1% ~ 100%).
-
-```
-import { inRate } from 'mazey';
-
-inRate(0.5); // 0.01 ~ 1 true / false
-
-// 测试准确性
-let trueCount = 0;
-let falseCount = 0;
-new Array(1000000).fill(0).forEach(() => {
-  if (inRate(0.5)) {
-    trueCount++;
-  } else {
-    falseCount++;
-  }
-});
-console.log(trueCount, falseCount); // 499994 500006
-```
-
-### Browser Information
-
-```
-import { getBrowserType } from 'mazey';
-
-getBrowserType(); // {"engine":"webkit","engineVs":"537.36","platform":"desktop","supporter":"chrome","supporterVs":"85.0.4183.121","system":"windows","systemVs":"10"}
-// 外壳和外壳版本 { shell: 'wechat', shellVs: '20' } shell: wechat qq uc 360 2345 sougou liebao maxthon
-```
 
 ### Margin of Safety
 
