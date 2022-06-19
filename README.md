@@ -144,10 +144,11 @@ removeClass(dom, 'test');
 
 Add inline-style.
 
+Case 1: Add the inline style with `id`, and repeated invoking will update the content instead of adding a new one.
+
 ```
 import { addInlineStyle } from 'mazey';
 
-// Add the inline style with `id`, and repeated invoking will update the content instead of adding a new one.
 addInlineStyle({
   inlineStyle: `
     body {
@@ -161,8 +162,13 @@ addInlineStyle({
 //     background-color: #333;
 //   }
 // </style>
+```
 
-// Add the inline style without `id`, and repeated invoking will adding a new one.
+Case 2: Add the inline style without `id`, and repeated invoking will adding a new one.
+
+```
+import { addInlineStyle } from 'mazey';
+
 addInlineStyle({
   inlineStyle: `
     body {
