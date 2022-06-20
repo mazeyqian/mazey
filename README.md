@@ -30,7 +30,7 @@ npm install mazey --save
 import { loadScript } from 'mazey';
 
 loadScript({
-  url: 'http://www.mazey.net/js/plugin/jquery/jquery-2.1.1.min.js',
+  url: 'http://www.example.com/js/plugin/jquery/jquery-2.1.1.min.js',
   id: 'iamid', // Optional, script ID, default none
   timeout: 5000, // Optional, timeout, default `5000`
   isDefer: false, // Optional, defer, default `false`
@@ -53,7 +53,7 @@ loadScript({
 import { loadCSS } from 'mazey';
 
 loadCSS({
-  url: 'http://www.mazey.net/css/mazey-base.css',
+  url: 'http://www.example.com/css/mazey-base.css',
   id: 'iamid', // Optional, link ID, default none
 })
   .then(
@@ -132,11 +132,11 @@ import { hasClass, addClass, removeClass } from 'mazey';
 
 const dom = document.querySelector('#box');
 
-// 判断 class
+// Determine `class`
 hasClass(dom, 'test');
-// 增加 class
+// Add `class`
 addClass(dom, 'test');
-// 删除 class
+// Remove `class`
 removeClass(dom, 'test');
 ```
 
@@ -194,7 +194,7 @@ import { inRate } from 'mazey';
 
 inRate(0.5); // 0.01 ~ 1 true / false
 
-// 测试准确性
+// Test
 let trueCount = 0;
 let falseCount = 0;
 new Array(1000000).fill(0).forEach(() => {
@@ -257,7 +257,7 @@ Handle Cookie.
 ```
 import { setCookie, getCookie } from 'mazey';
 
-setCookie('test', '123', 30, 'mazey.net'); // key value day domain
+setCookie('test', '123', 30, 'example.com'); // key value day domain
 getCookie('test'); // 123
 ```
 
@@ -267,7 +267,7 @@ getCookie('test'); // 123
 import { getBrowserType } from 'mazey';
 
 getBrowserType(); // {"engine":"webkit","engineVs":"537.36","platform":"desktop","supporter":"chrome","supporterVs":"85.0.4183.121","system":"windows","systemVs":"10"}
-// 外壳和外壳版本 { shell: 'wechat', shellVs: '20' } shell: wechat qq uc 360 2345 sougou liebao maxthon
+// Shell and shell version { shell: 'wechat', shellVs: '20' } shell: wechat qq uc 360 2345 sougou liebao maxthon
 ```
 
 ### Web Performance
