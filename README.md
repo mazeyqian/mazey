@@ -272,12 +272,13 @@ getBrowserType(); // {"engine":"webkit","engineVs":"537.36","platform":"desktop"
 
 ### Web Performance
 
-Get load time.
+Get page load time(PerformanceTiming).
 
 ```
 import { getPerformance } from 'mazey';
 
-// camelCase：true（默认） 以驼峰形式返回数据 / false 以下划线形式返回数据
+// `camelCase：true`(Default) Return hump data.
+// `camelCase：false` Return underline data.
 getPerformance({ camelCase: true })
  .then(res => {
   console.log(JSON.stringify(res));
@@ -286,21 +287,19 @@ getPerformance({ camelCase: true })
  .catch(console.error);
 ```
 
-| 指标 | 字段 | 计算⽅法 |
+| Index | Field | Calculation |
 | --- | --- | --- |
-| * DNS 查询时间 | dns_time | domainLookupEnd - domainLookupStart |
-| * 服务器连接时间 | tcp_time | connectEnd - connectStart |
-| * 服务器响应时间 | response_time | responseStart - requestStart |
-| * ⽩屏时间 | white_time | responseStart - navigationStart |
-| * DomReady 总时间 | domready_time  | domContentLoadedEventStart - navigationStart |
-| * 页面加载时间 | onload_time | loadEventStart - navigationStart |
-| * EventEnd 总时间 | render_time | loadEventEnd -navigationStart |
-| 上个⽂档卸载时间 | unload_time | unloadEventEnd - unloadEventStart |
-| 重定向时间 | redirect_time | redirectEnd - redirectStart |
-| 客户端⽩屏时间 | custom_white_time | renderTiming - navigationStart |
-| SSL连接时间 | ssl_time | connectEnd - secureConnectionStart |
-| ⽹⻚下载时间 | download_time | responseEnd - responseStart |
-| FCP | first_contentful_paint_time | firstPaintTime |
+| * DNS lookup | dns_time | domainLookupEnd - domainLookupStart |
+| * Connection negotiation | tcp_time | connectEnd - connectStart |
+| * Requests and responses | response_time | responseStart - requestStart |
+| * White screen | white_time | responseStart - navigationStart |
+| * DomReady | domready_time  | domContentLoadedEventStart - navigationStart |
+| * Onload | onload_time | loadEventStart - navigationStart |
+| * EventEnd | render_time | loadEventEnd -navigationStart |
+| Unload | unload_time | unloadEventEnd - unloadEventStart |
+| Redirect | redirect_time | redirectEnd - redirectStart |
+| SSL | ssl_time | connectEnd - secureConnectionStart |
+| Download | download_time | responseEnd - responseStart |
 
 ### Margin of Safety
 
