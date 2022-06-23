@@ -70,61 +70,11 @@ export function calLongestCommonSubsequence(aStr = '', bStr = ''): number {
 }
 
 /**
- * @method join
- * @description 将一系列值连接成固定字符分隔的字符串 123,456 => 123 - 456。
- * @param {String} joinStr 连接值的字符串。
- * @param {Rest} ...rest 需要连接的值 。
- * */
-export function join(joinStr: any, ...rest: any[]) {
-  let ret = '';
-  const len = joinStr.length;
-  for (const v of rest) {
-    if (v) {
-      ret += `${joinStr}${v}`;
-    }
-  }
-  if (ret) {
-    ret = ret.substring(len);
-  }
-  return ret;
-}
-
-/**
- * @method renderTable
- * @description 渲染表格
- * @param {DOM Object} tbID
- * @param {Array} data
- * @param {Array} property
- */
-export function renderTable(tbID = null, data = [], property = []) {
-  const TBODY: any = document.querySelector(`#${tbID} tbody`);
-  function mNullToNA(str: any) {
-    return str === null ? 'N.A.' : str;
-  }
-  let content = '';
-  TBODY.innerHTML = '';
-  // 无数据
-  if (!data.length) {
-    content = `<tr><td colspan="${property.length}">无数据</td></tr>`;
-  } else {
-    for (let [i, max] = [0, data.length]; i < max; ++i) {
-      const item = data[i];
-      content += '<tr>';
-      for (let [i, max] = [0, property.length]; i < max; ++i) {
-        content += `<td>${mNullToNA(item[property[i]])}</td>`;
-      }
-      content += '</tr>';
-    }
-  }
-  TBODY.innerHTML = content;
-}
-
-/**
  * @method getHashQueryParam
  * @description 获取地址栏 hash 后面的参数。
- * @param {String} param 获取参数的名字。
+ * @param {String/Null} param 获取参数的名字。
  */
-export function getHashQueryParam(param: string) {
+export function getHashQueryParam(param = ''): string | null {
   const hashs = window.location.hash.split('?');
   if (hashs.length === 1) {
     return null;
