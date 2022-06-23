@@ -7,7 +7,7 @@
  * @param {String} bStr 字符串
  * @return {Number} 长度
  */
-export function calLongestCommonSubstring(aStr: any, bStr: any) {
+export function calLongestCommonSubstring(aStr = '', bStr = ''): number {
   const aLen = aStr.length;
   const bLen = bStr.length;
   // 创建二维数组并且深拷贝
@@ -37,7 +37,7 @@ export function calLongestCommonSubstring(aStr: any, bStr: any) {
  * @param {String} bStr 字符串
  * @return {Number} 长度
  */
-export function calLongestCommonSubsequence(aStr: any, bStr: any) {
+export function calLongestCommonSubsequence(aStr = '', bStr = ''): number {
   const aLen = aStr.length;
   const bLen = bStr.length;
   // 创建二维数组并且深拷贝
