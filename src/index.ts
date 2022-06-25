@@ -70,18 +70,73 @@ export function calLongestCommonSubsequence(aStr = '', bStr = ''): number {
 }
 
 /**
+ * @method getQueryParam
+ * @description Get the query param's value of the current Web URL.
+ * @param {String} param Query param.
+ * @return {String} value
+ * */
+export function getQueryParam(param = ''): string {
+  const reg = new RegExp('(^|&)' + param + '=([^&]*)(&|$)');
+  const r = window.location.search.substr(1).match(reg);
+  if (r !== null) {
+    return decodeURIComponent(unescape(r[2]));
+  }
+  return '';
+}
+
+/**
+ * @method getUrlParam
+ * @description Get the query param's value of the input URL.
+ * @param {String} url URL string.
+ * @param {String} param Query param.
+ * @return {String} value
+ * */
+export function getUrlParam(url = '', param = ''): string {
+  const result: any = {};
+  url.replace(/\??(\w+)=([^&]*)&?/g, function (a, k, v): any {
+    if (result[k] !== undefined) {
+      const t = result[k];
+      result[k] = [].concat(t, v);
+    } else {
+      result[k] = v;
+    }
+  });
+  // if (param === undefined) {
+  //   return result;
+  // } else {
+  //   return result[param] || '';
+  // }
+  return result[param] || '';
+}
+
+/**
  * @method getHashQueryParam
  * @description 获取地址栏 hash 后面的参数。
- * @param {String/Null} param 获取参数的名字。
+ * @param {String} param 获取参数的名字。
  */
-export function getHashQueryParam(param = ''): string | null {
+export function getHashQueryParam(param = ''): string {
   const hashs = window.location.hash.split('?');
   if (hashs.length === 1) {
-    return null;
+    return '';
   }
   const reg = new RegExp(`(^|&)${param}=([^&]*)(&|$)`);
   const ret = hashs[1].match(reg);
-  return ret ? ret[2] : null;
+  return ret ? ret[2] : '';
+}
+
+/**
+ * @method getDomain
+ * @description 获取地址中的域名（及其他参数）。
+ * @param {String} url
+ * @param {Array} rules ['hostname', 'pathname'] = 'km.mazey.net/plugins/servlet/mobile'
+ * */
+export function getDomain(url = '', rules = ['hostname']): string {
+  const aEl: any = document.createElement('a');
+  aEl.href = url;
+  return rules.reduce((ret, v, index) => {
+    ret += aEl[v];
+    return ret;
+  }, '');
 }
 
 /**
@@ -102,21 +157,6 @@ export function camelCaseToKebabCase(camelCase: string) {
 export function camelCase2Underscore(camelCase: string) {
   const kebabCase = camelCase.replace(/([A-Z])/g, '_$1').toLowerCase();
   return kebabCase[0] === '_' ? kebabCase.substr(1) : kebabCase;
-}
-
-/**
- * @method getDomain
- * @description 获取地址中的域名（及其他参数）。
- * @param {String} url
- * @param {Array} rules ['hostname', 'pathname'] = 'km.mazey.net/plugins/servlet/mobile'
- * */
-export function getDomain({ url = '', rules = ['hostname'] } = {}) {
-  const aEl: any = document.createElement('a');
-  aEl.href = url;
-  return rules.reduce((ret, v, index) => {
-    ret += aEl[v];
-    return ret;
-  }, '');
 }
 
 /**
@@ -469,50 +509,6 @@ export function isJsonString(str: string) {
     /* pass */
   }
   return false;
-}
-
-/**
- * @method getUrlParam
- * @description 链接参数
- * @param {String} sUrl 链接
- * @param {String} sKey 参数
- * */
-export function getUrlParam(sUrl: string, sKey: string) {
-  const result: any = {};
-  sUrl.replace(/\??(\w+)=([^&]*)&?/g, function (a, k, v): any {
-    if (result[k] !== undefined) {
-      const t = result[k];
-      result[k] = [].concat(t, v);
-    } else {
-      result[k] = v;
-    }
-  });
-  if (sKey === undefined) {
-    return result;
-  } else {
-    return result[sKey] || '';
-  }
-}
-
-/**
- * @method getSearchQueryParam
- * @description 地址栏参数。
- * */
-export function getSearchQueryParam(name: string) {
-  const reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)');
-  const r = window.location.search.substr(1).match(reg);
-  if (r != null) {
-    return decodeURIComponent(unescape(r[2]));
-  }
-  return null;
-}
-
-/**
- * @method getQueryParam
- * @description 地址栏参数，getSearchQueryParam 的别名。
- * */
-export function getQueryParam(name: string) {
-  return getSearchQueryParam(name);
 }
 
 /**
