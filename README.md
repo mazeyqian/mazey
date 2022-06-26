@@ -183,6 +183,101 @@ addInlineStyle({
 // </style>
 ```
 
+### URL
+
+#### Query Param
+
+Get the query param's value of the current Web URL(`location.search`).
+
+```
+import { getQueryParam } from 'mazey';
+
+// http://example.com/?t1=1&t2=2&t3=3&t4=4#2333
+// ?t1=1&t2=2&t3=3&t4=4
+getQueryParam('t3'); // 3
+getQueryParam('t4'); // 4
+```
+
+Get the query param's value of the input URL.
+
+```
+import { getUrlParam } from 'mazey';
+
+getUrlParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't3'); // 3
+getUrlParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't4'); // 4
+```
+
+#### Update Param
+
+Update the query param's value of the input URL.
+
+```
+import { updateQueryParam } from 'mazey';
+
+updateQueryParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't3', 'three'); // http://example.com/?t1=1&t2=2&t3=three&t4=4
+updateQueryParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't4', 'four'); // http://example.com/?t1=1&t2=2&t3=3&t4=four
+```
+
+#### Hash Param
+
+Get the hash query param's value of the current Web URL(`location.hash`).
+
+```
+import { getHashQueryParam } from 'mazey';
+
+// http://example.com/?#2333?t1=1&t2=2&t3=3&t4=4
+// #2333?t1=1&t2=2&t3=3&t4=4
+getHashQueryParam('t3'); // 3
+getHashQueryParam('t4'); // 4
+```
+
+#### Domain
+
+Get the domain of URL, and other params.
+
+```
+import { getDomain } from 'mazey';
+
+getDomain('http://example.com/?t1=1&t2=2&t3=3&t4=4'); // example.com
+getDomain('http://example.com/test/thanks?t1=1&t2=2&t3=3&t4=4', ['hostname', 'pathname']); // example.com/test/thanks
+```
+
+### Cache Data
+
+#### Storage
+
+Handle Storage (Keep fit for JSON, it can tansfer format automatically).
+
+```
+import { setSessionStorage, getSessionStorage, setLocalStorage, getLocalStorage } from 'mazey';
+
+setSessionStorage('test', '123');
+getSessionStorage('test'); // 123
+setLocalStorage('test', '123');
+getLocalStorage('test'); // 123
+
+// or package in usage
+const projectName = 'mazey';
+function mSetLocalStorage (key, value) {
+  return setLocalStorage(`${projectName}_${key}`, value);
+}
+
+function mGetLocalStorage (key) {
+  return getLocalStorage(`${projectName}_${key}`);
+}
+```
+
+#### Cookie
+
+Handle Cookie.
+
+```
+import { setCookie, getCookie } from 'mazey';
+
+setCookie('test', '123', 30, 'example.com'); // key value day domain
+getCookie('test'); // 123
+```
+
 ### Calculate&Formula
 
 #### Rate
@@ -223,42 +318,6 @@ Computes the longest common subsequence of two strings.
 import { calLongestCommonSubsequence } from 'mazey';
 
 calLongestCommonSubsequence('fish', 'finish'); // 4
-```
-
-### Cache Data
-
-#### Storage
-
-Handle Storage (Keep fit for JSON, it can tansfer format automatically).
-
-```
-import { setSessionStorage, getSessionStorage, setLocalStorage, getLocalStorage } from 'mazey';
-
-setSessionStorage('test', '123');
-getSessionStorage('test'); // 123
-setLocalStorage('test', '123');
-getLocalStorage('test'); // 123
-
-// or package in usage
-const projectName = 'mazey';
-function mSetLocalStorage (key, value) {
-  return setLocalStorage(`${projectName}_${key}`, value);
-}
-
-function mGetLocalStorage (key) {
-  return getLocalStorage(`${projectName}_${key}`);
-}
-```
-
-#### Cookie
-
-Handle Cookie.
-
-```
-import { setCookie, getCookie } from 'mazey';
-
-setCookie('test', '123', 30, 'example.com'); // key value day domain
-getCookie('test'); // 123
 ```
 
 ### Browser Information

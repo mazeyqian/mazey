@@ -71,13 +71,13 @@ export function calLongestCommonSubsequence(aStr = '', bStr = ''): number {
 
 /**
  * @method getQueryParam
- * @description Get the query param's value of the current Web URL.
+ * @description Get the query param's value of the current Web URL(`location.search`).
  * @param {String} param Query param.
  * @return {String} value
  * */
 export function getQueryParam(param = ''): string {
   const reg = new RegExp('(^|&)' + param + '=([^&]*)(&|$)');
-  const r = window.location.search.substr(1).match(reg);
+  const r = location.search.substr(1).match(reg);
   if (r !== null) {
     return decodeURIComponent(unescape(r[2]));
   }
@@ -110,12 +110,31 @@ export function getUrlParam(url = '', param = ''): string {
 }
 
 /**
+ * @method updateQueryParam
+ * @description Update the query param's value of the input URL.
+ * @param {String} url URL string.
+ * @param {String} param Query param.
+ * @param {String} value Param's value.
+ * @return {String} URL.
+ * */
+ export function updateQueryParam(url = '', param = '', value = ''): string {
+  const re = new RegExp('([?&])' + param + '=.*?(&|$)', 'i');
+  const separator = url.indexOf('?') !== -1 ? '&' : '?';
+  if (url.match(re)) {
+    return url.replace(re, '$1' + param + '=' + value + '$2');
+  } else {
+    return url + separator + param + '=' + value;
+  }
+}
+
+/**
  * @method getHashQueryParam
- * @description 获取地址栏 hash 后面的参数。
- * @param {String} param 获取参数的名字。
+ * @description Get the hash query param's value of the current Web URL(`location.hash`).
+ * @param {String} param Query param.
+ * @return {String} value
  */
 export function getHashQueryParam(param = ''): string {
-  const hashs = window.location.hash.split('?');
+  const hashs = location.hash.split('?');
   if (hashs.length === 1) {
     return '';
   }
@@ -126,14 +145,14 @@ export function getHashQueryParam(param = ''): string {
 
 /**
  * @method getDomain
- * @description 获取地址中的域名（及其他参数）。
+ * @description Get the domain of URL, and other params.
  * @param {String} url
- * @param {Array} rules ['hostname', 'pathname'] = 'km.mazey.net/plugins/servlet/mobile'
+ * @param {Array} rules Object.keys(location), ['href', 'protocol', 'host', 'hostname', 'port', 'pathname', 'search', 'hash'], ['hostname', 'pathname'] = 'km.mazey.net/plugins/servlet/mobile'
  * */
 export function getDomain(url = '', rules = ['hostname']): string {
   const aEl: any = document.createElement('a');
   aEl.href = url;
-  return rules.reduce((ret, v, index) => {
+  return rules.reduce((ret, v) => {
     ret += aEl[v];
     return ret;
   }, '');
@@ -480,20 +499,6 @@ export function isNumber(num: any, { isNaNAsNumber = false, isUnFiniteAsNumber =
     ret = false;
   }
   return ret;
-}
-
-/**
- * @method updateQueryStringParameter
- * @description 替换或添加地址栏参数。
- * */
-export function updateQueryStringParameter(uri: string, key: string, value: string) {
-  const re = new RegExp('([?&])' + key + '=.*?(&|$)', 'i');
-  const separator = uri.indexOf('?') !== -1 ? '&' : '?';
-  if (uri.match(re)) {
-    return uri.replace(re, '$1' + key + '=' + value + '$2');
-  } else {
-    return uri + separator + key + '=' + value;
-  }
 }
 
 /**
