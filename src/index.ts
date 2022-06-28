@@ -93,6 +93,7 @@ export function getQueryParam(param = ''): string {
  * */
 export function getUrlParam(url = '', param = ''): string {
   const result: any = {};
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace
   url.replace(/\??(\w+)=([^&]*)&?/g, function (a, k, v): any {
     if (result[k] !== undefined) {
       const t = result[k];
