@@ -161,20 +161,22 @@ export function getDomain(url = '', rules = ['hostname']): string {
 
 /**
  * @method camelCaseToKebabCase
- * @description 驼峰转连接线。
- * @param {String} camelCase
+ * @description Transfer CamelCase to KebabCase.
+ * @param {String} camelCase 'aBC' or 'ABC'
+ * @return {String} 'a-b-c'
  * */
-export function camelCaseToKebabCase(camelCase: string) {
+export function camelCaseToKebabCase(camelCase = ''): string {
   const kebabCase = camelCase.replace(/([A-Z])/g, '-$1').toLowerCase();
   return kebabCase[0] === '-' ? kebabCase.substr(1) : kebabCase;
 }
 
 /**
  * @method camelCase2Underscore
- * @description 驼峰转下划线。
- * @param {String} camelCase
+ * @description Transfer CamelCase to Underscore.
+ * @param {String} camelCase 'aBC' or 'ABC'
+ * @return {String} 'a_b_c'
  * */
-export function camelCase2Underscore(camelCase: string) {
+export function camelCase2Underscore(camelCase = ''): string {
   const kebabCase = camelCase.replace(/([A-Z])/g, '_$1').toLowerCase();
   return kebabCase[0] === '_' ? kebabCase.substr(1) : kebabCase;
 }

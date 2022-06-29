@@ -29,8 +29,8 @@ console.log('hashParam', hashParam);
 // const t3 = getHashQueryParam('t3'); // 3
 // const t4 = getHashQueryParam('t4'); // 4
 
-const t3 = getDomain('http://example.com/?t1=1&t2=2&t3=3&t4=4'); // example.com
-const t4 = getDomain('http://example.com/test/thanks?t1=1&t2=2&t3=3&t4=4', ['hostname', 'pathname']); // example.com/test/thanks
+// const t3 = getDomain('http://example.com/?t1=1&t2=2&t3=3&t4=4'); // example.com
+// const t4 = getDomain('http://example.com/test/thanks?t1=1&t2=2&t3=3&t4=4', ['hostname', 'pathname']); // example.com/test/thanks
 
-console.log('t3', t3);
-console.log('t4', t4);
+// console.log('t3', t3);
+// console.log('t4', t4);
