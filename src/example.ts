@@ -5,6 +5,8 @@ import {
   updateQueryParam,
   getHashQueryParam,
   getDomain,
+  camelCaseToKebabCase,
+  camelCase2Underscore,
  } from './index';
 
 // 数字测试
@@ -32,5 +34,8 @@ console.log('hashParam', hashParam);
 // const t3 = getDomain('http://example.com/?t1=1&t2=2&t3=3&t4=4'); // example.com
 // const t4 = getDomain('http://example.com/test/thanks?t1=1&t2=2&t3=3&t4=4', ['hostname', 'pathname']); // example.com/test/thanks
 
-// console.log('t3', t3);
-// console.log('t4', t4);
+const m1 = camelCaseToKebabCase('aBC'); // a-b-c
+const m2 = camelCase2Underscore('bBC'); // a_b_c
+
+console.log('m1', m1);
+console.log('m2', m2);

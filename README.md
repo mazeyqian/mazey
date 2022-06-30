@@ -121,6 +121,26 @@ isNumber(NaN); // false
 isNumber(NaN, { isNaNAsNumber: true, isUnFiniteAsNumber: true }); // true
 ```
 
+#### Camel Case
+
+Transfer CamelCase to KebabCase.
+
+```
+import { camelCaseToKebabCase } from 'mazey';
+
+camelCaseToKebabCase('ABC'); // a-b-c
+camelCaseToKebabCase('aBC'); // a-b-c
+```
+
+Transfer CamelCase to Underscore.
+
+```
+import { camelCase2Underscore } from 'mazey';
+
+camelCase2Underscore('ABC'); // a-b-c
+camelCase2Underscore('aBC'); // a-b-c
+```
+
 ### DOM
 
 #### Class
