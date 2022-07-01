@@ -182,11 +182,12 @@ export function camelCase2Underscore(camelCase = ''): string {
 }
 
 /**
- * @method trim
- * @description 去除左右空格。
- * @param {String} str 需要去除两边空格的字符串。
+ * @method mTrim
+ * @description Remove leading and trailing whitespace or specified characters from string.
+ * @param {String} str The string to trim.
+ * @return {String} Trimmed string.
  * */
-export function trim(str: string) {
+export function mTrim(str = ''): string {
   str = str.replace(/^\s+/, ''); // 去除头部空格
   let end = str.length - 1;
   const ws = /\s/;

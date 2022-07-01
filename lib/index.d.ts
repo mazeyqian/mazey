@@ -5,7 +5,7 @@
  * @param {String} bStr 字符串
  * @return {Number} 长度
  */
-export declare function calLongestCommonSubstring(aStr: any, bStr: any): number;
+export declare function calLongestCommonSubstring(aStr?: string, bStr?: string): number;
 /**
  * @method calLongestCommonSubsequence
  * @description 计算两个字符串的最长公共子序列
@@ -13,56 +13,66 @@ export declare function calLongestCommonSubstring(aStr: any, bStr: any): number;
  * @param {String} bStr 字符串
  * @return {Number} 长度
  */
-export declare function calLongestCommonSubsequence(aStr: any, bStr: any): number;
+export declare function calLongestCommonSubsequence(aStr?: string, bStr?: string): number;
 /**
- * @method join
- * @description 将一系列值连接成固定字符分隔的字符串 123,456 => 123 - 456。
- * @param {String} joinStr 连接值的字符串。
- * @param {Rest} ...rest 需要连接的值 。
+ * @method getQueryParam
+ * @description Get the query param's value of the current Web URL(`location.search`).
+ * @param {String} param Query param.
+ * @return {String} value
  * */
-export declare function join(joinStr: any, ...rest: any[]): string;
+export declare function getQueryParam(param?: string): string;
 /**
- * @method renderTable
- * @description 渲染表格
- * @param {DOM Object} tbID
- * @param {Array} data
- * @param {Array} property
- */
-export declare function renderTable(tbID?: null, data?: never[], property?: never[]): void;
+ * @method getUrlParam
+ * @description Get the query param's value of the input URL.
+ * @param {String} url URL string.
+ * @param {String} param Query param.
+ * @return {String} value
+ * */
+export declare function getUrlParam(url?: string, param?: string): string;
+/**
+ * @method updateQueryParam
+ * @description Update the query param's value of the input URL.
+ * @param {String} url URL string.
+ * @param {String} param Query param.
+ * @param {String} value Param's value.
+ * @return {String} URL.
+ * */
+export declare function updateQueryParam(url?: string, param?: string, value?: string): string;
 /**
  * @method getHashQueryParam
- * @description 获取地址栏 hash 后面的参数。
- * @param {String} param 获取参数的名字。
+ * @description Get the hash query param's value of the current Web URL(`location.hash`).
+ * @param {String} param Query param.
+ * @return {String} value
  */
-export declare function getHashQueryParam(param: string): string | null;
-/**
- * @method camelCaseToKebabCase
- * @description 驼峰转连接线。
- * @param {String} camelCase
- * */
-export declare function camelCaseToKebabCase(camelCase: string): string;
-/**
- * @method camelCase2Underscore
- * @description 驼峰转下划线。
- * @param {String} camelCase
- * */
-export declare function camelCase2Underscore(camelCase: string): string;
+export declare function getHashQueryParam(param?: string): string;
 /**
  * @method getDomain
- * @description 获取地址中的域名（及其他参数）。
+ * @description Get the domain of URL, and other params.
  * @param {String} url
- * @param {Array} rules ['hostname', 'pathname'] = 'km.mazey.net/plugins/servlet/mobile'
+ * @param {Array} rules Object.keys(location), ['href', 'protocol', 'host', 'hostname', 'port', 'pathname', 'search', 'hash'], ['hostname', 'pathname'] = 'km.mazey.net/plugins/servlet/mobile'
  * */
-export declare function getDomain({ url, rules }?: {
-    url?: string | undefined;
-    rules?: string[] | undefined;
-}): string;
+export declare function getDomain(url?: string, rules?: string[]): string;
 /**
- * @method trim
- * @description 去除左右空格。
- * @param {String} str 需要去除两边空格的字符串。
+ * @method camelCaseToKebabCase
+ * @description Transfer CamelCase to KebabCase.
+ * @param {String} camelCase 'aBC' or 'ABC'
+ * @return {String} 'a-b-c'
  * */
-export declare function trim(str: string): string;
+export declare function camelCaseToKebabCase(camelCase?: string): string;
+/**
+ * @method camelCase2Underscore
+ * @description Transfer CamelCase to Underscore.
+ * @param {String} camelCase 'aBC' or 'ABC'
+ * @return {String} 'a_b_c'
+ * */
+export declare function camelCase2Underscore(camelCase?: string): string;
+/**
+ * @method mTrim
+ * @description Remove leading and trailing whitespace or specified characters from string.
+ * @param {String} str The string to trim.
+ * @return {String} Trimmed string.
+ * */
+export declare function mTrim(str?: string): string;
 /**
  * @method newLine
  * @description html换行。
@@ -165,32 +175,10 @@ export declare function isNumber(num: any, { isNaNAsNumber, isUnFiniteAsNumber }
     isUnFiniteAsNumber?: boolean | undefined;
 }): boolean;
 /**
- * @method updateQueryStringParameter
- * @description 替换或添加地址栏参数。
- * */
-export declare function updateQueryStringParameter(uri: string, key: string, value: string): string;
-/**
  * @method isJsonString
  * @description 判断是否合法 JSON 字符串。
  * */
 export declare function isJsonString(str: string): boolean;
-/**
- * @method getUrlParam
- * @description 链接参数
- * @param {String} sUrl 链接
- * @param {String} sKey 参数
- * */
-export declare function getUrlParam(sUrl: string, sKey: string): any;
-/**
- * @method getSearchQueryParam
- * @description 地址栏参数。
- * */
-export declare function getSearchQueryParam(name: string): string | null;
-/**
- * @method getQueryParam
- * @description 地址栏参数，getSearchQueryParam 的别名。
- * */
-export declare function getQueryParam(name: string): string | null;
 /**
  * @method doFn
  * @description 执行有效函数
@@ -332,42 +320,6 @@ export declare function addInlineStyle({ inlineStyle, id }?: {
     inlineStyle?: string | undefined;
     id?: string | undefined;
 }): boolean;
-/**
- * @method customScrollBarForTransformEle
- * @description 为进行变换（transform）的元素设置滚动条
- * @param {String} containerClassName 进行变换（transform）的元素↓的容器（Father）的类名
- * @param {String} imgBoxClassName 图片的容器（transform It's YOU!）的类名
- * @param {String} imgBoxDom 图片的容器 Dom 对象
- * @param {String} imgClassName 图片的类名
- * @param {Object} imgDom 图片 Dom 对象
- * @param {String} action 操作类型 hide 隐藏指定 `containerClassName` 滚动条
- * @param {String} customStyle 滚动条的定制样式，会覆盖默认样式
- * @return {Boolean} 设置成功
-*/
-export declare function customScrollBarForTransformEle({ containerClassName, imgBoxClassName, imgBoxDom, imgClassName, imgDom, action, customStyle }?: {
-    containerClassName?: string | undefined;
-    imgBoxClassName?: string | undefined;
-    imgBoxDom?: null | undefined;
-    imgClassName?: string | undefined;
-    imgDom?: null | undefined;
-    action?: string | undefined;
-    customStyle?: string | undefined;
-}): boolean;
-/**
- * @method calcContainImageSizeAndPosition
- * @description 计算适配容器宽度的图片的尺寸、距离顶部的距离。如果高度不足以占满容器，使其垂直居中；如果高度比容器长，由上向下铺开。
- * @param {Number} oriImageWidth 图片原始宽度
- * @param {Number} oriImageHeight 图片原始高度
- * @param {Number} viewportWidth 可视窗口宽度
- * @param {Number} viewportHeight 可视窗口高度
- * @return {Object} 结果 {"targetImageWidth":375,"targetImageHeight":375,"top":218.5,"wPer":1.25}
-*/
-export declare function calcContainImageSizeAndPosition({ oriImageWidth, oriImageHeight, viewportWidth, viewportHeight }?: {
-    oriImageWidth?: number | undefined;
-    oriImageHeight?: number | undefined;
-    viewportWidth?: number | undefined;
-    viewportHeight?: number | undefined;
-}): any;
 /**
  * @method genCustomConsole
  * @description 生成自定义控制台打印

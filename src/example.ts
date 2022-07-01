@@ -7,6 +7,7 @@ import {
   getDomain,
   camelCaseToKebabCase,
   camelCase2Underscore,
+  mTrim,
  } from './index';
 
 // 数字测试
@@ -34,8 +35,11 @@ console.log('hashParam', hashParam);
 // const t3 = getDomain('http://example.com/?t1=1&t2=2&t3=3&t4=4'); // example.com
 // const t4 = getDomain('http://example.com/test/thanks?t1=1&t2=2&t3=3&t4=4', ['hostname', 'pathname']); // example.com/test/thanks
 
-const m1 = camelCaseToKebabCase('aBC'); // a-b-c
-const m2 = camelCase2Underscore('bBC'); // a_b_c
+// const m1 = camelCaseToKebabCase('aBC'); // a-b-c
+// const m2 = camelCase2Underscore('bBC'); // a_b_c
+
+const m1 = mTrim(' 1 2 3 '); // '1 2 3'
+const m2 = mTrim('abc '); // 'abc'
 
 console.log('m1', m1);
 console.log('m2', m2);

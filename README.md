@@ -141,6 +141,17 @@ camelCase2Underscore('ABC'); // a-b-c
 camelCase2Underscore('aBC'); // a-b-c
 ```
 
+#### Trim
+
+Remove leading and trailing whitespace or specified characters from string.
+
+```
+import { mTrim } from 'mazey';
+
+mTrim(' 1 2 3 '); // '1 2 3'
+mTrim('abc '); // 'abc'
+```
+
 ### DOM
 
 #### Class
