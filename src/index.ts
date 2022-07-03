@@ -199,10 +199,11 @@ export function mTrim(str = ''): string {
 
 /**
  * @method newLine
- * @description html换行。
- * @param {String} str
+ * @description Make a newline of HTML.
+ * @param {String} str The string to make a newline.
+ * @return {String} A newline with `<br />`.
  * */
-export function newLine(str: string) {
+export function newLine(str = ''): string {
   if (!str) {
     return '';
   }
