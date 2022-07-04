@@ -214,6 +214,17 @@ addInlineStyle({
 // </style>
 ```
 
+#### Newline
+
+Make a newline of HTML.
+
+```
+import { newLine } from 'mazey';
+
+newLine('a\nb\nc'); // 'a<br />b<br />c'
+newLine('a\n\nbc'); // 'a<br /><br />bc'
+```
+
 ### URL
 
 #### Query Param

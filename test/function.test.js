@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-// number
+// Function
 
 import { isNumber, camelCaseToKebabCase, camelCase2Underscore, mTrim } from '../lib/index.esm';
 
