@@ -222,6 +222,21 @@ export function deepCopyObject(obj: any): any {
 }
 
 /**
+ * @method isJsonString
+ * @description 判断是否合法 JSON 字符串。
+ * */
+ export function isJsonString(str: string) {
+  try {
+    if (typeof JSON.parse(str) === 'object') {
+      return true;
+    }
+  } catch (e) {
+    /* pass */
+  }
+  return false;
+}
+
+/**
  * @method generateRndNum
  * @description 生成随机数 mGenerateRndNum(7) => 7658495。
  * @param {Number} n 随机数的长度
@@ -482,7 +497,7 @@ export function friendlyInterval({ start = 0, end = 0, type = 'd' } = {}) {
 /**
  * @method isNumber
  * @description 判断是否有效数字
- * @param {Any} num 被判断的值
+ * @param {*} num 被判断的值
  * @param {Boolean} isNaNAsNumber 是否 NaN 算数字（默认不算）
  * @param {Boolean} isUnFiniteAsNumber 是否 无限 算数字（默认不算）
  * @return {Boolean} true 是数字
@@ -504,21 +519,6 @@ export function isNumber(num: any, { isNaNAsNumber = false, isUnFiniteAsNumber =
     ret = false;
   }
   return ret;
-}
-
-/**
- * @method isJsonString
- * @description 判断是否合法 JSON 字符串。
- * */
-export function isJsonString(str: string) {
-  try {
-    if (typeof JSON.parse(str) === 'object') {
-      return true;
-    }
-  } catch (e) {
-    /* pass */
-  }
-  return false;
 }
 
 /**
