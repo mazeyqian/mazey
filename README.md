@@ -152,6 +152,17 @@ mTrim(' 1 2 3 '); // '1 2 3'
 mTrim('abc '); // 'abc'
 ```
 
+#### Deep Clone
+
+Clone Object deeply.
+
+```
+import { deepCopyObject } from 'mazey';
+
+deepCopyObject(['a', 'b', 'c']); // ['a', 'b', 'c']
+deepCopyObject('abc'); // 'abc'
+```
+
 ### DOM
 
 #### Class

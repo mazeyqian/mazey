@@ -213,11 +213,11 @@ export function newLine(str = ''): string {
 
 /**
  * @method deepCopyObject
- * @description 对象深拷贝。
- * @param {Object} obj 被拷贝的对象。
- * @return {Object}
+ * @description Clone Object deeply.
+ * @param {Object} obj The value to clone.
+ * @return {Object} Returns the deep cloned value.
  * */
-export function deepCopyObject(obj: any) {
+export function deepCopyObject(obj: any): any {
   return JSON.parse(JSON.stringify(obj));
 }
 

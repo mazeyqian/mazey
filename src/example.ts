@@ -9,6 +9,7 @@ import {
   camelCase2Underscore,
   mTrim,
   newLine,
+  deepCopyObject,
  } from './index';
 
 // 数字测试
@@ -39,8 +40,8 @@ console.log('hashParam', hashParam);
 // const m1 = camelCaseToKebabCase('aBC'); // a-b-c
 // const m2 = camelCase2Underscore('bBC'); // a_b_c
 
-const m1 = newLine('a\nb\nc'); // 'a<br />b<br />c'
-const m2 = newLine('a\n\nbc'); // 'a<br /><br />bc'
+const m1 = deepCopyObject(['a', 'b', 'c']); // ['a', 'b', 'c']
+const m2 = deepCopyObject('abc'); // 'abc'
 
 console.log('m1', m1);
 console.log('m2', m2);
