@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 // Function
 
-import { isNumber, camelCaseToKebabCase, camelCase2Underscore, mTrim, deepCopyObject } from '../lib/index.esm';
+import { isNumber, camelCaseToKebabCase, camelCase2Underscore, mTrim, deepCopyObject, isJsonString } from '../lib/index.esm';
 
 test('isNumber: Is -1 Number?', () => {
   expect(isNumber(-1)).toBe(true);
@@ -25,4 +25,12 @@ test(`mTrim: Transfer 'abc ' to 'abc'.`, () => {
 
 test(`deepCopyObject: Transfer 'abc' to 'abc'.`, () => {
   expect(deepCopyObject('abc')).toBe('abc');
+});
+
+test(`isJsonString: Is '['a', 'b', 'c']' a valid JSON string?`, () => {
+  expect(isJsonString(`['a', 'b', 'c']`)).toBe(false);
+});
+
+test(`isJsonString: Is '["a", "b", "c"]' a valid JSON string?`, () => {
+  expect(isJsonString(`["a", "b", "c"]`)).toBe(true);
 });

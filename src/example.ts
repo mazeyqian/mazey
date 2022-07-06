@@ -10,6 +10,7 @@ import {
   mTrim,
   newLine,
   deepCopyObject,
+  isJsonString,
  } from './index';
 
 // 数字测试
@@ -40,8 +41,8 @@ console.log('hashParam', hashParam);
 // const m1 = camelCaseToKebabCase('aBC'); // a-b-c
 // const m2 = camelCase2Underscore('bBC'); // a_b_c
 
-const m1 = deepCopyObject(['a', 'b', 'c']); // ['a', 'b', 'c']
-const m2 = deepCopyObject('abc'); // 'abc'
+const m1 = isJsonString(`['a', 'b', 'c']`); // false
+const m2 = isJsonString(`["a", "b", "c"]`); // true
 
 console.log('m1', m1);
 console.log('m2', m2);

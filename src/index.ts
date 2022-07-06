@@ -223,9 +223,11 @@ export function deepCopyObject(obj: any): any {
 
 /**
  * @method isJsonString
- * @description 判断是否合法 JSON 字符串。
+ * @description Check whether it is a valid JSON string.
+ * @param {String} str The string to check.
+ * @return {Boolean} Return the result of checking.
  * */
- export function isJsonString(str: string) {
+export function isJsonString(str = ''): boolean {
   try {
     if (typeof JSON.parse(str) === 'object') {
       return true;

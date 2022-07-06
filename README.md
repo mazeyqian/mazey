@@ -163,6 +163,17 @@ deepCopyObject(['a', 'b', 'c']); // ['a', 'b', 'c']
 deepCopyObject('abc'); // 'abc'
 ```
 
+#### JSON
+
+Check whether it is a valid JSON string.
+
+```
+import { isJsonString } from 'mazey';
+
+isJsonString(`['a', 'b', 'c']`); // false
+isJsonString(`["a", "b", "c"]`); // true
+```
+
 ### DOM
 
 #### Class
