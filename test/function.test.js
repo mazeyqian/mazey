@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 // Function
 
-import { isNumber, camelCaseToKebabCase, camelCase2Underscore, mTrim, deepCopyObject, isJsonString } from '../lib/index.esm';
+import { isNumber, camelCaseToKebabCase, camelCase2Underscore, mTrim, deepCopyObject, isJsonString, generateRndNum } from '../lib/index.esm';
 
 test('isNumber: Is -1 Number?', () => {
   expect(isNumber(-1)).toBe(true);
@@ -33,4 +33,8 @@ test(`isJsonString: Is '['a', 'b', 'c']' a valid JSON string?`, () => {
 
 test(`isJsonString: Is '["a", "b", "c"]' a valid JSON string?`, () => {
   expect(isJsonString(`["a", "b", "c"]`)).toBe(true);
+});
+
+test(`generateRndNum: Can it produce an empty string?`, () => {
+  expect(generateRndNum(0)).toBe('');
 });

@@ -174,6 +174,17 @@ isJsonString(`['a', 'b', 'c']`); // false
 isJsonString(`["a", "b", "c"]`); // true
 ```
 
+#### Random
+
+Produce a random string of number, `generateRndNum(7)` => '7658495'.
+
+```
+import { generateRndNum } from 'mazey';
+
+generateRndNum(4); // '9730'
+generateRndNum(7); // '2262490'
+```
+
 ### DOM
 
 #### Class

@@ -11,6 +11,7 @@ import {
   newLine,
   deepCopyObject,
   isJsonString,
+  generateRndNum,
  } from './index';
 
 // 数字测试
@@ -41,8 +42,8 @@ console.log('hashParam', hashParam);
 // const m1 = camelCaseToKebabCase('aBC'); // a-b-c
 // const m2 = camelCase2Underscore('bBC'); // a_b_c
 
-const m1 = isJsonString(`['a', 'b', 'c']`); // false
-const m2 = isJsonString(`["a", "b", "c"]`); // true
+const m1 = generateRndNum(4); // '9730'
+const m2 = generateRndNum(7); // '2262490'
 
 console.log('m1', m1);
 console.log('m2', m2);

@@ -240,11 +240,11 @@ export function isJsonString(str = ''): boolean {
 
 /**
  * @method generateRndNum
- * @description 生成随机数 mGenerateRndNum(7) => 7658495。
- * @param {Number} n 随机数的长度
- * @return {String}
+ * @description Produce a random string of number, `generateRndNum(7)` => '7658495'.
+ * @param {Number} n Length
+ * @return {String} Return the random string.
  * */
-export function generateRndNum(n: number) {
+export function generateRndNum(n = 5): string {
   let ret = '';
   while (n--) {
     ret += Math.floor(Math.random() * 10);
