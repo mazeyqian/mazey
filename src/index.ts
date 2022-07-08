@@ -7,7 +7,7 @@
  * @param {String} bStr 字符串
  * @return {Number} 长度
  */
-export function calLongestCommonSubstring(aStr: any, bStr: any) {
+export function calLongestCommonSubstring(aStr = '', bStr = ''): number {
   const aLen = aStr.length;
   const bLen = bStr.length;
   // 创建二维数组并且深拷贝
@@ -37,7 +37,7 @@ export function calLongestCommonSubstring(aStr: any, bStr: any) {
  * @param {String} bStr 字符串
  * @return {Number} 长度
  */
-export function calLongestCommonSubsequence(aStr: any, bStr: any) {
+export function calLongestCommonSubsequence(aStr = '', bStr = ''): number {
   const aLen = aStr.length;
   const bLen = bStr.length;
   // 创建二维数组并且深拷贝
@@ -70,111 +70,124 @@ export function calLongestCommonSubsequence(aStr: any, bStr: any) {
 }
 
 /**
- * @method join
- * @description 将一系列值连接成固定字符分隔的字符串 123,456 => 123 - 456。
- * @param {String} joinStr 连接值的字符串。
- * @param {Rest} ...rest 需要连接的值 。
+ * @method getQueryParam
+ * @description Get the query param's value of the current Web URL(`location.search`).
+ * @param {String} param Query param.
+ * @return {String} value
  * */
-export function join(joinStr: any, ...rest: any[]) {
-  let ret = '';
-  const len = joinStr.length;
-  for (const v of rest) {
-    if (v) {
-      ret += `${joinStr}${v}`;
-    }
+export function getQueryParam(param = ''): string {
+  const reg = new RegExp('(^|&)' + param + '=([^&]*)(&|$)');
+  const r = location.search.substr(1).match(reg);
+  if (r !== null) {
+    return decodeURIComponent(unescape(r[2]));
   }
-  if (ret) {
-    ret = ret.substring(len);
-  }
-  return ret;
+  return '';
 }
 
 /**
- * @method renderTable
- * @description 渲染表格
- * @param {DOM Object} tbID
- * @param {Array} data
- * @param {Array} property
- */
-export function renderTable(tbID = null, data = [], property = []) {
-  const TBODY: any = document.querySelector(`#${tbID} tbody`);
-  function mNullToNA(str: any) {
-    return str === null ? 'N.A.' : str;
-  }
-  let content = '';
-  TBODY.innerHTML = '';
-  // 无数据
-  if (!data.length) {
-    content = `<tr><td colspan="${property.length}">无数据</td></tr>`;
-  } else {
-    for (let [i, max] = [0, data.length]; i < max; ++i) {
-      const item = data[i];
-      content += '<tr>';
-      for (let [i, max] = [0, property.length]; i < max; ++i) {
-        content += `<td>${mNullToNA(item[property[i]])}</td>`;
-      }
-      content += '</tr>';
+ * @method getUrlParam
+ * @description Get the query param's value of the input URL.
+ * @param {String} url URL string.
+ * @param {String} param Query param.
+ * @return {String} value
+ * */
+export function getUrlParam(url = '', param = ''): string {
+  const result: any = {};
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace
+  url.replace(/\??(\w+)=([^&]*)&?/g, function (a, k, v): any {
+    if (result[k] !== undefined) {
+      const t = result[k];
+      result[k] = [].concat(t, v);
+    } else {
+      result[k] = v;
     }
+  });
+  // if (param === undefined) {
+  //   return result;
+  // } else {
+  //   return result[param] || '';
+  // }
+  return result[param] || '';
+}
+
+/**
+ * @method updateQueryParam
+ * @description Update the query param's value of the input URL.
+ * @param {String} url URL string.
+ * @param {String} param Query param.
+ * @param {String} value Param's value.
+ * @return {String} URL.
+ * */
+ export function updateQueryParam(url = '', param = '', value = ''): string {
+  const re = new RegExp('([?&])' + param + '=.*?(&|$)', 'i');
+  const separator = url.indexOf('?') !== -1 ? '&' : '?';
+  if (url.match(re)) {
+    return url.replace(re, '$1' + param + '=' + value + '$2');
+  } else {
+    return url + separator + param + '=' + value;
   }
-  TBODY.innerHTML = content;
 }
 
 /**
  * @method getHashQueryParam
- * @description 获取地址栏 hash 后面的参数。
- * @param {String} param 获取参数的名字。
+ * @description Get the hash query param's value of the current Web URL(`location.hash`).
+ * @param {String} param Query param.
+ * @return {String} value
  */
-export function getHashQueryParam(param: string) {
-  const hashs = window.location.hash.split('?');
+export function getHashQueryParam(param = ''): string {
+  const hashs = location.hash.split('?');
   if (hashs.length === 1) {
-    return null;
+    return '';
   }
   const reg = new RegExp(`(^|&)${param}=([^&]*)(&|$)`);
   const ret = hashs[1].match(reg);
-  return ret ? ret[2] : null;
-}
-
-/**
- * @method camelCaseToKebabCase
- * @description 驼峰转连接线。
- * @param {String} camelCase
- * */
-export function camelCaseToKebabCase(camelCase: string) {
-  const kebabCase = camelCase.replace(/([A-Z])/g, '-$1').toLowerCase();
-  return kebabCase[0] === '-' ? kebabCase.substr(1) : kebabCase;
-}
-
-/**
- * @method camelCase2Underscore
- * @description 驼峰转下划线。
- * @param {String} camelCase
- * */
-export function camelCase2Underscore(camelCase: string) {
-  const kebabCase = camelCase.replace(/([A-Z])/g, '_$1').toLowerCase();
-  return kebabCase[0] === '_' ? kebabCase.substr(1) : kebabCase;
+  return ret ? ret[2] : '';
 }
 
 /**
  * @method getDomain
- * @description 获取地址中的域名（及其他参数）。
+ * @description Get the domain of URL, and other params.
  * @param {String} url
- * @param {Array} rules ['hostname', 'pathname'] = 'km.mazey.net/plugins/servlet/mobile'
+ * @param {Array} rules Object.keys(location), ['href', 'protocol', 'host', 'hostname', 'port', 'pathname', 'search', 'hash'], ['hostname', 'pathname'] = 'km.mazey.net/plugins/servlet/mobile'
  * */
-export function getDomain({ url = '', rules = ['hostname'] } = {}) {
+export function getDomain(url = '', rules = ['hostname']): string {
   const aEl: any = document.createElement('a');
   aEl.href = url;
-  return rules.reduce((ret, v, index) => {
+  return rules.reduce((ret, v) => {
     ret += aEl[v];
     return ret;
   }, '');
 }
 
 /**
- * @method trim
- * @description 去除左右空格。
- * @param {String} str 需要去除两边空格的字符串。
+ * @method camelCaseToKebabCase
+ * @description Transfer CamelCase to KebabCase.
+ * @param {String} camelCase 'aBC' or 'ABC'
+ * @return {String} 'a-b-c'
  * */
-export function trim(str: string) {
+export function camelCaseToKebabCase(camelCase = ''): string {
+  const kebabCase = camelCase.replace(/([A-Z])/g, '-$1').toLowerCase();
+  return kebabCase[0] === '-' ? kebabCase.substr(1) : kebabCase;
+}
+
+/**
+ * @method camelCase2Underscore
+ * @description Transfer CamelCase to Underscore.
+ * @param {String} camelCase 'aBC' or 'ABC'
+ * @return {String} 'a_b_c'
+ * */
+export function camelCase2Underscore(camelCase = ''): string {
+  const kebabCase = camelCase.replace(/([A-Z])/g, '_$1').toLowerCase();
+  return kebabCase[0] === '_' ? kebabCase.substr(1) : kebabCase;
+}
+
+/**
+ * @method mTrim
+ * @description Remove leading and trailing whitespace or specified characters from string.
+ * @param {String} str The string to trim.
+ * @return {String} Trimmed string.
+ * */
+export function mTrim(str = ''): string {
   str = str.replace(/^\s+/, ''); // 去除头部空格
   let end = str.length - 1;
   const ws = /\s/;
@@ -186,10 +199,11 @@ export function trim(str: string) {
 
 /**
  * @method newLine
- * @description html换行。
- * @param {String} str
+ * @description Make a newline of HTML.
+ * @param {String} str The string to make a newline.
+ * @return {String} A newline with `<br />`.
  * */
-export function newLine(str: string) {
+export function newLine(str = ''): string {
   if (!str) {
     return '';
   }
@@ -199,21 +213,38 @@ export function newLine(str: string) {
 
 /**
  * @method deepCopyObject
- * @description 对象深拷贝。
- * @param {Object} obj 被拷贝的对象。
- * @return {Object}
+ * @description Clone Object deeply.
+ * @param {Object} obj The value to clone.
+ * @return {Object} Returns the deep cloned value.
  * */
-export function deepCopyObject(obj: any) {
+export function deepCopyObject(obj: any): any {
   return JSON.parse(JSON.stringify(obj));
 }
 
 /**
- * @method generateRndNum
- * @description 生成随机数 mGenerateRndNum(7) => 7658495。
- * @param {Number} n 随机数的长度
- * @return {String}
+ * @method isJsonString
+ * @description Check whether it is a valid JSON string.
+ * @param {String} str The string to check.
+ * @return {Boolean} Return the result of checking.
  * */
-export function generateRndNum(n: number) {
+export function isJsonString(str = ''): boolean {
+  try {
+    if (typeof JSON.parse(str) === 'object') {
+      return true;
+    }
+  } catch (e) {
+    /* pass */
+  }
+  return false;
+}
+
+/**
+ * @method generateRndNum
+ * @description Produce a random string of number, `generateRndNum(7)` => '7658495'.
+ * @param {Number} n Length
+ * @return {String} Return the random string.
+ * */
+export function generateRndNum(n = 5): string {
   let ret = '';
   while (n--) {
     ret += Math.floor(Math.random() * 10);
@@ -226,26 +257,9 @@ export function generateRndNum(n: number) {
  * @description 根据时间生成唯一标志的数字 mGenerateUniqueNum() => 1538324722364123。
  * @param {Number} n 随机数的长度
  * */
-export function generateUniqueNum(n: number) {
+export function generateUniqueNum(n = 3): string {
   const [now, rnd] = [mNow(), generateRndNum(n || 3)];
   return now + rnd;
-}
-
-/**
- * @method resetForm
- * @description 重置表单输入值为原始（空）状态。
- * @param {String} rest name1,name2,name3...NAME属性，可以多个。
- * */
-export function resetForm(...rest: any[]) {
-  for (let i = 0; i < rest.length; i++) {
-    const tagMz: any = document.getElementsByName(rest[i])[0]; // tag object
-    const tagNameMz = tagMz.tagName.toLowerCase(); // tag name
-    if (tagNameMz === 'input') {
-      tagMz.value = '';
-    } else if (tagNameMz === 'select') {
-      tagMz.options[0].selected = true;
-    }
-  }
 }
 
 /**
@@ -254,42 +268,29 @@ export function resetForm(...rest: any[]) {
  * @param {Number} num 浮点数
  * @param {Number} fixSize 保留几位浮点数
  * */
-export function floatToPercent(num: any, fixSize = 0): string {
+export function floatToPercent(num = 0, fixSize = 0): string {
+  let ret = '';
   if (fixSize) {
-    num = (num * 100).toFixed(fixSize);
+    ret = (num * 100).toFixed(fixSize);
   } else {
-    num = Math.floor(num * 100);
+    ret = String(Math.floor(num * 100));
   }
-  return `${num}%`;
+  return `${ret}%`;
 }
 
 /**
  * @method floatFixed
  * @description 浮点数保留指定位。
  * */
-export function floatFixed(num: any, size: any) {
+export function floatFixed(num: string, size = 0): string {
   return parseFloat(num).toFixed(size);
-}
-
-/**
- * @method compatibleExist
- * @description 不存在返回 ——。
- * */
-export function compatibleExist(instance: string, replaceStr: string) {
-  let ret = '';
-  try {
-    ret = instance || replaceStr || '——';
-  } catch (e) {
-    ret = '——';
-  }
-  return ret;
 }
 
 /**
  * @method cancelBubble
  * @description 阻止冒泡。
  * */
-export function cancelBubble(e: any) {
+export function cancelBubble(e: any): void {
   const ev = e || window.event;
   if (ev.stopPropagation) {
     // W3C
@@ -303,7 +304,7 @@ export function cancelBubble(e: any) {
 /**
  * @method hasClass
  * */
-export function hasClass(obj: any, cls: string) {
+export function hasClass(obj: any, cls: string): boolean {
   const oriCls = obj.className; // 获取对象的class值
   const oriClsArr = oriCls.split(/\s+/); // 分隔空格转换成数组
   for (let i = 0; i < oriClsArr.length; i++) {
@@ -317,7 +318,7 @@ export function hasClass(obj: any, cls: string) {
 /**
  * @method addClass
  * */
-export function addClass(obj: any, cls: string) {
+export function addClass(obj: any, cls: string): void {
   const oriCls = obj.className;
   let space = '';
   let newCls = ''; // 获取对象的class值
@@ -331,7 +332,7 @@ export function addClass(obj: any, cls: string) {
 /**
  * @method removeClass
  * */
-export function removeClass(obj: any, cls: string) {
+export function removeClass(obj: any, cls: string): void {
   const oriCls = obj.className;
   let newCls; // 获取对象的class值
   newCls = ' ' + oriCls + ' '; // 前后加空格
@@ -345,7 +346,7 @@ export function removeClass(obj: any, cls: string) {
  * @method throttle
  * @description 节流。
  * */
-export function throttle(func: any, wait: number, options: any) {
+export function throttle(func: any, wait: number, options: any): any {
   // timeout: setTimeout Handle
   // previous: 上次时间戳
   let context: any = null;
@@ -392,7 +393,7 @@ export function throttle(func: any, wait: number, options: any) {
  * @method debounce
  * @description 去抖。
  * */
-export function debounce(func: any, wait: number, immediate: any) {
+export function debounce(func: any, wait: number, immediate: any): any {
   let context: any = null;
   let timeout: any = null;
   let timestamp: any = null;
@@ -436,7 +437,7 @@ export function debounce(func: any, wait: number, immediate: any) {
  * @type {String} type 返回类型 d: 2(天) text: 2 天 4 时...
  * @return {String/Number} 取决于 type
  * */
-export function friendlyInterval({ start = 0, end = 0, type = 'd' } = {}) {
+export function friendlyInterval({ start = 0, end = 0, type = 'd' } = {}): number | string {
   if (!isNumber(start)) start = new Date(start).getTime();
   if (!isNumber(end)) end = new Date(end).getTime();
   const t = end - start;
@@ -468,7 +469,7 @@ export function friendlyInterval({ start = 0, end = 0, type = 'd' } = {}) {
 /**
  * @method isNumber
  * @description 判断是否有效数字
- * @param {Any} num 被判断的值
+ * @param {*} num 被判断的值
  * @param {Boolean} isNaNAsNumber 是否 NaN 算数字（默认不算）
  * @param {Boolean} isUnFiniteAsNumber 是否 无限 算数字（默认不算）
  * @return {Boolean} true 是数字
@@ -493,84 +494,11 @@ export function isNumber(num: any, { isNaNAsNumber = false, isUnFiniteAsNumber =
 }
 
 /**
- * @method updateQueryStringParameter
- * @description 替换或添加地址栏参数。
- * */
-export function updateQueryStringParameter(uri: string, key: string, value: string) {
-  const re = new RegExp('([?&])' + key + '=.*?(&|$)', 'i');
-  const separator = uri.indexOf('?') !== -1 ? '&' : '?';
-  if (uri.match(re)) {
-    return uri.replace(re, '$1' + key + '=' + value + '$2');
-  } else {
-    return uri + separator + key + '=' + value;
-  }
-}
-
-/**
- * @method isJsonString
- * @description 判断是否合法 JSON 字符串。
- * */
-export function isJsonString(str: string) {
-  try {
-    if (typeof JSON.parse(str) === 'object') {
-      return true;
-    }
-  } catch (e) {
-    /* pass */
-  }
-  return false;
-}
-
-/**
- * @method getUrlParam
- * @description 链接参数
- * @param {String} sUrl 链接
- * @param {String} sKey 参数
- * */
-export function getUrlParam(sUrl: string, sKey: string) {
-  const result: any = {};
-  sUrl.replace(/\??(\w+)=([^&]*)&?/g, function (a, k, v): any {
-    if (result[k] !== undefined) {
-      const t = result[k];
-      result[k] = [].concat(t, v);
-    } else {
-      result[k] = v;
-    }
-  });
-  if (sKey === undefined) {
-    return result;
-  } else {
-    return result[sKey] || '';
-  }
-}
-
-/**
- * @method getSearchQueryParam
- * @description 地址栏参数。
- * */
-export function getSearchQueryParam(name: string) {
-  const reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)');
-  const r = window.location.search.substr(1).match(reg);
-  if (r != null) {
-    return decodeURIComponent(unescape(r[2]));
-  }
-  return null;
-}
-
-/**
- * @method getQueryParam
- * @description 地址栏参数，getSearchQueryParam 的别名。
- * */
-export function getQueryParam(name: string) {
-  return getSearchQueryParam(name);
-}
-
-/**
  * @method doFn
  * @description 执行有效函数
  * @param {Function} fn 等待被执行的未知是否有效的函数
  * */
-export function doFn(fn: any, ...params: any[]) {
+export function doFn(fn: any, ...params: any[]): any {
   let ret = null;
   if (fn && typeof fn === 'function') {
     ret = fn(...params);
@@ -584,7 +512,7 @@ export function doFn(fn: any, ...params: any[]) {
  * @param {String} key 键
  * @param {String} value 值
  * */
-export function setSessionStorage(key: string, value: any = null) {
+export function setSessionStorage(key: string, value: any = null): void {
   if (key) {
     sessionStorage.setItem(key, JSON.stringify(value));
   }
@@ -594,9 +522,9 @@ export function setSessionStorage(key: string, value: any = null) {
  * @method getSessionStorage
  * @description 存储数据到 sessionStorage
  * @param {String} key 键
- * @return {Any} 返回值
+ * @return {*} 返回值
  * */
-export function getSessionStorage(key: string) {
+export function getSessionStorage(key: string): any {
   let ret = null;
   if (key) {
     const value = sessionStorage.getItem(key);
@@ -613,7 +541,7 @@ export function getSessionStorage(key: string) {
  * @param {String} key 键
  * @param {String} value 值
  * */
-export function setLocalStorage(key: string, value: any = null) {
+export function setLocalStorage(key: string, value: any = null): void {
   if (key) {
     localStorage.setItem(key, JSON.stringify(value));
   }
@@ -623,9 +551,9 @@ export function setLocalStorage(key: string, value: any = null) {
  * @method getLocalStorage
  * @description 存储数据到 localStorage
  * @param {String} key 键
- * @return {Any} 返回值
+ * @return {*} 返回值
  * */
-export function getLocalStorage(key: string) {
+export function getLocalStorage(key: string): any {
   let ret = null;
   if (key) {
     const value = localStorage.getItem(key);
@@ -643,7 +571,7 @@ export function getLocalStorage(key: string) {
  * @param {String} id -- link标签id
  * @return {Promise<Boolean>} true -- 加载成功
  */
-export function loadCSS({ url = '', id = '' } = {}) {
+export function loadCSS({ url = '', id = '' } = {}): Promise<any> {
   let success: any = null;
   let fail: any = null;
   const status = new Promise((resolve, reject) => {
@@ -739,7 +667,7 @@ export function loadCSS({ url = '', id = '' } = {}) {
         // The value of `ex.name` is changed from "NS_ERROR_DOM_SECURITY_ERR"
         // to "SecurityError" since Firefox 13.0. But Firefox is less than 9.0
         // in here, So it is ok to just rely on "NS_ERROR_DOM_SECURITY_ERR"
-        if (ex.name === 'NS_ERROR_DOM_SECURITY_ERR') {
+        if ((ex as any).name === 'NS_ERROR_DOM_SECURITY_ERR') {
           isLoaded = true;
         }
       }
@@ -767,7 +695,7 @@ export function loadCSS({ url = '', id = '' } = {}) {
  * @param {Boolean} isDefer -- 是否添加 defer 标签
  * @return {Promise<Boolean>} -- true 成功
  */
-export function loadScript({ url = '', id = '', callback = function () { /* pass */ }, timeout = 5000, isDefer = false } = {}): any {
+export function loadScript({ url = '', id = '', callback = function () { /* pass */ }, timeout = 5000, isDefer = false } = {}): Promise<any> {
   let success: any = null;
   let fail: any = null;
   const script: any = document.createElement('script');
@@ -810,7 +738,7 @@ export function loadScript({ url = '', id = '', callback = function () { /* pass
  * @method mNow
  * @description 获取时间戳
  */
-export function mNow() {
+export function mNow(): number {
   let ret = 0;
   if (Date.now) {
     ret = Date.now();
@@ -824,7 +752,7 @@ export function mNow() {
  * @method setCookie
  * @description 设置 Cookie
  */
-export function setCookie(name: string, value: string, days: number, domain: string) {
+export function setCookie(name: string, value: string, days: number, domain: string): void {
   let domainParts, expires;
   let date: any;
   if (days) {
@@ -866,7 +794,7 @@ export function setCookie(name: string, value: string, days: number, domain: str
  * @method getCookie
  * @description 获取 Cookie
  */
-export function getCookie(name: string) {
+export function getCookie(name: string): string {
   const nameEQ = name + "=";
   const ca = document.cookie.split(';');
   for (let i = 0; i < ca.length; i++) {
@@ -876,7 +804,7 @@ export function getCookie(name: string) {
     }
     if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
   }
-  return null;
+  return '';
 }
 
 /**
@@ -885,7 +813,7 @@ export function getCookie(name: string) {
  * @param {Boolean} camelCase -- true（默认） 以驼峰形式返回数据 false 以下划线形式返回数据
  * @return {Promise<Object>} 加载数据
  */
-export function getPerformance({ camelCase = true } = {}) {
+export function getPerformance({ camelCase = true } = {}): Promise<any> {
   let success: any;
   let fail: any;
   const status = new Promise((resolve, reject) => {
@@ -926,7 +854,7 @@ export function getPerformance({ camelCase = true } = {}) {
         console.error('paint');
       }
     } catch (e) {
-      console.error(e.message);
+      console.error((e as any).message);
     }
     // 获取加载时间
     if (
@@ -1410,215 +1338,6 @@ export function addInlineStyle({ inlineStyle = '', id = '' } = {}): boolean {
 }
 
 /**
- * @method customScrollBarForTransformEle
- * @description 为进行变换（transform）的元素设置滚动条
- * @param {String} containerClassName 进行变换（transform）的元素↓的容器（Father）的类名
- * @param {String} imgBoxClassName 图片的容器（transform It's YOU!）的类名
- * @param {String} imgBoxDom 图片的容器 Dom 对象
- * @param {String} imgClassName 图片的类名
- * @param {Object} imgDom 图片 Dom 对象
- * @param {String} action 操作类型 hide 隐藏指定 `containerClassName` 滚动条
- * @param {String} customStyle 滚动条的定制样式，会覆盖默认样式
- * @return {Boolean} 设置成功
-*/
-export function customScrollBarForTransformEle({ containerClassName = '', imgBoxClassName = '', imgBoxDom = null, imgClassName = '', imgDom = null, action = '', customStyle = '' } = {}): boolean {
-  // 变量
-  const barIsHideId = 'bar-is-hide';
-  const barTopId = 'bar-top';
-  const barBottomId = 'bar-bottom';
-  if (action === 'hide') {
-    addInlineStyle({
-      inlineStyle: `
-        .${containerClassName}::after {
-          display: none;
-        }
-      `,
-      id: barIsHideId,
-    });
-    return true;
-  }
-  setTimeout(() => {
-    // 样式初始化
-    addInlineStyle({
-      inlineStyle: `
-        .${containerClassName}::after {
-          content: ' ';
-          position: fixed;
-          top: 0;
-          right: 2px;
-          min-height: 0vh;
-          max-height: 100vh;
-          width: 6px;
-          border-radius: 3px;
-          box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-          -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-          background-color: rgb(109, 108, 109);
-          ${customStyle}
-        }
-      `,
-      id: 'bar-init'
-    });
-    const imgInstance = imgDom || document.querySelector(`.${imgClassName}`);
-    if (!imgInstance) {
-      console.warn('Need element\'s Dom instance.');
-      return false;
-    }
-    const imgBoxInstance = imgBoxDom || document.querySelector(`.${imgBoxClassName}`);
-    if (!imgBoxInstance) {
-      console.warn('Need element box\'s Dom instance.');
-      return false;
-    }
-    const Box2ToRes = getBox2To();
-    // console.log('获取图片距离顶部的距离', Box2ToRes);
-    const ImgHeightRes = getImgHeight();
-    // console.log('获取图片的高度', ImgHeightRes);
-    const WindowHeightRes = getWindowHeight();
-    // console.log('获取窗口的高度', WindowHeightRes);
-    const TopOverflowPercentRes = getTopOverflowPercent();
-    // console.log('获取顶部溢出的百分比', TopOverflowPercentRes);
-    const BottomOverflowPercentRes = getBottomOverflowPercent();
-    // console.log('获取顶部溢出的百分比', BottomOverflowPercentRes);
-    const hideBarRes = hideBar();
-    // console.log('如果都是 0 ，隐藏滚动条', hideBarRes);
-    if (!hideBarRes) {
-      setBarTop();
-      // const setBarTopRes = setBarTop();
-      // console.log('设置顶部状态栏', setBarTopRes);
-      setBarBottom();
-      // const setBarBottomRes = setBarBottom();
-      // console.log('设置底部状态栏', setBarBottomRes);
-    }
-    // 获取图片距离顶部的距离
-    function getBox2To () {
-      const translates = window.getComputedStyle(imgBoxInstance as any, null).transform;
-      const tanslateY = parseFloat(translates.substring(6).split(',')[5]);
-      return tanslateY;
-    }
-    // 获取图片的高度
-    function getImgHeight () {
-      return (imgInstance)?.clientHeight;
-    }
-    // 获取窗口的高度
-    function getWindowHeight () {
-      return (document.querySelector(`.${containerClassName}`) as any).clientHeight; // window.outerHeight;
-    }
-    // 获取顶部溢出的百分比
-    function getTopOverflowPercent () {
-      let box2To = Box2ToRes;
-      if (box2To >= 0) {
-        box2To = 0;
-      }
-      box2To = Math.abs(box2To);
-      // 图片高度
-      const imgHeight = ImgHeightRes;
-      const per = floatToPercent(box2To/(imgHeight as any), 2);
-      return {
-        box2To,
-        per,
-      };
-    }
-    // 获取底部溢出的百分比
-    function getBottomOverflowPercent () {
-      // 窗口高度
-      const windowHeight = WindowHeightRes;
-      // 图片高度
-      const imgHeight = ImgHeightRes;
-      // 上面溢出的高度
-      const box2To = Box2ToRes;
-      // 底部
-      const remindImageHeight = windowHeight - box2To;
-      let box2ToBottom = (imgHeight as any) - remindImageHeight;
-      if (box2ToBottom <= 0) {
-        box2ToBottom = 0;
-      }
-      const per = floatToPercent(box2ToBottom/(imgHeight as any), 2);
-      return {
-        box2ToBottom,
-        per,
-      };
-    }
-    // 如果都是 0 ，隐藏滚动条
-    function hideBar () {
-      const { box2To } = TopOverflowPercentRes;
-      const { box2ToBottom } = BottomOverflowPercentRes;
-      if (!box2To && !box2ToBottom) {
-        return addInlineStyle({
-          inlineStyle: `
-            .${containerClassName}::after {
-              display: none;
-            }
-          `,
-          id: barIsHideId
-        });
-      } else {
-        addInlineStyle({
-          inlineStyle: `
-            .${containerClassName}::after {
-              display: block;
-            }
-          `,
-          id: barIsHideId
-        });
-      }
-      return false;
-    }
-    // 设置顶部状态栏
-    function setBarTop () {
-      const { per } = TopOverflowPercentRes;
-      return addInlineStyle({
-        inlineStyle: `
-          .${containerClassName}::after {
-            top: ${per};
-          }
-        `,
-        id: barTopId
-      });
-    }
-    // 设置底部状态栏
-    function setBarBottom () {
-      const { per } = BottomOverflowPercentRes;
-      return addInlineStyle({
-        inlineStyle: `
-          .${containerClassName}::after {
-            bottom: ${per};
-          }
-        `,
-        id: barBottomId
-      });
-    }
-  }, 25);
-  return true;
-}
-
-
-/**
- * @method calcContainImageSizeAndPosition
- * @description 计算适配容器宽度的图片的尺寸、距离顶部的距离。如果高度不足以占满容器，使其垂直居中；如果高度比容器长，由上向下铺开。
- * @param {Number} oriImageWidth 图片原始宽度
- * @param {Number} oriImageHeight 图片原始高度
- * @param {Number} viewportWidth 可视窗口宽度
- * @param {Number} viewportHeight 可视窗口高度
- * @return {Object} 结果 {"targetImageWidth":375,"targetImageHeight":375,"top":218.5,"wPer":1.25}
-*/
-export function calcContainImageSizeAndPosition({ oriImageWidth = 0, oriImageHeight = 0, viewportWidth = 0, viewportHeight = 0 } = {}): any {
-  const targetImageWidth = viewportWidth;
-  let [ targetImageHeight, top, wPer ] = [ 0, 0, 0 ];
-  // 比例
-  wPer = viewportWidth / oriImageWidth; // 1.+ 1.1 1.5
-  targetImageHeight = oriImageHeight * wPer;
-  if (targetImageHeight < viewportHeight) {
-    const doubleGap = viewportHeight - targetImageHeight;
-    top = doubleGap / 2;
-  }
-  return {
-    targetImageWidth,
-    targetImageHeight,
-    top,
-    wPer,
-  };
-}
-
-/**
  * @method genCustomConsole
  * @description 生成自定义控制台打印
  * @param {String} prefix 前缀
@@ -1626,7 +1345,6 @@ export function calcContainImageSizeAndPosition({ oriImageWidth = 0, oriImageHei
  * @return {Object} 新实例
 */
 export function genCustomConsole({ prefix = '' } = {}): any {
-  // ...
   const methods = ['log', 'info', 'warn', 'error'];
   const newConsole = Object.create(null);
   methods.forEach(method => {

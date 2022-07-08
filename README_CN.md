@@ -3,8 +3,8 @@
 [![NPM version][npm-image]][npm-url]
 [![l][l-image]][l-url]
 
-[npm-image]: https://img.shields.io/npm/v/mazey
-[npm-url]: https://npmjs.org/package/mazey
+[npm-image]: https://i.mazey.net/asset/npm/mazey-v1.4.39.svg
+[npm-url]: https://www.npmjs.com/package/mazey/v/1.4.39
 [l-image]: https://img.shields.io/npm/l/mazey
 [l-url]: https://github.com/mazeyqian/mazey
 
@@ -12,10 +12,10 @@
 
 ## Install
 
-You can get Mazey via [npm](https://www.npmjs.com/package/mazey).
+You can get Mazey via [npm](https://www.npmjs.com/package/mazey/v/1.4.39).
 
 ```
-npm install mazey --save
+npm install mazey@1.4.39 --save
 ```
 
 ## Usage

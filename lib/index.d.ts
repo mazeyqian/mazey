@@ -5,7 +5,7 @@
  * @param {String} bStr 字符串
  * @return {Number} 长度
  */
-export declare function calLongestCommonSubstring(aStr: any, bStr: any): number;
+export declare function calLongestCommonSubstring(aStr?: string, bStr?: string): number;
 /**
  * @method calLongestCommonSubsequence
  * @description 计算两个字符串的最长公共子序列
@@ -13,105 +13,112 @@ export declare function calLongestCommonSubstring(aStr: any, bStr: any): number;
  * @param {String} bStr 字符串
  * @return {Number} 长度
  */
-export declare function calLongestCommonSubsequence(aStr: any, bStr: any): number;
+export declare function calLongestCommonSubsequence(aStr?: string, bStr?: string): number;
 /**
- * @method join
- * @description 将一系列值连接成固定字符分隔的字符串 123,456 => 123 - 456。
- * @param {String} joinStr 连接值的字符串。
- * @param {Rest} ...rest 需要连接的值 。
+ * @method getQueryParam
+ * @description Get the query param's value of the current Web URL(`location.search`).
+ * @param {String} param Query param.
+ * @return {String} value
  * */
-export declare function join(joinStr: any, ...rest: any[]): string;
+export declare function getQueryParam(param?: string): string;
 /**
- * @method renderTable
- * @description 渲染表格
- * @param {DOM Object} tbID
- * @param {Array} data
- * @param {Array} property
- */
-export declare function renderTable(tbID?: null, data?: never[], property?: never[]): void;
+ * @method getUrlParam
+ * @description Get the query param's value of the input URL.
+ * @param {String} url URL string.
+ * @param {String} param Query param.
+ * @return {String} value
+ * */
+export declare function getUrlParam(url?: string, param?: string): string;
+/**
+ * @method updateQueryParam
+ * @description Update the query param's value of the input URL.
+ * @param {String} url URL string.
+ * @param {String} param Query param.
+ * @param {String} value Param's value.
+ * @return {String} URL.
+ * */
+export declare function updateQueryParam(url?: string, param?: string, value?: string): string;
 /**
  * @method getHashQueryParam
- * @description 获取地址栏 hash 后面的参数。
- * @param {String} param 获取参数的名字。
+ * @description Get the hash query param's value of the current Web URL(`location.hash`).
+ * @param {String} param Query param.
+ * @return {String} value
  */
-export declare function getHashQueryParam(param: string): string | null;
-/**
- * @method camelCaseToKebabCase
- * @description 驼峰转连接线。
- * @param {String} camelCase
- * */
-export declare function camelCaseToKebabCase(camelCase: string): string;
-/**
- * @method camelCase2Underscore
- * @description 驼峰转下划线。
- * @param {String} camelCase
- * */
-export declare function camelCase2Underscore(camelCase: string): string;
+export declare function getHashQueryParam(param?: string): string;
 /**
  * @method getDomain
- * @description 获取地址中的域名（及其他参数）。
+ * @description Get the domain of URL, and other params.
  * @param {String} url
- * @param {Array} rules ['hostname', 'pathname'] = 'km.mazey.net/plugins/servlet/mobile'
+ * @param {Array} rules Object.keys(location), ['href', 'protocol', 'host', 'hostname', 'port', 'pathname', 'search', 'hash'], ['hostname', 'pathname'] = 'km.mazey.net/plugins/servlet/mobile'
  * */
-export declare function getDomain({ url, rules }?: {
-    url?: string | undefined;
-    rules?: string[] | undefined;
-}): string;
+export declare function getDomain(url?: string, rules?: string[]): string;
 /**
- * @method trim
- * @description 去除左右空格。
- * @param {String} str 需要去除两边空格的字符串。
+ * @method camelCaseToKebabCase
+ * @description Transfer CamelCase to KebabCase.
+ * @param {String} camelCase 'aBC' or 'ABC'
+ * @return {String} 'a-b-c'
  * */
-export declare function trim(str: string): string;
+export declare function camelCaseToKebabCase(camelCase?: string): string;
+/**
+ * @method camelCase2Underscore
+ * @description Transfer CamelCase to Underscore.
+ * @param {String} camelCase 'aBC' or 'ABC'
+ * @return {String} 'a_b_c'
+ * */
+export declare function camelCase2Underscore(camelCase?: string): string;
+/**
+ * @method mTrim
+ * @description Remove leading and trailing whitespace or specified characters from string.
+ * @param {String} str The string to trim.
+ * @return {String} Trimmed string.
+ * */
+export declare function mTrim(str?: string): string;
 /**
  * @method newLine
- * @description html换行。
- * @param {String} str
+ * @description Make a newline of HTML.
+ * @param {String} str The string to make a newline.
+ * @return {String} A newline with `<br />`.
  * */
-export declare function newLine(str: string): string;
+export declare function newLine(str?: string): string;
 /**
  * @method deepCopyObject
- * @description 对象深拷贝。
- * @param {Object} obj 被拷贝的对象。
- * @return {Object}
+ * @description Clone Object deeply.
+ * @param {Object} obj The value to clone.
+ * @return {Object} Returns the deep cloned value.
  * */
 export declare function deepCopyObject(obj: any): any;
 /**
- * @method generateRndNum
- * @description 生成随机数 mGenerateRndNum(7) => 7658495。
- * @param {Number} n 随机数的长度
- * @return {String}
+ * @method isJsonString
+ * @description Check whether it is a valid JSON string.
+ * @param {String} str The string to check.
+ * @return {Boolean} Return the result of checking.
  * */
-export declare function generateRndNum(n: number): string;
+export declare function isJsonString(str?: string): boolean;
+/**
+ * @method generateRndNum
+ * @description Produce a random string of number, `generateRndNum(7)` => '7658495'.
+ * @param {Number} n Length
+ * @return {String} Return the random string.
+ * */
+export declare function generateRndNum(n?: number): string;
 /**
  * @method generateUniqueNum
  * @description 根据时间生成唯一标志的数字 mGenerateUniqueNum() => 1538324722364123。
  * @param {Number} n 随机数的长度
  * */
-export declare function generateUniqueNum(n: number): string;
-/**
- * @method resetForm
- * @description 重置表单输入值为原始（空）状态。
- * @param {String} rest name1,name2,name3...NAME属性，可以多个。
- * */
-export declare function resetForm(...rest: any[]): void;
+export declare function generateUniqueNum(n?: number): string;
 /**
  * @method floatToPercent
  * @description 浮点数转为百分比 0.2 => 20%。
  * @param {Number} num 浮点数
  * @param {Number} fixSize 保留几位浮点数
  * */
-export declare function floatToPercent(num: any, fixSize?: number): string;
+export declare function floatToPercent(num?: number, fixSize?: number): string;
 /**
  * @method floatFixed
  * @description 浮点数保留指定位。
  * */
-export declare function floatFixed(num: any, size: any): string;
-/**
- * @method compatibleExist
- * @description 不存在返回 ——。
- * */
-export declare function compatibleExist(instance: string, replaceStr: string): string;
+export declare function floatFixed(num: string, size?: number): string;
 /**
  * @method cancelBubble
  * @description 阻止冒泡。
@@ -133,12 +140,12 @@ export declare function removeClass(obj: any, cls: string): void;
  * @method throttle
  * @description 节流。
  * */
-export declare function throttle(func: any, wait: number, options: any): (...argRest: Array<any>) => null;
+export declare function throttle(func: any, wait: number, options: any): any;
 /**
  * @method debounce
  * @description 去抖。
  * */
-export declare function debounce(func: any, wait: number, immediate: any): (...argRest: Array<any>) => null;
+export declare function debounce(func: any, wait: number, immediate: any): any;
 /**
  * @method friendlyInterval
  * @description 获取间隔时间。
@@ -151,11 +158,11 @@ export declare function friendlyInterval({ start, end, type }?: {
     start?: number | undefined;
     end?: number | undefined;
     type?: string | undefined;
-}): any;
+}): number | string;
 /**
  * @method isNumber
  * @description 判断是否有效数字
- * @param {Any} num 被判断的值
+ * @param {*} num 被判断的值
  * @param {Boolean} isNaNAsNumber 是否 NaN 算数字（默认不算）
  * @param {Boolean} isUnFiniteAsNumber 是否 无限 算数字（默认不算）
  * @return {Boolean} true 是数字
@@ -164,33 +171,6 @@ export declare function isNumber(num: any, { isNaNAsNumber, isUnFiniteAsNumber }
     isNaNAsNumber?: boolean | undefined;
     isUnFiniteAsNumber?: boolean | undefined;
 }): boolean;
-/**
- * @method updateQueryStringParameter
- * @description 替换或添加地址栏参数。
- * */
-export declare function updateQueryStringParameter(uri: string, key: string, value: string): string;
-/**
- * @method isJsonString
- * @description 判断是否合法 JSON 字符串。
- * */
-export declare function isJsonString(str: string): boolean;
-/**
- * @method getUrlParam
- * @description 链接参数
- * @param {String} sUrl 链接
- * @param {String} sKey 参数
- * */
-export declare function getUrlParam(sUrl: string, sKey: string): any;
-/**
- * @method getSearchQueryParam
- * @description 地址栏参数。
- * */
-export declare function getSearchQueryParam(name: string): string | null;
-/**
- * @method getQueryParam
- * @description 地址栏参数，getSearchQueryParam 的别名。
- * */
-export declare function getQueryParam(name: string): string | null;
 /**
  * @method doFn
  * @description 执行有效函数
@@ -208,7 +188,7 @@ export declare function setSessionStorage(key: string, value?: any): void;
  * @method getSessionStorage
  * @description 存储数据到 sessionStorage
  * @param {String} key 键
- * @return {Any} 返回值
+ * @return {*} 返回值
  * */
 export declare function getSessionStorage(key: string): any;
 /**
@@ -222,7 +202,7 @@ export declare function setLocalStorage(key: string, value?: any): void;
  * @method getLocalStorage
  * @description 存储数据到 localStorage
  * @param {String} key 键
- * @return {Any} 返回值
+ * @return {*} 返回值
  * */
 export declare function getLocalStorage(key: string): any;
 /**
@@ -235,7 +215,7 @@ export declare function getLocalStorage(key: string): any;
 export declare function loadCSS({ url, id }?: {
     url?: string | undefined;
     id?: string | undefined;
-}): Promise<unknown>;
+}): Promise<any>;
 /**
  * @method loadScript
  * @description 动态加载js文件
@@ -252,7 +232,7 @@ export declare function loadScript({ url, id, callback, timeout, isDefer }?: {
     callback?: (() => void) | undefined;
     timeout?: number | undefined;
     isDefer?: boolean | undefined;
-}): any;
+}): Promise<any>;
 /**
  * @method mNow
  * @description 获取时间戳
@@ -267,7 +247,7 @@ export declare function setCookie(name: string, value: string, days: number, dom
  * @method getCookie
  * @description 获取 Cookie
  */
-export declare function getCookie(name: string): string | null;
+export declare function getCookie(name: string): string;
 /**
  * @method getPerformance
  * @description 获取页面加载相关的各项数据
@@ -276,7 +256,7 @@ export declare function getCookie(name: string): string | null;
  */
 export declare function getPerformance({ camelCase }?: {
     camelCase?: boolean | undefined;
-}): Promise<unknown>;
+}): Promise<any>;
 /**
  * @method inRate
  * @description 百分位概率
@@ -332,42 +312,6 @@ export declare function addInlineStyle({ inlineStyle, id }?: {
     inlineStyle?: string | undefined;
     id?: string | undefined;
 }): boolean;
-/**
- * @method customScrollBarForTransformEle
- * @description 为进行变换（transform）的元素设置滚动条
- * @param {String} containerClassName 进行变换（transform）的元素↓的容器（Father）的类名
- * @param {String} imgBoxClassName 图片的容器（transform It's YOU!）的类名
- * @param {String} imgBoxDom 图片的容器 Dom 对象
- * @param {String} imgClassName 图片的类名
- * @param {Object} imgDom 图片 Dom 对象
- * @param {String} action 操作类型 hide 隐藏指定 `containerClassName` 滚动条
- * @param {String} customStyle 滚动条的定制样式，会覆盖默认样式
- * @return {Boolean} 设置成功
-*/
-export declare function customScrollBarForTransformEle({ containerClassName, imgBoxClassName, imgBoxDom, imgClassName, imgDom, action, customStyle }?: {
-    containerClassName?: string | undefined;
-    imgBoxClassName?: string | undefined;
-    imgBoxDom?: null | undefined;
-    imgClassName?: string | undefined;
-    imgDom?: null | undefined;
-    action?: string | undefined;
-    customStyle?: string | undefined;
-}): boolean;
-/**
- * @method calcContainImageSizeAndPosition
- * @description 计算适配容器宽度的图片的尺寸、距离顶部的距离。如果高度不足以占满容器，使其垂直居中；如果高度比容器长，由上向下铺开。
- * @param {Number} oriImageWidth 图片原始宽度
- * @param {Number} oriImageHeight 图片原始高度
- * @param {Number} viewportWidth 可视窗口宽度
- * @param {Number} viewportHeight 可视窗口高度
- * @return {Object} 结果 {"targetImageWidth":375,"targetImageHeight":375,"top":218.5,"wPer":1.25}
-*/
-export declare function calcContainImageSizeAndPosition({ oriImageWidth, oriImageHeight, viewportWidth, viewportHeight }?: {
-    oriImageWidth?: number | undefined;
-    oriImageHeight?: number | undefined;
-    viewportWidth?: number | undefined;
-    viewportHeight?: number | undefined;
-}): any;
 /**
  * @method genCustomConsole
  * @description 生成自定义控制台打印

@@ -1,13 +1,13 @@
 {
   "name": "mazey",
-  "version": "1.4.39",
+  "version": "2.0.0",
   "description": "Mazey's library for front end.",
   "main": "lib/index.cjs.js",
   "module": "lib/index.esm.js",
   "typings": "lib/index.d.ts",
   "mainEntryPointFilePath": "lib/index.d.ts",
   "directories": {
-    "example": "example"
+    "lib": "./lib"
   },
   "scripts": {
     "dev": "webpack-dev-server --open",

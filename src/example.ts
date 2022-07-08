@@ -1,52 +1,49 @@
 import {
-  calLongestCommonSubstring,
-  calLongestCommonSubsequence,
-  getPerformance,
+  isNumber,
+  getQueryParam,
+  getUrlParam,
+  updateQueryParam,
+  getHashQueryParam,
+  getDomain,
   camelCaseToKebabCase,
   camelCase2Underscore,
+  mTrim,
+  newLine,
   deepCopyObject,
-  inRate,
-  getUrlParam,
-  loadScript,
-  isSafePWAEnv,
-  getBrowserType,
-  debounce,
-  windowLoaded,
-  isNumber,
-  addInlineStyle,
-  floatToPercent,
-  customScrollBarForTransformEle,
-  // getPerformance,
-  calcContainImageSizeAndPosition,
-  genCustomConsole,
+  isJsonString,
+  generateRndNum,
  } from './index';
 
 // 数字测试
 console.log('数字测试：', isNumber(Infinity, { isUnFiniteAsNumber: true }));
 
-console.log('计算适配屏幕宽度的图片尺寸和位置：', JSON.stringify(calcContainImageSizeAndPosition({ oriImageWidth: 300, oriImageHeight: 300, viewportWidth: 375, viewportHeight: 812 })));
+const hashParam = getHashQueryParam('ttt');
 
-const aaa = genCustomConsole({ prefix: 'aaa' });
-const bbb = genCustomConsole({ prefix: 'bbb:' });
-const ccc = genCustomConsole({ prefix: '' });
-const myConsole = genCustomConsole({ prefix: 'MazeyLog:' });
+console.log('hashParam', hashParam);
 
-aaa.log(123);
-aaa.info(123, 456);
-aaa.warn(123, 456, 789);
-aaa.error(123, 456, 789, 0);
+// const t3 = getQueryParam('t3');
+// const t4 = getQueryParam('t4');
 
-bbb.log(123);
-bbb.info(123, 456);
-bbb.warn(123, 456, 789);
-bbb.error(123, 456, 789, 0);
+// console.log('t3', t3);
+// console.log('t4', t4);
 
-ccc.log(123);
-ccc.info(123, 456);
-ccc.warn(123, 456, 789);
-ccc.error(123, 456, 789, 0);
+// const t3 = getUrlParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't3');
+// const t4 = getUrlParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't4');
 
-myConsole.log('I am string.'); // MazeyLog: I am string.
-myConsole.info('I am boolean.', true); // MazeyLog: I am boolean. true
-myConsole.info('I am number.', 123, 456); // MazeyLog: I am number. 123 456
-myConsole.info('I am object.', { a: 123, b: 456}); // MazeyLog: I am object. {a: 123, b: 456}
+// const t3 = updateQueryParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't3', 'three');
+// const t4 = updateQueryParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't4', 'four');
+
+// const t3 = getHashQueryParam('t3'); // 3
+// const t4 = getHashQueryParam('t4'); // 4
+
+// const t3 = getDomain('http://example.com/?t1=1&t2=2&t3=3&t4=4'); // example.com
+// const t4 = getDomain('http://example.com/test/thanks?t1=1&t2=2&t3=3&t4=4', ['hostname', 'pathname']); // example.com/test/thanks
+
+// const m1 = camelCaseToKebabCase('aBC'); // a-b-c
+// const m2 = camelCase2Underscore('bBC'); // a_b_c
+
+const m1 = generateRndNum(4); // '9730'
+const m2 = generateRndNum(7); // '2262490'
+
+console.log('m1', m1);
+console.log('m2', m2);
