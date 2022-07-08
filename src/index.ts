@@ -257,26 +257,9 @@ export function generateRndNum(n = 5): string {
  * @description 根据时间生成唯一标志的数字 mGenerateUniqueNum() => 1538324722364123。
  * @param {Number} n 随机数的长度
  * */
-export function generateUniqueNum(n: number) {
+export function generateUniqueNum(n = 3): string {
   const [now, rnd] = [mNow(), generateRndNum(n || 3)];
   return now + rnd;
-}
-
-/**
- * @method resetForm
- * @description 重置表单输入值为原始（空）状态。
- * @param {String} rest name1,name2,name3...NAME属性，可以多个。
- * */
-export function resetForm(...rest: any[]) {
-  for (let i = 0; i < rest.length; i++) {
-    const tagMz: any = document.getElementsByName(rest[i])[0]; // tag object
-    const tagNameMz = tagMz.tagName.toLowerCase(); // tag name
-    if (tagNameMz === 'input') {
-      tagMz.value = '';
-    } else if (tagNameMz === 'select') {
-      tagMz.options[0].selected = true;
-    }
-  }
 }
 
 /**
@@ -285,42 +268,29 @@ export function resetForm(...rest: any[]) {
  * @param {Number} num 浮点数
  * @param {Number} fixSize 保留几位浮点数
  * */
-export function floatToPercent(num: any, fixSize = 0): string {
+export function floatToPercent(num = 0, fixSize = 0): string {
+  let ret = '';
   if (fixSize) {
-    num = (num * 100).toFixed(fixSize);
+    ret = (num * 100).toFixed(fixSize);
   } else {
-    num = Math.floor(num * 100);
+    ret = String(Math.floor(num * 100));
   }
-  return `${num}%`;
+  return `${ret}%`;
 }
 
 /**
  * @method floatFixed
  * @description 浮点数保留指定位。
  * */
-export function floatFixed(num: any, size: any) {
+export function floatFixed(num: string, size = 0): string {
   return parseFloat(num).toFixed(size);
-}
-
-/**
- * @method compatibleExist
- * @description 不存在返回 ——。
- * */
-export function compatibleExist(instance: string, replaceStr: string) {
-  let ret = '';
-  try {
-    ret = instance || replaceStr || '——';
-  } catch (e) {
-    ret = '——';
-  }
-  return ret;
 }
 
 /**
  * @method cancelBubble
  * @description 阻止冒泡。
  * */
-export function cancelBubble(e: any) {
+export function cancelBubble(e: any): void {
   const ev = e || window.event;
   if (ev.stopPropagation) {
     // W3C
@@ -334,7 +304,7 @@ export function cancelBubble(e: any) {
 /**
  * @method hasClass
  * */
-export function hasClass(obj: any, cls: string) {
+export function hasClass(obj: any, cls: string): boolean {
   const oriCls = obj.className; // 获取对象的class值
   const oriClsArr = oriCls.split(/\s+/); // 分隔空格转换成数组
   for (let i = 0; i < oriClsArr.length; i++) {
@@ -348,7 +318,7 @@ export function hasClass(obj: any, cls: string) {
 /**
  * @method addClass
  * */
-export function addClass(obj: any, cls: string) {
+export function addClass(obj: any, cls: string): void {
   const oriCls = obj.className;
   let space = '';
   let newCls = ''; // 获取对象的class值
@@ -362,7 +332,7 @@ export function addClass(obj: any, cls: string) {
 /**
  * @method removeClass
  * */
-export function removeClass(obj: any, cls: string) {
+export function removeClass(obj: any, cls: string): void {
   const oriCls = obj.className;
   let newCls; // 获取对象的class值
   newCls = ' ' + oriCls + ' '; // 前后加空格
@@ -376,7 +346,7 @@ export function removeClass(obj: any, cls: string) {
  * @method throttle
  * @description 节流。
  * */
-export function throttle(func: any, wait: number, options: any) {
+export function throttle(func: any, wait: number, options: any): any {
   // timeout: setTimeout Handle
   // previous: 上次时间戳
   let context: any = null;
@@ -423,7 +393,7 @@ export function throttle(func: any, wait: number, options: any) {
  * @method debounce
  * @description 去抖。
  * */
-export function debounce(func: any, wait: number, immediate: any) {
+export function debounce(func: any, wait: number, immediate: any): any {
   let context: any = null;
   let timeout: any = null;
   let timestamp: any = null;
@@ -467,7 +437,7 @@ export function debounce(func: any, wait: number, immediate: any) {
  * @type {String} type 返回类型 d: 2(天) text: 2 天 4 时...
  * @return {String/Number} 取决于 type
  * */
-export function friendlyInterval({ start = 0, end = 0, type = 'd' } = {}) {
+export function friendlyInterval({ start = 0, end = 0, type = 'd' } = {}): number | string {
   if (!isNumber(start)) start = new Date(start).getTime();
   if (!isNumber(end)) end = new Date(end).getTime();
   const t = end - start;
@@ -528,7 +498,7 @@ export function isNumber(num: any, { isNaNAsNumber = false, isUnFiniteAsNumber =
  * @description 执行有效函数
  * @param {Function} fn 等待被执行的未知是否有效的函数
  * */
-export function doFn(fn: any, ...params: any[]) {
+export function doFn(fn: any, ...params: any[]): any {
   let ret = null;
   if (fn && typeof fn === 'function') {
     ret = fn(...params);
@@ -542,7 +512,7 @@ export function doFn(fn: any, ...params: any[]) {
  * @param {String} key 键
  * @param {String} value 值
  * */
-export function setSessionStorage(key: string, value: any = null) {
+export function setSessionStorage(key: string, value: any = null): void {
   if (key) {
     sessionStorage.setItem(key, JSON.stringify(value));
   }
@@ -552,9 +522,9 @@ export function setSessionStorage(key: string, value: any = null) {
  * @method getSessionStorage
  * @description 存储数据到 sessionStorage
  * @param {String} key 键
- * @return {Any} 返回值
+ * @return {*} 返回值
  * */
-export function getSessionStorage(key: string) {
+export function getSessionStorage(key: string): any {
   let ret = null;
   if (key) {
     const value = sessionStorage.getItem(key);
@@ -571,7 +541,7 @@ export function getSessionStorage(key: string) {
  * @param {String} key 键
  * @param {String} value 值
  * */
-export function setLocalStorage(key: string, value: any = null) {
+export function setLocalStorage(key: string, value: any = null): void {
   if (key) {
     localStorage.setItem(key, JSON.stringify(value));
   }
@@ -581,9 +551,9 @@ export function setLocalStorage(key: string, value: any = null) {
  * @method getLocalStorage
  * @description 存储数据到 localStorage
  * @param {String} key 键
- * @return {Any} 返回值
+ * @return {*} 返回值
  * */
-export function getLocalStorage(key: string) {
+export function getLocalStorage(key: string): any {
   let ret = null;
   if (key) {
     const value = localStorage.getItem(key);
@@ -601,7 +571,7 @@ export function getLocalStorage(key: string) {
  * @param {String} id -- link标签id
  * @return {Promise<Boolean>} true -- 加载成功
  */
-export function loadCSS({ url = '', id = '' } = {}) {
+export function loadCSS({ url = '', id = '' } = {}): Promise<any> {
   let success: any = null;
   let fail: any = null;
   const status = new Promise((resolve, reject) => {
@@ -697,7 +667,7 @@ export function loadCSS({ url = '', id = '' } = {}) {
         // The value of `ex.name` is changed from "NS_ERROR_DOM_SECURITY_ERR"
         // to "SecurityError" since Firefox 13.0. But Firefox is less than 9.0
         // in here, So it is ok to just rely on "NS_ERROR_DOM_SECURITY_ERR"
-        if (ex.name === 'NS_ERROR_DOM_SECURITY_ERR') {
+        if ((ex as any).name === 'NS_ERROR_DOM_SECURITY_ERR') {
           isLoaded = true;
         }
       }
@@ -725,7 +695,7 @@ export function loadCSS({ url = '', id = '' } = {}) {
  * @param {Boolean} isDefer -- 是否添加 defer 标签
  * @return {Promise<Boolean>} -- true 成功
  */
-export function loadScript({ url = '', id = '', callback = function () { /* pass */ }, timeout = 5000, isDefer = false } = {}): any {
+export function loadScript({ url = '', id = '', callback = function () { /* pass */ }, timeout = 5000, isDefer = false } = {}): Promise<any> {
   let success: any = null;
   let fail: any = null;
   const script: any = document.createElement('script');
@@ -768,7 +738,7 @@ export function loadScript({ url = '', id = '', callback = function () { /* pass
  * @method mNow
  * @description 获取时间戳
  */
-export function mNow() {
+export function mNow(): number {
   let ret = 0;
   if (Date.now) {
     ret = Date.now();
@@ -782,7 +752,7 @@ export function mNow() {
  * @method setCookie
  * @description 设置 Cookie
  */
-export function setCookie(name: string, value: string, days: number, domain: string) {
+export function setCookie(name: string, value: string, days: number, domain: string): void {
   let domainParts, expires;
   let date: any;
   if (days) {
@@ -824,7 +794,7 @@ export function setCookie(name: string, value: string, days: number, domain: str
  * @method getCookie
  * @description 获取 Cookie
  */
-export function getCookie(name: string) {
+export function getCookie(name: string): string {
   const nameEQ = name + "=";
   const ca = document.cookie.split(';');
   for (let i = 0; i < ca.length; i++) {
@@ -834,7 +804,7 @@ export function getCookie(name: string) {
     }
     if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
   }
-  return null;
+  return '';
 }
 
 /**
@@ -843,7 +813,7 @@ export function getCookie(name: string) {
  * @param {Boolean} camelCase -- true（默认） 以驼峰形式返回数据 false 以下划线形式返回数据
  * @return {Promise<Object>} 加载数据
  */
-export function getPerformance({ camelCase = true } = {}) {
+export function getPerformance({ camelCase = true } = {}): Promise<any> {
   let success: any;
   let fail: any;
   const status = new Promise((resolve, reject) => {
@@ -884,7 +854,7 @@ export function getPerformance({ camelCase = true } = {}) {
         console.error('paint');
       }
     } catch (e) {
-      console.error(e.message);
+      console.error((e as any).message);
     }
     // 获取加载时间
     if (
@@ -1375,7 +1345,6 @@ export function addInlineStyle({ inlineStyle = '', id = '' } = {}): boolean {
  * @return {Object} 新实例
 */
 export function genCustomConsole({ prefix = '' } = {}): any {
-  // ...
   const methods = ['log', 'info', 'warn', 'error'];
   const newConsole = Object.create(null);
   methods.forEach(method => {
