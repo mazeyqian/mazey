@@ -1,11 +1,11 @@
-/* Deal */
+/* Mazey */
 
 /**
  * @method calLongestCommonSubstring
- * @description 计算两个字符串的最长公共子串
- * @param {String} aStr 字符串
- * @param {String} bStr 字符串
- * @return {Number} 长度
+ * @description Computes the longest common substring of two strings.
+ * @param {String} aStr String
+ * @param {String} bStr String
+ * @return {Number} Length
  */
 export function calLongestCommonSubstring(aStr = '', bStr = ''): number {
   const aLen = aStr.length;
