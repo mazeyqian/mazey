@@ -3,9 +3,9 @@
 /**
  * @method calLongestCommonSubstring
  * @description Computes the longest common substring of two strings.
- * @param {String} aStr String
- * @param {String} bStr String
- * @return {Number} Length
+ * @param {string} aStr String
+ * @param {string} bStr String
+ * @return {number} Length
  */
 export function calLongestCommonSubstring(aStr = '', bStr = ''): number {
   const aLen = aStr.length;
