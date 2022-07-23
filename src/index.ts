@@ -33,8 +33,8 @@ export function calLongestCommonSubstring(aStr = '', bStr = ''): number {
 /**
  * @method calLongestCommonSubsequence
  * @description 计算两个字符串的最长公共子序列
- * @param {String} aStr 字符串
- * @param {String} bStr 字符串
+ * @param {string} aStr 字符串
+ * @param {string} bStr 字符串
  * @return {Number} 长度
  */
 export function calLongestCommonSubsequence(aStr = '', bStr = ''): number {
@@ -72,8 +72,8 @@ export function calLongestCommonSubsequence(aStr = '', bStr = ''): number {
 /**
  * @method getQueryParam
  * @description Get the query param's value of the current Web URL(`location.search`).
- * @param {String} param Query param.
- * @return {String} value
+ * @param {string} param Query param.
+ * @return {string} value
  * */
 export function getQueryParam(param = ''): string {
   const reg = new RegExp('(^|&)' + param + '=([^&]*)(&|$)');
@@ -87,9 +87,9 @@ export function getQueryParam(param = ''): string {
 /**
  * @method getUrlParam
  * @description Get the query param's value of the input URL.
- * @param {String} url URL string.
- * @param {String} param Query param.
- * @return {String} value
+ * @param {string} url URL string.
+ * @param {string} param Query param.
+ * @return {string} value
  * */
 export function getUrlParam(url = '', param = ''): string {
   const result: any = {};
@@ -113,10 +113,10 @@ export function getUrlParam(url = '', param = ''): string {
 /**
  * @method updateQueryParam
  * @description Update the query param's value of the input URL.
- * @param {String} url URL string.
- * @param {String} param Query param.
- * @param {String} value Param's value.
- * @return {String} URL.
+ * @param {string} url URL string.
+ * @param {string} param Query param.
+ * @param {string} value Param's value.
+ * @return {string} URL.
  * */
  export function updateQueryParam(url = '', param = '', value = ''): string {
   const re = new RegExp('([?&])' + param + '=.*?(&|$)', 'i');
@@ -131,8 +131,8 @@ export function getUrlParam(url = '', param = ''): string {
 /**
  * @method getHashQueryParam
  * @description Get the hash query param's value of the current Web URL(`location.hash`).
- * @param {String} param Query param.
- * @return {String} value
+ * @param {string} param Query param.
+ * @return {string} value
  */
 export function getHashQueryParam(param = ''): string {
   const hashs = location.hash.split('?');
@@ -147,7 +147,7 @@ export function getHashQueryParam(param = ''): string {
 /**
  * @method getDomain
  * @description Get the domain of URL, and other params.
- * @param {String} url
+ * @param {string} url
  * @param {Array} rules Object.keys(location), ['href', 'protocol', 'host', 'hostname', 'port', 'pathname', 'search', 'hash'], ['hostname', 'pathname'] = 'km.mazey.net/plugins/servlet/mobile'
  * */
 export function getDomain(url = '', rules = ['hostname']): string {
@@ -162,8 +162,8 @@ export function getDomain(url = '', rules = ['hostname']): string {
 /**
  * @method camelCaseToKebabCase
  * @description Transfer CamelCase to KebabCase.
- * @param {String} camelCase 'aBC' or 'ABC'
- * @return {String} 'a-b-c'
+ * @param {string} camelCase 'aBC' or 'ABC'
+ * @return {string} 'a-b-c'
  * */
 export function camelCaseToKebabCase(camelCase = ''): string {
   const kebabCase = camelCase.replace(/([A-Z])/g, '-$1').toLowerCase();
@@ -173,8 +173,8 @@ export function camelCaseToKebabCase(camelCase = ''): string {
 /**
  * @method camelCase2Underscore
  * @description Transfer CamelCase to Underscore.
- * @param {String} camelCase 'aBC' or 'ABC'
- * @return {String} 'a_b_c'
+ * @param {string} camelCase 'aBC' or 'ABC'
+ * @return {string} 'a_b_c'
  * */
 export function camelCase2Underscore(camelCase = ''): string {
   const kebabCase = camelCase.replace(/([A-Z])/g, '_$1').toLowerCase();
@@ -184,8 +184,8 @@ export function camelCase2Underscore(camelCase = ''): string {
 /**
  * @method mTrim
  * @description Remove leading and trailing whitespace or specified characters from string.
- * @param {String} str The string to trim.
- * @return {String} Trimmed string.
+ * @param {string} str The string to trim.
+ * @return {string} Trimmed string.
  * */
 export function mTrim(str = ''): string {
   str = str.replace(/^\s+/, ''); // 去除头部空格
@@ -200,8 +200,8 @@ export function mTrim(str = ''): string {
 /**
  * @method newLine
  * @description Make a newline of HTML.
- * @param {String} str The string to make a newline.
- * @return {String} A newline with `<br />`.
+ * @param {string} str The string to make a newline.
+ * @return {string} A newline with `<br />`.
  * */
 export function newLine(str = ''): string {
   if (!str) {
@@ -224,7 +224,7 @@ export function deepCopyObject(obj: any): any {
 /**
  * @method isJsonString
  * @description Check whether it is a valid JSON string.
- * @param {String} str The string to check.
+ * @param {string} str The string to check.
  * @return {Boolean} Return the result of checking.
  * */
 export function isJsonString(str = ''): boolean {
@@ -242,7 +242,7 @@ export function isJsonString(str = ''): boolean {
  * @method generateRndNum
  * @description Produce a random string of number, `generateRndNum(7)` => '7658495'.
  * @param {Number} n Length
- * @return {String} Return the random string.
+ * @return {string} Return the random string.
  * */
 export function generateRndNum(n = 5): string {
   let ret = '';
@@ -434,7 +434,7 @@ export function debounce(func: any, wait: number, immediate: any): any {
  * @description 获取间隔时间。
  * @param {Number/Date} start 开始时间戳 1585325367122
  * @param {Number/Date} end 结束时间戳 1585325367122
- * @type {String} type 返回类型 d: 2(天) text: 2 天 4 时...
+ * @type {string} type 返回类型 d: 2(天) text: 2 天 4 时...
  * @return {String/Number} 取决于 type
  * */
 export function friendlyInterval({ start = 0, end = 0, type = 'd' } = {}): number | string {
@@ -509,8 +509,8 @@ export function doFn(fn: any, ...params: any[]): any {
 /**
  * @method setSessionStorage
  * @description 存储数据到 sessionStorage
- * @param {String} key 键
- * @param {String} value 值
+ * @param {string} key 键
+ * @param {string} value 值
  * */
 export function setSessionStorage(key: string, value: any = null): void {
   if (key) {
@@ -521,7 +521,7 @@ export function setSessionStorage(key: string, value: any = null): void {
 /**
  * @method getSessionStorage
  * @description 存储数据到 sessionStorage
- * @param {String} key 键
+ * @param {string} key 键
  * @return {*} 返回值
  * */
 export function getSessionStorage(key: string): any {
@@ -538,8 +538,8 @@ export function getSessionStorage(key: string): any {
 /**
  * @method setLocalStorage
  * @description 存储数据到 localStorage
- * @param {String} key 键
- * @param {String} value 值
+ * @param {string} key 键
+ * @param {string} value 值
  * */
 export function setLocalStorage(key: string, value: any = null): void {
   if (key) {
@@ -550,7 +550,7 @@ export function setLocalStorage(key: string, value: any = null): void {
 /**
  * @method getLocalStorage
  * @description 存储数据到 localStorage
- * @param {String} key 键
+ * @param {string} key 键
  * @return {*} 返回值
  * */
 export function getLocalStorage(key: string): any {
@@ -567,8 +567,8 @@ export function getLocalStorage(key: string): any {
 /**
  * @method loadCSS
  * @description 动态加载css文件
- * @param {String} url -- css资源路径
- * @param {String} id -- link标签id
+ * @param {string} url -- css资源路径
+ * @param {string} id -- link标签id
  * @return {Promise<Boolean>} true -- 加载成功
  */
 export function loadCSS({ url = '', id = '' } = {}): Promise<any> {
@@ -688,8 +688,8 @@ export function loadCSS({ url = '', id = '' } = {}): Promise<any> {
 /**
  * @method loadScript
  * @description 动态加载js文件
- * @param {String} url -- js资源路径
- * @param {String} id -- DOM ID
+ * @param {string} url -- js资源路径
+ * @param {string} id -- DOM ID
  * @param {Function} callback -- 加载后回调函数
  * @param {Number} timeout -- 超时时长
  * @param {Boolean} isDefer -- 是否添加 defer 标签
@@ -1231,8 +1231,8 @@ export function getBrowserType(): any {
 /**
  * @method clearHtml
  * @description 去除HTML标签
- * @param {String} string 带html标签的字符串
- * @return {String} 字符串
+ * @param {string} string 带html标签的字符串
+ * @return {string} 字符串
  */
 export function clearHtml (string = ''): string {
   return string.replace(/<\/?.+?>/g, '').replace(/[\r\n]/g, '');
@@ -1241,10 +1241,10 @@ export function clearHtml (string = ''): string {
 /**
  * @method cutCHSString
  * @description 截取字符串，中文算2个字节
- * @param {String} str 要截取的字符串
+ * @param {string} str 要截取的字符串
  * @param {Number} len
  * @param {Boolean} hasDot
- * @returns {String} 返回截取后的字符串
+ * @returns {string} 返回截取后的字符串
  */
 export function cutCHSString(str = '', len = str.length, hasDot = false): string {
   if (str == '' || !str) {
@@ -1302,8 +1302,8 @@ export function windowLoaded({ timeout = 90 } = {}): Promise<string> {
 /**
  * @method addInlineStyle
  * @description 添加内联样式
- * @param {String} inlineStyle 内联样式字符串
- * @param {String} id <style> 标签的 ID
+ * @param {string} inlineStyle 内联样式字符串
+ * @param {string} id <style> 标签的 ID
  * @return {Boolean} 添加成功/失败 
 */
 export function addInlineStyle({ inlineStyle = '', id = '' } = {}): boolean {
@@ -1340,7 +1340,7 @@ export function addInlineStyle({ inlineStyle = '', id = '' } = {}): boolean {
 /**
  * @method genCustomConsole
  * @description 生成自定义控制台打印
- * @param {String} prefix 前缀
+ * @param {string} prefix 前缀
  * @param {Function} allowFn 允许打印的判断函数
  * @return {Object} 新实例
 */
