@@ -35,7 +35,7 @@ export function calLongestCommonSubstring(aStr = '', bStr = ''): number {
  * @description 计算两个字符串的最长公共子序列
  * @param {string} aStr 字符串
  * @param {string} bStr 字符串
- * @return {Number} 长度
+ * @return {number} 长度
  */
 export function calLongestCommonSubsequence(aStr = '', bStr = ''): number {
   const aLen = aStr.length;
@@ -241,7 +241,7 @@ export function isJsonString(str = ''): boolean {
 /**
  * @method generateRndNum
  * @description Produce a random string of number, `generateRndNum(7)` => '7658495'.
- * @param {Number} n Length
+ * @param {number} n Length
  * @return {string} Return the random string.
  * */
 export function generateRndNum(n = 5): string {
@@ -255,7 +255,7 @@ export function generateRndNum(n = 5): string {
 /**
  * @method generateUniqueNum
  * @description 根据时间生成唯一标志的数字 mGenerateUniqueNum() => 1538324722364123。
- * @param {Number} n 随机数的长度
+ * @param {number} n 随机数的长度
  * */
 export function generateUniqueNum(n = 3): string {
   const [now, rnd] = [mNow(), generateRndNum(n || 3)];
@@ -265,8 +265,8 @@ export function generateUniqueNum(n = 3): string {
 /**
  * @method floatToPercent
  * @description 浮点数转为百分比 0.2 => 20%。
- * @param {Number} num 浮点数
- * @param {Number} fixSize 保留几位浮点数
+ * @param {number} num 浮点数
+ * @param {number} fixSize 保留几位浮点数
  * */
 export function floatToPercent(num = 0, fixSize = 0): string {
   let ret = '';
@@ -691,7 +691,7 @@ export function loadCSS({ url = '', id = '' } = {}): Promise<any> {
  * @param {string} url -- js资源路径
  * @param {string} id -- DOM ID
  * @param {Function} callback -- 加载后回调函数
- * @param {Number} timeout -- 超时时长
+ * @param {number} timeout -- 超时时长
  * @param {Boolean} isDefer -- 是否添加 defer 标签
  * @return {Promise<Boolean>} -- true 成功
  */
@@ -1020,7 +1020,7 @@ export function getPerformance({ camelCase = true } = {}): Promise<any> {
 /**
  * @method inRate
  * @description 百分位概率
- * @param {Number} rate -- 0.1 ~ 1 => 1% ~ 100%
+ * @param {number} rate -- 0.1 ~ 1 => 1% ~ 100%
  * @return {Boolean} true 命中
  */
 export function inRate(rate: number): boolean {
@@ -1242,7 +1242,7 @@ export function clearHtml (string = ''): string {
  * @method cutCHSString
  * @description 截取字符串，中文算2个字节
  * @param {string} str 要截取的字符串
- * @param {Number} len
+ * @param {number} len
  * @param {Boolean} hasDot
  * @returns {string} 返回截取后的字符串
  */
@@ -1279,7 +1279,7 @@ export function cutCHSString(str = '', len = str.length, hasDot = false): string
 /**
  * @method windowLoaded
  * @description 页面加载完成
- * @param {Number} timeout 超时时间 / 单位：秒
+ * @param {number} timeout 超时时间 / 单位：秒
  * @return {Promise<string>} document is loaded? 'complete' 'load' / 'timeout'
 */
 export function windowLoaded({ timeout = 90 } = {}): Promise<string> {
