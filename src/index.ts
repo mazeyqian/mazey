@@ -148,7 +148,7 @@ export function getHashQueryParam(param = ''): string {
  * @method getDomain
  * @description Get the domain of URL, and other params.
  * @param {string} url
- * @param {Array} rules Object.keys(location), ['href', 'protocol', 'host', 'hostname', 'port', 'pathname', 'search', 'hash'], ['hostname', 'pathname'] = 'km.mazey.net/plugins/servlet/mobile'
+ * @param {array} rules Object.keys(location), ['href', 'protocol', 'host', 'hostname', 'port', 'pathname', 'search', 'hash'], ['hostname', 'pathname'] = 'km.mazey.net/plugins/servlet/mobile'
  * */
 export function getDomain(url = '', rules = ['hostname']): string {
   const aEl: any = document.createElement('a');
