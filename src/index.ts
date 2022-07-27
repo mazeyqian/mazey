@@ -225,7 +225,7 @@ export function deepCopyObject(obj: any): any {
  * @method isJsonString
  * @description Check whether it is a valid JSON string.
  * @param {string} str The string to check.
- * @return {Boolean} Return the result of checking.
+ * @return {boolean} Return the result of checking.
  * */
 export function isJsonString(str = ''): boolean {
   try {
@@ -470,9 +470,9 @@ export function friendlyInterval({ start = 0, end = 0, type = 'd' } = {}): numbe
  * @method isNumber
  * @description 判断是否有效数字
  * @param {*} num 被判断的值
- * @param {Boolean} isNaNAsNumber 是否 NaN 算数字（默认不算）
- * @param {Boolean} isUnFiniteAsNumber 是否 无限 算数字（默认不算）
- * @return {Boolean} true 是数字
+ * @param {boolean} isNaNAsNumber 是否 NaN 算数字（默认不算）
+ * @param {boolean} isUnFiniteAsNumber 是否 无限 算数字（默认不算）
+ * @return {boolean} true 是数字
  */
 export function isNumber(num: any, { isNaNAsNumber = false, isUnFiniteAsNumber = false } = {}): boolean {
   let ret = true;
@@ -692,7 +692,7 @@ export function loadCSS({ url = '', id = '' } = {}): Promise<any> {
  * @param {string} id -- DOM ID
  * @param {Function} callback -- 加载后回调函数
  * @param {number} timeout -- 超时时长
- * @param {Boolean} isDefer -- 是否添加 defer 标签
+ * @param {boolean} isDefer -- 是否添加 defer 标签
  * @return {Promise<Boolean>} -- true 成功
  */
 export function loadScript({ url = '', id = '', callback = function () { /* pass */ }, timeout = 5000, isDefer = false } = {}): Promise<any> {
@@ -810,7 +810,7 @@ export function getCookie(name: string): string {
 /**
  * @method getPerformance
  * @description 获取页面加载相关的各项数据
- * @param {Boolean} camelCase -- true（默认） 以驼峰形式返回数据 false 以下划线形式返回数据
+ * @param {boolean} camelCase -- true（默认） 以驼峰形式返回数据 false 以下划线形式返回数据
  * @return {Promise<Object>} 加载数据
  */
 export function getPerformance({ camelCase = true } = {}): Promise<any> {
@@ -1021,7 +1021,7 @@ export function getPerformance({ camelCase = true } = {}): Promise<any> {
  * @method inRate
  * @description 百分位概率
  * @param {number} rate -- 0.1 ~ 1 => 1% ~ 100%
- * @return {Boolean} true 命中
+ * @return {boolean} true 命中
  */
 export function inRate(rate: number): boolean {
   if(Math.random() < rate) {
@@ -1033,7 +1033,7 @@ export function inRate(rate: number): boolean {
 /**
  * @method isSafePWAEnv
  * @description 判断是否是安全的 PWA 环境
- * @return {Boolean} true 是
+ * @return {boolean} true 是
  */
 export function isSafePWAEnv(): boolean {
   // 判断是否支持 async await
@@ -1243,7 +1243,7 @@ export function clearHtml (string = ''): string {
  * @description 截取字符串，中文算2个字节
  * @param {string} str 要截取的字符串
  * @param {number} len
- * @param {Boolean} hasDot
+ * @param {boolean} hasDot
  * @returns {string} 返回截取后的字符串
  */
 export function cutCHSString(str = '', len = str.length, hasDot = false): string {
@@ -1304,7 +1304,7 @@ export function windowLoaded({ timeout = 90 } = {}): Promise<string> {
  * @description 添加内联样式
  * @param {string} inlineStyle 内联样式字符串
  * @param {string} id <style> 标签的 ID
- * @return {Boolean} 添加成功/失败 
+ * @return {boolean} 添加成功/失败 
 */
 export function addInlineStyle({ inlineStyle = '', id = '' } = {}): boolean {
   if (!inlineStyle) {
