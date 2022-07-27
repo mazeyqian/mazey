@@ -214,8 +214,8 @@ export function newLine(str = ''): string {
 /**
  * @method deepCopyObject
  * @description Clone Object deeply.
- * @param {Object} obj The value to clone.
- * @return {Object} Returns the deep cloned value.
+ * @param {object} obj The value to clone.
+ * @return {object} Returns the deep cloned value.
  * */
 export function deepCopyObject(obj: any): any {
   return JSON.parse(JSON.stringify(obj));
@@ -1078,7 +1078,7 @@ export function isSafePWAEnv(): boolean {
 /**
  * @method getBrowserType
  * @description 返回浏览器信息 https://github.com/JowayYoung/juejin-code/blob/master/browser-type.js
- * @return {Object} 浏览器信息
+ * @return {object} 浏览器信息
  */
 export function getBrowserType(): any {
   try {
@@ -1342,7 +1342,7 @@ export function addInlineStyle({ inlineStyle = '', id = '' } = {}): boolean {
  * @description 生成自定义控制台打印
  * @param {string} prefix 前缀
  * @param {Function} allowFn 允许打印的判断函数
- * @return {Object} 新实例
+ * @return {object} 新实例
 */
 export function genCustomConsole({ prefix = '' } = {}): any {
   const methods = ['log', 'info', 'warn', 'error'];
