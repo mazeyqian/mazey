@@ -496,7 +496,7 @@ export function isNumber(num: any, { isNaNAsNumber = false, isUnFiniteAsNumber =
 /**
  * @method doFn
  * @description 执行有效函数
- * @param {Function} fn 等待被执行的未知是否有效的函数
+ * @param {function} fn 等待被执行的未知是否有效的函数
  * */
 export function doFn(fn: any, ...params: any[]): any {
   let ret = null;
@@ -690,7 +690,7 @@ export function loadCSS({ url = '', id = '' } = {}): Promise<any> {
  * @description 动态加载js文件
  * @param {string} url -- js资源路径
  * @param {string} id -- DOM ID
- * @param {Function} callback -- 加载后回调函数
+ * @param {function} callback -- 加载后回调函数
  * @param {number} timeout -- 超时时长
  * @param {boolean} isDefer -- 是否添加 defer 标签
  * @return {Promise<Boolean>} -- true 成功
@@ -1341,7 +1341,7 @@ export function addInlineStyle({ inlineStyle = '', id = '' } = {}): boolean {
  * @method genCustomConsole
  * @description 生成自定义控制台打印
  * @param {string} prefix 前缀
- * @param {Function} allowFn 允许打印的判断函数
+ * @param {function} allowFn 允许打印的判断函数
  * @return {object} 新实例
 */
 export function genCustomConsole({ prefix = '' } = {}): any {
