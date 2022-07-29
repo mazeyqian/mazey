@@ -569,7 +569,7 @@ export function getLocalStorage(key: string): any {
  * @description 动态加载css文件
  * @param {string} url -- css资源路径
  * @param {string} id -- link标签id
- * @return {Promise<Boolean>} true -- 加载成功
+ * @return {Promise<boolean>} true -- 加载成功
  */
 export function loadCSS({ url = '', id = '' } = {}): Promise<any> {
   let success: any = null;
@@ -693,7 +693,7 @@ export function loadCSS({ url = '', id = '' } = {}): Promise<any> {
  * @param {function} callback -- 加载后回调函数
  * @param {number} timeout -- 超时时长
  * @param {boolean} isDefer -- 是否添加 defer 标签
- * @return {Promise<Boolean>} -- true 成功
+ * @return {Promise<boolean>} -- true 成功
  */
 export function loadScript({ url = '', id = '', callback = function () { /* pass */ }, timeout = 5000, isDefer = false } = {}): Promise<any> {
   let success: any = null;
