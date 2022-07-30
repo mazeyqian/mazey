@@ -811,7 +811,7 @@ export function getCookie(name: string): string {
  * @method getPerformance
  * @description 获取页面加载相关的各项数据
  * @param {boolean} camelCase -- true（默认） 以驼峰形式返回数据 false 以下划线形式返回数据
- * @return {Promise<Object>} 加载数据
+ * @return {Promise<object>} 加载数据
  */
 export function getPerformance({ camelCase = true } = {}): Promise<any> {
   let success: any;
