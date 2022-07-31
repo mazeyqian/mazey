@@ -137,8 +137,8 @@ Transfer CamelCase to Underscore.
 ```
 import { camelCase2Underscore } from 'mazey';
 
-camelCase2Underscore('ABC'); // a-b-c
-camelCase2Underscore('aBC'); // a-b-c
+camelCase2Underscore('ABC'); // a_b_c
+camelCase2Underscore('aBC'); // a_b_c
 ```
 
 #### Trim
