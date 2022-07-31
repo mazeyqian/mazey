@@ -432,10 +432,10 @@ export function debounce(func: any, wait: number, immediate: any): any {
 /**
  * @method friendlyInterval
  * @description 获取间隔时间。
- * @param {Number/Date} start 开始时间戳 1585325367122
- * @param {Number/Date} end 结束时间戳 1585325367122
+ * @param {number/Date} start 开始时间戳 1585325367122
+ * @param {number/Date} end 结束时间戳 1585325367122
  * @type {string} type 返回类型 d: 2(天) text: 2 天 4 时...
- * @return {String/Number} 取决于 type
+ * @return {String/number} 取决于 type
  * */
 export function friendlyInterval({ start = 0, end = 0, type = 'd' } = {}): number | string {
   if (!isNumber(start)) start = new Date(start).getTime();
