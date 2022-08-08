@@ -1090,7 +1090,7 @@ export function getBrowserType(): any {
       .replace(/[^0-9|_.]/g, "")
       .replace(/_/g, ".");
     // 系统
-    let system = "unknow";
+    let system = '';
     if (testUa(/windows|win32|win64|wow32|wow64/g)) {
       system = "windows"; // windows系统
     } else if (testUa(/macintosh|macintel/g)) {
@@ -1103,7 +1103,7 @@ export function getBrowserType(): any {
       system = "ios"; // ios系统
     }
     // 系统版本
-    let systemVs = "unknow";
+    let systemVs = '';
     if (system === "windows") {
       if (testUa(/windows nt 5.0|windows 2000/g)) {
         systemVs = "2000";
@@ -1130,15 +1130,15 @@ export function getBrowserType(): any {
       systemVs = testVs(/os [\d._]+/g);
     }
     // 平台
-    let platform = "unknow";
+    let platform = '';
     if (system === "windows" || system === "macos" || system === "linux") {
       platform = "desktop"; // 桌面端
     } else if (system === "android" || system === "ios" || testUa(/mobile/g)) {
       platform = "mobile"; // 移动端
     }
     // 内核和载体
-    let engine = "unknow";
-    let supporter = "unknow";
+    let engine = '';
+    let supporter = '';
     if (testUa(/applewebkit/g)) {
       engine = "webkit"; // webkit内核
       if (testUa(/edge/g)) {
@@ -1161,7 +1161,7 @@ export function getBrowserType(): any {
       supporter = "iexplore"; // iexplore浏览器
     }
     // 内核版本
-    let engineVs = "unknow";
+    let engineVs = '';
     if (engine === "webkit") {
       engineVs = testVs(/applewebkit\/[\d._]+/g);
     } else if (engine === "gecko") {
@@ -1172,7 +1172,7 @@ export function getBrowserType(): any {
       engineVs = testVs(/trident\/[\d._]+/g);
     }
     // 载体版本
-    let supporterVs = "unknow";
+    let supporterVs = '';
     if (supporter === "chrome") {
       supporterVs = testVs(/chrome\/[\d._]+/g);
     } else if (supporter === "safari") {
@@ -1187,8 +1187,8 @@ export function getBrowserType(): any {
       supporterVs = testVs(/edge\/[\d._]+/g);
     }
     // 外壳和外壳版本
-    let shell = "none";
-    let shellVs = "unknow";
+    let shell = 'none';
+    let shellVs = '';
     if (testUa(/micromessenger/g)) {
       shell = "wechat"; // 微信浏览器
       shellVs = testVs(/micromessenger\/[\d._]+/g);
@@ -1219,7 +1219,7 @@ export function getBrowserType(): any {
       supporterVs,
       system, // windows macos linux android ios
       systemVs
-    }, shell === "none" ? {} : {
+    }, shell === 'none' ? {} : {
       shell, // wechat qq uc 360 2345 sougou liebao maxthon
       shellVs
     });
