@@ -404,6 +404,10 @@ getBrowserType(); // {"engine":"webkit","engineVs":"537.36","platform":"desktop"
 // Shell and shell version { shell: 'wechat', shellVs: '20' } shell: wechat qq uc 360 2345 sougou liebao maxthon
 ```
 
+| Index | Field | Description |
+| --- | --- | --- |
+| * System | system | android, ios, windows, macos, linux |
+
 ### Web Performance
 
 Get page load time(PerformanceTiming).
