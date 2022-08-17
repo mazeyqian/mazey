@@ -4,17 +4,24 @@ import { DEFAULT_EXTENSIONS } from '@babel/core';
 import commonjs from 'rollup-plugin-commonjs';
 import cleaner from 'rollup-plugin-cleaner';
 
+// https://rollupjs.org/guide/en/
 export default {
   input: 'src/index.ts',
+  // https://rollupjs.org/guide/en/#outputformat
   output: [
     {
       file: 'lib/index.cjs.js',
-      format: 'cjs'
+      format: 'cjs',
     },
     {
       file: 'lib/index.esm.js',
-      format: 'esm'
-    }
+      format: 'esm',
+    },
+    {
+      file: 'lib/index.iife.js',
+      format: 'iife',
+      name: '$mazey',
+    },
   ],
   plugins: [
     // Remove the `lib` directory before rebuilding.
@@ -38,5 +45,5 @@ export default {
       ],
     })
   ],
-  external: []
+  external: [],
 };
