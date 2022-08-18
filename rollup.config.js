@@ -3,6 +3,7 @@ import rollupTypescript from 'rollup-plugin-typescript2';
 import { DEFAULT_EXTENSIONS } from '@babel/core';
 import commonjs from 'rollup-plugin-commonjs';
 import cleaner from 'rollup-plugin-cleaner';
+import { terser } from 'rollup-plugin-terser';
 
 // https://rollupjs.org/guide/en/
 export default {
@@ -25,6 +26,7 @@ export default {
   ],
   plugins: [
     // Remove the `lib` directory before rebuilding.
+    // https://github.com/aMarCruz/rollup-plugin-cleanup
     cleaner({
       targets: [
         './lib/',
@@ -43,7 +45,10 @@ export default {
         ...DEFAULT_EXTENSIONS,
         '.ts',
       ],
-    })
+    }),
+    // Add minification.
+    // https://github.com/TrySound/rollup-plugin-terser
+    terser(),
   ],
   external: [],
 };
