@@ -19,7 +19,7 @@ export default {
       format: 'esm',
     },
     {
-      file: 'lib/index.iife.js',
+      file: 'lib/mazey.min.js',
       format: 'iife',
       name: '$mazey',
     },
@@ -48,7 +48,12 @@ export default {
     }),
     // Add minification.
     // https://github.com/TrySound/rollup-plugin-terser
-    terser(),
+    terser({ // https://github.com/terser/terser
+      format: {
+        comments: false, // `false` to omit comments in the output
+      },
+    }),
+    // uglify(),
   ],
   external: [],
 };
