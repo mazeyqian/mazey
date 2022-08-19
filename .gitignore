@@ -1,14 +1,10 @@
-# File&Cache
-.DS_Store
+# Output folders
 node_modules/
 dist/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
 test/unit/coverage
 test/e2e/reports
-selenium-debug.log
-doc/
+
+# Cache folders
 .sass-cache/
 undefined/
 temp/
@@ -20,3 +16,16 @@ temp/
 *.ntvs*
 *.njsproj
 *.sln
+
+# System files
+.DS_Store
+
+# Local env files
+.env.local
+.env.*.local
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+selenium-debug.log*
