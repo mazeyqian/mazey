@@ -37,3 +37,5 @@ commitlint.config.js
 rollup.config.js
 webpack.config.js
 jsdoc.config.json
+tsconfig.json
+typing.d.ts
