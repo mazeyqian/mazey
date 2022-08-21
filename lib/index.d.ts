@@ -271,11 +271,11 @@ export declare function inRate(rate: number): boolean;
  */
 export declare function isSafePWAEnv(): boolean;
 /**
- * @method getBrowserType
+ * @method getBrowserInfo
  * @description 返回浏览器信息 https://github.com/JowayYoung/juejin-code/blob/master/browser-type.js
  * @return {object} 浏览器信息
  */
-export declare function getBrowserType(): any;
+export declare function getBrowserInfo(): any;
 /**
  * @method clearHtml
  * @description 去除HTML标签

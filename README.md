@@ -398,9 +398,9 @@ calLongestCommonSubsequence('fish', 'finish'); // 4
 ### Browser Information
 
 ```
-import { getBrowserType } from 'mazey';
+import { getBrowserInfo } from 'mazey';
 
-getBrowserType(); // {"engine":"webkit","engineVs":"537.36","platform":"desktop","supporter":"chrome","supporterVs":"85.0.4183.121","system":"windows","systemVs":"10"}
+getBrowserInfo(); // {"engine":"webkit","engineVs":"537.36","platform":"desktop","supporter":"chrome","supporterVs":"85.0.4183.121","system":"windows","systemVs":"10"}
 // Shell and shell version { shell: 'wechat', shellVs: '20' } shell: wechat qq uc 360 2345 sougou liebao maxthon
 ```
 

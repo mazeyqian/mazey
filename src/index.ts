@@ -1060,7 +1060,7 @@ export function isSafePWAEnv(): boolean {
     return false;
   }
   // 浏览器信息
-  const BrowserType = getBrowserType();
+  const BrowserType = getBrowserInfo();
   if (
     ('serviceWorker' in navigator) &&
     isSupportAsyncAwait() &&
@@ -1076,11 +1076,11 @@ export function isSafePWAEnv(): boolean {
 }
 
 /**
- * @method getBrowserType
+ * @method getBrowserInfo
  * @description 返回浏览器信息 https://github.com/JowayYoung/juejin-code/blob/master/browser-type.js
  * @return {object} 浏览器信息
  */
-export function getBrowserType(): any {
+export function getBrowserInfo(): any {
   try {
     // 权重：系统 + 系统版本 > 平台 > 内核 + 载体 + 内核版本 + 载体版本 > 外壳 + 外壳版本
     const ua: any = navigator.userAgent.toLowerCase();
@@ -1187,14 +1187,16 @@ export function getBrowserType(): any {
       supporterVs = testVs(/edge\/[\d._]+/g);
     }
     // 外壳和外壳版本
-    let shell = 'none';
+    let shell = '';
     let shellVs = '';
     if (testUa(/micromessenger/g)) {
       shell = "wechat"; // 微信浏览器
       shellVs = testVs(/micromessenger\/[\d._]+/g);
     } else if (testUa(/qqbrowser/g)) {
-      shell = "qq"; // QQ浏览器
+      shell = "qq_browser"; // QQ Browser
       shellVs = testVs(/qqbrowser\/[\d._]+/g);
+    } else if (testUa(/\sqq/g)) {
+      shell = "qq_app"; // QQ APP
     } else if (testUa(/ucbrowser/g)) {
       shell = "uc"; // UC浏览器
       shellVs = testVs(/ucbrowser\/[\d._]+/g);
@@ -1210,6 +1212,8 @@ export function getBrowserType(): any {
     } else if (testUa(/maxthon/g)) {
       shell = "maxthon"; // 遨游浏览器
       shellVs = testVs(/maxthon\/[\d._]+/g);
+    } else if (testUa(/biliapp/g)) {
+      shell = "bilibili"; // 哔哩哔哩
     }
     return Object.assign({
       engine, // webkit gecko presto trident
@@ -1219,7 +1223,7 @@ export function getBrowserType(): any {
       supporterVs,
       system, // windows macos linux android ios
       systemVs
-    }, shell === 'none' ? {} : {
+    }, {
       shell, // wechat qq uc 360 2345 sougou liebao maxthon
       shellVs
     });
