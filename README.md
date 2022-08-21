@@ -407,6 +407,15 @@ getBrowserInfo(); // {"engine":"webkit","engineVs":"537.36","platform":"desktop"
 | Index | Field | Description |
 | --- | --- | --- |
 | * System | system | android, ios, windows, macos, linux |
+| * System version | systemVs | windows: 2000, xp, 2003, vista, 7, 8, 8.1, 10<br />macos: ... |
+| * Platform | platform | desktop, mobile |
+| * Engine | engine | webkit, gecko, presto, trident |
+| * Engine version | engineVs | - |
+| * Supporter | supporter | edge, opera, chrome, safari, firefox, iexplore |
+| * Supporter version | supporterVs | - |
+| Shell | shell | wechat, qq_browser, qq_app, uc, 360, 2345, sougou, liebao, maxthon, bilibili |
+| Shell version | shellVs | - |
+| Apple device type | appleType | iphone, ipad, ipod, iwatch |
 
 ### Web Performance
 

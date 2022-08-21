@@ -1091,6 +1091,8 @@ export function getBrowserInfo(): any {
       .replace(/_/g, ".");
     // 系统
     let system = '';
+    // Apple device type.
+    let appleType = '';
     if (testUa(/windows|win32|win64|wow32|wow64/g)) {
       system = "windows"; // windows系统
     } else if (testUa(/macintosh|macintel/g)) {
@@ -1101,6 +1103,15 @@ export function getBrowserInfo(): any {
       system = "android"; // android系统
     } else if (testUa(/ios|iphone|ipad|ipod|iwatch/g)) {
       system = "ios"; // ios系统
+      if (testUa(/iphone/g)) {
+        appleType = 'iphone';
+      } else if (testUa(/ipad/g)) {
+        appleType = 'ipad';
+      } else if (testUa(/iwatch/g)) {
+        appleType = 'iwatch';
+      } else if (testUa(/ipod/g)) {
+        appleType = 'ipod';
+      }
     }
     // 系统版本
     let systemVs = '';
@@ -1222,10 +1233,11 @@ export function getBrowserInfo(): any {
       supporter, // chrome safari firefox opera iexplore edge
       supporterVs,
       system, // windows macos linux android ios
-      systemVs
+      systemVs,
     }, {
       shell, // wechat qq uc 360 2345 sougou liebao maxthon
-      shellVs
+      shellVs,
+      appleType,
     });
   } catch (err) {
     return {};
