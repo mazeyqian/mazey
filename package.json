@@ -14,6 +14,7 @@
     "build": "npx rollup -c",
     "test": "jest",
     "docs": "npx typedoc --out docs/ src/",
+    "preview": "npm run build && npm run test && npm run docs",
     "release": "npm run build && npm publish",
     "lint-and-fix": "eslint ./src/index.ts --ext 'ts,tsx' --fix"
   },
