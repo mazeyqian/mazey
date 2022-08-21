@@ -1060,7 +1060,7 @@ export function isSafePWAEnv(): boolean {
     return false;
   }
   // 浏览器信息
-  const BrowserType = getBrowserType();
+  const BrowserType = getBrowserInfo();
   if (
     ('serviceWorker' in navigator) &&
     isSupportAsyncAwait() &&
@@ -1076,11 +1076,11 @@ export function isSafePWAEnv(): boolean {
 }
 
 /**
- * @method getBrowserType
+ * @method getBrowserInfo
  * @description 返回浏览器信息 https://github.com/JowayYoung/juejin-code/blob/master/browser-type.js
  * @return {object} 浏览器信息
  */
-export function getBrowserType(): any {
+export function getBrowserInfo(): any {
   try {
     // 权重：系统 + 系统版本 > 平台 > 内核 + 载体 + 内核版本 + 载体版本 > 外壳 + 外壳版本
     const ua: any = navigator.userAgent.toLowerCase();
@@ -1090,7 +1090,9 @@ export function getBrowserType(): any {
       .replace(/[^0-9|_.]/g, "")
       .replace(/_/g, ".");
     // 系统
-    let system = "unknow";
+    let system = '';
+    // Apple device type.
+    let appleType = '';
     if (testUa(/windows|win32|win64|wow32|wow64/g)) {
       system = "windows"; // windows系统
     } else if (testUa(/macintosh|macintel/g)) {
@@ -1101,9 +1103,18 @@ export function getBrowserType(): any {
       system = "android"; // android系统
     } else if (testUa(/ios|iphone|ipad|ipod|iwatch/g)) {
       system = "ios"; // ios系统
+      if (testUa(/iphone/g)) {
+        appleType = 'iphone';
+      } else if (testUa(/ipad/g)) {
+        appleType = 'ipad';
+      } else if (testUa(/iwatch/g)) {
+        appleType = 'iwatch';
+      } else if (testUa(/ipod/g)) {
+        appleType = 'ipod';
+      }
     }
     // 系统版本
-    let systemVs = "unknow";
+    let systemVs = '';
     if (system === "windows") {
       if (testUa(/windows nt 5.0|windows 2000/g)) {
         systemVs = "2000";
@@ -1130,15 +1141,15 @@ export function getBrowserType(): any {
       systemVs = testVs(/os [\d._]+/g);
     }
     // 平台
-    let platform = "unknow";
+    let platform = '';
     if (system === "windows" || system === "macos" || system === "linux") {
       platform = "desktop"; // 桌面端
     } else if (system === "android" || system === "ios" || testUa(/mobile/g)) {
       platform = "mobile"; // 移动端
     }
     // 内核和载体
-    let engine = "unknow";
-    let supporter = "unknow";
+    let engine = '';
+    let supporter = '';
     if (testUa(/applewebkit/g)) {
       engine = "webkit"; // webkit内核
       if (testUa(/edge/g)) {
@@ -1161,7 +1172,7 @@ export function getBrowserType(): any {
       supporter = "iexplore"; // iexplore浏览器
     }
     // 内核版本
-    let engineVs = "unknow";
+    let engineVs = '';
     if (engine === "webkit") {
       engineVs = testVs(/applewebkit\/[\d._]+/g);
     } else if (engine === "gecko") {
@@ -1172,7 +1183,7 @@ export function getBrowserType(): any {
       engineVs = testVs(/trident\/[\d._]+/g);
     }
     // 载体版本
-    let supporterVs = "unknow";
+    let supporterVs = '';
     if (supporter === "chrome") {
       supporterVs = testVs(/chrome\/[\d._]+/g);
     } else if (supporter === "safari") {
@@ -1187,14 +1198,16 @@ export function getBrowserType(): any {
       supporterVs = testVs(/edge\/[\d._]+/g);
     }
     // 外壳和外壳版本
-    let shell = "none";
-    let shellVs = "unknow";
+    let shell = '';
+    let shellVs = '';
     if (testUa(/micromessenger/g)) {
       shell = "wechat"; // 微信浏览器
       shellVs = testVs(/micromessenger\/[\d._]+/g);
     } else if (testUa(/qqbrowser/g)) {
-      shell = "qq"; // QQ浏览器
+      shell = "qq_browser"; // QQ Browser
       shellVs = testVs(/qqbrowser\/[\d._]+/g);
+    } else if (testUa(/\sqq/g)) {
+      shell = "qq_app"; // QQ APP
     } else if (testUa(/ucbrowser/g)) {
       shell = "uc"; // UC浏览器
       shellVs = testVs(/ucbrowser\/[\d._]+/g);
@@ -1210,6 +1223,8 @@ export function getBrowserType(): any {
     } else if (testUa(/maxthon/g)) {
       shell = "maxthon"; // 遨游浏览器
       shellVs = testVs(/maxthon\/[\d._]+/g);
+    } else if (testUa(/biliapp/g)) {
+      shell = "bilibili"; // 哔哩哔哩
     }
     return Object.assign({
       engine, // webkit gecko presto trident
@@ -1218,10 +1233,11 @@ export function getBrowserType(): any {
       supporter, // chrome safari firefox opera iexplore edge
       supporterVs,
       system, // windows macos linux android ios
-      systemVs
-    }, shell === "none" ? {} : {
+      systemVs,
+    }, {
       shell, // wechat qq uc 360 2345 sougou liebao maxthon
-      shellVs
+      shellVs,
+      appleType,
     });
   } catch (err) {
     return {};

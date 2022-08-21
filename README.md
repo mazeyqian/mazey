@@ -398,11 +398,24 @@ calLongestCommonSubsequence('fish', 'finish'); // 4
 ### Browser Information
 
 ```
-import { getBrowserType } from 'mazey';
+import { getBrowserInfo } from 'mazey';
 
-getBrowserType(); // {"engine":"webkit","engineVs":"537.36","platform":"desktop","supporter":"chrome","supporterVs":"85.0.4183.121","system":"windows","systemVs":"10"}
+getBrowserInfo(); // {"engine":"webkit","engineVs":"537.36","platform":"desktop","supporter":"chrome","supporterVs":"85.0.4183.121","system":"windows","systemVs":"10"}
 // Shell and shell version { shell: 'wechat', shellVs: '20' } shell: wechat qq uc 360 2345 sougou liebao maxthon
 ```
+
+| Index | Field | Description |
+| --- | --- | --- |
+| * System | system | android, ios, windows, macos, linux |
+| * System version | systemVs | windows: 2000, xp, 2003, vista, 7, 8, 8.1, 10<br />macos: ... |
+| * Platform | platform | desktop, mobile |
+| * Engine | engine | webkit, gecko, presto, trident |
+| * Engine version | engineVs | - |
+| * Supporter | supporter | edge, opera, chrome, safari, firefox, iexplore |
+| * Supporter version | supporterVs | - |
+| Shell | shell | wechat, qq_browser, qq_app, uc, 360, 2345, sougou, liebao, maxthon, bilibili |
+| Shell version | shellVs | - |
+| Apple device type | appleType | iphone, ipad, ipod, iwatch |
 
 ### Web Performance
 

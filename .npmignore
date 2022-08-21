@@ -1,21 +1,17 @@
-*.yml
+# Folders and files
+
+# Folders
 build/
 node_modules/
 test/
-.idea
-.vscode
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
 doc/
 docs/
 undefined/
 temp/
-yarn.lock
-yarn-error.log
-package-lock.json
-api-extractor.json
+
+# .
+.idea
+.vscode
 .editorconfig
 .eslintignore
 .lintstagedrc
@@ -24,6 +20,19 @@ api-extractor.json
 .eslintrc.js
 .babelrc
 .eslintrc
+
+# *
+*.yml
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Files
+yarn.lock
+yarn-error.log
+package-lock.json
+api-extractor.json
 commitlint.config.js
 rollup.config.js
 webpack.config.js
