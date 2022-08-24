@@ -15,7 +15,7 @@
     "test": "jest",
     "docs": "npx typedoc --out docs/ src/",
     "preview": "npm run build && npm run test && npm run docs",
-    "release": "npm run build && npm publish",
+    "release": "npm run preview && npm publish",
     "lint-and-fix": "eslint ./src/index.ts --ext 'ts,tsx' --fix"
   },
   "repository": {
@@ -23,12 +23,35 @@
     "url": "git+https://github.com/mazeyqian/mazey.git"
   },
   "keywords": [
-    "JavaScript",
-    "Function",
-    "Math",
-    "Load"
+    "javascript",
+    "function",
+    "math",
+    "load",
+    "css",
+    "debounce",
+    "throttle",
+    "trim",
+    "clone",
+    "json",
+    "random",
+    "dom",
+    "style",
+    "url",
+    "hash",
+    "storage",
+    "cookie",
+    "calculate",
+    "formula",
+    "browser",
+    "performance",
+    "pwa",
+    "console"
   ],
-  "author": "Mazey Chu",
+  "author": {
+		"name": "Mazey Chu",
+		"email": "mazeyqian@gmail.com",
+		"url": "https://blog.mazey.net"
+	},
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/mazeyqian/mazey/issues"
