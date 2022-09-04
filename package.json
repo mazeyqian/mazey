@@ -1,6 +1,6 @@
 {
   "name": "mazey",
-  "version": "2.1.0",
+  "version": "2.4.0",
   "description": "Mazey's library for front end.",
   "main": "lib/index.cjs.js",
   "module": "lib/index.esm.js",
@@ -14,26 +14,49 @@
     "build": "npx rollup -c",
     "test": "jest",
     "docs": "npx typedoc --out docs/ src/",
+    "lint-and-fix": "eslint ./src/index.ts --ext 'ts,tsx' --fix",
     "preview": "npm run build && npm run test && npm run docs",
-    "release": "npm run build && npm publish",
-    "lint-and-fix": "eslint ./src/index.ts --ext 'ts,tsx' --fix"
+    "release": "npm run preview && npm publish && node ./scripts/release.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mazeyqian/mazey.git"
   },
   "keywords": [
-    "JavaScript",
-    "Function",
-    "Math",
-    "Load"
+    "javascript",
+    "function",
+    "math",
+    "load",
+    "css",
+    "debounce",
+    "throttle",
+    "trim",
+    "clone",
+    "json",
+    "random",
+    "dom",
+    "style",
+    "url",
+    "hash",
+    "storage",
+    "cookie",
+    "calculate",
+    "formula",
+    "browser",
+    "performance",
+    "pwa",
+    "console"
   ],
-  "author": "Mazey Chu",
+  "author": {
+    "name": "Mazey Chu",
+    "email": "mazeyqian@gmail.com",
+    "url": "https://blog.mazey.net"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/mazeyqian/mazey/issues"
   },
-  "homepage": "https://mazey.cn/docs/mazey/",
+  "homepage": "https://github.com/mazeyqian/mazey#readme",
   "devDependencies": {
     "@babel/core": "7.8.4",
     "@babel/plugin-proposal-class-properties": "7.10.4",
@@ -52,6 +75,7 @@
     "eslint-plugin-node": "11.0.0",
     "eslint-plugin-promise": "4.2.1",
     "eslint-plugin-standard": "4.0.1",
+    "execa": "^4.1.0",
     "html-webpack-plugin": "3.2.0",
     "husky": "4.3.8",
     "jest": "^27.5.1",
