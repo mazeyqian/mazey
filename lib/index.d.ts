@@ -154,9 +154,7 @@ export declare function debounce(func: any, wait: number, immediate: any): any;
  * @type {string} type 返回类型 d: 2(天) text: 2 天 4 时...
  * @return {String/number} 取决于 type
  * */
-export declare function friendlyInterval({ start, end, type }?: {
-    start?: number | undefined;
-    end?: number | undefined;
+export declare function friendlyInterval(start?: number, end?: number, { type }?: {
     type?: string | undefined;
 }): number | string;
 /**
@@ -212,8 +210,7 @@ export declare function getLocalStorage(key: string): any;
  * @param {string} id -- link标签id
  * @return {Promise<boolean>} true -- 加载成功
  */
-export declare function loadCSS({ url, id }?: {
-    url?: string | undefined;
+export declare function loadCSS(url?: string, { id }?: {
     id?: string | undefined;
 }): Promise<any>;
 /**
@@ -226,8 +223,7 @@ export declare function loadCSS({ url, id }?: {
  * @param {boolean} isDefer -- 是否添加 defer 标签
  * @return {Promise<boolean>} -- true 成功
  */
-export declare function loadScript({ url, id, callback, timeout, isDefer }?: {
-    url?: string | undefined;
+export declare function loadScript(url?: string, { id, callback, timeout, isDefer }?: {
     id?: string | undefined;
     callback?: (() => void) | undefined;
     timeout?: number | undefined;
@@ -254,9 +250,7 @@ export declare function getCookie(name: string): string;
  * @param {boolean} camelCase -- true（默认） 以驼峰形式返回数据 false 以下划线形式返回数据
  * @return {Promise<object>} 加载数据
  */
-export declare function getPerformance({ camelCase }?: {
-    camelCase?: boolean | undefined;
-}): Promise<any>;
+export declare function getPerformance(camelCase?: boolean): Promise<any>;
 /**
  * @method inRate
  * @description 百分位概率
@@ -298,9 +292,7 @@ export declare function cutCHSString(str?: string, len?: number, hasDot?: boolea
  * @param {number} timeout 超时时间 / 单位：秒
  * @return {Promise<string>} document is loaded? 'complete' 'load' / 'timeout'
 */
-export declare function windowLoaded({ timeout }?: {
-    timeout?: number | undefined;
-}): Promise<string>;
+export declare function windowLoaded(timeout?: number): Promise<string>;
 /**
  * @method addInlineStyle
  * @description 添加内联样式
@@ -308,8 +300,7 @@ export declare function windowLoaded({ timeout }?: {
  * @param {string} id <style> 标签的 ID
  * @return {boolean} 添加成功/失败
 */
-export declare function addInlineStyle({ inlineStyle, id }?: {
-    inlineStyle?: string | undefined;
+export declare function addInlineStyle(inlineStyle?: string, { id }?: {
     id?: string | undefined;
 }): boolean;
 /**
@@ -319,7 +310,5 @@ export declare function addInlineStyle({ inlineStyle, id }?: {
  * @param {function} allowFn 允许打印的判断函数
  * @return {object} 新实例
 */
-export declare function genCustomConsole({ prefix }?: {
-    prefix?: string | undefined;
-}): any;
+export declare function genCustomConsole(prefix?: string): any;
 //# sourceMappingURL=index.d.ts.map
