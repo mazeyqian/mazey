@@ -201,7 +201,7 @@ export function mTrim(str = ''): string {
  * @method newLine
  * @description Make a newline of HTML.
  * @param {string} str The string to make a newline.
- * @return {string} A newline with `<br />`.
+ * @return {string} A newline with `br`.
  * */
 export function newLine(str = ''): string {
   if (!str) {
@@ -1319,7 +1319,7 @@ export function windowLoaded({ timeout = 90 } = {}): Promise<string> {
  * @method addInlineStyle
  * @description 添加内联样式
  * @param {string} inlineStyle 内联样式字符串
- * @param {string} id <style> 标签的 ID
+ * @param {string} id style 标签的 ID
  * @return {boolean} 添加成功/失败 
 */
 export function addInlineStyle({ inlineStyle = '', id = '' } = {}): boolean {
