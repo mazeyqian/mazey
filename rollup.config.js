@@ -21,7 +21,7 @@ export default {
     {
       file: 'lib/mazey.min.js',
       format: 'iife',
-      name: '$mazey',
+      name: 'Mazey',
     },
   ],
   plugins: [
