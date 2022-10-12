@@ -29,12 +29,14 @@ npm install mazey --save
 ```
 import { loadScript } from 'mazey';
 
-loadScript({
-  url: 'http://example.com/js/plugin/jquery/jquery-2.1.1.min.js',
-  id: 'iamid', // Optional, script ID, default none
-  timeout: 5000, // Optional, timeout, default `5000`
-  isDefer: false, // Optional, defer, default `false`
-})
+loadScript(
+    'http://example.com/js/plugin/jquery/jquery-2.1.1.min.js',
+    {
+      id: 'iamid', // Optional, script ID, default none
+      timeout: 5000, // Optional, timeout, default `5000`
+      isDefer: false, // Optional, defer, default `false`
+    }
+  )
   .then(
     res => {
       console.log(`Load JavaScript Success: ${res}`);
@@ -52,10 +54,12 @@ loadScript({
 ```
 import { loadCSS } from 'mazey';
 
-loadCSS({
-  url: 'http://example.com/css/mazey-base.css',
-  id: 'iamid', // Optional, link ID, default none
-})
+loadCSS(
+    'http://example.com/css/mazey-base.css',
+    {
+      id: 'iamid', // Optional, link ID, default none
+    }
+  )
   .then(
     res => {
       console.log(`Load CSS Success: ${res}`);
@@ -75,7 +79,7 @@ Check whether the page is loaded successfully (Keepe the compatibility in case t
 ```
 import { windowLoaded } from 'mazey';
 
-windowLoaded({ timeout: 30 }) // second
+windowLoaded(30) // second
   .then(res => {
     console.log(`Load Success: ${res}`); // Load Success: load
   })
@@ -213,14 +217,16 @@ Case 1: Add the inline style with `id`, and repeated invoking will update the co
 ```
 import { addInlineStyle } from 'mazey';
 
-addInlineStyle({
-  inlineStyle: `
+addInlineStyle(
+  `
     body {
       background-color: #333;
     }
   `,
-  id: 'test',
-});
+  {
+    id: 'test',
+  }
+);
 // <style id="test">
 //   body {
 //     background-color: #333;
@@ -233,13 +239,13 @@ Case 2: Add the inline style without `id`, and repeated invoking will adding a n
 ```
 import { addInlineStyle } from 'mazey';
 
-addInlineStyle({
-  inlineStyle: `
+addInlineStyle(
+  `
     body {
       background-color: #444;
     }
-  `,
-});
+  `
+);
 // <style>
 //   body {
 //     background-color: #444;
@@ -426,7 +432,7 @@ import { getPerformance } from 'mazey';
 
 // `camelCase：true`(Default) Return hump data.
 // `camelCase：false` Return underline data.
-getPerformance({ camelCase: true })
+getPerformance(true)
  .then(res => {
   console.log(JSON.stringify(res));
   // {"deviceType":"pc","network":"3g","unloadTime":0,"redirectTime":0,"dnsTime":0,"tcpTime":0,"responseTime":65,"downloadTime":1,"domreadyTime":369,"onloadTime":441,"whiteTime":94,"renderTime":441,"decodedBodySize":210,"encodedBodySize":210}
@@ -467,7 +473,7 @@ Custom console printing (`console`).
 ```
 import { genCustomConsole } from 'mazey';
 
-const myConsole = genCustomConsole({ prefix: 'MazeyLog:' });
+const myConsole = genCustomConsole('MazeyLog:');
 myConsole.log('I am string.'); // MazeyLog: I am string.
 myConsole.info('I am boolean.', true); // MazeyLog: I am boolean. true
 myConsole.info('I am number.', 123, 456); // MazeyLog: I am number. 123 456

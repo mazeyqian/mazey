@@ -437,7 +437,7 @@ export function debounce(func: any, wait: number, immediate: any): any {
  * @type {string} type 返回类型 d: 2(天) text: 2 天 4 时...
  * @return {String/number} 取决于 type
  * */
-export function friendlyInterval({ start = 0, end = 0, type = 'd' } = {}): number | string {
+export function friendlyInterval(start = 0, end = 0, { type = 'd' } = {}): number | string {
   if (!isNumber(start)) start = new Date(start).getTime();
   if (!isNumber(end)) end = new Date(end).getTime();
   const t = end - start;
@@ -571,7 +571,7 @@ export function getLocalStorage(key: string): any {
  * @param {string} id -- link标签id
  * @return {Promise<boolean>} true -- 加载成功
  */
-export function loadCSS({ url = '', id = '' } = {}): Promise<any> {
+export function loadCSS(url = '', { id = '' } = {}): Promise<any> {
   let success: any = null;
   let fail: any = null;
   const status = new Promise((resolve, reject) => {
@@ -695,7 +695,7 @@ export function loadCSS({ url = '', id = '' } = {}): Promise<any> {
  * @param {boolean} isDefer -- 是否添加 defer 标签
  * @return {Promise<boolean>} -- true 成功
  */
-export function loadScript({ url = '', id = '', callback = function () { /* pass */ }, timeout = 5000, isDefer = false } = {}): Promise<any> {
+export function loadScript(url = '', { id = '', callback = function () { /* pass */ }, timeout = 5000, isDefer = false } = {}): Promise<any> {
   let success: any = null;
   let fail: any = null;
   const script: any = document.createElement('script');
@@ -813,7 +813,7 @@ export function getCookie(name: string): string {
  * @param {boolean} camelCase -- true（默认） 以驼峰形式返回数据 false 以下划线形式返回数据
  * @return {Promise<object>} 加载数据
  */
-export function getPerformance({ camelCase = true } = {}): Promise<any> {
+export function getPerformance(camelCase = true): Promise<any> {
   let success: any;
   let fail: any;
   const status = new Promise((resolve, reject) => {
@@ -1298,7 +1298,7 @@ export function cutCHSString(str = '', len = str.length, hasDot = false): string
  * @param {number} timeout 超时时间 / 单位：秒
  * @return {Promise<string>} document is loaded? 'complete' 'load' / 'timeout'
 */
-export function windowLoaded({ timeout = 90 } = {}): Promise<string> {
+export function windowLoaded(timeout = 90): Promise<string> {
   let loaded: (value: string) => void = () => undefined;
   let loadFail: (value: string) => void = () => undefined;
   const status = new Promise((resolve: (value: string) => void, reject: (value: string) => void) => {
@@ -1322,7 +1322,7 @@ export function windowLoaded({ timeout = 90 } = {}): Promise<string> {
  * @param {string} id style 标签的 ID
  * @return {boolean} 添加成功/失败 
 */
-export function addInlineStyle({ inlineStyle = '', id = '' } = {}): boolean {
+export function addInlineStyle(inlineStyle = '', { id = '' } = {}): boolean {
   if (!inlineStyle) {
     return false;
   }
@@ -1360,7 +1360,7 @@ export function addInlineStyle({ inlineStyle = '', id = '' } = {}): boolean {
  * @param {function} allowFn 允许打印的判断函数
  * @return {object} 新实例
 */
-export function genCustomConsole({ prefix = '' } = {}): any {
+export function genCustomConsole(prefix = ''): any {
   const methods = ['log', 'info', 'warn', 'error'];
   const newConsole = Object.create(null);
   methods.forEach(method => {
