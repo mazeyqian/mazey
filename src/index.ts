@@ -1,4 +1,4 @@
-/* Mazey */
+/* mazey */
 
 /**
  * @method calLongestCommonSubstring
@@ -201,7 +201,7 @@ export function mTrim(str = ''): string {
  * @method newLine
  * @description Make a newline of HTML.
  * @param {string} str The string to make a newline.
- * @return {string} A newline with `<br />`.
+ * @return {string} A newline with `br`.
  * */
 export function newLine(str = ''): string {
   if (!str) {
@@ -1085,10 +1085,17 @@ export function getBrowserInfo(): any {
     // 权重：系统 + 系统版本 > 平台 > 内核 + 载体 + 内核版本 + 载体版本 > 外壳 + 外壳版本
     const ua: any = navigator.userAgent.toLowerCase();
     const testUa: (regexp: any) => any = regexp => regexp.test(ua);
-    const testVs: (regexp: any) => any = regexp => ua.match(regexp)
-      .toString()
-      .replace(/[^0-9|_.]/g, "")
-      .replace(/_/g, ".");
+    const testVs: (regexp: any) => any = regexp => {
+      const matchRes = ua.match(regexp);
+      let ret = '';
+      if (matchRes) {
+        ret = matchRes
+          .toString()
+          .replace(/[^0-9|_.]/g, "")
+          .replace(/_/g, ".");
+      }
+      return ret;
+    };
     // 系统
     let system = '';
     // Apple device type.
@@ -1240,6 +1247,7 @@ export function getBrowserInfo(): any {
       appleType,
     });
   } catch (err) {
+    console.warn('mazey:', err);
     return {};
   }
 }
@@ -1319,7 +1327,7 @@ export function windowLoaded(timeout = 90): Promise<string> {
  * @method addInlineStyle
  * @description 添加内联样式
  * @param {string} inlineStyle 内联样式字符串
- * @param {string} id <style> 标签的 ID
+ * @param {string} id style 标签的 ID
  * @return {boolean} 添加成功/失败 
 */
 export function addInlineStyle(inlineStyle = '', { id = '' } = {}): boolean {
