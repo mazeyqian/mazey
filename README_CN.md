@@ -1,4 +1,4 @@
-# Mazey
+# mazey
 
 [![NPM version][npm-image]][npm-url]
 [![l][l-image]][l-url]
@@ -12,7 +12,7 @@
 
 ## Install
 
-You can get Mazey via [npm](https://www.npmjs.com/package/mazey/v/1.4.39).
+You can get mazey via [npm](https://www.npmjs.com/package/mazey/v/1.4.39).
 
 ```
 npm install mazey@1.4.39 --save

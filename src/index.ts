@@ -1,4 +1,4 @@
-/* Mazey */
+/* mazey */
 
 /**
  * @method calLongestCommonSubstring
@@ -1085,10 +1085,17 @@ export function getBrowserInfo(): any {
     // 权重：系统 + 系统版本 > 平台 > 内核 + 载体 + 内核版本 + 载体版本 > 外壳 + 外壳版本
     const ua: any = navigator.userAgent.toLowerCase();
     const testUa: (regexp: any) => any = regexp => regexp.test(ua);
-    const testVs: (regexp: any) => any = regexp => ua.match(regexp)
-      .toString()
-      .replace(/[^0-9|_.]/g, "")
-      .replace(/_/g, ".");
+    const testVs: (regexp: any) => any = regexp => {
+      const matchRes = ua.match(regexp);
+      let ret = '';
+      if (matchRes) {
+        ret = matchRes
+          .toString()
+          .replace(/[^0-9|_.]/g, "")
+          .replace(/_/g, ".");
+      }
+      return ret;
+    };
     // 系统
     let system = '';
     // Apple device type.
@@ -1240,6 +1247,7 @@ export function getBrowserInfo(): any {
       appleType,
     });
   } catch (err) {
+    console.warn('mazey:', err);
     return {};
   }
 }
