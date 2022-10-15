@@ -250,8 +250,8 @@ remove<span class="hljs-constructor">Class(<span class="hljs-params">dom</span>,
 				<a href="#style" id="style" style="color: inherit; text-decoration: none;">
 					<h4>Style</h4>
 				</a>
-				<p>Add inline-style.</p>
-				<p>Case 1: Add the inline style with <code>id</code>, and repeated invoking will update the content instead of adding a new one.</p>
+				<p>Add <code>&lt;style&gt;</code> in <code>&lt;head&gt;</code>.</p>
+				<p>Case 1: Add the <code>&lt;style&gt;</code> with <code>id</code>, and repeated invoking will update the content instead of adding a new one.</p>
 				<pre><code>import { addStyle } from <span class="hljs-string">&#x27;mazey&#x27;</span>;
 
 addStyle(
@@ -270,7 +270,7 @@ addStyle(
 <span class="hljs-regexp">//</span>   }
 <span class="hljs-regexp">//</span> &lt;/style&gt;
 </code></pre>
-				<p>Case 2: Add the inline style without <code>id</code>, and repeated invoking will adding a new one.</p>
+				<p>Case 2: Add the <code>&lt;style&gt;</code> without <code>id</code>, and repeated invoking will adding a new one.</p>
 				<pre><code>import { addStyle } from <span class="hljs-string">&#x27;mazey&#x27;</span>;
 
 addStyle(
@@ -604,6 +604,9 @@ npm <span class="hljs-keyword">run</span><span class="bash"> docs</span>
 						<a href="globals.html"><em>Globals</em></a>
 					</li>
 					<li class=" tsd-kind-module">
+						<a href="modules/_example_.html">&quot;example&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
 						<a href="modules/_index_.html">&quot;index&quot;</a>
 					</li>
 				</ul>
@@ -620,6 +623,7 @@ npm <span class="hljs-keyword">run</span><span class="bash"> docs</span>
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
 				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
 			</ul>
 		</div>
