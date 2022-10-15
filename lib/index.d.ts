@@ -301,8 +301,6 @@ export declare function windowLoaded(timeout?: number): Promise<string>;
  * Case 1: Add the `<style>` with `id`, and repeated invoking will update the content instead of adding a new one.
  *
  * ```
- * import { addStyle } from 'mazey';
- *
  * addStyle(
  *   `
  *     body {
@@ -323,8 +321,6 @@ export declare function windowLoaded(timeout?: number): Promise<string>;
  * Case 2: Add the `<style>` without `id`, and repeated invoking will adding a new one.
  *
  * ```
- * import { addStyle } from 'mazey';
- *
  * addStyle(
  *   `
  *     body {
@@ -337,6 +333,7 @@ export declare function windowLoaded(timeout?: number): Promise<string>;
  * //     background-color: #333;
  * //   }
  * // </style>
+ * ```
  *
  * @param style Style string.
  * @param options.id `id` in `<style>`
