@@ -79,7 +79,8 @@ export function getQueryParam(param = ''): string {
   const reg = new RegExp('(^|&)' + param + '=([^&]*)(&|$)');
   const r = location.search.substr(1).match(reg);
   if (r !== null) {
-    return decodeURIComponent(unescape(r[2]));
+    // return decodeURIComponent(unescape(r[2]));
+    return decodeURIComponent(r[2]);
   }
   return '';
 }
