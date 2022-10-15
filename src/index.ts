@@ -1325,14 +1325,52 @@ export function windowLoaded(timeout = 90): Promise<string> {
 }
 
 /**
- * @method addInlineStyle
- * @description 添加内联样式
- * @param {string} inlineStyle 内联样式字符串
- * @param {string} id style 标签的 ID
- * @return {boolean} 添加成功/失败 
-*/
-export function addInlineStyle(inlineStyle = '', { id = '' } = {}): boolean {
-  if (!inlineStyle) {
+ * EN: Add `<style>` in `<head>`.
+ * ZH: 添加内联样式
+ * 
+ * @param style 内联样式字符串
+ * @param id `<style>` 标签的 `id`
+ * @return {boolean} 添加成功/失败
+ * @example
+ * Case 1: Add the `<style>` with `id`, and repeated invoking will update the content instead of adding a new one.
+ * ```
+ * import { addStyle } from 'mazey';
+ * 
+ * addStyle(
+ *   `
+ *     body {
+ *       background-color: #333;
+ *     }
+ *   `,
+ *   {
+ *     id: 'test',
+ *   }
+ * );
+ * // <style id="test">
+ * //   body {
+ * //     background-color: #333;
+ * //   }
+ * // </style>
+ * ```
+ * Case 2: Add the `<style>` without `id`, and repeated invoking will adding a new one.
+ * ```
+ * import { addStyle } from 'mazey';
+ * 
+ * addStyle(
+ *   `
+ *     body {
+ *       background-color: #333;
+ *     }
+ *   `
+ * );
+ * // <style>
+ * //   body {
+ * //     background-color: #333;
+ * //   }
+ * // </style>
+ */
+export function addStyle(style = '', { id = '' } = {}): boolean {
+  if (!style) {
     return false;
   }
   // 创建 style 文档碎片
@@ -1348,14 +1386,14 @@ export function addInlineStyle(inlineStyle = '', { id = '' } = {}): boolean {
     // 如果 Dom 不存在，插入 style
     if (!idDom) {
       customStyle.setAttribute('id', id);
-      customStyle.innerHTML = inlineStyle;
+      customStyle.innerHTML = style;
       styleFrag.appendChild(customStyle);
       document.head.appendChild(styleFrag);
     } else { // 如果 Dom 存在，直接更新
-      idDom.innerHTML = inlineStyle;
+      idDom.innerHTML = style;
     }
   } else { // 不需要 ID，直接添加新标签
-    customStyle.innerHTML = inlineStyle;
+    customStyle.innerHTML = style;
     styleFrag.appendChild(customStyle);
     document.head.appendChild(styleFrag);
   }
