@@ -1081,12 +1081,23 @@ export function isSafePWAEnv(): boolean {
  * @description 返回浏览器信息 https://github.com/JowayYoung/juejin-code/blob/master/browser-type.js
  * @returns {object} 浏览器信息
  */
-export function getBrowserInfo(): any {
+export function getBrowserInfo(): {
+  engine: string; // webkit gecko presto trident
+  engineVs: string;
+  platform: string; // desktop mobile
+  supporter: string; // chrome safari firefox opera iexplore edge
+  supporterVs: string;
+  system: string; // windows macos linux android ios
+  systemVs: string;
+  shell?: string; // wechat qq uc 360 2345 sougou liebao maxthon
+  shellVs?: string;
+  appleType?: string;
+} {
   try {
     // 权重：系统 + 系统版本 > 平台 > 内核 + 载体 + 内核版本 + 载体版本 > 外壳 + 外壳版本
-    const ua: any = navigator.userAgent.toLowerCase();
-    const testUa: (regexp: any) => any = regexp => regexp.test(ua);
-    const testVs: (regexp: any) => any = regexp => {
+    const ua: string = navigator.userAgent.toLowerCase();
+    const testUa: (regexp: RegExp) => boolean = regexp => regexp.test(ua);
+    const testVs: (regexp: RegExp) => string = regexp => {
       const matchRes = ua.match(regexp);
       let ret = '';
       if (matchRes) {
@@ -1249,7 +1260,15 @@ export function getBrowserInfo(): any {
     });
   } catch (err) {
     console.warn('mazey:', err);
-    return {};
+    return {
+      engine: '', // webkit gecko presto trident
+      engineVs: '',
+      platform: '', // desktop mobile
+      supporter: '', // chrome safari firefox opera iexplore edge
+      supporterVs: '',
+      system: '', // windows macos linux android ios
+      systemVs: '',
+    };
   }
 }
 
@@ -1410,7 +1429,7 @@ export function addStyle(style = '', options: { id: string; } = { id: '' }): boo
  * @param {function} allowFn 允许打印的判断函数
  * @returns {object} 新实例
  */
-export function genCustomConsole(prefix = ''): any {
+export function genCustomConsole(prefix = ''): Console {
   const methods = ['log', 'info', 'warn', 'error'];
   const newConsole = Object.create(null);
   methods.forEach(method => {
