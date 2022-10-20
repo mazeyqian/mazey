@@ -12,7 +12,7 @@ import {
   deepCopyObject,
   isJsonString,
   generateRndNum,
- } from './index';
+ } from '../src/index';
 
 // 数字测试
 console.log('数字测试：', isNumber(Infinity, { isUnFiniteAsNumber: true }));
