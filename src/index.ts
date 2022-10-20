@@ -7,7 +7,7 @@
  * @param {string} bStr String
  * @returns {number} Length
  */
-export function calLongestCommonSubstring(aStr = '', bStr = ''): number {
+export function calLongestCommonSubstring(aStr: string, bStr: string): number {
   const aLen = aStr.length;
   const bLen = bStr.length;
   // 创建二维数组并且深拷贝
@@ -37,7 +37,7 @@ export function calLongestCommonSubstring(aStr = '', bStr = ''): number {
  * @param {string} bStr 字符串
  * @returns {number} 长度
  */
-export function calLongestCommonSubsequence(aStr = '', bStr = ''): number {
+export function calLongestCommonSubsequence(aStr: string, bStr: string): number {
   const aLen = aStr.length;
   const bLen = bStr.length;
   // 创建二维数组并且深拷贝
@@ -75,7 +75,7 @@ export function calLongestCommonSubsequence(aStr = '', bStr = ''): number {
  * @param {string} param Query param.
  * @returns {string} value
  */
-export function getQueryParam(param = ''): string {
+export function getQueryParam(param: string): string {
   const reg = new RegExp('(^|&)' + param + '=([^&]*)(&|$)');
   const r = location.search.substr(1).match(reg);
   if (r !== null) {
@@ -92,8 +92,10 @@ export function getQueryParam(param = ''): string {
  * @param {string} param Query param.
  * @returns {string} value
  */
-export function getUrlParam(url = '', param = ''): string {
-  const result: any = {};
+export function getUrlParam(url: string, param: string): string | string[] {
+  const result: {
+    [key: string]: string | string[] | any;
+  } = {};
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace
   url.replace(/\??(\w+)=([^&]*)&?/g, function (a, k, v): any {
     if (result[k] !== undefined) {
@@ -119,7 +121,7 @@ export function getUrlParam(url = '', param = ''): string {
  * @param {string} value Param's value.
  * @returns {string} URL.
  */
- export function updateQueryParam(url = '', param = '', value = ''): string {
+ export function updateQueryParam(url: string, param: string, value: string): string {
   const re = new RegExp('([?&])' + param + '=.*?(&|$)', 'i');
   const separator = url.indexOf('?') !== -1 ? '&' : '?';
   if (url.match(re)) {
@@ -135,7 +137,7 @@ export function getUrlParam(url = '', param = ''): string {
  * @param {string} param Query param.
  * @returns {string} value
  */
-export function getHashQueryParam(param = ''): string {
+export function getHashQueryParam(param: string): string {
   const hashs = location.hash.split('?');
   if (hashs.length === 1) {
     return '';
@@ -151,7 +153,7 @@ export function getHashQueryParam(param = ''): string {
  * @param {string} url
  * @param {array} rules Object.keys(location), ['href', 'protocol', 'host', 'hostname', 'port', 'pathname', 'search', 'hash'], ['hostname', 'pathname'] = 'km.mazey.net/plugins/servlet/mobile'
  */
-export function getDomain(url = '', rules = ['hostname']): string {
+export function getDomain(url: string, rules = ['hostname']): string {
   const aEl: any = document.createElement('a');
   aEl.href = url;
   return rules.reduce((ret, v) => {
@@ -166,7 +168,7 @@ export function getDomain(url = '', rules = ['hostname']): string {
  * @param {string} camelCase 'aBC' or 'ABC'
  * @returns {string} 'a-b-c'
  */
-export function camelCaseToKebabCase(camelCase = ''): string {
+export function camelCaseToKebabCase(camelCase: string): string {
   const kebabCase = camelCase.replace(/([A-Z])/g, '-$1').toLowerCase();
   return kebabCase[0] === '-' ? kebabCase.substr(1) : kebabCase;
 }
@@ -177,7 +179,7 @@ export function camelCaseToKebabCase(camelCase = ''): string {
  * @param {string} camelCase 'aBC' or 'ABC'
  * @returns {string} 'a_b_c'
  */
-export function camelCase2Underscore(camelCase = ''): string {
+export function camelCase2Underscore(camelCase: string): string {
   const kebabCase = camelCase.replace(/([A-Z])/g, '_$1').toLowerCase();
   return kebabCase[0] === '_' ? kebabCase.substr(1) : kebabCase;
 }
@@ -188,7 +190,7 @@ export function camelCase2Underscore(camelCase = ''): string {
  * @param {string} str The string to trim.
  * @returns {string} Trimmed string.
  */
-export function mTrim(str = ''): string {
+export function mTrim(str: string): string {
   str = str.replace(/^\s+/, ''); // 去除头部空格
   let end = str.length - 1;
   const ws = /\s/;
@@ -204,7 +206,7 @@ export function mTrim(str = ''): string {
  * @param {string} str The string to make a newline.
  * @returns {string} A newline with `br`.
  */
-export function newLine(str = ''): string {
+export function newLine(str: string): string {
   if (!str) {
     return '';
   }
@@ -228,7 +230,7 @@ export function deepCopyObject(obj: any): any {
  * @param {string} str The string to check.
  * @returns {boolean} Return the result of checking.
  */
-export function isJsonString(str = ''): boolean {
+export function isJsonString(str: string): boolean {
   try {
     if (typeof JSON.parse(str) === 'object') {
       return true;
@@ -269,7 +271,7 @@ export function generateUniqueNum(n = 3): string {
  * @param {number} num 浮点数
  * @param {number} fixSize 保留几位浮点数
  */
-export function floatToPercent(num = 0, fixSize = 0): string {
+export function floatToPercent(num: number, fixSize = 0): string {
   let ret = '';
   if (fixSize) {
     ret = (num * 100).toFixed(fixSize);
@@ -572,7 +574,7 @@ export function getLocalStorage(key: string): any {
  * @param {string} id -- link标签id
  * @returns {Promise<boolean>} true -- 加载成功
  */
-export function loadCSS(url = '', { id = '' } = {}): Promise<any> {
+export function loadCSS(url: string, { id = '' } = {}): Promise<any> {
   let success: any = null;
   let fail: any = null;
   const status = new Promise((resolve, reject) => {
@@ -696,7 +698,7 @@ export function loadCSS(url = '', { id = '' } = {}): Promise<any> {
  * @param {boolean} isDefer -- 是否添加 defer 标签
  * @returns {Promise<boolean>} -- true 成功
  */
-export function loadScript(url = '', { id = '', callback = function () { /* pass */ }, timeout = 5000, isDefer = false } = {}): Promise<any> {
+export function loadScript(url: string, { id = '', callback = function () { /* pass */ }, timeout = 5000, isDefer = false } = {}): Promise<any> {
   let success: any = null;
   let fail: any = null;
   const script: any = document.createElement('script');
@@ -808,16 +810,20 @@ export function getCookie(name: string): string {
   return '';
 }
 
+interface GetPerformanceReturn {
+  [key: string]: string | number;
+}
+
 /**
  * @method getPerformance
  * @description 获取页面加载相关的各项数据
  * @param {boolean} camelCase -- true（默认） 以驼峰形式返回数据 false 以下划线形式返回数据
  * @returns {Promise<object>} 加载数据
  */
-export function getPerformance(camelCase = true): Promise<any> {
-  let success: any;
-  let fail: any;
-  const status = new Promise((resolve, reject) => {
+export function getPerformance(camelCase = true): Promise<GetPerformanceReturn | string> {
+  let success: (v: GetPerformanceReturn) => void;
+  let fail: (v: string) => void;
+  const status: Promise<GetPerformanceReturn> = new Promise((resolve, reject) => {
     ([success, fail] = [resolve, reject]);
   });
   const timing = window.performance.timing;
@@ -1275,11 +1281,11 @@ export function getBrowserInfo(): {
 /**
  * @method clearHtml
  * @description 去除HTML标签
- * @param {string} string 带html标签的字符串
+ * @param {string} str 带html标签的字符串
  * @returns {string} 字符串
  */
-export function clearHtml (string = ''): string {
-  return string.replace(/<\/?.+?>/g, '').replace(/[\r\n]/g, '');
+export function clearHtml (str: string): string {
+  return str.replace(/<\/?.+?>/g, '').replace(/[\r\n]/g, '');
 }
 
 /**
@@ -1290,7 +1296,7 @@ export function clearHtml (string = ''): string {
  * @param {boolean} hasDot
  * @returnss {string} 返回截取后的字符串
  */
-export function cutCHSString(str = '', len = str.length, hasDot = false): string {
+export function cutCHSString(str: string, len: number, hasDot = false): string {
   if (str == '' || !str) {
     return '';
   } else {
@@ -1389,7 +1395,7 @@ export function windowLoaded(timeout = 90): Promise<string> {
  * @param options.id `id` in `<style>`
  * @returns Success/Fail
  */
-export function addStyle(style = '', options: { id: string; } = { id: '' }): boolean {
+export function addStyle(style: string, options: { id: string; } = { id: '' }): boolean {
   // console.log('_ style', style);
   // console.log('_ options', options);
   if (!style) {
