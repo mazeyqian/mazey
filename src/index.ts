@@ -437,10 +437,11 @@ export function debounce(func: any, wait: number, immediate: any): any {
  * @description 获取间隔时间。
  * @param {number/Date} start 开始时间戳 1585325367122
  * @param {number/Date} end 结束时间戳 1585325367122
- * @type {string} type 返回类型 d: 2(天) text: 2 天 4 时...
+ * @param {string} options.type 返回类型 d: 2(天) text: 2 天 4 时...
  * @returns {String/number} 取决于 type
  */
-export function friendlyInterval(start = 0, end = 0, { type = 'd' } = {}): number | string {
+export function friendlyInterval(start = 0, end = 0, options: { type: string; } = { type: 'd' }): number | string {
+  const { type } = options;
   if (!isNumber(start)) start = new Date(start).getTime();
   if (!isNumber(end)) end = new Date(end).getTime();
   const t = end - start;
@@ -473,11 +474,15 @@ export function friendlyInterval(start = 0, end = 0, { type = 'd' } = {}): numbe
  * @method isNumber
  * @description 判断是否有效数字
  * @param {*} num 被判断的值
- * @param {boolean} isNaNAsNumber 是否 NaN 算数字（默认不算）
- * @param {boolean} isUnFiniteAsNumber 是否 无限 算数字（默认不算）
+ * @param {boolean} options.isNaNAsNumber 是否 NaN 算数字（默认不算）
+ * @param {boolean} options.isUnFiniteAsNumber 是否 无限 算数字（默认不算）
  * @returns {boolean} true 是数字
  */
-export function isNumber(num: any, { isNaNAsNumber = false, isUnFiniteAsNumber = false } = {}): boolean {
+export function isNumber(num: any, options: { isNaNAsNumber: boolean; isUnFiniteAsNumber: boolean; } = { isNaNAsNumber: false, isUnFiniteAsNumber: false }): boolean {
+  const { isNaNAsNumber, isUnFiniteAsNumber } = Object.assign(
+    { isNaNAsNumber: false, isUnFiniteAsNumber: false },
+    options,
+  );
   let ret = true;
   // 数字类型
   if (typeof num !== 'number') {
@@ -571,10 +576,11 @@ export function getLocalStorage(key: string): any {
  * @method loadCSS
  * @description 动态加载css文件
  * @param {string} url -- css资源路径
- * @param {string} id -- link标签id
+ * @param {string} options.id -- link标签id
  * @returns {Promise<boolean>} true -- 加载成功
  */
-export function loadCSS(url: string, { id = '' } = {}): Promise<any> {
+export function loadCSS(url: string, options: { id: string } = { id: '' }): Promise<any> {
+  const { id } = options;
   let success: any = null;
   let fail: any = null;
   const status = new Promise((resolve, reject) => {
@@ -692,13 +698,22 @@ export function loadCSS(url: string, { id = '' } = {}): Promise<any> {
  * @method loadScript
  * @description 动态加载js文件
  * @param {string} url -- js资源路径
- * @param {string} id -- DOM ID
- * @param {function} callback -- 加载后回调函数
- * @param {number} timeout -- 超时时长
- * @param {boolean} isDefer -- 是否添加 defer 标签
+ * @param {string} options.id -- DOM ID
+ * @param {function} options.callback -- 加载后回调函数
+ * @param {number} options.timeout -- 超时时长
+ * @param {boolean} options.isDefer -- 是否添加 defer 标签
  * @returns {Promise<boolean>} -- true 成功
  */
-export function loadScript(url: string, { id = '', callback = function () { /* pass */ }, timeout = 5000, isDefer = false } = {}): Promise<any> {
+export function loadScript(url: string, options: {
+  id: string;
+  callback: (...params: any[]) => any;
+  timeout: number;
+  isDefer: boolean;
+} = { id: '', callback: function () { /* pass */ }, timeout: 5000, isDefer: false }): Promise<boolean | string> {
+  const { id, callback, timeout, isDefer } = Object.assign(
+    { id: '', callback: function () { /* pass */ }, timeout: 5000, isDefer: false },
+    options,
+  );
   let success: any = null;
   let fail: any = null;
   const script: any = document.createElement('script');
