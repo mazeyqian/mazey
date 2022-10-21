@@ -349,16 +349,20 @@ export function removeClass(obj: any, cls: string): void {
  * @method throttle
  * @description 节流。
  */
-export function throttle(func: any, wait: number, options: any): any {
+export function throttle(func: any, wait: number, options: { leading?: boolean; trailing?: boolean; } = {}): any {
+  options = Object.assign(
+    {},
+    options,
+  );
   // timeout: setTimeout Handle
   // previous: 上次时间戳
   let context: any = null;
   let args: any = null;
   let timeout: any = null;
   let [result, previous] = [null, 0];
-  if (!options) {
-    options = {};
-  }
+  // if (!options) {
+  //   options = {};
+  // }
   const later = function () {
     previous = options.leading === false ? 0 : mNow();
     timeout = null;
@@ -396,7 +400,7 @@ export function throttle(func: any, wait: number, options: any): any {
  * @method debounce
  * @description 去抖。
  */
-export function debounce(func: any, wait: number, immediate: any): any {
+export function debounce(func: any, wait: number, immediate?: any): any {
   let context: any = null;
   let timeout: any = null;
   let timestamp: any = null;
