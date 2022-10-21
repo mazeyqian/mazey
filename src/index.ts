@@ -579,16 +579,17 @@ export function getLocalStorage(key: string): any {
  * @param {string} options.id -- link标签id
  * @returns {Promise<boolean>} true -- 加载成功
  */
-export function loadCSS(url: string, options: { id: string } = { id: '' }): Promise<any> {
+export function loadCSS(url: string, options: { id: string } = { id: '' }): Promise<boolean | Error | any> {
   const { id } = options;
-  let success: any = null;
-  let fail: any = null;
+  let success: (v: boolean) => void;
+  let fail: (v: Error) => void;
   const status = new Promise((resolve, reject) => {
     ([success, fail] = [resolve, reject]);
   });
   // const tempCB = (typeof callback === 'function' ? callback : function () { });
   const callback = function () {
-    doFn(success, true);
+    // doFn(success, true);
+    success(true);
   };
   let node: any = document.createElement('link');
   const supportOnload = 'onload' in node;
@@ -709,7 +710,7 @@ export function loadScript(url: string, options: {
   callback: (...params: any[]) => any;
   timeout: number;
   isDefer: boolean;
-} = { id: '', callback: function () { /* pass */ }, timeout: 5000, isDefer: false }): Promise<boolean | string> {
+} = { id: '', callback: function () { /* pass */ }, timeout: 5000, isDefer: false }): Promise<boolean | string | Error> {
   const { id, callback, timeout, isDefer } = Object.assign(
     { id: '', callback: function () { /* pass */ }, timeout: 5000, isDefer: false },
     options,
@@ -747,7 +748,7 @@ export function loadScript(url: string, options: {
   return new Promise((resolve, reject) => {
     ([success, fail] = [resolve, reject]);
     if (timeout) {
-      setTimeout(fail.bind(null, 'timeout'), timeout);
+      setTimeout(fail.bind(null, Error('timeout')), timeout);
     }
   });
 }
@@ -835,9 +836,9 @@ interface WebPerformance {
  * @param {boolean} camelCase -- true（默认） 以驼峰形式返回数据 false 以下划线形式返回数据
  * @returns {Promise<object>} 加载数据
  */
-export function getPerformance(camelCase = true): Promise<WebPerformance | string> {
+export function getPerformance(camelCase = true): Promise<WebPerformance | Error> {
   let success: (v: WebPerformance) => void;
-  let fail: (v: string) => void;
+  let fail: (v: Error) => void;
   const status: Promise<WebPerformance> = new Promise((resolve, reject) => {
     ([success, fail] = [resolve, reject]);
   });
@@ -931,10 +932,10 @@ export function getPerformance(camelCase = true): Promise<WebPerformance | strin
         }
         success(Underscore || data);
       } else {
-        fail('startTime');
+        fail(Error('startTime'));
       }
     } else {
-      fail('getEntries');
+      fail(Error('getEntries'));
     }
   }
   //获取当前操作系统
@@ -1347,10 +1348,10 @@ export function cutCHSString(str: string, len: number, hasDot = false): string {
  * @param {number} timeout 超时时间 / 单位：秒
  * @returns {Promise<string>} document is loaded? 'complete' 'load' / 'timeout'
  */
-export function windowLoaded(timeout = 90): Promise<string> {
+export function windowLoaded(timeout = 90): Promise<string | Error> {
   let loaded: (value: string) => void = () => undefined;
-  let loadFail: (value: string) => void = () => undefined;
-  const status = new Promise((resolve: (value: string) => void, reject: (value: string) => void) => {
+  let loadFail: (value: Error) => void;
+  const status = new Promise((resolve: (value: string) => void, reject: (value: Error) => void) => {
       loaded = resolve;
       loadFail = reject;
   });
@@ -1360,7 +1361,7 @@ export function windowLoaded(timeout = 90): Promise<string> {
       window.addEventListener('load', () => loaded('load'));
   }
   // 超过 timeout 秒后加载失败
-  setTimeout(() => loadFail('timeout'), timeout * 1000);
+  setTimeout(() => loadFail(Error('timeout')), timeout * 1000);
   return status;
 }
 
