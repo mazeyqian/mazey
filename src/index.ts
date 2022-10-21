@@ -825,7 +825,7 @@ export function getCookie(name: string): string {
   return '';
 }
 
-interface GetPerformanceReturn {
+interface WebPerformance {
   [key: string]: string | number;
 }
 
@@ -835,10 +835,10 @@ interface GetPerformanceReturn {
  * @param {boolean} camelCase -- true（默认） 以驼峰形式返回数据 false 以下划线形式返回数据
  * @returns {Promise<object>} 加载数据
  */
-export function getPerformance(camelCase = true): Promise<GetPerformanceReturn | string> {
-  let success: (v: GetPerformanceReturn) => void;
+export function getPerformance(camelCase = true): Promise<WebPerformance | string> {
+  let success: (v: WebPerformance) => void;
   let fail: (v: string) => void;
-  const status: Promise<GetPerformanceReturn> = new Promise((resolve, reject) => {
+  const status: Promise<WebPerformance> = new Promise((resolve, reject) => {
     ([success, fail] = [resolve, reject]);
   });
   const timing = window.performance.timing;
