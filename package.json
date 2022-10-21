@@ -10,7 +10,7 @@
     "lib": "./lib"
   },
   "scripts": {
-    "dev": "webpack-dev-server --open",
+    "dev": "webpack-dev-server --config webpack.config.dev.js --open",
     "build": "npx rollup -c",
     "test": "jest",
     "[Give Up]docs": "npx typedoc --out docs/ src/",

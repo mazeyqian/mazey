@@ -440,7 +440,7 @@ export function debounce(func: any, wait: number, immediate: any): any {
  * @param {string} options.type 返回类型 d: 2(天) text: 2 天 4 时...
  * @returns {String/number} 取决于 type
  */
-export function friendlyInterval(start = 0, end = 0, options: { type: string; } = { type: 'd' }): number | string {
+export function friendlyInterval(start = 0, end = 0, options: { type?: string; } = { type: 'd' }): number | string {
   const { type } = options;
   if (!isNumber(start)) start = new Date(start).getTime();
   if (!isNumber(end)) end = new Date(end).getTime();
@@ -478,7 +478,7 @@ export function friendlyInterval(start = 0, end = 0, options: { type: string; } 
  * @param {boolean} options.isUnFiniteAsNumber 是否 无限 算数字（默认不算）
  * @returns {boolean} true 是数字
  */
-export function isNumber(num: any, options: { isNaNAsNumber: boolean; isUnFiniteAsNumber: boolean; } = { isNaNAsNumber: false, isUnFiniteAsNumber: false }): boolean {
+export function isNumber(num: any, options: { isNaNAsNumber?: boolean; isUnFiniteAsNumber?: boolean; } = { isNaNAsNumber: false, isUnFiniteAsNumber: false }): boolean {
   const { isNaNAsNumber, isUnFiniteAsNumber } = Object.assign(
     { isNaNAsNumber: false, isUnFiniteAsNumber: false },
     options,
@@ -579,7 +579,7 @@ export function getLocalStorage(key: string): any {
  * @param {string} options.id -- link标签id
  * @returns {Promise<boolean>} true -- 加载成功
  */
-export function loadCSS(url: string, options: { id: string } = { id: '' }): Promise<boolean | Error | any> {
+export function loadCSS(url: string, options: { id?: string } = { id: '' }): Promise<boolean | Error | any> {
   const { id } = options;
   let success: (v: boolean) => void;
   let fail: (v: Error) => void;
@@ -1411,7 +1411,7 @@ export function windowLoaded(timeout = 90): Promise<string | Error> {
  * @param options.id `id` in `<style>`
  * @returns Success/Fail
  */
-export function addStyle(style: string, options: { id: string; } = { id: '' }): boolean {
+export function addStyle(style: string, options: { id?: string; } = { id: '' }): boolean {
   // console.log('_ style', style);
   // console.log('_ options', options);
   if (!style) {
