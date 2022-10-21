@@ -14,11 +14,19 @@ Mazey's library for front end.
 
 ## Install
 
-You can get mazey via [npm](https://www.npmjs.com/package/mazey).
+Use mazey via [npm](https://www.npmjs.com/package/mazey).
 
 ```
 npm install mazey --save
 ```
+
+Use mazey from CDN.
+
+```
+<script type="text/javascript" src="https://i.mazey.net/mazey/lib/mazey.min.js"></script>
+```
+
+Of course, you can also download this file and serve it yourself.
 
 ## Usage
 
