@@ -1103,9 +1103,35 @@ export function isSafePWAEnv(): boolean {
 }
 
 /**
- * @method getBrowserInfo
- * @description 返回浏览器信息 https://github.com/JowayYoung/juejin-code/blob/master/browser-type.js
- * @returns {object} 浏览器信息
+ * EN: Browser Information
+ * 
+ * ZH: 返回浏览器信息 https://github.com/JowayYoung/juejin-code/blob/master/browser-type.js
+ * 
+ * ```
+ * getBrowserInfo(); // {"engine":"webkit","engineVs":"537.36","platform":"desktop","supporter":"chrome","supporterVs":"85.0.4183.121","system":"windows","systemVs":"10"}
+ * ```
+ * 
+ * | Index | Field | Description |
+ * | --- | --- | --- |
+ * | System | system | android, ios, windows, macos, linux |
+ * | System version | systemVs | windows: 2000, xp, 2003, vista, 7, 8, 8.1, 10 <br />macos: ... |
+ * | Platform | platform | desktop, mobile |
+ * | Engine | engine | webkit, gecko, presto, trident |
+ * | Engine version | engineVs | - |
+ * | Supporter | supporter | edge, opera, chrome, safari, firefox, iexplore |
+ * | Supporter version | supporterVs | - |
+ * | Shell | shell | (Optional) wechat, qq_browser, qq_app, uc, 360, 2345, sougou, liebao, maxthon, bilibili |
+ * | Shell version | shellVs | (Optional) |
+ * | Apple device type | appleType | (Optional) iphone, ipad, ipod, iwatch |
+ * 
+ * Example: Determine the environment of the mobile QQ.
+ * 
+ * ```
+ * const { system, shell } = getBrowserInfo();
+ * const isMobileQQ = ['android', 'ios'].includes(system) && ['qq_browser', 'qq_app'].includes(shell);
+ * ```
+ * 
+ * @returns 浏览器信息
  */
 export function getBrowserInfo(): {
   engine: string; // webkit gecko presto trident
@@ -1374,7 +1400,7 @@ export function windowLoaded(timeout = 90): Promise<string | Error> {
  * 
  * ZH: 添加样式标签; style: 样式标签内的字符串; id: `<style>` 标签的 `id`; 返回: 添加成功/失败.
  * 
- * Case 1: Add the `<style>` with `id`, and repeated invoking will update the content instead of adding a new one.
+ * Example 1: Add the `<style>` with `id`, and repeated invoking will update the content instead of adding a new one.
  * 
  * ```
  * addStyle(
@@ -1394,7 +1420,7 @@ export function windowLoaded(timeout = 90): Promise<string | Error> {
  * // </style>
  * ```
  * 
- * Case 2: Add the `<style>` without `id`, and repeated invoking will adding a new one.
+ * Example 2: Add the `<style>` without `id`, and repeated invoking will adding a new one.
  * 
  * ```
  * addStyle(
