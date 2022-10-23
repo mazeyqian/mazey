@@ -68,11 +68,12 @@
     "forceConsistentCasingInFileNames": true  /* Disallow inconsistently-cased references to the same file. */
   },
   "include": [
-    // "src/**/*.ts",
-    "src/index.ts"
+    // "examples/example.ts",
+    // "src/functions.tss.ts"
+    "src/**/*.ts"
   ],
   "typedocOptions": {
-    "entryPoints": ["src/index.ts"],
+    "entryPoints": ["./src"],
     "out": "docs"
   }
 }

@@ -7,7 +7,7 @@
  * @param {string} bStr String
  * @returns {number} Length
  */
-export function calLongestCommonSubstring(aStr = '', bStr = ''): number {
+export function calLongestCommonSubstring(aStr: string, bStr: string): number {
   const aLen = aStr.length;
   const bLen = bStr.length;
   // 创建二维数组并且深拷贝
@@ -37,7 +37,7 @@ export function calLongestCommonSubstring(aStr = '', bStr = ''): number {
  * @param {string} bStr 字符串
  * @returns {number} 长度
  */
-export function calLongestCommonSubsequence(aStr = '', bStr = ''): number {
+export function calLongestCommonSubsequence(aStr: string, bStr: string): number {
   const aLen = aStr.length;
   const bLen = bStr.length;
   // 创建二维数组并且深拷贝
@@ -75,7 +75,7 @@ export function calLongestCommonSubsequence(aStr = '', bStr = ''): number {
  * @param {string} param Query param.
  * @returns {string} value
  */
-export function getQueryParam(param = ''): string {
+export function getQueryParam(param: string): string {
   const reg = new RegExp('(^|&)' + param + '=([^&]*)(&|$)');
   const r = location.search.substr(1).match(reg);
   if (r !== null) {
@@ -92,8 +92,10 @@ export function getQueryParam(param = ''): string {
  * @param {string} param Query param.
  * @returns {string} value
  */
-export function getUrlParam(url = '', param = ''): string {
-  const result: any = {};
+export function getUrlParam(url: string, param: string): string | string[] {
+  const result: {
+    [key: string]: string | string[] | any;
+  } = {};
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace
   url.replace(/\??(\w+)=([^&]*)&?/g, function (a, k, v): any {
     if (result[k] !== undefined) {
@@ -119,7 +121,7 @@ export function getUrlParam(url = '', param = ''): string {
  * @param {string} value Param's value.
  * @returns {string} URL.
  */
- export function updateQueryParam(url = '', param = '', value = ''): string {
+ export function updateQueryParam(url: string, param: string, value: string): string {
   const re = new RegExp('([?&])' + param + '=.*?(&|$)', 'i');
   const separator = url.indexOf('?') !== -1 ? '&' : '?';
   if (url.match(re)) {
@@ -135,7 +137,7 @@ export function getUrlParam(url = '', param = ''): string {
  * @param {string} param Query param.
  * @returns {string} value
  */
-export function getHashQueryParam(param = ''): string {
+export function getHashQueryParam(param: string): string {
   const hashs = location.hash.split('?');
   if (hashs.length === 1) {
     return '';
@@ -151,7 +153,7 @@ export function getHashQueryParam(param = ''): string {
  * @param {string} url
  * @param {array} rules Object.keys(location), ['href', 'protocol', 'host', 'hostname', 'port', 'pathname', 'search', 'hash'], ['hostname', 'pathname'] = 'km.mazey.net/plugins/servlet/mobile'
  */
-export function getDomain(url = '', rules = ['hostname']): string {
+export function getDomain(url: string, rules = ['hostname']): string {
   const aEl: any = document.createElement('a');
   aEl.href = url;
   return rules.reduce((ret, v) => {
@@ -166,7 +168,7 @@ export function getDomain(url = '', rules = ['hostname']): string {
  * @param {string} camelCase 'aBC' or 'ABC'
  * @returns {string} 'a-b-c'
  */
-export function camelCaseToKebabCase(camelCase = ''): string {
+export function camelCaseToKebabCase(camelCase: string): string {
   const kebabCase = camelCase.replace(/([A-Z])/g, '-$1').toLowerCase();
   return kebabCase[0] === '-' ? kebabCase.substr(1) : kebabCase;
 }
@@ -177,7 +179,7 @@ export function camelCaseToKebabCase(camelCase = ''): string {
  * @param {string} camelCase 'aBC' or 'ABC'
  * @returns {string} 'a_b_c'
  */
-export function camelCase2Underscore(camelCase = ''): string {
+export function camelCase2Underscore(camelCase: string): string {
   const kebabCase = camelCase.replace(/([A-Z])/g, '_$1').toLowerCase();
   return kebabCase[0] === '_' ? kebabCase.substr(1) : kebabCase;
 }
@@ -188,7 +190,7 @@ export function camelCase2Underscore(camelCase = ''): string {
  * @param {string} str The string to trim.
  * @returns {string} Trimmed string.
  */
-export function mTrim(str = ''): string {
+export function mTrim(str: string): string {
   str = str.replace(/^\s+/, ''); // 去除头部空格
   let end = str.length - 1;
   const ws = /\s/;
@@ -204,7 +206,7 @@ export function mTrim(str = ''): string {
  * @param {string} str The string to make a newline.
  * @returns {string} A newline with `br`.
  */
-export function newLine(str = ''): string {
+export function newLine(str: string): string {
   if (!str) {
     return '';
   }
@@ -228,7 +230,7 @@ export function deepCopyObject(obj: any): any {
  * @param {string} str The string to check.
  * @returns {boolean} Return the result of checking.
  */
-export function isJsonString(str = ''): boolean {
+export function isJsonString(str: string): boolean {
   try {
     if (typeof JSON.parse(str) === 'object') {
       return true;
@@ -269,7 +271,7 @@ export function generateUniqueNum(n = 3): string {
  * @param {number} num 浮点数
  * @param {number} fixSize 保留几位浮点数
  */
-export function floatToPercent(num = 0, fixSize = 0): string {
+export function floatToPercent(num: number, fixSize = 0): string {
   let ret = '';
   if (fixSize) {
     ret = (num * 100).toFixed(fixSize);
@@ -344,19 +346,25 @@ export function removeClass(obj: any, cls: string): void {
 }
 
 /**
- * @method throttle
- * @description 节流。
+ * EN: Throttle
+ * ZH: 节流
+ * 
+ * @see https://lodash.com/docs/4.17.15#throttle
  */
-export function throttle(func: any, wait: number, options: any): any {
+export function throttle(func: any, wait: number, options: { leading?: boolean; trailing?: boolean; } = {}): any {
+  options = Object.assign(
+    {},
+    options,
+  );
   // timeout: setTimeout Handle
   // previous: 上次时间戳
   let context: any = null;
   let args: any = null;
   let timeout: any = null;
   let [result, previous] = [null, 0];
-  if (!options) {
-    options = {};
-  }
+  // if (!options) {
+  //   options = {};
+  // }
   const later = function () {
     previous = options.leading === false ? 0 : mNow();
     timeout = null;
@@ -391,10 +399,11 @@ export function throttle(func: any, wait: number, options: any): any {
 }
 
 /**
- * @method debounce
- * @description 去抖。
+ * EN: Debounce
+ * 
+ * ZH: 去抖
  */
-export function debounce(func: any, wait: number, immediate: any): any {
+export function debounce(func: any, wait: number, immediate?: any): any {
   let context: any = null;
   let timeout: any = null;
   let timestamp: any = null;
@@ -435,14 +444,15 @@ export function debounce(func: any, wait: number, immediate: any): any {
  * @description 获取间隔时间。
  * @param {number/Date} start 开始时间戳 1585325367122
  * @param {number/Date} end 结束时间戳 1585325367122
- * @type {string} type 返回类型 d: 2(天) text: 2 天 4 时...
+ * @param {string} options.type 返回类型 d: 2(天) text: 2 天 4 时...
  * @returns {String/number} 取决于 type
  */
-export function friendlyInterval(start = 0, end = 0, { type = 'd' } = {}): number | string {
+export function friendlyInterval(start = 0, end = 0, options: { type?: string; } = { type: 'd' }): number | string {
+  const { type } = options;
   if (!isNumber(start)) start = new Date(start).getTime();
   if (!isNumber(end)) end = new Date(end).getTime();
   const t = end - start;
-  let ret = null;
+  let ret = '';
   let [d, h, m, s] = new Array(4).fill(0);
   if (t >= 0) {
     d = Math.floor(t / 1000 / 60 / 60 / 24);
@@ -471,11 +481,15 @@ export function friendlyInterval(start = 0, end = 0, { type = 'd' } = {}): numbe
  * @method isNumber
  * @description 判断是否有效数字
  * @param {*} num 被判断的值
- * @param {boolean} isNaNAsNumber 是否 NaN 算数字（默认不算）
- * @param {boolean} isUnFiniteAsNumber 是否 无限 算数字（默认不算）
+ * @param {boolean} options.isNaNAsNumber 是否 NaN 算数字（默认不算）
+ * @param {boolean} options.isUnFiniteAsNumber 是否 无限 算数字（默认不算）
  * @returns {boolean} true 是数字
  */
-export function isNumber(num: any, { isNaNAsNumber = false, isUnFiniteAsNumber = false } = {}): boolean {
+export function isNumber(num: any, options: { isNaNAsNumber?: boolean; isUnFiniteAsNumber?: boolean; } = { isNaNAsNumber: false, isUnFiniteAsNumber: false }): boolean {
+  const { isNaNAsNumber, isUnFiniteAsNumber } = Object.assign(
+    { isNaNAsNumber: false, isUnFiniteAsNumber: false },
+    options,
+  );
   let ret = true;
   // 数字类型
   if (typeof num !== 'number') {
@@ -569,18 +583,20 @@ export function getLocalStorage(key: string): any {
  * @method loadCSS
  * @description 动态加载css文件
  * @param {string} url -- css资源路径
- * @param {string} id -- link标签id
+ * @param {string} options.id -- link标签id
  * @returns {Promise<boolean>} true -- 加载成功
  */
-export function loadCSS(url = '', { id = '' } = {}): Promise<any> {
-  let success: any = null;
-  let fail: any = null;
+export function loadCSS(url: string, options: { id?: string } = { id: '' }): Promise<boolean | Error | any> {
+  const { id } = options;
+  let success: (v: boolean) => void;
+  let fail: (v: Error) => void;
   const status = new Promise((resolve, reject) => {
     ([success, fail] = [resolve, reject]);
   });
   // const tempCB = (typeof callback === 'function' ? callback : function () { });
   const callback = function () {
-    doFn(success, true);
+    // doFn(success, true);
+    success(true);
   };
   let node: any = document.createElement('link');
   const supportOnload = 'onload' in node;
@@ -690,13 +706,22 @@ export function loadCSS(url = '', { id = '' } = {}): Promise<any> {
  * @method loadScript
  * @description 动态加载js文件
  * @param {string} url -- js资源路径
- * @param {string} id -- DOM ID
- * @param {function} callback -- 加载后回调函数
- * @param {number} timeout -- 超时时长
- * @param {boolean} isDefer -- 是否添加 defer 标签
+ * @param {string} options.id -- DOM ID
+ * @param {function} options.callback -- 加载后回调函数
+ * @param {number} options.timeout -- 超时时长
+ * @param {boolean} options.isDefer -- 是否添加 defer 标签
  * @returns {Promise<boolean>} -- true 成功
  */
-export function loadScript(url = '', { id = '', callback = function () { /* pass */ }, timeout = 5000, isDefer = false } = {}): Promise<any> {
+export function loadScript(url: string, options: {
+  id: string;
+  callback: (...params: any[]) => any;
+  timeout: number;
+  isDefer: boolean;
+} = { id: '', callback: function () { /* pass */ }, timeout: 5000, isDefer: false }): Promise<boolean | string | Error> {
+  const { id, callback, timeout, isDefer } = Object.assign(
+    { id: '', callback: function () { /* pass */ }, timeout: 5000, isDefer: false },
+    options,
+  );
   let success: any = null;
   let fail: any = null;
   const script: any = document.createElement('script');
@@ -730,7 +755,7 @@ export function loadScript(url = '', { id = '', callback = function () { /* pass
   return new Promise((resolve, reject) => {
     ([success, fail] = [resolve, reject]);
     if (timeout) {
-      setTimeout(fail.bind(null, 'timeout'), timeout);
+      setTimeout(fail.bind(null, Error('timeout')), timeout);
     }
   });
 }
@@ -808,16 +833,20 @@ export function getCookie(name: string): string {
   return '';
 }
 
+interface WebPerformance {
+  [key: string]: string | number;
+}
+
 /**
  * @method getPerformance
  * @description 获取页面加载相关的各项数据
  * @param {boolean} camelCase -- true（默认） 以驼峰形式返回数据 false 以下划线形式返回数据
  * @returns {Promise<object>} 加载数据
  */
-export function getPerformance(camelCase = true): Promise<any> {
-  let success: any;
-  let fail: any;
-  const status = new Promise((resolve, reject) => {
+export function getPerformance(camelCase = true): Promise<WebPerformance | Error> {
+  let success: (v: WebPerformance) => void;
+  let fail: (v: Error) => void;
+  const status: Promise<WebPerformance> = new Promise((resolve, reject) => {
     ([success, fail] = [resolve, reject]);
   });
   const timing = window.performance.timing;
@@ -910,10 +939,10 @@ export function getPerformance(camelCase = true): Promise<any> {
         }
         success(Underscore || data);
       } else {
-        fail('startTime');
+        fail(Error('startTime'));
       }
     } else {
-      fail('getEntries');
+      fail(Error('getEntries'));
     }
   }
   //获取当前操作系统
@@ -1077,16 +1106,53 @@ export function isSafePWAEnv(): boolean {
 }
 
 /**
- * @method getBrowserInfo
- * @description 返回浏览器信息 https://github.com/JowayYoung/juejin-code/blob/master/browser-type.js
- * @returns {object} 浏览器信息
+ * EN: Browser Information
+ * 
+ * ZH: 返回浏览器信息 https://github.com/JowayYoung/juejin-code/blob/master/browser-type.js
+ * 
+ * ```
+ * getBrowserInfo(); // {"engine":"webkit","engineVs":"537.36","platform":"desktop","supporter":"chrome","supporterVs":"85.0.4183.121","system":"windows","systemVs":"10"}
+ * ```
+ * 
+ * | Index | Field | Description |
+ * | --- | --- | --- |
+ * | System | system | android, ios, windows, macos, linux |
+ * | System version | systemVs | windows: 2000, xp, 2003, vista, 7, 8, 8.1, 10 <br />macos: ... |
+ * | Platform | platform | desktop, mobile |
+ * | Engine | engine | webkit, gecko, presto, trident |
+ * | Engine version | engineVs | - |
+ * | Supporter | supporter | edge, opera, chrome, safari, firefox, iexplore |
+ * | Supporter version | supporterVs | - |
+ * | Shell | shell | (Optional) wechat, qq_browser, qq_app, uc, 360, 2345, sougou, liebao, maxthon, bilibili |
+ * | Shell version | shellVs | (Optional) |
+ * | Apple device type | appleType | (Optional) iphone, ipad, ipod, iwatch |
+ * 
+ * Example: Determine the environment of the mobile QQ.
+ * 
+ * ```
+ * const { system, shell } = getBrowserInfo();
+ * const isMobileQQ = ['android', 'ios'].includes(system) && ['qq_browser', 'qq_app'].includes(shell);
+ * ```
+ * 
+ * @returns 浏览器信息
  */
-export function getBrowserInfo(): any {
+export function getBrowserInfo(): {
+  engine: string; // webkit gecko presto trident
+  engineVs: string;
+  platform: string; // desktop mobile
+  supporter: string; // chrome safari firefox opera iexplore edge
+  supporterVs: string;
+  system: string; // windows macos linux android ios
+  systemVs: string;
+  shell?: string; // wechat qq uc 360 2345 sougou liebao maxthon
+  shellVs?: string;
+  appleType?: string;
+} {
   try {
     // 权重：系统 + 系统版本 > 平台 > 内核 + 载体 + 内核版本 + 载体版本 > 外壳 + 外壳版本
-    const ua: any = navigator.userAgent.toLowerCase();
-    const testUa: (regexp: any) => any = regexp => regexp.test(ua);
-    const testVs: (regexp: any) => any = regexp => {
+    const ua: string = navigator.userAgent.toLowerCase();
+    const testUa: (regexp: RegExp) => boolean = regexp => regexp.test(ua);
+    const testVs: (regexp: RegExp) => string = regexp => {
       const matchRes = ua.match(regexp);
       let ret = '';
       if (matchRes) {
@@ -1249,18 +1315,26 @@ export function getBrowserInfo(): any {
     });
   } catch (err) {
     console.warn('mazey:', err);
-    return {};
+    return {
+      engine: '', // webkit gecko presto trident
+      engineVs: '',
+      platform: '', // desktop mobile
+      supporter: '', // chrome safari firefox opera iexplore edge
+      supporterVs: '',
+      system: '', // windows macos linux android ios
+      systemVs: '',
+    };
   }
 }
 
 /**
  * @method clearHtml
  * @description 去除HTML标签
- * @param {string} string 带html标签的字符串
+ * @param {string} str 带html标签的字符串
  * @returns {string} 字符串
  */
-export function clearHtml (string = ''): string {
-  return string.replace(/<\/?.+?>/g, '').replace(/[\r\n]/g, '');
+export function clearHtml (str: string): string {
+  return str.replace(/<\/?.+?>/g, '').replace(/[\r\n]/g, '');
 }
 
 /**
@@ -1271,7 +1345,7 @@ export function clearHtml (string = ''): string {
  * @param {boolean} hasDot
  * @returnss {string} 返回截取后的字符串
  */
-export function cutCHSString(str = '', len = str.length, hasDot = false): string {
+export function cutCHSString(str: string, len: number, hasDot = false): string {
   if (str == '' || !str) {
     return '';
   } else {
@@ -1307,10 +1381,10 @@ export function cutCHSString(str = '', len = str.length, hasDot = false): string
  * @param {number} timeout 超时时间 / 单位：秒
  * @returns {Promise<string>} document is loaded? 'complete' 'load' / 'timeout'
  */
-export function windowLoaded(timeout = 90): Promise<string> {
+export function windowLoaded(timeout = 90): Promise<string | Error> {
   let loaded: (value: string) => void = () => undefined;
-  let loadFail: (value: string) => void = () => undefined;
-  const status = new Promise((resolve: (value: string) => void, reject: (value: string) => void) => {
+  let loadFail: (value: Error) => void;
+  const status = new Promise((resolve: (value: string) => void, reject: (value: Error) => void) => {
       loaded = resolve;
       loadFail = reject;
   });
@@ -1320,7 +1394,7 @@ export function windowLoaded(timeout = 90): Promise<string> {
       window.addEventListener('load', () => loaded('load'));
   }
   // 超过 timeout 秒后加载失败
-  setTimeout(() => loadFail('timeout'), timeout * 1000);
+  setTimeout(() => loadFail(Error('timeout')), timeout * 1000);
   return status;
 }
 
@@ -1329,7 +1403,7 @@ export function windowLoaded(timeout = 90): Promise<string> {
  * 
  * ZH: 添加样式标签; style: 样式标签内的字符串; id: `<style>` 标签的 `id`; 返回: 添加成功/失败.
  * 
- * Case 1: Add the `<style>` with `id`, and repeated invoking will update the content instead of adding a new one.
+ * Example 1: Add the `<style>` with `id`, and repeated invoking will update the content instead of adding a new one.
  * 
  * ```
  * addStyle(
@@ -1349,7 +1423,7 @@ export function windowLoaded(timeout = 90): Promise<string> {
  * // </style>
  * ```
  * 
- * Case 2: Add the `<style>` without `id`, and repeated invoking will adding a new one.
+ * Example 2: Add the `<style>` without `id`, and repeated invoking will adding a new one.
  * 
  * ```
  * addStyle(
@@ -1370,7 +1444,7 @@ export function windowLoaded(timeout = 90): Promise<string> {
  * @param options.id `id` in `<style>`
  * @returns Success/Fail
  */
-export function addStyle(style = '', options: { id: string; } = { id: '' }): boolean {
+export function addStyle(style: string, options: { id?: string; } = { id: '' }): boolean {
   // console.log('_ style', style);
   // console.log('_ options', options);
   if (!style) {
@@ -1378,7 +1452,7 @@ export function addStyle(style = '', options: { id: string; } = { id: '' }): boo
   }
   // 创建 style 文档碎片
   const styleFrag = document.createDocumentFragment();
-  let idDom = null;
+  let idDom: HTMLElement | null = null;
   let domId = '';
   // Custom Style
   const customStyle = document.createElement('style');
@@ -1410,7 +1484,7 @@ export function addStyle(style = '', options: { id: string; } = { id: '' }): boo
  * @param {function} allowFn 允许打印的判断函数
  * @returns {object} 新实例
  */
-export function genCustomConsole(prefix = ''): any {
+export function genCustomConsole(prefix = ''): Console {
   const methods = ['log', 'info', 'warn', 'error'];
   const newConsole = Object.create(null);
   methods.forEach(method => {
@@ -1423,4 +1497,99 @@ export function genCustomConsole(prefix = ''): any {
     };
   });
   return newConsole;
+}
+
+/**
+ * Verify the validity of axios response.
+ */
+export function zAxiosIsValidRes(res: any, options: {
+  validStatus: number[];
+  validCode: number[];
+} = {
+  validStatus: [200],
+  validCode: [0],
+}): boolean {
+  const { validStatus, validCode } = Object.assign(
+    {
+      validStatus: [200],
+      validCode: [0],
+    },
+    options,
+  );
+  let ret = false;
+  if (res && res.status && validStatus.includes(res.status)) {
+    ret = true;
+    const resData = res.data;
+    if (resData && validCode.includes(resData.code)) {
+      ret = true;
+    }
+  }
+  return ret;
+}
+
+/**
+ * Verify the validity of a non-empty array.
+ */
+export function isNonEmptyArray(arr: any[]): boolean {
+  let ret = false;
+  if (Array.isArray(arr) && arr.length) {
+    ret = true;
+  }
+  return ret;
+}
+
+/**
+ * 语义化文件大小, 把字节转换成正常文件大小.
+ */
+export function getFileSize(size: number): string {
+	const toCeilStr: (v: number) => string = n => String(Math.ceil(n));
+	if (!size) return '';
+	const num = 1024.0; // byte
+	if (size < num) {
+		return size + ' B';
+	}
+	if (size < Math.pow(num, 2)) {
+		return toCeilStr(size / num) + ' KB';
+	} // kb
+	if (size < Math.pow(num, 3)) {
+		return toCeilStr(size / Math.pow(num, 2)) + ' MB';
+	} // M
+	if (size < Math.pow(num, 4)) {
+		return toCeilStr(size / Math.pow(num, 3)) + ' G';
+	} // G
+	return toCeilStr(size / Math.pow(num, 4)) + ' T';
+}
+
+/**
+ * Detect webp support.
+ *
+ * @see https://davidwalsh.name/detect-webp
+ */
+export function isSupportWebp(): Promise<boolean> {
+  const fn = (resolve: (v: boolean) => void) => {
+		const img = new Image();
+		img.onload = () => {
+			resolve(img.width > 0 && img.height > 0);
+		};
+		img.onerror = () => {
+			resolve(false);
+		};
+		img.src = "data:image/webp;base64,UklGRh4AAABXRUJQVlA4TBEAAAAvAAAAAAfQ//73v/+BiOh/AAA=";
+	};
+	return new Promise(fn);
+}
+
+/**
+ * Generate a Hash Code from a string.
+ *
+ * @see https://stackoverflow.com/questions/7616461/generate-a-hash-from-string-in-javascript-jquery
+ */
+export function genHashCode(str: string): number {
+	let hash = 0, i, chr;
+	for (i = 0; i < str.length; i++) {
+		chr = str.charCodeAt(i);
+		hash = ((hash << 5) - hash) + chr;
+		hash |= 0;
+	}
+	return hash;
 }
