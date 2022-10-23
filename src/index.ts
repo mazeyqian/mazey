@@ -1559,3 +1559,22 @@ export function getFileSize(size: number): string {
 	} // G
 	return toCeilStr(size / Math.pow(num, 4)) + ' T';
 }
+
+/**
+ * Detect webp support.
+ *
+ * @see https://davidwalsh.name/detect-webp
+ */
+export function isSupportWebp(): Promise<boolean> {
+  const fn = (resolve: (v: boolean) => void) => {
+		const img = new Image();
+		img.onload = () => {
+			resolve(img.width > 0 && img.height > 0);
+		};
+		img.onerror = () => {
+			resolve(false);
+		};
+		img.src = "data:image/webp;base64,UklGRh4AAABXRUJQVlA4TBEAAAAvAAAAAAfQ//73v/+BiOh/AAA=";
+	};
+	return new Promise(fn);
+}

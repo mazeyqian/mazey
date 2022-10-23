@@ -9,8 +9,10 @@ import {
   generateRndNum,
   isNonEmptyArray,
   getFileSize,
+  isSupportWebp,
  } from '../src/index';
 
+// Sync
 console.log('Is Infinity number?', isNumber(Infinity, { isUnFiniteAsNumber: true }));
 console.log('Did ttt exist?', getHashQueryParam('ttt'));
 console.log('What is t3?', getUrlParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't3'));
@@ -21,3 +23,8 @@ console.log('Get Underscore:', camelCase2Underscore('bBC'));
 console.log('Get a string with random number:', generateRndNum(7));
 console.log('Is non-empty array?', isNonEmptyArray(['a', 123]));
 console.log('Get file size:', getFileSize(2000));
+
+// Async
+(async () => {
+  console.log('Detect webp support:', await isSupportWebp());
+})();
