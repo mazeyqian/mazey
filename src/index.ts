@@ -346,8 +346,10 @@ export function removeClass(obj: any, cls: string): void {
 }
 
 /**
- * @method throttle
- * @description 节流。
+ * EN: Throttle
+ * ZH: 节流
+ * 
+ * @see https://lodash.com/docs/4.17.15#throttle
  */
 export function throttle(func: any, wait: number, options: { leading?: boolean; trailing?: boolean; } = {}): any {
   options = Object.assign(
@@ -397,8 +399,9 @@ export function throttle(func: any, wait: number, options: { leading?: boolean; 
 }
 
 /**
- * @method debounce
- * @description 去抖。
+ * EN: Debounce
+ * 
+ * ZH: 去抖
  */
 export function debounce(func: any, wait: number, immediate?: any): any {
   let context: any = null;
