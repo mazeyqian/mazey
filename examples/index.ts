@@ -10,6 +10,7 @@ import {
   isNonEmptyArray,
   getFileSize,
   isSupportWebp,
+  genHashCode,
  } from '../src/index';
 
 // Sync
@@ -23,6 +24,7 @@ console.log('Get Underscore:', camelCase2Underscore('bBC'));
 console.log('Get a string with random number:', generateRndNum(7));
 console.log('Is non-empty array?', isNonEmptyArray(['a', 123]));
 console.log('Get file size:', getFileSize(2000));
+console.log('Generate a Hash from a string:', genHashCode('123'));
 
 // Async
 (async () => {

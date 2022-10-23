@@ -1578,3 +1578,18 @@ export function isSupportWebp(): Promise<boolean> {
 	};
 	return new Promise(fn);
 }
+
+/**
+ * Generate a Hash Code from a string.
+ *
+ * @see https://stackoverflow.com/questions/7616461/generate-a-hash-from-string-in-javascript-jquery
+ */
+export function genHashCode(str: string): number {
+	let hash = 0, i, chr;
+	for (i = 0; i < str.length; i++) {
+		chr = str.charCodeAt(i);
+		hash = ((hash << 5) - hash) + chr;
+		hash |= 0;
+	}
+	return hash;
+}
