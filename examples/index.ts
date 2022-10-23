@@ -8,6 +8,7 @@ import {
   camelCase2Underscore,
   generateRndNum,
   isNonEmptyArray,
+  getFileSize,
  } from '../src/index';
 
 console.log('Is Infinity number?', isNumber(Infinity, { isUnFiniteAsNumber: true }));
@@ -19,3 +20,4 @@ console.log('Get KebabCase:', camelCaseToKebabCase('aBC'));
 console.log('Get Underscore:', camelCase2Underscore('bBC'));
 console.log('Get a string with random number:', generateRndNum(7));
 console.log('Is non-empty array?', isNonEmptyArray(['a', 123]));
+console.log('Get file size:', getFileSize(2000));
