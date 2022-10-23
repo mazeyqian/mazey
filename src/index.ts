@@ -1469,3 +1469,42 @@ export function genCustomConsole(prefix = ''): Console {
   });
   return newConsole;
 }
+
+/**
+ * Verify the validity of axios response.
+ */
+export function zAxiosIsValidRes(res: any, options: {
+  validStatus: number[];
+  validCode: number[];
+} = {
+  validStatus: [200],
+  validCode: [0],
+}): boolean {
+  const { validStatus, validCode } = Object.assign(
+    {
+      validStatus: [200],
+      validCode: [0],
+    },
+    options,
+  );
+  let ret = false;
+  if (res && res.status && validStatus.includes(res.status)) {
+    ret = true;
+    const resData = res.data;
+    if (resData && validCode.includes(resData.code)) {
+      ret = true;
+    }
+  }
+  return ret;
+}
+
+/**
+ * Verify the validity of a non-empty array.
+ */
+export function isNonEmptyArray(arr: any[]): boolean {
+  let ret = false;
+  if (Array.isArray(arr) && arr.length) {
+    ret = true;
+  }
+  return ret;
+}

@@ -7,6 +7,7 @@ import {
   camelCaseToKebabCase,
   camelCase2Underscore,
   generateRndNum,
+  isNonEmptyArray,
  } from '../src/index';
 
 console.log('Is Infinity number?', isNumber(Infinity, { isUnFiniteAsNumber: true }));
@@ -17,3 +18,4 @@ console.log('What is domain?', getDomain('http://example.com/?t1=1&t2=2&t3=3&t4=
 console.log('Get KebabCase:', camelCaseToKebabCase('aBC'));
 console.log('Get Underscore:', camelCase2Underscore('bBC'));
 console.log('Get a string with random number:', generateRndNum(7));
+console.log('Is non-empty array?', isNonEmptyArray(['a', 123]));
