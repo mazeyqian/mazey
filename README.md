@@ -1,4 +1,4 @@
-English | [简体中文](./README_CN.md)
+English | [简体中文](https://github.com/mazeyqian/mazey/blob/master/README_CN.md)
 
 # mazey
 
@@ -10,7 +10,7 @@ English | [简体中文](./README_CN.md)
 [l-image]: https://img.shields.io/npm/l/mazey
 [l-url]: https://github.com/mazeyqian/mazey
 
-Mazey's functional library for daily front-end work. There are already many excellent libraries for front-end development, but it's general to create a file named `utils.js` or `common.js` to supply common functions in projects. It's boring to copy similar functions among projects again and again. In order to save time, I will consistently update the library during my front-end career.
+Mazey's functional library for daily front-end work. There are already many excellent libraries for front-end development, but creating a file named `utils.js` or `common.js` is generally used to supply common functions in projects. It's boring to copy similar functions among projects again and again. To save time, I will consistently update the library during my worklife.
 
 ## Install
 
@@ -30,9 +30,7 @@ Of course, you can also download this file and serve it yourself.
 
 ## Usage
 
-### Load Resource
-
-#### Load JavaScript
+Example: Use a function to load JavaScript script.
 
 Import from [npm](https://www.npmjs.com/package/mazey).
 
@@ -40,21 +38,21 @@ Import from [npm](https://www.npmjs.com/package/mazey).
 import { loadScript } from 'mazey';
 
 loadScript(
-    'http://example.com/js/plugin/jquery/jquery-2.1.1.min.js',
+    'http://example.com/static/js/plugin-2.1.1.min.js',
     {
-      id: 'iamid', // Optional, script ID, default none
-      timeout: 5000, // Optional, timeout, default `5000`
-      isDefer: false, // Optional, defer, default `false`
+      id: 'iamid', // (Optional) script ID, default none
+      timeout: 5000, // (Optional) timeout, default `5000`
+      isDefer: false, // (Optional) defer, default `false`
     }
   )
   .then(
     res => {
-      console.log(`Load JavaScript Success: ${res}`);
+      console.log(`Load JavaScript script: ${res}`);
     }
   )
   .catch(
     err => {
-      console.error(`Load JavaScript Fail: ${err.message}`)
+      console.error(`Load JavaScript script: ${err.message}`)
     }
   );
 ```
@@ -65,25 +63,30 @@ Import from CDN.
 <script type="text/javascript" src="//i.mazey.net/mazey/lib/mazey.min.js"></script>
 <script>
 mazey.loadScript(
-    'http://example.com/js/plugin/jquery/jquery-2.1.1.min.js',
+    'http://example.com/static/js/plugin-2.1.1.min.js',
     {
-      id: 'iamid', // Optional, script ID, default none
-      timeout: 5000, // Optional, timeout, default `5000`
-      isDefer: false, // Optional, defer, default `false`
+      timeout: 3000, // (Optional) timeout, default `5000`
+      isDefer: true, // (Optional) defer, default `false`
     }
   )
   .then(
     res => {
-      console.log(`Load JavaScript Success: ${res}`);
+      console.log(`Load JavaScript script: ${res}`);
     }
   )
   .catch(
     err => {
-      console.error(`Load JavaScript Fail: ${err.message}`)
+      console.error(`Load JavaScript script: ${err.message}`)
     }
   );
 </script>
 ```
+
+## API Examples
+
+There ara some usage cases maintained by hand below. For more latest information, please check the [documentation](https://i.mazey.net/mazey/docs/modules/_index_.html).
+
+### Load Resource
 
 #### Load CSS
 
@@ -516,17 +519,18 @@ myConsole.info('I am number.', 123, 456); // MazeyLog: I am number. 123 456
 myConsole.info('I am object.', { a: 123, b: 456}); // MazeyLog: I am object. {a: 123, b: 456}
 ```
 
-[More API>>](https://mazey.cn/docs/mazey/modules/_index_.html)
-
 ## Develop
 
 ```
 # dev
-npm run dev
+npm run dev;
 
 # build
-npm run build
+npm run build;
 
 # documentation
-npm run docs
+npm run docs;
+
+# test
+npm run test;
 ```
