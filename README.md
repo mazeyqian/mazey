@@ -82,7 +82,7 @@ mazey.loadScript(
 </script>
 ```
 
-## API
+## API Examples
 
 There ara some usage cases maintained by hand below. For more latest information, please check the [documentation](https://i.mazey.net/mazey/docs/modules/_index_.html).
 

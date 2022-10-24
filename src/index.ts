@@ -350,7 +350,7 @@ export function removeClass(obj: any, cls: string): void {
  * 
  * ZH: 节流
  * 
- * @see https://lodash.com/docs/4.17.15#throttle
+ * Reference: [Lodash](https://lodash.com/docs/4.17.15#throttle)
  */
 export function throttle(func: any, wait: number, options: { leading?: boolean; trailing?: boolean; } = {}): any {
   options = Object.assign(
@@ -1572,7 +1572,7 @@ export function getFileSize(size: number): string {
 /**
  * Detect webp support.
  *
- * @see https://davidwalsh.name/detect-webp
+ * Reference: [Detect WEBP Support with JavaScript](https://davidwalsh.name/detect-webp)
  */
 export function isSupportWebp(): Promise<boolean> {
   const fn = (resolve: (v: boolean) => void) => {
@@ -1591,7 +1591,7 @@ export function isSupportWebp(): Promise<boolean> {
 /**
  * Generate a Hash Code from a string.
  *
- * @see https://stackoverflow.com/questions/7616461/generate-a-hash-from-string-in-javascript-jquery
+ * Reference: [Generate a Hash from string in Javascript](https://stackoverflow.com/questions/7616461/generate-a-hash-from-string-in-javascript-jquery)
  */
 export function genHashCode(str: string): number {
 	let hash = 0, i, chr;
