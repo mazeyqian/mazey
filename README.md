@@ -132,7 +132,7 @@ import { debounce } from 'mazey';
 
 const foo = debounce(() => {
   console.log('The debounced function will only be invoked in 1000 milliseconds, the other invoking will disappear during the wait time.');
-}, 1000, { leading: true })
+}, 1000, true);
 ```
 
 #### Throttle
@@ -142,7 +142,7 @@ import { throttle } from 'mazey';
 
 const foo = throttle(() => {
   console.log('The function will be invoked at most once per every wait 1000 milliseconds.');
-}, 1000, { leading: true })
+}, 1000, { leading: true });
 ```
 
 #### Check Number

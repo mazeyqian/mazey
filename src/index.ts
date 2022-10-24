@@ -347,6 +347,7 @@ export function removeClass(obj: any, cls: string): void {
 
 /**
  * EN: Throttle
+ * 
  * ZH: 节流
  * 
  * @see https://lodash.com/docs/4.17.15#throttle
@@ -402,6 +403,14 @@ export function throttle(func: any, wait: number, options: { leading?: boolean; 
  * EN: Debounce
  * 
  * ZH: 去抖
+ * 
+ * Usage:
+ * 
+ * ```
+ * const foo = debounce(() => {
+ *   console.log('The debounced function will only be invoked in 1000 milliseconds, the other invoking will disappear during the wait time.');
+ * }, 1000, true);
+ * ```
  */
 export function debounce(func: any, wait: number, immediate?: any): any {
   let context: any = null;

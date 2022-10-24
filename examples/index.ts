@@ -11,6 +11,7 @@ import {
   getFileSize,
   isSupportWebp,
   genHashCode,
+  debounce,
  } from '../src/index';
 
 // Sync
@@ -29,4 +30,21 @@ console.log('Generate a Hash from a string:', genHashCode('123'));
 // Async
 (async () => {
   console.log('Detect webp support:', await isSupportWebp());
+  
+  // debounce
+  console.log('Test debounce - begin');
+  const c = debounce(() => {
+    console.log('Test debounce - fun myself');
+  }, 3000, true);
+  console.log('Test debounce - invoke first');
+  c();
+  setTimeout(() => {
+    c();
+    console.log('Test debounce - 2000ms second');
+  }, 2000);
+  setTimeout(() => {
+    c();
+    console.log('Test debounce - 10000ms third');
+  }, 10000);
+  console.log('Test debounce - end');
 })();
