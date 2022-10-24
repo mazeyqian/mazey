@@ -10,7 +10,7 @@ English | [简体中文](./README_CN.md)
 [l-image]: https://img.shields.io/npm/l/mazey
 [l-url]: https://github.com/mazeyqian/mazey
 
-Mazey's functional library for daily front-end work. There are already many excellent libraries for front-end development, but it's general to create a file named `utils.js` or `common.js` to supply common functions in projects. It's boring to copy similar functions among projects again and again. In order to save time, I will consistently update the library during my front-end career.
+Mazey's functional library for daily front-end work. There are already many excellent libraries for front-end development, but creating a file named `utils.js` or `common.js` is generally used to supply common functions in projects. It's boring to copy similar functions among projects again and again. To save time, I will consistently update the library during my front-end worklife.
 
 ## Install
 
@@ -30,9 +30,7 @@ Of course, you can also download this file and serve it yourself.
 
 ## Usage
 
-### Load Resource
-
-#### Load JavaScript
+Example: Use a function to load JavaScript script.
 
 Import from [npm](https://www.npmjs.com/package/mazey).
 
@@ -84,6 +82,10 @@ mazey.loadScript(
   );
 </script>
 ```
+
+## API
+
+### Load Resource
 
 #### Load CSS
 
