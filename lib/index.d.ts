@@ -138,9 +138,10 @@ export declare function addClass(obj: any, cls: string): void;
 export declare function removeClass(obj: any, cls: string): void;
 /**
  * EN: Throttle
+ *
  * ZH: 节流
  *
- * @see https://lodash.com/docs/4.17.15#throttle
+ * Reference: [Lodash](https://lodash.com/docs/4.17.15#throttle)
  */
 export declare function throttle(func: any, wait: number, options?: {
     leading?: boolean;
@@ -150,6 +151,14 @@ export declare function throttle(func: any, wait: number, options?: {
  * EN: Debounce
  *
  * ZH: 去抖
+ *
+ * Usage:
+ *
+ * ```
+ * const foo = debounce(() => {
+ *   console.log('The debounced function will only be invoked in 1000 milliseconds, the other invoking will disappear during the wait time.');
+ * }, 1000, true);
+ * ```
  */
 export declare function debounce(func: any, wait: number, immediate?: any): any;
 /**
@@ -414,13 +423,13 @@ export declare function getFileSize(size: number): string;
 /**
  * Detect webp support.
  *
- * @see https://davidwalsh.name/detect-webp
+ * Reference: [Detect WEBP Support with JavaScript](https://davidwalsh.name/detect-webp)
  */
 export declare function isSupportWebp(): Promise<boolean>;
 /**
  * Generate a Hash Code from a string.
  *
- * @see https://stackoverflow.com/questions/7616461/generate-a-hash-from-string-in-javascript-jquery
+ * Reference: [Generate a Hash from string in Javascript](https://stackoverflow.com/questions/7616461/generate-a-hash-from-string-in-javascript-jquery)
  */
 export declare function genHashCode(str: string): number;
 export {};
