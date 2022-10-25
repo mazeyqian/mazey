@@ -105,5 +105,8 @@
   "dependencies": {
     "@babel/runtime-corejs3": "^7.11.2",
     "core-js": "^3.6.5"
+  },
+  "jest": {
+    "testEnvironment": "jsdom"
   }
 }
