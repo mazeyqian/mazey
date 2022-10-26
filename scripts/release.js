@@ -5,8 +5,8 @@ const execa = require('execa');
 const pkgVersion = process.env.VERSION || require('../package.json').version;
 
 // Main
-(async () => {
-  const releaseVersion = `v${pkgVersion}`;
+const main = async (ver) => {
+  const releaseVersion = `v${ver}`;
   const { stdout: releaseStdout } = await execa('echo', [`Start release ${releaseVersion}...`]);
   console.log(releaseStdout);
   // Commit Stdout
@@ -25,4 +25,10 @@ const pkgVersion = process.env.VERSION || require('../package.json').version;
   await execa('git', ['push']);
 
   console.log('All done.');
-})();
+};
+
+main(pkgVersion);
+
+// module.exports = {
+//   main,
+// };
