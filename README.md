@@ -86,6 +86,41 @@ mazey.loadScript(
 
 There ara some usage cases maintained by hand below. For more latest information, please check the [documentation](https://i.mazey.net/mazey/docs/modules/_index_.html).
 
+**Table of contents**
+
+- [Load Resource](#load-resource)
+  * [Load CSS](#load-css)
+  * [Check Load](#check-load)
+- [Function](#function)
+  * [Debounce](#debounce)
+  * [Throttle](#throttle)
+  * [Check Number](#check-number)
+  * [Camel Case](#camel-case)
+  * [Trim](#trim)
+  * [Deep Clone](#deep-clone)
+  * [JSON](#json)
+  * [Random](#random)
+- [DOM](#dom)
+  * [Class](#class)
+  * [Style](#style)
+  * [Newline](#newline)
+- [URL](#url)
+  * [Query Param](#query-param)
+  * [Update Param](#update-param)
+  * [Hash Param](#hash-param)
+  * [Domain](#domain)
+- [Cache Data](#cache-data)
+  * [Storage](#storage)
+  * [Cookie](#cookie)
+- [Calculate&Formula](#calculate-formula)
+  * [Rate](#rate)
+  * [Algorithm](#algorithm)
+- [Browser Information](#browser-information)
+- [Web Performance](#web-performance)
+- [Margin of Safety](#margin-of-safety)
+- [Debug](#debug)
+  * [Print](#print)
+
 ### Load Resource
 
 #### Load CSS
