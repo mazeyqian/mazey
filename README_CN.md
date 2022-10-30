@@ -3,7 +3,7 @@
 [![NPM version][npm-image]][npm-url]
 [![l][l-image]][l-url]
 
-[npm-image]: https://i.mazey.net/asset/npm/mazey-v1.4.39.svg
+[npm-image]: ./images/mazey-v1.4.39.svg
 [npm-url]: https://www.npmjs.com/package/mazey/v/1.4.39
 [l-image]: https://img.shields.io/npm/l/mazey
 [l-url]: https://github.com/mazeyqian/mazey
