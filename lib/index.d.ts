@@ -407,9 +407,11 @@ export declare function addStyle(style: string, options?: {
 export declare function genCustomConsole(prefix?: string): Console;
 /**
  * Verify the validity of axios response.
+ *
+ * Reference: [Handling Errors](https://axios-http.com/docs/handling_errors)
  */
 export declare function zAxiosIsValidRes(res: any, options?: {
-    validStatus: number[];
+    validStatusRange: number[];
     validCode: number[];
 }): boolean;
 /**

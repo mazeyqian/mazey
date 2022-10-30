@@ -126,6 +126,7 @@ windowLoaded(30) // second
     console.log(`Load Timeout or Fail: ${err.message}`);
   });
 ```
+
 ### Function
 
 #### Debounce
