@@ -88,38 +88,61 @@ There ara some usage cases maintained by hand below. For more latest information
 
 **Table of contents**
 
-- [Load Resource](#load-resource)
-  * [Load CSS](#load-css)
-  * [Check Load](#check-load)
-- [Function](#function)
-  * [Debounce](#debounce)
-  * [Throttle](#throttle)
-  * [Check Number](#check-number)
-  * [Camel Case](#camel-case)
-  * [Trim](#trim)
-  * [Deep Clone](#deep-clone)
-  * [JSON](#json)
-  * [Random](#random)
-- [DOM](#dom)
-  * [Class](#class)
-  * [Style](#style)
-  * [Newline](#newline)
-- [URL](#url)
-  * [Query Param](#query-param)
-  * [Update Param](#update-param)
-  * [Hash Param](#hash-param)
-  * [Domain](#domain)
-- [Cache Data](#cache-data)
-  * [Storage](#storage)
-  * [Cookie](#cookie)
-- [Calculate&Formula](#calculate-formula)
-  * [Rate](#rate)
-  * [Algorithm](#algorithm)
-- [Browser Information](#browser-information)
-- [Web Performance](#web-performance)
-- [Margin of Safety](#margin-of-safety)
-- [Debug](#debug)
-  * [Print](#print)
+<ul>
+  <li><a href="#load-resource">Load Resource</a>
+    <ul>
+      <li><a href="#load-css">Load CSS</a></li>
+      <li><a href="#check-load">Check Load</a></li>
+    </ul>
+  </li>
+  <li><a href="#function">Function</a>
+    <ul>
+      <li><a href="#debounce">Debounce</a></li>
+      <li><a href="#throttle">Throttle</a></li>
+      <li><a href="#check-number">Check Number</a></li>
+      <li><a href="#camel-case">Camel Case</a></li>
+      <li><a href="#trim">Trim</a></li>
+      <li><a href="#deep-clone">Deep Clone</a></li>
+      <li><a href="#json">JSON</a></li>
+      <li><a href="#random">Random</a></li>
+    </ul>
+  </li>
+  <li><a href="#dom">DOM</a>
+    <ul>
+      <li><a href="#class">Class</a></li>
+      <li><a href="#style">Style</a></li>
+      <li><a href="#newline">Newline</a></li>
+    </ul>
+  </li>
+  <li><a href="#url">URL</a>
+    <ul>
+      <li><a href="#query-param">Query Param</a></li>
+      <li><a href="#update-param">Update Param</a></li>
+      <li><a href="#hash-param">Hash Param</a></li>
+      <li><a href="#domain">Domain</a></li>
+    </ul>
+  </li>
+  <li><a href="#cache-data">Cache Data</a>
+    <ul>
+      <li><a href="#storage">Storage</a></li>
+      <li><a href="#cookie">Cookie</a></li>
+    </ul>
+  </li>
+  <li><a href="#calculate-formula">Calculate&amp;Formula</a>
+    <ul>
+      <li><a href="#rate">Rate</a></li>
+      <li><a href="#algorithm">Algorithm</a></li>
+    </ul>
+  </li>
+  <li><a href="#browser-information">Browser Information</a></li>
+  <li><a href="#web-performance">Web Performance</a></li>
+  <li><a href="#margin-of-safety">Margin of Safety</a></li>
+  <li><a href="#debug">Debug</a>
+    <ul>
+      <li><a href="#print">Print</a></li>
+    </ul>
+  </li>
+</ul>
 
 ### Load Resource
 
