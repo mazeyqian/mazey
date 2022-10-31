@@ -582,19 +582,19 @@ myConsole.info('I am object.', { a: 123, b: 456}); // MazeyLog: I am object. {a:
 
 ```
 # Install
-npm i --registry=https://registry.npmjs.org;
+npm i --registry=https://registry.npmjs.org
 
 # Serve
-npm run dev;
+npm run dev
 
 # Build
-npm run build;
+npm run build
 
 # Document
-npm run docs;
+npm run docs
 
 # Test
-npm run test;
+npm run test
 ```
 
 ## License
