@@ -84,7 +84,7 @@ mazey.loadScript(
 
 ## API Examples
 
-There ara some usage cases maintained by hand below. For more latest information, please check the [documentation](https://i.mazey.net/mazey/docs/modules/_index_.html).
+There ara some examples maintained by hand below. For more latest information, please check the [documentation](https://i.mazey.net/mazey/docs/modules/_index_.html).
 
 **Table of Contents**
 
@@ -578,18 +578,25 @@ myConsole.info('I am number.', 123, 456); // MazeyLog: I am number. 123 456
 myConsole.info('I am object.', { a: 123, b: 456}); // MazeyLog: I am object. {a: 123, b: 456}
 ```
 
-## Develop
+## Contributing
 
 ```
-# dev
+# Install
+npm i --registry=https://registry.npmjs.org;
+
+# Serve
 npm run dev;
 
-# build
+# Build
 npm run build;
 
-# documentation
+# Document
 npm run docs;
 
-# test
+# Test
 npm run test;
 ```
+
+## License
+
+This software is released under the terms of the [MIT license](https://github.com/mazeyqian/mazey/blob/master/LICENSE).
