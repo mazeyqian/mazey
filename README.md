@@ -84,7 +84,7 @@ mazey.loadScript(
 
 ## API Examples
 
-There ara some examples maintained by hand below. For more latest information, please check the [full documentation](https://i.mazey.net/mazey/docs/modules/_index_.html).
+There ara some examples maintained by hand below. For more information, please check the [full documentation](https://i.mazey.net/mazey/docs/modules/_index_.html).
 
 **Table of Contents**
 
