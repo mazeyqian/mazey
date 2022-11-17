@@ -17,6 +17,8 @@ async function release (ver) {
   const releaseVersion = `v${ver}`;
   const { stdout: releaseStdout } = await execa('echo', [`Start release ${releaseVersion}...`]);
   console.log(releaseStdout);
+  // git branch --show-current
+  // console.log('git push --set-upstream origin <branch>');
   // Commit Stdout
   const { stdout: diffStdout } = await execa('git', ['diff'], { stdio: 'pipe' });
   if (diffStdout) {
