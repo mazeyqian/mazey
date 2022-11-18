@@ -7,6 +7,7 @@ import commonjs from 'rollup-plugin-commonjs';
 import cleaner from 'rollup-plugin-cleaner';
 import { terser } from 'rollup-plugin-terser';
 
+const { _resolve } = require('./build-helper');
 const pkgVersion = process.env.VERSION || require('../package.json').version;
 const banner =
   '/*!\n' +
@@ -17,21 +18,21 @@ const banner =
 
 // https://rollupjs.org/guide/en/
 export default {
-  input: 'src/index.ts',
+  input: _resolve('../src/index.ts'),
   // https://rollupjs.org/guide/en/#outputformat
   output: [
     {
-      file: 'lib/index.cjs.js',
+      file: _resolve('../lib/index.cjs.js'),
       format: 'cjs',
       banner,
     },
     {
-      file: 'lib/index.esm.js',
+      file: _resolve('../lib/index.esm.js'),
       format: 'esm',
       banner,
     },
     {
-      file: 'lib/mazey.min.js',
+      file: _resolve('../lib/mazey.min.js'),
       format: 'iife',
       name: 'mazey',
       banner,
@@ -42,12 +43,12 @@ export default {
     // https://github.com/aMarCruz/rollup-plugin-cleanup
     cleaner({
       targets: [
-        './lib/',
-      ]
+        _resolve('../lib/'),
+      ],
     }),
     rollupTypescript(),
     commonjs({
-      include: /node_modules/
+      include: /node_modules/,
     }),
     babel({
       runtimeHelpers: true,

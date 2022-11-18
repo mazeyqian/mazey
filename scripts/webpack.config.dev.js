@@ -1,19 +1,19 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable no-undef */
-const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { _resolve } = require('./build-helper');
 
 module.exports = {
   entry: {
-    index: './examples/index.ts'
+    index: _resolve('../examples/index.ts'),
   },
   output: {
     filename: '[name].js',
-    path: path.resolve(__dirname, 'dist')
+    path: _resolve('../dist'),
   },
   devServer: {
-    contentBase: './dist'
+    contentBase: _resolve('../dist'),
   },
   module: {
     rules: [
@@ -26,14 +26,14 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      filename: path.resolve(__dirname, 'dist/index.html'),
-      template: path.resolve(__dirname, 'examples/index.html'),
+      filename: _resolve('../dist/index.html'),
+      template: _resolve('../examples/index.html'),
       inject: true,
       chunksSortMode: 'dependency'
     }),
-    new CleanWebpackPlugin(['dist'])
+    new CleanWebpackPlugin([_resolve('../dist')]),
   ],
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
-  }
+  },
 };
