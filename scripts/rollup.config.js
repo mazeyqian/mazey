@@ -7,7 +7,7 @@ import commonjs from 'rollup-plugin-commonjs';
 import cleaner from 'rollup-plugin-cleaner';
 import { terser } from 'rollup-plugin-terser';
 
-const pkgVersion = process.env.VERSION || require('./package.json').version;
+const pkgVersion = process.env.VERSION || require('../package.json').version;
 const banner =
   '/*!\n' +
   ` * mazey v${pkgVersion}\n` +

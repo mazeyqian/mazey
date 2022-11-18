@@ -10,8 +10,8 @@
     "lib": "./lib"
   },
   "scripts": {
-    "dev": "webpack-dev-server --config webpack.config.dev.js --open",
-    "build": "rollup -c",
+    "dev": "webpack-dev-server --config ./scripts/webpack.config.dev.js --open",
+    "build": "rollup --config ./scripts/rollup.config.js",
     "test": "jest",
     "docs": "typedoc",
     "lint-and-fix": "eslint ./src/index.ts --ext 'ts,tsx' --fix",
