@@ -91,6 +91,7 @@ There ara some examples maintained by hand below. For more information, please c
 <ul>
   <li><a href="#load-resource">Load Resource</a>
     <ul>
+      <li><a href="#load-script">Load Script</a></li>
       <li><a href="#load-css">Load CSS</a></li>
       <li><a href="#check-load">Check Load</a></li>
     </ul>
@@ -145,6 +146,29 @@ There ara some examples maintained by hand below. For more information, please c
 </ul>
 
 ### Load Resource
+
+#### Load Script
+
+```
+loadScript(
+    'http://example.com/static/js/plugin-2.1.1.min.js',
+    {
+      id: 'iamid', // (Optional) script ID, default none
+      timeout: 5000, // (Optional) timeout, default `5000`
+      isDefer: false, // (Optional) defer, default `false`
+    }
+  )
+  .then(
+    res => {
+      console.log(`Load JavaScript script: ${res}`);
+    }
+  )
+  .catch(
+    err => {
+      console.error(`Load JavaScript script: ${err.message}`)
+    }
+  );
+```
 
 #### Load CSS
 
