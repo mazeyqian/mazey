@@ -17,6 +17,8 @@ async function release (ver) {
   const releaseVersion = `v${ver}`;
   const { stdout: releaseStdout } = await execa('echo', [`Start release ${releaseVersion}...`]);
   console.log(releaseStdout);
+  // git branch --show-current
+  // console.log('git push --set-upstream origin <branch>');
   // Commit Stdout
   const { stdout: diffStdout } = await execa('git', ['diff'], { stdio: 'pipe' });
   if (diffStdout) {
@@ -30,11 +32,26 @@ async function release (ver) {
   console.log('Pushing to GitHub...');
   await execa('git', ['tag', '-a', `${releaseVersion}`, '-m', `Release ${releaseVersion}`]);
   await execa('git', ['push', 'origin', `refs/tags/${releaseVersion}`]);
-  await execa('git', ['push']);
+  await gitPush(); // execa('git', ['push']);
 
   console.log('All done.');
 }
 
+/**
+ * Git Push
+ */
+async function gitPush () {
+  try {
+    await execa('git', ['push'], { stdio: 'pipe' });
+  } catch (error) {
+    console.log('error:', error.message);
+    const { stdout: currentBranch } = await execa('git', ['branch', '--show-current'], { stdio: 'pipe' });
+    console.log('currentBranch:', currentBranch); // currentBranch: fix/rollup_dependences_mon_oct_31st_2022
+    await execa('git', ['push', '--set-upstream', 'origin', currentBranch]);
+  }
+}
+
 module.exports = {
   release,
+  gitPush,
 };

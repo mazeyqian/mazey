@@ -1,6 +1,6 @@
 {
   "name": "mazey",
-  "version": "3.3.4",
+  "version": "3.3.5",
   "description": "Mazey's library for front-end.",
   "main": "lib/index.cjs.js",
   "module": "lib/index.esm.js",
@@ -10,8 +10,8 @@
     "lib": "./lib"
   },
   "scripts": {
-    "dev": "webpack-dev-server --config webpack.config.dev.js --open",
-    "build": "rollup -c",
+    "dev": "webpack-dev-server --config ./scripts/webpack.config.dev.js --open",
+    "build": "rollup --config ./scripts/rollup.config.js",
     "test": "jest",
     "docs": "typedoc",
     "lint-and-fix": "eslint ./src/index.ts --ext 'ts,tsx' --fix",
@@ -69,6 +69,7 @@
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
     "clean-webpack-plugin": "^1.0.1",
+    "date-fns": "^2.29.3",
     "eslint": "^6.8.0",
     "eslint-config-standard": "^14.1.0",
     "eslint-plugin-import": "^2.20.1",

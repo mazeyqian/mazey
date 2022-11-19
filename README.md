@@ -91,6 +91,7 @@ There ara some examples maintained by hand below. For more information, please c
 <ul>
   <li><a href="#load-resource">Load Resource</a>
     <ul>
+      <li><a href="#load-script">Load Script</a></li>
       <li><a href="#load-css">Load CSS</a></li>
       <li><a href="#check-load">Check Load</a></li>
     </ul>
@@ -146,11 +147,32 @@ There ara some examples maintained by hand below. For more information, please c
 
 ### Load Resource
 
+#### Load Script
+
+```
+loadScript(
+    'http://example.com/static/js/plugin-2.1.1.min.js',
+    {
+      id: 'iamid', // (Optional) script ID, default none
+      timeout: 5000, // (Optional) timeout, default `5000`
+      isDefer: false, // (Optional) defer, default `false`
+    }
+  )
+  .then(
+    res => {
+      console.log(`Load JavaScript script: ${res}`);
+    }
+  )
+  .catch(
+    err => {
+      console.error(`Load JavaScript script: ${err.message}`)
+    }
+  );
+```
+
 #### Load CSS
 
 ```
-import { loadCSS } from 'mazey';
-
 loadCSS(
     'http://example.com/css/mazey-base.css',
     {
@@ -174,8 +196,6 @@ loadCSS(
 Check whether the page is loaded successfully (Keepe the compatibility in case that browser's `load` event has been triggered).
 
 ```
-import { windowLoaded } from 'mazey';
-
 windowLoaded(30) // second
   .then(res => {
     console.log(`Load Success: ${res}`); // Load Success: load
@@ -190,8 +210,6 @@ windowLoaded(30) // second
 #### Debounce
 
 ```
-import { debounce } from 'mazey';
-
 const foo = debounce(() => {
   console.log('The debounced function will only be invoked in 1000 milliseconds, the other invoking will disappear during the wait time.');
 }, 1000, true);
@@ -200,8 +218,6 @@ const foo = debounce(() => {
 #### Throttle
 
 ```
-import { throttle } from 'mazey';
-
 const foo = throttle(() => {
   console.log('The function will be invoked at most once per every wait 1000 milliseconds.');
 }, 1000, { leading: true });
@@ -212,8 +228,6 @@ const foo = throttle(() => {
 Check whether it is a right number.
 
 ```
-import { isNumber } from 'mazey';
-
 isNumber(123); // true
 isNumber('123'); // false
 // Default: NaN, Infinity is not Number
@@ -228,8 +242,6 @@ isNumber(NaN, { isNaNAsNumber: true, isUnFiniteAsNumber: true }); // true
 Transfer CamelCase to KebabCase.
 
 ```
-import { camelCaseToKebabCase } from 'mazey';
-
 camelCaseToKebabCase('ABC'); // a-b-c
 camelCaseToKebabCase('aBC'); // a-b-c
 ```
@@ -237,8 +249,6 @@ camelCaseToKebabCase('aBC'); // a-b-c
 Transfer CamelCase to Underscore.
 
 ```
-import { camelCase2Underscore } from 'mazey';
-
 camelCase2Underscore('ABC'); // a_b_c
 camelCase2Underscore('aBC'); // a_b_c
 ```
@@ -248,8 +258,6 @@ camelCase2Underscore('aBC'); // a_b_c
 Remove leading and trailing whitespace or specified characters from string.
 
 ```
-import { mTrim } from 'mazey';
-
 mTrim(' 1 2 3 '); // '1 2 3'
 mTrim('abc '); // 'abc'
 ```
@@ -259,8 +267,6 @@ mTrim('abc '); // 'abc'
 Clone Object deeply.
 
 ```
-import { deepCopyObject } from 'mazey';
-
 deepCopyObject(['a', 'b', 'c']); // ['a', 'b', 'c']
 deepCopyObject('abc'); // 'abc'
 ```
@@ -270,8 +276,6 @@ deepCopyObject('abc'); // 'abc'
 Check whether it is a valid JSON string.
 
 ```
-import { isJsonString } from 'mazey';
-
 isJsonString(`['a', 'b', 'c']`); // false
 isJsonString(`["a", "b", "c"]`); // true
 ```
@@ -281,8 +285,6 @@ isJsonString(`["a", "b", "c"]`); // true
 Produce a random string of number, `generateRndNum(7)` => '7658495'.
 
 ```
-import { generateRndNum } from 'mazey';
-
 generateRndNum(4); // '9730'
 generateRndNum(7); // '2262490'
 ```
@@ -294,8 +296,6 @@ generateRndNum(7); // '2262490'
 Modify `class`.
 
 ```
-import { hasClass, addClass, removeClass } from 'mazey';
-
 const dom = document.querySelector('#box');
 
 // Determine `class`
@@ -313,8 +313,6 @@ Add `<style>` in `<head>`.
 Case 1: Add the `<style>` with `id`, and repeated invoking will update the content instead of adding a new one.
 
 ```
-import { addStyle } from 'mazey';
-
 addStyle(
   `
     body {
@@ -335,8 +333,6 @@ addStyle(
 Case 2: Add the `<style>` without `id`, and repeated invoking will adding a new one.
 
 ```
-import { addStyle } from 'mazey';
-
 addStyle(
   `
     body {
@@ -356,8 +352,6 @@ addStyle(
 Make a newline of HTML.
 
 ```
-import { newLine } from 'mazey';
-
 newLine('a\nb\nc'); // 'a<br />b<br />c'
 newLine('a\n\nbc'); // 'a<br /><br />bc'
 ```
@@ -369,8 +363,6 @@ newLine('a\n\nbc'); // 'a<br /><br />bc'
 Get the query param's value of the current Web URL(`location.search`).
 
 ```
-import { getQueryParam } from 'mazey';
-
 // http://example.com/?t1=1&t2=2&t3=3&t4=4#2333
 // ?t1=1&t2=2&t3=3&t4=4
 getQueryParam('t3'); // 3
@@ -380,8 +372,6 @@ getQueryParam('t4'); // 4
 Get the query param's value of the input URL.
 
 ```
-import { getUrlParam } from 'mazey';
-
 getUrlParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't3'); // 3
 getUrlParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't4'); // 4
 ```
@@ -391,8 +381,6 @@ getUrlParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't4'); // 4
 Update the query param's value of the input URL.
 
 ```
-import { updateQueryParam } from 'mazey';
-
 updateQueryParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't3', 'three'); // http://example.com/?t1=1&t2=2&t3=three&t4=4
 updateQueryParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't4', 'four'); // http://example.com/?t1=1&t2=2&t3=3&t4=four
 ```
@@ -402,8 +390,6 @@ updateQueryParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't4', 'four'); // ht
 Get the hash query param's value of the current Web URL(`location.hash`).
 
 ```
-import { getHashQueryParam } from 'mazey';
-
 // http://example.com/?#2333?t1=1&t2=2&t3=3&t4=4
 // #2333?t1=1&t2=2&t3=3&t4=4
 getHashQueryParam('t3'); // 3
@@ -415,8 +401,6 @@ getHashQueryParam('t4'); // 4
 Get the domain of URL, and other params.
 
 ```
-import { getDomain } from 'mazey';
-
 getDomain('http://example.com/?t1=1&t2=2&t3=3&t4=4'); // example.com
 getDomain('http://example.com/test/thanks?t1=1&t2=2&t3=3&t4=4', ['hostname', 'pathname']); // example.com/test/thanks
 ```
@@ -428,8 +412,6 @@ getDomain('http://example.com/test/thanks?t1=1&t2=2&t3=3&t4=4', ['hostname', 'pa
 Handle Storage (Keep fit for JSON, it can tansfer format automatically).
 
 ```
-import { setSessionStorage, getSessionStorage, setLocalStorage, getLocalStorage } from 'mazey';
-
 setSessionStorage('test', '123');
 getSessionStorage('test'); // 123
 setLocalStorage('test', '123');
@@ -451,8 +433,6 @@ function mGetLocalStorage (key) {
 Handle Cookie.
 
 ```
-import { setCookie, getCookie } from 'mazey';
-
 setCookie('test', '123', 30, 'example.com'); // key value day domain
 getCookie('test'); // 123
 ```
@@ -464,8 +444,6 @@ getCookie('test'); // 123
 Hit probability (1% ~ 100%).
 
 ```
-import { inRate } from 'mazey';
-
 inRate(0.5); // 0.01 ~ 1 true / false
 
 // Test
@@ -486,24 +464,18 @@ console.log(trueCount, falseCount); // 499994 500006
 Computes the longest common substring of two strings.
 
 ```
-import { calLongestCommonSubstring } from 'mazey';
-
 calLongestCommonSubstring('fish', 'finish'); // 3
 ```
 
 Computes the longest common subsequence of two strings.
 
 ```
-import { calLongestCommonSubsequence } from 'mazey';
-
 calLongestCommonSubsequence('fish', 'finish'); // 4
 ```
 
 ### Browser Information
 
 ```
-import { getBrowserInfo } from 'mazey';
-
 getBrowserInfo(); // {"engine":"webkit","engineVs":"537.36","platform":"desktop","supporter":"chrome","supporterVs":"85.0.4183.121","system":"windows","systemVs":"10"}
 // Shell and shell version { shell: 'wechat', shellVs: '20' } shell: wechat qq uc 360 2345 sougou liebao maxthon
 ```
@@ -526,8 +498,6 @@ getBrowserInfo(); // {"engine":"webkit","engineVs":"537.36","platform":"desktop"
 Get page load time(PerformanceTiming).
 
 ```
-import { getPerformance } from 'mazey';
-
 // `camelCase：true`(Default) Return hump data.
 // `camelCase：false` Return underline data.
 getPerformance(true)
@@ -557,8 +527,6 @@ getPerformance(true)
 Determine if it is a secure PWA environment that it can run.
 
 ```
-import { isSafePWAEnv } from 'mazey';
-
 isSafePWAEnv(); // true
 ```
 
@@ -569,8 +537,6 @@ isSafePWAEnv(); // true
 Custom console printing (`console`).
 
 ```
-import { genCustomConsole } from 'mazey';
-
 const myConsole = genCustomConsole('MazeyLog:');
 myConsole.log('I am string.'); // MazeyLog: I am string.
 myConsole.info('I am boolean.', true); // MazeyLog: I am boolean. true

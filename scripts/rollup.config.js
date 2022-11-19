@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable no-undef */
 import babel from 'rollup-plugin-babel';
 import rollupTypescript from 'rollup-plugin-typescript2';
 import { DEFAULT_EXTENSIONS } from '@babel/core';
@@ -5,23 +7,35 @@ import commonjs from 'rollup-plugin-commonjs';
 import cleaner from 'rollup-plugin-cleaner';
 import { terser } from 'rollup-plugin-terser';
 
+const { _resolve } = require('./build-helper');
+const pkgVersion = process.env.VERSION || require('../package.json').version;
+const banner =
+  '/*!\n' +
+  ` * mazey v${pkgVersion}\n` +
+  ` * (c) 2018-${new Date().getFullYear()} Mazey Chu\n` +
+  ' * Released under the MIT License.\n' +
+  ' */';
+
 // https://rollupjs.org/guide/en/
 export default {
-  input: 'src/index.ts',
+  input: _resolve('../src/index.ts'),
   // https://rollupjs.org/guide/en/#outputformat
   output: [
     {
-      file: 'lib/index.cjs.js',
+      file: _resolve('../lib/index.cjs.js'),
       format: 'cjs',
+      banner,
     },
     {
-      file: 'lib/index.esm.js',
+      file: _resolve('../lib/index.esm.js'),
       format: 'esm',
+      banner,
     },
     {
-      file: 'lib/mazey.min.js',
+      file: _resolve('../lib/mazey.min.js'),
       format: 'iife',
       name: 'mazey',
+      banner,
     },
   ],
   plugins: [
@@ -29,12 +43,12 @@ export default {
     // https://github.com/aMarCruz/rollup-plugin-cleanup
     cleaner({
       targets: [
-        './lib/',
-      ]
+        _resolve('../lib/'),
+      ],
     }),
     rollupTypescript(),
     commonjs({
-      include: /node_modules/
+      include: /node_modules/,
     }),
     babel({
       runtimeHelpers: true,
@@ -50,7 +64,8 @@ export default {
     // https://github.com/TrySound/rollup-plugin-terser
     terser({ // https://github.com/terser/terser
       format: {
-        comments: false, // `false` to omit comments in the output
+        // https://github.com/terser/terser#format-options
+        comments: /^!\n\s\*\smazey/, // 'some', // `false` to omit comments in the output
       },
     }),
     // uglify(),
