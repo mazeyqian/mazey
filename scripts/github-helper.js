@@ -53,4 +53,5 @@ async function gitPush () {
 
 module.exports = {
   release,
+  gitPush,
 };
