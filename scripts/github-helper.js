@@ -51,7 +51,29 @@ async function gitPush () {
   }
 }
 
+/**
+ * Git Merge Master
+ */
+async function gitMergeMaster () {
+  const currentBranch = await getGitCurrentBranch();
+  await execa('git', ['checkout', 'master']);
+  await execa('git', ['pull']);
+  await execa('git', ['checkout', currentBranch]);
+  await execa('git', ['merge', 'master']);
+}
+
+/**
+ * Git Merge Master
+ */
+async function getGitCurrentBranch () {
+  const { stdout: currentBranch } = await execa('git', ['branch', '--show-current'], { stdio: 'pipe' });
+  console.log('currentBranch:', currentBranch);
+  return currentBranch;
+}
+
 module.exports = {
   release,
   gitPush,
+  gitMergeMaster,
+  getGitCurrentBranch,
 };
