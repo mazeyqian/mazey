@@ -16,7 +16,7 @@
     "docs": "typedoc",
     "lint-and-fix": "eslint ./src/index.ts --ext 'ts,tsx' --fix",
     "preview": "npm run build && npm run test && npm run docs",
-    "release": "npm run preview && npm publish && node ./scripts/release.js"
+    "release": "node ./scripts/release.js"
   },
   "repository": {
     "type": "git",

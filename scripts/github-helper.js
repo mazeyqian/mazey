@@ -17,6 +17,13 @@ async function release (ver) {
   const releaseVersion = `v${ver}`;
   const { stdout: releaseStdout } = await execa('echo', [`Start release ${releaseVersion}...`]);
   console.log(releaseStdout);
+  // commit
+  // ...
+  // marge
+  await gitMergeMaster2Release();
+  // build
+  await execa('npm', ['run', 'preview']);
+  await execa('npm', ['publish']);
   // git branch --show-current
   // console.log('git push --set-upstream origin <branch>');
   // Commit Stdout
