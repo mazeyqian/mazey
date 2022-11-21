@@ -54,7 +54,7 @@ async function gitPush () {
 /**
  * Git Merge Master
  */
-async function gitMergeMaster () {
+async function gitMergeMaster2Release () {
   const currentBranch = await getGitCurrentBranch();
   await execa('git', ['checkout', 'master']);
   await execa('git', ['pull']);
@@ -74,6 +74,6 @@ async function getGitCurrentBranch () {
 module.exports = {
   release,
   gitPush,
-  gitMergeMaster,
+  gitMergeMaster2Release,
   getGitCurrentBranch,
 };

@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable @typescript-eslint/no-var-requires */
 // const execa = require('execa');
-const { gitMergeMaster } = require('./github-helper');
+const { gitMergeMaster2Release } = require('./github-helper');
 
 (async () => {
   // const { stdout: pushMsg = '' } = await execa('git', ['push'], { stdio: 'pipe' })
@@ -17,6 +17,6 @@ const { gitMergeMaster } = require('./github-helper');
   //   await execa('git', ['push', '--set-upstream', 'origin', currentBranch]);
   // }
   // console.log('pushMsg:', pushMsg);
-  const cb = await gitMergeMaster();
+  const cb = await gitMergeMaster2Release();
   console.log('bbb', cb);
 })();
