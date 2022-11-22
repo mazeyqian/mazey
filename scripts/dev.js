@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable @typescript-eslint/no-var-requires */
 // const execa = require('execa');
-const { gitPush } = require('./github-helper');
+const { getCommit } = require('./github-helper');
 
 (async () => {
   // const { stdout: pushMsg = '' } = await execa('git', ['push'], { stdio: 'pipe' })
@@ -17,6 +17,6 @@ const { gitPush } = require('./github-helper');
   //   await execa('git', ['push', '--set-upstream', 'origin', currentBranch]);
   // }
   // console.log('pushMsg:', pushMsg);
-  const cb = await gitPush();
+  const cb = await getCommit('test commit');
   console.log('bbb', cb);
 })();

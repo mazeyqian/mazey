@@ -18,7 +18,7 @@ async function release (ver) {
   const { stdout: releaseStdout } = await execa('echo', [`Start release ${releaseVersion}...`]);
   console.log(releaseStdout);
   // commit
-  // ...
+  await getCommit('stage');
   // marge
   await gitMergeMaster2Release();
   // build
@@ -45,7 +45,7 @@ async function release (ver) {
 }
 
 /**
- * Git Push
+ * Push code.
  */
 async function gitPush () {
   try {
@@ -59,7 +59,7 @@ async function gitPush () {
 }
 
 /**
- * Git Merge Master
+ * Merge master to current branch.
  */
 async function gitMergeMaster2Release () {
   const currentBranch = await getGitCurrentBranch();
@@ -70,11 +70,26 @@ async function gitMergeMaster2Release () {
 }
 
 /**
- * Git Merge Master
+ * Get git current branch.
  */
 async function getGitCurrentBranch () {
   const { stdout: currentBranch } = await execa('git', ['branch', '--show-current'], { stdio: 'pipe' });
   console.log('currentBranch:', currentBranch);
+  return currentBranch;
+}
+
+/**
+ * Commit current code.
+ */
+ async function getCommit (releaseVersion = 0) {
+  const { stdout: diffStdout } = await execa('git', ['diff'], { stdio: 'pipe' });
+  if (diffStdout) {
+    console.log('Committing changes...');
+    await execa('git', ['add', '-A']);
+    await execa('git', ['commit', '-m', `release: ${releaseVersion}`]);
+  } else {
+    console.log('No changes to commit.');
+  }
   return currentBranch;
 }
 
@@ -83,4 +98,5 @@ module.exports = {
   gitPush,
   gitMergeMaster2Release,
   getGitCurrentBranch,
+  getCommit,
 };
