@@ -56,6 +56,7 @@ async function gitPush () {
     console.log('currentBranch:', currentBranch); // currentBranch: fix/rollup_dependences_mon_oct_31st_2022
     await execa('git', ['push', '--set-upstream', 'origin', currentBranch]);
   }
+  return true;
 }
 
 /**
@@ -67,6 +68,7 @@ async function gitMergeMaster2Release () {
   await execa('git', ['pull']);
   await execa('git', ['checkout', currentBranch]);
   await execa('git', ['merge', 'master']);
+  return true;
 }
 
 /**
@@ -90,7 +92,7 @@ async function getGitCurrentBranch () {
   } else {
     console.log('No changes to commit.');
   }
-  return currentBranch;
+  return true;
 }
 
 module.exports = {

@@ -17,6 +17,6 @@ const { getCommit } = require('./github-helper');
   //   await execa('git', ['push', '--set-upstream', 'origin', currentBranch]);
   // }
   // console.log('pushMsg:', pushMsg);
-  const cb = await getCommit('test commit');
+  const cb = await getCommit('fix returns value');
   console.log('bbb', cb);
 })();
