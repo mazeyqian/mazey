@@ -10,7 +10,7 @@ English | [简体中文](https://github.com/mazeyqian/mazey/blob/master/README_C
 [l-image]: https://img.shields.io/npm/l/mazey
 [l-url]: https://github.com/mazeyqian/mazey
 
-Mazey's functional library for daily front-end work. There are already many excellent libraries for front-end development, but creating a file named `utils.js` or `common.js` is generally used to supply common functions in projects. It's boring to copy similar functions among projects again and again. To save time, I will consistently update the library during my worklife.
+Mazey's functional library for daily front-end work. There are already many excellent libraries for front-end development, but creating a file named UtilsJS or CommonJS is generally used to supply common functions in projects. It's boring to copy similar functions among projects again and again. I will consistently update the library during my work life to save time.
 
 ## Install
 
