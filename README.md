@@ -35,26 +35,9 @@ Example: Use a function to load JavaScript script.
 Import from [npm](https://www.npmjs.com/package/mazey).
 
 ```
-import { loadScript } from 'mazey';
+import { isNumber } from 'mazey';
 
-loadScript(
-    'http://example.com/static/js/plugin-2.1.1.min.js',
-    {
-      id: 'iamid', // (Optional) script ID, default none
-      timeout: 5000, // (Optional) timeout, default `5000`
-      isDefer: false, // (Optional) defer, default `false`
-    }
-  )
-  .then(
-    res => {
-      console.log(`Load JavaScript script: ${res}`);
-    }
-  )
-  .catch(
-    err => {
-      console.error(`Load JavaScript script: ${err.message}`)
-    }
-  );
+isNumber(Infinity, { isUnFiniteAsNumber: true }); // true
 ```
 
 Import from CDN.
@@ -62,23 +45,7 @@ Import from CDN.
 ```
 <script type="text/javascript" src="//i.mazey.net/mazey/lib/mazey.min.js"></script>
 <script>
-mazey.loadScript(
-    'http://example.com/static/js/plugin-2.1.1.min.js',
-    {
-      timeout: 3000, // (Optional) timeout, default `5000`
-      isDefer: true, // (Optional) defer, default `false`
-    }
-  )
-  .then(
-    res => {
-      console.log(`Load JavaScript script: ${res}`);
-    }
-  )
-  .catch(
-    err => {
-      console.error(`Load JavaScript script: ${err.message}`)
-    }
-  );
+mazey.isNumber(Infinity, { isUnFiniteAsNumber: true }); // true
 </script>
 ```
 
@@ -232,7 +199,7 @@ isNumber(123); // true
 isNumber('123'); // false
 // Default: NaN, Infinity is not Number
 isNumber(Infinity); // false
-isNumber(Infinity, { isUnFiniteAsNumber: true }); true
+isNumber(Infinity, { isUnFiniteAsNumber: true }); // true
 isNumber(NaN); // false
 isNumber(NaN, { isNaNAsNumber: true, isUnFiniteAsNumber: true }); // true
 ```
