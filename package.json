@@ -15,7 +15,7 @@
     "test": "jest",
     "docs": "typedoc",
     "lint-and-fix": "eslint ./src/index.ts --ext 'ts,tsx' --fix",
-    "preview": "npm run build && npm run test && npm run docs",
+    "preview": "npm run docs && npm run build && npm run test",
     "release": "node ./scripts/release.js"
   },
   "repository": {
@@ -87,6 +87,7 @@
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-cleaner": "^1.0.0",
     "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-copy": "^3.4.0",
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-typescript2": "^0.27.2",
     "ts-loader": "^8.0.2",
