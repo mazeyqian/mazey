@@ -17,6 +17,13 @@ async function release (ver) {
   const releaseVersion = `v${ver}`;
   const { stdout: releaseStdout } = await execa('echo', [`Start release ${releaseVersion}...`]);
   console.log(releaseStdout);
+  // commit
+  await getCommit('stage');
+  // marge
+  await gitMergeMaster2Release();
+  // build
+  await execa('npm', ['run', 'preview']);
+  await execa('npm', ['publish']);
   // git branch --show-current
   // console.log('git push --set-upstream origin <branch>');
   // Commit Stdout
@@ -38,7 +45,7 @@ async function release (ver) {
 }
 
 /**
- * Git Push
+ * Push code.
  */
 async function gitPush () {
   try {
@@ -49,9 +56,55 @@ async function gitPush () {
     console.log('currentBranch:', currentBranch); // currentBranch: fix/rollup_dependences_mon_oct_31st_2022
     await execa('git', ['push', '--set-upstream', 'origin', currentBranch]);
   }
+  return true;
+}
+
+/**
+ * Merge master to current branch.
+ */
+async function gitMergeMaster2Release () {
+  const currentBranch = await getGitCurrentBranch();
+  await execa('git', ['checkout', 'master']);
+  await execa('git', ['pull']);
+  await execa('git', ['checkout', currentBranch]);
+  await execa('git', ['merge', 'master']);
+  return true;
+}
+
+/**
+ * Get git current branch.
+ */
+async function getGitCurrentBranch () {
+  let currentBranch = '';
+  try {
+    ({ stdout: currentBranch } = await execa('git', ['branch', '--show-current'], { stdio: 'pipe' }));
+  } catch (error) {
+    // console.log('error:', error.message);
+    ({ stdout: currentBranch } = await execa('git', ['rev-parse', '--abbrev-ref', 'HEAD'], { stdio: 'pipe' }));
+  }
+  console.log('currentBranch:', currentBranch);
+  return currentBranch;
+}
+
+/**
+ * Commit current code.
+ */
+async function getCommit (releaseVersion = 0) {
+  const { stdout: diffStdout } = await execa('git', ['diff'], { stdio: 'pipe' });
+  if (diffStdout) {
+    console.log('Committing changes...');
+    await execa('git', ['add', '-A']);
+    await execa('git', ['commit', '-m', `release: ${releaseVersion}`]);
+  } else {
+    console.log('No changes to commit.');
+  }
+  return true;
 }
 
 module.exports = {
   release,
   gitPush,
+  gitMergeMaster2Release,
+  getGitCurrentBranch,
+  getCommit,
 };
