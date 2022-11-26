@@ -75,7 +75,13 @@ async function gitMergeMaster2Release () {
  * Get git current branch.
  */
 async function getGitCurrentBranch () {
-  const { stdout: currentBranch } = await execa('git', ['branch', '--show-current'], { stdio: 'pipe' });
+  let currentBranch = '';
+  try {
+    ({ stdout: currentBranch } = await execa('git', ['branch', '--show-current'], { stdio: 'pipe' }));
+  } catch (error) {
+    // console.log('error:', error.message);
+    ({ stdout: currentBranch } = await execa('git', ['rev-parse', '--abbrev-ref', 'HEAD'], { stdio: 'pipe' }));
+  }
   console.log('currentBranch:', currentBranch);
   return currentBranch;
 }
@@ -83,7 +89,7 @@ async function getGitCurrentBranch () {
 /**
  * Commit current code.
  */
- async function getCommit (releaseVersion = 0) {
+async function getCommit (releaseVersion = 0) {
   const { stdout: diffStdout } = await execa('git', ['diff'], { stdio: 'pipe' });
   if (diffStdout) {
     console.log('Committing changes...');
