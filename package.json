@@ -1,6 +1,6 @@
 {
   "name": "mazey",
-  "version": "3.3.5",
+  "version": "3.3.6",
   "description": "Mazey's library for front-end.",
   "main": "lib/index.cjs.js",
   "module": "lib/index.esm.js",
@@ -16,7 +16,7 @@
     "docs": "typedoc",
     "lint-and-fix": "eslint ./src/index.ts --ext 'ts,tsx' --fix",
     "preview": "npm run docs && npm run build && npm run test",
-    "release": "node ./scripts/release.js"
+    "release": "npm run preview && node ./scripts/release.js"
   },
   "repository": {
     "type": "git",
