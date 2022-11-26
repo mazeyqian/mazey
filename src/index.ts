@@ -350,7 +350,7 @@ export function removeClass(obj: any, cls: string): void {
  * 
  * ZH: 节流
  * 
- * @see https://lodash.com/docs/4.17.15#throttle
+ * Reference: [Lodash](https://lodash.com/docs/4.17.15#throttle)
  */
 export function throttle(func: any, wait: number, options: { leading?: boolean; trailing?: boolean; } = {}): any {
   options = Object.assign(
@@ -1510,24 +1510,28 @@ export function genCustomConsole(prefix = ''): Console {
 
 /**
  * Verify the validity of axios response.
+ * 
+ * Reference: [Handling Errors](https://axios-http.com/docs/handling_errors)
  */
 export function zAxiosIsValidRes(res: any, options: {
-  validStatus: number[];
+  validStatusRange: number[];
   validCode: number[];
 } = {
-  validStatus: [200],
+  validStatusRange: [200, 300],
   validCode: [0],
 }): boolean {
-  const { validStatus, validCode } = Object.assign(
+  const { validStatusRange, validCode } = Object.assign(
     {
-      validStatus: [200],
+      validStatusRange: [200, 300],
       validCode: [0],
     },
     options,
   );
+  if (validStatusRange.length !== 2) {
+    console.error('valid validStatusRange is required');
+  }
   let ret = false;
-  if (res && res.status && validStatus.includes(res.status)) {
-    ret = true;
+  if (res && res.status && validStatusRange.length === 2 && res.status >= validStatusRange[0] && res.status < validStatusRange[1]) {
     const resData = res.data;
     if (resData && validCode.includes(resData.code)) {
       ret = true;
@@ -1572,7 +1576,7 @@ export function getFileSize(size: number): string {
 /**
  * Detect webp support.
  *
- * @see https://davidwalsh.name/detect-webp
+ * Reference: [Detect WEBP Support with JavaScript](https://davidwalsh.name/detect-webp)
  */
 export function isSupportWebp(): Promise<boolean> {
   const fn = (resolve: (v: boolean) => void) => {
@@ -1591,7 +1595,7 @@ export function isSupportWebp(): Promise<boolean> {
 /**
  * Generate a Hash Code from a string.
  *
- * @see https://stackoverflow.com/questions/7616461/generate-a-hash-from-string-in-javascript-jquery
+ * Reference: [Generate a Hash from string in Javascript](https://stackoverflow.com/questions/7616461/generate-a-hash-from-string-in-javascript-jquery)
  */
 export function genHashCode(str: string): number {
 	let hash = 0, i, chr;

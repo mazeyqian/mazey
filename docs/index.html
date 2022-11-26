@@ -64,13 +64,13 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<p>English | <a href="./README_CN.md">简体中文</a></p>
+				<p>English | <a href="https://github.com/mazeyqian/mazey/blob/master/README_CN.md">简体中文</a></p>
 				<a href="#mazey" id="mazey" style="color: inherit; text-decoration: none;">
 					<h1>mazey</h1>
 				</a>
 				<p><a href="https://npmjs.org/package/mazey"><img src="https://img.shields.io/npm/v/mazey" alt="NPM version"></a>
 				<a href="https://github.com/mazeyqian/mazey"><img src="https://img.shields.io/npm/l/mazey" alt="l"></a></p>
-				<p>Mazey&#39;s functional library for daily front-end work. There are already many excellent libraries for front-end development, but it&#39;s general to create a file named <code>utils.js</code> or <code>common.js</code> to supply common functions in projects. It&#39;s boring to copy similar functions among projects again and again. In order to save time, I will consistently update the library during my front-end career.</p>
+				<p>Mazey&#39;s functional library for daily front-end work. There are already many excellent libraries for front-end development, but creating a file named UtilsJS or CommonJS is generally used to supply common functions in projects. It&#39;s boring to copy similar functions among projects again and again. I will consistently update the library during my work life to save time.</p>
 				<a href="#install" id="install" style="color: inherit; text-decoration: none;">
 					<h2>Install</h2>
 				</a>
@@ -84,63 +84,108 @@
 				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
 					<h2>Usage</h2>
 				</a>
-				<a href="#load-resource" id="load-resource" style="color: inherit; text-decoration: none;">
-					<h3>Load Resource</h3>
-				</a>
-				<a href="#load-javascript" id="load-javascript" style="color: inherit; text-decoration: none;">
-					<h4>Load JavaScript</h4>
-				</a>
+				<p>Example: Use a function to load JavaScript script.</p>
 				<p>Import from <a href="https://www.npmjs.com/package/mazey">npm</a>.</p>
-				<pre><code><span class="hljs-keyword">import</span> { loadScript } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;mazey&#x27;</span>;
+				<pre><code><span class="hljs-keyword">import</span> { isNumber } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;mazey&#x27;</span>;
 
-loadScript(
-    <span class="hljs-string">&#x27;http://example.com/js/plugin/jquery/jquery-2.1.1.min.js&#x27;</span>,
-    {
-      <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;iamid&#x27;</span>, <span class="hljs-comment">// Optional, script ID, default none</span>
-      <span class="hljs-attr">timeout</span>: <span class="hljs-number">5000</span>, <span class="hljs-comment">// Optional, timeout, default `5000`</span>
-      <span class="hljs-attr">isDefer</span>: <span class="hljs-literal">false</span>, <span class="hljs-comment">// Optional, defer, default `false`</span>
-    }
-  )
-  .then(
-    <span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> {
-      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Load JavaScript Success: <span class="hljs-subst">${res}</span>`</span>);
-    }
-  )
-  .catch(
-    <span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
-      <span class="hljs-built_in">console</span>.error(<span class="hljs-string">`Load JavaScript Fail: <span class="hljs-subst">${err.message}</span>`</span>)
-    }
-  );
+isNumber(<span class="hljs-literal">Infinity</span>, { isUnFiniteAsNumber: <span class="hljs-literal">true</span> }); <span class="hljs-regexp">//</span> <span class="hljs-literal">true</span>
 </code></pre>
 				<p>Import from CDN.</p>
 				<pre><code><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/javascript&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;//i.mazey.net/mazey/lib/mazey.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
-mazey.loadScript(
-    <span class="hljs-string">&#x27;http://example.com/js/plugin/jquery/jquery-2.1.1.min.js&#x27;</span>,
+mazey.isNumber(<span class="hljs-literal">Infinity</span>, { <span class="hljs-attr">isUnFiniteAsNumber</span>: <span class="hljs-literal">true</span> }); <span class="hljs-comment">// true</span>
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre>
+				<a href="#api-examples" id="api-examples" style="color: inherit; text-decoration: none;">
+					<h2>API Examples</h2>
+				</a>
+				<p>There ara some examples maintained by hand below. For more information, please check the <a href="https://i.mazey.net/mazey/docs/modules/_index_.html">full documentation</a>.</p>
+				<p><strong>Table of Contents</strong></p>
+				<ul>
+					<li><a href="#load-resource">Load Resource</a>
+						<ul>
+							<li><a href="#load-script">Load Script</a></li>
+							<li><a href="#load-css">Load CSS</a></li>
+							<li><a href="#check-load">Check Load</a></li>
+						</ul>
+					</li>
+					<li><a href="#function">Function</a>
+						<ul>
+							<li><a href="#debounce">Debounce</a></li>
+							<li><a href="#throttle">Throttle</a></li>
+							<li><a href="#check-number">Check Number</a></li>
+							<li><a href="#camel-case">Camel Case</a></li>
+							<li><a href="#trim">Trim</a></li>
+							<li><a href="#deep-clone">Deep Clone</a></li>
+							<li><a href="#json">JSON</a></li>
+							<li><a href="#random">Random</a></li>
+						</ul>
+					</li>
+					<li><a href="#dom">DOM</a>
+						<ul>
+							<li><a href="#class">Class</a></li>
+							<li><a href="#style">Style</a></li>
+							<li><a href="#newline">Newline</a></li>
+						</ul>
+					</li>
+					<li><a href="#url">URL</a>
+						<ul>
+							<li><a href="#query-param">Query Param</a></li>
+							<li><a href="#update-param">Update Param</a></li>
+							<li><a href="#hash-param">Hash Param</a></li>
+							<li><a href="#domain">Domain</a></li>
+						</ul>
+					</li>
+					<li><a href="#cache-data">Cache Data</a>
+						<ul>
+							<li><a href="#storage">Storage</a></li>
+							<li><a href="#cookie">Cookie</a></li>
+						</ul>
+					</li>
+					<li><a href="#calculate-formula">Calculate&amp;Formula</a>
+						<ul>
+							<li><a href="#rate">Rate</a></li>
+							<li><a href="#algorithm">Algorithm</a></li>
+						</ul>
+					</li>
+					<li><a href="#browser-information">Browser Information</a></li>
+					<li><a href="#web-performance">Web Performance</a></li>
+					<li><a href="#margin-of-safety">Margin of Safety</a></li>
+					<li><a href="#debug">Debug</a>
+						<ul>
+							<li><a href="#print">Print</a></li>
+						</ul>
+					</li>
+				</ul>
+				<a href="#load-resource" id="load-resource" style="color: inherit; text-decoration: none;">
+					<h3>Load Resource</h3>
+				</a>
+				<a href="#load-script" id="load-script" style="color: inherit; text-decoration: none;">
+					<h4>Load Script</h4>
+				</a>
+				<pre><code>loadScript(
+    <span class="hljs-string">&#x27;http://example.com/static/js/plugin-2.1.1.min.js&#x27;</span>,
     {
-      <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;iamid&#x27;</span>, <span class="hljs-comment">// Optional, script ID, default none</span>
-      <span class="hljs-attr">timeout</span>: <span class="hljs-number">5000</span>, <span class="hljs-comment">// Optional, timeout, default `5000`</span>
-      <span class="hljs-attr">isDefer</span>: <span class="hljs-literal">false</span>, <span class="hljs-comment">// Optional, defer, default `false`</span>
+      <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;iamid&#x27;</span>, <span class="hljs-comment">// (Optional) script ID, default none</span>
+      timeout: <span class="hljs-number">5000</span>, <span class="hljs-comment">// (Optional) timeout, default `5000`</span>
+      isDefer: <span class="hljs-literal">false</span>, <span class="hljs-comment">// (Optional) defer, default `false`</span>
     }
   )
   .then(
     <span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> {
-      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Load JavaScript Success: <span class="hljs-subst">${res}</span>`</span>);
+      console.log(<span class="hljs-string">`Load JavaScript script: <span class="hljs-subst">${res}</span>`</span>);
     }
   )
   .catch(
     <span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
-      <span class="hljs-built_in">console</span>.error(<span class="hljs-string">`Load JavaScript Fail: <span class="hljs-subst">${err.message}</span>`</span>)
+      console.error(<span class="hljs-string">`Load JavaScript script: <span class="hljs-subst">${err.message}</span>`</span>)
     }
   );
-</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 </code></pre>
 				<a href="#load-css" id="load-css" style="color: inherit; text-decoration: none;">
 					<h4>Load CSS</h4>
 				</a>
-				<pre><code><span class="hljs-keyword">import</span> { loadCSS } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;mazey&#x27;</span>;
-
-loadCSS(
+				<pre><code>loadCSS(
     <span class="hljs-string">&#x27;http://example.com/css/mazey-base.css&#x27;</span>,
     {
       <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;iamid&#x27;</span>, <span class="hljs-comment">// Optional, link ID, default none</span>
@@ -148,12 +193,12 @@ loadCSS(
   )
   .then(
     <span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> {
-      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Load CSS Success: <span class="hljs-subst">${res}</span>`</span>);
+      console.log(<span class="hljs-string">`Load CSS Success: <span class="hljs-subst">${res}</span>`</span>);
     }
   )
   .catch(
     <span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
-      <span class="hljs-built_in">console</span>.error(<span class="hljs-string">`Load CSS Fail: <span class="hljs-subst">${err.message}</span>`</span>)
+      console.error(<span class="hljs-string">`Load CSS Fail: <span class="hljs-subst">${err.message}</span>`</span>)
     }
   );
 </code></pre>
@@ -161,14 +206,12 @@ loadCSS(
 					<h4>Check Load</h4>
 				</a>
 				<p>Check whether the page is loaded successfully (Keepe the compatibility in case that browser&#39;s <code>load</code> event has been triggered).</p>
-				<pre><code><span class="hljs-keyword">import</span> { windowLoaded } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;mazey&#x27;</span>;
-
-windowLoaded(<span class="hljs-number">30</span>) <span class="hljs-comment">// second</span>
+				<pre><code>windowLoaded(<span class="hljs-number">30</span>) <span class="hljs-comment">// second</span>
   .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> {
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Load Success: <span class="hljs-subst">${res}</span>`</span>); <span class="hljs-comment">// Load Success: load</span>
+    console.log(<span class="hljs-string">`Load Success: <span class="hljs-subst">${res}</span>`</span>); <span class="hljs-comment">// Load Success: load</span>
   })
   .catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Load Timeout or Fail: <span class="hljs-subst">${err.message}</span>`</span>);
+    console.log(<span class="hljs-string">`Load Timeout or Fail: <span class="hljs-subst">${err.message}</span>`</span>);
   });
 </code></pre>
 				<a href="#function" id="function" style="color: inherit; text-decoration: none;">
@@ -177,32 +220,26 @@ windowLoaded(<span class="hljs-number">30</span>) <span class="hljs-comment">// 
 				<a href="#debounce" id="debounce" style="color: inherit; text-decoration: none;">
 					<h4>Debounce</h4>
 				</a>
-				<pre><code><span class="hljs-keyword">import</span> { debounce } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;mazey&#x27;</span>;
-
-const foo = debounce(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;The debounced function will only be invoked in 1000 milliseconds, the other invoking will disappear during the wait time.&#x27;</span>);
-}, <span class="hljs-number">1000</span>, { leading: <span class="hljs-literal">true</span> })
+				<pre><code><span class="hljs-keyword">const</span> foo = debounce(() =&gt; {
+  console.<span class="hljs-built_in">log</span>(<span class="hljs-comment">&#x27;The debounced function will only be invoked in 1000 milliseconds, the other invoking will disappear during the wait time.&#x27;);</span>
+}, <span class="hljs-number">1000</span>, <span class="hljs-literal">true</span>);
 </code></pre>
 				<a href="#throttle" id="throttle" style="color: inherit; text-decoration: none;">
 					<h4>Throttle</h4>
 				</a>
-				<pre><code><span class="hljs-keyword">import</span> { throttle } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;mazey&#x27;</span>;
-
-const foo = throttle(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+				<pre><code>const foo = throttle(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;The function will be invoked at most once per every wait 1000 milliseconds.&#x27;</span>);
-}, <span class="hljs-number">1000</span>, { leading: <span class="hljs-literal">true</span> })
+}, <span class="hljs-number">1000</span>, { leading: <span class="hljs-literal">true</span> });
 </code></pre>
 				<a href="#check-number" id="check-number" style="color: inherit; text-decoration: none;">
 					<h4>Check Number</h4>
 				</a>
 				<p>Check whether it is a right number.</p>
-				<pre><code><span class="hljs-string">import</span> { <span class="hljs-string">isNumber</span> } <span class="hljs-string">from</span> <span class="hljs-string">&#x27;mazey&#x27;</span><span class="hljs-string">;</span>
-
-<span class="hljs-string">isNumber(123);</span> <span class="hljs-string">//</span> <span class="hljs-literal">true</span>
+				<pre><code><span class="hljs-string">isNumber(123);</span> <span class="hljs-string">//</span> <span class="hljs-literal">true</span>
 <span class="hljs-string">isNumber(&#x27;123&#x27;);</span> <span class="hljs-string">//</span> <span class="hljs-literal">false</span>
 <span class="hljs-string">//</span> <span class="hljs-attr">Default:</span> <span class="hljs-string">NaN,</span> <span class="hljs-string">Infinity</span> <span class="hljs-string">is</span> <span class="hljs-string">not</span> <span class="hljs-string">Number</span>
 <span class="hljs-string">isNumber(Infinity);</span> <span class="hljs-string">//</span> <span class="hljs-literal">false</span>
-<span class="hljs-string">isNumber(Infinity,</span> { <span class="hljs-attr">isUnFiniteAsNumber:</span> <span class="hljs-literal">true</span> }<span class="hljs-string">);</span> <span class="hljs-literal">true</span>
+<span class="hljs-string">isNumber(Infinity,</span> { <span class="hljs-attr">isUnFiniteAsNumber:</span> <span class="hljs-literal">true</span> }<span class="hljs-string">);</span> <span class="hljs-string">//</span> <span class="hljs-literal">true</span>
 <span class="hljs-string">isNumber(NaN);</span> <span class="hljs-string">//</span> <span class="hljs-literal">false</span>
 <span class="hljs-string">isNumber(NaN,</span> { <span class="hljs-attr">isNaNAsNumber:</span> <span class="hljs-literal">true</span>, <span class="hljs-attr">isUnFiniteAsNumber:</span> <span class="hljs-literal">true</span> }<span class="hljs-string">);</span> <span class="hljs-string">//</span> <span class="hljs-literal">true</span>
 </code></pre>
@@ -210,51 +247,39 @@ const foo = throttle(<span class="hljs-function"><span class="hljs-params">()</s
 					<h4>Camel Case</h4>
 				</a>
 				<p>Transfer CamelCase to KebabCase.</p>
-				<pre><code><span class="hljs-keyword">import</span> { camelCaseToKebabCase } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;mazey&#x27;</span>;
-
-camelCaseToKebabCase(<span class="hljs-string">&#x27;ABC&#x27;</span>); <span class="hljs-comment">// a-b-c</span>
-camelCaseToKebabCase(<span class="hljs-string">&#x27;aBC&#x27;</span>); <span class="hljs-comment">// a-b-c</span>
+				<pre><code><span class="hljs-selector-tag">camelCaseToKebabCase</span>(<span class="hljs-string">&#x27;ABC&#x27;</span>); <span class="hljs-comment">// a-b-c</span>
+<span class="hljs-selector-tag">camelCaseToKebabCase</span>(<span class="hljs-string">&#x27;aBC&#x27;</span>); <span class="hljs-comment">// a-b-c</span>
 </code></pre>
 				<p>Transfer CamelCase to Underscore.</p>
-				<pre><code>import { camelCase2Underscore } from <span class="hljs-string">&#x27;mazey&#x27;</span>;
-
-camelCase2Underscore(<span class="hljs-string">&#x27;ABC&#x27;</span>); <span class="hljs-regexp">//</span> a_b_c
+				<pre><code>camelCase2Underscore(<span class="hljs-string">&#x27;ABC&#x27;</span>); <span class="hljs-regexp">//</span> a_b_c
 camelCase2Underscore(<span class="hljs-string">&#x27;aBC&#x27;</span>); <span class="hljs-regexp">//</span> a_b_c
 </code></pre>
 				<a href="#trim" id="trim" style="color: inherit; text-decoration: none;">
 					<h4>Trim</h4>
 				</a>
 				<p>Remove leading and trailing whitespace or specified characters from string.</p>
-				<pre><code>import { mTrim } from <span class="hljs-string">&#x27;mazey&#x27;</span>;
-
-mTrim(<span class="hljs-string">&#x27; 1 2 3 &#x27;</span>); <span class="hljs-regexp">//</span> <span class="hljs-string">&#x27;1 2 3&#x27;</span>
+				<pre><code>mTrim(<span class="hljs-string">&#x27; 1 2 3 &#x27;</span>); <span class="hljs-regexp">//</span> <span class="hljs-string">&#x27;1 2 3&#x27;</span>
 mTrim(<span class="hljs-string">&#x27;abc &#x27;</span>); <span class="hljs-regexp">//</span> <span class="hljs-string">&#x27;abc&#x27;</span>
 </code></pre>
 				<a href="#deep-clone" id="deep-clone" style="color: inherit; text-decoration: none;">
 					<h4>Deep Clone</h4>
 				</a>
 				<p>Clone Object deeply.</p>
-				<pre><code>import { deepCopyObject } from <span class="hljs-string">&#x27;mazey&#x27;</span>;
-
-deepCopyObject([<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>]); <span class="hljs-regexp">//</span> [<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>]
+				<pre><code>deepCopyObject([<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>]); <span class="hljs-regexp">//</span> [<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>]
 deepCopyObject(<span class="hljs-string">&#x27;abc&#x27;</span>); <span class="hljs-regexp">//</span> <span class="hljs-string">&#x27;abc&#x27;</span>
 </code></pre>
 				<a href="#json" id="json" style="color: inherit; text-decoration: none;">
 					<h4>JSON</h4>
 				</a>
 				<p>Check whether it is a valid JSON string.</p>
-				<pre><code><span class="hljs-keyword">import</span> { isJsonString } from <span class="hljs-string">&#x27;mazey&#x27;</span>;
-
-isJsonString(`[<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>]`); <span class="hljs-regexp">//</span> <span class="hljs-keyword">false</span>
-isJsonString(`[<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;c&quot;</span>]`); <span class="hljs-regexp">//</span> <span class="hljs-keyword">true</span>
+				<pre><code>isJsonString(`[<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>]`); <span class="hljs-regexp">//</span> false
+isJsonString(`[<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;c&quot;</span>]`); <span class="hljs-regexp">//</span> true
 </code></pre>
 				<a href="#random" id="random" style="color: inherit; text-decoration: none;">
 					<h4>Random</h4>
 				</a>
 				<p>Produce a random string of number, <code>generateRndNum(7)</code> =&gt; &#39;7658495&#39;.</p>
-				<pre><code>import { generateRndNum } from <span class="hljs-string">&#x27;mazey&#x27;</span>;
-
-generateRndNum(<span class="hljs-number">4</span>); <span class="hljs-regexp">//</span> <span class="hljs-string">&#x27;9730&#x27;</span>
+				<pre><code>generateRndNum(<span class="hljs-number">4</span>); <span class="hljs-regexp">//</span> <span class="hljs-string">&#x27;9730&#x27;</span>
 generateRndNum(<span class="hljs-number">7</span>); <span class="hljs-regexp">//</span> <span class="hljs-string">&#x27;2262490&#x27;</span>
 </code></pre>
 				<a href="#dom" id="dom" style="color: inherit; text-decoration: none;">
@@ -264,9 +289,7 @@ generateRndNum(<span class="hljs-number">7</span>); <span class="hljs-regexp">//
 					<h4>Class</h4>
 				</a>
 				<p>Modify <code>class</code>.</p>
-				<pre><code>import { hasClass, addClass, removeClass } from &#x27;mazey&#x27;;
-
-const dom = document.query<span class="hljs-constructor">Selector(&#x27;#<span class="hljs-params">box</span>&#x27;)</span>;
+				<pre><code>const dom = document.query<span class="hljs-constructor">Selector(&#x27;#<span class="hljs-params">box</span>&#x27;)</span>;
 
 <span class="hljs-comment">// Determine `class`</span>
 has<span class="hljs-constructor">Class(<span class="hljs-params">dom</span>, &#x27;<span class="hljs-params">test</span>&#x27;)</span>;
@@ -280,9 +303,7 @@ remove<span class="hljs-constructor">Class(<span class="hljs-params">dom</span>,
 				</a>
 				<p>Add <code>&lt;style&gt;</code> in <code>&lt;head&gt;</code>.</p>
 				<p>Case 1: Add the <code>&lt;style&gt;</code> with <code>id</code>, and repeated invoking will update the content instead of adding a new one.</p>
-				<pre><code>import { addStyle } from <span class="hljs-string">&#x27;mazey&#x27;</span>;
-
-addStyle(
+				<pre><code>addStyle(
   `
     body {
       background-color: <span class="hljs-comment">#333;</span>
@@ -299,9 +320,7 @@ addStyle(
 <span class="hljs-regexp">//</span> &lt;/style&gt;
 </code></pre>
 				<p>Case 2: Add the <code>&lt;style&gt;</code> without <code>id</code>, and repeated invoking will adding a new one.</p>
-				<pre><code>import { addStyle } from <span class="hljs-string">&#x27;mazey&#x27;</span>;
-
-addStyle(
+				<pre><code>addStyle(
   `
     body {
       background-color: <span class="hljs-comment">#444;</span>
@@ -318,10 +337,8 @@ addStyle(
 					<h4>Newline</h4>
 				</a>
 				<p>Make a newline of HTML.</p>
-				<pre><code><span class="hljs-keyword">import</span> { <span class="hljs-keyword">new</span><span class="hljs-type">Line</span> } from <span class="hljs-string">&#x27;mazey&#x27;</span>;
-
-<span class="hljs-keyword">new</span><span class="hljs-type">Line</span>(<span class="hljs-string">&#x27;a\nb\nc&#x27;</span>); <span class="hljs-comment">// &#x27;a&lt;br /&gt;b&lt;br /&gt;c&#x27;</span>
-<span class="hljs-keyword">new</span><span class="hljs-type">Line</span>(<span class="hljs-string">&#x27;a\n\nbc&#x27;</span>); <span class="hljs-comment">// &#x27;a&lt;br /&gt;&lt;br /&gt;bc&#x27;</span>
+				<pre><code><span class="hljs-keyword">new</span><span class="hljs-constructor">Line(&#x27;<span class="hljs-params">a</span>\<span class="hljs-params">nb</span>\<span class="hljs-params">nc</span>&#x27;)</span>; <span class="hljs-comment">// &#x27;a&lt;br /&gt;b&lt;br /&gt;c&#x27;</span>
+<span class="hljs-keyword">new</span><span class="hljs-constructor">Line(&#x27;<span class="hljs-params">a</span>\<span class="hljs-params">n</span>\<span class="hljs-params">nbc</span>&#x27;)</span>; <span class="hljs-comment">// &#x27;a&lt;br /&gt;&lt;br /&gt;bc&#x27;</span>
 </code></pre>
 				<a href="#url" id="url" style="color: inherit; text-decoration: none;">
 					<h3>URL</h3>
@@ -330,35 +347,27 @@ addStyle(
 					<h4>Query Param</h4>
 				</a>
 				<p>Get the query param&#39;s value of the current Web URL(<code>location.search</code>).</p>
-				<pre><code>import { getQueryParam } from <span class="hljs-string">&#x27;mazey&#x27;</span>;
-
-<span class="hljs-regexp">//</span> http:<span class="hljs-regexp">//</span>example.com/?t1=<span class="hljs-number">1</span>&amp;t2=<span class="hljs-number">2</span>&amp;t3=<span class="hljs-number">3</span>&amp;t4=<span class="hljs-number">4</span><span class="hljs-comment">#2333</span>
+				<pre><code><span class="hljs-regexp">//</span> http:<span class="hljs-regexp">//</span>example.com/?t1=<span class="hljs-number">1</span>&amp;t2=<span class="hljs-number">2</span>&amp;t3=<span class="hljs-number">3</span>&amp;t4=<span class="hljs-number">4</span><span class="hljs-comment">#2333</span>
 <span class="hljs-regexp">//</span> ?t1=<span class="hljs-number">1</span>&amp;t2=<span class="hljs-number">2</span>&amp;t3=<span class="hljs-number">3</span>&amp;t4=<span class="hljs-number">4</span>
 getQueryParam(<span class="hljs-string">&#x27;t3&#x27;</span>); <span class="hljs-regexp">//</span> <span class="hljs-number">3</span>
 getQueryParam(<span class="hljs-string">&#x27;t4&#x27;</span>); <span class="hljs-regexp">//</span> <span class="hljs-number">4</span>
 </code></pre>
 				<p>Get the query param&#39;s value of the input URL.</p>
-				<pre><code><span class="hljs-attribute">import</span> { getUrlParam } from &#x27;mazey&#x27;;
-
-<span class="hljs-attribute">getUrlParam</span>(&#x27;http://example.com/?t<span class="hljs-number">1</span>=<span class="hljs-number">1</span>&amp;t<span class="hljs-number">2</span>=<span class="hljs-number">2</span>&amp;t<span class="hljs-number">3</span>=<span class="hljs-number">3</span>&amp;t<span class="hljs-number">4</span>=<span class="hljs-number">4</span>&#x27;, &#x27;t<span class="hljs-number">3</span>&#x27;); // <span class="hljs-number">3</span>
+				<pre><code><span class="hljs-attribute">getUrlParam</span>(&#x27;http://example.com/?t<span class="hljs-number">1</span>=<span class="hljs-number">1</span>&amp;t<span class="hljs-number">2</span>=<span class="hljs-number">2</span>&amp;t<span class="hljs-number">3</span>=<span class="hljs-number">3</span>&amp;t<span class="hljs-number">4</span>=<span class="hljs-number">4</span>&#x27;, &#x27;t<span class="hljs-number">3</span>&#x27;); // <span class="hljs-number">3</span>
 <span class="hljs-attribute">getUrlParam</span>(&#x27;http://example.com/?t<span class="hljs-number">1</span>=<span class="hljs-number">1</span>&amp;t<span class="hljs-number">2</span>=<span class="hljs-number">2</span>&amp;t<span class="hljs-number">3</span>=<span class="hljs-number">3</span>&amp;t<span class="hljs-number">4</span>=<span class="hljs-number">4</span>&#x27;, &#x27;t<span class="hljs-number">4</span>&#x27;); // <span class="hljs-number">4</span>
 </code></pre>
 				<a href="#update-param" id="update-param" style="color: inherit; text-decoration: none;">
 					<h4>Update Param</h4>
 				</a>
 				<p>Update the query param&#39;s value of the input URL.</p>
-				<pre><code><span class="hljs-attribute">import</span> { updateQueryParam } from &#x27;mazey&#x27;;
-
-<span class="hljs-attribute">updateQueryParam</span>(&#x27;http://example.com/?t<span class="hljs-number">1</span>=<span class="hljs-number">1</span>&amp;t<span class="hljs-number">2</span>=<span class="hljs-number">2</span>&amp;t<span class="hljs-number">3</span>=<span class="hljs-number">3</span>&amp;t<span class="hljs-number">4</span>=<span class="hljs-number">4</span>&#x27;, &#x27;t<span class="hljs-number">3</span>&#x27;, &#x27;three&#x27;); // http://example.com/?t<span class="hljs-number">1</span>=<span class="hljs-number">1</span>&amp;t<span class="hljs-number">2</span>=<span class="hljs-number">2</span>&amp;t<span class="hljs-number">3</span>=three&amp;t<span class="hljs-number">4</span>=<span class="hljs-number">4</span>
+				<pre><code><span class="hljs-attribute">updateQueryParam</span>(&#x27;http://example.com/?t<span class="hljs-number">1</span>=<span class="hljs-number">1</span>&amp;t<span class="hljs-number">2</span>=<span class="hljs-number">2</span>&amp;t<span class="hljs-number">3</span>=<span class="hljs-number">3</span>&amp;t<span class="hljs-number">4</span>=<span class="hljs-number">4</span>&#x27;, &#x27;t<span class="hljs-number">3</span>&#x27;, &#x27;three&#x27;); // http://example.com/?t<span class="hljs-number">1</span>=<span class="hljs-number">1</span>&amp;t<span class="hljs-number">2</span>=<span class="hljs-number">2</span>&amp;t<span class="hljs-number">3</span>=three&amp;t<span class="hljs-number">4</span>=<span class="hljs-number">4</span>
 <span class="hljs-attribute">updateQueryParam</span>(&#x27;http://example.com/?t<span class="hljs-number">1</span>=<span class="hljs-number">1</span>&amp;t<span class="hljs-number">2</span>=<span class="hljs-number">2</span>&amp;t<span class="hljs-number">3</span>=<span class="hljs-number">3</span>&amp;t<span class="hljs-number">4</span>=<span class="hljs-number">4</span>&#x27;, &#x27;t<span class="hljs-number">4</span>&#x27;, &#x27;four&#x27;); // http://example.com/?t<span class="hljs-number">1</span>=<span class="hljs-number">1</span>&amp;t<span class="hljs-number">2</span>=<span class="hljs-number">2</span>&amp;t<span class="hljs-number">3</span>=<span class="hljs-number">3</span>&amp;t<span class="hljs-number">4</span>=four
 </code></pre>
 				<a href="#hash-param" id="hash-param" style="color: inherit; text-decoration: none;">
 					<h4>Hash Param</h4>
 				</a>
 				<p>Get the hash query param&#39;s value of the current Web URL(<code>location.hash</code>).</p>
-				<pre><code>import { getHashQueryParam } from <span class="hljs-string">&#x27;mazey&#x27;</span>;
-
-<span class="hljs-regexp">//</span> http:<span class="hljs-regexp">//</span>example.com/?<span class="hljs-comment">#2333?t1=1&amp;t2=2&amp;t3=3&amp;t4=4</span>
+				<pre><code><span class="hljs-regexp">//</span> http:<span class="hljs-regexp">//</span>example.com/?<span class="hljs-comment">#2333?t1=1&amp;t2=2&amp;t3=3&amp;t4=4</span>
 <span class="hljs-regexp">//</span> <span class="hljs-comment">#2333?t1=1&amp;t2=2&amp;t3=3&amp;t4=4</span>
 getHashQueryParam(<span class="hljs-string">&#x27;t3&#x27;</span>); <span class="hljs-regexp">//</span> <span class="hljs-number">3</span>
 getHashQueryParam(<span class="hljs-string">&#x27;t4&#x27;</span>); <span class="hljs-regexp">//</span> <span class="hljs-number">4</span>
@@ -367,9 +376,7 @@ getHashQueryParam(<span class="hljs-string">&#x27;t4&#x27;</span>); <span class=
 					<h4>Domain</h4>
 				</a>
 				<p>Get the domain of URL, and other params.</p>
-				<pre><code>import { getDomain } from &#x27;mazey&#x27;;
-
-get<span class="hljs-constructor">Domain(&#x27;<span class="hljs-params">http</span>:<span class="hljs-operator">/</span><span class="hljs-operator">/</span><span class="hljs-params">example</span>.<span class="hljs-params">com</span><span class="hljs-operator">/</span>?<span class="hljs-params">t1</span>=1&amp;<span class="hljs-params">t2</span>=2&amp;<span class="hljs-params">t3</span>=3&amp;<span class="hljs-params">t4</span>=4&#x27;)</span>; <span class="hljs-comment">// example.com</span>
+				<pre><code>get<span class="hljs-constructor">Domain(&#x27;<span class="hljs-params">http</span>:<span class="hljs-operator">/</span><span class="hljs-operator">/</span><span class="hljs-params">example</span>.<span class="hljs-params">com</span><span class="hljs-operator">/</span>?<span class="hljs-params">t1</span>=1&amp;<span class="hljs-params">t2</span>=2&amp;<span class="hljs-params">t3</span>=3&amp;<span class="hljs-params">t4</span>=4&#x27;)</span>; <span class="hljs-comment">// example.com</span>
 get<span class="hljs-constructor">Domain(&#x27;<span class="hljs-params">http</span>:<span class="hljs-operator">/</span><span class="hljs-operator">/</span><span class="hljs-params">example</span>.<span class="hljs-params">com</span><span class="hljs-operator">/</span><span class="hljs-params">test</span><span class="hljs-operator">/</span><span class="hljs-params">thanks</span>?<span class="hljs-params">t1</span>=1&amp;<span class="hljs-params">t2</span>=2&amp;<span class="hljs-params">t3</span>=3&amp;<span class="hljs-params">t4</span>=4&#x27;, [&#x27;<span class="hljs-params">hostname</span>&#x27;, &#x27;<span class="hljs-params">pathname</span>&#x27;])</span>; <span class="hljs-comment">// example.com/test/thanks</span>
 </code></pre>
 				<a href="#cache-data" id="cache-data" style="color: inherit; text-decoration: none;">
@@ -379,9 +386,7 @@ get<span class="hljs-constructor">Domain(&#x27;<span class="hljs-params">http</s
 					<h4>Storage</h4>
 				</a>
 				<p>Handle Storage (Keep fit for JSON, it can tansfer format automatically).</p>
-				<pre><code><span class="hljs-keyword">import</span> { setSessionStorage, getSessionStorage, setLocalStorage, getLocalStorage } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;mazey&#x27;</span>;
-
-setSessionStorage(<span class="hljs-string">&#x27;test&#x27;</span>, <span class="hljs-string">&#x27;123&#x27;</span>);
+				<pre><code>setSessionStorage(<span class="hljs-string">&#x27;test&#x27;</span>, <span class="hljs-string">&#x27;123&#x27;</span>);
 getSessionStorage(<span class="hljs-string">&#x27;test&#x27;</span>); <span class="hljs-comment">// 123</span>
 setLocalStorage(<span class="hljs-string">&#x27;test&#x27;</span>, <span class="hljs-string">&#x27;123&#x27;</span>);
 getLocalStorage(<span class="hljs-string">&#x27;test&#x27;</span>); <span class="hljs-comment">// 123</span>
@@ -400,9 +405,7 @@ getLocalStorage(<span class="hljs-string">&#x27;test&#x27;</span>); <span class=
 					<h4>Cookie</h4>
 				</a>
 				<p>Handle Cookie.</p>
-				<pre><code>import { setCookie, getCookie } from <span class="hljs-string">&#x27;mazey&#x27;</span>;
-
-setCookie(<span class="hljs-string">&#x27;test&#x27;</span>, <span class="hljs-string">&#x27;123&#x27;</span>, <span class="hljs-number">30</span>, <span class="hljs-string">&#x27;example.com&#x27;</span>); <span class="hljs-regexp">//</span> key value day domain
+				<pre><code>setCookie(<span class="hljs-string">&#x27;test&#x27;</span>, <span class="hljs-string">&#x27;123&#x27;</span>, <span class="hljs-number">30</span>, <span class="hljs-string">&#x27;example.com&#x27;</span>); <span class="hljs-regexp">//</span> key value day domain
 getCookie(<span class="hljs-string">&#x27;test&#x27;</span>); <span class="hljs-regexp">//</span> <span class="hljs-number">123</span>
 </code></pre>
 				<a href="#calculateampformula" id="calculateampformula" style="color: inherit; text-decoration: none;">
@@ -412,9 +415,7 @@ getCookie(<span class="hljs-string">&#x27;test&#x27;</span>); <span class="hljs-
 					<h4>Rate</h4>
 				</a>
 				<p>Hit probability (1% ~ 100%).</p>
-				<pre><code><span class="hljs-keyword">import</span> { inRate } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;mazey&#x27;</span>;
-
-inRate(<span class="hljs-number">0.5</span>); <span class="hljs-comment">// 0.01 ~ 1 true / false</span>
+				<pre><code>inRate(<span class="hljs-number">0.5</span>); <span class="hljs-comment">// 0.01 ~ 1 true / false</span>
 
 <span class="hljs-comment">// Test</span>
 <span class="hljs-keyword">let</span> trueCount = <span class="hljs-number">0</span>;
@@ -432,21 +433,15 @@ inRate(<span class="hljs-number">0.5</span>); <span class="hljs-comment">// 0.01
 					<h4>Algorithm</h4>
 				</a>
 				<p>Computes the longest common substring of two strings.</p>
-				<pre><code><span class="hljs-keyword">import</span> { calLongestCommonSubstring } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;mazey&#x27;</span>;
-
-calLongestCommonSubstring(<span class="hljs-string">&#x27;fish&#x27;</span>, <span class="hljs-string">&#x27;finish&#x27;</span>); <span class="hljs-comment">// 3</span>
+				<pre><code>calLongestCommonSubstring(<span class="hljs-string">&#x27;fish&#x27;</span>, <span class="hljs-string">&#x27;finish&#x27;</span>); <span class="hljs-regexp">//</span> <span class="hljs-number">3</span>
 </code></pre>
 				<p>Computes the longest common subsequence of two strings.</p>
-				<pre><code><span class="hljs-keyword">import</span> { calLongestCommonSubsequence } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;mazey&#x27;</span>;
-
-calLongestCommonSubsequence(<span class="hljs-string">&#x27;fish&#x27;</span>, <span class="hljs-string">&#x27;finish&#x27;</span>); <span class="hljs-comment">// 4</span>
+				<pre><code>calLongestCommonSubsequence(<span class="hljs-string">&#x27;fish&#x27;</span>, <span class="hljs-string">&#x27;finish&#x27;</span>); <span class="hljs-regexp">//</span> <span class="hljs-number">4</span>
 </code></pre>
 				<a href="#browser-information" id="browser-information" style="color: inherit; text-decoration: none;">
 					<h3>Browser Information</h3>
 				</a>
-				<pre><code>import { getBrowserInfo } from <span class="hljs-string">&#x27;mazey&#x27;</span>;
-
-getBrowserInfo(); <span class="hljs-regexp">//</span> {<span class="hljs-string">&quot;engine&quot;</span>:<span class="hljs-string">&quot;webkit&quot;</span>,<span class="hljs-string">&quot;engineVs&quot;</span>:<span class="hljs-string">&quot;537.36&quot;</span>,<span class="hljs-string">&quot;platform&quot;</span>:<span class="hljs-string">&quot;desktop&quot;</span>,<span class="hljs-string">&quot;supporter&quot;</span>:<span class="hljs-string">&quot;chrome&quot;</span>,<span class="hljs-string">&quot;supporterVs&quot;</span>:<span class="hljs-string">&quot;85.0.4183.121&quot;</span>,<span class="hljs-string">&quot;system&quot;</span>:<span class="hljs-string">&quot;windows&quot;</span>,<span class="hljs-string">&quot;systemVs&quot;</span>:<span class="hljs-string">&quot;10&quot;</span>}
+				<pre><code>getBrowserInfo(); <span class="hljs-regexp">//</span> {<span class="hljs-string">&quot;engine&quot;</span>:<span class="hljs-string">&quot;webkit&quot;</span>,<span class="hljs-string">&quot;engineVs&quot;</span>:<span class="hljs-string">&quot;537.36&quot;</span>,<span class="hljs-string">&quot;platform&quot;</span>:<span class="hljs-string">&quot;desktop&quot;</span>,<span class="hljs-string">&quot;supporter&quot;</span>:<span class="hljs-string">&quot;chrome&quot;</span>,<span class="hljs-string">&quot;supporterVs&quot;</span>:<span class="hljs-string">&quot;85.0.4183.121&quot;</span>,<span class="hljs-string">&quot;system&quot;</span>:<span class="hljs-string">&quot;windows&quot;</span>,<span class="hljs-string">&quot;systemVs&quot;</span>:<span class="hljs-string">&quot;10&quot;</span>}
 <span class="hljs-regexp">//</span> Shell and shell version { shell: <span class="hljs-string">&#x27;wechat&#x27;</span>, shellVs: <span class="hljs-string">&#x27;20&#x27;</span> } shell: wechat qq uc <span class="hljs-number">360</span> <span class="hljs-number">2345</span> sougou liebao maxthon
 </code></pre>
 				<table>
@@ -512,16 +507,14 @@ getBrowserInfo(); <span class="hljs-regexp">//</span> {<span class="hljs-string"
 					<h3>Web Performance</h3>
 				</a>
 				<p>Get page load time(PerformanceTiming).</p>
-				<pre><code><span class="hljs-keyword">import</span> { getPerformance } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;mazey&#x27;</span>;
-
-// `camelCase：<span class="hljs-keyword">true</span>`(<span class="hljs-keyword">Default</span>) <span class="hljs-keyword">Return</span> hump data.
-// `camelCase：<span class="hljs-keyword">false</span>` <span class="hljs-keyword">Return</span> underline data.
-getPerformance(<span class="hljs-keyword">true</span>)
- .<span class="hljs-keyword">then</span>(res =&gt; {
-  console.log(<span class="hljs-type">JSON</span>.stringify(res));
-  // {&quot;deviceType&quot;:&quot;pc&quot;,&quot;network&quot;:&quot;3g&quot;,&quot;unloadTime&quot;:<span class="hljs-number">0</span>,&quot;redirectTime&quot;:<span class="hljs-number">0</span>,&quot;dnsTime&quot;:<span class="hljs-number">0</span>,&quot;tcpTime&quot;:<span class="hljs-number">0</span>,&quot;responseTime&quot;:<span class="hljs-number">65</span>,&quot;downloadTime&quot;:<span class="hljs-number">1</span>,&quot;domreadyTime&quot;:<span class="hljs-number">369</span>,&quot;onloadTime&quot;:<span class="hljs-number">441</span>,&quot;whiteTime&quot;:<span class="hljs-number">94</span>,&quot;renderTime&quot;:<span class="hljs-number">441</span>,&quot;decodedBodySize&quot;:<span class="hljs-number">210</span>,&quot;encodedBodySize&quot;:<span class="hljs-number">210</span>}
+				<pre><code>// `camelCase：<span class="hljs-literal">true</span>`(Default) <span class="hljs-keyword">Return</span> hump data.
+// `camelCase：<span class="hljs-literal">false</span>` <span class="hljs-keyword">Return</span> underline data.
+getPerformance(<span class="hljs-literal">true</span>)
+ .then(res =&gt; {
+  console.log(JSON.stringify(res))<span class="hljs-comment">;</span>
+  // {<span class="hljs-string">&quot;deviceType&quot;</span>:<span class="hljs-string">&quot;pc&quot;</span>,<span class="hljs-string">&quot;network&quot;</span>:<span class="hljs-string">&quot;3g&quot;</span>,<span class="hljs-string">&quot;unloadTime&quot;</span>:<span class="hljs-number">0</span>,<span class="hljs-string">&quot;redirectTime&quot;</span>:<span class="hljs-number">0</span>,<span class="hljs-string">&quot;dnsTime&quot;</span>:<span class="hljs-number">0</span>,<span class="hljs-string">&quot;tcpTime&quot;</span>:<span class="hljs-number">0</span>,<span class="hljs-string">&quot;responseTime&quot;</span>:<span class="hljs-number">65</span>,<span class="hljs-string">&quot;downloadTime&quot;</span>:<span class="hljs-number">1</span>,<span class="hljs-string">&quot;domreadyTime&quot;</span>:<span class="hljs-number">369</span>,<span class="hljs-string">&quot;onloadTime&quot;</span>:<span class="hljs-number">441</span>,<span class="hljs-string">&quot;whiteTime&quot;</span>:<span class="hljs-number">94</span>,<span class="hljs-string">&quot;renderTime&quot;</span>:<span class="hljs-number">441</span>,<span class="hljs-string">&quot;decodedBodySize&quot;</span>:<span class="hljs-number">210</span>,<span class="hljs-string">&quot;encodedBodySize&quot;</span>:<span class="hljs-number">210</span>}
  })
- .catch(console.error);
+ .catch(console.error)<span class="hljs-comment">;</span>
 </code></pre>
 				<table>
 					<thead>
@@ -591,9 +584,7 @@ getPerformance(<span class="hljs-keyword">true</span>)
 					<h3>Margin of Safety</h3>
 				</a>
 				<p>Determine if it is a secure PWA environment that it can run.</p>
-				<pre><code><span class="hljs-keyword">import</span> { isSafePWAEnv } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;mazey&#x27;</span>;
-
-isSafePWAEnv(); <span class="hljs-comment">// true</span>
+				<pre><code>isSafePWAEnv(); <span class="hljs-regexp">//</span> true
 </code></pre>
 				<a href="#debug" id="debug" style="color: inherit; text-decoration: none;">
 					<h3>Debug</h3>
@@ -602,27 +593,34 @@ isSafePWAEnv(); <span class="hljs-comment">// true</span>
 					<h4>Print</h4>
 				</a>
 				<p>Custom console printing (<code>console</code>).</p>
-				<pre><code><span class="hljs-keyword">import</span> { genCustomConsole } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;mazey&#x27;</span>;
-
-const myConsole = genCustomConsole(<span class="hljs-string">&#x27;MazeyLog:&#x27;</span>);
-myConsole.log(<span class="hljs-string">&#x27;I am string.&#x27;</span>); // MazeyLog: I am string.
-myConsole.<span class="hljs-keyword">info</span>(<span class="hljs-string">&#x27;I am boolean.&#x27;</span>, <span class="hljs-keyword">true</span>); // MazeyLog: I am <span class="hljs-type">boolean</span>. <span class="hljs-keyword">true</span>
-myConsole.<span class="hljs-keyword">info</span>(<span class="hljs-string">&#x27;I am number.&#x27;</span>, <span class="hljs-number">123</span>, <span class="hljs-number">456</span>); // MazeyLog: I am number. <span class="hljs-number">123</span> <span class="hljs-number">456</span>
-myConsole.<span class="hljs-keyword">info</span>(<span class="hljs-string">&#x27;I am object.&#x27;</span>, { a: <span class="hljs-number">123</span>, b: <span class="hljs-number">456</span>}); // MazeyLog: I am <span class="hljs-keyword">object</span>. {a: <span class="hljs-number">123</span>, b: <span class="hljs-number">456</span>}
+				<pre><code>const myConsole = genCustomConsole(<span class="hljs-string">&#x27;MazeyLog:&#x27;</span>);
+myConsole.log(<span class="hljs-string">&#x27;I am string.&#x27;</span>); <span class="hljs-regexp">//</span> MazeyLog: I am string.
+myConsole.info(<span class="hljs-string">&#x27;I am boolean.&#x27;</span>, true); <span class="hljs-regexp">//</span> MazeyLog: I am boolean. true
+myConsole.info(<span class="hljs-string">&#x27;I am number.&#x27;</span>, <span class="hljs-number">123</span>, <span class="hljs-number">456</span>); <span class="hljs-regexp">//</span> MazeyLog: I am number. <span class="hljs-number">123</span> <span class="hljs-number">456</span>
+myConsole.info(<span class="hljs-string">&#x27;I am object.&#x27;</span>, { a: <span class="hljs-number">123</span>, b: <span class="hljs-number">456</span>}); <span class="hljs-regexp">//</span> MazeyLog: I am object. {a: <span class="hljs-number">123</span>, b: <span class="hljs-number">456</span>}
 </code></pre>
-				<p><a href="https://mazey.cn/docs/mazey/modules/_index_.html">More API&gt;&gt;</a></p>
-				<a href="#develop" id="develop" style="color: inherit; text-decoration: none;">
-					<h2>Develop</h2>
+				<a href="#contributing" id="contributing" style="color: inherit; text-decoration: none;">
+					<h2>Contributing</h2>
 				</a>
-				<pre><code><span class="hljs-comment"># dev</span>
-npm <span class="hljs-keyword">run</span><span class="bash"> dev</span>
+				<pre><code><span class="hljs-comment"># Install</span>
+npm i <span class="hljs-attribute">--registry</span>=https://registry.npmjs.org
 
-<span class="hljs-comment"># build</span>
-npm <span class="hljs-keyword">run</span><span class="bash"> build</span>
+<span class="hljs-comment"># Serve</span>
+npm <span class="hljs-builtin-name">run</span> dev
 
-<span class="hljs-comment"># documentation</span>
-npm <span class="hljs-keyword">run</span><span class="bash"> docs</span>
+<span class="hljs-comment"># Build</span>
+npm <span class="hljs-builtin-name">run</span> build
+
+<span class="hljs-comment"># Document</span>
+npm <span class="hljs-builtin-name">run</span> docs
+
+<span class="hljs-comment"># Test</span>
+npm <span class="hljs-builtin-name">run</span> test
 </code></pre>
+				<a href="#license" id="license" style="color: inherit; text-decoration: none;">
+					<h2>License</h2>
+				</a>
+				<p>This software is released under the terms of the <a href="https://github.com/mazeyqian/mazey/blob/master/LICENSE">MIT license</a>.</p>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
