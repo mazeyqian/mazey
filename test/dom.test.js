@@ -30,3 +30,16 @@ test(`Can get Domain's params correctly? 'https://i.mazey.net/mazey/lib/mazey.mi
   const res = await getDomain('http://example.com/test/thanks?t1=1&t2=2&t3=3&t4=4', ['hostname', 'pathname']); // example.com/test/thanks
   expect(res).toBe('example.com/test/thanks');
 });
+
+// Simulate the async.
+function wasteTime (ms) {
+  return new Promise(resolve => setTimeout(() => {
+      resolve(ms);
+      // console.log('waste', ms);
+  }, ms));
+}
+
+test(`Can run async test?`, async () => {
+  const res = await wasteTime(1000);
+  expect(res).toBe(1000);
+});
