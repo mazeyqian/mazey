@@ -37,7 +37,10 @@ export function calLongestCommonSubstring(aStr: string, bStr: string): number {
  * @param {string} bStr 字符串
  * @returns {number} 长度
  */
-export function calLongestCommonSubsequence(aStr: string, bStr: string): number {
+export function calLongestCommonSubsequence(
+  aStr: string,
+  bStr: string
+): number {
   const aLen = aStr.length;
   const bLen = bStr.length;
   // 创建二维数组并且深拷贝
@@ -76,13 +79,13 @@ export function calLongestCommonSubsequence(aStr: string, bStr: string): number 
  * @returns {string} value
  */
 export function getQueryParam(param: string): string {
-  const reg = new RegExp('(^|&)' + param + '=([^&]*)(&|$)');
+  const reg = new RegExp("(^|&)" + param + "=([^&]*)(&|$)");
   const r = location.search.substr(1).match(reg);
   if (r !== null) {
     // return decodeURIComponent(unescape(r[2]));
     return decodeURIComponent(r[2]);
   }
-  return '';
+  return "";
 }
 
 /**
@@ -97,7 +100,7 @@ export function getUrlParam(url: string, param: string): string | string[] {
     [key: string]: string | string[] | any;
   } = {};
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace
-  url.replace(/\??(\w+)=([^&]*)&?/g, function (a, k, v): any {
+  url.replace(/\??(\w+)=([^&]*)&?/g, function(a, k, v): any {
     if (result[k] !== undefined) {
       const t = result[k];
       result[k] = [].concat(t, v);
@@ -110,7 +113,7 @@ export function getUrlParam(url: string, param: string): string | string[] {
   // } else {
   //   return result[param] || '';
   // }
-  return result[param] || '';
+  return result[param] || "";
 }
 
 /**
@@ -121,13 +124,17 @@ export function getUrlParam(url: string, param: string): string | string[] {
  * @param {string} value Param's value.
  * @returns {string} URL.
  */
- export function updateQueryParam(url: string, param: string, value: string): string {
-  const re = new RegExp('([?&])' + param + '=.*?(&|$)', 'i');
-  const separator = url.indexOf('?') !== -1 ? '&' : '?';
+export function updateQueryParam(
+  url: string,
+  param: string,
+  value: string
+): string {
+  const re = new RegExp("([?&])" + param + "=.*?(&|$)", "i");
+  const separator = url.indexOf("?") !== -1 ? "&" : "?";
   if (url.match(re)) {
-    return url.replace(re, '$1' + param + '=' + value + '$2');
+    return url.replace(re, "$1" + param + "=" + value + "$2");
   } else {
-    return url + separator + param + '=' + value;
+    return url + separator + param + "=" + value;
   }
 }
 
@@ -138,13 +145,13 @@ export function getUrlParam(url: string, param: string): string | string[] {
  * @returns {string} value
  */
 export function getHashQueryParam(param: string): string {
-  const hashs = location.hash.split('?');
+  const hashs = location.hash.split("?");
   if (hashs.length === 1) {
-    return '';
+    return "";
   }
   const reg = new RegExp(`(^|&)${param}=([^&]*)(&|$)`);
   const ret = hashs[1].match(reg);
-  return ret ? ret[2] : '';
+  return ret ? ret[2] : "";
 }
 
 /**
@@ -153,13 +160,13 @@ export function getHashQueryParam(param: string): string {
  * @param {string} url
  * @param {array} rules Object.keys(location), ['href', 'protocol', 'host', 'hostname', 'port', 'pathname', 'search', 'hash'], ['hostname', 'pathname'] = 'km.mazey.net/plugins/servlet/mobile'
  */
-export function getDomain(url: string, rules = ['hostname']): string {
-  const aEl: any = document.createElement('a');
+export function getDomain(url: string, rules = ["hostname"]): string {
+  const aEl: any = document.createElement("a");
   aEl.href = url;
   return rules.reduce((ret, v) => {
     ret += aEl[v];
     return ret;
-  }, '');
+  }, "");
 }
 
 /**
@@ -169,8 +176,8 @@ export function getDomain(url: string, rules = ['hostname']): string {
  * @returns {string} 'a-b-c'
  */
 export function camelCaseToKebabCase(camelCase: string): string {
-  const kebabCase = camelCase.replace(/([A-Z])/g, '-$1').toLowerCase();
-  return kebabCase[0] === '-' ? kebabCase.substr(1) : kebabCase;
+  const kebabCase = camelCase.replace(/([A-Z])/g, "-$1").toLowerCase();
+  return kebabCase[0] === "-" ? kebabCase.substr(1) : kebabCase;
 }
 
 /**
@@ -180,8 +187,8 @@ export function camelCaseToKebabCase(camelCase: string): string {
  * @returns {string} 'a_b_c'
  */
 export function camelCase2Underscore(camelCase: string): string {
-  const kebabCase = camelCase.replace(/([A-Z])/g, '_$1').toLowerCase();
-  return kebabCase[0] === '_' ? kebabCase.substr(1) : kebabCase;
+  const kebabCase = camelCase.replace(/([A-Z])/g, "_$1").toLowerCase();
+  return kebabCase[0] === "_" ? kebabCase.substr(1) : kebabCase;
 }
 
 /**
@@ -191,7 +198,7 @@ export function camelCase2Underscore(camelCase: string): string {
  * @returns {string} Trimmed string.
  */
 export function mTrim(str: string): string {
-  str = str.replace(/^\s+/, ''); // 去除头部空格
+  str = str.replace(/^\s+/, ""); // 去除头部空格
   let end = str.length - 1;
   const ws = /\s/;
   while (ws.test(str.charAt(end))) {
@@ -208,10 +215,10 @@ export function mTrim(str: string): string {
  */
 export function newLine(str: string): string {
   if (!str) {
-    return '';
+    return "";
   }
-  const reg = new RegExp('\\n', 'g');
-  return str.replace(reg, '<br />');
+  const reg = new RegExp("\\n", "g");
+  return str.replace(reg, "<br />");
 }
 
 /**
@@ -232,7 +239,7 @@ export function deepCopyObject(obj: any): any {
  */
 export function isJsonString(str: string): boolean {
   try {
-    if (typeof JSON.parse(str) === 'object') {
+    if (typeof JSON.parse(str) === "object") {
       return true;
     }
   } catch (e) {
@@ -248,7 +255,7 @@ export function isJsonString(str: string): boolean {
  * @returns {string} Return the random string.
  */
 export function generateRndNum(n = 5): string {
-  let ret = '';
+  let ret = "";
   while (n--) {
     ret += Math.floor(Math.random() * 10);
   }
@@ -272,7 +279,7 @@ export function generateUniqueNum(n = 3): string {
  * @param {number} fixSize 保留几位浮点数
  */
 export function floatToPercent(num: number, fixSize = 0): string {
-  let ret = '';
+  let ret = "";
   if (fixSize) {
     ret = (num * 100).toFixed(fixSize);
   } else {
@@ -323,10 +330,10 @@ export function hasClass(obj: any, cls: string): boolean {
  */
 export function addClass(obj: any, cls: string): void {
   const oriCls = obj.className;
-  let space = '';
-  let newCls = ''; // 获取对象的class值
-  if (oriCls !== '') {
-    space = ' '; // 若原来的class不为空，跟一个空格
+  let space = "";
+  let newCls = ""; // 获取对象的class值
+  if (oriCls !== "") {
+    space = " "; // 若原来的class不为空，跟一个空格
   }
   newCls = oriCls + space + cls; // 将新的class加进去
   obj.className = newCls; // 替换新class
@@ -338,25 +345,26 @@ export function addClass(obj: any, cls: string): void {
 export function removeClass(obj: any, cls: string): void {
   const oriCls = obj.className;
   let newCls; // 获取对象的class值
-  newCls = ' ' + oriCls + ' '; // 前后加空格
-  newCls = newCls.replace(/(\s+)/gi, ' '); // 将多余的空格替换成一个空格
-  newCls = newCls.replace(' ' + cls + ' ', ' '); // 将加了前后空格的cls替换成空格' '
-  newCls = newCls.replace(/(^\s+)|(\s+$)/g, ''); // 去掉前后空格
+  newCls = " " + oriCls + " "; // 前后加空格
+  newCls = newCls.replace(/(\s+)/gi, " "); // 将多余的空格替换成一个空格
+  newCls = newCls.replace(" " + cls + " ", " "); // 将加了前后空格的cls替换成空格' '
+  newCls = newCls.replace(/(^\s+)|(\s+$)/g, ""); // 去掉前后空格
   obj.className = newCls;
 }
 
 /**
  * EN: Throttle
- * 
+ *
  * ZH: 节流
- * 
+ *
  * Reference: [Lodash](https://lodash.com/docs/4.17.15#throttle)
  */
-export function throttle(func: any, wait: number, options: { leading?: boolean; trailing?: boolean; } = {}): any {
-  options = Object.assign(
-    {},
-    options,
-  );
+export function throttle(
+  func: any,
+  wait: number,
+  options: { leading?: boolean; trailing?: boolean } = {}
+): any {
+  options = Object.assign({}, options);
   // timeout: setTimeout Handle
   // previous: 上次时间戳
   let context: any = null;
@@ -366,7 +374,7 @@ export function throttle(func: any, wait: number, options: { leading?: boolean; 
   // if (!options) {
   //   options = {};
   // }
-  const later = function () {
+  const later = function() {
     previous = options.leading === false ? 0 : mNow();
     timeout = null;
     result = func.apply(context, args);
@@ -374,7 +382,7 @@ export function throttle(func: any, wait: number, options: { leading?: boolean; 
       context = args = null;
     }
   };
-  return function (...argRest: Array<any>) {
+  return function(...argRest: Array<any>) {
     const now = mNow();
     if (!previous && options.leading === false) {
       previous = now;
@@ -401,11 +409,11 @@ export function throttle(func: any, wait: number, options: { leading?: boolean; 
 
 /**
  * EN: Debounce
- * 
+ *
  * ZH: 去抖
- * 
+ *
  * Usage:
- * 
+ *
  * ```
  * const foo = debounce(() => {
  *   console.log('The debounced function will only be invoked in 1000 milliseconds, the other invoking will disappear during the wait time.');
@@ -418,7 +426,7 @@ export function debounce(func: any, wait: number, immediate?: any): any {
   let timestamp: any = null;
   let args: any = null;
   let [result] = [null];
-  const later = function () {
+  const later = function() {
     const last = mNow() - timestamp;
     if (last < wait && last >= 0) {
       timeout = setTimeout(later, wait - last);
@@ -432,7 +440,7 @@ export function debounce(func: any, wait: number, immediate?: any): any {
       }
     }
   };
-  return function (...argRest: Array<any>) {
+  return function(...argRest: Array<any>) {
     context = this;
     args = argRest;
     timestamp = mNow();
@@ -456,12 +464,16 @@ export function debounce(func: any, wait: number, immediate?: any): any {
  * @param {string} options.type 返回类型 d: 2(天) text: 2 天 4 时...
  * @returns {String/number} 取决于 type
  */
-export function friendlyInterval(start = 0, end = 0, options: { type?: string; } = { type: 'd' }): number | string {
+export function friendlyInterval(
+  start = 0,
+  end = 0,
+  options: { type?: string } = { type: "d" }
+): number | string {
   const { type } = options;
   if (!isNumber(start)) start = new Date(start).getTime();
   if (!isNumber(end)) end = new Date(end).getTime();
   const t = end - start;
-  let ret = '';
+  let ret = "";
   let [d, h, m, s] = new Array(4).fill(0);
   if (t >= 0) {
     d = Math.floor(t / 1000 / 60 / 60 / 24);
@@ -469,15 +481,15 @@ export function friendlyInterval(start = 0, end = 0, options: { type?: string; }
     m = Math.floor(t / 1000 / 60);
     s = Math.floor(t / 1000);
     switch (type) {
-      case 'd':
+      case "d":
         ret = d;
         break;
-      case 'text':
+      case "text":
         d = Math.floor(t / 1000 / 60 / 60 / 24);
         h = Math.floor((t / 1000 / 60 / 60) % 24);
         m = Math.floor((t / 1000 / 60) % 60);
         s = Math.floor((t / 1000) % 60);
-        ret = d + ' 天 ' + h + ' 时 ' + m + ' 分 ' + s + ' 秒';
+        ret = d + " 天 " + h + " 时 " + m + " 分 " + s + " 秒";
         break;
       default:
         ret = s;
@@ -494,14 +506,20 @@ export function friendlyInterval(start = 0, end = 0, options: { type?: string; }
  * @param {boolean} options.isUnFiniteAsNumber 是否 无限 算数字（默认不算）
  * @returns {boolean} true 是数字
  */
-export function isNumber(num: any, options: { isNaNAsNumber?: boolean; isUnFiniteAsNumber?: boolean; } = { isNaNAsNumber: false, isUnFiniteAsNumber: false }): boolean {
+export function isNumber(
+  num: any,
+  options: { isNaNAsNumber?: boolean; isUnFiniteAsNumber?: boolean } = {
+    isNaNAsNumber: false,
+    isUnFiniteAsNumber: false
+  }
+): boolean {
   const { isNaNAsNumber, isUnFiniteAsNumber } = Object.assign(
     { isNaNAsNumber: false, isUnFiniteAsNumber: false },
-    options,
+    options
   );
   let ret = true;
   // 数字类型
-  if (typeof num !== 'number') {
+  if (typeof num !== "number") {
     ret = false;
   }
   // 无限值
@@ -524,7 +542,7 @@ export function isNumber(num: any, options: { isNaNAsNumber?: boolean; isUnFinit
  */
 export function doFn(fn: any, ...params: any[]): any {
   let ret = null;
-  if (fn && typeof fn === 'function') {
+  if (fn && typeof fn === "function") {
     ret = fn(...params);
   }
   return ret;
@@ -595,35 +613,42 @@ export function getLocalStorage(key: string): any {
  * @param {string} options.id -- link标签id
  * @returns {Promise<boolean>} true -- 加载成功
  */
-export function loadCSS(url: string, options: { id?: string } = { id: '' }): Promise<boolean | Error | any> {
+export function loadCSS(
+  url: string,
+  options: { id?: string } = { id: "" }
+): Promise<boolean | Error | any> {
   const { id } = options;
   let success: (v: boolean) => void;
   let fail: (v: Error) => void;
   const status = new Promise((resolve, reject) => {
-    ([success, fail] = [resolve, reject]);
+    [success, fail] = [resolve, reject];
   });
   // const tempCB = (typeof callback === 'function' ? callback : function () { });
-  const callback = function () {
+  const callback = function() {
     // doFn(success, true);
     success(true);
   };
-  let node: any = document.createElement('link');
-  const supportOnload = 'onload' in node;
-  const isOldWebKit = +navigator.userAgent.replace(/.*(?:AppleWebKit|AndroidWebKit)\/?(\d+).*/i, '$1') < 536; // webkit旧内核做特殊处理
+  let node: any = document.createElement("link");
+  const supportOnload = "onload" in node;
+  const isOldWebKit =
+    +navigator.userAgent.replace(
+      /.*(?:AppleWebKit|AndroidWebKit)\/?(\d+).*/i,
+      "$1"
+    ) < 536; // webkit旧内核做特殊处理
   const protectNum = 300000; // 阈值10分钟，一秒钟执行pollCss 500次
 
-  node.rel = 'stylesheet';
-  node.type = 'text/css';
+  node.rel = "stylesheet";
+  node.type = "text/css";
   node.href = url;
-  if (typeof id !== 'undefined') {
+  if (typeof id !== "undefined") {
     node.id = id;
   }
-  document.getElementsByTagName('head')[0].appendChild(node);
+  document.getElementsByTagName("head")[0].appendChild(node);
 
   // for Old WebKit and Old Firefox
   if (isOldWebKit || !supportOnload) {
     // Begin after node insertion
-    setTimeout(function () {
+    setTimeout(function() {
       pollCss(node, callback, 0);
     }, 1);
     return status;
@@ -631,13 +656,13 @@ export function loadCSS(url: string, options: { id?: string } = { id: '' }): Pro
 
   if (supportOnload) {
     node.onload = onload;
-    node.onerror = function () {
+    node.onerror = function() {
       // 加载失败(404)
       onload();
     };
   } else {
     // todo: 和 !supportOnload 重复
-    node.onreadystatechange = function () {
+    node.onreadystatechange = function() {
       if (/loaded|complete/.test(node.readyState)) {
         onload();
       }
@@ -693,13 +718,13 @@ export function loadCSS(url: string, options: { id?: string } = { id: '' }): Pro
         // The value of `ex.name` is changed from "NS_ERROR_DOM_SECURITY_ERR"
         // to "SecurityError" since Firefox 13.0. But Firefox is less than 9.0
         // in here, So it is ok to just rely on "NS_ERROR_DOM_SECURITY_ERR"
-        if ((ex as any).name === 'NS_ERROR_DOM_SECURITY_ERR') {
+        if ((ex as any).name === "NS_ERROR_DOM_SECURITY_ERR") {
           isLoaded = true;
         }
       }
     }
 
-    setTimeout(function () {
+    setTimeout(function() {
       if (isLoaded) {
         // 延迟20ms是为了给下载的样式留够渲染的时间
         callback();
@@ -721,32 +746,49 @@ export function loadCSS(url: string, options: { id?: string } = { id: '' }): Pro
  * @param {boolean} options.isDefer -- 是否添加 defer 标签
  * @returns {Promise<boolean>} -- true 成功
  */
-export function loadScript(url: string, options: {
-  id: string;
-  callback: (...params: any[]) => any;
-  timeout: number;
-  isDefer: boolean;
-} = { id: '', callback: function () { /* pass */ }, timeout: 5000, isDefer: false }): Promise<boolean | string | Error> {
+export function loadScript(
+  url: string,
+  options: {
+    id: string;
+    callback: (...params: any[]) => any;
+    timeout: number;
+    isDefer: boolean;
+  } = {
+    id: "",
+    callback: function() {
+      /* pass */
+    },
+    timeout: 5000,
+    isDefer: false
+  }
+): Promise<boolean | string | Error> {
   const { id, callback, timeout, isDefer } = Object.assign(
-    { id: '', callback: function () { /* pass */ }, timeout: 5000, isDefer: false },
-    options,
+    {
+      id: "",
+      callback: function() {
+        /* pass */
+      },
+      timeout: 5000,
+      isDefer: false
+    },
+    options
   );
   let success: any = null;
   let fail: any = null;
-  const script: any = document.createElement('script');
+  const script: any = document.createElement("script");
   // 如果没有 script 标签，那么代码就不会运行。可以利用这一事实，在页面的第一个 script 标签上使用 insertBefore()。
-  const firstScript: any = document.getElementsByTagName('script')[0];
-  script.type = 'text/javascript';
+  const firstScript: any = document.getElementsByTagName("script")[0];
+  script.type = "text/javascript";
   if (isDefer) {
-    script.defer = 'defer';
+    script.defer = "defer";
   }
   if (id) {
     script.id = id;
   }
   if (script.readyState) {
     // IE
-    script.onreadystatechange = function () {
-      if (script.readyState === 'loaded' || script.readyState === 'complete') {
+    script.onreadystatechange = function() {
+      if (script.readyState === "loaded" || script.readyState === "complete") {
         script.onreadystatechange = null;
         doFn(callback);
         doFn(success, true);
@@ -754,7 +796,7 @@ export function loadScript(url: string, options: {
     };
   } else {
     // Others
-    script.onload = function () {
+    script.onload = function() {
       doFn(callback);
       doFn(success, true);
     };
@@ -762,9 +804,9 @@ export function loadScript(url: string, options: {
   script.src = url;
   firstScript && firstScript.parentNode.insertBefore(script, firstScript);
   return new Promise((resolve, reject) => {
-    ([success, fail] = [resolve, reject]);
+    [success, fail] = [resolve, reject];
     if (timeout) {
-      setTimeout(fail.bind(null, Error('timeout')), timeout);
+      setTimeout(fail.bind(null, Error("timeout")), timeout);
     }
   });
 }
@@ -787,18 +829,23 @@ export function mNow(): number {
  * @method setCookie
  * @description 设置 Cookie
  */
-export function setCookie(name: string, value: string, days: number, domain: string): void {
+export function setCookie(
+  name: string,
+  value: string,
+  days: number,
+  domain: string
+): void {
   let domainParts, expires;
   let date: any;
   if (days) {
     date = new Date();
-    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
     expires = "; expires=" + date.toGMTString();
   } else {
     expires = "";
   }
   const host = location.host;
-  if (host.split('.').length === 1) {
+  if (host.split(".").length === 1) {
     // no "." in a domain - it's localhost or something similar
     document.cookie = name + "=" + value + expires + "; path=/";
   } else {
@@ -811,16 +858,18 @@ export function setCookie(name: string, value: string, days: number, domain: str
     // If the cookie will not be set, it means ".com"
     // is a top level domain and we need to
     // set the cookie to ".foo.com"
-    domainParts = host.split('.');
+    domainParts = host.split(".");
     domainParts.shift();
-    domain = domain || ('.' + domainParts.join('.'));
-    document.cookie = name + "=" + value + expires + "; path=/; domain=" + domain;
+    domain = domain || "." + domainParts.join(".");
+    document.cookie =
+      name + "=" + value + expires + "; path=/; domain=" + domain;
     // check if cookie was successfuly set to the given domain
     // (otherwise it was a Top-Level Domain)
     if (getCookie(name) === null || getCookie(name) !== value) {
       // append "." to current domain
-      domain = domain || ('.' + host);
-      document.cookie = name + "=" + value + expires + "; path=/; domain=" + domain;
+      domain = domain || "." + host;
+      document.cookie =
+        name + "=" + value + expires + "; path=/; domain=" + domain;
     }
   }
 }
@@ -831,15 +880,15 @@ export function setCookie(name: string, value: string, days: number, domain: str
  */
 export function getCookie(name: string): string {
   const nameEQ = name + "=";
-  const ca = document.cookie.split(';');
+  const ca = document.cookie.split(";");
   for (let i = 0; i < ca.length; i++) {
     let c = ca[i];
-    while (c.charAt(0) == ' ') {
+    while (c.charAt(0) == " ") {
       c = c.substring(1, c.length);
     }
     if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
   }
-  return '';
+  return "";
 }
 
 interface WebPerformance {
@@ -852,18 +901,24 @@ interface WebPerformance {
  * @param {boolean} camelCase -- true（默认） 以驼峰形式返回数据 false 以下划线形式返回数据
  * @returns {Promise<object>} 加载数据
  */
-export function getPerformance(camelCase = true): Promise<WebPerformance | Error> {
+export function getPerformance(
+  camelCase = true
+): Promise<WebPerformance | Error> {
   let success: (v: WebPerformance) => void;
   let fail: (v: Error) => void;
   const status: Promise<WebPerformance> = new Promise((resolve, reject) => {
-    ([success, fail] = [resolve, reject]);
+    [success, fail] = [resolve, reject];
   });
   const timing = window.performance.timing;
   const startTime = timing.navigationStart || timing.fetchStart;
   let firstPaintTime: any;
   let firstContentfulPaintTime: any;
   // 是否已经形成数据（页面加载完成之后）
-  if (window.performance && window.performance.timing && window.performance.timing.loadEventEnd > 0) {
+  if (
+    window.performance &&
+    window.performance.timing &&
+    window.performance.timing.loadEventEnd > 0
+  ) {
     // console.log('created')
     getTiming();
   } else {
@@ -881,16 +936,16 @@ export function getPerformance(camelCase = true): Promise<WebPerformance | Error
     try {
       if (window.performance && Boolean(window.performance.getEntriesByType)) {
         const performance = window.performance;
-        const performanceEntries = performance.getEntriesByType('paint');
+        const performanceEntries = performance.getEntriesByType("paint");
         performanceEntries.forEach((performanceEntry, i, entries) => {
           const startTime = Math.round(performanceEntry.startTime);
-          if (performanceEntry.name === 'first-paint')
+          if (performanceEntry.name === "first-paint")
             firstPaintTime = startTime;
-          else if (performanceEntry.name === 'first-contentful-paint')
+          else if (performanceEntry.name === "first-contentful-paint")
             firstContentfulPaintTime = startTime;
         });
       } else {
-        console.error('paint');
+        console.error("paint");
       }
     } catch (e) {
       console.error((e as any).message);
@@ -898,7 +953,7 @@ export function getPerformance(camelCase = true): Promise<WebPerformance | Error
     // 获取加载时间
     if (
       window.performance &&
-      typeof window.performance.getEntries === 'function'
+      typeof window.performance.getEntries === "function"
     ) {
       const performanceNavigationTiming: any =
         (window.performance.getEntries() || [])[0] || {};
@@ -923,8 +978,8 @@ export function getPerformance(camelCase = true): Promise<WebPerformance | Error
         onloadTime: timing.loadEventStart - startTime || 0, //*onload时间（总和）
         whiteTime: timing.responseStart - startTime, //*白屏时间
         renderTime: timing.loadEventEnd - startTime || 0, //整个过程的时间之和
-        decodedBodySize: performanceNavigationTiming.decodedBodySize || '', //页面压缩前大小
-        encodedBodySize: performanceNavigationTiming.encodedBodySize || '', //页面压缩后大小
+        decodedBodySize: performanceNavigationTiming.decodedBodySize || "", //页面压缩前大小
+        encodedBodySize: performanceNavigationTiming.encodedBodySize || "" //页面压缩后大小
       };
       // 过滤异常数据
       Object.keys(data).forEach(k => {
@@ -948,23 +1003,26 @@ export function getPerformance(camelCase = true): Promise<WebPerformance | Error
         }
         success(Underscore || data);
       } else {
-        fail(Error('startTime'));
+        fail(Error("startTime"));
       }
     } else {
-      fail(Error('getEntries'));
+      fail(Error("getEntries"));
     }
   }
   //获取当前操作系统
   function getOS() {
     let os;
-    if (navigator.userAgent.indexOf('Android') > -1 || navigator.userAgent.indexOf('Linux') > -1) {
-      os = 'android';
-    } else if (navigator.userAgent.indexOf('iPhone') > -1) {
-      os = 'ios';
-    } else if (navigator.userAgent.indexOf('Windows Phone') > -1) {
-      os = 'wp';
+    if (
+      navigator.userAgent.indexOf("Android") > -1 ||
+      navigator.userAgent.indexOf("Linux") > -1
+    ) {
+      os = "android";
+    } else if (navigator.userAgent.indexOf("iPhone") > -1) {
+      os = "ios";
+    } else if (navigator.userAgent.indexOf("Windows Phone") > -1) {
+      os = "wp";
     } else {
-      os = 'others';
+      os = "others";
     }
     return os;
   }
@@ -972,13 +1030,16 @@ export function getPerformance(camelCase = true): Promise<WebPerformance | Error
   function getOSVersion() {
     let OSVision: any;
     const u = navigator.userAgent;
-    const isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //Android
+    const isAndroid = u.indexOf("Android") > -1 || u.indexOf("Linux") > -1; //Android
     const isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
     if (isAndroid) {
-      OSVision = (navigator.userAgent.split(';')[1].match(/\d+\.\d+/g) || [])[0];
+      OSVision = (navigator.userAgent.split(";")[1].match(/\d+\.\d+/g) ||
+        [])[0];
     }
     if (isIOS) {
-      OSVision = (navigator.userAgent.split(';')[1].match(/(\d+)_(\d+)_?(\d+)?/) || [])[0];
+      OSVision = (navigator.userAgent
+        .split(";")[1]
+        .match(/(\d+)_(\d+)_?(\d+)?/) || [])[0];
     }
     return OSVision;
   }
@@ -986,20 +1047,39 @@ export function getPerformance(camelCase = true): Promise<WebPerformance | Error
   function getDeviceType() {
     let deviceType;
     const sUserAgent = navigator.userAgent.toLowerCase();
-    const bIsIpad = sUserAgent.match(/(ipad)/i) && 'ipad';
-    const bIsIphoneOs = sUserAgent.match(/iphone os/i) && 'iphone os';
-    const bIsMidp = sUserAgent.match(/midp/i) && 'midp';
-    const bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) && 'rv:1.2.3.4';
-    const bIsUc = sUserAgent.match(/ucweb/i) && 'ucweb';
-    const bIsAndroid = sUserAgent.match(/android/i) && 'android';
-    const bIsCE = sUserAgent.match(/windows ce/i) && 'windows ce';
-    const bIsWM = sUserAgent.match(/windows mobile/i) && 'windows mobile';
-    if (!(bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM)) {
-      deviceType = 'pc'; //pc
-    } else if (bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) {
-      deviceType = 'phone'; //phone
+    const bIsIpad = sUserAgent.match(/(ipad)/i) && "ipad";
+    const bIsIphoneOs = sUserAgent.match(/iphone os/i) && "iphone os";
+    const bIsMidp = sUserAgent.match(/midp/i) && "midp";
+    const bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) && "rv:1.2.3.4";
+    const bIsUc = sUserAgent.match(/ucweb/i) && "ucweb";
+    const bIsAndroid = sUserAgent.match(/android/i) && "android";
+    const bIsCE = sUserAgent.match(/windows ce/i) && "windows ce";
+    const bIsWM = sUserAgent.match(/windows mobile/i) && "windows mobile";
+    if (
+      !(
+        bIsIpad ||
+        bIsIphoneOs ||
+        bIsMidp ||
+        bIsUc7 ||
+        bIsUc ||
+        bIsAndroid ||
+        bIsCE ||
+        bIsWM
+      )
+    ) {
+      deviceType = "pc"; //pc
+    } else if (
+      bIsIphoneOs ||
+      bIsMidp ||
+      bIsUc7 ||
+      bIsUc ||
+      bIsAndroid ||
+      bIsCE ||
+      bIsWM
+    ) {
+      deviceType = "phone"; //phone
     } else if (bIsIpad) {
-      deviceType = 'ipad'; //ipad
+      deviceType = "ipad"; //ipad
     } else {
       deviceType = undefined;
     }
@@ -1008,24 +1088,27 @@ export function getPerformance(camelCase = true): Promise<WebPerformance | Error
   // 获取网络状态
   function getNetWork() {
     let netWork: any;
-    if ((navigator as any).connection && (navigator as any).connection.effectiveType) {
+    if (
+      (navigator as any).connection &&
+      (navigator as any).connection.effectiveType
+    ) {
       switch ((navigator as any).connection.effectiveType) {
-        case 'wifi':
-          netWork = 'wifi'; // wifi
+        case "wifi":
+          netWork = "wifi"; // wifi
           break;
-        case '4g':
-          netWork = '4g'; // 4g
+        case "4g":
+          netWork = "4g"; // 4g
           break;
-        case '2g':
-          netWork = '2g'; // 2g
+        case "2g":
+          netWork = "2g"; // 2g
           break;
-        case '3g':
-          netWork = '3g'; // 3g
+        case "3g":
+          netWork = "3g"; // 3g
           break;
-        case 'ethernet':
-          netWork = 'ethernet'; // ethernet
+        case "ethernet":
+          netWork = "ethernet"; // ethernet
           break;
-        case 'default':
+        case "default":
           netWork = undefined; // 未知
           break;
       }
@@ -1035,12 +1118,24 @@ export function getPerformance(camelCase = true): Promise<WebPerformance | Error
   // 获取横竖屏状态
   function getOrientationStatu() {
     let orientationStatu: any;
-    if (window.screen && window.screen.orientation && window.screen.orientation.angle) {
-      if (window.screen.orientation.angle === 180 || window.screen.orientation.angle === 0) { // 竖屏
-        orientationStatu = '|';
+    if (
+      window.screen &&
+      window.screen.orientation &&
+      window.screen.orientation.angle
+    ) {
+      if (
+        window.screen.orientation.angle === 180 ||
+        window.screen.orientation.angle === 0
+      ) {
+        // 竖屏
+        orientationStatu = "|";
       }
-      if (window.screen.orientation.angle === 90 || window.screen.orientation.angle === -90) { // 横屏
-        orientationStatu = '-';
+      if (
+        window.screen.orientation.angle === 90 ||
+        window.screen.orientation.angle === -90
+      ) {
+        // 横屏
+        orientationStatu = "-";
       }
     }
     return orientationStatu;
@@ -1063,7 +1158,7 @@ export function getPerformance(camelCase = true): Promise<WebPerformance | Error
  * @returns {boolean} true 命中
  */
 export function inRate(rate: number): boolean {
-  if(Math.random() < rate) {
+  if (Math.random() < rate) {
     return true;
   }
   return false;
@@ -1093,7 +1188,10 @@ export function isSafePWAEnv(): boolean {
   }
   // 判断是否支持 Promise
   function isSupportPromise() {
-    if(typeof Promise !== "undefined" && Promise.toString().indexOf("[native code]") !== -1){
+    if (
+      typeof Promise !== "undefined" &&
+      Promise.toString().indexOf("[native code]") !== -1
+    ) {
       return true;
     }
     return false;
@@ -1101,13 +1199,13 @@ export function isSafePWAEnv(): boolean {
   // 浏览器信息
   const BrowserType = getBrowserInfo();
   if (
-    ('serviceWorker' in navigator) &&
+    "serviceWorker" in navigator &&
     isSupportAsyncAwait() &&
     isSupportPromise() &&
     Boolean(window.fetch) &&
     Boolean(window.indexedDB) &&
     Boolean(window.caches) &&
-    !BrowserType['shell']
+    !BrowserType["shell"]
   ) {
     return true;
   }
@@ -1116,13 +1214,13 @@ export function isSafePWAEnv(): boolean {
 
 /**
  * EN: Browser Information
- * 
+ *
  * ZH: 返回浏览器信息 https://github.com/JowayYoung/juejin-code/blob/master/browser-type.js
- * 
+ *
  * ```
  * getBrowserInfo(); // {"engine":"webkit","engineVs":"537.36","platform":"desktop","supporter":"chrome","supporterVs":"85.0.4183.121","system":"windows","systemVs":"10"}
  * ```
- * 
+ *
  * | Index | Field | Description |
  * | --- | --- | --- |
  * | System | system | android, ios, windows, macos, linux |
@@ -1135,14 +1233,14 @@ export function isSafePWAEnv(): boolean {
  * | Shell | shell | (Optional) wechat, qq_browser, qq_app, uc, 360, 2345, sougou, liebao, maxthon, bilibili |
  * | Shell version | shellVs | (Optional) |
  * | Apple device type | appleType | (Optional) iphone, ipad, ipod, iwatch |
- * 
+ *
  * Example: Determine the environment of the mobile QQ.
- * 
+ *
  * ```
  * const { system, shell } = getBrowserInfo();
  * const isMobileQQ = ['android', 'ios'].includes(system) && ['qq_browser', 'qq_app'].includes(shell);
  * ```
- * 
+ *
  * @returns 浏览器信息
  */
 export function getBrowserInfo(): {
@@ -1163,7 +1261,7 @@ export function getBrowserInfo(): {
     const testUa: (regexp: RegExp) => boolean = regexp => regexp.test(ua);
     const testVs: (regexp: RegExp) => string = regexp => {
       const matchRes = ua.match(regexp);
-      let ret = '';
+      let ret = "";
       if (matchRes) {
         ret = matchRes
           .toString()
@@ -1173,9 +1271,9 @@ export function getBrowserInfo(): {
       return ret;
     };
     // 系统
-    let system = '';
+    let system = "";
     // Apple device type.
-    let appleType = '';
+    let appleType = "";
     if (testUa(/windows|win32|win64|wow32|wow64/g)) {
       system = "windows"; // windows系统
     } else if (testUa(/macintosh|macintel/g)) {
@@ -1187,17 +1285,17 @@ export function getBrowserInfo(): {
     } else if (testUa(/ios|iphone|ipad|ipod|iwatch/g)) {
       system = "ios"; // ios系统
       if (testUa(/iphone/g)) {
-        appleType = 'iphone';
+        appleType = "iphone";
       } else if (testUa(/ipad/g)) {
-        appleType = 'ipad';
+        appleType = "ipad";
       } else if (testUa(/iwatch/g)) {
-        appleType = 'iwatch';
+        appleType = "iwatch";
       } else if (testUa(/ipod/g)) {
-        appleType = 'ipod';
+        appleType = "ipod";
       }
     }
     // 系统版本
-    let systemVs = '';
+    let systemVs = "";
     if (system === "windows") {
       if (testUa(/windows nt 5.0|windows 2000/g)) {
         systemVs = "2000";
@@ -1224,15 +1322,15 @@ export function getBrowserInfo(): {
       systemVs = testVs(/os [\d._]+/g);
     }
     // 平台
-    let platform = '';
+    let platform = "";
     if (system === "windows" || system === "macos" || system === "linux") {
       platform = "desktop"; // 桌面端
     } else if (system === "android" || system === "ios" || testUa(/mobile/g)) {
       platform = "mobile"; // 移动端
     }
     // 内核和载体
-    let engine = '';
-    let supporter = '';
+    let engine = "";
+    let supporter = "";
     if (testUa(/applewebkit/g)) {
       engine = "webkit"; // webkit内核
       if (testUa(/edge/g)) {
@@ -1255,7 +1353,7 @@ export function getBrowserInfo(): {
       supporter = "iexplore"; // iexplore浏览器
     }
     // 内核版本
-    let engineVs = '';
+    let engineVs = "";
     if (engine === "webkit") {
       engineVs = testVs(/applewebkit\/[\d._]+/g);
     } else if (engine === "gecko") {
@@ -1266,7 +1364,7 @@ export function getBrowserInfo(): {
       engineVs = testVs(/trident\/[\d._]+/g);
     }
     // 载体版本
-    let supporterVs = '';
+    let supporterVs = "";
     if (supporter === "chrome") {
       supporterVs = testVs(/chrome\/[\d._]+/g);
     } else if (supporter === "safari") {
@@ -1281,8 +1379,8 @@ export function getBrowserInfo(): {
       supporterVs = testVs(/edge\/[\d._]+/g);
     }
     // 外壳和外壳版本
-    let shell = '';
-    let shellVs = '';
+    let shell = "";
+    let shellVs = "";
     if (testUa(/micromessenger/g)) {
       shell = "wechat"; // 微信浏览器
       shellVs = testVs(/micromessenger\/[\d._]+/g);
@@ -1309,29 +1407,32 @@ export function getBrowserInfo(): {
     } else if (testUa(/biliapp/g)) {
       shell = "bilibili"; // 哔哩哔哩
     }
-    return Object.assign({
-      engine, // webkit gecko presto trident
-      engineVs,
-      platform, // desktop mobile
-      supporter, // chrome safari firefox opera iexplore edge
-      supporterVs,
-      system, // windows macos linux android ios
-      systemVs,
-    }, {
-      shell, // wechat qq uc 360 2345 sougou liebao maxthon
-      shellVs,
-      appleType,
-    });
+    return Object.assign(
+      {
+        engine, // webkit gecko presto trident
+        engineVs,
+        platform, // desktop mobile
+        supporter, // chrome safari firefox opera iexplore edge
+        supporterVs,
+        system, // windows macos linux android ios
+        systemVs
+      },
+      {
+        shell, // wechat qq uc 360 2345 sougou liebao maxthon
+        shellVs,
+        appleType
+      }
+    );
   } catch (err) {
-    console.warn('mazey:', err);
+    console.warn("mazey:", err);
     return {
-      engine: '', // webkit gecko presto trident
-      engineVs: '',
-      platform: '', // desktop mobile
-      supporter: '', // chrome safari firefox opera iexplore edge
-      supporterVs: '',
-      system: '', // windows macos linux android ios
-      systemVs: '',
+      engine: "", // webkit gecko presto trident
+      engineVs: "",
+      platform: "", // desktop mobile
+      supporter: "", // chrome safari firefox opera iexplore edge
+      supporterVs: "",
+      system: "", // windows macos linux android ios
+      systemVs: ""
     };
   }
 }
@@ -1342,8 +1443,8 @@ export function getBrowserInfo(): {
  * @param {string} str 带html标签的字符串
  * @returns {string} 字符串
  */
-export function clearHtml (str: string): string {
-  return str.replace(/<\/?.+?>/g, '').replace(/[\r\n]/g, '');
+export function clearHtml(str: string): string {
+  return str.replace(/<\/?.+?>/g, "").replace(/[\r\n]/g, "");
 }
 
 /**
@@ -1355,15 +1456,15 @@ export function clearHtml (str: string): string {
  * @returnss {string} 返回截取后的字符串
  */
 export function cutCHSString(str: string, len: number, hasDot = false): string {
-  if (str == '' || !str) {
-    return '';
+  if (str == "" || !str) {
+    return "";
   } else {
     let newLength = 0;
-    let newStr = '';
+    let newStr = "";
     // eslint-disable-next-line no-control-regex
     const chineseRegex = /[^\x00-\xff]/g;
-    let singleChar = '';
-    const strLength = str.replace(chineseRegex, '**').length;
+    let singleChar = "";
+    const strLength = str.replace(chineseRegex, "**").length;
     for (let i = 0; i < strLength; i++) {
       singleChar = str.charAt(i).toString();
       if (singleChar.match(chineseRegex) != null) {
@@ -1378,7 +1479,7 @@ export function cutCHSString(str: string, len: number, hasDot = false): string {
     }
 
     if (hasDot && strLength > len) {
-      newStr += '...';
+      newStr += "...";
     }
     return newStr;
   }
@@ -1393,27 +1494,29 @@ export function cutCHSString(str: string, len: number, hasDot = false): string {
 export function windowLoaded(timeout = 90): Promise<string | Error> {
   let loaded: (value: string) => void = () => undefined;
   let loadFail: (value: Error) => void;
-  const status = new Promise((resolve: (value: string) => void, reject: (value: Error) => void) => {
+  const status = new Promise(
+    (resolve: (value: string) => void, reject: (value: Error) => void) => {
       loaded = resolve;
       loadFail = reject;
-  });
-  if (document.readyState === 'complete') {
-      loaded('complete');
+    }
+  );
+  if (document.readyState === "complete") {
+    loaded("complete");
   } else {
-      window.addEventListener('load', () => loaded('load'));
+    window.addEventListener("load", () => loaded("load"));
   }
   // 超过 timeout 秒后加载失败
-  setTimeout(() => loadFail(Error('timeout')), timeout * 1000);
+  setTimeout(() => loadFail(Error("timeout")), timeout * 1000);
   return status;
 }
 
 /**
  * EN: Add `<style>` in `<head>`.
- * 
+ *
  * ZH: 添加样式标签; style: 样式标签内的字符串; id: `<style>` 标签的 `id`; 返回: 添加成功/失败.
- * 
+ *
  * Example 1: Add the `<style>` with `id`, and repeated invoking will update the content instead of adding a new one.
- * 
+ *
  * ```
  * addStyle(
  *   `
@@ -1431,9 +1534,9 @@ export function windowLoaded(timeout = 90): Promise<string | Error> {
  * //   }
  * // </style>
  * ```
- * 
+ *
  * Example 2: Add the `<style>` without `id`, and repeated invoking will adding a new one.
- * 
+ *
  * ```
  * addStyle(
  *   `
@@ -1448,12 +1551,15 @@ export function windowLoaded(timeout = 90): Promise<string | Error> {
  * //   }
  * // </style>
  * ```
- * 
+ *
  * @param style Style string.
  * @param options.id `id` in `<style>`
  * @returns Success/Fail
  */
-export function addStyle(style: string, options: { id?: string; } = { id: '' }): boolean {
+export function addStyle(
+  style: string,
+  options: { id?: string } = { id: "" }
+): boolean {
   // console.log('_ style', style);
   // console.log('_ options', options);
   if (!style) {
@@ -1462,23 +1568,25 @@ export function addStyle(style: string, options: { id?: string; } = { id: '' }):
   // 创建 style 文档碎片
   const styleFrag = document.createDocumentFragment();
   let idDom: HTMLElement | null = null;
-  let domId = '';
+  let domId = "";
   // Custom Style
-  const customStyle = document.createElement('style');
+  const customStyle = document.createElement("style");
   // 如果需要 ID
   if (options.id) {
     domId = `${options.id}`;
     idDom = document.getElementById(domId);
     // 如果 Dom 不存在，插入 style
     if (!idDom) {
-      customStyle.setAttribute('id', options.id);
+      customStyle.setAttribute("id", options.id);
       customStyle.innerHTML = style;
       styleFrag.appendChild(customStyle);
       document.head.appendChild(styleFrag);
-    } else { // 如果 Dom 存在，直接更新
+    } else {
+      // 如果 Dom 存在，直接更新
       idDom.innerHTML = style;
     }
-  } else { // 不需要 ID，直接添加新标签
+  } else {
+    // 不需要 ID，直接添加新标签
     customStyle.innerHTML = style;
     styleFrag.appendChild(customStyle);
     document.head.appendChild(styleFrag);
@@ -1493,11 +1601,18 @@ export function addStyle(style: string, options: { id?: string; } = { id: '' }):
  * @param {function} allowFn 允许打印的判断函数
  * @returns {object} 新实例
  */
-export function genCustomConsole(prefix = ''): Console {
-  const methods = ['log', 'info', 'warn', 'error'];
+export function genCustomConsole(
+  prefix = "",
+  options: { isClose?: boolean } = { isClose: false }
+): Console {
+  const { isClose } = Object.assign({ isClose: false }, options);
+  const methods = ["log", "info", "warn", "error"];
   const newConsole = Object.create(null);
   methods.forEach(method => {
-    newConsole[method] = function (...argu: any) {
+    newConsole[method] = function(...argu: any) {
+      if (isClose) {
+        return false;
+      }
       if (prefix) {
         (console as any)[method](prefix, ...argu);
       } else {
@@ -1510,28 +1625,37 @@ export function genCustomConsole(prefix = ''): Console {
 
 /**
  * Verify the validity of axios response.
- * 
+ *
  * Reference: [Handling Errors](https://axios-http.com/docs/handling_errors)
  */
-export function zAxiosIsValidRes(res: any, options: {
-  validStatusRange: number[];
-  validCode: number[];
-} = {
-  validStatusRange: [200, 300],
-  validCode: [0],
-}): boolean {
+export function zAxiosIsValidRes(
+  res: any,
+  options: {
+    validStatusRange: number[];
+    validCode: number[];
+  } = {
+    validStatusRange: [200, 300],
+    validCode: [0]
+  }
+): boolean {
   const { validStatusRange, validCode } = Object.assign(
     {
       validStatusRange: [200, 300],
-      validCode: [0],
+      validCode: [0]
     },
-    options,
+    options
   );
   if (validStatusRange.length !== 2) {
-    console.error('valid validStatusRange is required');
+    console.error("valid validStatusRange is required");
   }
   let ret = false;
-  if (res && res.status && validStatusRange.length === 2 && res.status >= validStatusRange[0] && res.status < validStatusRange[1]) {
+  if (
+    res &&
+    res.status &&
+    validStatusRange.length === 2 &&
+    res.status >= validStatusRange[0] &&
+    res.status < validStatusRange[1]
+  ) {
     const resData = res.data;
     if (resData && validCode.includes(resData.code)) {
       ret = true;
@@ -1555,22 +1679,22 @@ export function isNonEmptyArray(arr: any[]): boolean {
  * 语义化文件大小, 把字节转换成正常文件大小.
  */
 export function getFileSize(size: number): string {
-	const toCeilStr: (v: number) => string = n => String(Math.ceil(n));
-	if (!size) return '';
-	const num = 1024.0; // byte
-	if (size < num) {
-		return size + ' B';
-	}
-	if (size < Math.pow(num, 2)) {
-		return toCeilStr(size / num) + ' KB';
-	} // kb
-	if (size < Math.pow(num, 3)) {
-		return toCeilStr(size / Math.pow(num, 2)) + ' MB';
-	} // M
-	if (size < Math.pow(num, 4)) {
-		return toCeilStr(size / Math.pow(num, 3)) + ' G';
-	} // G
-	return toCeilStr(size / Math.pow(num, 4)) + ' T';
+  const toCeilStr: (v: number) => string = n => String(Math.ceil(n));
+  if (!size) return "";
+  const num = 1024.0; // byte
+  if (size < num) {
+    return size + " B";
+  }
+  if (size < Math.pow(num, 2)) {
+    return toCeilStr(size / num) + " KB";
+  } // kb
+  if (size < Math.pow(num, 3)) {
+    return toCeilStr(size / Math.pow(num, 2)) + " MB";
+  } // M
+  if (size < Math.pow(num, 4)) {
+    return toCeilStr(size / Math.pow(num, 3)) + " G";
+  } // G
+  return toCeilStr(size / Math.pow(num, 4)) + " T";
 }
 
 /**
@@ -1580,16 +1704,17 @@ export function getFileSize(size: number): string {
  */
 export function isSupportWebp(): Promise<boolean> {
   const fn = (resolve: (v: boolean) => void) => {
-		const img = new Image();
-		img.onload = () => {
-			resolve(img.width > 0 && img.height > 0);
-		};
-		img.onerror = () => {
-			resolve(false);
-		};
-		img.src = "data:image/webp;base64,UklGRh4AAABXRUJQVlA4TBEAAAAvAAAAAAfQ//73v/+BiOh/AAA=";
-	};
-	return new Promise(fn);
+    const img = new Image();
+    img.onload = () => {
+      resolve(img.width > 0 && img.height > 0);
+    };
+    img.onerror = () => {
+      resolve(false);
+    };
+    img.src =
+      "data:image/webp;base64,UklGRh4AAABXRUJQVlA4TBEAAAAvAAAAAAfQ//73v/+BiOh/AAA=";
+  };
+  return new Promise(fn);
 }
 
 /**
@@ -1598,11 +1723,13 @@ export function isSupportWebp(): Promise<boolean> {
  * Reference: [Generate a Hash from string in Javascript](https://stackoverflow.com/questions/7616461/generate-a-hash-from-string-in-javascript-jquery)
  */
 export function genHashCode(str: string): number {
-	let hash = 0, i, chr;
-	for (i = 0; i < str.length; i++) {
-		chr = str.charCodeAt(i);
-		hash = ((hash << 5) - hash) + chr;
-		hash |= 0;
-	}
-	return hash;
+  let hash = 0,
+    i,
+    chr;
+  for (i = 0; i < str.length; i++) {
+    chr = str.charCodeAt(i);
+    hash = (hash << 5) - hash + chr;
+    hash |= 0;
+  }
+  return hash;
 }
