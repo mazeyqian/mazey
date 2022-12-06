@@ -406,6 +406,8 @@ export declare function addStyle(style: string, options?: {
  */
 export declare function genCustomConsole(prefix?: string, options?: {
     isClose?: boolean;
+    logFn?: () => void;
+    errorFn?: () => void;
 }): Console;
 /**
  * Verify the validity of axios response.
