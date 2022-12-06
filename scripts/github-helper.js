@@ -14,6 +14,13 @@ const execa = require('execa');
  * ```
  */
 async function release (ver) {
+  if (!ver) {
+    ver = process.env.SCRIPTS_NPM_PACKAGE_VERSION;
+  }
+  if (!ver) {
+    console.error('Fail to get the current version.');
+    return;
+  }
   const releaseVersion = `v${ver}`;
   const { stdout: releaseStdout } = await execa('echo', [`Start release ${releaseVersion}...`]);
   console.log(releaseStdout);

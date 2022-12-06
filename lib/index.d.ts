@@ -404,7 +404,9 @@ export declare function addStyle(style: string, options?: {
  * @param {function} allowFn 允许打印的判断函数
  * @returns {object} 新实例
  */
-export declare function genCustomConsole(prefix?: string): Console;
+export declare function genCustomConsole(prefix?: string, options?: {
+    isClose?: boolean;
+}): Console;
 /**
  * Verify the validity of axios response.
  *

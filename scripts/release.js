@@ -4,6 +4,6 @@
 const { release } = require('./github-helper');
 const pkgVersion = process.env.SCRIPTS_NPM_PACKAGE_VERSION || process.env.VERSION || require('../package.json').version;
 
-console.log('SCRIPTS_NPM_PACKAGE_VERSION', process.env.SCRIPTS_NPM_PACKAGE_VERSION);
+console.log('release: SCRIPTS_NPM_PACKAGE_VERSION', process.env.SCRIPTS_NPM_PACKAGE_VERSION);
 
 release(pkgVersion);
