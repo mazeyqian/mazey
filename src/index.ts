@@ -1603,9 +1603,16 @@ export function addStyle(
  */
 export function genCustomConsole(
   prefix = "",
-  options: { isClose?: boolean } = { isClose: false }
+  options: { isClose?: boolean; logFn?: () => void; errorFn?: () => void } = {
+    isClose: false,
+    logFn: () => undefined,
+    errorFn: () => undefined
+  }
 ): Console {
-  const { isClose } = Object.assign({ isClose: false }, options);
+  const { isClose, logFn, errorFn } = Object.assign(
+    { isClose: false, logFn: () => undefined, errorFn: () => undefined },
+    options
+  );
   const methods = ["log", "info", "warn", "error"];
   const newConsole = Object.create(null);
   methods.forEach(method => {
@@ -1617,6 +1624,12 @@ export function genCustomConsole(
         (console as any)[method](prefix, ...argu);
       } else {
         (console as any)[method](...argu);
+      }
+      if (method === "log") {
+        logFn();
+      }
+      if (method === "error") {
+        errorFn();
       }
     };
   });
