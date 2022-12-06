@@ -7,10 +7,10 @@ let defineListeners = {};
 
 // Add event.
 function addEvent(type, fn) {
-  if (typeof defineListeners[type] === "undefined") {
+  if (typeof defineListeners[type] === 'undefined') {
       defineListeners[type] = [];
   }
-  if (typeof fn === "function") {
+  if (typeof fn === 'function') {
       defineListeners[type].push(fn);
   }
 }
@@ -20,7 +20,7 @@ function fireEvent(type) {
   let arrayEvent = defineListeners[type];
   if (arrayEvent instanceof Array) {
       for (let i = 0, length = arrayEvent.length; i < length; i++) {
-          if (typeof arrayEvent[i] === "function") {
+          if (typeof arrayEvent[i] === 'function') {
               arrayEvent[i]({
                   type: type
               });
@@ -32,8 +32,8 @@ function fireEvent(type) {
 // Remove event.
 function removeEvent(type, fn) {
   let arrayEvent = defineListeners[type];
-  if (typeof type === "string" && arrayEvent instanceof Array) {
-      if (typeof fn === "function") {
+  if (typeof type === 'string' && arrayEvent instanceof Array) {
+      if (typeof fn === 'function') {
           for (let i = 0, length = arrayEvent.length; i < length; i++) {
               if (arrayEvent[i] === fn) {
                   defineListeners[type].splice(i, 1);
