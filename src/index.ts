@@ -1595,30 +1595,55 @@ export function addStyle(
 }
 
 /**
- * @method genCustomConsole
- * @description 生成自定义控制台打印
+ * 生成自定义控制台打印
+ *
  * @param {string} prefix 前缀
  * @param {function} allowFn 允许打印的判断函数
  * @returns {object} 新实例
  */
 export function genCustomConsole(
   prefix = '',
-  options: { isClose?: boolean; logFn?: () => void; errorFn?: () => void } = {
-    isClose: false,
+  options: {
+    isClosed?: boolean;
+    showWrap?: boolean;
+    logFn?: () => void;
+    errorFn?: () => void;
+  } = {
+    isClosed: false,
+    showWrap: false,
     logFn: () => undefined,
     errorFn: () => undefined
   }
 ): Console {
-  const { isClose, logFn, errorFn } = Object.assign(
-    { isClose: false, logFn: () => undefined, errorFn: () => undefined },
+  const { isClosed, showWrap, logFn, errorFn } = Object.assign(
+    {
+      isClosed: false,
+      showWrap: false,
+      logFn: () => undefined,
+      errorFn: () => undefined
+    },
     options
   );
   const methods = ['log', 'info', 'warn', 'error'];
   const newConsole = Object.create(null);
   methods.forEach(method => {
     newConsole[method] = function(...argu: any) {
-      if (isClose) {
+      if (isClosed) {
         return false;
+      }
+      let elaboratePrefix = '';
+      if (typeof prefix === 'string' && prefix.length >= 2) {
+        const len = prefix.length;
+        if (prefix[len - 1] === ':') {
+          elaboratePrefix = prefix.substring(0, len - 2);
+        } else {
+          elaboratePrefix = prefix;
+        }
+        console.log('prefix', prefix);
+        console.log('elaboratePrefix', elaboratePrefix);
+      }
+      if (showWrap) {
+        console.log(`--- ${elaboratePrefix} - begin ---`);
       }
       if (prefix) {
         (console as any)[method](prefix, ...argu);
@@ -1630,6 +1655,9 @@ export function genCustomConsole(
       }
       if (method === 'error') {
         errorFn();
+      }
+      if (showWrap) {
+        console.log(`--- ${elaboratePrefix} - end ---`);
       }
     };
   });
