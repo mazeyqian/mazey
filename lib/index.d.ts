@@ -398,14 +398,15 @@ export declare function addStyle(style: string, options?: {
     id?: string;
 }): boolean;
 /**
- * @method genCustomConsole
- * @description 生成自定义控制台打印
+ * 生成自定义控制台打印
+ *
  * @param {string} prefix 前缀
  * @param {function} allowFn 允许打印的判断函数
  * @returns {object} 新实例
  */
 export declare function genCustomConsole(prefix?: string, options?: {
-    isClose?: boolean;
+    isClosed?: boolean;
+    showWrap?: boolean;
     logFn?: () => void;
     errorFn?: () => void;
 }): Console;
