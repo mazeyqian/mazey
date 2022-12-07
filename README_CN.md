@@ -1,3 +1,5 @@
+⚠️ Note: The document has expired, please check the latest [README.md](./README.md).
+
 # mazey
 
 [![NPM version][npm-image]][npm-url]
@@ -8,17 +10,33 @@
 [l-image]: https://img.shields.io/npm/l/mazey
 [l-url]: https://github.com/mazeyqian/mazey
 
-后除的前端函数库
+后除的 JavaScript 函数库，所有的方法都在线上项目中使用过。
 
-## Install
+**目录**
 
-You can get mazey via [npm](https://www.npmjs.com/package/mazey/v/1.4.39).
+- [mazey](#mazey)
+  - [安装](#安装)
+  - [使用](#使用)
+    - [加载资源](#加载资源)
+    - [存储数据](#存储数据)
+    - [操作 DOM](#操作-dom)
+    - [网站性能](#网站性能)
+    - [公式计算](#公式计算)
+    - [浏览器信息](#浏览器信息)
+    - [安全边际](#安全边际)
+    - [函数](#函数)
+    - [调试](#调试)
+  - [开发](#开发)
+
+## 安装
+
+You can get mazey@1.4.39 via [npm](https://www.npmjs.com/package/mazey/v/1.4.39).
 
 ```
 npm install mazey@1.4.39 --save
 ```
 
-## Usage
+## 使用
 
 ### 加载资源
 
@@ -321,7 +339,7 @@ myConsole.info('I am object.', { a: 123, b: 456}); // MazeyLog: I am object. {a:
 
 [更多接口>>](https://mazey.cn/docs/mazey/modules/_index_.html)
 
-## Develop
+## 开发
 
 ```
 # dev
