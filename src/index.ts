@@ -1595,8 +1595,8 @@ export function addStyle(
 }
 
 /**
- * @method genCustomConsole
- * @description 生成自定义控制台打印
+ * 生成自定义控制台打印
+ *
  * @param {string} prefix 前缀
  * @param {function} allowFn 允许打印的判断函数
  * @returns {object} 新实例
@@ -1604,20 +1604,20 @@ export function addStyle(
 export function genCustomConsole(
   prefix = '',
   options: {
-    isClose?: boolean;
+    isClosed?: boolean;
     showWrap?: boolean;
     logFn?: () => void;
     errorFn?: () => void;
   } = {
-    isClose: false,
+    isClosed: false,
     showWrap: false,
     logFn: () => undefined,
     errorFn: () => undefined
   }
 ): Console {
-  const { isClose, showWrap, logFn, errorFn } = Object.assign(
+  const { isClosed, showWrap, logFn, errorFn } = Object.assign(
     {
-      isClose: false,
+      isClosed: false,
       showWrap: false,
       logFn: () => undefined,
       errorFn: () => undefined
@@ -1628,7 +1628,7 @@ export function genCustomConsole(
   const newConsole = Object.create(null);
   methods.forEach(method => {
     newConsole[method] = function(...argu: any) {
-      if (isClose) {
+      if (isClosed) {
         return false;
       }
       if (showWrap && prefix) {
