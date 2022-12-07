@@ -1603,14 +1603,25 @@ export function addStyle(
  */
 export function genCustomConsole(
   prefix = '',
-  options: { isClose?: boolean; logFn?: () => void; errorFn?: () => void } = {
+  options: {
+    isClose?: boolean;
+    showWrap?: boolean;
+    logFn?: () => void;
+    errorFn?: () => void;
+  } = {
     isClose: false,
+    showWrap: false,
     logFn: () => undefined,
     errorFn: () => undefined
   }
 ): Console {
-  const { isClose, logFn, errorFn } = Object.assign(
-    { isClose: false, logFn: () => undefined, errorFn: () => undefined },
+  const { isClose, showWrap, logFn, errorFn } = Object.assign(
+    {
+      isClose: false,
+      showWrap: false,
+      logFn: () => undefined,
+      errorFn: () => undefined
+    },
     options
   );
   const methods = ['log', 'info', 'warn', 'error'];
@@ -1619,6 +1630,9 @@ export function genCustomConsole(
     newConsole[method] = function(...argu: any) {
       if (isClose) {
         return false;
+      }
+      if (showWrap && prefix) {
+        console.log(`--- ${prefix} - begin ---`);
       }
       if (prefix) {
         (console as any)[method](prefix, ...argu);
@@ -1630,6 +1644,9 @@ export function genCustomConsole(
       }
       if (method === 'error') {
         errorFn();
+      }
+      if (showWrap && prefix) {
+        console.log(`--- ${prefix} - end ---`);
       }
     };
   });
