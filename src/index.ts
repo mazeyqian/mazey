@@ -1631,8 +1631,19 @@ export function genCustomConsole(
       if (isClosed) {
         return false;
       }
-      if (showWrap && prefix) {
-        console.log(`--- ${prefix} - begin ---`);
+      let elaboratePrefix = '';
+      if (typeof prefix === 'string' && prefix.length >= 2) {
+        const len = prefix.length;
+        if (prefix[len - 1] === ':') {
+          elaboratePrefix = prefix.substring(0, len - 2);
+        } else {
+          elaboratePrefix = prefix;
+        }
+        console.log('prefix', prefix);
+        console.log('elaboratePrefix', elaboratePrefix);
+      }
+      if (showWrap) {
+        console.log(`--- ${elaboratePrefix} - begin ---`);
       }
       if (prefix) {
         (console as any)[method](prefix, ...argu);
@@ -1645,8 +1656,8 @@ export function genCustomConsole(
       if (method === 'error') {
         errorFn();
       }
-      if (showWrap && prefix) {
-        console.log(`--- ${prefix} - end ---`);
+      if (showWrap) {
+        console.log(`--- ${elaboratePrefix} - end ---`);
       }
     };
   });

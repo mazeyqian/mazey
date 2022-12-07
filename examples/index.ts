@@ -44,7 +44,7 @@ console.log('Is non-empty array?', isNonEmptyArray(['a', 123]));
 console.log('Get file size:', getFileSize(2000));
 console.log('Generate a Hash from a string:', genHashCode('123'));
 const genLog = genCustomConsole('GenLog:', {
-  isClosed: true,
+  isClosed: false,
   showWrap: true
 });
 genLog.log('test?');
