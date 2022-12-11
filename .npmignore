@@ -18,6 +18,7 @@ temp/
 .eslintrc.js
 .babelrc
 .eslintrc
+.npmrc
 
 # *
 *.yml
