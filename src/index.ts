@@ -1635,12 +1635,12 @@ export function genCustomConsole(
       if (typeof prefix === 'string' && prefix.length >= 2) {
         const len = prefix.length;
         if (prefix[len - 1] === ':') {
-          elaboratePrefix = prefix.substring(0, len - 2);
+          elaboratePrefix = prefix.substring(0, len - 1);
         } else {
           elaboratePrefix = prefix;
         }
-        console.log('prefix', prefix);
-        console.log('elaboratePrefix', elaboratePrefix);
+        // console.log('prefix', prefix);
+        // console.log('elaboratePrefix', elaboratePrefix);
       }
       if (showWrap) {
         console.log(`--- ${elaboratePrefix} - begin ---`);
