@@ -45,7 +45,9 @@ console.log('Get file size:', getFileSize(2000));
 console.log('Generate a Hash from a string:', genHashCode('123'));
 const genLog = genCustomConsole('GenLog:', {
   isClosed: false,
-  showWrap: true
+  showWrap: false,
+  showDate: true,
+  locales: 'zh-CN'
 });
 genLog.log('test?');
 

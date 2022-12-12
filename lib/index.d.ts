@@ -1,14 +1,26 @@
 /**
- * @method calLongestCommonSubstring
- * @description Computes the longest common substring of two strings.
+ * EN: Computes the longest common substring of two strings.
+ *
+ * ZH: 计算两个字符串的最长公共子串
+ *
+ * ```
+ * calLongestCommonSubstring('fish', 'finish'); // 3
+ * ```
+ *
  * @param {string} aStr String
  * @param {string} bStr String
  * @returns {number} Length
  */
 export declare function calLongestCommonSubstring(aStr: string, bStr: string): number;
 /**
- * @method calLongestCommonSubsequence
- * @description 计算两个字符串的最长公共子序列
+ * EN: Computes the longest common subsequence of two strings.
+ *
+ * ZH: 计算两个字符串的最长公共子序列
+ *
+ * ```
+ * calLongestCommonSubsequence('fish', 'finish'); // 4
+ * ```
+ *
  * @param {string} aStr 字符串
  * @param {string} bStr 字符串
  * @returns {number} 长度
@@ -401,12 +413,16 @@ export declare function addStyle(style: string, options?: {
  * 生成自定义控制台打印
  *
  * @param {string} prefix 前缀
- * @param {function} allowFn 允许打印的判断函数
+ * @param {string} locales A locale string.
+ * @param {function} logFn The function with Log.
+ * @param {function} errorFn The function with Error.
  * @returns {object} 新实例
  */
 export declare function genCustomConsole(prefix?: string, options?: {
     isClosed?: boolean;
     showWrap?: boolean;
+    showDate?: boolean;
+    locales?: string;
     logFn?: () => void;
     errorFn?: () => void;
 }): Console;
