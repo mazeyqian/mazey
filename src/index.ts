@@ -1,8 +1,14 @@
 /* mazey */
 
 /**
- * @method calLongestCommonSubstring
- * @description Computes the longest common substring of two strings.
+ * EN: Computes the longest common substring of two strings.
+ *
+ * ZH: 计算两个字符串的最长公共子串
+ *
+ * ```
+ * calLongestCommonSubstring('fish', 'finish'); // 3
+ * ```
+ *
  * @param {string} aStr String
  * @param {string} bStr String
  * @returns {number} Length
@@ -31,8 +37,14 @@ export function calLongestCommonSubstring(aStr: string, bStr: string): number {
 }
 
 /**
- * @method calLongestCommonSubsequence
- * @description 计算两个字符串的最长公共子序列
+ * EN: Computes the longest common subsequence of two strings.
+ *
+ * ZH: 计算两个字符串的最长公共子序列
+ *
+ * ```
+ * calLongestCommonSubsequence('fish', 'finish'); // 4
+ * ```
+ *
  * @param {string} aStr 字符串
  * @param {string} bStr 字符串
  * @returns {number} 长度
