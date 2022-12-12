@@ -1598,7 +1598,9 @@ export function addStyle(
  * 生成自定义控制台打印
  *
  * @param {string} prefix 前缀
- * @param {function} allowFn 允许打印的判断函数
+ * @param {string} locales A locale string.
+ * @param {function} logFn The function with Log.
+ * @param {function} errorFn The function with Error.
  * @returns {object} 新实例
  */
 export function genCustomConsole(
@@ -1606,19 +1608,32 @@ export function genCustomConsole(
   options: {
     isClosed?: boolean;
     showWrap?: boolean;
+    showDate?: boolean;
+    locales?: string;
     logFn?: () => void;
     errorFn?: () => void;
   } = {
     isClosed: false,
     showWrap: false,
+    showDate: false,
+    locales: 'en-US',
     logFn: () => undefined,
     errorFn: () => undefined
   }
 ): Console {
-  const { isClosed, showWrap, logFn, errorFn } = Object.assign(
+  const {
+    isClosed,
+    showWrap,
+    showDate,
+    locales,
+    logFn,
+    errorFn
+  } = Object.assign(
     {
       isClosed: false,
       showWrap: false,
+      showDate: false,
+      locales: 'en-US',
       logFn: () => undefined,
       errorFn: () => undefined
     },
@@ -1626,12 +1641,34 @@ export function genCustomConsole(
   );
   const methods = ['log', 'info', 'warn', 'error'];
   const newConsole = Object.create(null);
+  // https://stackoverflow.com/questions/3552461/how-do-i-format-a-date-in-javascript
+  const formatDate = () => {
+    const dateOptions: Intl.DateTimeFormatOptions = {
+      weekday: 'short',
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+      hour: 'numeric',
+      // hourCycle: 'h24',
+      minute: 'numeric',
+      second: 'numeric'
+    };
+    const todayDateIns = new Date();
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString
+    // https://datatracker.ietf.org/doc/html/rfc4647
+    const dateStr = todayDateIns.toLocaleDateString(locales, dateOptions);
+    return dateStr;
+  };
+  // if (showDate) {
+  //   prefix = `${dateStr} ${prefix}`;
+  // }
   methods.forEach(method => {
     newConsole[method] = function(...argu: any) {
       if (isClosed) {
         return false;
       }
-      let elaboratePrefix = '';
+      let elaboratePrefix = prefix;
+      let datePrefix = prefix;
       if (typeof prefix === 'string' && prefix.length >= 2) {
         const len = prefix.length;
         if (prefix[len - 1] === ':') {
@@ -1639,14 +1676,19 @@ export function genCustomConsole(
         } else {
           elaboratePrefix = prefix;
         }
-        // console.log('prefix', prefix);
-        // console.log('elaboratePrefix', elaboratePrefix);
       }
       if (showWrap) {
         console.log(`--- ${elaboratePrefix} - begin ---`);
       }
-      if (prefix) {
-        (console as any)[method](prefix, ...argu);
+      if (showDate) {
+        if (prefix) {
+          datePrefix = `${formatDate()} ${prefix}`;
+        } else {
+          datePrefix = `${formatDate()}`;
+        }
+      }
+      if (prefix || showDate) {
+        (console as any)[method](datePrefix, ...argu);
       } else {
         (console as any)[method](...argu);
       }
