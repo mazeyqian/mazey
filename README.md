@@ -116,6 +116,10 @@ There ara some examples maintained by hand below. For more information, please c
 
 #### Load Script
 
+**loadScript**
+
+ZH: 动态加载 JavaScript 文件
+
 ```
 loadScript(
     'http://example.com/static/js/plugin-2.1.1.min.js',
@@ -137,7 +141,18 @@ loadScript(
   );
 ```
 
+@param {string} url -- js资源路径
+@param {string} options.id -- DOM ID
+@param {function} options.callback -- 加载后回调函数
+@param {number} options.timeout -- 超时时长
+@param {boolean} options.isDefer -- 是否添加 defer 标签
+@returns {Promise<boolean>} -- true 成功
+
 #### Load CSS
+
+**loadCSS**
+
+ZH: 动态加载 CSS 文件
 
 ```
 loadCSS(
@@ -157,6 +172,10 @@ loadCSS(
     }
   );
 ```
+
+@param {string} url -- css资源路径
+@param {string} options.id -- link标签id
+@returns {Promise<boolean>} true -- 加载成功
 
 #### Check Load
 

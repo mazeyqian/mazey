@@ -631,8 +631,27 @@ export function getLocalStorage(key: string): any {
 }
 
 /**
- * @method loadCSS
- * @description 动态加载css文件
+ * ZH: 动态加载 CSS 文件
+ *
+ * ```
+ * loadCSS(
+ *     'http://example.com/css/mazey-base.css',
+ *     {
+ *       id: 'iamid', // Optional, link ID, default none
+ *     }
+ *   )
+ *   .then(
+ *     res => {
+ *       console.log(`Load CSS Success: ${res}`);
+ *     }
+ *   )
+ *   .catch(
+ *     err => {
+ *       console.error(`Load CSS Fail: ${err.message}`)
+ *     }
+ *   );
+ * ```
+ *
  * @param {string} url -- css资源路径
  * @param {string} options.id -- link标签id
  * @returns {Promise<boolean>} true -- 加载成功
@@ -761,8 +780,29 @@ export function loadCSS(
 }
 
 /**
- * @method loadScript
- * @description 动态加载js文件
+ * ZH: 动态加载 JavaScript 文件
+ *
+ * ```
+ * loadScript(
+ *     'http://example.com/static/js/plugin-2.1.1.min.js',
+ *     {
+ *       id: 'iamid', // (Optional) script ID, default none
+ *       timeout: 5000, // (Optional) timeout, default `5000`
+ *       isDefer: false, // (Optional) defer, default `false`
+ *     }
+ *   )
+ *   .then(
+ *     res => {
+ *       console.log(`Load JavaScript script: ${res}`);
+ *     }
+ *   )
+ *   .catch(
+ *     err => {
+ *       console.error(`Load JavaScript script: ${err.message}`)
+ *     }
+ *   );
+ * ```
+ *
  * @param {string} url -- js资源路径
  * @param {string} options.id -- DOM ID
  * @param {function} options.callback -- 加载后回调函数
