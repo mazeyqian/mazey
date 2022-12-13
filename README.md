@@ -141,7 +141,7 @@ loadScript(
   );
 ```
 
-@param {string} url -- js资源路径
+@param {string} url -- JavaScript 资源路径
 @param {string} options.id -- DOM ID
 @param {function} options.callback -- 加载后回调函数
 @param {number} options.timeout -- 超时时长
