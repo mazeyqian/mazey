@@ -327,6 +327,8 @@ newLine('a\n\nbc'); // 'a<br /><br />bc'
 
 #### Query Param
 
+**getQueryParam**
+
 Get the query param's value of the current Web URL(`location.search`).
 
 ```
@@ -336,12 +338,21 @@ getQueryParam('t3'); // 3
 getQueryParam('t4'); // 4
 ```
 
+@param {string} param Query param.
+@returns {string} value
+
+**getUrlParam**
+
 Get the query param's value of the input URL.
 
 ```
 getUrlParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't3'); // 3
 getUrlParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't4'); // 4
 ```
+
+@param {string} url URL string.
+@param {string} param Query param.
+@returns {string} value
 
 #### Update Param
 

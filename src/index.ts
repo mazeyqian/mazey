@@ -85,8 +85,15 @@ export function calLongestCommonSubsequence(
 }
 
 /**
- * @method getQueryParam
- * @description Get the query param's value of the current Web URL(`location.search`).
+ * Get the query param's value of the current Web URL(`location.search`).
+ *
+ * ```
+ * // http://example.com/?t1=1&t2=2&t3=3&t4=4#2333
+ * // ?t1=1&t2=2&t3=3&t4=4
+ * getQueryParam('t3'); // 3
+ * getQueryParam('t4'); // 4
+ * ```
+ *
  * @param {string} param Query param.
  * @returns {string} value
  */
@@ -101,8 +108,13 @@ export function getQueryParam(param: string): string {
 }
 
 /**
- * @method getUrlParam
- * @description Get the query param's value of the input URL.
+ * Get the query param's value of the input URL.
+ *
+ * ```
+ * getUrlParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't3'); // 3
+ * getUrlParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't4'); // 4
+ * ```
+ *
  * @param {string} url URL string.
  * @param {string} param Query param.
  * @returns {string} value
