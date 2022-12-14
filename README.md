@@ -236,7 +236,11 @@ Reference: [Lodash](https://lodash.com/docs/4.17.15#throttle)
 
 #### Check Number
 
+**isNumber**
+
 Check whether it is a right number.
+
+<!-- ZH: 判断是否有效数字 -->
 
 ```
 isNumber(123); // true
@@ -247,6 +251,11 @@ isNumber(Infinity, { isUnFiniteAsNumber: true }); // true
 isNumber(NaN); // false
 isNumber(NaN, { isNaNAsNumber: true, isUnFiniteAsNumber: true }); // true
 ```
+
+@param {*} num 被判断的值
+@param {boolean} options.isNaNAsNumber 是否 NaN 算数字（默认不算）
+@param {boolean} options.isUnFiniteAsNumber 是否 无限 算数字（默认不算）
+@returns {boolean} true 是数字
 
 #### Camel Case
 

@@ -527,8 +527,20 @@ export function friendlyInterval(
 }
 
 /**
- * @method isNumber
- * @description 判断是否有效数字
+ * EN: Check whether it is a right number.
+ *
+ * ZH: 判断是否有效数字
+ *
+ * ```
+ * isNumber(123); // true
+ * isNumber('123'); // false
+ * // Default: NaN, Infinity is not Number
+ * isNumber(Infinity); // false
+ * isNumber(Infinity, { isUnFiniteAsNumber: true }); // true
+ * isNumber(NaN); // false
+ * isNumber(NaN, { isNaNAsNumber: true, isUnFiniteAsNumber: true }); // true
+ * ```
+ *
  * @param {*} num 被判断的值
  * @param {boolean} options.isNaNAsNumber 是否 NaN 算数字（默认不算）
  * @param {boolean} options.isUnFiniteAsNumber 是否 无限 算数字（默认不算）
