@@ -118,7 +118,9 @@ There ara some examples maintained by hand below. For more information, please c
 
 **loadScript**
 
-ZH: 动态加载 JavaScript 文件
+Load a JavaScript file from the server and execute it.
+
+<!-- ZH: 动态加载 JavaScript 文件 -->
 
 ```
 loadScript(
