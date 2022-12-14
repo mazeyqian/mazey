@@ -183,7 +183,11 @@ loadCSS(
 
 #### Check Load
 
+**windowLoaded**
+
 Check whether the page is loaded successfully (Keepe the compatibility in case that browser's `load` event has been triggered).
+
+<!-- ZH: 页面加载完成 -->
 
 ```
 windowLoaded(30) // second
@@ -195,9 +199,18 @@ windowLoaded(30) // second
   });
 ```
 
+@param {number} timeout 超时时间 / 单位：秒
+@returns {Promise<string>} document is loaded? 'complete' 'load' / 'timeout'
+
 ### Function
 
 #### Debounce
+
+**debounce**
+
+Debounce
+
+<!-- ZH: 去抖 -->
 
 ```
 const foo = debounce(() => {
@@ -207,11 +220,19 @@ const foo = debounce(() => {
 
 #### Throttle
 
+**throttle**
+
+Throttle
+
+<!-- ZH: 节流 -->
+
 ```
 const foo = throttle(() => {
   console.log('The function will be invoked at most once per every wait 1000 milliseconds.');
 }, 1000, { leading: true });
 ```
+
+Reference: [Lodash](https://lodash.com/docs/4.17.15#throttle)
 
 #### Check Number
 

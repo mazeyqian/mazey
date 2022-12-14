@@ -381,6 +381,12 @@ export function removeClass(obj: any, cls: string): void {
  *
  * ZH: 节流
  *
+ * ```
+ * const foo = throttle(() => {
+ *   console.log('The function will be invoked at most once per every wait 1000 milliseconds.');
+ * }, 1000, { leading: true });
+ * ```
+ *
  * Reference: [Lodash](https://lodash.com/docs/4.17.15#throttle)
  */
 export function throttle(
@@ -435,8 +441,6 @@ export function throttle(
  * EN: Debounce
  *
  * ZH: 去抖
- *
- * Usage:
  *
  * ```
  * const foo = debounce(() => {
@@ -1554,8 +1558,20 @@ export function cutCHSString(str: string, len: number, hasDot = false): string {
 }
 
 /**
- * @method windowLoaded
- * @description 页面加载完成
+ * EN: Check whether the page is loaded successfully (Keepe the compatibility in case that browser's `load` event has been triggered).
+ *
+ * ZH: 页面加载完成
+ *
+ * ```
+ * windowLoaded(30) // second
+ *   .then(res => {
+ *     console.log(`Load Success: ${res}`); // Load Success: load
+ *   })
+ *   .catch(err => {
+ *     console.log(`Load Timeout or Fail: ${err.message}`);
+ *   });
+ * ```
+ *
  * @param {number} timeout 超时时间 / 单位：秒
  * @returns {Promise<string>} document is loaded? 'complete' 'load' / 'timeout'
  */
