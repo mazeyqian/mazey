@@ -154,7 +154,9 @@ loadScript(
 
 **loadCSS**
 
-ZH: 动态加载 CSS 文件
+Load a CSS file from the server.
+
+<!-- ZH: 动态加载 CSS 文件 -->
 
 ```
 loadCSS(
