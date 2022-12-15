@@ -194,8 +194,13 @@ export function getDomain(url: string, rules = ['hostname']): string {
 }
 
 /**
- * @method camelCaseToKebabCase
- * @description Transfer CamelCase to KebabCase.
+ * Transfer CamelCase to KebabCase.
+ *
+ * ```
+ * camelCaseToKebabCase('ABC'); // a-b-c
+ * camelCaseToKebabCase('aBC'); // a-b-c
+ * ```
+ *
  * @param {string} camelCase 'aBC' or 'ABC'
  * @returns {string} 'a-b-c'
  */
@@ -205,8 +210,13 @@ export function camelCaseToKebabCase(camelCase: string): string {
 }
 
 /**
- * @method camelCase2Underscore
- * @description Transfer CamelCase to Underscore.
+ * Transfer CamelCase to Underscore.
+ *
+ * ```
+ * camelCase2Underscore('ABC'); // a_b_c
+ * camelCase2Underscore('aBC'); // a_b_c
+ * ```
+ *
  * @param {string} camelCase 'aBC' or 'ABC'
  * @returns {string} 'a_b_c'
  */
@@ -216,8 +226,13 @@ export function camelCase2Underscore(camelCase: string): string {
 }
 
 /**
- * @method mTrim
- * @description Remove leading and trailing whitespace or specified characters from string.
+ * Remove leading and trailing whitespace or specified characters from string.
+ *
+ * ```
+ * mTrim(' 1 2 3 '); // '1 2 3'
+ * mTrim('abc '); // 'abc'
+ * ```
+ *
  * @param {string} str The string to trim.
  * @returns {string} Trimmed string.
  */
@@ -246,8 +261,20 @@ export function newLine(str: string): string {
 }
 
 /**
- * @method deepCopyObject
- * @description Clone Object deeply.
+ * Clone Object deeply.
+ *
+ * ```
+ * deepCopyObject(['a', 'b', 'c']);
+ * deepCopyObject('abc');
+ * ```
+ *
+ * Output:
+ *
+ * ```
+ * ['a', 'b', 'c']
+ * 'abc'
+ * ```
+ *
  * @param {object} obj The value to clone.
  * @returns {object} Returns the deep cloned value.
  */

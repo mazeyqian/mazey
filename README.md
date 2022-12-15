@@ -114,9 +114,7 @@ There ara some examples maintained by hand below. For more information, please c
 
 ### Load Resource
 
-#### Load Script
-
-**loadScript**
+#### loadScript
 
 Load a JavaScript file from the server and execute it.
 
@@ -150,9 +148,7 @@ loadScript(
 @param {boolean} options.isDefer -- 是否添加 defer 标签
 @returns {Promise<boolean>} -- true 成功
 
-#### Load CSS
-
-**loadCSS**
+#### loadCSS
 
 Load a CSS file from the server.
 
@@ -181,9 +177,7 @@ loadCSS(
 @param {string} options.id -- link标签id
 @returns {Promise<boolean>} true -- 加载成功
 
-#### Check Load
-
-**windowLoaded**
+#### windowLoaded
 
 Check whether the page is loaded successfully (Keepe the compatibility in case that browser's `load` event has been triggered).
 
@@ -204,9 +198,7 @@ windowLoaded(30) // second
 
 ### Function
 
-#### Debounce
-
-**debounce**
+#### debounce
 
 Debounce
 
@@ -218,9 +210,7 @@ const foo = debounce(() => {
 }, 1000, true);
 ```
 
-#### Throttle
-
-**throttle**
+#### throttle
 
 Throttle
 
@@ -234,9 +224,7 @@ const foo = throttle(() => {
 
 Reference: [Lodash](https://lodash.com/docs/4.17.15#throttle)
 
-#### Check Number
-
-**isNumber**
+#### isNumber
 
 Check whether it is a right number.
 
@@ -257,7 +245,7 @@ isNumber(NaN, { isNaNAsNumber: true, isUnFiniteAsNumber: true }); // true
 @param {boolean} options.isUnFiniteAsNumber 是否 无限 算数字（默认不算）
 @returns {boolean} true 是数字
 
-#### Camel Case
+#### camelCaseToKebabCase
 
 Transfer CamelCase to KebabCase.
 
@@ -266,6 +254,11 @@ camelCaseToKebabCase('ABC'); // a-b-c
 camelCaseToKebabCase('aBC'); // a-b-c
 ```
 
+@param {string} camelCase 'aBC' or 'ABC'
+@returns {string} 'a-b-c'
+
+#### camelCase2Underscore
+
 Transfer CamelCase to Underscore.
 
 ```
@@ -273,7 +266,10 @@ camelCase2Underscore('ABC'); // a_b_c
 camelCase2Underscore('aBC'); // a_b_c
 ```
 
-#### Trim
+@param {string} camelCase 'aBC' or 'ABC'
+@returns {string} 'a_b_c'
+
+#### mTrim
 
 Remove leading and trailing whitespace or specified characters from string.
 
@@ -282,14 +278,27 @@ mTrim(' 1 2 3 '); // '1 2 3'
 mTrim('abc '); // 'abc'
 ```
 
-#### Deep Clone
+@param {string} str The string to trim.
+@returns {string} Trimmed string.
+
+#### deepCopyObject
 
 Clone Object deeply.
 
 ```
-deepCopyObject(['a', 'b', 'c']); // ['a', 'b', 'c']
-deepCopyObject('abc'); // 'abc'
+deepCopyObject(['a', 'b', 'c']);
+deepCopyObject('abc');
 ```
+
+Output:
+
+```
+['a', 'b', 'c']
+'abc'
+```
+
+@param {object} obj The value to clone.
+@returns {object} Returns the deep cloned value.
 
 #### JSON
 
