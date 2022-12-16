@@ -141,12 +141,12 @@ loadScript(
   );
 ```
 
-@param {string} url -- JavaScript 资源路径
+<!-- @param {string} url -- JavaScript 资源路径
 @param {string} options.id -- DOM ID
 @param {function} options.callback -- 加载后回调函数
 @param {number} options.timeout -- 超时时长
 @param {boolean} options.isDefer -- 是否添加 defer 标签
-@returns {Promise<boolean>} -- true 成功
+@returns {Promise<boolean>} -- true 成功 -->
 
 #### loadCSS
 
@@ -173,9 +173,9 @@ loadCSS(
   );
 ```
 
-@param {string} url -- css资源路径
+<!-- @param {string} url -- css资源路径
 @param {string} options.id -- link标签id
-@returns {Promise<boolean>} true -- 加载成功
+@returns {Promise<boolean>} true -- 加载成功 -->
 
 #### windowLoaded
 
@@ -193,8 +193,8 @@ windowLoaded(30) // second
   });
 ```
 
-@param {number} timeout 超时时间 / 单位：秒
-@returns {Promise<string>} document is loaded? 'complete' 'load' / 'timeout'
+<!-- @param {number} timeout 超时时间 / 单位：秒
+@returns {Promise<string>} document is loaded? 'complete' 'load' / 'timeout' -->
 
 ### Function
 
@@ -240,10 +240,10 @@ isNumber(NaN); // false
 isNumber(NaN, { isNaNAsNumber: true, isUnFiniteAsNumber: true }); // true
 ```
 
-@param {*} num 被判断的值
+<!-- @param {*} num 被判断的值
 @param {boolean} options.isNaNAsNumber 是否 NaN 算数字（默认不算）
 @param {boolean} options.isUnFiniteAsNumber 是否 无限 算数字（默认不算）
-@returns {boolean} true 是数字
+@returns {boolean} true 是数字 -->
 
 #### camelCaseToKebabCase
 
@@ -254,8 +254,8 @@ camelCaseToKebabCase('ABC'); // a-b-c
 camelCaseToKebabCase('aBC'); // a-b-c
 ```
 
-@param {string} camelCase 'aBC' or 'ABC'
-@returns {string} 'a-b-c'
+<!-- @param {string} camelCase 'aBC' or 'ABC'
+@returns {string} 'a-b-c' -->
 
 #### camelCase2Underscore
 
@@ -266,8 +266,8 @@ camelCase2Underscore('ABC'); // a_b_c
 camelCase2Underscore('aBC'); // a_b_c
 ```
 
-@param {string} camelCase 'aBC' or 'ABC'
-@returns {string} 'a_b_c'
+<!-- @param {string} camelCase 'aBC' or 'ABC'
+@returns {string} 'a_b_c' -->
 
 #### mTrim
 
@@ -278,8 +278,8 @@ mTrim(' 1 2 3 '); // '1 2 3'
 mTrim('abc '); // 'abc'
 ```
 
-@param {string} str The string to trim.
-@returns {string} Trimmed string.
+<!-- @param {string} str The string to trim.
+@returns {string} Trimmed string. -->
 
 #### deepCopyObject
 
@@ -297,8 +297,8 @@ Output:
 'abc'
 ```
 
-@param {object} obj The value to clone.
-@returns {object} Returns the deep cloned value.
+<!-- @param {object} obj The value to clone.
+@returns {object} Returns the deep cloned value. -->
 
 #### JSON
 
@@ -400,8 +400,8 @@ getQueryParam('t3'); // 3
 getQueryParam('t4'); // 4
 ```
 
-@param {string} param Query param.
-@returns {string} value
+<!-- @param {string} param Query param.
+@returns {string} value -->
 
 **getUrlParam**
 
@@ -412,9 +412,9 @@ getUrlParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't3'); // 3
 getUrlParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't4'); // 4
 ```
 
-@param {string} url URL string.
+<!-- @param {string} url URL string.
 @param {string} param Query param.
-@returns {string} value
+@returns {string} value -->
 
 #### Update Param
 
