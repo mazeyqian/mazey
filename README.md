@@ -323,7 +323,7 @@ true
 <!-- @param {string} str The string to check.
 @returns {boolean} Return the result of checking. -->
 
-#### Random
+#### generateRndNum
 
 Produce a random string of number, `generateRndNum(7)` => '7658495'.
 
@@ -349,7 +349,7 @@ addClass(dom, 'test');
 removeClass(dom, 'test');
 ```
 
-#### Style
+#### addStyle
 
 Add `<style>` in `<head>`.
 
@@ -390,7 +390,7 @@ addStyle(
 // </style>
 ```
 
-#### Newline
+#### newLine
 
 Make a newline of HTML.
 
@@ -401,9 +401,7 @@ newLine('a\n\nbc'); // 'a<br /><br />bc'
 
 ### URL
 
-#### Query Param
-
-**getQueryParam**
+#### getQueryParam
 
 Get the query param's value of the current Web URL(`location.search`).
 
@@ -417,7 +415,7 @@ getQueryParam('t4'); // 4
 <!-- @param {string} param Query param.
 @returns {string} value -->
 
-**getUrlParam**
+#### getUrlParam
 
 Get the query param's value of the input URL.
 
@@ -702,6 +700,8 @@ Results:
 @returns {Promise<object>} 加载数据 -->
 
 ### Margin of Safety
+
+#### isSafePWAEnv
 
 Determine if it is a secure PWA environment that it can run.
 
