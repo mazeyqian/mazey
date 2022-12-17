@@ -55,6 +55,7 @@ There ara some examples maintained by hand below. For more information, please c
 
 **Table of Contents**
 
+<!-- toc - begin -->
 - Generate with ❤️
 - [Load Resource](#load-resource)
   * [loadScript](#loadscript)
@@ -95,6 +96,7 @@ There ara some examples maintained by hand below. For more information, please c
   * [isSafePWAEnv](#issafepwaenv)
 - [Debug](#debug)
   * [genCustomConsole](#gencustomconsole)
+<!-- toc - end -->
 
 ### Load Resource
 
