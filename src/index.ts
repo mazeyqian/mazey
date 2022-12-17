@@ -323,6 +323,8 @@ export function newLine(str: string): string {
 /**
  * Clone Object deeply.
  *
+ * Usage:
+ *
  * ```
  * deepCopyObject(['a', 'b', 'c']);
  * deepCopyObject('abc');
@@ -345,6 +347,8 @@ export function deepCopyObject(obj: any): any {
 /**
  * Check whether it is a valid JSON string.
  *
+ * Usage:
+ *
  * ```
  * isJsonString(`['a', 'b', 'c']`);
  * isJsonString(`["a", "b", "c"]`);
@@ -356,9 +360,6 @@ export function deepCopyObject(obj: any): any {
  * false
  * true
  * ```
- *
- * @param {string} str The string to check.
- * @returns {boolean} Return the result of checking.
  */
 export function isJsonString(str: string): boolean {
   try {
@@ -1414,8 +1415,22 @@ export function inRate(rate: number): boolean {
 }
 
 /**
- * @method isSafePWAEnv
- * @description 判断是否是安全的 PWA 环境
+ * EN: Determine if it is a secure PWA environment that it can run.
+ *
+ * ZH: 判断是否是安全的 PWA 环境
+ *
+ * Usage:
+ *
+ * ```
+ * isSafePWAEnv();
+ * ```
+ *
+ * Output:
+ *
+ * ```
+ * true
+ * ```
+ *
  * @returns {boolean} true 是
  */
 export function isSafePWAEnv(): boolean {
@@ -1866,7 +1881,28 @@ export function addStyle(
 }
 
 /**
- * 生成自定义控制台打印
+ * EN: Custom console printing (`console`).
+ *
+ * ZH: 生成自定义控制台打印
+ *
+ * Usage:
+ *
+ * ```
+ * const myConsole = genCustomConsole('MazeyLog:');
+ * myConsole.log('I am string.');
+ * myConsole.info('I am boolean.', true);
+ * myConsole.info('I am number.', 123, 456);
+ * myConsole.info('I am object.', { a: 123, b: 456});
+ * ```
+ *
+ * Output:
+ *
+ * ```
+ * MazeyLog: I am string.
+ * MazeyLog: I am boolean. true
+ * MazeyLog: I am number. 123 456
+ * MazeyLog: I am object. {a: 123, b: 456}
+ * ```
  *
  * @param {string} prefix 前缀
  * @param {string} locales A locale string.

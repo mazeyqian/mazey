@@ -285,6 +285,8 @@ mTrim('abc '); // 'abc'
 
 Clone Object deeply.
 
+Usage:
+
 ```
 deepCopyObject(['a', 'b', 'c']);
 deepCopyObject('abc');
@@ -303,6 +305,8 @@ Output:
 #### isJsonString
 
 Check whether it is a valid JSON string.
+
+Usage:
 
 ```
 isJsonString(`['a', 'b', 'c']`);
@@ -701,23 +705,54 @@ Results:
 
 Determine if it is a secure PWA environment that it can run.
 
+<!-- ZH: 判断是否是安全的 PWA 环境 -->
+
+Usage:
+
 ```
-isSafePWAEnv(); // true
+isSafePWAEnv();
 ```
+
+Output:
+
+```
+true
+```
+
+<!-- @returns {boolean} true 是 -->
 
 ### Debug
 
-#### Print
+#### genCustomConsole
 
 Custom console printing (`console`).
 
+<!-- ZH: 生成自定义控制台打印 -->
+
+Usage:
+
 ```
 const myConsole = genCustomConsole('MazeyLog:');
-myConsole.log('I am string.'); // MazeyLog: I am string.
-myConsole.info('I am boolean.', true); // MazeyLog: I am boolean. true
-myConsole.info('I am number.', 123, 456); // MazeyLog: I am number. 123 456
-myConsole.info('I am object.', { a: 123, b: 456}); // MazeyLog: I am object. {a: 123, b: 456}
+myConsole.log('I am string.');
+myConsole.info('I am boolean.', true);
+myConsole.info('I am number.', 123, 456);
+myConsole.info('I am object.', { a: 123, b: 456});
 ```
+
+Output:
+
+```
+MazeyLog: I am string.
+MazeyLog: I am boolean. true
+MazeyLog: I am number. 123 456
+MazeyLog: I am object. {a: 123, b: 456}
+```
+
+<!-- @param {string} prefix 前缀
+@param {string} locales A locale string.
+@param {function} logFn The function with Log.
+@param {function} errorFn The function with Error.
+@returns {object} 新实例 -->
 
 ## Contributing
 
