@@ -426,34 +426,72 @@ getUrlParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't4'); // 4
 @param {string} param Query param.
 @returns {string} value -->
 
-#### Update Param
+#### updateQueryParam
 
 Update the query param's value of the input URL.
 
+Usage:
+
 ```
-updateQueryParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't3', 'three'); // http://example.com/?t1=1&t2=2&t3=three&t4=4
-updateQueryParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't4', 'four'); // http://example.com/?t1=1&t2=2&t3=3&t4=four
+updateQueryParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't3', 'three');
+updateQueryParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't4', 'four');
 ```
 
-#### Hash Param
+Output:
+
+```
+http://example.com/?t1=1&t2=2&t3=three&t4=4
+http://example.com/?t1=1&t2=2&t3=3&t4=four
+```
+
+<!-- @param {string} url URL string.
+@param {string} param Query param.
+@param {string} value Param's value.
+@returns {string} URL. -->
+
+#### getHashQueryParam
 
 Get the hash query param's value of the current Web URL(`location.hash`).
+
+Usage:
 
 ```
 // http://example.com/?#2333?t1=1&t2=2&t3=3&t4=4
 // #2333?t1=1&t2=2&t3=3&t4=4
-getHashQueryParam('t3'); // 3
-getHashQueryParam('t4'); // 4
+getHashQueryParam('t3');
+getHashQueryParam('t4');
 ```
 
-#### Domain
+Output:
+
+```
+3
+4
+```
+
+<!-- @param {string} param Query param.
+@returns {string} value -->
+
+#### getDomain
 
 Get the domain of URL, and other params.
 
+Usage:
+
 ```
-getDomain('http://example.com/?t1=1&t2=2&t3=3&t4=4'); // example.com
-getDomain('http://example.com/test/thanks?t1=1&t2=2&t3=3&t4=4', ['hostname', 'pathname']); // example.com/test/thanks
+getDomain('http://example.com/?t1=1&t2=2&t3=3&t4=4');
+getDomain('http://example.com/test/thanks?t1=1&t2=2&t3=3&t4=4', ['hostname', 'pathname']);
 ```
+
+Output:
+
+```
+example.com
+example.com/test/thanks
+```
+
+<!-- @param {string} url
+@param {array} rules Object.keys(location), ['href', 'protocol', 'host', 'hostname', 'port', 'pathname', 'search', 'hash'], ['hostname', 'pathname'] = 'km.mazey.net/plugins/servlet/mobile' -->
 
 ### Cache Data
 
@@ -489,13 +527,27 @@ getCookie('test'); // 123
 
 ### Calculate&Formula
 
-#### Rate
+#### inRate
 
 Hit probability (1% ~ 100%).
 
-```
-inRate(0.5); // 0.01 ~ 1 true / false
+<!-- ZH: 百分位概率 -->
 
+Usage:
+
+```
+inRate(0.5); // 0.01 ~ 1 true/false
+```
+
+Output:
+
+```
+true
+```
+
+Example: Test the precision.
+
+```
 // Test
 let trueCount = 0;
 let falseCount = 0;
@@ -509,19 +561,52 @@ new Array(1000000).fill(0).forEach(() => {
 console.log(trueCount, falseCount); // 499994 500006
 ```
 
-#### Algorithm
+<!-- @param {number} rate -- 0.1 ~ 1 => 1% ~ 100%
+@returns {boolean} true 命中 -->
+
+#### calLongestCommonSubstring
 
 Computes the longest common substring of two strings.
 
+<!-- ZH: 计算两个字符串的最长公共子串 -->
+
+Usage:
+
 ```
-calLongestCommonSubstring('fish', 'finish'); // 3
+calLongestCommonSubstring('fish', 'finish');
 ```
+
+Output:
+
+```
+3
+```
+
+<!-- @param {string} aStr String
+@param {string} bStr String
+@returns {number} Length -->
+
+#### calLongestCommonSubsequence
 
 Computes the longest common subsequence of two strings.
 
+<!-- ZH: 计算两个字符串的最长公共子序列 -->
+
+Usage:
+
 ```
-calLongestCommonSubsequence('fish', 'finish'); // 4
+calLongestCommonSubsequence('fish', 'finish');
 ```
+
+Output:
+
+```
+4
+```
+
+<!-- @param {string} aStr 字符串
+@param {string} bStr 字符串
+@returns {number} 长度 -->
 
 ### Browser Information
 

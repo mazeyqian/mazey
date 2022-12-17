@@ -5,8 +5,16 @@
  *
  * ZH: 计算两个字符串的最长公共子串
  *
+ * Usage:
+ *
  * ```
- * calLongestCommonSubstring('fish', 'finish'); // 3
+ * calLongestCommonSubstring('fish', 'finish');
+ * ```
+ *
+ * Output:
+ *
+ * ```
+ * 3
  * ```
  *
  * @param {string} aStr String
@@ -41,8 +49,16 @@ export function calLongestCommonSubstring(aStr: string, bStr: string): number {
  *
  * ZH: 计算两个字符串的最长公共子序列
  *
+ * Usage:
+ *
  * ```
- * calLongestCommonSubsequence('fish', 'finish'); // 4
+ * calLongestCommonSubsequence('fish', 'finish');
+ * ```
+ *
+ * Output:
+ *
+ * ```
+ * 4
  * ```
  *
  * @param {string} aStr 字符串
@@ -141,8 +157,22 @@ export function getUrlParam(url: string, param: string): string | string[] {
 }
 
 /**
- * @method updateQueryParam
- * @description Update the query param's value of the input URL.
+ * Update the query param's value of the input URL.
+ *
+ * Usage:
+ *
+ * ```
+ * updateQueryParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't3', 'three');
+ * updateQueryParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't4', 'four');
+ * ```
+ *
+ * Output:
+ *
+ * ```
+ * http://example.com/?t1=1&t2=2&t3=three&t4=4
+ * http://example.com/?t1=1&t2=2&t3=3&t4=four
+ * ```
+ *
  * @param {string} url URL string.
  * @param {string} param Query param.
  * @param {string} value Param's value.
@@ -163,8 +193,24 @@ export function updateQueryParam(
 }
 
 /**
- * @method getHashQueryParam
- * @description Get the hash query param's value of the current Web URL(`location.hash`).
+ * Get the hash query param's value of the current Web URL(`location.hash`).
+ *
+ * Usage:
+ *
+ * ```
+ * // http://example.com/?#2333?t1=1&t2=2&t3=3&t4=4
+ * // #2333?t1=1&t2=2&t3=3&t4=4
+ * getHashQueryParam('t3');
+ * getHashQueryParam('t4');
+ * ```
+ *
+ * Output:
+ *
+ * ```
+ * 3
+ * 4
+ * ```
+ *
  * @param {string} param Query param.
  * @returns {string} value
  */
@@ -179,8 +225,22 @@ export function getHashQueryParam(param: string): string {
 }
 
 /**
- * @method getDomain
- * @description Get the domain of URL, and other params.
+ * Get the domain of URL, and other params.
+ *
+ * Usage:
+ *
+ * ```
+ * getDomain('http://example.com/?t1=1&t2=2&t3=3&t4=4');
+ * getDomain('http://example.com/test/thanks?t1=1&t2=2&t3=3&t4=4', ['hostname', 'pathname']);
+ * ```
+ *
+ * Output:
+ *
+ * ```
+ * example.com
+ * example.com/test/thanks
+ * ```
+ *
  * @param {string} url
  * @param {array} rules Object.keys(location), ['href', 'protocol', 'host', 'hostname', 'port', 'pathname', 'search', 'hash'], ['hostname', 'pathname'] = 'km.mazey.net/plugins/servlet/mobile'
  */
@@ -1311,8 +1371,38 @@ export function getPerformance(
 }
 
 /**
- * @method inRate
- * @description 百分位概率
+ * EN: Hit probability (1% ~ 100%).
+ *
+ * ZH: 百分位概率
+ *
+ * Usage:
+ *
+ * ```
+ * inRate(0.5); // 0.01 ~ 1 true/false
+ * ```
+ *
+ * Output:
+ *
+ * ```
+ * true
+ * ```
+ *
+ * Example: Test the precision.
+ *
+ * ```
+ * // Test
+ * let trueCount = 0;
+ * let falseCount = 0;
+ * new Array(1000000).fill(0).forEach(() => {
+ *   if (inRate(0.5)) {
+ *     trueCount++;
+ *   } else {
+ *     falseCount++;
+ *   }
+ * });
+ * console.log(trueCount, falseCount); // 499994 500006
+ * ```
+ *
  * @param {number} rate -- 0.1 ~ 1 => 1% ~ 100%
  * @returns {boolean} true 命中
  */
