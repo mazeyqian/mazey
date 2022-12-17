@@ -14,6 +14,7 @@ const genVersion = () => {
 const version = genVersion();
 
 const generateToc = () => {
+  console.log('Generating Table of Contents...');
   const RMFilePath = _resolve('../README.md');
   // https://melvingeorge.me/blog/get-all-the-contents-from-file-as-string-nodejs
   const buffer = fs.readFileSync(RMFilePath);
@@ -35,21 +36,18 @@ const generateToc = () => {
     filter: removeUnnecessaryHeadings,
     bullets: ['-', '*'],
   }).content;
-  tocContent = tocContent.replace(/[ ]{4}/gmi, '');
-  tocContent = '<!-- toc - begin -->\n' + '- Generate with 2233 ❤️\n' + tocContent;
-  tocContent = tocContent + '<!-- toc - end -->';
-
-  console.log(tocContent);
+  tocContent = tocContent.replace(/[ ]{4}/gm, '');
+  tocContent = '<!-- toc - begin -->\n' + '- Generate with ❤️\n' + tocContent;
+  tocContent = tocContent + '\n<!-- toc - end -->';
+  // console.log(tocContent);
   // Insert to file.
   // https://stackoverflow.com/questions/14177087/replace-a-string-in-a-file-with-nodejs
   let newFileContent = fileContent;
-  // <!-- toc - begin -->
-  // <!-- toc - end -->
-  newFileContent = newFileContent.replace(/<!-- toc - begin -->(.|\n)*<!-- toc - end -->/gm, tocContent);
-  console.log(newFileContent);
-  fs.writeFile(RMFilePath, newFileContent, 'utf8', function (err) {
-    if (err) return console.log(err);
-  });
+  // https://stackoverflow.com/questions/1979884/how-to-use-javascript-regex-over-multiple-lines
+  newFileContent = newFileContent.replace(/<!-- toc - begin -->[\s\S]*<!-- toc - end -->/gm, tocContent);
+  // console.log(newFileContent);
+  fs.writeFileSync(RMFilePath, newFileContent);
+  console.log('Generating Table of Contents is done.');
 };
 
 module.exports = {
