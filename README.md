@@ -58,36 +58,38 @@ There ara some examples maintained by hand below. For more information, please c
 <ul>
   <li><a href="#load-resource">Load Resource</a>
     <ul>
-      <li><a href="#load-script">Load Script</a></li>
-      <li><a href="#load-css">Load CSS</a></li>
-      <li><a href="#check-load">Check Load</a></li>
+      <li><a href="#loadscript">loadScript</a></li>
+      <li><a href="#loadcss">loadCSS</a></li>
+      <li><a href="#windowloaded">windowLoaded</a></li>
     </ul>
   </li>
   <li><a href="#function">Function</a>
     <ul>
-      <li><a href="#debounce">Debounce</a></li>
-      <li><a href="#throttle">Throttle</a></li>
-      <li><a href="#check-number">Check Number</a></li>
-      <li><a href="#camel-case">Camel Case</a></li>
-      <li><a href="#trim">Trim</a></li>
-      <li><a href="#deep-clone">Deep Clone</a></li>
-      <li><a href="#json">JSON</a></li>
-      <li><a href="#random">Random</a></li>
+      <li><a href="#debounce">debounce</a></li>
+      <li><a href="#throttle">throttle</a></li>
+      <li><a href="#isnumber">isNumber</a></li>
+      <li><a href="#camelcasetokebabcase">camelCaseToKebabCase</a></li>
+      <li><a href="#camelcase2underscore">camelCase2Underscore</a></li>
+      <li><a href="#mtrim">mTrim</a></li>
+      <li><a href="#deepcopyobject">deepCopyObject</a></li>
+      <li><a href="#isjsonstring">isJsonString</a></li>
+      <li><a href="#generaterndnum">generateRndNum</a></li>
     </ul>
   </li>
   <li><a href="#dom">DOM</a>
     <ul>
       <li><a href="#class">Class</a></li>
-      <li><a href="#style">Style</a></li>
-      <li><a href="#newline">Newline</a></li>
+      <li><a href="#addstyle">addStyle</a></li>
+      <li><a href="#newline">newLine</a></li>
     </ul>
   </li>
   <li><a href="#url">URL</a>
     <ul>
-      <li><a href="#query-param">Query Param</a></li>
-      <li><a href="#update-param">Update Param</a></li>
-      <li><a href="#hash-param">Hash Param</a></li>
-      <li><a href="#domain">Domain</a></li>
+      <li><a href="#getqueryparam">getQueryParam</a></li>
+      <li><a href="#geturlparam">getUrlParam</a></li>
+      <li><a href="#updatequeryparam">updateQueryParam</a></li>
+      <li><a href="#gethashqueryparam">getHashQueryParam</a></li>
+      <li><a href="#getdomain">getDomain</a></li>
     </ul>
   </li>
   <li><a href="#cache-data">Cache Data</a>
@@ -96,18 +98,31 @@ There ara some examples maintained by hand below. For more information, please c
       <li><a href="#cookie">Cookie</a></li>
     </ul>
   </li>
-  <li><a href="#calculate-formula">Calculate&amp;Formula</a>
+  <li><a href="#calculate-and-formula">Calculate and Formula</a>
     <ul>
-      <li><a href="#rate">Rate</a></li>
-      <li><a href="#algorithm">Algorithm</a></li>
+      <li><a href="#inrate">inRate</a></li>
+      <li><a href="#callongestcommonsubstring">calLongestCommonSubstring</a></li>
+      <li><a href="#callongestcommonsubsequence">calLongestCommonSubsequence</a></li>
     </ul>
   </li>
-  <li><a href="#browser-information">Browser Information</a></li>
-  <li><a href="#web-performance">Web Performance</a></li>
-  <li><a href="#margin-of-safety">Margin of Safety</a></li>
+  <li><a href="#browser-information">Browser Information</a>
+    <ul>
+      <li><a href="#getbrowserinfo">getBrowserInfo</a></li>
+    </ul>
+  </li>
+  <li><a href="#web-performance">Web Performance</a>
+    <ul>
+      <li><a href="#getperformance">getPerformance</a></li>
+    </ul>
+  </li>
+  <li><a href="#margin-of-safety">Margin of Safety</a>
+    <ul>
+      <li><a href="#issafepwaenv">isSafePWAEnv</a></li>
+    </ul>
+  </li>
   <li><a href="#debug">Debug</a>
     <ul>
-      <li><a href="#print">Print</a></li>
+      <li><a href="#gencustomconsole">genCustomConsole</a></li>
     </ul>
   </li>
 </ul>
@@ -527,7 +542,7 @@ setCookie('test', '123', 30, 'example.com'); // key value day domain
 getCookie('test'); // 123
 ```
 
-### Calculate&Formula
+### Calculate and Formula
 
 #### inRate
 
