@@ -55,77 +55,46 @@ There ara some examples maintained by hand below. For more information, please c
 
 **Table of Contents**
 
-<ul>
-  <li><a href="#load-resource">Load Resource</a>
-    <ul>
-      <li><a href="#loadscript">loadScript</a></li>
-      <li><a href="#loadcss">loadCSS</a></li>
-      <li><a href="#windowloaded">windowLoaded</a></li>
-    </ul>
-  </li>
-  <li><a href="#function">Function</a>
-    <ul>
-      <li><a href="#debounce">debounce</a></li>
-      <li><a href="#throttle">throttle</a></li>
-      <li><a href="#isnumber">isNumber</a></li>
-      <li><a href="#camelcasetokebabcase">camelCaseToKebabCase</a></li>
-      <li><a href="#camelcase2underscore">camelCase2Underscore</a></li>
-      <li><a href="#mtrim">mTrim</a></li>
-      <li><a href="#deepcopyobject">deepCopyObject</a></li>
-      <li><a href="#isjsonstring">isJsonString</a></li>
-      <li><a href="#generaterndnum">generateRndNum</a></li>
-    </ul>
-  </li>
-  <li><a href="#dom">DOM</a>
-    <ul>
-      <li><a href="#class">Class</a></li>
-      <li><a href="#addstyle">addStyle</a></li>
-      <li><a href="#newline">newLine</a></li>
-    </ul>
-  </li>
-  <li><a href="#url">URL</a>
-    <ul>
-      <li><a href="#getqueryparam">getQueryParam</a></li>
-      <li><a href="#geturlparam">getUrlParam</a></li>
-      <li><a href="#updatequeryparam">updateQueryParam</a></li>
-      <li><a href="#gethashqueryparam">getHashQueryParam</a></li>
-      <li><a href="#getdomain">getDomain</a></li>
-    </ul>
-  </li>
-  <li><a href="#cache-data">Cache Data</a>
-    <ul>
-      <li><a href="#storage">Storage</a></li>
-      <li><a href="#cookie">Cookie</a></li>
-    </ul>
-  </li>
-  <li><a href="#calculate-and-formula">Calculate and Formula</a>
-    <ul>
-      <li><a href="#inrate">inRate</a></li>
-      <li><a href="#callongestcommonsubstring">calLongestCommonSubstring</a></li>
-      <li><a href="#callongestcommonsubsequence">calLongestCommonSubsequence</a></li>
-    </ul>
-  </li>
-  <li><a href="#browser-information">Browser Information</a>
-    <ul>
-      <li><a href="#getbrowserinfo">getBrowserInfo</a></li>
-    </ul>
-  </li>
-  <li><a href="#web-performance">Web Performance</a>
-    <ul>
-      <li><a href="#getperformance">getPerformance</a></li>
-    </ul>
-  </li>
-  <li><a href="#margin-of-safety">Margin of Safety</a>
-    <ul>
-      <li><a href="#issafepwaenv">isSafePWAEnv</a></li>
-    </ul>
-  </li>
-  <li><a href="#debug">Debug</a>
-    <ul>
-      <li><a href="#gencustomconsole">genCustomConsole</a></li>
-    </ul>
-  </li>
-</ul>
+- Generate with ❤️
+- [Load Resource](#load-resource)
+  * [loadScript](#loadscript)
+  * [loadCSS](#loadcss)
+  * [windowLoaded](#windowloaded)
+- [Function](#function)
+  * [debounce](#debounce)
+  * [throttle](#throttle)
+  * [isNumber](#isnumber)
+  * [camelCaseToKebabCase](#camelcasetokebabcase)
+  * [camelCase2Underscore](#camelcase2underscore)
+  * [mTrim](#mtrim)
+  * [deepCopyObject](#deepcopyobject)
+  * [isJsonString](#isjsonstring)
+  * [generateRndNum](#generaterndnum)
+- [DOM](#dom)
+  * [Class](#class)
+  * [addStyle](#addstyle)
+  * [newLine](#newline)
+- [URL](#url)
+  * [getQueryParam](#getqueryparam)
+  * [getUrlParam](#geturlparam)
+  * [updateQueryParam](#updatequeryparam)
+  * [getHashQueryParam](#gethashqueryparam)
+  * [getDomain](#getdomain)
+- [Cache Data](#cache-data)
+  * [Storage](#storage)
+  * [Cookie](#cookie)
+- [Calculate and Formula](#calculate-and-formula)
+  * [inRate](#inrate)
+  * [calLongestCommonSubstring](#callongestcommonsubstring)
+  * [calLongestCommonSubsequence](#callongestcommonsubsequence)
+- [Browser Information](#browser-information)
+  * [getBrowserInfo](#getbrowserinfo)
+- [Web Performance](#web-performance)
+  * [getPerformance](#getperformance)
+- [Margin of Safety](#margin-of-safety)
+  * [isSafePWAEnv](#issafepwaenv)
+- [Debug](#debug)
+  * [genCustomConsole](#gencustomconsole)
 
 ### Load Resource
 
