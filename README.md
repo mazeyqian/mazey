@@ -300,14 +300,24 @@ Output:
 <!-- @param {object} obj The value to clone.
 @returns {object} Returns the deep cloned value. -->
 
-#### JSON
+#### isJsonString
 
 Check whether it is a valid JSON string.
 
 ```
-isJsonString(`['a', 'b', 'c']`); // false
-isJsonString(`["a", "b", "c"]`); // true
+isJsonString(`['a', 'b', 'c']`);
+isJsonString(`["a", "b", "c"]`);
 ```
+
+Output:
+
+```
+false
+true
+```
+
+<!-- @param {string} str The string to check.
+@returns {boolean} Return the result of checking. -->
 
 #### Random
 
@@ -515,27 +525,57 @@ calLongestCommonSubsequence('fish', 'finish'); // 4
 
 ### Browser Information
 
+#### getBrowserInfo
+
+Browser Information
+
+<!-- ZH: 返回浏览器信息 https://github.com/JowayYoung/juejin-code/blob/master/browser-type.js -->
+
+Usage:
+
 ```
-getBrowserInfo(); // {"engine":"webkit","engineVs":"537.36","platform":"desktop","supporter":"chrome","supporterVs":"85.0.4183.121","system":"windows","systemVs":"10"}
-// Shell and shell version { shell: 'wechat', shellVs: '20' } shell: wechat qq uc 360 2345 sougou liebao maxthon
+getBrowserInfo();
 ```
+
+Output:
+
+```
+{"engine":"webkit","engineVs":"537.36","platform":"desktop","supporter":"chrome","supporterVs":"85.0.4183.121","system":"windows","systemVs":"10"}
+```
+
+Results:
 
 | Index | Field | Description |
 | --- | --- | --- |
-| * System | system | android, ios, windows, macos, linux |
-| * System version | systemVs | windows: 2000, xp, 2003, vista, 7, 8, 8.1, 10<br />macos: ... |
-| * Platform | platform | desktop, mobile |
-| * Engine | engine | webkit, gecko, presto, trident |
-| * Engine version | engineVs | - |
-| * Supporter | supporter | edge, opera, chrome, safari, firefox, iexplore |
-| * Supporter version | supporterVs | - |
-| Shell | shell | wechat, qq_browser, qq_app, uc, 360, 2345, sougou, liebao, maxthon, bilibili |
-| Shell version | shellVs | - |
-| Apple device type | appleType | iphone, ipad, ipod, iwatch |
+| System | system | android, ios, windows, macos, linux |
+| System version | systemVs | windows: 2000, xp, 2003, vista, 7, 8, 8.1, 10 <br />macos: ... |
+| Platform | platform | desktop, mobile |
+| Engine | engine | webkit, gecko, presto, trident |
+| Engine version | engineVs | - |
+| Supporter | supporter | edge, opera, chrome, safari, firefox, iexplore |
+| Supporter version | supporterVs | - |
+| Shell | shell | (Optional) wechat, qq_browser, qq_app, uc, 360, 2345, sougou, liebao, maxthon, bilibili |
+| Shell version | shellVs | (Optional) 20/... |
+| Apple device type | appleType | (Optional) iphone, ipad, ipod, iwatch |
+
+Example: Determine the environment of the mobile QQ.
+
+```
+const { system, shell } = getBrowserInfo();
+const isMobileQQ = ['android', 'ios'].includes(system) && ['qq_browser', 'qq_app'].includes(shell);
+```
+
+<!-- @returns 浏览器信息 -->
 
 ### Web Performance
 
+#### getPerformance
+
 Get page load time(PerformanceTiming).
+
+<!-- ZH: 获取页面加载相关的各项数据 -->
+
+Usage:
 
 ```
 // `camelCase：true`(Default) Return hump data.
@@ -543,24 +583,34 @@ Get page load time(PerformanceTiming).
 getPerformance(true)
  .then(res => {
   console.log(JSON.stringify(res));
-  // {"deviceType":"pc","network":"3g","unloadTime":0,"redirectTime":0,"dnsTime":0,"tcpTime":0,"responseTime":65,"downloadTime":1,"domreadyTime":369,"onloadTime":441,"whiteTime":94,"renderTime":441,"decodedBodySize":210,"encodedBodySize":210}
  })
  .catch(console.error);
 ```
 
-| Index | Field | Calculation |
+Output:
+
+```
+{"deviceType":"pc","network":"3g","unloadTime":0,"redirectTime":0,"dnsTime":0,"tcpTime":0,"responseTime":65,"downloadTime":1,"domreadyTime":369,"onloadTime":441,"whiteTime":94,"renderTime":441,"decodedBodySize":210,"encodedBodySize":210}
+```
+
+Results:
+
+| Index | Field | Description |
 | --- | --- | --- |
-| * DNS lookup | dns_time | domainLookupEnd - domainLookupStart |
-| * Connection negotiation | tcp_time | connectEnd - connectStart |
-| * Requests and responses | response_time | responseStart - requestStart |
-| * White screen | white_time | responseStart - navigationStart |
-| * DomReady | domready_time  | domContentLoadedEventStart - navigationStart |
-| * Onload | onload_time | loadEventStart - navigationStart |
-| * EventEnd | render_time | loadEventEnd -navigationStart |
-| Unload | unload_time | unloadEventEnd - unloadEventStart |
-| Redirect | redirect_time | redirectEnd - redirectStart |
-| SSL | ssl_time | connectEnd - secureConnectionStart |
-| Download | download_time | responseEnd - responseStart |
+| DNS lookup | dns_time | domainLookupEnd - domainLookupStart |
+| Connection negotiation | tcp_time | connectEnd - connectStart |
+| Requests and responses | response_time | responseStart - requestStart |
+| White screen | white_time | responseStart - navigationStart |
+| DomReady | domready_time  | domContentLoadedEventStart - navigationStart |
+| Onload | onload_time | loadEventStart - navigationStart |
+| EventEnd | render_time | loadEventEnd -navigationStart |
+| Unload | unload_time | (Optional) unloadEventEnd - unloadEventStart |
+| Redirect | redirect_time | (Optional) redirectEnd - redirectStart |
+| SSL | ssl_time | (Optional) connectEnd - secureConnectionStart |
+| Download | download_time | (Optional) responseEnd - responseStart |
+
+<!-- @param {boolean} camelCase -- true（默认） 以驼峰形式返回数据 false 以下划线形式返回数据
+@returns {Promise<object>} 加载数据 -->
 
 ### Margin of Safety
 
