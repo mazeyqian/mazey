@@ -5,8 +5,16 @@
  *
  * ZH: 计算两个字符串的最长公共子串
  *
+ * Usage:
+ *
  * ```
- * calLongestCommonSubstring('fish', 'finish'); // 3
+ * calLongestCommonSubstring('fish', 'finish');
+ * ```
+ *
+ * Output:
+ *
+ * ```
+ * 3
  * ```
  *
  * @param {string} aStr String
@@ -41,8 +49,16 @@ export function calLongestCommonSubstring(aStr: string, bStr: string): number {
  *
  * ZH: 计算两个字符串的最长公共子序列
  *
+ * Usage:
+ *
  * ```
- * calLongestCommonSubsequence('fish', 'finish'); // 4
+ * calLongestCommonSubsequence('fish', 'finish');
+ * ```
+ *
+ * Output:
+ *
+ * ```
+ * 4
  * ```
  *
  * @param {string} aStr 字符串
@@ -85,8 +101,15 @@ export function calLongestCommonSubsequence(
 }
 
 /**
- * @method getQueryParam
- * @description Get the query param's value of the current Web URL(`location.search`).
+ * Get the query param's value of the current Web URL(`location.search`).
+ *
+ * ```
+ * // http://example.com/?t1=1&t2=2&t3=3&t4=4#2333
+ * // ?t1=1&t2=2&t3=3&t4=4
+ * getQueryParam('t3'); // 3
+ * getQueryParam('t4'); // 4
+ * ```
+ *
  * @param {string} param Query param.
  * @returns {string} value
  */
@@ -101,8 +124,13 @@ export function getQueryParam(param: string): string {
 }
 
 /**
- * @method getUrlParam
- * @description Get the query param's value of the input URL.
+ * Get the query param's value of the input URL.
+ *
+ * ```
+ * getUrlParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't3'); // 3
+ * getUrlParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't4'); // 4
+ * ```
+ *
  * @param {string} url URL string.
  * @param {string} param Query param.
  * @returns {string} value
@@ -129,8 +157,22 @@ export function getUrlParam(url: string, param: string): string | string[] {
 }
 
 /**
- * @method updateQueryParam
- * @description Update the query param's value of the input URL.
+ * Update the query param's value of the input URL.
+ *
+ * Usage:
+ *
+ * ```
+ * updateQueryParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't3', 'three');
+ * updateQueryParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't4', 'four');
+ * ```
+ *
+ * Output:
+ *
+ * ```
+ * http://example.com/?t1=1&t2=2&t3=three&t4=4
+ * http://example.com/?t1=1&t2=2&t3=3&t4=four
+ * ```
+ *
  * @param {string} url URL string.
  * @param {string} param Query param.
  * @param {string} value Param's value.
@@ -151,8 +193,24 @@ export function updateQueryParam(
 }
 
 /**
- * @method getHashQueryParam
- * @description Get the hash query param's value of the current Web URL(`location.hash`).
+ * Get the hash query param's value of the current Web URL(`location.hash`).
+ *
+ * Usage:
+ *
+ * ```
+ * // http://example.com/?#2333?t1=1&t2=2&t3=3&t4=4
+ * // #2333?t1=1&t2=2&t3=3&t4=4
+ * getHashQueryParam('t3');
+ * getHashQueryParam('t4');
+ * ```
+ *
+ * Output:
+ *
+ * ```
+ * 3
+ * 4
+ * ```
+ *
  * @param {string} param Query param.
  * @returns {string} value
  */
@@ -167,8 +225,22 @@ export function getHashQueryParam(param: string): string {
 }
 
 /**
- * @method getDomain
- * @description Get the domain of URL, and other params.
+ * Get the domain of URL, and other params.
+ *
+ * Usage:
+ *
+ * ```
+ * getDomain('http://example.com/?t1=1&t2=2&t3=3&t4=4');
+ * getDomain('http://example.com/test/thanks?t1=1&t2=2&t3=3&t4=4', ['hostname', 'pathname']);
+ * ```
+ *
+ * Output:
+ *
+ * ```
+ * example.com
+ * example.com/test/thanks
+ * ```
+ *
  * @param {string} url
  * @param {array} rules Object.keys(location), ['href', 'protocol', 'host', 'hostname', 'port', 'pathname', 'search', 'hash'], ['hostname', 'pathname'] = 'km.mazey.net/plugins/servlet/mobile'
  */
@@ -182,8 +254,13 @@ export function getDomain(url: string, rules = ['hostname']): string {
 }
 
 /**
- * @method camelCaseToKebabCase
- * @description Transfer CamelCase to KebabCase.
+ * Transfer CamelCase to KebabCase.
+ *
+ * ```
+ * camelCaseToKebabCase('ABC'); // a-b-c
+ * camelCaseToKebabCase('aBC'); // a-b-c
+ * ```
+ *
  * @param {string} camelCase 'aBC' or 'ABC'
  * @returns {string} 'a-b-c'
  */
@@ -193,8 +270,13 @@ export function camelCaseToKebabCase(camelCase: string): string {
 }
 
 /**
- * @method camelCase2Underscore
- * @description Transfer CamelCase to Underscore.
+ * Transfer CamelCase to Underscore.
+ *
+ * ```
+ * camelCase2Underscore('ABC'); // a_b_c
+ * camelCase2Underscore('aBC'); // a_b_c
+ * ```
+ *
  * @param {string} camelCase 'aBC' or 'ABC'
  * @returns {string} 'a_b_c'
  */
@@ -204,8 +286,13 @@ export function camelCase2Underscore(camelCase: string): string {
 }
 
 /**
- * @method mTrim
- * @description Remove leading and trailing whitespace or specified characters from string.
+ * Remove leading and trailing whitespace or specified characters from string.
+ *
+ * ```
+ * mTrim(' 1 2 3 '); // '1 2 3'
+ * mTrim('abc '); // 'abc'
+ * ```
+ *
  * @param {string} str The string to trim.
  * @returns {string} Trimmed string.
  */
@@ -234,8 +321,22 @@ export function newLine(str: string): string {
 }
 
 /**
- * @method deepCopyObject
- * @description Clone Object deeply.
+ * Clone Object deeply.
+ *
+ * Usage:
+ *
+ * ```
+ * deepCopyObject(['a', 'b', 'c']);
+ * deepCopyObject('abc');
+ * ```
+ *
+ * Output:
+ *
+ * ```
+ * ['a', 'b', 'c']
+ * 'abc'
+ * ```
+ *
  * @param {object} obj The value to clone.
  * @returns {object} Returns the deep cloned value.
  */
@@ -244,10 +345,21 @@ export function deepCopyObject(obj: any): any {
 }
 
 /**
- * @method isJsonString
- * @description Check whether it is a valid JSON string.
- * @param {string} str The string to check.
- * @returns {boolean} Return the result of checking.
+ * Check whether it is a valid JSON string.
+ *
+ * Usage:
+ *
+ * ```
+ * isJsonString(`['a', 'b', 'c']`);
+ * isJsonString(`["a", "b", "c"]`);
+ * ```
+ *
+ * Output:
+ *
+ * ```
+ * false
+ * true
+ * ```
  */
 export function isJsonString(str: string): boolean {
   try {
@@ -369,6 +481,12 @@ export function removeClass(obj: any, cls: string): void {
  *
  * ZH: 节流
  *
+ * ```
+ * const foo = throttle(() => {
+ *   console.log('The function will be invoked at most once per every wait 1000 milliseconds.');
+ * }, 1000, { leading: true });
+ * ```
+ *
  * Reference: [Lodash](https://lodash.com/docs/4.17.15#throttle)
  */
 export function throttle(
@@ -423,8 +541,6 @@ export function throttle(
  * EN: Debounce
  *
  * ZH: 去抖
- *
- * Usage:
  *
  * ```
  * const foo = debounce(() => {
@@ -511,8 +627,20 @@ export function friendlyInterval(
 }
 
 /**
- * @method isNumber
- * @description 判断是否有效数字
+ * EN: Check whether it is a right number.
+ *
+ * ZH: 判断是否有效数字
+ *
+ * ```
+ * isNumber(123); // true
+ * isNumber('123'); // false
+ * // Default: NaN, Infinity is not Number
+ * isNumber(Infinity); // false
+ * isNumber(Infinity, { isUnFiniteAsNumber: true }); // true
+ * isNumber(NaN); // false
+ * isNumber(NaN, { isNaNAsNumber: true, isUnFiniteAsNumber: true }); // true
+ * ```
+ *
  * @param {*} num 被判断的值
  * @param {boolean} options.isNaNAsNumber 是否 NaN 算数字（默认不算）
  * @param {boolean} options.isUnFiniteAsNumber 是否 无限 算数字（默认不算）
@@ -619,8 +747,29 @@ export function getLocalStorage(key: string): any {
 }
 
 /**
- * @method loadCSS
- * @description 动态加载css文件
+ * EN: Load a CSS file from the server.
+ *
+ * ZH: 动态加载 CSS 文件
+ *
+ * ```
+ * loadCSS(
+ *     'http://example.com/css/mazey-base.css',
+ *     {
+ *       id: 'iamid', // Optional, link ID, default none
+ *     }
+ *   )
+ *   .then(
+ *     res => {
+ *       console.log(`Load CSS Success: ${res}`);
+ *     }
+ *   )
+ *   .catch(
+ *     err => {
+ *       console.error(`Load CSS Fail: ${err.message}`)
+ *     }
+ *   );
+ * ```
+ *
  * @param {string} url -- css资源路径
  * @param {string} options.id -- link标签id
  * @returns {Promise<boolean>} true -- 加载成功
@@ -749,9 +898,32 @@ export function loadCSS(
 }
 
 /**
- * @method loadScript
- * @description 动态加载js文件
- * @param {string} url -- js资源路径
+ * EN: Load a JavaScript file from the server and execute it.
+ *
+ * ZH: 动态加载 JavaScript 文件
+ *
+ * ```
+ * loadScript(
+ *     'http://example.com/static/js/plugin-2.1.1.min.js',
+ *     {
+ *       id: 'iamid', // (Optional) script ID, default none
+ *       timeout: 5000, // (Optional) timeout, default `5000`
+ *       isDefer: false, // (Optional) defer, default `false`
+ *     }
+ *   )
+ *   .then(
+ *     res => {
+ *       console.log(`Load JavaScript script: ${res}`);
+ *     }
+ *   )
+ *   .catch(
+ *     err => {
+ *       console.error(`Load JavaScript script: ${err.message}`)
+ *     }
+ *   );
+ * ```
+ *
+ * @param {string} url -- JavaScript 资源路径
  * @param {string} options.id -- DOM ID
  * @param {function} options.callback -- 加载后回调函数
  * @param {number} options.timeout -- 超时时长
@@ -908,8 +1080,44 @@ interface WebPerformance {
 }
 
 /**
- * @method getPerformance
- * @description 获取页面加载相关的各项数据
+ * EN: Get page load time(PerformanceTiming).
+ *
+ * ZH: 获取页面加载相关的各项数据
+ *
+ * Usage:
+ *
+ * ```
+ * // `camelCase：true`(Default) Return hump data.
+ * // `camelCase：false` Return underline data.
+ * getPerformance(true)
+ *  .then(res => {
+ *   console.log(JSON.stringify(res));
+ *  })
+ *  .catch(console.error);
+ * ```
+ *
+ * Output:
+ *
+ * ```
+ * {"deviceType":"pc","network":"3g","unloadTime":0,"redirectTime":0,"dnsTime":0,"tcpTime":0,"responseTime":65,"downloadTime":1,"domreadyTime":369,"onloadTime":441,"whiteTime":94,"renderTime":441,"decodedBodySize":210,"encodedBodySize":210}
+ * ```
+ *
+ * Results:
+ *
+ * | Index | Field | Description |
+ * | --- | --- | --- |
+ * | DNS lookup | dns_time | domainLookupEnd - domainLookupStart |
+ * | Connection negotiation | tcp_time | connectEnd - connectStart |
+ * | Requests and responses | response_time | responseStart - requestStart |
+ * | White screen | white_time | responseStart - navigationStart |
+ * | DomReady | domready_time  | domContentLoadedEventStart - navigationStart |
+ * | Onload | onload_time | loadEventStart - navigationStart |
+ * | EventEnd | render_time | loadEventEnd -navigationStart |
+ * | Unload | unload_time | (Optional) unloadEventEnd - unloadEventStart |
+ * | Redirect | redirect_time | (Optional) redirectEnd - redirectStart |
+ * | SSL | ssl_time | (Optional) connectEnd - secureConnectionStart |
+ * | Download | download_time | (Optional) responseEnd - responseStart |
+ *
  * @param {boolean} camelCase -- true（默认） 以驼峰形式返回数据 false 以下划线形式返回数据
  * @returns {Promise<object>} 加载数据
  */
@@ -1164,8 +1372,38 @@ export function getPerformance(
 }
 
 /**
- * @method inRate
- * @description 百分位概率
+ * EN: Hit probability (1% ~ 100%).
+ *
+ * ZH: 百分位概率
+ *
+ * Usage:
+ *
+ * ```
+ * inRate(0.5); // 0.01 ~ 1 true/false
+ * ```
+ *
+ * Output:
+ *
+ * ```
+ * true
+ * ```
+ *
+ * Example: Test the precision.
+ *
+ * ```
+ * // Test
+ * let trueCount = 0;
+ * let falseCount = 0;
+ * new Array(1000000).fill(0).forEach(() => {
+ *   if (inRate(0.5)) {
+ *     trueCount++;
+ *   } else {
+ *     falseCount++;
+ *   }
+ * });
+ * console.log(trueCount, falseCount); // 499994 500006
+ * ```
+ *
  * @param {number} rate -- 0.1 ~ 1 => 1% ~ 100%
  * @returns {boolean} true 命中
  */
@@ -1177,8 +1415,22 @@ export function inRate(rate: number): boolean {
 }
 
 /**
- * @method isSafePWAEnv
- * @description 判断是否是安全的 PWA 环境
+ * EN: Determine if it is a secure PWA environment that it can run.
+ *
+ * ZH: 判断是否是安全的 PWA 环境
+ *
+ * Usage:
+ *
+ * ```
+ * isSafePWAEnv();
+ * ```
+ *
+ * Output:
+ *
+ * ```
+ * true
+ * ```
+ *
  * @returns {boolean} true 是
  */
 export function isSafePWAEnv(): boolean {
@@ -1229,9 +1481,19 @@ export function isSafePWAEnv(): boolean {
  *
  * ZH: 返回浏览器信息 https://github.com/JowayYoung/juejin-code/blob/master/browser-type.js
  *
+ * Usage:
+ *
  * ```
- * getBrowserInfo(); // {"engine":"webkit","engineVs":"537.36","platform":"desktop","supporter":"chrome","supporterVs":"85.0.4183.121","system":"windows","systemVs":"10"}
+ * getBrowserInfo();
  * ```
+ *
+ * Output:
+ *
+ * ```
+ * {"engine":"webkit","engineVs":"537.36","platform":"desktop","supporter":"chrome","supporterVs":"85.0.4183.121","system":"windows","systemVs":"10"}
+ * ```
+ *
+ * Results:
  *
  * | Index | Field | Description |
  * | --- | --- | --- |
@@ -1243,7 +1505,7 @@ export function isSafePWAEnv(): boolean {
  * | Supporter | supporter | edge, opera, chrome, safari, firefox, iexplore |
  * | Supporter version | supporterVs | - |
  * | Shell | shell | (Optional) wechat, qq_browser, qq_app, uc, 360, 2345, sougou, liebao, maxthon, bilibili |
- * | Shell version | shellVs | (Optional) |
+ * | Shell version | shellVs | (Optional) 20/... |
  * | Apple device type | appleType | (Optional) iphone, ipad, ipod, iwatch |
  *
  * Example: Determine the environment of the mobile QQ.
@@ -1498,8 +1760,20 @@ export function cutCHSString(str: string, len: number, hasDot = false): string {
 }
 
 /**
- * @method windowLoaded
- * @description 页面加载完成
+ * EN: Check whether the page is loaded successfully (Keepe the compatibility in case that browser's `load` event has been triggered).
+ *
+ * ZH: 页面加载完成
+ *
+ * ```
+ * windowLoaded(30) // second
+ *   .then(res => {
+ *     console.log(`Load Success: ${res}`); // Load Success: load
+ *   })
+ *   .catch(err => {
+ *     console.log(`Load Timeout or Fail: ${err.message}`);
+ *   });
+ * ```
+ *
  * @param {number} timeout 超时时间 / 单位：秒
  * @returns {Promise<string>} document is loaded? 'complete' 'load' / 'timeout'
  */
@@ -1607,7 +1881,28 @@ export function addStyle(
 }
 
 /**
- * 生成自定义控制台打印
+ * EN: Custom console printing (`console`).
+ *
+ * ZH: 生成自定义控制台打印
+ *
+ * Usage:
+ *
+ * ```
+ * const myConsole = genCustomConsole('MazeyLog:');
+ * myConsole.log('I am string.');
+ * myConsole.info('I am boolean.', true);
+ * myConsole.info('I am number.', 123, 456);
+ * myConsole.info('I am object.', { a: 123, b: 456});
+ * ```
+ *
+ * Output:
+ *
+ * ```
+ * MazeyLog: I am string.
+ * MazeyLog: I am boolean. true
+ * MazeyLog: I am number. 123 456
+ * MazeyLog: I am object. {a: 123, b: 456}
+ * ```
  *
  * @param {string} prefix 前缀
  * @param {string} locales A locale string.

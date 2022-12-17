@@ -2,6 +2,7 @@
 /* eslint-disable no-undef */
 // Github Helper
 const execa = require('execa');
+const { generateToc } = require('./build-helper');
 
 /**
  * Release code.
@@ -24,30 +25,33 @@ async function release (ver) {
   const releaseVersion = `v${ver}`;
   const { stdout: releaseStdout } = await execa('echo', [`Start release ${releaseVersion}...`]);
   console.log(releaseStdout);
-  // commit
+  // Generating Table of Contents
+  generateToc();
+  // Commit
   await getCommit('stage');
-  // marge
+  // Marge
   await gitMergeMaster2Release();
-  // build
+  // Build
   await execa('npm', ['run', 'preview']);
   await execa('npm', ['publish']);
   // git branch --show-current
   // console.log('git push --set-upstream origin <branch>');
   // Commit Stdout
-  const { stdout: diffStdout } = await execa('git', ['diff'], { stdio: 'pipe' });
-  if (diffStdout) {
-    console.log('Committing changes...');
-    await execa('git', ['add', '-A']);
-    await execa('git', ['commit', '-m', `release: ${releaseVersion}`]);
-  } else {
-    console.log('No changes to commit.');
-  }
+  // const { stdout: diffStdout } = await execa('git', ['diff'], { stdio: 'pipe' });
+  // if (diffStdout) {
+  //   console.log('Committing changes...');
+  //   await execa('git', ['add', '-A']);
+  //   await execa('git', ['commit', '-m', `release: ${releaseVersion}`]);
+  // } else {
+  //   console.log('No changes to commit.');
+  // }
+  // Commit Again
+  await getCommit(releaseVersion);
   // Push
   console.log('Pushing to GitHub...');
   await execa('git', ['tag', '-a', `${releaseVersion}`, '-m', `Release ${releaseVersion}`]);
   await execa('git', ['push', 'origin', `refs/tags/${releaseVersion}`]);
   await gitPush(); // execa('git', ['push']);
-
   console.log('All done.');
 }
 

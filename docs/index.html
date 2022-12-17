@@ -101,68 +101,78 @@ mazey.isNumber(<span class="hljs-literal">Infinity</span>, { <span class="hljs-a
 				</a>
 				<p>There ara some examples maintained by hand below. For more information, please check the <a href="https://i.mazey.net/mazey/docs/modules/_index_.html">full documentation</a>.</p>
 				<p><strong>Table of Contents</strong></p>
+				<!-- toc - begin -->
 				<ul>
-					<li><a href="#load-resource">Load Resource</a>
-						<ul>
-							<li><a href="#load-script">Load Script</a></li>
-							<li><a href="#load-css">Load CSS</a></li>
-							<li><a href="#check-load">Check Load</a></li>
+					<li>Generate with ❤️</li>
+					<li><a href="#load-resource">Load Resource</a><ul>
+							<li><a href="#loadscript">loadScript</a></li>
+							<li><a href="#loadcss">loadCSS</a></li>
+							<li><a href="#windowloaded">windowLoaded</a></li>
 						</ul>
 					</li>
-					<li><a href="#function">Function</a>
-						<ul>
-							<li><a href="#debounce">Debounce</a></li>
-							<li><a href="#throttle">Throttle</a></li>
-							<li><a href="#check-number">Check Number</a></li>
-							<li><a href="#camel-case">Camel Case</a></li>
-							<li><a href="#trim">Trim</a></li>
-							<li><a href="#deep-clone">Deep Clone</a></li>
-							<li><a href="#json">JSON</a></li>
-							<li><a href="#random">Random</a></li>
+					<li><a href="#function">Function</a><ul>
+							<li><a href="#debounce">debounce</a></li>
+							<li><a href="#throttle">throttle</a></li>
+							<li><a href="#isnumber">isNumber</a></li>
+							<li><a href="#camelcasetokebabcase">camelCaseToKebabCase</a></li>
+							<li><a href="#camelcase2underscore">camelCase2Underscore</a></li>
+							<li><a href="#mtrim">mTrim</a></li>
+							<li><a href="#deepcopyobject">deepCopyObject</a></li>
+							<li><a href="#isjsonstring">isJsonString</a></li>
+							<li><a href="#generaterndnum">generateRndNum</a></li>
 						</ul>
 					</li>
-					<li><a href="#dom">DOM</a>
-						<ul>
+					<li><a href="#dom">DOM</a><ul>
 							<li><a href="#class">Class</a></li>
-							<li><a href="#style">Style</a></li>
-							<li><a href="#newline">Newline</a></li>
+							<li><a href="#addstyle">addStyle</a></li>
+							<li><a href="#newline">newLine</a></li>
 						</ul>
 					</li>
-					<li><a href="#url">URL</a>
-						<ul>
-							<li><a href="#query-param">Query Param</a></li>
-							<li><a href="#update-param">Update Param</a></li>
-							<li><a href="#hash-param">Hash Param</a></li>
-							<li><a href="#domain">Domain</a></li>
+					<li><a href="#url">URL</a><ul>
+							<li><a href="#getqueryparam">getQueryParam</a></li>
+							<li><a href="#geturlparam">getUrlParam</a></li>
+							<li><a href="#updatequeryparam">updateQueryParam</a></li>
+							<li><a href="#gethashqueryparam">getHashQueryParam</a></li>
+							<li><a href="#getdomain">getDomain</a></li>
 						</ul>
 					</li>
-					<li><a href="#cache-data">Cache Data</a>
-						<ul>
+					<li><a href="#cache-data">Cache Data</a><ul>
 							<li><a href="#storage">Storage</a></li>
 							<li><a href="#cookie">Cookie</a></li>
 						</ul>
 					</li>
-					<li><a href="#calculate-formula">Calculate&amp;Formula</a>
-						<ul>
-							<li><a href="#rate">Rate</a></li>
-							<li><a href="#algorithm">Algorithm</a></li>
+					<li><a href="#calculate-and-formula">Calculate and Formula</a><ul>
+							<li><a href="#inrate">inRate</a></li>
+							<li><a href="#callongestcommonsubstring">calLongestCommonSubstring</a></li>
+							<li><a href="#callongestcommonsubsequence">calLongestCommonSubsequence</a></li>
 						</ul>
 					</li>
-					<li><a href="#browser-information">Browser Information</a></li>
-					<li><a href="#web-performance">Web Performance</a></li>
-					<li><a href="#margin-of-safety">Margin of Safety</a></li>
-					<li><a href="#debug">Debug</a>
-						<ul>
-							<li><a href="#print">Print</a></li>
+					<li><a href="#browser-information">Browser Information</a><ul>
+							<li><a href="#getbrowserinfo">getBrowserInfo</a></li>
+						</ul>
+					</li>
+					<li><a href="#web-performance">Web Performance</a><ul>
+							<li><a href="#getperformance">getPerformance</a></li>
+						</ul>
+					</li>
+					<li><a href="#margin-of-safety">Margin of Safety</a><ul>
+							<li><a href="#issafepwaenv">isSafePWAEnv</a></li>
+						</ul>
+					</li>
+					<li><a href="#debug">Debug</a><ul>
+							<li><a href="#gencustomconsole">genCustomConsole</a><!-- toc - end -->
+							</li>
 						</ul>
 					</li>
 				</ul>
 				<a href="#load-resource" id="load-resource" style="color: inherit; text-decoration: none;">
 					<h3>Load Resource</h3>
 				</a>
-				<a href="#load-script" id="load-script" style="color: inherit; text-decoration: none;">
-					<h4>Load Script</h4>
+				<a href="#loadscript" id="loadscript" style="color: inherit; text-decoration: none;">
+					<h4>loadScript</h4>
 				</a>
+				<p>Load a JavaScript file from the server and execute it.</p>
+				<!-- ZH: 动态加载 JavaScript 文件 -->
 				<pre><code>loadScript(
     <span class="hljs-string">&#x27;http://example.com/static/js/plugin-2.1.1.min.js&#x27;</span>,
     {
@@ -182,9 +192,17 @@ mazey.isNumber(<span class="hljs-literal">Infinity</span>, { <span class="hljs-a
     }
   );
 </code></pre>
-				<a href="#load-css" id="load-css" style="color: inherit; text-decoration: none;">
-					<h4>Load CSS</h4>
+				<!-- @param {string} url -- JavaScript 资源路径
+@param {string} options.id -- DOM ID
+@param {function} options.callback -- 加载后回调函数
+@param {number} options.timeout -- 超时时长
+@param {boolean} options.isDefer -- 是否添加 defer 标签
+@returns {Promise<boolean>} -- true 成功 -->
+				<a href="#loadcss" id="loadcss" style="color: inherit; text-decoration: none;">
+					<h4>loadCSS</h4>
 				</a>
+				<p>Load a CSS file from the server.</p>
+				<!-- ZH: 动态加载 CSS 文件 -->
 				<pre><code>loadCSS(
     <span class="hljs-string">&#x27;http://example.com/css/mazey-base.css&#x27;</span>,
     {
@@ -202,10 +220,14 @@ mazey.isNumber(<span class="hljs-literal">Infinity</span>, { <span class="hljs-a
     }
   );
 </code></pre>
-				<a href="#check-load" id="check-load" style="color: inherit; text-decoration: none;">
-					<h4>Check Load</h4>
+				<!-- @param {string} url -- css资源路径
+@param {string} options.id -- link标签id
+@returns {Promise<boolean>} true -- 加载成功 -->
+				<a href="#windowloaded" id="windowloaded" style="color: inherit; text-decoration: none;">
+					<h4>windowLoaded</h4>
 				</a>
 				<p>Check whether the page is loaded successfully (Keepe the compatibility in case that browser&#39;s <code>load</code> event has been triggered).</p>
+				<!-- ZH: 页面加载完成 -->
 				<pre><code>windowLoaded(<span class="hljs-number">30</span>) <span class="hljs-comment">// second</span>
   .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> {
     console.log(<span class="hljs-string">`Load Success: <span class="hljs-subst">${res}</span>`</span>); <span class="hljs-comment">// Load Success: load</span>
@@ -214,27 +236,35 @@ mazey.isNumber(<span class="hljs-literal">Infinity</span>, { <span class="hljs-a
     console.log(<span class="hljs-string">`Load Timeout or Fail: <span class="hljs-subst">${err.message}</span>`</span>);
   });
 </code></pre>
+				<!-- @param {number} timeout 超时时间 / 单位：秒
+@returns {Promise<string>} document is loaded? 'complete' 'load' / 'timeout' -->
 				<a href="#function" id="function" style="color: inherit; text-decoration: none;">
 					<h3>Function</h3>
 				</a>
 				<a href="#debounce" id="debounce" style="color: inherit; text-decoration: none;">
-					<h4>Debounce</h4>
+					<h4>debounce</h4>
 				</a>
+				<p>Debounce</p>
+				<!-- ZH: 去抖 -->
 				<pre><code><span class="hljs-keyword">const</span> foo = debounce(() =&gt; {
   console.<span class="hljs-built_in">log</span>(<span class="hljs-comment">&#x27;The debounced function will only be invoked in 1000 milliseconds, the other invoking will disappear during the wait time.&#x27;);</span>
 }, <span class="hljs-number">1000</span>, <span class="hljs-literal">true</span>);
 </code></pre>
 				<a href="#throttle" id="throttle" style="color: inherit; text-decoration: none;">
-					<h4>Throttle</h4>
+					<h4>throttle</h4>
 				</a>
+				<p>Throttle</p>
+				<!-- ZH: 节流 -->
 				<pre><code>const foo = throttle(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;The function will be invoked at most once per every wait 1000 milliseconds.&#x27;</span>);
 }, <span class="hljs-number">1000</span>, { leading: <span class="hljs-literal">true</span> });
 </code></pre>
-				<a href="#check-number" id="check-number" style="color: inherit; text-decoration: none;">
-					<h4>Check Number</h4>
+				<p>Reference: <a href="https://lodash.com/docs/4.17.15#throttle">Lodash</a></p>
+				<a href="#isnumber" id="isnumber" style="color: inherit; text-decoration: none;">
+					<h4>isNumber</h4>
 				</a>
 				<p>Check whether it is a right number.</p>
+				<!-- ZH: 判断是否有效数字 -->
 				<pre><code><span class="hljs-string">isNumber(123);</span> <span class="hljs-string">//</span> <span class="hljs-literal">true</span>
 <span class="hljs-string">isNumber(&#x27;123&#x27;);</span> <span class="hljs-string">//</span> <span class="hljs-literal">false</span>
 <span class="hljs-string">//</span> <span class="hljs-attr">Default:</span> <span class="hljs-string">NaN,</span> <span class="hljs-string">Infinity</span> <span class="hljs-string">is</span> <span class="hljs-string">not</span> <span class="hljs-string">Number</span>
@@ -243,40 +273,67 @@ mazey.isNumber(<span class="hljs-literal">Infinity</span>, { <span class="hljs-a
 <span class="hljs-string">isNumber(NaN);</span> <span class="hljs-string">//</span> <span class="hljs-literal">false</span>
 <span class="hljs-string">isNumber(NaN,</span> { <span class="hljs-attr">isNaNAsNumber:</span> <span class="hljs-literal">true</span>, <span class="hljs-attr">isUnFiniteAsNumber:</span> <span class="hljs-literal">true</span> }<span class="hljs-string">);</span> <span class="hljs-string">//</span> <span class="hljs-literal">true</span>
 </code></pre>
-				<a href="#camel-case" id="camel-case" style="color: inherit; text-decoration: none;">
-					<h4>Camel Case</h4>
+				<!-- @param {*} num 被判断的值
+@param {boolean} options.isNaNAsNumber 是否 NaN 算数字（默认不算）
+@param {boolean} options.isUnFiniteAsNumber 是否 无限 算数字（默认不算）
+@returns {boolean} true 是数字 -->
+				<a href="#camelcasetokebabcase" id="camelcasetokebabcase" style="color: inherit; text-decoration: none;">
+					<h4>camelCaseToKebabCase</h4>
 				</a>
 				<p>Transfer CamelCase to KebabCase.</p>
 				<pre><code><span class="hljs-selector-tag">camelCaseToKebabCase</span>(<span class="hljs-string">&#x27;ABC&#x27;</span>); <span class="hljs-comment">// a-b-c</span>
 <span class="hljs-selector-tag">camelCaseToKebabCase</span>(<span class="hljs-string">&#x27;aBC&#x27;</span>); <span class="hljs-comment">// a-b-c</span>
 </code></pre>
+				<!-- @param {string} camelCase 'aBC' or 'ABC'
+@returns {string} 'a-b-c' -->
+				<a href="#camelcase2underscore" id="camelcase2underscore" style="color: inherit; text-decoration: none;">
+					<h4>camelCase2Underscore</h4>
+				</a>
 				<p>Transfer CamelCase to Underscore.</p>
 				<pre><code>camelCase2Underscore(<span class="hljs-string">&#x27;ABC&#x27;</span>); <span class="hljs-regexp">//</span> a_b_c
 camelCase2Underscore(<span class="hljs-string">&#x27;aBC&#x27;</span>); <span class="hljs-regexp">//</span> a_b_c
 </code></pre>
-				<a href="#trim" id="trim" style="color: inherit; text-decoration: none;">
-					<h4>Trim</h4>
+				<!-- @param {string} camelCase 'aBC' or 'ABC'
+@returns {string} 'a_b_c' -->
+				<a href="#mtrim" id="mtrim" style="color: inherit; text-decoration: none;">
+					<h4>mTrim</h4>
 				</a>
 				<p>Remove leading and trailing whitespace or specified characters from string.</p>
 				<pre><code>mTrim(<span class="hljs-string">&#x27; 1 2 3 &#x27;</span>); <span class="hljs-regexp">//</span> <span class="hljs-string">&#x27;1 2 3&#x27;</span>
 mTrim(<span class="hljs-string">&#x27;abc &#x27;</span>); <span class="hljs-regexp">//</span> <span class="hljs-string">&#x27;abc&#x27;</span>
 </code></pre>
-				<a href="#deep-clone" id="deep-clone" style="color: inherit; text-decoration: none;">
-					<h4>Deep Clone</h4>
+				<!-- @param {string} str The string to trim.
+@returns {string} Trimmed string. -->
+				<a href="#deepcopyobject" id="deepcopyobject" style="color: inherit; text-decoration: none;">
+					<h4>deepCopyObject</h4>
 				</a>
 				<p>Clone Object deeply.</p>
-				<pre><code>deepCopyObject([<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>]); <span class="hljs-regexp">//</span> [<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>]
-deepCopyObject(<span class="hljs-string">&#x27;abc&#x27;</span>); <span class="hljs-regexp">//</span> <span class="hljs-string">&#x27;abc&#x27;</span>
+				<p>Usage:</p>
+				<pre><code><span class="hljs-selector-tag">deepCopyObject</span>([<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>]);
+<span class="hljs-selector-tag">deepCopyObject</span>(<span class="hljs-string">&#x27;abc&#x27;</span>);
 </code></pre>
-				<a href="#json" id="json" style="color: inherit; text-decoration: none;">
-					<h4>JSON</h4>
+				<p>Output:</p>
+				<pre><code>[<span class="hljs-symbol">&#x27;a</span>&#x27;, <span class="hljs-symbol">&#x27;b</span>&#x27;, <span class="hljs-symbol">&#x27;c</span>&#x27;]
+<span class="hljs-symbol">&#x27;abc</span>&#x27;
+</code></pre>
+				<!-- @param {object} obj The value to clone.
+@returns {object} Returns the deep cloned value. -->
+				<a href="#isjsonstring" id="isjsonstring" style="color: inherit; text-decoration: none;">
+					<h4>isJsonString</h4>
 				</a>
 				<p>Check whether it is a valid JSON string.</p>
-				<pre><code>isJsonString(`[<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>]`); <span class="hljs-regexp">//</span> false
-isJsonString(`[<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;c&quot;</span>]`); <span class="hljs-regexp">//</span> true
+				<p>Usage:</p>
+				<pre><code><span class="hljs-selector-tag">isJsonString</span>(`<span class="hljs-selector-attr">[<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>]</span>`);
+<span class="hljs-selector-tag">isJsonString</span>(`<span class="hljs-selector-attr">[<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;c&quot;</span>]</span>`);
 </code></pre>
-				<a href="#random" id="random" style="color: inherit; text-decoration: none;">
-					<h4>Random</h4>
+				<p>Output:</p>
+				<pre><code><span class="hljs-literal">false</span>
+<span class="hljs-literal">true</span>
+</code></pre>
+				<!-- @param {string} str The string to check.
+@returns {boolean} Return the result of checking. -->
+				<a href="#generaterndnum" id="generaterndnum" style="color: inherit; text-decoration: none;">
+					<h4>generateRndNum</h4>
 				</a>
 				<p>Produce a random string of number, <code>generateRndNum(7)</code> =&gt; &#39;7658495&#39;.</p>
 				<pre><code>generateRndNum(<span class="hljs-number">4</span>); <span class="hljs-regexp">//</span> <span class="hljs-string">&#x27;9730&#x27;</span>
@@ -298,8 +355,8 @@ add<span class="hljs-constructor">Class(<span class="hljs-params">dom</span>, &#
 <span class="hljs-comment">// Remove `class`</span>
 remove<span class="hljs-constructor">Class(<span class="hljs-params">dom</span>, &#x27;<span class="hljs-params">test</span>&#x27;)</span>;
 </code></pre>
-				<a href="#style" id="style" style="color: inherit; text-decoration: none;">
-					<h4>Style</h4>
+				<a href="#addstyle" id="addstyle" style="color: inherit; text-decoration: none;">
+					<h4>addStyle</h4>
 				</a>
 				<p>Add <code>&lt;style&gt;</code> in <code>&lt;head&gt;</code>.</p>
 				<p>Case 1: Add the <code>&lt;style&gt;</code> with <code>id</code>, and repeated invoking will update the content instead of adding a new one.</p>
@@ -334,7 +391,7 @@ remove<span class="hljs-constructor">Class(<span class="hljs-params">dom</span>,
 <span class="hljs-regexp">//</span> &lt;/style&gt;
 </code></pre>
 				<a href="#newline" id="newline" style="color: inherit; text-decoration: none;">
-					<h4>Newline</h4>
+					<h4>newLine</h4>
 				</a>
 				<p>Make a newline of HTML.</p>
 				<pre><code><span class="hljs-keyword">new</span><span class="hljs-constructor">Line(&#x27;<span class="hljs-params">a</span>\<span class="hljs-params">nb</span>\<span class="hljs-params">nc</span>&#x27;)</span>; <span class="hljs-comment">// &#x27;a&lt;br /&gt;b&lt;br /&gt;c&#x27;</span>
@@ -343,8 +400,8 @@ remove<span class="hljs-constructor">Class(<span class="hljs-params">dom</span>,
 				<a href="#url" id="url" style="color: inherit; text-decoration: none;">
 					<h3>URL</h3>
 				</a>
-				<a href="#query-param" id="query-param" style="color: inherit; text-decoration: none;">
-					<h4>Query Param</h4>
+				<a href="#getqueryparam" id="getqueryparam" style="color: inherit; text-decoration: none;">
+					<h4>getQueryParam</h4>
 				</a>
 				<p>Get the query param&#39;s value of the current Web URL(<code>location.search</code>).</p>
 				<pre><code><span class="hljs-regexp">//</span> http:<span class="hljs-regexp">//</span>example.com/?t1=<span class="hljs-number">1</span>&amp;t2=<span class="hljs-number">2</span>&amp;t3=<span class="hljs-number">3</span>&amp;t4=<span class="hljs-number">4</span><span class="hljs-comment">#2333</span>
@@ -352,33 +409,64 @@ remove<span class="hljs-constructor">Class(<span class="hljs-params">dom</span>,
 getQueryParam(<span class="hljs-string">&#x27;t3&#x27;</span>); <span class="hljs-regexp">//</span> <span class="hljs-number">3</span>
 getQueryParam(<span class="hljs-string">&#x27;t4&#x27;</span>); <span class="hljs-regexp">//</span> <span class="hljs-number">4</span>
 </code></pre>
+				<!-- @param {string} param Query param.
+@returns {string} value -->
+				<a href="#geturlparam" id="geturlparam" style="color: inherit; text-decoration: none;">
+					<h4>getUrlParam</h4>
+				</a>
 				<p>Get the query param&#39;s value of the input URL.</p>
 				<pre><code><span class="hljs-attribute">getUrlParam</span>(&#x27;http://example.com/?t<span class="hljs-number">1</span>=<span class="hljs-number">1</span>&amp;t<span class="hljs-number">2</span>=<span class="hljs-number">2</span>&amp;t<span class="hljs-number">3</span>=<span class="hljs-number">3</span>&amp;t<span class="hljs-number">4</span>=<span class="hljs-number">4</span>&#x27;, &#x27;t<span class="hljs-number">3</span>&#x27;); // <span class="hljs-number">3</span>
 <span class="hljs-attribute">getUrlParam</span>(&#x27;http://example.com/?t<span class="hljs-number">1</span>=<span class="hljs-number">1</span>&amp;t<span class="hljs-number">2</span>=<span class="hljs-number">2</span>&amp;t<span class="hljs-number">3</span>=<span class="hljs-number">3</span>&amp;t<span class="hljs-number">4</span>=<span class="hljs-number">4</span>&#x27;, &#x27;t<span class="hljs-number">4</span>&#x27;); // <span class="hljs-number">4</span>
 </code></pre>
-				<a href="#update-param" id="update-param" style="color: inherit; text-decoration: none;">
-					<h4>Update Param</h4>
+				<!-- @param {string} url URL string.
+@param {string} param Query param.
+@returns {string} value -->
+				<a href="#updatequeryparam" id="updatequeryparam" style="color: inherit; text-decoration: none;">
+					<h4>updateQueryParam</h4>
 				</a>
 				<p>Update the query param&#39;s value of the input URL.</p>
-				<pre><code><span class="hljs-attribute">updateQueryParam</span>(&#x27;http://example.com/?t<span class="hljs-number">1</span>=<span class="hljs-number">1</span>&amp;t<span class="hljs-number">2</span>=<span class="hljs-number">2</span>&amp;t<span class="hljs-number">3</span>=<span class="hljs-number">3</span>&amp;t<span class="hljs-number">4</span>=<span class="hljs-number">4</span>&#x27;, &#x27;t<span class="hljs-number">3</span>&#x27;, &#x27;three&#x27;); // http://example.com/?t<span class="hljs-number">1</span>=<span class="hljs-number">1</span>&amp;t<span class="hljs-number">2</span>=<span class="hljs-number">2</span>&amp;t<span class="hljs-number">3</span>=three&amp;t<span class="hljs-number">4</span>=<span class="hljs-number">4</span>
-<span class="hljs-attribute">updateQueryParam</span>(&#x27;http://example.com/?t<span class="hljs-number">1</span>=<span class="hljs-number">1</span>&amp;t<span class="hljs-number">2</span>=<span class="hljs-number">2</span>&amp;t<span class="hljs-number">3</span>=<span class="hljs-number">3</span>&amp;t<span class="hljs-number">4</span>=<span class="hljs-number">4</span>&#x27;, &#x27;t<span class="hljs-number">4</span>&#x27;, &#x27;four&#x27;); // http://example.com/?t<span class="hljs-number">1</span>=<span class="hljs-number">1</span>&amp;t<span class="hljs-number">2</span>=<span class="hljs-number">2</span>&amp;t<span class="hljs-number">3</span>=<span class="hljs-number">3</span>&amp;t<span class="hljs-number">4</span>=four
+				<p>Usage:</p>
+				<pre><code>update<span class="hljs-constructor">QueryParam(&#x27;<span class="hljs-params">http</span>:<span class="hljs-operator">/</span><span class="hljs-operator">/</span><span class="hljs-params">example</span>.<span class="hljs-params">com</span><span class="hljs-operator">/</span>?<span class="hljs-params">t1</span>=1&amp;<span class="hljs-params">t2</span>=2&amp;<span class="hljs-params">t3</span>=3&amp;<span class="hljs-params">t4</span>=4&#x27;, &#x27;<span class="hljs-params">t3</span>&#x27;, &#x27;<span class="hljs-params">three</span>&#x27;)</span>;
+update<span class="hljs-constructor">QueryParam(&#x27;<span class="hljs-params">http</span>:<span class="hljs-operator">/</span><span class="hljs-operator">/</span><span class="hljs-params">example</span>.<span class="hljs-params">com</span><span class="hljs-operator">/</span>?<span class="hljs-params">t1</span>=1&amp;<span class="hljs-params">t2</span>=2&amp;<span class="hljs-params">t3</span>=3&amp;<span class="hljs-params">t4</span>=4&#x27;, &#x27;<span class="hljs-params">t4</span>&#x27;, &#x27;<span class="hljs-params">four</span>&#x27;)</span>;
 </code></pre>
-				<a href="#hash-param" id="hash-param" style="color: inherit; text-decoration: none;">
-					<h4>Hash Param</h4>
+				<p>Output:</p>
+				<pre><code><span class="hljs-attribute">http</span>://example.com/?t<span class="hljs-number">1</span>=<span class="hljs-number">1</span>&amp;t<span class="hljs-number">2</span>=<span class="hljs-number">2</span>&amp;t<span class="hljs-number">3</span>=three&amp;t<span class="hljs-number">4</span>=<span class="hljs-number">4</span>
+<span class="hljs-attribute">http</span>://example.com/?t<span class="hljs-number">1</span>=<span class="hljs-number">1</span>&amp;t<span class="hljs-number">2</span>=<span class="hljs-number">2</span>&amp;t<span class="hljs-number">3</span>=<span class="hljs-number">3</span>&amp;t<span class="hljs-number">4</span>=four
+</code></pre>
+				<!-- @param {string} url URL string.
+@param {string} param Query param.
+@param {string} value Param's value.
+@returns {string} URL. -->
+				<a href="#gethashqueryparam" id="gethashqueryparam" style="color: inherit; text-decoration: none;">
+					<h4>getHashQueryParam</h4>
 				</a>
 				<p>Get the hash query param&#39;s value of the current Web URL(<code>location.hash</code>).</p>
+				<p>Usage:</p>
 				<pre><code><span class="hljs-regexp">//</span> http:<span class="hljs-regexp">//</span>example.com/?<span class="hljs-comment">#2333?t1=1&amp;t2=2&amp;t3=3&amp;t4=4</span>
 <span class="hljs-regexp">//</span> <span class="hljs-comment">#2333?t1=1&amp;t2=2&amp;t3=3&amp;t4=4</span>
-getHashQueryParam(<span class="hljs-string">&#x27;t3&#x27;</span>); <span class="hljs-regexp">//</span> <span class="hljs-number">3</span>
-getHashQueryParam(<span class="hljs-string">&#x27;t4&#x27;</span>); <span class="hljs-regexp">//</span> <span class="hljs-number">4</span>
+getHashQueryParam(<span class="hljs-string">&#x27;t3&#x27;</span>);
+getHashQueryParam(<span class="hljs-string">&#x27;t4&#x27;</span>);
 </code></pre>
-				<a href="#domain" id="domain" style="color: inherit; text-decoration: none;">
-					<h4>Domain</h4>
+				<p>Output:</p>
+				<pre><code>3
+4
+</code></pre>
+				<!-- @param {string} param Query param.
+@returns {string} value -->
+				<a href="#getdomain" id="getdomain" style="color: inherit; text-decoration: none;">
+					<h4>getDomain</h4>
 				</a>
 				<p>Get the domain of URL, and other params.</p>
-				<pre><code>get<span class="hljs-constructor">Domain(&#x27;<span class="hljs-params">http</span>:<span class="hljs-operator">/</span><span class="hljs-operator">/</span><span class="hljs-params">example</span>.<span class="hljs-params">com</span><span class="hljs-operator">/</span>?<span class="hljs-params">t1</span>=1&amp;<span class="hljs-params">t2</span>=2&amp;<span class="hljs-params">t3</span>=3&amp;<span class="hljs-params">t4</span>=4&#x27;)</span>; <span class="hljs-comment">// example.com</span>
-get<span class="hljs-constructor">Domain(&#x27;<span class="hljs-params">http</span>:<span class="hljs-operator">/</span><span class="hljs-operator">/</span><span class="hljs-params">example</span>.<span class="hljs-params">com</span><span class="hljs-operator">/</span><span class="hljs-params">test</span><span class="hljs-operator">/</span><span class="hljs-params">thanks</span>?<span class="hljs-params">t1</span>=1&amp;<span class="hljs-params">t2</span>=2&amp;<span class="hljs-params">t3</span>=3&amp;<span class="hljs-params">t4</span>=4&#x27;, [&#x27;<span class="hljs-params">hostname</span>&#x27;, &#x27;<span class="hljs-params">pathname</span>&#x27;])</span>; <span class="hljs-comment">// example.com/test/thanks</span>
+				<p>Usage:</p>
+				<pre><code>get<span class="hljs-constructor">Domain(&#x27;<span class="hljs-params">http</span>:<span class="hljs-operator">/</span><span class="hljs-operator">/</span><span class="hljs-params">example</span>.<span class="hljs-params">com</span><span class="hljs-operator">/</span>?<span class="hljs-params">t1</span>=1&amp;<span class="hljs-params">t2</span>=2&amp;<span class="hljs-params">t3</span>=3&amp;<span class="hljs-params">t4</span>=4&#x27;)</span>;
+get<span class="hljs-constructor">Domain(&#x27;<span class="hljs-params">http</span>:<span class="hljs-operator">/</span><span class="hljs-operator">/</span><span class="hljs-params">example</span>.<span class="hljs-params">com</span><span class="hljs-operator">/</span><span class="hljs-params">test</span><span class="hljs-operator">/</span><span class="hljs-params">thanks</span>?<span class="hljs-params">t1</span>=1&amp;<span class="hljs-params">t2</span>=2&amp;<span class="hljs-params">t3</span>=3&amp;<span class="hljs-params">t4</span>=4&#x27;, [&#x27;<span class="hljs-params">hostname</span>&#x27;, &#x27;<span class="hljs-params">pathname</span>&#x27;])</span>;
 </code></pre>
+				<p>Output:</p>
+				<pre><code>example.com
+example.com<span class="hljs-regexp">/test/</span>thanks
+</code></pre>
+				<!-- @param {string} url
+@param {array} rules Object.keys(location), ['href', 'protocol', 'host', 'hostname', 'port', 'pathname', 'search', 'hash'], ['hostname', 'pathname'] = 'km.mazey.net/plugins/servlet/mobile' -->
 				<a href="#cache-data" id="cache-data" style="color: inherit; text-decoration: none;">
 					<h3>Cache Data</h3>
 				</a>
@@ -408,16 +496,22 @@ getLocalStorage(<span class="hljs-string">&#x27;test&#x27;</span>); <span class=
 				<pre><code>setCookie(<span class="hljs-string">&#x27;test&#x27;</span>, <span class="hljs-string">&#x27;123&#x27;</span>, <span class="hljs-number">30</span>, <span class="hljs-string">&#x27;example.com&#x27;</span>); <span class="hljs-regexp">//</span> key value day domain
 getCookie(<span class="hljs-string">&#x27;test&#x27;</span>); <span class="hljs-regexp">//</span> <span class="hljs-number">123</span>
 </code></pre>
-				<a href="#calculateampformula" id="calculateampformula" style="color: inherit; text-decoration: none;">
-					<h3>Calculate&amp;Formula</h3>
+				<a href="#calculate-and-formula" id="calculate-and-formula" style="color: inherit; text-decoration: none;">
+					<h3>Calculate and Formula</h3>
 				</a>
-				<a href="#rate" id="rate" style="color: inherit; text-decoration: none;">
-					<h4>Rate</h4>
+				<a href="#inrate" id="inrate" style="color: inherit; text-decoration: none;">
+					<h4>inRate</h4>
 				</a>
 				<p>Hit probability (1% ~ 100%).</p>
-				<pre><code>inRate(<span class="hljs-number">0.5</span>); <span class="hljs-comment">// 0.01 ~ 1 true / false</span>
-
-<span class="hljs-comment">// Test</span>
+				<!-- ZH: 百分位概率 -->
+				<p>Usage:</p>
+				<pre><code><span class="hljs-attribute">inRate</span>(<span class="hljs-number">0</span>.<span class="hljs-number">5</span>); // <span class="hljs-number">0</span>.<span class="hljs-number">01</span> ~ <span class="hljs-number">1</span> true/false
+</code></pre>
+				<p>Output:</p>
+				<pre><code><span class="hljs-literal">true</span>
+</code></pre>
+				<p>Example: Test the precision.</p>
+				<pre><code><span class="hljs-comment">// Test</span>
 <span class="hljs-keyword">let</span> trueCount = <span class="hljs-number">0</span>;
 <span class="hljs-keyword">let</span> falseCount = <span class="hljs-number">0</span>;
 <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(<span class="hljs-number">1000000</span>).fill(<span class="hljs-number">0</span>).forEach(<span class="hljs-function">() =&gt;</span> {
@@ -429,21 +523,51 @@ getCookie(<span class="hljs-string">&#x27;test&#x27;</span>); <span class="hljs-
 });
 <span class="hljs-built_in">console</span>.log(trueCount, falseCount); <span class="hljs-comment">// 499994 500006</span>
 </code></pre>
-				<a href="#algorithm" id="algorithm" style="color: inherit; text-decoration: none;">
-					<h4>Algorithm</h4>
+				<!-- @param {number} rate -- 0.1 ~ 1 => 1% ~ 100%
+@returns {boolean} true 命中 -->
+				<a href="#callongestcommonsubstring" id="callongestcommonsubstring" style="color: inherit; text-decoration: none;">
+					<h4>calLongestCommonSubstring</h4>
 				</a>
 				<p>Computes the longest common substring of two strings.</p>
-				<pre><code>calLongestCommonSubstring(<span class="hljs-string">&#x27;fish&#x27;</span>, <span class="hljs-string">&#x27;finish&#x27;</span>); <span class="hljs-regexp">//</span> <span class="hljs-number">3</span>
+				<!-- ZH: 计算两个字符串的最长公共子串 -->
+				<p>Usage:</p>
+				<pre><code><span class="hljs-selector-tag">calLongestCommonSubstring</span>(<span class="hljs-string">&#x27;fish&#x27;</span>, <span class="hljs-string">&#x27;finish&#x27;</span>);
 </code></pre>
+				<p>Output:</p>
+				<pre><code>3
+</code></pre>
+				<!-- @param {string} aStr String
+@param {string} bStr String
+@returns {number} Length -->
+				<a href="#callongestcommonsubsequence" id="callongestcommonsubsequence" style="color: inherit; text-decoration: none;">
+					<h4>calLongestCommonSubsequence</h4>
+				</a>
 				<p>Computes the longest common subsequence of two strings.</p>
-				<pre><code>calLongestCommonSubsequence(<span class="hljs-string">&#x27;fish&#x27;</span>, <span class="hljs-string">&#x27;finish&#x27;</span>); <span class="hljs-regexp">//</span> <span class="hljs-number">4</span>
+				<!-- ZH: 计算两个字符串的最长公共子序列 -->
+				<p>Usage:</p>
+				<pre><code><span class="hljs-selector-tag">calLongestCommonSubsequence</span>(<span class="hljs-string">&#x27;fish&#x27;</span>, <span class="hljs-string">&#x27;finish&#x27;</span>);
 </code></pre>
+				<p>Output:</p>
+				<pre><code>4
+</code></pre>
+				<!-- @param {string} aStr 字符串
+@param {string} bStr 字符串
+@returns {number} 长度 -->
 				<a href="#browser-information" id="browser-information" style="color: inherit; text-decoration: none;">
 					<h3>Browser Information</h3>
 				</a>
-				<pre><code>getBrowserInfo(); <span class="hljs-regexp">//</span> {<span class="hljs-string">&quot;engine&quot;</span>:<span class="hljs-string">&quot;webkit&quot;</span>,<span class="hljs-string">&quot;engineVs&quot;</span>:<span class="hljs-string">&quot;537.36&quot;</span>,<span class="hljs-string">&quot;platform&quot;</span>:<span class="hljs-string">&quot;desktop&quot;</span>,<span class="hljs-string">&quot;supporter&quot;</span>:<span class="hljs-string">&quot;chrome&quot;</span>,<span class="hljs-string">&quot;supporterVs&quot;</span>:<span class="hljs-string">&quot;85.0.4183.121&quot;</span>,<span class="hljs-string">&quot;system&quot;</span>:<span class="hljs-string">&quot;windows&quot;</span>,<span class="hljs-string">&quot;systemVs&quot;</span>:<span class="hljs-string">&quot;10&quot;</span>}
-<span class="hljs-regexp">//</span> Shell and shell version { shell: <span class="hljs-string">&#x27;wechat&#x27;</span>, shellVs: <span class="hljs-string">&#x27;20&#x27;</span> } shell: wechat qq uc <span class="hljs-number">360</span> <span class="hljs-number">2345</span> sougou liebao maxthon
+				<a href="#getbrowserinfo" id="getbrowserinfo" style="color: inherit; text-decoration: none;">
+					<h4>getBrowserInfo</h4>
+				</a>
+				<p>Browser Information</p>
+				<!-- ZH: 返回浏览器信息 https://github.com/JowayYoung/juejin-code/blob/master/browser-type.js -->
+				<p>Usage:</p>
+				<pre><code>getBrowserInfo()<span class="hljs-comment">;</span>
 </code></pre>
+				<p>Output:</p>
+				<pre><code>{<span class="hljs-attr">&quot;engine&quot;</span>:<span class="hljs-string">&quot;webkit&quot;</span>,<span class="hljs-attr">&quot;engineVs&quot;</span>:<span class="hljs-string">&quot;537.36&quot;</span>,<span class="hljs-attr">&quot;platform&quot;</span>:<span class="hljs-string">&quot;desktop&quot;</span>,<span class="hljs-attr">&quot;supporter&quot;</span>:<span class="hljs-string">&quot;chrome&quot;</span>,<span class="hljs-attr">&quot;supporterVs&quot;</span>:<span class="hljs-string">&quot;85.0.4183.121&quot;</span>,<span class="hljs-attr">&quot;system&quot;</span>:<span class="hljs-string">&quot;windows&quot;</span>,<span class="hljs-attr">&quot;systemVs&quot;</span>:<span class="hljs-string">&quot;10&quot;</span>}
+</code></pre>
+				<p>Results:</p>
 				<table>
 					<thead>
 						<tr>
@@ -453,152 +577,189 @@ getCookie(<span class="hljs-string">&#x27;test&#x27;</span>); <span class="hljs-
 						</tr>
 					</thead>
 					<tbody><tr>
-							<td>* System</td>
+							<td>System</td>
 							<td>system</td>
 							<td>android, ios, windows, macos, linux</td>
 						</tr>
 						<tr>
-							<td>* System version</td>
+							<td>System version</td>
 							<td>systemVs</td>
-							<td>windows: 2000, xp, 2003, vista, 7, 8, 8.1, 10<br />macos: ...</td>
+							<td>windows: 2000, xp, 2003, vista, 7, 8, 8.1, 10 <br />macos: ...</td>
 						</tr>
 						<tr>
-							<td>* Platform</td>
+							<td>Platform</td>
 							<td>platform</td>
 							<td>desktop, mobile</td>
 						</tr>
 						<tr>
-							<td>* Engine</td>
+							<td>Engine</td>
 							<td>engine</td>
 							<td>webkit, gecko, presto, trident</td>
 						</tr>
 						<tr>
-							<td>* Engine version</td>
+							<td>Engine version</td>
 							<td>engineVs</td>
 							<td>-</td>
 						</tr>
 						<tr>
-							<td>* Supporter</td>
+							<td>Supporter</td>
 							<td>supporter</td>
 							<td>edge, opera, chrome, safari, firefox, iexplore</td>
 						</tr>
 						<tr>
-							<td>* Supporter version</td>
+							<td>Supporter version</td>
 							<td>supporterVs</td>
 							<td>-</td>
 						</tr>
 						<tr>
 							<td>Shell</td>
 							<td>shell</td>
-							<td>wechat, qq_browser, qq_app, uc, 360, 2345, sougou, liebao, maxthon, bilibili</td>
+							<td>(Optional) wechat, qq_browser, qq_app, uc, 360, 2345, sougou, liebao, maxthon, bilibili</td>
 						</tr>
 						<tr>
 							<td>Shell version</td>
 							<td>shellVs</td>
-							<td>-</td>
+							<td>(Optional) 20/...</td>
 						</tr>
 						<tr>
 							<td>Apple device type</td>
 							<td>appleType</td>
-							<td>iphone, ipad, ipod, iwatch</td>
+							<td>(Optional) iphone, ipad, ipod, iwatch</td>
 						</tr>
 				</tbody></table>
+				<p>Example: Determine the environment of the mobile QQ.</p>
+				<pre><code>const { system, <span class="hljs-keyword">shell</span><span class="bash"> } = getBrowserInfo();</span>
+const isMobileQQ = [<span class="hljs-string">&#x27;android&#x27;</span>, <span class="hljs-string">&#x27;ios&#x27;</span>].includes(system) &amp;&amp; [<span class="hljs-string">&#x27;qq_browser&#x27;</span>, <span class="hljs-string">&#x27;qq_app&#x27;</span>].includes(<span class="hljs-keyword">shell</span><span class="bash">);</span>
+</code></pre>
+				<!-- @returns 浏览器信息 -->
 				<a href="#web-performance" id="web-performance" style="color: inherit; text-decoration: none;">
 					<h3>Web Performance</h3>
 				</a>
+				<a href="#getperformance" id="getperformance" style="color: inherit; text-decoration: none;">
+					<h4>getPerformance</h4>
+				</a>
 				<p>Get page load time(PerformanceTiming).</p>
+				<!-- ZH: 获取页面加载相关的各项数据 -->
+				<p>Usage:</p>
 				<pre><code>// `camelCase：<span class="hljs-literal">true</span>`(Default) <span class="hljs-keyword">Return</span> hump data.
 // `camelCase：<span class="hljs-literal">false</span>` <span class="hljs-keyword">Return</span> underline data.
 getPerformance(<span class="hljs-literal">true</span>)
  .then(res =&gt; {
   console.log(JSON.stringify(res))<span class="hljs-comment">;</span>
-  // {<span class="hljs-string">&quot;deviceType&quot;</span>:<span class="hljs-string">&quot;pc&quot;</span>,<span class="hljs-string">&quot;network&quot;</span>:<span class="hljs-string">&quot;3g&quot;</span>,<span class="hljs-string">&quot;unloadTime&quot;</span>:<span class="hljs-number">0</span>,<span class="hljs-string">&quot;redirectTime&quot;</span>:<span class="hljs-number">0</span>,<span class="hljs-string">&quot;dnsTime&quot;</span>:<span class="hljs-number">0</span>,<span class="hljs-string">&quot;tcpTime&quot;</span>:<span class="hljs-number">0</span>,<span class="hljs-string">&quot;responseTime&quot;</span>:<span class="hljs-number">65</span>,<span class="hljs-string">&quot;downloadTime&quot;</span>:<span class="hljs-number">1</span>,<span class="hljs-string">&quot;domreadyTime&quot;</span>:<span class="hljs-number">369</span>,<span class="hljs-string">&quot;onloadTime&quot;</span>:<span class="hljs-number">441</span>,<span class="hljs-string">&quot;whiteTime&quot;</span>:<span class="hljs-number">94</span>,<span class="hljs-string">&quot;renderTime&quot;</span>:<span class="hljs-number">441</span>,<span class="hljs-string">&quot;decodedBodySize&quot;</span>:<span class="hljs-number">210</span>,<span class="hljs-string">&quot;encodedBodySize&quot;</span>:<span class="hljs-number">210</span>}
  })
  .catch(console.error)<span class="hljs-comment">;</span>
 </code></pre>
+				<p>Output:</p>
+				<pre><code>{<span class="hljs-attr">&quot;deviceType&quot;</span>:<span class="hljs-string">&quot;pc&quot;</span>,<span class="hljs-attr">&quot;network&quot;</span>:<span class="hljs-string">&quot;3g&quot;</span>,<span class="hljs-attr">&quot;unloadTime&quot;</span>:<span class="hljs-number">0</span>,<span class="hljs-attr">&quot;redirectTime&quot;</span>:<span class="hljs-number">0</span>,<span class="hljs-attr">&quot;dnsTime&quot;</span>:<span class="hljs-number">0</span>,<span class="hljs-attr">&quot;tcpTime&quot;</span>:<span class="hljs-number">0</span>,<span class="hljs-attr">&quot;responseTime&quot;</span>:<span class="hljs-number">65</span>,<span class="hljs-attr">&quot;downloadTime&quot;</span>:<span class="hljs-number">1</span>,<span class="hljs-attr">&quot;domreadyTime&quot;</span>:<span class="hljs-number">369</span>,<span class="hljs-attr">&quot;onloadTime&quot;</span>:<span class="hljs-number">441</span>,<span class="hljs-attr">&quot;whiteTime&quot;</span>:<span class="hljs-number">94</span>,<span class="hljs-attr">&quot;renderTime&quot;</span>:<span class="hljs-number">441</span>,<span class="hljs-attr">&quot;decodedBodySize&quot;</span>:<span class="hljs-number">210</span>,<span class="hljs-attr">&quot;encodedBodySize&quot;</span>:<span class="hljs-number">210</span>}
+</code></pre>
+				<p>Results:</p>
 				<table>
 					<thead>
 						<tr>
 							<th>Index</th>
 							<th>Field</th>
-							<th>Calculation</th>
+							<th>Description</th>
 						</tr>
 					</thead>
 					<tbody><tr>
-							<td>* DNS lookup</td>
+							<td>DNS lookup</td>
 							<td>dns_time</td>
 							<td>domainLookupEnd - domainLookupStart</td>
 						</tr>
 						<tr>
-							<td>* Connection negotiation</td>
+							<td>Connection negotiation</td>
 							<td>tcp_time</td>
 							<td>connectEnd - connectStart</td>
 						</tr>
 						<tr>
-							<td>* Requests and responses</td>
+							<td>Requests and responses</td>
 							<td>response_time</td>
 							<td>responseStart - requestStart</td>
 						</tr>
 						<tr>
-							<td>* White screen</td>
+							<td>White screen</td>
 							<td>white_time</td>
 							<td>responseStart - navigationStart</td>
 						</tr>
 						<tr>
-							<td>* DomReady</td>
+							<td>DomReady</td>
 							<td>domready_time</td>
 							<td>domContentLoadedEventStart - navigationStart</td>
 						</tr>
 						<tr>
-							<td>* Onload</td>
+							<td>Onload</td>
 							<td>onload_time</td>
 							<td>loadEventStart - navigationStart</td>
 						</tr>
 						<tr>
-							<td>* EventEnd</td>
+							<td>EventEnd</td>
 							<td>render_time</td>
 							<td>loadEventEnd -navigationStart</td>
 						</tr>
 						<tr>
 							<td>Unload</td>
 							<td>unload_time</td>
-							<td>unloadEventEnd - unloadEventStart</td>
+							<td>(Optional) unloadEventEnd - unloadEventStart</td>
 						</tr>
 						<tr>
 							<td>Redirect</td>
 							<td>redirect_time</td>
-							<td>redirectEnd - redirectStart</td>
+							<td>(Optional) redirectEnd - redirectStart</td>
 						</tr>
 						<tr>
 							<td>SSL</td>
 							<td>ssl_time</td>
-							<td>connectEnd - secureConnectionStart</td>
+							<td>(Optional) connectEnd - secureConnectionStart</td>
 						</tr>
 						<tr>
 							<td>Download</td>
 							<td>download_time</td>
-							<td>responseEnd - responseStart</td>
+							<td>(Optional) responseEnd - responseStart</td>
 						</tr>
 				</tbody></table>
+				<!-- @param {boolean} camelCase -- true（默认） 以驼峰形式返回数据 false 以下划线形式返回数据
+@returns {Promise<object>} 加载数据 -->
 				<a href="#margin-of-safety" id="margin-of-safety" style="color: inherit; text-decoration: none;">
 					<h3>Margin of Safety</h3>
 				</a>
+				<a href="#issafepwaenv" id="issafepwaenv" style="color: inherit; text-decoration: none;">
+					<h4>isSafePWAEnv</h4>
+				</a>
 				<p>Determine if it is a secure PWA environment that it can run.</p>
-				<pre><code>isSafePWAEnv(); <span class="hljs-regexp">//</span> true
+				<!-- ZH: 判断是否是安全的 PWA 环境 -->
+				<p>Usage:</p>
+				<pre><code>isSafePWAEnv()<span class="hljs-comment">;</span>
 </code></pre>
+				<p>Output:</p>
+				<pre><code><span class="hljs-literal">true</span>
+</code></pre>
+				<!-- @returns {boolean} true 是 -->
 				<a href="#debug" id="debug" style="color: inherit; text-decoration: none;">
 					<h3>Debug</h3>
 				</a>
-				<a href="#print" id="print" style="color: inherit; text-decoration: none;">
-					<h4>Print</h4>
+				<a href="#gencustomconsole" id="gencustomconsole" style="color: inherit; text-decoration: none;">
+					<h4>genCustomConsole</h4>
 				</a>
 				<p>Custom console printing (<code>console</code>).</p>
+				<!-- ZH: 生成自定义控制台打印 -->
+				<p>Usage:</p>
 				<pre><code>const myConsole = genCustomConsole(<span class="hljs-string">&#x27;MazeyLog:&#x27;</span>);
-myConsole.log(<span class="hljs-string">&#x27;I am string.&#x27;</span>); <span class="hljs-regexp">//</span> MazeyLog: I am string.
-myConsole.info(<span class="hljs-string">&#x27;I am boolean.&#x27;</span>, true); <span class="hljs-regexp">//</span> MazeyLog: I am boolean. true
-myConsole.info(<span class="hljs-string">&#x27;I am number.&#x27;</span>, <span class="hljs-number">123</span>, <span class="hljs-number">456</span>); <span class="hljs-regexp">//</span> MazeyLog: I am number. <span class="hljs-number">123</span> <span class="hljs-number">456</span>
-myConsole.info(<span class="hljs-string">&#x27;I am object.&#x27;</span>, { a: <span class="hljs-number">123</span>, b: <span class="hljs-number">456</span>}); <span class="hljs-regexp">//</span> MazeyLog: I am object. {a: <span class="hljs-number">123</span>, b: <span class="hljs-number">456</span>}
+myConsole.log(<span class="hljs-string">&#x27;I am string.&#x27;</span>);
+myConsole.<span class="hljs-builtin-name">info</span>(<span class="hljs-string">&#x27;I am boolean.&#x27;</span>, <span class="hljs-literal">true</span>);
+myConsole.<span class="hljs-builtin-name">info</span>(<span class="hljs-string">&#x27;I am number.&#x27;</span>, 123, 456);
+myConsole.<span class="hljs-builtin-name">info</span>(<span class="hljs-string">&#x27;I am object.&#x27;</span>, { a: 123, b: 456});
 </code></pre>
+				<p>Output:</p>
+				<pre><code>MazeyLo<span class="hljs-variable">g:</span> I <span class="hljs-keyword">am</span> <span class="hljs-built_in">string</span>.
+MazeyLo<span class="hljs-variable">g:</span> I <span class="hljs-keyword">am</span> boolean. true
+MazeyLo<span class="hljs-variable">g:</span> I <span class="hljs-keyword">am</span> <span class="hljs-keyword">number</span>. <span class="hljs-number">123</span> <span class="hljs-number">456</span>
+MazeyLo<span class="hljs-variable">g:</span> I <span class="hljs-keyword">am</span> object. {<span class="hljs-variable">a:</span> <span class="hljs-number">123</span>, <span class="hljs-variable">b:</span> <span class="hljs-number">456</span>}
+</code></pre>
+				<!-- @param {string} prefix 前缀
+@param {string} locales A locale string.
+@param {function} logFn The function with Log.
+@param {function} errorFn The function with Error.
+@returns {object} 新实例 -->
 				<a href="#contributing" id="contributing" style="color: inherit; text-decoration: none;">
 					<h2>Contributing</h2>
 				</a>
