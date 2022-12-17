@@ -17,6 +17,7 @@ const generateToc = () => {
   console.log('Generating Table of Contents...');
   const RMFilePath = _resolve('../README.md');
   // https://melvingeorge.me/blog/get-all-the-contents-from-file-as-string-nodejs
+  console.log('running...');
   const buffer = fs.readFileSync(RMFilePath);
   const fileContent = buffer.toString();
   // https://github.com/jonschlinkert/markdown-toc
@@ -46,6 +47,7 @@ const generateToc = () => {
   // https://stackoverflow.com/questions/1979884/how-to-use-javascript-regex-over-multiple-lines
   newFileContent = newFileContent.replace(/<!-- toc - begin -->[\s\S]*<!-- toc - end -->/gm, tocContent);
   // console.log(newFileContent);
+  console.log('running...');
   fs.writeFileSync(RMFilePath, newFileContent);
   console.log('Generating Table of Contents is done.');
 };
