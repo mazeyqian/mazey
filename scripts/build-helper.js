@@ -38,7 +38,7 @@ const generateToc = () => {
     bullets: ['-', '*'],
   }).content;
   tocContent = tocContent.replace(/[ ]{4}/gm, '');
-  tocContent = '<!-- toc - begin -->\n' + '- Generate with ❤️\n' + tocContent;
+  tocContent = '<!-- toc - begin -->\n' + '- Generated with ❤️\n' + tocContent;
   tocContent = tocContent + '\n<!-- toc - end -->';
   // console.log(tocContent);
   // Insert to file.
