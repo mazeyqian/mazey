@@ -14,6 +14,19 @@ const { generateToc } = require('./build-helper');
  * release(pkgVersion);
  * ```
  * 
+ * It will be more straightforward if you use the development dependence CrossEnv.
+ * 
+ * ```
+ * # Install
+ * npm i cross-env -D
+ * 
+ * # scripts
+ * cross-env SCRIPTS_NPM_PACKAGE_VERSION=$npm_package_version node ./scripts/release.js
+ * 
+ * # release.js
+ * release();
+ * ```
+ * 
  * @param {string} ver Version
  * @returns {void}
  */
