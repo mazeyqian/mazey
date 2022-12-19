@@ -31,30 +31,19 @@ async function release (ver) {
   // Generating Table of Contents
   generateToc();
   // Commit
-  await getCommit('stage');
+  await gitCommit('stage');
   // Marge
   await gitMergeMaster2Release();
   // Build
   await execa('npm', ['run', 'preview']);
   await execa('npm', ['publish']);
-  // git branch --show-current
-  // console.log('git push --set-upstream origin <branch>');
-  // Commit Stdout
-  // const { stdout: diffStdout } = await execa('git', ['diff'], { stdio: 'pipe' });
-  // if (diffStdout) {
-  //   console.log('Committing changes...');
-  //   await execa('git', ['add', '-A']);
-  //   await execa('git', ['commit', '-m', `release: ${releaseVersion}`]);
-  // } else {
-  //   console.log('No changes to commit.');
-  // }
   // Commit Again
-  await getCommit(releaseVersion);
+  await gitCommit(releaseVersion);
   // Push
   console.log('Pushing to GitHub...');
   await execa('git', ['tag', '-a', `${releaseVersion}`, '-m', `Release ${releaseVersion}`]);
   await execa('git', ['push', 'origin', `refs/tags/${releaseVersion}`]);
-  await gitPush(); // execa('git', ['push']);
+  await gitPush();
   console.log('All done.');
 }
 
@@ -67,7 +56,7 @@ async function gitPush () {
   } catch (error) {
     console.log('error:', error.message);
     const { stdout: currentBranch } = await execa('git', ['branch', '--show-current'], { stdio: 'pipe' });
-    console.log('currentBranch:', currentBranch); // currentBranch: fix/rollup_dependences_mon_oct_31st_2022
+    console.log(`Current Branch: ${currentBranch}`);
     await execa('git', ['push', '--set-upstream', 'origin', currentBranch]);
   }
   return true;
@@ -93,17 +82,16 @@ async function getGitCurrentBranch () {
   try {
     ({ stdout: currentBranch } = await execa('git', ['branch', '--show-current'], { stdio: 'pipe' }));
   } catch (error) {
-    // console.log('error:', error.message);
     ({ stdout: currentBranch } = await execa('git', ['rev-parse', '--abbrev-ref', 'HEAD'], { stdio: 'pipe' }));
   }
-  console.log('currentBranch:', currentBranch);
+  console.log(`Current Branch: ${currentBranch}`);
   return currentBranch;
 }
 
 /**
  * Commit current code.
  */
-async function getCommit (releaseVersion = 0) {
+async function gitCommit (releaseVersion = 0) {
   const { stdout: diffStdout } = await execa('git', ['diff'], { stdio: 'pipe' });
   if (diffStdout) {
     console.log('Committing changes...');
@@ -120,5 +108,5 @@ module.exports = {
   gitPush,
   gitMergeMaster2Release,
   getGitCurrentBranch,
-  getCommit,
+  gitCommit,
 };

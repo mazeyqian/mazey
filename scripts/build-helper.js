@@ -40,13 +40,11 @@ const generateToc = () => {
   tocContent = tocContent.replace(/[ ]{4}/gm, '');
   tocContent = '<!-- toc - begin -->\n' + '- Generated with ❤️\n' + tocContent;
   tocContent = tocContent + '\n<!-- toc - end -->';
-  // console.log(tocContent);
   // Insert to file.
   // https://stackoverflow.com/questions/14177087/replace-a-string-in-a-file-with-nodejs
   let newFileContent = fileContent;
   // https://stackoverflow.com/questions/1979884/how-to-use-javascript-regex-over-multiple-lines
   newFileContent = newFileContent.replace(/<!-- toc - begin -->[\s\S]*<!-- toc - end -->/gm, tocContent);
-  // console.log(newFileContent);
   console.log('running...');
   fs.writeFileSync(RMFilePath, newFileContent);
   console.log('Generating Table of Contents is done.');
