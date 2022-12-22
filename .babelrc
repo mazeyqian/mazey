@@ -3,25 +3,13 @@
     ["@babel/preset-env", {
       "targets": {
         "browsers": ["> 1%", "last 2 versions", "android>4.0"]
-      },
-      "useBuiltIns": "usage",
-      "corejs": 3
+      }
     }],
     "@babel/typescript"
   ],
   "plugins": [
 		"@babel/proposal-class-properties",
-		"@babel/proposal-object-rest-spread",
-		[
-      "@babel/plugin-transform-runtime",
-      {
-        "absoluteRuntime": false,
-        "corejs": false,
-        "helpers": true,
-        "regenerator": true,
-        "useESModules": false
-      }
-    ]
+		"@babel/proposal-object-rest-spread"
 	],
   "sourceType": "unambiguous"
 }

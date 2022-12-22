@@ -5,7 +5,7 @@ import rollupTypescript from 'rollup-plugin-typescript2';
 import { DEFAULT_EXTENSIONS } from '@babel/core';
 import commonjs from 'rollup-plugin-commonjs';
 import cleaner from 'rollup-plugin-cleaner';
-import { terser } from 'rollup-plugin-terser';
+// import { terser } from 'rollup-plugin-terser';
 // import copy from 'rollup-plugin-copy';
 
 const { _resolve } = require('./build-helper');
@@ -63,12 +63,12 @@ export default {
     }),
     // Add minification.
     // https://github.com/TrySound/rollup-plugin-terser
-    terser({ // https://github.com/terser/terser
-      format: {
-        // https://github.com/terser/terser#format-options
-        comments: /^!\n\s\*\smazey/, // 'some', // `false` to omit comments in the output
-      },
-    }),
+    // terser({ // https://github.com/terser/terser
+    //   format: {
+    //     // https://github.com/terser/terser#format-options
+    //     comments: /^!\n\s\*\smazey/, // 'some', // `false` to omit comments in the output
+    //   },
+    // }),
     // uglify(),
     // https://www.npmjs.com/package/rollup-plugin-copy
     // copy({
