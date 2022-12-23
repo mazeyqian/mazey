@@ -30,7 +30,7 @@
 
 ## 安装
 
-You can get mazey@1.4.39 via [npm](https://www.npmjs.com/package/mazey/v/1.4.39).
+使用 [NPM](https://www.npmjs.com/package/mazey/v/1.4.39) 安装 mazey@1.4.39
 
 ```
 npm install mazey@1.4.39 --save
