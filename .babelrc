@@ -3,7 +3,9 @@
     ["@babel/preset-env", {
       "targets": {
         "browsers": ["> 1%", "last 2 versions", "android>4.0"]
-      }
+      },
+      "useBuiltIns": "usage",
+      "corejs": 3
     }],
     "@babel/typescript"
   ],
