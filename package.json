@@ -1,6 +1,6 @@
 {
   "name": "mazey",
-  "version": "3.3.12",
+  "version": "3.4.0",
   "description": "Mazey's library for front-end.",
   "main": "lib/index.cjs.js",
   "module": "lib/index.esm.js",
@@ -11,10 +11,11 @@
   },
   "scripts": {
     "dev": "webpack-dev-server --config ./scripts/webpack.config.dev.js --open",
-    "build": "rollup --config ./scripts/rollup.config.js",
+    "build": "cross-env SCRIPTS_NPM_PACKAGE_DEBUG=\"close\" rollup --config ./scripts/rollup.config.js",
+    "build:debug": "cross-env SCRIPTS_NPM_PACKAGE_DEBUG=\"open\" rollup --config ./scripts/rollup.config.js",
     "test": "jest",
     "docs": "cross-env rm -f .docs/t.html && typedoc --hideGenerator && cp ./src/t.html ./docs",
-    "lint-and-fix": "eslint ./src/index.ts --ext 'ts,tsx' --fix",
+    "lint:fix": "eslint ./src/index.ts --ext 'ts,tsx' --fix",
     "preview": "npm run docs && npm run build && npm run test",
     "release": "npm run preview && cross-env SCRIPTS_NPM_PACKAGE_VERSION=$npm_package_version node ./scripts/release.js"
   },
@@ -64,12 +65,15 @@
     "@babel/plugin-transform-runtime": "^7.11.0",
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-typescript": "^7.10.4",
+    "@babel/runtime": "^7.20.7",
+    "@babel/runtime-corejs3": "^7.11.2",
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
     "clean-webpack-plugin": "^1.0.1",
     "cross-env": "^7.0.3",
+    "core-js": "^3.6.5",
     "date-fns": "^2.29.3",
     "eslint": "^6.8.0",
     "eslint-config-standard": "^14.1.0",
@@ -104,9 +108,5 @@
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
       "pre-commit": "lint-staged"
     }
-  },
-  "dependencies": {
-    "@babel/runtime-corejs3": "^7.11.2",
-    "core-js": "^3.6.5"
   }
 }
