@@ -11,7 +11,7 @@
   },
   "scripts": {
     "dev": "webpack-dev-server --config ./scripts/webpack.config.dev.js --open",
-    "build": "rollup --config ./scripts/rollup.config.js",
+    "build": "cross-env SCRIPTS_NPM_PACKAGE_DEBUG=\"close\" rollup --config ./scripts/rollup.config.js",
     "build:debug": "cross-env SCRIPTS_NPM_PACKAGE_DEBUG=\"open\" rollup --config ./scripts/rollup.config.js",
     "test": "jest",
     "docs": "cross-env rm -f .docs/t.html && typedoc --hideGenerator && cp ./src/t.html ./docs",

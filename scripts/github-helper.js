@@ -67,7 +67,7 @@ async function gitPush () {
   try {
     await execa('git', ['push'], { stdio: 'pipe' });
   } catch (error) {
-    console.log('error:', error.message);
+    console.log('Error:', error.message);
     const { stdout: currentBranch } = await execa('git', ['branch', '--show-current'], { stdio: 'pipe' });
     console.log(`Current Branch: ${currentBranch}`);
     await execa('git', ['push', '--set-upstream', 'origin', currentBranch]);
