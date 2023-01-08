@@ -295,7 +295,7 @@ export declare function debounce(func: any, wait: number, immediate?: any): any;
  * @param {number/Date} start 开始时间戳 1585325367122
  * @param {number/Date} end 结束时间戳 1585325367122
  * @param {string} options.type 返回类型 d: 2(天) text: 2 天 4 时...
- * @returns {String/number} 取决于 type
+ * @returns {string/number} 取决于 type
  */
 export declare function friendlyInterval(start?: number, end?: number, options?: {
     type?: string;

@@ -56,7 +56,7 @@ There ara some examples maintained by hand below. For more information, please c
 **Table of Contents**
 
 <!-- toc - begin -->
-- Generate with ❤️
+- Generated with ❤️
 - [Load Resource](#load-resource)
   * [loadScript](#loadscript)
   * [loadCSS](#loadcss)
