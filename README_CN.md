@@ -27,6 +27,7 @@
     - [函数](#函数)
     - [调试](#调试)
   - [开发](#开发)
+  - [参考](#参考)
 
 ## 安装
 
@@ -351,3 +352,8 @@ npm run build
 # documentation
 npm run docs
 ```
+
+## 参考
+
+1. [@babel/preset-env conflicts with @babel/plugin-transform-runtime when using core-js@3](https://github.com/babel/babel/issues/10271#issuecomment-528379505)
+2. [@babel/plugin-transform-runtime](https://babeljs.io/docs/en/babel-plugin-transform-runtime)
