@@ -30,7 +30,7 @@ const { generateToc } = require('./build-helper');
  * @param {string} ver Version
  * @returns {void}
  */
-async function release (ver, { canGenerateToc = true } = {}) {
+async function release (ver, { canGenerateToc = false } = {}) {
   if (!ver) {
     ver = process.env.SCRIPTS_NPM_PACKAGE_VERSION;
   }
