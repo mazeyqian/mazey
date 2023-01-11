@@ -1,4 +1,6 @@
-/* mazey */
+/**
+ * @author: Mazey Chu
+ */
 
 /**
  * EN: Computes the longest common substring of two strings.
