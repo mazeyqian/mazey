@@ -2123,3 +2123,64 @@ export function genHashCode(str: string): number {
   }
   return hash;
 }
+
+/**
+ * Return the formatted date string in the given format.
+ *
+ * Usage:
+ *
+ * ```
+ * console.log('Default formatDate value:', formatDate());
+ * console.log('String formatDate value:', formatDate('Tue Jan 11 2022 14:12:26 GMT+0800 (China Standard Time)', 'yyyy-MM-dd hh:mm:ss'));
+ * console.log('Number formatDate value:', formatDate(1641881235000, 'yyyy-MM-dd hh:mm:ss'));
+ * ```
+ *
+ * Output:
+ *
+ * ```
+ * Default formatDate value: 2023-01-11
+ * String formatDate value: 2022-01-11 14:12:26
+ * Number formatDate value: 2022-01-11 14:07:15
+ * ```
+ *
+ * @param {Date|number|string} dateIns Original Date
+ * @param {string} format Format String
+ * @returns {string} Return the formatted date string.
+ */
+export function formatDate(
+  dateIns?: Date | number | string,
+  format = 'yyyy-MM-dd'
+): string {
+  if (!dateIns) {
+    dateIns = new Date();
+  }
+  const tempDate = new Date(dateIns);
+  const o: {
+    [key: string]: string | number;
+  } = {
+    yyyy: tempDate.getFullYear(),
+    MM: tempDate.getMonth() + 1,
+    dd: tempDate.getDate(),
+    hh:
+      tempDate.getHours() < 10
+        ? '0' + tempDate.getHours()
+        : tempDate.getHours(),
+    mm:
+      tempDate.getMinutes() < 10
+        ? '0' + tempDate.getMinutes()
+        : tempDate.getMinutes(),
+    ss:
+      tempDate.getSeconds() < 10
+        ? '0' + tempDate.getSeconds()
+        : tempDate.getSeconds()
+  };
+  let tempFormat = format || 'yyyy-MM-dd';
+  Object.keys(o).forEach(key => {
+    let value = o[key];
+    if (key === 'MM' && Number(value) <= 9) {
+      value = `0${value}`;
+    }
+    tempFormat = tempFormat.replace(key, String(value));
+  });
+  return tempFormat;
+}

@@ -318,6 +318,30 @@ generateRndNum(4); // '9730'
 generateRndNum(7); // '2262490'
 ```
 
+#### formatDate
+
+Return the formatted date string in the given format.
+
+Usage:
+
+```
+console.log('Default formatDate value:', formatDate());
+console.log('String formatDate value:', formatDate('Tue Jan 11 2022 14:12:26 GMT+0800 (China Standard Time)', 'yyyy-MM-dd hh:mm:ss'));
+console.log('Number formatDate value:', formatDate(1641881235000, 'yyyy-MM-dd hh:mm:ss'));
+```
+
+Output:
+
+```
+Default formatDate value: 2023-01-11
+String formatDate value: 2022-01-11 14:12:26
+Number formatDate value: 2022-01-11 14:07:15
+```
+
+<!-- @param {Date|number|string} dateIns Original Date
+@param {string} format Format String
+@returns {string} Return the formatted date string. -->
+
 ### DOM
 
 #### Class

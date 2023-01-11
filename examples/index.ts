@@ -12,7 +12,8 @@ import {
   isSupportWebp,
   genHashCode,
   debounce,
-  genCustomConsole
+  genCustomConsole,
+  formatDate
 } from '../src/index';
 
 // Sync
@@ -50,6 +51,22 @@ const genLog = genCustomConsole('GenLog:', {
   locales: 'zh-CN'
 });
 genLog.log('test?');
+// const s011101 = ;
+console.log('Default formatDate value:', formatDate());
+// 2022-01-11
+console.log(
+  'String formatDate value:',
+  formatDate(
+    'Tue Jan 11 2022 14:12:26 GMT+0800 (China Standard Time)',
+    'yyyy-MM-dd hh:mm:ss'
+  )
+);
+// 2022-01-11 14:12:26
+console.log(
+  'Number formatDate value:',
+  formatDate(1641881235000, 'yyyy-MM-dd hh:mm:ss')
+);
+// 2022-01-11 14:07:15
 
 // Async
 (async () => {
