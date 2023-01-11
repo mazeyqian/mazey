@@ -67,6 +67,12 @@ console.log(
   formatDate(1641881235000, 'yyyy-MM-dd hh:mm:ss')
 );
 // 2022-01-11 14:07:15
+// (new Date(2014, 1, 11), 'MM/dd/yyyy')
+console.log(
+  'Date formatDate value:',
+  formatDate(new Date(2014, 1, 11), 'MM/dd/yyyy')
+);
+// Date formatDate value: 02/11/2014
 
 // Async
 (async () => {

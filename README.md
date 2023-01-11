@@ -328,6 +328,7 @@ Usage:
 console.log('Default formatDate value:', formatDate());
 console.log('String formatDate value:', formatDate('Tue Jan 11 2022 14:12:26 GMT+0800 (China Standard Time)', 'yyyy-MM-dd hh:mm:ss'));
 console.log('Number formatDate value:', formatDate(1641881235000, 'yyyy-MM-dd hh:mm:ss'));
+console.log('Date formatDate value:', formatDate(new Date(2014, 1, 11), 'MM/dd/yyyy'));
 ```
 
 Output:
@@ -336,6 +337,7 @@ Output:
 Default formatDate value: 2023-01-11
 String formatDate value: 2022-01-11 14:12:26
 Number formatDate value: 2022-01-11 14:07:15
+Date formatDate value: 02/11/2014
 ```
 
 <!-- @param {Date|number|string} dateIns Original Date
