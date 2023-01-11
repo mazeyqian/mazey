@@ -68,8 +68,6 @@
     "forceConsistentCasingInFileNames": true  /* Disallow inconsistently-cased references to the same file. */
   },
   "include": [
-    // "examples/example.ts",
-    // "src/functions.tss.ts"
     "src/**/*.ts"
   ],
   "typedocOptions": {
