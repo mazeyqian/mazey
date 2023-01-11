@@ -1,5 +1,4 @@
 /* mazey */
-import { WebPerformance } from './typing';
 
 /**
  * EN: Computes the longest common substring of two strings.
@@ -1076,9 +1075,9 @@ export function getCookie(name: string): string {
   return '';
 }
 
-// interface WebPerformance {
-//   [key: string]: string | number;
-// }
+interface WebPerformance {
+  [key: string]: string | number;
+}
 
 /**
  * EN: Get page load time(PerformanceTiming).
