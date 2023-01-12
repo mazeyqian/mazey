@@ -2067,6 +2067,26 @@ export function isNonEmptyArray(arr: any[]): boolean {
   return ret;
 }
 
+export function isValidData(
+  data: any,
+  attributes: string[],
+  validValue: any
+): boolean {
+  let ret = false;
+  const foundRet = attributes.reduce((foundValue, curr) => {
+    if (foundValue[curr]) {
+      foundValue = foundValue[curr];
+    }
+    console.log('foundValue', foundValue);
+    return foundValue;
+  }, data);
+  console.log('foundRet', foundRet);
+  if (foundRet === validValue) {
+    ret = true;
+  }
+  return ret;
+}
+
 /**
  * 语义化文件大小, 把字节转换成正常文件大小.
  */

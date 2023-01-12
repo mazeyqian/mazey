@@ -13,7 +13,8 @@ import {
   genHashCode,
   debounce,
   genCustomConsole,
-  formatDate
+  formatDate,
+  isValidData
 } from '../src/index';
 
 // Sync
@@ -73,6 +74,18 @@ console.log(
   formatDate(new Date(2014, 1, 11), 'MM/dd/yyyy')
 );
 // Date formatDate value: 02/11/2014
+const isValidDataRes = isValidData(
+  {
+    a: {
+      b: {
+        c: 233
+      }
+    }
+  },
+  ['a', 'b', 'c'],
+  233
+);
+console.log('isValidDataRes', isValidDataRes);
 
 // Async
 (async () => {
