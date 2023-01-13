@@ -26,7 +26,7 @@ Use mazey from CDN.
 <script type="text/javascript" src="//i.mazey.net/mazey/lib/mazey.min.js"></script>
 ```
 
-Of course, you can also download this file and serve it yourself.
+Of course, you can also download this file and serve it yourself. The file locates at the `lib/mazey.min.js`.
 
 ## Usage
 
