@@ -344,6 +344,43 @@ Date formatDate value: 02/11/2014
 @param {string} format Format String
 @returns {string} Return the formatted date string. -->
 
+#### isValidData
+
+Determine the validity of the data.
+
+Usage:
+
+```
+const validData = {
+  a: {
+    b: {
+      c: 413
+    }
+  }
+};
+
+const isValidDataResA = isValidData(validData, ['a', 'b', 'c'], 2333);
+const isValidDataResB = isValidData(validData, ['a', 'b', 'c'], 413);
+const isValidDataResC = isValidData(validData, ['d', 'd'], 413);
+
+console.log('isValidDataResA:', isValidDataResA);
+console.log('isValidDataResB:', isValidDataResB);
+console.log('isValidDataResC:', isValidDataResC);
+```
+
+Output:
+
+```
+isValidDataResA: false
+isValidDataResB: true
+isValidDataResC: false
+```
+
+<!-- @param {any} data Original Data
+@param {string[]} attributes Data Attributes
+@param {any} validValue Given Value for verifying.
+@returns {boolean} Return TRUE if the data is valid. -->
+
 ### DOM
 
 #### Class

@@ -2069,6 +2069,35 @@ export function isNonEmptyArray(arr: any[]): boolean {
 
 /**
  * Determine the validity of the data.
+ *
+ * Usage:
+ *
+ * ```
+ * const validData = {
+ *   a: {
+ *     b: {
+ *       c: 413
+ *     }
+ *   }
+ * };
+ *
+ * const isValidDataResA = isValidData(validData, ['a', 'b', 'c'], 2333);
+ * const isValidDataResB = isValidData(validData, ['a', 'b', 'c'], 413);
+ * const isValidDataResC = isValidData(validData, ['d', 'd'], 413);
+ *
+ * console.log('isValidDataResA:', isValidDataResA);
+ * console.log('isValidDataResB:', isValidDataResB);
+ * console.log('isValidDataResC:', isValidDataResC);
+ * ```
+ *
+ * Output:
+ *
+ * ```
+ * isValidDataResA: false
+ * isValidDataResB: true
+ * isValidDataResC: false
+ * ```
+ *
  * @param {any} data Original Data
  * @param {string[]} attributes Data Attributes
  * @param {any} validValue Given Value for verifying.
@@ -2083,11 +2112,13 @@ export function isValidData(
   const foundRet = attributes.reduce((foundValue, curr) => {
     if (foundValue[curr]) {
       foundValue = foundValue[curr];
+    } else {
+      return Object.create(null);
     }
-    console.log('foundValue', foundValue);
+    // console.log('foundValue', foundValue);
     return foundValue;
   }, data);
-  console.log('foundRet', foundRet);
+  // console.log('foundRet', foundRet);
   if (foundRet === validValue) {
     ret = true;
   }
