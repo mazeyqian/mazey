@@ -74,18 +74,23 @@ console.log(
   formatDate(new Date(2014, 1, 11), 'MM/dd/yyyy')
 );
 // Date formatDate value: 02/11/2014
-const isValidDataRes = isValidData(
-  {
-    a: {
-      b: {
-        c: 233
-      }
+const validDataA = {
+  a: {
+    b: {
+      c: 413
     }
-  },
-  ['a', 'b', 'c'],
-  233
-);
-console.log('isValidDataRes', isValidDataRes);
+  }
+};
+
+const isValidDataResA = isValidData(validDataA, ['a', 'b', 'c'], 2333);
+
+const isValidDataResB = isValidData(validDataA, ['a', 'b', 'c'], 413);
+
+console.log('isValidDataResA', isValidDataResA);
+console.log('isValidDataResB', isValidDataResB);
+
+// isValidDataResA false
+// isValidDataResB true
 
 // Async
 (async () => {

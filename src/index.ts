@@ -2067,6 +2067,13 @@ export function isNonEmptyArray(arr: any[]): boolean {
   return ret;
 }
 
+/**
+ * Determine the validity of the data.
+ * @param {any} data Original Data
+ * @param {string[]} attributes Data Attributes
+ * @param {any} validValue Given Value for verifying.
+ * @returns {boolean} Return TRUE if the data is valid.
+ */
 export function isValidData(
   data: any,
   attributes: string[],
