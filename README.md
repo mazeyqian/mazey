@@ -770,7 +770,7 @@ MazeyLog: I am object. {a: 123, b: 456}
 
 ```
 # Install
-npm i --registry=https://registry.npmjs.org
+npm i
 
 # Serve
 npm run dev
