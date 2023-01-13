@@ -5,7 +5,7 @@
 /* eslint-disable no-undef */
 // Function
 
-import { isNumber, camelCaseToKebabCase, camelCase2Underscore, mTrim, deepCopyObject, isJsonString, generateRndNum, formatDate } from '../lib/index.esm';
+import { isNumber, camelCaseToKebabCase, camelCase2Underscore, mTrim, deepCopyObject, isJsonString, generateRndNum, formatDate, isValidData } from '../lib/index.esm';
 
 test('isNumber: Is -1 Number?', () => {
   expect(isNumber(-1)).toBe(true);
@@ -49,4 +49,14 @@ test(`formatDate: String formatDate value?`, () => {
 
 test(`formatDate: Number formatDate value?`, () => {
   expect(formatDate(1641881235000, 'yyyy-MM-dd hh:mm:ss')).toBe('2022-01-11 14:07:15');
+});
+
+test(`isValidData: Check the valid value?`, () => {
+  expect(isValidData({
+    a: {
+      b: {
+        c: 413
+      }
+    }
+  }, ['a', 'b', 'c'], 413)).toBe(true);
 });
