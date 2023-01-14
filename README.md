@@ -71,6 +71,8 @@ There ara some examples maintained by hand below. For more information, please c
   * [deepCopyObject](#deepcopyobject)
   * [isJsonString](#isjsonstring)
   * [generateRndNum](#generaterndnum)
+  * [formatDate](#formatdate)
+  * [isValidData](#isvaliddata)
 - [DOM](#dom)
   * [Class](#class)
   * [addStyle](#addstyle)

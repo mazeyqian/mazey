@@ -1,4 +1,7 @@
 /**
+ * @author: Mazey Chu
+ */
+/**
  * EN: Computes the longest common substring of two strings.
  *
  * ZH: 计算两个字符串的最长公共子串
@@ -735,6 +738,43 @@ export declare function zAxiosIsValidRes(res: any, options?: {
  */
 export declare function isNonEmptyArray(arr: any[]): boolean;
 /**
+ * Determine the validity of the data.
+ *
+ * Usage:
+ *
+ * ```
+ * const validData = {
+ *   a: {
+ *     b: {
+ *       c: 413
+ *     }
+ *   }
+ * };
+ *
+ * const isValidDataResA = isValidData(validData, ['a', 'b', 'c'], 2333);
+ * const isValidDataResB = isValidData(validData, ['a', 'b', 'c'], 413);
+ * const isValidDataResC = isValidData(validData, ['d', 'd'], 413);
+ *
+ * console.log('isValidDataResA:', isValidDataResA);
+ * console.log('isValidDataResB:', isValidDataResB);
+ * console.log('isValidDataResC:', isValidDataResC);
+ * ```
+ *
+ * Output:
+ *
+ * ```
+ * isValidDataResA: false
+ * isValidDataResB: true
+ * isValidDataResC: false
+ * ```
+ *
+ * @param {any} data Original Data
+ * @param {string[]} attributes Data Attributes
+ * @param {any} validValue Given Value for verifying.
+ * @returns {boolean} Return TRUE if the data is valid.
+ */
+export declare function isValidData(data: any, attributes: string[], validValue: any): boolean;
+/**
  * 语义化文件大小, 把字节转换成正常文件大小.
  */
 export declare function getFileSize(size: number): string;
@@ -750,5 +790,31 @@ export declare function isSupportWebp(): Promise<boolean>;
  * Reference: [Generate a Hash from string in Javascript](https://stackoverflow.com/questions/7616461/generate-a-hash-from-string-in-javascript-jquery)
  */
 export declare function genHashCode(str: string): number;
+/**
+ * Return the formatted date string in the given format.
+ *
+ * Usage:
+ *
+ * ```
+ * console.log('Default formatDate value:', formatDate());
+ * console.log('String formatDate value:', formatDate('Tue Jan 11 2022 14:12:26 GMT+0800 (China Standard Time)', 'yyyy-MM-dd hh:mm:ss'));
+ * console.log('Number formatDate value:', formatDate(1641881235000, 'yyyy-MM-dd hh:mm:ss'));
+ * console.log('Date formatDate value:', formatDate(new Date(2014, 1, 11), 'MM/dd/yyyy'));
+ * ```
+ *
+ * Output:
+ *
+ * ```
+ * Default formatDate value: 2023-01-11
+ * String formatDate value: 2022-01-11 14:12:26
+ * Number formatDate value: 2022-01-11 14:07:15
+ * Date formatDate value: 02/11/2014
+ * ```
+ *
+ * @param {Date|number|string} dateIns Original Date
+ * @param {string} format Format String
+ * @returns {string} Return the formatted date string.
+ */
+export declare function formatDate(dateIns?: Date | number | string, format?: string): string;
 export {};
 //# sourceMappingURL=index.d.ts.map
