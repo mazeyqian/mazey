@@ -30,7 +30,7 @@ const { generateToc } = require('./build-helper');
  * @param {string} ver Version
  * @returns {void}
  */
-async function release (ver) {
+async function release (ver, { canGenerateToc = false } = {}) {
   if (!ver) {
     ver = process.env.SCRIPTS_NPM_PACKAGE_VERSION;
   }
@@ -42,7 +42,9 @@ async function release (ver) {
   const { stdout: releaseStdout } = await execa('echo', [`Start release ${releaseVersion}...`]);
   console.log(releaseStdout);
   // Generating Table of Contents
-  generateToc();
+  if (canGenerateToc) {
+    generateToc();
+  }
   // Commit
   await gitCommit('stage');
   // Marge

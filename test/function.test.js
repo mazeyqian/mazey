@@ -1,10 +1,11 @@
+/* eslint-disable quotes */
 /**
  * @jest-environment node
  */
 /* eslint-disable no-undef */
 // Function
 
-import { isNumber, camelCaseToKebabCase, camelCase2Underscore, mTrim, deepCopyObject, isJsonString, generateRndNum } from '../lib/index.esm';
+import { isNumber, camelCaseToKebabCase, camelCase2Underscore, mTrim, deepCopyObject, isJsonString, generateRndNum, formatDate, isValidData } from '../lib/index.esm';
 
 test('isNumber: Is -1 Number?', () => {
   expect(isNumber(-1)).toBe(true);
@@ -40,4 +41,22 @@ test(`isJsonString: Is '["a", "b", "c"]' a valid JSON string?`, () => {
 
 test(`generateRndNum: Can it produce an empty string?`, () => {
   expect(generateRndNum(0)).toBe('');
+});
+
+test(`formatDate: String formatDate value?`, () => {
+  expect(formatDate('Tue Jan 11 2022 14:12:26 GMT+0800 (China Standard Time)', 'yyyy-MM-dd hh:mm:ss')).toBe('2022-01-11 14:12:26');
+});
+
+test(`formatDate: Number formatDate value?`, () => {
+  expect(formatDate(1641881235000, 'yyyy-MM-dd hh:mm:ss')).toBe('2022-01-11 14:07:15');
+});
+
+test(`isValidData: Check the valid value?`, () => {
+  expect(isValidData({
+    a: {
+      b: {
+        c: 413
+      }
+    }
+  }, ['a', 'b', 'c'], 413)).toBe(true);
 });

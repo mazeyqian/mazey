@@ -1,4 +1,6 @@
-/* mazey */
+/**
+ * @author: Mazey Chu
+ */
 
 /**
  * EN: Computes the longest common substring of two strings.
@@ -2066,6 +2068,64 @@ export function isNonEmptyArray(arr: any[]): boolean {
 }
 
 /**
+ * Determine the validity of the data.
+ *
+ * Usage:
+ *
+ * ```
+ * const validData = {
+ *   a: {
+ *     b: {
+ *       c: 413
+ *     }
+ *   }
+ * };
+ *
+ * const isValidDataResA = isValidData(validData, ['a', 'b', 'c'], 2333);
+ * const isValidDataResB = isValidData(validData, ['a', 'b', 'c'], 413);
+ * const isValidDataResC = isValidData(validData, ['d', 'd'], 413);
+ *
+ * console.log('isValidDataResA:', isValidDataResA);
+ * console.log('isValidDataResB:', isValidDataResB);
+ * console.log('isValidDataResC:', isValidDataResC);
+ * ```
+ *
+ * Output:
+ *
+ * ```
+ * isValidDataResA: false
+ * isValidDataResB: true
+ * isValidDataResC: false
+ * ```
+ *
+ * @param {any} data Original Data
+ * @param {string[]} attributes Data Attributes
+ * @param {any} validValue Given Value for verifying.
+ * @returns {boolean} Return TRUE if the data is valid.
+ */
+export function isValidData(
+  data: any,
+  attributes: string[],
+  validValue: any
+): boolean {
+  let ret = false;
+  const foundRet = attributes.reduce((foundValue, curr) => {
+    if (foundValue[curr]) {
+      foundValue = foundValue[curr];
+    } else {
+      return Object.create(null);
+    }
+    // console.log('foundValue', foundValue);
+    return foundValue;
+  }, data);
+  // console.log('foundRet', foundRet);
+  if (foundRet === validValue) {
+    ret = true;
+  }
+  return ret;
+}
+
+/**
  * 语义化文件大小, 把字节转换成正常文件大小.
  */
 export function getFileSize(size: number): string {
@@ -2122,4 +2182,67 @@ export function genHashCode(str: string): number {
     hash |= 0;
   }
   return hash;
+}
+
+/**
+ * Return the formatted date string in the given format.
+ *
+ * Usage:
+ *
+ * ```
+ * console.log('Default formatDate value:', formatDate());
+ * console.log('String formatDate value:', formatDate('Tue Jan 11 2022 14:12:26 GMT+0800 (China Standard Time)', 'yyyy-MM-dd hh:mm:ss'));
+ * console.log('Number formatDate value:', formatDate(1641881235000, 'yyyy-MM-dd hh:mm:ss'));
+ * console.log('Date formatDate value:', formatDate(new Date(2014, 1, 11), 'MM/dd/yyyy'));
+ * ```
+ *
+ * Output:
+ *
+ * ```
+ * Default formatDate value: 2023-01-11
+ * String formatDate value: 2022-01-11 14:12:26
+ * Number formatDate value: 2022-01-11 14:07:15
+ * Date formatDate value: 02/11/2014
+ * ```
+ *
+ * @param {Date|number|string} dateIns Original Date
+ * @param {string} format Format String
+ * @returns {string} Return the formatted date string.
+ */
+export function formatDate(
+  dateIns?: Date | number | string,
+  format = 'yyyy-MM-dd'
+): string {
+  if (!dateIns) {
+    dateIns = new Date();
+  }
+  const tempDate = new Date(dateIns);
+  const o: {
+    [key: string]: string | number;
+  } = {
+    yyyy: tempDate.getFullYear(),
+    MM: tempDate.getMonth() + 1,
+    dd: tempDate.getDate(),
+    hh:
+      tempDate.getHours() < 10
+        ? '0' + tempDate.getHours()
+        : tempDate.getHours(),
+    mm:
+      tempDate.getMinutes() < 10
+        ? '0' + tempDate.getMinutes()
+        : tempDate.getMinutes(),
+    ss:
+      tempDate.getSeconds() < 10
+        ? '0' + tempDate.getSeconds()
+        : tempDate.getSeconds()
+  };
+  let tempFormat = format || 'yyyy-MM-dd';
+  Object.keys(o).forEach(key => {
+    let value = o[key];
+    if (key === 'MM' && Number(value) <= 9) {
+      value = `0${value}`;
+    }
+    tempFormat = tempFormat.replace(key, String(value));
+  });
+  return tempFormat;
 }

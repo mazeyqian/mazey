@@ -26,7 +26,7 @@ Use mazey from CDN.
 <script type="text/javascript" src="//i.mazey.net/mazey/lib/mazey.min.js"></script>
 ```
 
-Of course, you can also download this file and serve it yourself.
+Of course, you can also download this file and serve it yourself. The file locates at the `lib/mazey.min.js`.
 
 ## Usage
 
@@ -71,6 +71,8 @@ There ara some examples maintained by hand below. For more information, please c
   * [deepCopyObject](#deepcopyobject)
   * [isJsonString](#isjsonstring)
   * [generateRndNum](#generaterndnum)
+  * [formatDate](#formatdate)
+  * [isValidData](#isvaliddata)
 - [DOM](#dom)
   * [Class](#class)
   * [addStyle](#addstyle)
@@ -317,6 +319,69 @@ Produce a random string of number, `generateRndNum(7)` => '7658495'.
 generateRndNum(4); // '9730'
 generateRndNum(7); // '2262490'
 ```
+
+#### formatDate
+
+Return the formatted date string in the given format.
+
+Usage:
+
+```
+console.log('Default formatDate value:', formatDate());
+console.log('String formatDate value:', formatDate('Tue Jan 11 2022 14:12:26 GMT+0800 (China Standard Time)', 'yyyy-MM-dd hh:mm:ss'));
+console.log('Number formatDate value:', formatDate(1641881235000, 'yyyy-MM-dd hh:mm:ss'));
+console.log('Date formatDate value:', formatDate(new Date(2014, 1, 11), 'MM/dd/yyyy'));
+```
+
+Output:
+
+```
+Default formatDate value: 2023-01-11
+String formatDate value: 2022-01-11 14:12:26
+Number formatDate value: 2022-01-11 14:07:15
+Date formatDate value: 02/11/2014
+```
+
+<!-- @param {Date|number|string} dateIns Original Date
+@param {string} format Format String
+@returns {string} Return the formatted date string. -->
+
+#### isValidData
+
+Determine the validity of the data.
+
+Usage:
+
+```
+const validData = {
+  a: {
+    b: {
+      c: 413
+    }
+  }
+};
+
+const isValidDataResA = isValidData(validData, ['a', 'b', 'c'], 2333);
+const isValidDataResB = isValidData(validData, ['a', 'b', 'c'], 413);
+const isValidDataResC = isValidData(validData, ['d', 'd'], 413);
+
+console.log('isValidDataResA:', isValidDataResA);
+console.log('isValidDataResB:', isValidDataResB);
+console.log('isValidDataResC:', isValidDataResC);
+```
+
+Output:
+
+```
+isValidDataResA: false
+isValidDataResB: true
+isValidDataResC: false
+```
+
+<!-- @param {any} data Original Data
+@param {string[]} attributes Data Attributes
+@param {any} validValue Given Value for verifying.
+@returns {boolean} Return TRUE if the data is valid. -->
 
 ### DOM
 
@@ -744,7 +809,7 @@ MazeyLog: I am object. {a: 123, b: 456}
 
 ```
 # Install
-npm i --registry=https://registry.npmjs.org
+npm i
 
 # Serve
 npm run dev

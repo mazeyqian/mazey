@@ -1,4 +1,3 @@
-// declare const navigator any;
-// declare namespace navigator {
-//   let connection: string;
-// }
+/**
+ * @author: Mazey Chu
+ */
