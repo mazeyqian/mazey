@@ -426,10 +426,10 @@ export declare function loadCSS(url: string, options?: {
  * @returns {Promise<boolean>} -- true 成功
  */
 export declare function loadScript(url: string, options?: {
-    id: string;
-    callback: (...params: any[]) => any;
-    timeout: number;
-    isDefer: boolean;
+    id?: string;
+    callback?: (...params: any[]) => any;
+    timeout?: number;
+    isDefer?: boolean;
 }): Promise<boolean | string | Error>;
 /**
  * @method mNow
@@ -730,8 +730,8 @@ export declare function genCustomConsole(prefix?: string, options?: {
  * Reference: [Handling Errors](https://axios-http.com/docs/handling_errors)
  */
 export declare function zAxiosIsValidRes(res: any, options?: {
-    validStatusRange: number[];
-    validCode: number[];
+    validStatusRange?: number[];
+    validCode?: number[];
 }): boolean;
 /**
  * Verify the validity of a non-empty array.
