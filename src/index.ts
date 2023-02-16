@@ -1089,9 +1089,9 @@ interface WebPerformance {
  * Usage:
  *
  * ```
- * // `camelCase：true`(Default) Return hump data.
- * // `camelCase：false` Return underline data.
- * getPerformance(true)
+ * // `camelCase：false` (Default) Return underline data.
+ * // `camelCase：true` Return hump data.
+ * getPerformance()
  *  .then(res => {
  *   console.log(JSON.stringify(res));
  *  })
@@ -1101,7 +1101,7 @@ interface WebPerformance {
  * Output:
  *
  * ```
- * {"deviceType":"pc","network":"3g","unloadTime":0,"redirectTime":0,"dnsTime":0,"tcpTime":0,"responseTime":65,"downloadTime":1,"domreadyTime":369,"onloadTime":441,"whiteTime":94,"renderTime":441,"decodedBodySize":210,"encodedBodySize":210}
+ * {"os":"ios","os_version":"13_2_3","device_type":"phone","network":"4g","unload_time":0,"redirect_time":0,"dns_time":0,"tcp_time":0,"response_time":289,"download_time":762,"first_paint_time":469,"first_contentful_paint_time":469,"domready_time":1318,"onload_time":2767,"white_time":299,"render_time":2768,"decoded_body_size":979570,"encoded_body_size":324938}
  * ```
  *
  * Results:
@@ -1120,11 +1120,11 @@ interface WebPerformance {
  * | SSL | ssl_time | (Optional) connectEnd - secureConnectionStart |
  * | Download | download_time | (Optional) responseEnd - responseStart |
  *
- * @param {boolean} camelCase -- true（默认） 以驼峰形式返回数据 false 以下划线形式返回数据
+ * @param {boolean} camelCase -- false（默认） 以下划线形式返回数据 true 以驼峰形式返回数据
  * @returns {Promise<object>} 加载数据
  */
 export function getPerformance(
-  camelCase = true
+  camelCase = false
 ): Promise<WebPerformance | Error> {
   let success: (v: WebPerformance) => void;
   let fail: (v: Error) => void;
