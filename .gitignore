@@ -3,7 +3,7 @@ node_modules/
 dist/
 test/unit/coverage
 test/e2e/reports
-lib/
+lib/index.*
 
 # Cache folders
 .sass-cache/
@@ -33,6 +33,3 @@ selenium-debug.log*
 
 # Lock files
 package-lock.json
-
-# Unique
-!lib/mazey.min.js

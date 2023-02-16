@@ -52,9 +52,11 @@ const plugins = [
   // }),
 ];
 
+const iifePlugins = [];
+
 // console.log('debugMode:', debugMode);
 if (debugMode !== 'open') {
-  plugins.push(
+  iifePlugins.push(
     // Add minification.
     // https://github.com/TrySound/rollup-plugin-terser
     terser({ // https://github.com/terser/terser
@@ -86,6 +88,7 @@ export default {
       format: 'iife',
       name: 'mazey',
       banner,
+      plugins: iifePlugins,
     },
   ],
   plugins,
