@@ -935,10 +935,10 @@ export function loadCSS(
 export function loadScript(
   url: string,
   options: {
-    id: string;
-    callback: (...params: any[]) => any;
-    timeout: number;
-    isDefer: boolean;
+    id?: string;
+    callback?: (...params: any[]) => any;
+    timeout?: number;
+    isDefer?: boolean;
   } = {
     id: '',
     callback: function() {
@@ -2023,8 +2023,8 @@ export function genCustomConsole(
 export function zAxiosIsValidRes(
   res: any,
   options: {
-    validStatusRange: number[];
-    validCode: number[];
+    validStatusRange?: number[];
+    validCode?: number[];
   } = {
     validStatusRange: [200, 300],
     validCode: [0]
