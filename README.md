@@ -45,13 +45,13 @@ Import from CDN.
 ```
 <script type="text/javascript" src="//i.mazey.net/mazey/lib/mazey.min.js"></script>
 <script>
-mazey.isNumber(Infinity, { isUnFiniteAsNumber: true }); // true
+  mazey.isNumber(Infinity, { isUnFiniteAsNumber: true }); // true
 </script>
 ```
 
 ## API Examples
 
-There ara some examples maintained by hand below. For more information, please check the [full documentation](https://i.mazey.net/mazey/docs/modules/_index_.html).
+There ara some examples maintained by hand below. For more information, please check the [full documentation](https://mazey.cn/t/m).
 
 **Table of Contents**
 
