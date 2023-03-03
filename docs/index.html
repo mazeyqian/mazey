@@ -70,7 +70,7 @@
 				</a>
 				<p><a href="https://npmjs.org/package/mazey"><img src="https://img.shields.io/npm/v/mazey" alt="NPM version"></a>
 				<a href="https://github.com/mazeyqian/mazey"><img src="https://img.shields.io/npm/l/mazey" alt="l"></a></p>
-				<p>Mazey&#39;s functional library for daily front-end work. There are already many excellent libraries for front-end development, but creating a file named UtilsJS or CommonJS is generally used to supply common functions in projects. It&#39;s boring to copy similar functions among projects again and again. I will consistently update the library during my work life to save time.</p>
+				<p>Mazey&#39;s functional library for daily front-end work. There are already many excellent libraries for front-end development, but creating a file named UtilsJS or CommonJS is generally used to supply common functions in projects. It&#39;s boring to copy similar functions among projects again and again. Therefore, I will consistently update the library during my work life to save time.</p>
 				<a href="#install" id="install" style="color: inherit; text-decoration: none;">
 					<h2>Install</h2>
 				</a>
@@ -93,13 +93,13 @@ isNumber(<span class="hljs-literal">Infinity</span>, { isUnFiniteAsNumber: <span
 				<p>Import from CDN.</p>
 				<pre><code><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/javascript&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;//i.mazey.net/mazey/lib/mazey.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
-mazey.isNumber(<span class="hljs-literal">Infinity</span>, { <span class="hljs-attr">isUnFiniteAsNumber</span>: <span class="hljs-literal">true</span> }); <span class="hljs-comment">// true</span>
+  mazey.isNumber(<span class="hljs-literal">Infinity</span>, { <span class="hljs-attr">isUnFiniteAsNumber</span>: <span class="hljs-literal">true</span> }); <span class="hljs-comment">// true</span>
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 </code></pre>
 				<a href="#api-examples" id="api-examples" style="color: inherit; text-decoration: none;">
 					<h2>API Examples</h2>
 				</a>
-				<p>There ara some examples maintained by hand below. For more information, please check the <a href="https://i.mazey.net/mazey/docs/modules/_index_.html">full documentation</a>.</p>
+				<p>There ara some examples maintained by hand below. For more information, please check the <a href="https://mazey.cn/t/m">full documentation</a>.</p>
 				<p><strong>Table of Contents</strong></p>
 				<!-- toc - begin -->
 				<ul>
@@ -692,16 +692,16 @@ const isMobileQQ = [<span class="hljs-string">&#x27;android&#x27;</span>, <span 
 				<p>Get page load time(PerformanceTiming).</p>
 				<!-- ZH: 获取页面加载相关的各项数据 -->
 				<p>Usage:</p>
-				<pre><code>// `camelCase：<span class="hljs-literal">true</span>`(Default) <span class="hljs-keyword">Return</span> hump data.
-// `camelCase：<span class="hljs-literal">false</span>` <span class="hljs-keyword">Return</span> underline data.
-getPerformance(<span class="hljs-literal">true</span>)
+				<pre><code>// `camelCase：<span class="hljs-literal">false</span>` (Default) <span class="hljs-keyword">Return</span> underline data.
+// `camelCase：<span class="hljs-literal">true</span>` <span class="hljs-keyword">Return</span> hump data.
+getPerformance()
  .then(res =&gt; {
   console.log(JSON.stringify(res))<span class="hljs-comment">;</span>
  })
  .catch(console.error)<span class="hljs-comment">;</span>
 </code></pre>
 				<p>Output:</p>
-				<pre><code>{<span class="hljs-attr">&quot;deviceType&quot;</span>:<span class="hljs-string">&quot;pc&quot;</span>,<span class="hljs-attr">&quot;network&quot;</span>:<span class="hljs-string">&quot;3g&quot;</span>,<span class="hljs-attr">&quot;unloadTime&quot;</span>:<span class="hljs-number">0</span>,<span class="hljs-attr">&quot;redirectTime&quot;</span>:<span class="hljs-number">0</span>,<span class="hljs-attr">&quot;dnsTime&quot;</span>:<span class="hljs-number">0</span>,<span class="hljs-attr">&quot;tcpTime&quot;</span>:<span class="hljs-number">0</span>,<span class="hljs-attr">&quot;responseTime&quot;</span>:<span class="hljs-number">65</span>,<span class="hljs-attr">&quot;downloadTime&quot;</span>:<span class="hljs-number">1</span>,<span class="hljs-attr">&quot;domreadyTime&quot;</span>:<span class="hljs-number">369</span>,<span class="hljs-attr">&quot;onloadTime&quot;</span>:<span class="hljs-number">441</span>,<span class="hljs-attr">&quot;whiteTime&quot;</span>:<span class="hljs-number">94</span>,<span class="hljs-attr">&quot;renderTime&quot;</span>:<span class="hljs-number">441</span>,<span class="hljs-attr">&quot;decodedBodySize&quot;</span>:<span class="hljs-number">210</span>,<span class="hljs-attr">&quot;encodedBodySize&quot;</span>:<span class="hljs-number">210</span>}
+				<pre><code>{<span class="hljs-attr">&quot;os&quot;</span>:<span class="hljs-string">&quot;ios&quot;</span>,<span class="hljs-attr">&quot;os_version&quot;</span>:<span class="hljs-string">&quot;13_2_3&quot;</span>,<span class="hljs-attr">&quot;device_type&quot;</span>:<span class="hljs-string">&quot;phone&quot;</span>,<span class="hljs-attr">&quot;network&quot;</span>:<span class="hljs-string">&quot;4g&quot;</span>,<span class="hljs-attr">&quot;unload_time&quot;</span>:<span class="hljs-number">0</span>,<span class="hljs-attr">&quot;redirect_time&quot;</span>:<span class="hljs-number">0</span>,<span class="hljs-attr">&quot;dns_time&quot;</span>:<span class="hljs-number">0</span>,<span class="hljs-attr">&quot;tcp_time&quot;</span>:<span class="hljs-number">0</span>,<span class="hljs-attr">&quot;response_time&quot;</span>:<span class="hljs-number">289</span>,<span class="hljs-attr">&quot;download_time&quot;</span>:<span class="hljs-number">762</span>,<span class="hljs-attr">&quot;first_paint_time&quot;</span>:<span class="hljs-number">469</span>,<span class="hljs-attr">&quot;first_contentful_paint_time&quot;</span>:<span class="hljs-number">469</span>,<span class="hljs-attr">&quot;domready_time&quot;</span>:<span class="hljs-number">1318</span>,<span class="hljs-attr">&quot;onload_time&quot;</span>:<span class="hljs-number">2767</span>,<span class="hljs-attr">&quot;white_time&quot;</span>:<span class="hljs-number">299</span>,<span class="hljs-attr">&quot;render_time&quot;</span>:<span class="hljs-number">2768</span>,<span class="hljs-attr">&quot;decoded_body_size&quot;</span>:<span class="hljs-number">979570</span>,<span class="hljs-attr">&quot;encoded_body_size&quot;</span>:<span class="hljs-number">324938</span>}
 </code></pre>
 				<p>Results:</p>
 				<table>
@@ -768,7 +768,7 @@ getPerformance(<span class="hljs-literal">true</span>)
 							<td>(Optional) responseEnd - responseStart</td>
 						</tr>
 				</tbody></table>
-				<!-- @param {boolean} camelCase -- true（默认） 以驼峰形式返回数据 false 以下划线形式返回数据
+				<!-- @param {boolean} camelCase -- false（默认） 以下划线形式返回数据 true 以驼峰形式返回数据
 @returns {Promise<object>} 加载数据 -->
 				<a href="#margin-of-safety" id="margin-of-safety" style="color: inherit; text-decoration: none;">
 					<h3>Margin of Safety</h3>
