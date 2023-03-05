@@ -1084,6 +1084,9 @@ export function getCookie(name: string): string {
   return '';
 }
 
+/**
+ * @hidden
+ */
 interface WebPerformance {
   [key: string]: string | number;
 }
