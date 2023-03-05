@@ -702,7 +702,7 @@ Results:
 | Supporter version | supporterVs | - |
 | Shell | shell | (Optional) wechat, qq_browser, qq_app, uc, 360, 2345, sougou, liebao, maxthon, bilibili |
 | Shell version | shellVs | (Optional) 20/... |
-| Apple device type | appleType | (Optional) iphone, ipad, ipod, iwatch |
+| Apple device type | appleType | (Optional) ipad, iphone, ipod, iwatch |
 
 Example: Determine the environment of the mobile QQ.
 
@@ -711,7 +711,8 @@ const { system, shell } = getBrowserInfo();
 const isMobileQQ = ['android', 'ios'].includes(system) && ['qq_browser', 'qq_app'].includes(shell);
 ```
 
-<!-- @returns 浏览器信息 -->
+<!-- @returns 浏览器信息
+@category Browser Information -->
 
 ### Web Performance
 

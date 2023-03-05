@@ -1515,7 +1515,7 @@ export function isSafePWAEnv(): boolean {
  * | Supporter version | supporterVs | - |
  * | Shell | shell | (Optional) wechat, qq_browser, qq_app, uc, 360, 2345, sougou, liebao, maxthon, bilibili |
  * | Shell version | shellVs | (Optional) 20/... |
- * | Apple device type | appleType | (Optional) iphone, ipad, ipod, iwatch |
+ * | Apple device type | appleType | (Optional) ipad, iphone, ipod, iwatch |
  *
  * Example: Determine the environment of the mobile QQ.
  *
@@ -1525,6 +1525,7 @@ export function isSafePWAEnv(): boolean {
  * ```
  *
  * @returns 浏览器信息
+ * @category Browser Information
  */
 export function getBrowserInfo(): {
   engine: string; // webkit gecko presto trident
@@ -1567,10 +1568,10 @@ export function getBrowserInfo(): {
       system = 'android'; // android系统
     } else if (testUa(/ios|iphone|ipad|ipod|iwatch/g)) {
       system = 'ios'; // ios系统
-      if (testUa(/iphone/g)) {
-        appleType = 'iphone';
-      } else if (testUa(/ipad/g)) {
+      if (testUa(/ipad/g)) {
         appleType = 'ipad';
+      } else if (testUa(/iphone/g)) {
+        appleType = 'iphone';
       } else if (testUa(/iwatch/g)) {
         appleType = 'iwatch';
       } else if (testUa(/ipod/g)) {
