@@ -134,7 +134,8 @@ loadScript(
 @param {function} options.callback -- 加载后回调函数
 @param {number} options.timeout -- 超时时长
 @param {boolean} options.isDefer -- 是否添加 defer 标签
-@returns {Promise<boolean>} -- true 成功 -->
+@returns {Promise<boolean>} -- true 成功
+@category Load Resource -->
 
 #### loadCSS
 
@@ -163,7 +164,8 @@ loadCSS(
 
 <!-- @param {string} url -- css资源路径
 @param {string} options.id -- link标签id
-@returns {Promise<boolean>} true -- 加载成功 -->
+@returns {Promise<boolean>} true -- 加载成功
+@category Load Resource -->
 
 #### windowLoaded
 
@@ -182,7 +184,8 @@ windowLoaded(30) // second
 ```
 
 <!-- @param {number} timeout 超时时间 / 单位：秒
-@returns {Promise<string>} document is loaded? 'complete' 'load' / 'timeout' -->
+@returns {Promise<string>} document is loaded? 'complete' 'load' / 'timeout'
+@category Load Resource -->
 
 ### Function
 
@@ -464,7 +467,8 @@ getQueryParam('t4'); // 4
 ```
 
 <!-- @param {string} param Query param.
-@returns {string} value -->
+@returns {string} value
+@category URL -->
 
 #### getUrlParam
 
@@ -477,7 +481,8 @@ getUrlParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't4'); // 4
 
 <!-- @param {string} url URL string.
 @param {string} param Query param.
-@returns {string} value -->
+@returns {string} value
+@category URL -->
 
 #### updateQueryParam
 
@@ -500,7 +505,8 @@ http://example.com/?t1=1&t2=2&t3=3&t4=four
 <!-- @param {string} url URL string.
 @param {string} param Query param.
 @param {string} value Param's value.
-@returns {string} URL. -->
+@returns {string} URL.
+@category URL -->
 
 #### getHashQueryParam
 
@@ -523,7 +529,8 @@ Output:
 ```
 
 <!-- @param {string} param Query param.
-@returns {string} value -->
+@returns {string} value
+@category URL -->
 
 #### getDomain
 
@@ -544,7 +551,8 @@ example.com/test/thanks
 ```
 
 <!-- @param {string} url
-@param {array} rules Object.keys(location), ['href', 'protocol', 'host', 'hostname', 'port', 'pathname', 'search', 'hash'], ['hostname', 'pathname'] = 'km.mazey.net/plugins/servlet/mobile' -->
+@param {array} rules Object.keys(location), ['href', 'protocol', 'host', 'hostname', 'port', 'pathname', 'search', 'hash'], ['hostname', 'pathname'] = 'km.mazey.net/plugins/servlet/mobile'
+@category URL -->
 
 ### Cache Data
 

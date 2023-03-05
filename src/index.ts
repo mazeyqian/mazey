@@ -114,6 +114,7 @@ export function calLongestCommonSubsequence(
  *
  * @param {string} param Query param.
  * @returns {string} value
+ * @category URL
  */
 export function getQueryParam(param: string): string {
   const reg = new RegExp('(^|&)' + param + '=([^&]*)(&|$)');
@@ -136,6 +137,7 @@ export function getQueryParam(param: string): string {
  * @param {string} url URL string.
  * @param {string} param Query param.
  * @returns {string} value
+ * @category URL
  */
 export function getUrlParam(url: string, param: string): string | string[] {
   const result: {
@@ -179,6 +181,7 @@ export function getUrlParam(url: string, param: string): string | string[] {
  * @param {string} param Query param.
  * @param {string} value Param's value.
  * @returns {string} URL.
+ * @category URL
  */
 export function updateQueryParam(
   url: string,
@@ -215,6 +218,7 @@ export function updateQueryParam(
  *
  * @param {string} param Query param.
  * @returns {string} value
+ * @category URL
  */
 export function getHashQueryParam(param: string): string {
   const hashs = location.hash.split('?');
@@ -245,6 +249,7 @@ export function getHashQueryParam(param: string): string {
  *
  * @param {string} url
  * @param {array} rules Object.keys(location), ['href', 'protocol', 'host', 'hostname', 'port', 'pathname', 'search', 'hash'], ['hostname', 'pathname'] = 'km.mazey.net/plugins/servlet/mobile'
+ * @category URL
  */
 export function getDomain(url: string, rules = ['hostname']): string {
   const aEl: any = document.createElement('a');
@@ -775,6 +780,7 @@ export function getLocalStorage(key: string): any {
  * @param {string} url -- css资源路径
  * @param {string} options.id -- link标签id
  * @returns {Promise<boolean>} true -- 加载成功
+ * @category Load Resource
  */
 export function loadCSS(
   url: string,
@@ -931,6 +937,7 @@ export function loadCSS(
  * @param {number} options.timeout -- 超时时长
  * @param {boolean} options.isDefer -- 是否添加 defer 标签
  * @returns {Promise<boolean>} -- true 成功
+ * @category Load Resource
  */
 export function loadScript(
   url: string,
@@ -1778,6 +1785,7 @@ export function cutCHSString(str: string, len: number, hasDot = false): string {
  *
  * @param {number} timeout 超时时间 / 单位：秒
  * @returns {Promise<string>} document is loaded? 'complete' 'load' / 'timeout'
+ * @category Load Resource
  */
 export function windowLoaded(timeout = 90): Promise<string | Error> {
   let loaded: (value: string) => void = () => undefined;
