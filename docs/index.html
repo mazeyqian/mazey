@@ -236,9 +236,66 @@
 				<!-- @param {number} timeout 超时时间 / 单位：秒
 @returns {Promise<string>} document is loaded? 'complete' 'load' / 'timeout'
 @category Load Resource -->
-				<a href="#function" id="function" style="color: inherit; text-decoration: none;">
-					<h3>Function</h3>
+				<a href="#util" id="util" style="color: inherit; text-decoration: none;">
+					<h3>Util</h3>
 				</a>
+				<a href="#isnumber" id="isnumber" style="color: inherit; text-decoration: none;">
+					<h4>isNumber</h4>
+				</a>
+				<p>Check whether it is a right number.</p>
+				<!-- ZH: 判断是否有效数字 -->
+				<pre><code><span style="color: #795E26">isNumber</span><span style="color: #000000">(</span><span style="color: #098658">123</span><span style="color: #000000">); </span><span style="color: #008000">// true</span>
+<span style="color: #795E26">isNumber</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;123&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// false</span>
+<span style="color: #008000">// Default: NaN, Infinity is not Number</span>
+<span style="color: #795E26">isNumber</span><span style="color: #000000">(</span><span style="color: #0000FF">Infinity</span><span style="color: #000000">); </span><span style="color: #008000">// false</span>
+<span style="color: #795E26">isNumber</span><span style="color: #000000">(</span><span style="color: #0000FF">Infinity</span><span style="color: #000000">, { </span><span style="color: #001080">isUnFiniteAsNumber:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000"> }); </span><span style="color: #008000">// true</span>
+<span style="color: #795E26">isNumber</span><span style="color: #000000">(</span><span style="color: #0000FF">NaN</span><span style="color: #000000">); </span><span style="color: #008000">// false</span>
+<span style="color: #795E26">isNumber</span><span style="color: #000000">(</span><span style="color: #0000FF">NaN</span><span style="color: #000000">, { </span><span style="color: #001080">isNaNAsNumber:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">, </span><span style="color: #001080">isUnFiniteAsNumber:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000"> }); </span><span style="color: #008000">// true</span>
+</code></pre>
+				<!-- @param {*} num 被判断的值
+@param {boolean} options.isNaNAsNumber 是否 NaN 算数字（默认不算）
+@param {boolean} options.isUnFiniteAsNumber 是否 无限 算数字（默认不算）
+@returns {boolean} true 是数字 -->
+				<a href="#generaterndnum" id="generaterndnum" style="color: inherit; text-decoration: none;">
+					<h4>generateRndNum</h4>
+				</a>
+				<p>Produce a random string of number, <code>generateRndNum(7)</code> =&gt; &#39;7658495&#39;.</p>
+				<pre><code><span style="color: #795E26">generateRndNum</span><span style="color: #000000">(</span><span style="color: #098658">4</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;9730&#039;</span>
+<span style="color: #795E26">generateRndNum</span><span style="color: #000000">(</span><span style="color: #098658">7</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;2262490&#039;</span>
+</code></pre>
+				<a href="#isjsonstring" id="isjsonstring" style="color: inherit; text-decoration: none;">
+					<h4>isJsonString</h4>
+				</a>
+				<p>Check whether it is a valid JSON string.</p>
+				<p>Usage:</p>
+				<pre><code><span style="color: #795E26">isJsonString</span><span style="color: #000000">(</span><span style="color: #A31515">`[&#039;a&#039;, &#039;b&#039;, &#039;c&#039;]`</span><span style="color: #000000">);</span>
+<span style="color: #795E26">isJsonString</span><span style="color: #000000">(</span><span style="color: #A31515">`[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]`</span><span style="color: #000000">);</span>
+</code></pre>
+				<p>Output:</p>
+				<pre><code><span style="color: #0000FF">false</span>
+<span style="color: #0000FF">true</span>
+</code></pre>
+				<!-- @param {string} str The string to check.
+@returns {boolean} Return the result of checking. -->
+				<a href="#formatdate" id="formatdate" style="color: inherit; text-decoration: none;">
+					<h4>formatDate</h4>
+				</a>
+				<p>Return the formatted date string in the given format.</p>
+				<p>Usage:</p>
+				<pre><code><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;Default formatDate value:&#039;</span><span style="color: #000000">, </span><span style="color: #795E26">formatDate</span><span style="color: #000000">());</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;String formatDate value:&#039;</span><span style="color: #000000">, </span><span style="color: #795E26">formatDate</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;Tue Jan 11 2022 14:12:26 GMT+0800 (China Standard Time)&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;yyyy-MM-dd hh:mm:ss&#039;</span><span style="color: #000000">));</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;Number formatDate value:&#039;</span><span style="color: #000000">, </span><span style="color: #795E26">formatDate</span><span style="color: #000000">(</span><span style="color: #098658">1641881235000</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;yyyy-MM-dd hh:mm:ss&#039;</span><span style="color: #000000">));</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;Date formatDate value:&#039;</span><span style="color: #000000">, </span><span style="color: #795E26">formatDate</span><span style="color: #000000">(</span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #267F99">Date</span><span style="color: #000000">(</span><span style="color: #098658">2014</span><span style="color: #000000">, </span><span style="color: #098658">1</span><span style="color: #000000">, </span><span style="color: #098658">11</span><span style="color: #000000">), </span><span style="color: #A31515">&#039;MM/dd/yyyy&#039;</span><span style="color: #000000">));</span>
+</code></pre>
+				<p>Output:</p>
+				<pre><code><span style="color: #001080">Default</span><span style="color: #000000"> </span><span style="color: #001080">formatDate</span><span style="color: #000000"> value: </span><span style="color: #098658">2023</span><span style="color: #000000">-</span><span style="color: #098658">01</span><span style="color: #000000">-</span><span style="color: #098658">11</span>
+<span style="color: #267F99">String</span><span style="color: #000000"> </span><span style="color: #001080">formatDate</span><span style="color: #000000"> value: </span><span style="color: #098658">2022</span><span style="color: #000000">-</span><span style="color: #098658">01</span><span style="color: #000000">-</span><span style="color: #098658">11</span><span style="color: #000000"> </span><span style="color: #098658">14</span><span style="color: #000000">:</span><span style="color: #098658">12</span><span style="color: #000000">:</span><span style="color: #098658">26</span>
+<span style="color: #267F99">Number</span><span style="color: #000000"> </span><span style="color: #001080">formatDate</span><span style="color: #000000"> value: </span><span style="color: #098658">2022</span><span style="color: #000000">-</span><span style="color: #098658">01</span><span style="color: #000000">-</span><span style="color: #098658">11</span><span style="color: #000000"> </span><span style="color: #098658">14</span><span style="color: #000000">:</span><span style="color: #098658">07</span><span style="color: #000000">:</span><span style="color: #098658">15</span>
+<span style="color: #267F99">Date</span><span style="color: #000000"> </span><span style="color: #001080">formatDate</span><span style="color: #000000"> value: </span><span style="color: #098658">02</span><span style="color: #000000">/</span><span style="color: #098658">11</span><span style="color: #000000">/</span><span style="color: #098658">2014</span>
+</code></pre>
+				<!-- @param {Date|number|string} dateIns Original Date
+@param {string} format Format String
+@returns {string} Return the formatted date string. -->
 				<a href="#debounce" id="debounce" style="color: inherit; text-decoration: none;">
 					<h4>debounce</h4>
 				</a>
@@ -258,23 +315,6 @@
 <span style="color: #000000">}, </span><span style="color: #098658">1000</span><span style="color: #000000">, { </span><span style="color: #001080">leading:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000"> });</span>
 </code></pre>
 				<p>Reference: <a href="https://lodash.com/docs/4.17.15#throttle">Lodash</a></p>
-				<a href="#isnumber" id="isnumber" style="color: inherit; text-decoration: none;">
-					<h4>isNumber</h4>
-				</a>
-				<p>Check whether it is a right number.</p>
-				<!-- ZH: 判断是否有效数字 -->
-				<pre><code><span style="color: #795E26">isNumber</span><span style="color: #000000">(</span><span style="color: #098658">123</span><span style="color: #000000">); </span><span style="color: #008000">// true</span>
-<span style="color: #795E26">isNumber</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;123&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// false</span>
-<span style="color: #008000">// Default: NaN, Infinity is not Number</span>
-<span style="color: #795E26">isNumber</span><span style="color: #000000">(</span><span style="color: #0000FF">Infinity</span><span style="color: #000000">); </span><span style="color: #008000">// false</span>
-<span style="color: #795E26">isNumber</span><span style="color: #000000">(</span><span style="color: #0000FF">Infinity</span><span style="color: #000000">, { </span><span style="color: #001080">isUnFiniteAsNumber:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000"> }); </span><span style="color: #008000">// true</span>
-<span style="color: #795E26">isNumber</span><span style="color: #000000">(</span><span style="color: #0000FF">NaN</span><span style="color: #000000">); </span><span style="color: #008000">// false</span>
-<span style="color: #795E26">isNumber</span><span style="color: #000000">(</span><span style="color: #0000FF">NaN</span><span style="color: #000000">, { </span><span style="color: #001080">isNaNAsNumber:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">, </span><span style="color: #001080">isUnFiniteAsNumber:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000"> }); </span><span style="color: #008000">// true</span>
-</code></pre>
-				<!-- @param {*} num 被判断的值
-@param {boolean} options.isNaNAsNumber 是否 NaN 算数字（默认不算）
-@param {boolean} options.isUnFiniteAsNumber 是否 无限 算数字（默认不算）
-@returns {boolean} true 是数字 -->
 				<a href="#camelcasetokebabcase" id="camelcasetokebabcase" style="color: inherit; text-decoration: none;">
 					<h4>camelCaseToKebabCase</h4>
 				</a>
@@ -316,46 +356,6 @@
 </code></pre>
 				<!-- @param {object} obj The value to clone.
 @returns {object} Returns the deep cloned value. -->
-				<a href="#isjsonstring" id="isjsonstring" style="color: inherit; text-decoration: none;">
-					<h4>isJsonString</h4>
-				</a>
-				<p>Check whether it is a valid JSON string.</p>
-				<p>Usage:</p>
-				<pre><code><span style="color: #795E26">isJsonString</span><span style="color: #000000">(</span><span style="color: #A31515">`[&#039;a&#039;, &#039;b&#039;, &#039;c&#039;]`</span><span style="color: #000000">);</span>
-<span style="color: #795E26">isJsonString</span><span style="color: #000000">(</span><span style="color: #A31515">`[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]`</span><span style="color: #000000">);</span>
-</code></pre>
-				<p>Output:</p>
-				<pre><code><span style="color: #0000FF">false</span>
-<span style="color: #0000FF">true</span>
-</code></pre>
-				<!-- @param {string} str The string to check.
-@returns {boolean} Return the result of checking. -->
-				<a href="#generaterndnum" id="generaterndnum" style="color: inherit; text-decoration: none;">
-					<h4>generateRndNum</h4>
-				</a>
-				<p>Produce a random string of number, <code>generateRndNum(7)</code> =&gt; &#39;7658495&#39;.</p>
-				<pre><code><span style="color: #795E26">generateRndNum</span><span style="color: #000000">(</span><span style="color: #098658">4</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;9730&#039;</span>
-<span style="color: #795E26">generateRndNum</span><span style="color: #000000">(</span><span style="color: #098658">7</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;2262490&#039;</span>
-</code></pre>
-				<a href="#formatdate" id="formatdate" style="color: inherit; text-decoration: none;">
-					<h4>formatDate</h4>
-				</a>
-				<p>Return the formatted date string in the given format.</p>
-				<p>Usage:</p>
-				<pre><code><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;Default formatDate value:&#039;</span><span style="color: #000000">, </span><span style="color: #795E26">formatDate</span><span style="color: #000000">());</span>
-<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;String formatDate value:&#039;</span><span style="color: #000000">, </span><span style="color: #795E26">formatDate</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;Tue Jan 11 2022 14:12:26 GMT+0800 (China Standard Time)&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;yyyy-MM-dd hh:mm:ss&#039;</span><span style="color: #000000">));</span>
-<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;Number formatDate value:&#039;</span><span style="color: #000000">, </span><span style="color: #795E26">formatDate</span><span style="color: #000000">(</span><span style="color: #098658">1641881235000</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;yyyy-MM-dd hh:mm:ss&#039;</span><span style="color: #000000">));</span>
-<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;Date formatDate value:&#039;</span><span style="color: #000000">, </span><span style="color: #795E26">formatDate</span><span style="color: #000000">(</span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #267F99">Date</span><span style="color: #000000">(</span><span style="color: #098658">2014</span><span style="color: #000000">, </span><span style="color: #098658">1</span><span style="color: #000000">, </span><span style="color: #098658">11</span><span style="color: #000000">), </span><span style="color: #A31515">&#039;MM/dd/yyyy&#039;</span><span style="color: #000000">));</span>
-</code></pre>
-				<p>Output:</p>
-				<pre><code><span style="color: #001080">Default</span><span style="color: #000000"> </span><span style="color: #001080">formatDate</span><span style="color: #000000"> value: </span><span style="color: #098658">2023</span><span style="color: #000000">-</span><span style="color: #098658">01</span><span style="color: #000000">-</span><span style="color: #098658">11</span>
-<span style="color: #267F99">String</span><span style="color: #000000"> </span><span style="color: #001080">formatDate</span><span style="color: #000000"> value: </span><span style="color: #098658">2022</span><span style="color: #000000">-</span><span style="color: #098658">01</span><span style="color: #000000">-</span><span style="color: #098658">11</span><span style="color: #000000"> </span><span style="color: #098658">14</span><span style="color: #000000">:</span><span style="color: #098658">12</span><span style="color: #000000">:</span><span style="color: #098658">26</span>
-<span style="color: #267F99">Number</span><span style="color: #000000"> </span><span style="color: #001080">formatDate</span><span style="color: #000000"> value: </span><span style="color: #098658">2022</span><span style="color: #000000">-</span><span style="color: #098658">01</span><span style="color: #000000">-</span><span style="color: #098658">11</span><span style="color: #000000"> </span><span style="color: #098658">14</span><span style="color: #000000">:</span><span style="color: #098658">07</span><span style="color: #000000">:</span><span style="color: #098658">15</span>
-<span style="color: #267F99">Date</span><span style="color: #000000"> </span><span style="color: #001080">formatDate</span><span style="color: #000000"> value: </span><span style="color: #098658">02</span><span style="color: #000000">/</span><span style="color: #098658">11</span><span style="color: #000000">/</span><span style="color: #098658">2014</span>
-</code></pre>
-				<!-- @param {Date|number|string} dateIns Original Date
-@param {string} format Format String
-@returns {string} Return the formatted date string. -->
 				<a href="#isvaliddata" id="isvaliddata" style="color: inherit; text-decoration: none;">
 					<h4>isValidData</h4>
 				</a>
@@ -389,19 +389,6 @@
 				<a href="#dom" id="dom" style="color: inherit; text-decoration: none;">
 					<h3>DOM</h3>
 				</a>
-				<a href="#class" id="class" style="color: inherit; text-decoration: none;">
-					<h4>Class</h4>
-				</a>
-				<p>Modify <code>class</code>.</p>
-				<pre><code><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">dom</span><span style="color: #000000"> = </span><span style="color: #001080">document</span><span style="color: #000000">.</span><span style="color: #795E26">querySelector</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;#box&#039;</span><span style="color: #000000">);</span>
-
-<span style="color: #008000">// Determine `class`</span>
-<span style="color: #795E26">hasClass</span><span style="color: #000000">(</span><span style="color: #001080">dom</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;test&#039;</span><span style="color: #000000">);</span>
-<span style="color: #008000">// Add `class`</span>
-<span style="color: #795E26">addClass</span><span style="color: #000000">(</span><span style="color: #001080">dom</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;test&#039;</span><span style="color: #000000">);</span>
-<span style="color: #008000">// Remove `class`</span>
-<span style="color: #795E26">removeClass</span><span style="color: #000000">(</span><span style="color: #001080">dom</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;test&#039;</span><span style="color: #000000">);</span>
-</code></pre>
 				<a href="#addstyle" id="addstyle" style="color: inherit; text-decoration: none;">
 					<h4>addStyle</h4>
 				</a>
@@ -444,6 +431,19 @@
 				<pre><code><span style="color: #795E26">newLine</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;a</span><span style="color: #EE0000">\n</span><span style="color: #A31515">b</span><span style="color: #EE0000">\n</span><span style="color: #A31515">c&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;a&lt;br /&gt;b&lt;br /&gt;c&#039;</span>
 <span style="color: #795E26">newLine</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;a</span><span style="color: #EE0000">\n\n</span><span style="color: #A31515">bc&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;a&lt;br /&gt;&lt;br /&gt;bc&#039;</span>
 </code></pre>
+				<a href="#class" id="class" style="color: inherit; text-decoration: none;">
+					<h4>Class</h4>
+				</a>
+				<p>Modify <code>class</code>.</p>
+				<pre><code><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">dom</span><span style="color: #000000"> = </span><span style="color: #001080">document</span><span style="color: #000000">.</span><span style="color: #795E26">querySelector</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;#box&#039;</span><span style="color: #000000">);</span>
+
+<span style="color: #008000">// Determine `class`</span>
+<span style="color: #795E26">hasClass</span><span style="color: #000000">(</span><span style="color: #001080">dom</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;test&#039;</span><span style="color: #000000">);</span>
+<span style="color: #008000">// Add `class`</span>
+<span style="color: #795E26">addClass</span><span style="color: #000000">(</span><span style="color: #001080">dom</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;test&#039;</span><span style="color: #000000">);</span>
+<span style="color: #008000">// Remove `class`</span>
+<span style="color: #795E26">removeClass</span><span style="color: #000000">(</span><span style="color: #001080">dom</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;test&#039;</span><span style="color: #000000">);</span>
+</code></pre>
 				<a href="#url" id="url" style="color: inherit; text-decoration: none;">
 					<h3>URL</h3>
 				</a>
@@ -469,23 +469,6 @@
 				<!-- @param {string} url URL string.
 @param {string} param Query param.
 @returns {string} value
-@category URL -->
-				<a href="#updatequeryparam" id="updatequeryparam" style="color: inherit; text-decoration: none;">
-					<h4>updateQueryParam</h4>
-				</a>
-				<p>Update the query param&#39;s value of the input URL.</p>
-				<p>Usage:</p>
-				<pre><code><span style="color: #795E26">updateQueryParam</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;http://example.com/?t1=1&amp;t2=2&amp;t3=3&amp;t4=4&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;t3&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;three&#039;</span><span style="color: #000000">);</span>
-<span style="color: #795E26">updateQueryParam</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;http://example.com/?t1=1&amp;t2=2&amp;t3=3&amp;t4=4&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;t4&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;four&#039;</span><span style="color: #000000">);</span>
-</code></pre>
-				<p>Output:</p>
-				<pre><code><span style="color: #000000">http:</span><span style="color: #008000">//example.com/?t1=1&amp;t2=2&amp;t3=three&amp;t4=4</span>
-<span style="color: #000000">http:</span><span style="color: #008000">//example.com/?t1=1&amp;t2=2&amp;t3=3&amp;t4=four</span>
-</code></pre>
-				<!-- @param {string} url URL string.
-@param {string} param Query param.
-@param {string} value Param's value.
-@returns {string} URL.
 @category URL -->
 				<a href="#gethashqueryparam" id="gethashqueryparam" style="color: inherit; text-decoration: none;">
 					<h4>getHashQueryParam</h4>
@@ -518,6 +501,23 @@
 </code></pre>
 				<!-- @param {string} url
 @param {array} rules Object.keys(location), ['href', 'protocol', 'host', 'hostname', 'port', 'pathname', 'search', 'hash'], ['hostname', 'pathname'] = 'km.mazey.net/plugins/servlet/mobile'
+@category URL -->
+				<a href="#updatequeryparam" id="updatequeryparam" style="color: inherit; text-decoration: none;">
+					<h4>updateQueryParam</h4>
+				</a>
+				<p>Update the query param&#39;s value of the input URL.</p>
+				<p>Usage:</p>
+				<pre><code><span style="color: #795E26">updateQueryParam</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;http://example.com/?t1=1&amp;t2=2&amp;t3=3&amp;t4=4&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;t3&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;three&#039;</span><span style="color: #000000">);</span>
+<span style="color: #795E26">updateQueryParam</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;http://example.com/?t1=1&amp;t2=2&amp;t3=3&amp;t4=4&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;t4&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;four&#039;</span><span style="color: #000000">);</span>
+</code></pre>
+				<p>Output:</p>
+				<pre><code><span style="color: #000000">http:</span><span style="color: #008000">//example.com/?t1=1&amp;t2=2&amp;t3=three&amp;t4=4</span>
+<span style="color: #000000">http:</span><span style="color: #008000">//example.com/?t1=1&amp;t2=2&amp;t3=3&amp;t4=four</span>
+</code></pre>
+				<!-- @param {string} url URL string.
+@param {string} param Query param.
+@param {string} value Param's value.
+@returns {string} URL.
 @category URL -->
 				<a href="#cache-data" id="cache-data" style="color: inherit; text-decoration: none;">
 					<h3>Cache Data</h3>
