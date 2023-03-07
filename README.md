@@ -187,7 +187,84 @@ windowLoaded(30) // second
 @returns {Promise<string>} document is loaded? 'complete' 'load' / 'timeout'
 @category Load Resource -->
 
-### Function
+### Util
+
+#### isNumber
+
+Check whether it is a right number.
+
+<!-- ZH: 判断是否有效数字 -->
+
+```
+isNumber(123); // true
+isNumber('123'); // false
+// Default: NaN, Infinity is not Number
+isNumber(Infinity); // false
+isNumber(Infinity, { isUnFiniteAsNumber: true }); // true
+isNumber(NaN); // false
+isNumber(NaN, { isNaNAsNumber: true, isUnFiniteAsNumber: true }); // true
+```
+
+<!-- @param {*} num 被判断的值
+@param {boolean} options.isNaNAsNumber 是否 NaN 算数字（默认不算）
+@param {boolean} options.isUnFiniteAsNumber 是否 无限 算数字（默认不算）
+@returns {boolean} true 是数字 -->
+
+#### generateRndNum
+
+Produce a random string of number, `generateRndNum(7)` => '7658495'.
+
+```
+generateRndNum(4); // '9730'
+generateRndNum(7); // '2262490'
+```
+
+#### isJsonString
+
+Check whether it is a valid JSON string.
+
+Usage:
+
+```
+isJsonString(`['a', 'b', 'c']`);
+isJsonString(`["a", "b", "c"]`);
+```
+
+Output:
+
+```
+false
+true
+```
+
+<!-- @param {string} str The string to check.
+@returns {boolean} Return the result of checking. -->
+
+#### formatDate
+
+Return the formatted date string in the given format.
+
+Usage:
+
+```
+console.log('Default formatDate value:', formatDate());
+console.log('String formatDate value:', formatDate('Tue Jan 11 2022 14:12:26 GMT+0800 (China Standard Time)', 'yyyy-MM-dd hh:mm:ss'));
+console.log('Number formatDate value:', formatDate(1641881235000, 'yyyy-MM-dd hh:mm:ss'));
+console.log('Date formatDate value:', formatDate(new Date(2014, 1, 11), 'MM/dd/yyyy'));
+```
+
+Output:
+
+```
+Default formatDate value: 2023-01-11
+String formatDate value: 2022-01-11 14:12:26
+Number formatDate value: 2022-01-11 14:07:15
+Date formatDate value: 02/11/2014
+```
+
+<!-- @param {Date|number|string} dateIns Original Date
+@param {string} format Format String
+@returns {string} Return the formatted date string. -->
 
 #### debounce
 
@@ -214,27 +291,6 @@ const foo = throttle(() => {
 ```
 
 Reference: [Lodash](https://lodash.com/docs/4.17.15#throttle)
-
-#### isNumber
-
-Check whether it is a right number.
-
-<!-- ZH: 判断是否有效数字 -->
-
-```
-isNumber(123); // true
-isNumber('123'); // false
-// Default: NaN, Infinity is not Number
-isNumber(Infinity); // false
-isNumber(Infinity, { isUnFiniteAsNumber: true }); // true
-isNumber(NaN); // false
-isNumber(NaN, { isNaNAsNumber: true, isUnFiniteAsNumber: true }); // true
-```
-
-<!-- @param {*} num 被判断的值
-@param {boolean} options.isNaNAsNumber 是否 NaN 算数字（默认不算）
-@param {boolean} options.isUnFiniteAsNumber 是否 无限 算数字（默认不算）
-@returns {boolean} true 是数字 -->
 
 #### camelCaseToKebabCase
 
@@ -293,62 +349,6 @@ Output:
 <!-- @param {object} obj The value to clone.
 @returns {object} Returns the deep cloned value. -->
 
-#### isJsonString
-
-Check whether it is a valid JSON string.
-
-Usage:
-
-```
-isJsonString(`['a', 'b', 'c']`);
-isJsonString(`["a", "b", "c"]`);
-```
-
-Output:
-
-```
-false
-true
-```
-
-<!-- @param {string} str The string to check.
-@returns {boolean} Return the result of checking. -->
-
-#### generateRndNum
-
-Produce a random string of number, `generateRndNum(7)` => '7658495'.
-
-```
-generateRndNum(4); // '9730'
-generateRndNum(7); // '2262490'
-```
-
-#### formatDate
-
-Return the formatted date string in the given format.
-
-Usage:
-
-```
-console.log('Default formatDate value:', formatDate());
-console.log('String formatDate value:', formatDate('Tue Jan 11 2022 14:12:26 GMT+0800 (China Standard Time)', 'yyyy-MM-dd hh:mm:ss'));
-console.log('Number formatDate value:', formatDate(1641881235000, 'yyyy-MM-dd hh:mm:ss'));
-console.log('Date formatDate value:', formatDate(new Date(2014, 1, 11), 'MM/dd/yyyy'));
-```
-
-Output:
-
-```
-Default formatDate value: 2023-01-11
-String formatDate value: 2022-01-11 14:12:26
-Number formatDate value: 2022-01-11 14:07:15
-Date formatDate value: 02/11/2014
-```
-
-<!-- @param {Date|number|string} dateIns Original Date
-@param {string} format Format String
-@returns {string} Return the formatted date string. -->
-
 #### isValidData
 
 Determine the validity of the data.
@@ -387,21 +387,6 @@ isValidDataResC: false
 @returns {boolean} Return TRUE if the data is valid. -->
 
 ### DOM
-
-#### Class
-
-Modify `class`.
-
-```
-const dom = document.querySelector('#box');
-
-// Determine `class`
-hasClass(dom, 'test');
-// Add `class`
-addClass(dom, 'test');
-// Remove `class`
-removeClass(dom, 'test');
-```
 
 #### addStyle
 
@@ -453,6 +438,21 @@ newLine('a\nb\nc'); // 'a<br />b<br />c'
 newLine('a\n\nbc'); // 'a<br /><br />bc'
 ```
 
+#### Class
+
+Modify `class`.
+
+```
+const dom = document.querySelector('#box');
+
+// Determine `class`
+hasClass(dom, 'test');
+// Add `class`
+addClass(dom, 'test');
+// Remove `class`
+removeClass(dom, 'test');
+```
+
 ### URL
 
 #### getQueryParam
@@ -482,30 +482,6 @@ getUrlParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't4'); // 4
 <!-- @param {string} url URL string.
 @param {string} param Query param.
 @returns {string} value
-@category URL -->
-
-#### updateQueryParam
-
-Update the query param's value of the input URL.
-
-Usage:
-
-```
-updateQueryParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't3', 'three');
-updateQueryParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't4', 'four');
-```
-
-Output:
-
-```
-http://example.com/?t1=1&t2=2&t3=three&t4=4
-http://example.com/?t1=1&t2=2&t3=3&t4=four
-```
-
-<!-- @param {string} url URL string.
-@param {string} param Query param.
-@param {string} value Param's value.
-@returns {string} URL.
 @category URL -->
 
 #### getHashQueryParam
@@ -552,6 +528,30 @@ example.com/test/thanks
 
 <!-- @param {string} url
 @param {array} rules Object.keys(location), ['href', 'protocol', 'host', 'hostname', 'port', 'pathname', 'search', 'hash'], ['hostname', 'pathname'] = 'km.mazey.net/plugins/servlet/mobile'
+@category URL -->
+
+#### updateQueryParam
+
+Update the query param's value of the input URL.
+
+Usage:
+
+```
+updateQueryParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't3', 'three');
+updateQueryParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't4', 'four');
+```
+
+Output:
+
+```
+http://example.com/?t1=1&t2=2&t3=three&t4=4
+http://example.com/?t1=1&t2=2&t3=3&t4=four
+```
+
+<!-- @param {string} url URL string.
+@param {string} param Query param.
+@param {string} value Param's value.
+@returns {string} URL.
 @category URL -->
 
 ### Cache Data
