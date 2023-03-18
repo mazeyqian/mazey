@@ -10,7 +10,7 @@ English | [简体中文](https://github.com/mazeyqian/mazey/blob/master/README_C
 [l-image]: https://img.shields.io/npm/l/mazey
 [l-url]: https://github.com/mazeyqian/mazey
 
-Mazey's functional library for daily front-end work. There are already many excellent libraries for front-end development, but creating a file named UtilsJS or CommonJS is generally used to supply common functions in projects. It's boring to copy similar functions among projects again and again. I will consistently update the library during my work life to save time.
+Mazey's functional library for daily front-end work. There are already many excellent libraries for front-end development, but creating a file named UtilsJS or CommonJS is generally used to supply common functions in projects. It's boring to copy similar functions among projects again and again. Therefore, I will consistently update the library during my work life to save time.
 
 ## Install
 
@@ -45,13 +45,13 @@ Import from CDN.
 ```
 <script type="text/javascript" src="//i.mazey.net/mazey/lib/mazey.min.js"></script>
 <script>
-mazey.isNumber(Infinity, { isUnFiniteAsNumber: true }); // true
+  mazey.isNumber(Infinity, { isUnFiniteAsNumber: true }); // true
 </script>
 ```
 
 ## API Examples
 
-There ara some examples maintained by hand below. For more information, please check the [full documentation](https://i.mazey.net/mazey/docs/modules/_index_.html).
+There ara some examples maintained by hand below. For more information, please check the [full documentation](https://mazey.cn/t/m).
 
 **Table of Contents**
 
@@ -61,28 +61,28 @@ There ara some examples maintained by hand below. For more information, please c
   * [loadScript](#loadscript)
   * [loadCSS](#loadcss)
   * [windowLoaded](#windowloaded)
-- [Function](#function)
+- [Util](#util)
+  * [isNumber](#isnumber)
+  * [generateRndNum](#generaterndnum)
+  * [isJsonString](#isjsonstring)
+  * [formatDate](#formatdate)
   * [debounce](#debounce)
   * [throttle](#throttle)
-  * [isNumber](#isnumber)
   * [camelCaseToKebabCase](#camelcasetokebabcase)
   * [camelCase2Underscore](#camelcase2underscore)
   * [mTrim](#mtrim)
   * [deepCopyObject](#deepcopyobject)
-  * [isJsonString](#isjsonstring)
-  * [generateRndNum](#generaterndnum)
-  * [formatDate](#formatdate)
   * [isValidData](#isvaliddata)
 - [DOM](#dom)
-  * [Class](#class)
   * [addStyle](#addstyle)
   * [newLine](#newline)
+  * [Class](#class)
 - [URL](#url)
   * [getQueryParam](#getqueryparam)
   * [getUrlParam](#geturlparam)
-  * [updateQueryParam](#updatequeryparam)
   * [getHashQueryParam](#gethashqueryparam)
   * [getDomain](#getdomain)
+  * [updateQueryParam](#updatequeryparam)
 - [Cache Data](#cache-data)
   * [Storage](#storage)
   * [Cookie](#cookie)
@@ -134,7 +134,8 @@ loadScript(
 @param {function} options.callback -- 加载后回调函数
 @param {number} options.timeout -- 超时时长
 @param {boolean} options.isDefer -- 是否添加 defer 标签
-@returns {Promise<boolean>} -- true 成功 -->
+@returns {Promise<boolean>} -- true 成功
+@category Load Resource -->
 
 #### loadCSS
 
@@ -163,7 +164,8 @@ loadCSS(
 
 <!-- @param {string} url -- css资源路径
 @param {string} options.id -- link标签id
-@returns {Promise<boolean>} true -- 加载成功 -->
+@returns {Promise<boolean>} true -- 加载成功
+@category Load Resource -->
 
 #### windowLoaded
 
@@ -182,9 +184,87 @@ windowLoaded(30) // second
 ```
 
 <!-- @param {number} timeout 超时时间 / 单位：秒
-@returns {Promise<string>} document is loaded? 'complete' 'load' / 'timeout' -->
+@returns {Promise<string>} document is loaded? 'complete' 'load' / 'timeout'
+@category Load Resource -->
 
-### Function
+### Util
+
+#### isNumber
+
+Check whether it is a right number.
+
+<!-- ZH: 判断是否有效数字 -->
+
+```
+isNumber(123); // true
+isNumber('123'); // false
+// Default: NaN, Infinity is not Number
+isNumber(Infinity); // false
+isNumber(Infinity, { isUnFiniteAsNumber: true }); // true
+isNumber(NaN); // false
+isNumber(NaN, { isNaNAsNumber: true, isUnFiniteAsNumber: true }); // true
+```
+
+<!-- @param {*} num 被判断的值
+@param {boolean} options.isNaNAsNumber 是否 NaN 算数字（默认不算）
+@param {boolean} options.isUnFiniteAsNumber 是否 无限 算数字（默认不算）
+@returns {boolean} true 是数字 -->
+
+#### generateRndNum
+
+Produce a random string of number, `generateRndNum(7)` => '7658495'.
+
+```
+generateRndNum(4); // '9730'
+generateRndNum(7); // '2262490'
+```
+
+#### isJsonString
+
+Check whether it is a valid JSON string.
+
+Usage:
+
+```
+isJsonString(`['a', 'b', 'c']`);
+isJsonString(`["a", "b", "c"]`);
+```
+
+Output:
+
+```
+false
+true
+```
+
+<!-- @param {string} str The string to check.
+@returns {boolean} Return the result of checking. -->
+
+#### formatDate
+
+Return the formatted date string in the given format.
+
+Usage:
+
+```
+console.log('Default formatDate value:', formatDate());
+console.log('String formatDate value:', formatDate('Tue Jan 11 2022 14:12:26 GMT+0800 (China Standard Time)', 'yyyy-MM-dd hh:mm:ss'));
+console.log('Number formatDate value:', formatDate(1641881235000, 'yyyy-MM-dd hh:mm:ss'));
+console.log('Date formatDate value:', formatDate(new Date(2014, 1, 11), 'MM/dd/yyyy'));
+```
+
+Output:
+
+```
+Default formatDate value: 2023-01-11
+String formatDate value: 2022-01-11 14:12:26
+Number formatDate value: 2022-01-11 14:07:15
+Date formatDate value: 02/11/2014
+```
+
+<!-- @param {Date|number|string} dateIns Original Date
+@param {string} format Format String
+@returns {string} Return the formatted date string. -->
 
 #### debounce
 
@@ -211,27 +291,6 @@ const foo = throttle(() => {
 ```
 
 Reference: [Lodash](https://lodash.com/docs/4.17.15#throttle)
-
-#### isNumber
-
-Check whether it is a right number.
-
-<!-- ZH: 判断是否有效数字 -->
-
-```
-isNumber(123); // true
-isNumber('123'); // false
-// Default: NaN, Infinity is not Number
-isNumber(Infinity); // false
-isNumber(Infinity, { isUnFiniteAsNumber: true }); // true
-isNumber(NaN); // false
-isNumber(NaN, { isNaNAsNumber: true, isUnFiniteAsNumber: true }); // true
-```
-
-<!-- @param {*} num 被判断的值
-@param {boolean} options.isNaNAsNumber 是否 NaN 算数字（默认不算）
-@param {boolean} options.isUnFiniteAsNumber 是否 无限 算数字（默认不算）
-@returns {boolean} true 是数字 -->
 
 #### camelCaseToKebabCase
 
@@ -290,62 +349,6 @@ Output:
 <!-- @param {object} obj The value to clone.
 @returns {object} Returns the deep cloned value. -->
 
-#### isJsonString
-
-Check whether it is a valid JSON string.
-
-Usage:
-
-```
-isJsonString(`['a', 'b', 'c']`);
-isJsonString(`["a", "b", "c"]`);
-```
-
-Output:
-
-```
-false
-true
-```
-
-<!-- @param {string} str The string to check.
-@returns {boolean} Return the result of checking. -->
-
-#### generateRndNum
-
-Produce a random string of number, `generateRndNum(7)` => '7658495'.
-
-```
-generateRndNum(4); // '9730'
-generateRndNum(7); // '2262490'
-```
-
-#### formatDate
-
-Return the formatted date string in the given format.
-
-Usage:
-
-```
-console.log('Default formatDate value:', formatDate());
-console.log('String formatDate value:', formatDate('Tue Jan 11 2022 14:12:26 GMT+0800 (China Standard Time)', 'yyyy-MM-dd hh:mm:ss'));
-console.log('Number formatDate value:', formatDate(1641881235000, 'yyyy-MM-dd hh:mm:ss'));
-console.log('Date formatDate value:', formatDate(new Date(2014, 1, 11), 'MM/dd/yyyy'));
-```
-
-Output:
-
-```
-Default formatDate value: 2023-01-11
-String formatDate value: 2022-01-11 14:12:26
-Number formatDate value: 2022-01-11 14:07:15
-Date formatDate value: 02/11/2014
-```
-
-<!-- @param {Date|number|string} dateIns Original Date
-@param {string} format Format String
-@returns {string} Return the formatted date string. -->
-
 #### isValidData
 
 Determine the validity of the data.
@@ -384,21 +387,6 @@ isValidDataResC: false
 @returns {boolean} Return TRUE if the data is valid. -->
 
 ### DOM
-
-#### Class
-
-Modify `class`.
-
-```
-const dom = document.querySelector('#box');
-
-// Determine `class`
-hasClass(dom, 'test');
-// Add `class`
-addClass(dom, 'test');
-// Remove `class`
-removeClass(dom, 'test');
-```
 
 #### addStyle
 
@@ -450,6 +438,21 @@ newLine('a\nb\nc'); // 'a<br />b<br />c'
 newLine('a\n\nbc'); // 'a<br /><br />bc'
 ```
 
+#### Class
+
+Modify `class`.
+
+```
+const dom = document.querySelector('#box');
+
+// Determine `class`
+hasClass(dom, 'test');
+// Add `class`
+addClass(dom, 'test');
+// Remove `class`
+removeClass(dom, 'test');
+```
+
 ### URL
 
 #### getQueryParam
@@ -464,7 +467,8 @@ getQueryParam('t4'); // 4
 ```
 
 <!-- @param {string} param Query param.
-@returns {string} value -->
+@returns {string} value
+@category URL -->
 
 #### getUrlParam
 
@@ -477,30 +481,8 @@ getUrlParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't4'); // 4
 
 <!-- @param {string} url URL string.
 @param {string} param Query param.
-@returns {string} value -->
-
-#### updateQueryParam
-
-Update the query param's value of the input URL.
-
-Usage:
-
-```
-updateQueryParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't3', 'three');
-updateQueryParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't4', 'four');
-```
-
-Output:
-
-```
-http://example.com/?t1=1&t2=2&t3=three&t4=4
-http://example.com/?t1=1&t2=2&t3=3&t4=four
-```
-
-<!-- @param {string} url URL string.
-@param {string} param Query param.
-@param {string} value Param's value.
-@returns {string} URL. -->
+@returns {string} value
+@category URL -->
 
 #### getHashQueryParam
 
@@ -523,7 +505,8 @@ Output:
 ```
 
 <!-- @param {string} param Query param.
-@returns {string} value -->
+@returns {string} value
+@category URL -->
 
 #### getDomain
 
@@ -544,7 +527,32 @@ example.com/test/thanks
 ```
 
 <!-- @param {string} url
-@param {array} rules Object.keys(location), ['href', 'protocol', 'host', 'hostname', 'port', 'pathname', 'search', 'hash'], ['hostname', 'pathname'] = 'km.mazey.net/plugins/servlet/mobile' -->
+@param {array} rules Object.keys(location), ['href', 'protocol', 'host', 'hostname', 'port', 'pathname', 'search', 'hash'], ['hostname', 'pathname'] = 'km.mazey.net/plugins/servlet/mobile'
+@category URL -->
+
+#### updateQueryParam
+
+Update the query param's value of the input URL.
+
+Usage:
+
+```
+updateQueryParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't3', 'three');
+updateQueryParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't4', 'four');
+```
+
+Output:
+
+```
+http://example.com/?t1=1&t2=2&t3=three&t4=4
+http://example.com/?t1=1&t2=2&t3=3&t4=four
+```
+
+<!-- @param {string} url URL string.
+@param {string} param Query param.
+@param {string} value Param's value.
+@returns {string} URL.
+@category URL -->
 
 ### Cache Data
 
@@ -694,7 +702,7 @@ Results:
 | Supporter version | supporterVs | - |
 | Shell | shell | (Optional) wechat, qq_browser, qq_app, uc, 360, 2345, sougou, liebao, maxthon, bilibili |
 | Shell version | shellVs | (Optional) 20/... |
-| Apple device type | appleType | (Optional) iphone, ipad, ipod, iwatch |
+| Apple device type | appleType | (Optional) ipad, iphone, ipod, iwatch |
 
 Example: Determine the environment of the mobile QQ.
 
@@ -703,7 +711,8 @@ const { system, shell } = getBrowserInfo();
 const isMobileQQ = ['android', 'ios'].includes(system) && ['qq_browser', 'qq_app'].includes(shell);
 ```
 
-<!-- @returns 浏览器信息 -->
+<!-- @returns 浏览器信息
+@category Browser Information -->
 
 ### Web Performance
 
@@ -716,9 +725,9 @@ Get page load time(PerformanceTiming).
 Usage:
 
 ```
-// `camelCase：true`(Default) Return hump data.
-// `camelCase：false` Return underline data.
-getPerformance(true)
+// `camelCase：false` (Default) Return underline data.
+// `camelCase：true` Return hump data.
+getPerformance()
  .then(res => {
   console.log(JSON.stringify(res));
  })
@@ -728,7 +737,7 @@ getPerformance(true)
 Output:
 
 ```
-{"deviceType":"pc","network":"3g","unloadTime":0,"redirectTime":0,"dnsTime":0,"tcpTime":0,"responseTime":65,"downloadTime":1,"domreadyTime":369,"onloadTime":441,"whiteTime":94,"renderTime":441,"decodedBodySize":210,"encodedBodySize":210}
+{"os":"ios","os_version":"13_2_3","device_type":"phone","network":"4g","unload_time":0,"redirect_time":0,"dns_time":0,"tcp_time":0,"response_time":289,"download_time":762,"first_paint_time":469,"first_contentful_paint_time":469,"domready_time":1318,"onload_time":2767,"white_time":299,"render_time":2768,"decoded_body_size":979570,"encoded_body_size":324938}
 ```
 
 Results:
@@ -747,7 +756,7 @@ Results:
 | SSL | ssl_time | (Optional) connectEnd - secureConnectionStart |
 | Download | download_time | (Optional) responseEnd - responseStart |
 
-<!-- @param {boolean} camelCase -- true（默认） 以驼峰形式返回数据 false 以下划线形式返回数据
+<!-- @param {boolean} camelCase -- false（默认） 以下划线形式返回数据 true 以驼峰形式返回数据
 @returns {Promise<object>} 加载数据 -->
 
 ### Margin of Safety

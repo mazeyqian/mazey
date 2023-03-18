@@ -114,6 +114,7 @@ export function calLongestCommonSubsequence(
  *
  * @param {string} param Query param.
  * @returns {string} value
+ * @category URL
  */
 export function getQueryParam(param: string): string {
   const reg = new RegExp('(^|&)' + param + '=([^&]*)(&|$)');
@@ -136,6 +137,7 @@ export function getQueryParam(param: string): string {
  * @param {string} url URL string.
  * @param {string} param Query param.
  * @returns {string} value
+ * @category URL
  */
 export function getUrlParam(url: string, param: string): string | string[] {
   const result: {
@@ -179,6 +181,7 @@ export function getUrlParam(url: string, param: string): string | string[] {
  * @param {string} param Query param.
  * @param {string} value Param's value.
  * @returns {string} URL.
+ * @category URL
  */
 export function updateQueryParam(
   url: string,
@@ -215,6 +218,7 @@ export function updateQueryParam(
  *
  * @param {string} param Query param.
  * @returns {string} value
+ * @category URL
  */
 export function getHashQueryParam(param: string): string {
   const hashs = location.hash.split('?');
@@ -245,6 +249,7 @@ export function getHashQueryParam(param: string): string {
  *
  * @param {string} url
  * @param {array} rules Object.keys(location), ['href', 'protocol', 'host', 'hostname', 'port', 'pathname', 'search', 'hash'], ['hostname', 'pathname'] = 'km.mazey.net/plugins/servlet/mobile'
+ * @category URL
  */
 export function getDomain(url: string, rules = ['hostname']): string {
   const aEl: any = document.createElement('a');
@@ -775,6 +780,7 @@ export function getLocalStorage(key: string): any {
  * @param {string} url -- css资源路径
  * @param {string} options.id -- link标签id
  * @returns {Promise<boolean>} true -- 加载成功
+ * @category Load Resource
  */
 export function loadCSS(
   url: string,
@@ -931,6 +937,7 @@ export function loadCSS(
  * @param {number} options.timeout -- 超时时长
  * @param {boolean} options.isDefer -- 是否添加 defer 标签
  * @returns {Promise<boolean>} -- true 成功
+ * @category Load Resource
  */
 export function loadScript(
   url: string,
@@ -1077,6 +1084,9 @@ export function getCookie(name: string): string {
   return '';
 }
 
+/**
+ * @hidden
+ */
 interface WebPerformance {
   [key: string]: string | number;
 }
@@ -1089,9 +1099,9 @@ interface WebPerformance {
  * Usage:
  *
  * ```
- * // `camelCase：true`(Default) Return hump data.
- * // `camelCase：false` Return underline data.
- * getPerformance(true)
+ * // `camelCase：false` (Default) Return underline data.
+ * // `camelCase：true` Return hump data.
+ * getPerformance()
  *  .then(res => {
  *   console.log(JSON.stringify(res));
  *  })
@@ -1101,7 +1111,7 @@ interface WebPerformance {
  * Output:
  *
  * ```
- * {"deviceType":"pc","network":"3g","unloadTime":0,"redirectTime":0,"dnsTime":0,"tcpTime":0,"responseTime":65,"downloadTime":1,"domreadyTime":369,"onloadTime":441,"whiteTime":94,"renderTime":441,"decodedBodySize":210,"encodedBodySize":210}
+ * {"os":"ios","os_version":"13_2_3","device_type":"phone","network":"4g","unload_time":0,"redirect_time":0,"dns_time":0,"tcp_time":0,"response_time":289,"download_time":762,"first_paint_time":469,"first_contentful_paint_time":469,"domready_time":1318,"onload_time":2767,"white_time":299,"render_time":2768,"decoded_body_size":979570,"encoded_body_size":324938}
  * ```
  *
  * Results:
@@ -1120,11 +1130,11 @@ interface WebPerformance {
  * | SSL | ssl_time | (Optional) connectEnd - secureConnectionStart |
  * | Download | download_time | (Optional) responseEnd - responseStart |
  *
- * @param {boolean} camelCase -- true（默认） 以驼峰形式返回数据 false 以下划线形式返回数据
+ * @param {boolean} camelCase -- false（默认） 以下划线形式返回数据 true 以驼峰形式返回数据
  * @returns {Promise<object>} 加载数据
  */
 export function getPerformance(
-  camelCase = true
+  camelCase = false
 ): Promise<WebPerformance | Error> {
   let success: (v: WebPerformance) => void;
   let fail: (v: Error) => void;
@@ -1508,7 +1518,7 @@ export function isSafePWAEnv(): boolean {
  * | Supporter version | supporterVs | - |
  * | Shell | shell | (Optional) wechat, qq_browser, qq_app, uc, 360, 2345, sougou, liebao, maxthon, bilibili |
  * | Shell version | shellVs | (Optional) 20/... |
- * | Apple device type | appleType | (Optional) iphone, ipad, ipod, iwatch |
+ * | Apple device type | appleType | (Optional) ipad, iphone, ipod, iwatch |
  *
  * Example: Determine the environment of the mobile QQ.
  *
@@ -1518,6 +1528,7 @@ export function isSafePWAEnv(): boolean {
  * ```
  *
  * @returns 浏览器信息
+ * @category Browser Information
  */
 export function getBrowserInfo(): {
   engine: string; // webkit gecko presto trident
@@ -1560,10 +1571,10 @@ export function getBrowserInfo(): {
       system = 'android'; // android系统
     } else if (testUa(/ios|iphone|ipad|ipod|iwatch/g)) {
       system = 'ios'; // ios系统
-      if (testUa(/iphone/g)) {
-        appleType = 'iphone';
-      } else if (testUa(/ipad/g)) {
+      if (testUa(/ipad/g)) {
         appleType = 'ipad';
+      } else if (testUa(/iphone/g)) {
+        appleType = 'iphone';
       } else if (testUa(/iwatch/g)) {
         appleType = 'iwatch';
       } else if (testUa(/ipod/g)) {
@@ -1778,6 +1789,7 @@ export function cutCHSString(str: string, len: number, hasDot = false): string {
  *
  * @param {number} timeout 超时时间 / 单位：秒
  * @returns {Promise<string>} document is loaded? 'complete' 'load' / 'timeout'
+ * @category Load Resource
  */
 export function windowLoaded(timeout = 90): Promise<string | Error> {
   let loaded: (value: string) => void = () => undefined;

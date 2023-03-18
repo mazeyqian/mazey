@@ -18,6 +18,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '12.x'
-      # - run: npm i
-      - run: npm i jest@27.5.1 @babel/plugin-proposal-class-properties@7.10.4 @babel/plugin-proposal-object-rest-spread@7.11.0 @babel/plugin-transform-runtime@7.11.0 @babel/preset-env@7.5.5 @babel/preset-typescript@7.10.4 @babel/runtime-corejs3@7.11.2 core-js@3.6.5
+      - run: npm i
+      - run: npm run build
       - run: npm run test

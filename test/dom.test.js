@@ -6,11 +6,11 @@
 
 import { newLine, getDomain } from '../lib/index.esm';
 
-test(`newLine: Transfer 'a\nb\nc' to 'a<br />b<br />c'?`, () => {
+test('newLine: Transfer \'a\nb\nc\' to \'a<br />b<br />c\'?', () => {
   expect(newLine('a\nb\nc')).toBe('a<br />b<br />c');
 });
 
-test(`newLine: Transfer 'a\n\nbc' to 'a<br /><br />bc'?`, () => {
+test('newLine: Transfer \'a\n\nbc\' to \'a<br /><br />bc\'?', () => {
   expect(newLine('a\n\nbc')).toBe('a<br /><br />bc');
 });
 
@@ -26,7 +26,7 @@ test(`newLine: Transfer 'a\n\nbc' to 'a<br /><br />bc'?`, () => {
 //   expect(res).toBe(true);
 // });
 
-test(`Can get Domain's params correctly? 'https://i.mazey.net/mazey/lib/mazey.min.js'?`, async () => {
+test('Can get Domain\'s params correctly? \'https://i.mazey.net/mazey/lib/mazey.min.js\'?', async () => {
   const res = await getDomain('http://example.com/test/thanks?t1=1&t2=2&t3=3&t4=4', ['hostname', 'pathname']); // example.com/test/thanks
   expect(res).toBe('example.com/test/thanks');
 });
@@ -39,7 +39,7 @@ function wasteTime (ms) {
   }, ms));
 }
 
-test(`Can run async test?`, async () => {
+test('Can run async test?', async () => {
   const res = await wasteTime(1000);
   expect(res).toBe(1000);
 });
