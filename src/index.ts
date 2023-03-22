@@ -508,9 +508,6 @@ export function throttle(
   let args: any = null;
   let timeout: any = null;
   let [result, previous] = [null, 0];
-  // if (!options) {
-  //   options = {};
-  // }
   const later = function() {
     previous = options.leading === false ? 0 : mNow();
     timeout = null;
