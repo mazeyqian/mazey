@@ -22,6 +22,7 @@
  * @param {string} aStr String
  * @param {string} bStr String
  * @returns {number} Length
+ * @category Calculate and Formula
  */
 export function calLongestCommonSubstring(aStr: string, bStr: string): number {
   const aLen = aStr.length;
@@ -66,6 +67,7 @@ export function calLongestCommonSubstring(aStr: string, bStr: string): number {
  * @param {string} aStr 字符串
  * @param {string} bStr 字符串
  * @returns {number} 长度
+ * @category Calculate and Formula
  */
 export function calLongestCommonSubsequence(
   aStr: string,
@@ -270,6 +272,7 @@ export function getDomain(url: string, rules = ['hostname']): string {
  *
  * @param {string} camelCase 'aBC' or 'ABC'
  * @returns {string} 'a-b-c'
+ * @category Util
  */
 export function camelCaseToKebabCase(camelCase: string): string {
   const kebabCase = camelCase.replace(/([A-Z])/g, '-$1').toLowerCase();
@@ -286,6 +289,7 @@ export function camelCaseToKebabCase(camelCase: string): string {
  *
  * @param {string} camelCase 'aBC' or 'ABC'
  * @returns {string} 'a_b_c'
+ * @category Util
  */
 export function camelCase2Underscore(camelCase: string): string {
   const kebabCase = camelCase.replace(/([A-Z])/g, '_$1').toLowerCase();
@@ -302,6 +306,7 @@ export function camelCase2Underscore(camelCase: string): string {
  *
  * @param {string} str The string to trim.
  * @returns {string} Trimmed string.
+ * @category Util
  */
 export function mTrim(str: string): string {
   str = str.replace(/^\s+/, ''); // 去除头部空格
@@ -314,10 +319,16 @@ export function mTrim(str: string): string {
 }
 
 /**
- * @method newLine
- * @description Make a newline of HTML.
+ * Make a newline of HTML.
+ *
+ * ```
+ * newLine('a\nb\nc'); // 'a<br />b<br />c'
+ * newLine('a\n\nbc'); // 'a<br /><br />bc'
+ * ```
+ *
  * @param {string} str The string to make a newline.
  * @returns {string} A newline with `br`.
+ * @category DOM
  */
 export function newLine(str: string): string {
   if (!str) {
@@ -346,6 +357,7 @@ export function newLine(str: string): string {
  *
  * @param {object} obj The value to clone.
  * @returns {object} Returns the deep cloned value.
+ * @category Util
  */
 export function deepCopyObject(obj: any): any {
   return JSON.parse(JSON.stringify(obj));
@@ -367,6 +379,10 @@ export function deepCopyObject(obj: any): any {
  * false
  * true
  * ```
+ *
+ * @param {string} str The string to check.
+ * @returns {boolean} Return the result of checking.
+ * @category Util
  */
 export function isJsonString(str: string): boolean {
   try {
@@ -380,10 +396,16 @@ export function isJsonString(str: string): boolean {
 }
 
 /**
- * @method generateRndNum
- * @description Produce a random string of number, `generateRndNum(7)` => '7658495'.
+ * Produce a random string of number, `generateRndNum(7)` => '7658495'.
+ *
+ * ```
+ * generateRndNum(4); // '9730'
+ * generateRndNum(7); // '2262490'
+ * ```
+ *
  * @param {number} n Length
  * @returns {string} Return the random string.
+ * @category Util
  */
 export function generateRndNum(n = 5): string {
   let ret = '';
@@ -443,7 +465,20 @@ export function cancelBubble(e: any): void {
 }
 
 /**
- * @method hasClass
+ * Modify `class`.
+ *
+ * ```
+ * const dom = document.querySelector('#box');
+ *
+ * // Determine `class`
+ * hasClass(dom, 'test');
+ * // Add `class`
+ * addClass(dom, 'test');
+ * // Remove `class`
+ * removeClass(dom, 'test');
+ * ```
+ *
+ * @category DOM
  */
 export function hasClass(obj: any, cls: string): boolean {
   const oriCls = obj.className; // 获取对象的class值
@@ -457,7 +492,20 @@ export function hasClass(obj: any, cls: string): boolean {
 }
 
 /**
- * @method addClass
+ * Modify `class`.
+ *
+ * ```
+ * const dom = document.querySelector('#box');
+ *
+ * // Determine `class`
+ * hasClass(dom, 'test');
+ * // Add `class`
+ * addClass(dom, 'test');
+ * // Remove `class`
+ * removeClass(dom, 'test');
+ * ```
+ *
+ * @category DOM
  */
 export function addClass(obj: any, cls: string): void {
   const oriCls = obj.className;
@@ -471,7 +519,20 @@ export function addClass(obj: any, cls: string): void {
 }
 
 /**
- * @method removeClass
+ * Modify `class`.
+ *
+ * ```
+ * const dom = document.querySelector('#box');
+ *
+ * // Determine `class`
+ * hasClass(dom, 'test');
+ * // Add `class`
+ * addClass(dom, 'test');
+ * // Remove `class`
+ * removeClass(dom, 'test');
+ * ```
+ *
+ * @category DOM
  */
 export function removeClass(obj: any, cls: string): void {
   const oriCls = obj.className;
@@ -495,6 +556,8 @@ export function removeClass(obj: any, cls: string): void {
  * ```
  *
  * Reference: [Lodash](https://lodash.com/docs/4.17.15#throttle)
+ *
+ * @category Util
  */
 export function throttle(
   func: any,
@@ -551,6 +614,8 @@ export function throttle(
  *   console.log('The debounced function will only be invoked in 1000 milliseconds, the other invoking will disappear during the wait time.');
  * }, 1000, true);
  * ```
+ *
+ * @category Util
  */
 export function debounce(func: any, wait: number, immediate?: any): any {
   let context: any = null;
@@ -649,6 +714,7 @@ export function friendlyInterval(
  * @param {boolean} options.isNaNAsNumber 是否 NaN 算数字（默认不算）
  * @param {boolean} options.isUnFiniteAsNumber 是否 无限 算数字（默认不算）
  * @returns {boolean} true 是数字
+ * @category Util
  */
 export function isNumber(
   num: any,
@@ -693,10 +759,30 @@ export function doFn(fn: any, ...params: any[]): any {
 }
 
 /**
- * @method setSessionStorage
- * @description 存储数据到 sessionStorage
+ * EN: Handle Storage (Keep fit for JSON, it can tansfer format automatically).
+ *
+ * ZH: 存储/获取数据到 sessionStorage/localStorage
+ *
+ * ```
+ * setSessionStorage('test', '123');
+ * getSessionStorage('test'); // 123
+ * setLocalStorage('test', '123');
+ * getLocalStorage('test'); // 123
+ *
+ * // or package in usage
+ * const projectName = 'mazey';
+ * function mSetLocalStorage (key, value) {
+ *   return setLocalStorage(`${projectName}_${key}`, value);
+ * }
+ *
+ * function mGetLocalStorage (key) {
+ *   return getLocalStorage(`${projectName}_${key}`);
+ * }
+ * ```
+ *
  * @param {string} key 键
- * @param {string} value 值
+ * @returns {any} 返回值
+ * @category Cache Data
  */
 export function setSessionStorage(key: string, value: any = null): void {
   if (key) {
@@ -705,10 +791,30 @@ export function setSessionStorage(key: string, value: any = null): void {
 }
 
 /**
- * @method getSessionStorage
- * @description 存储数据到 sessionStorage
+ * EN: Handle Storage (Keep fit for JSON, it can tansfer format automatically).
+ *
+ * ZH: 存储/获取数据到 sessionStorage/localStorage
+ *
+ * ```
+ * setSessionStorage('test', '123');
+ * getSessionStorage('test'); // 123
+ * setLocalStorage('test', '123');
+ * getLocalStorage('test'); // 123
+ *
+ * // or package in usage
+ * const projectName = 'mazey';
+ * function mSetLocalStorage (key, value) {
+ *   return setLocalStorage(`${projectName}_${key}`, value);
+ * }
+ *
+ * function mGetLocalStorage (key) {
+ *   return getLocalStorage(`${projectName}_${key}`);
+ * }
+ * ```
+ *
  * @param {string} key 键
- * @returns {*} 返回值
+ * @returns {any} 返回值
+ * @category Cache Data
  */
 export function getSessionStorage(key: string): any {
   let ret = null;
@@ -722,10 +828,30 @@ export function getSessionStorage(key: string): any {
 }
 
 /**
- * @method setLocalStorage
- * @description 存储数据到 localStorage
+ * EN: Handle Storage (Keep fit for JSON, it can tansfer format automatically).
+ *
+ * ZH: 存储/获取数据到 sessionStorage/localStorage
+ *
+ * ```
+ * setSessionStorage('test', '123');
+ * getSessionStorage('test'); // 123
+ * setLocalStorage('test', '123');
+ * getLocalStorage('test'); // 123
+ *
+ * // or package in usage
+ * const projectName = 'mazey';
+ * function mSetLocalStorage (key, value) {
+ *   return setLocalStorage(`${projectName}_${key}`, value);
+ * }
+ *
+ * function mGetLocalStorage (key) {
+ *   return getLocalStorage(`${projectName}_${key}`);
+ * }
+ * ```
+ *
  * @param {string} key 键
- * @param {string} value 值
+ * @returns {any} 返回值
+ * @category Cache Data
  */
 export function setLocalStorage(key: string, value: any = null): void {
   if (key) {
@@ -734,10 +860,30 @@ export function setLocalStorage(key: string, value: any = null): void {
 }
 
 /**
- * @method getLocalStorage
- * @description 存储数据到 localStorage
+ * EN: Handle Storage (Keep fit for JSON, it can tansfer format automatically).
+ *
+ * ZH: 存储/获取数据到 sessionStorage/localStorage
+ *
+ * ```
+ * setSessionStorage('test', '123');
+ * getSessionStorage('test'); // 123
+ * setLocalStorage('test', '123');
+ * getLocalStorage('test'); // 123
+ *
+ * // or package in usage
+ * const projectName = 'mazey';
+ * function mSetLocalStorage (key, value) {
+ *   return setLocalStorage(`${projectName}_${key}`, value);
+ * }
+ *
+ * function mGetLocalStorage (key) {
+ *   return getLocalStorage(`${projectName}_${key}`);
+ * }
+ * ```
+ *
  * @param {string} key 键
- * @returns {*} 返回值
+ * @returns {any} 返回值
+ * @category Cache Data
  */
 export function getLocalStorage(key: string): any {
   let ret = null;
@@ -1016,8 +1162,16 @@ export function mNow(): number {
 }
 
 /**
- * @method setCookie
- * @description 设置 Cookie
+ * EN: Handle Cookie.
+ *
+ * ZH: 设置/获取 Cookie
+ *
+ * ```
+ * setCookie('test', '123', 30, 'example.com'); // key value day domain
+ * getCookie('test'); // 123
+ * ```
+ *
+ * @category Cache Data
  */
 export function setCookie(
   name: string,
@@ -1065,8 +1219,16 @@ export function setCookie(
 }
 
 /**
- * @method getCookie
- * @description 获取 Cookie
+ * EN: Handle Cookie.
+ *
+ * ZH: 设置/获取 Cookie
+ *
+ * ```
+ * setCookie('test', '123', 30, 'example.com'); // key value day domain
+ * getCookie('test'); // 123
+ * ```
+ *
+ * @category Cache Data
  */
 export function getCookie(name: string): string {
   const nameEQ = name + '=';
@@ -1129,6 +1291,7 @@ interface WebPerformance {
  *
  * @param {boolean} camelCase -- false（默认） 以下划线形式返回数据 true 以驼峰形式返回数据
  * @returns {Promise<object>} 加载数据
+ * @category Web Performance
  */
 export function getPerformance(
   camelCase = false
@@ -1415,6 +1578,7 @@ export function getPerformance(
  *
  * @param {number} rate -- 0.1 ~ 1 => 1% ~ 100%
  * @returns {boolean} true 命中
+ * @category Calculate and Formula
  */
 export function inRate(rate: number): boolean {
   if (Math.random() < rate) {
@@ -1441,6 +1605,7 @@ export function inRate(rate: number): boolean {
  * ```
  *
  * @returns {boolean} true 是
+ * @category Margin of Safety
  */
 export function isSafePWAEnv(): boolean {
   // 判断是否支持 async await
@@ -1810,7 +1975,7 @@ export function windowLoaded(timeout = 90): Promise<string | Error> {
 /**
  * EN: Add `<style>` in `<head>`.
  *
- * ZH: 添加样式标签; style: 样式标签内的字符串; id: `<style>` 标签的 `id`; 返回: 添加成功/失败.
+ * ZH: 添加样式标签; style: 样式标签内的字符串; id: `<style>` 标签的 `id`; 返回: 添加成功/失败
  *
  * Example 1: Add the `<style>` with `id`, and repeated invoking will update the content instead of adding a new one.
  *
@@ -1838,20 +2003,18 @@ export function windowLoaded(timeout = 90): Promise<string | Error> {
  * addStyle(
  *   `
  *     body {
- *       background-color: #333;
+ *       background-color: #444;
  *     }
  *   `
  * );
  * // <style>
  * //   body {
- * //     background-color: #333;
+ * //     background-color: #444;
  * //   }
  * // </style>
  * ```
  *
- * @param style Style string.
- * @param options.id `id` in `<style>`
- * @returns Success/Fail
+ * @category DOM
  */
 export function addStyle(
   style: string,
@@ -1920,6 +2083,7 @@ export function addStyle(
  * @param {function} logFn The function with Log.
  * @param {function} errorFn The function with Error.
  * @returns {object} 新实例
+ * @category Debug
  */
 export function genCustomConsole(
   prefix = '',
@@ -2111,6 +2275,7 @@ export function isNonEmptyArray(arr: any[]): boolean {
  * @param {string[]} attributes Data Attributes
  * @param {any} validValue Given Value for verifying.
  * @returns {boolean} Return TRUE if the data is valid.
+ * @category Util
  */
 export function isValidData(
   data: any,
@@ -2217,6 +2382,7 @@ export function genHashCode(str: string): number {
  * @param {Date|number|string} dateIns Original Date
  * @param {string} format Format String
  * @returns {string} Return the formatted date string.
+ * @category Util
  */
 export function formatDate(
   dateIns?: Date | number | string,
