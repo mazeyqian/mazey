@@ -1588,7 +1588,7 @@ export function inRate(rate: number): boolean {
 }
 
 /**
- * EN: Determine if it is a secure PWA environment that it can run.
+ * EN: Detect the margin of Safety. Determine if it is a secure PWA environment that it can run.
  *
  * ZH: 判断是否是安全的 PWA 环境
  *
@@ -1605,7 +1605,7 @@ export function inRate(rate: number): boolean {
  * ```
  *
  * @returns {boolean} true 是
- * @category Margin of Safety
+ * @category Browser Information
  */
 export function isSafePWAEnv(): boolean {
   // 判断是否支持 async await

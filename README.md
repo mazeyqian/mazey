@@ -753,6 +753,27 @@ const isMobileQQ = ['android', 'ios'].includes(system) && ['qq_browser', 'qq_app
 <!-- @returns 浏览器信息
 @category Browser Information -->
 
+#### isSafePWAEnv
+
+Detect the margin of Safety. Determine if it is a secure PWA environment that it can run.
+
+<!-- ZH: 判断是否是安全的 PWA 环境 -->
+
+Usage:
+
+```
+isSafePWAEnv();
+```
+
+Output:
+
+```
+true
+```
+
+<!-- @returns {boolean} true 是
+@category Browser Information -->
+
 ### Web Performance
 
 #### getPerformance
@@ -798,29 +819,6 @@ Results:
 <!-- @param {boolean} camelCase -- false（默认） 以下划线形式返回数据 true 以驼峰形式返回数据
 @returns {Promise<object>} 加载数据
 @category Web Performance -->
-
-### Margin of Safety
-
-#### isSafePWAEnv
-
-Determine if it is a secure PWA environment that it can run.
-
-<!-- ZH: 判断是否是安全的 PWA 环境 -->
-
-Usage:
-
-```
-isSafePWAEnv();
-```
-
-Output:
-
-```
-true
-```
-
-<!-- @returns {boolean} true 是
-@category Margin of Safety -->
 
 ### Debug
 
