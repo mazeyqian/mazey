@@ -730,18 +730,18 @@ Output:
 
 Results:
 
-| Index | Field | Description |
-| --- | --- | --- |
-| System | system | android, ios, windows, macos, linux |
-| System version | systemVs | windows: 2000, xp, 2003, vista, 7, 8, 8.1, 10 <br />macos: ... |
-| Platform | platform | desktop, mobile |
-| Engine | engine | webkit, gecko, presto, trident |
-| Engine version | engineVs | - |
-| Supporter | supporter | edge, opera, chrome, safari, firefox, iexplore |
-| Supporter version | supporterVs | - |
-| Shell | shell | (Optional) wechat, qq_browser, qq_app, uc, 360, 2345, sougou, liebao, maxthon, bilibili |
-| Shell version | shellVs | (Optional) 20/... |
-| Apple device type | appleType | (Optional) ipad, iphone, ipod, iwatch |
+| Attribute | Description | Type | Values |
+| --- | --- | --- | --- |
+| **system** | System | string | android, ios, windows, macos, linux |
+| systemVs | System version | string | windows: 2000, xp, 2003, vista, 7, 8, 8.1, 10 <br />macos: ... |
+| platform | Platform | string | desktop, mobile |
+| engine | Engine | string | webkit, gecko, presto, trident |
+| engineVs | Engine version | string | - |
+| supporter | Supporter | string | edge, opera, chrome, safari, firefox, iexplore |
+| supporterVs | Supporter version | string | - |
+| shell | Shell | string | (Optional) wechat, qq_browser, qq_app, uc, 360, 2345, sougou, liebao, maxthon, bilibili |
+| shellVs | Shell version | string | (Optional) 20/... |
+| appleType | Apple device type | string | (Optional) ipad, iphone, ipod, iwatch |
 
 Example: Determine the environment of the mobile QQ.
 
