@@ -1,8 +1,8 @@
-/* eslint-disable quotes */
 /**
  * @jest-environment node
  */
 /* eslint-disable no-undef */
+/* eslint-disable quotes */
 // Function
 
 import { isNumber, camelCaseToKebabCase, camelCase2Underscore, mTrim, deepCopyObject, isJsonString, generateRndNum, formatDate, isValidData } from '../lib/index.esm';

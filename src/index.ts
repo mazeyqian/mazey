@@ -2421,3 +2421,123 @@ export function formatDate(
   });
   return tempFormat;
 }
+
+/**
+ * Get event container.
+ *
+ * @category Event
+ * @hidden
+ */
+export function getDefineListeners(): DefineListeners {
+  let defineListeners = window.MAZEY_DEFINE_LISTENERS;
+  if (typeof defineListeners !== 'object') {
+    defineListeners = {};
+    window.MAZEY_DEFINE_LISTENERS = defineListeners;
+  }
+  return defineListeners;
+}
+
+/**
+ * Add event.
+ *
+ * @param type
+ * @param fn
+ * @category Event
+ */
+export function addEvent(type: string, fn: any): void {
+  const defineListeners = getDefineListeners();
+  if (typeof defineListeners[type] === 'undefined') {
+    defineListeners[type] = [];
+  }
+  if (typeof fn === 'function') {
+    defineListeners[type].push(fn);
+  }
+}
+
+/**
+ * Invoke event.
+ *
+ * @param type
+ * @category Event
+ */
+export function invokeEvent(type: string): void {
+  const defineListeners = getDefineListeners();
+  const arrayEvent = defineListeners[type];
+  if (arrayEvent instanceof Array) {
+    for (let i = 0, length = arrayEvent.length; i < length; i++) {
+      if (typeof arrayEvent[i] === 'function') {
+        arrayEvent[i]({
+          type: type
+        });
+      }
+    }
+  }
+}
+
+/**
+ * Remove event.
+ *
+ * @param type
+ * @param fn
+ * @category Event
+ */
+export function removeEvent(type: string, fn: any): void {
+  const defineListeners = getDefineListeners();
+  const arrayEvent = defineListeners[type];
+  if (typeof type === 'string' && arrayEvent instanceof Array) {
+    if (typeof fn === 'function') {
+      for (let i = 0, length = arrayEvent.length; i < length; i++) {
+        if (arrayEvent[i] === fn) {
+          defineListeners[type].splice(i, 1);
+          break;
+        }
+      }
+    } else {
+      delete defineListeners[type];
+    }
+  }
+}
+
+/**
+ * Check if the given string is a valid url.
+ *
+ * @example
+ * ```js
+ * console.log(isUrl('https://www.google.com')); // true
+ * console.log(isUrl('https://www.google.com/')); // true
+ * console.log(isUrl('https://www.google.com/?q=hello')); // true
+ * console.log(isUrl('https://www.google.com/?q=hello#world')); // true
+ * console.log(isUrl('https://www.google.com/#world')); // true
+ * console.log(isUrl('https://www.google.com/#')); // true
+ * console.log(isUrl('https://www.google.com/#?q=hello')); // true
+ * console.log(isUrl('https://www.google.com/#?q=hello#world')); // true
+ * ```
+ *
+ * @param url
+ * @returns {boolean} Return true if the given url is a valid url.
+ * @category URL
+ */
+export function isValidUrl(url: string): boolean {
+  const reg = /[a-zA-Z0-9]+:\/\/[-a-zA-Z0-9@:%._+~#=]{1,256}\b([-a-zA-Z0-9\u4E00-\u9FA5()!@:%_+.~#?&//=]*)/gm;
+  return reg.test(url);
+}
+
+/**
+ * Check if the given string is a mobile phone number.
+ *
+ * @example
+ * ```js
+ * console.log(isMobile('13800138000')); // true
+ * console.log(isMobile('1380013800')); // false
+ * console.log(isMobile('138001380000')); // false
+ * console.log(isMobile('1380013800a')); // false
+ * ```
+ *
+ * @param mobile
+ * @returns {boolean} Return true if the given string is a mobile phone number.
+ * @category Util
+ */
+export function isValidPhoneNumber(mobile: string): boolean {
+  const reg = /^1[3456789]\d{9}$/;
+  return reg.test(mobile);
+}
