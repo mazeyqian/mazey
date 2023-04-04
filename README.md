@@ -92,10 +92,9 @@ There ara some examples maintained by hand below. For more information, please c
   * [calLongestCommonSubsequence](#callongestcommonsubsequence)
 - [Browser Information](#browser-information)
   * [getBrowserInfo](#getbrowserinfo)
+  * [isSafePWAEnv](#issafepwaenv)
 - [Web Performance](#web-performance)
   * [getPerformance](#getperformance)
-- [Margin of Safety](#margin-of-safety)
-  * [isSafePWAEnv](#issafepwaenv)
 - [Debug](#debug)
   * [genCustomConsole](#gencustomconsole)
 <!-- toc - end -->
