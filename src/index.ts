@@ -419,6 +419,7 @@ export function generateRndNum(n = 5): string {
  * @method generateUniqueNum
  * @description 根据时间生成唯一标志的数字 mGenerateUniqueNum() => 1538324722364123。
  * @param {number} n 随机数的长度
+ * @category Util
  */
 export function generateUniqueNum(n = 3): string {
   const [now, rnd] = [mNow(), generateRndNum(n || 3)];
@@ -430,6 +431,7 @@ export function generateUniqueNum(n = 3): string {
  * @description 浮点数转为百分比 0.2 => 20%。
  * @param {number} num 浮点数
  * @param {number} fixSize 保留几位浮点数
+ * @category Util
  */
 export function floatToPercent(num: number, fixSize = 0): string {
   let ret = '';
@@ -444,6 +446,7 @@ export function floatToPercent(num: number, fixSize = 0): string {
 /**
  * @method floatFixed
  * @description 浮点数保留指定位。
+ * @category Util
  */
 export function floatFixed(num: string, size = 0): string {
   return parseFloat(num).toFixed(size);
@@ -452,6 +455,7 @@ export function floatFixed(num: string, size = 0): string {
 /**
  * @method cancelBubble
  * @description 阻止冒泡。
+ * @category Util
  */
 export function cancelBubble(e: any): void {
   const ev = e || window.event;
@@ -660,6 +664,7 @@ export function debounce(func: any, wait: number, immediate?: any): any {
  * @param {number/Date} end 结束时间戳 1585325367122
  * @param {string} options.type 返回类型 d: 2(天) text: 2 天 4 时...
  * @returns {string/number} 取决于 type
+ * @category Util
  */
 export function friendlyInterval(
   start = 0,
@@ -749,6 +754,7 @@ export function isNumber(
  * @method doFn
  * @description 执行有效函数
  * @param {function} fn 等待被执行的未知是否有效的函数
+ * @category Util
  */
 export function doFn(fn: any, ...params: any[]): any {
   let ret = null;
@@ -1150,6 +1156,7 @@ export function loadScript(
 /**
  * @method mNow
  * @description 获取时间戳
+ * @category Util
  */
 export function mNow(): number {
   let ret = 0;
@@ -1891,6 +1898,7 @@ export function getBrowserInfo(): {
  * @description 去除HTML标签
  * @param {string} str 带html标签的字符串
  * @returns {string} 字符串
+ * @category Util
  */
 export function clearHtml(str: string): string {
   return str.replace(/<\/?.+?>/g, '').replace(/[\r\n]/g, '');
@@ -1902,7 +1910,8 @@ export function clearHtml(str: string): string {
  * @param {string} str 要截取的字符串
  * @param {number} len
  * @param {boolean} hasDot
- * @returnss {string} 返回截取后的字符串
+ * @returns {string} 返回截取后的字符串
+ * @category Util
  */
 export function cutCHSString(str: string, len: number, hasDot = false): string {
   if (str == '' || !str) {
@@ -2192,6 +2201,8 @@ export function genCustomConsole(
  * Verify the validity of axios response.
  *
  * Reference: [Handling Errors](https://axios-http.com/docs/handling_errors)
+ *
+ * @category Util
  */
 export function zAxiosIsValidRes(
   res: any,
@@ -2231,6 +2242,8 @@ export function zAxiosIsValidRes(
 
 /**
  * Verify the validity of a non-empty array.
+ *
+ * @category Util
  */
 export function isNonEmptyArray(arr: any[]): boolean {
   let ret = false;
@@ -2301,6 +2314,8 @@ export function isValidData(
 
 /**
  * 语义化文件大小, 把字节转换成正常文件大小.
+ *
+ * @category Util
  */
 export function getFileSize(size: number): string {
   const toCeilStr: (v: number) => string = n => String(Math.ceil(n));
@@ -2325,6 +2340,8 @@ export function getFileSize(size: number): string {
  * Detect webp support.
  *
  * Reference: [Detect WEBP Support with JavaScript](https://davidwalsh.name/detect-webp)
+ *
+ * @category Util
  */
 export function isSupportWebp(): Promise<boolean> {
   const fn = (resolve: (v: boolean) => void) => {
@@ -2345,6 +2362,8 @@ export function isSupportWebp(): Promise<boolean> {
  * Generate a Hash Code from a string.
  *
  * Reference: [Generate a Hash from string in Javascript](https://stackoverflow.com/questions/7616461/generate-a-hash-from-string-in-javascript-jquery)
+ *
+ * @category Util
  */
 export function genHashCode(str: string): number {
   let hash = 0,
