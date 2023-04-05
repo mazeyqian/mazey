@@ -3,7 +3,7 @@
  */
 /* eslint-disable no-undef */
 /* eslint-disable quotes */
-// Function
+// Util
 
 import { isNumber, camelCaseToKebabCase, camelCase2Underscore, mTrim, deepCopyObject, isJsonString, generateRndNum, formatDate, isValidData } from '../lib/index.esm';
 
@@ -59,4 +59,8 @@ test(`isValidData: Check the valid value?`, () => {
       }
     }
   }, ['a', 'b', 'c'], 413)).toBe(true);
+});
+
+test(`isValidEmail: Check the valid email?`, () => {
+  expect(isValidEmail('mazeyqian@gmail.com')).toBe(true);
 });

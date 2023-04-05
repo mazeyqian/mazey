@@ -2203,6 +2203,7 @@ export function genCustomConsole(
  * Reference: [Handling Errors](https://axios-http.com/docs/handling_errors)
  *
  * @category Util
+ * @hidden
  */
 export function zAxiosIsValidRes(
   res: any,
@@ -2341,7 +2342,7 @@ export function getFileSize(size: number): string {
  *
  * Reference: [Detect WEBP Support with JavaScript](https://davidwalsh.name/detect-webp)
  *
- * @category Util
+ * @category Browser Information
  */
 export function isSupportWebp(): Promise<boolean> {
   const fn = (resolve: (v: boolean) => void) => {
@@ -2559,4 +2560,21 @@ export function isValidUrl(url: string): boolean {
 export function isValidPhoneNumber(mobile: string): boolean {
   const reg = /^1[3456789]\d{9}$/;
   return reg.test(mobile);
+}
+
+/**
+ * Check if the given string is a valid email.
+ *
+ * @example
+ * ```js
+ * console.log(isValidEmail('mazeyqian@gmail.com')); // true
+ * ```
+ *
+ * @param email
+ * @returns {boolean} Return true if the given string is a valid email.
+ * @category Util
+ */
+export function isValidEmail(email: string): boolean {
+  const reg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+$/;
+  return reg.test(email);
 }
