@@ -5,7 +5,7 @@
 /* eslint-disable quotes */
 // Util
 
-import { isNumber, camelCaseToKebabCase, camelCase2Underscore, mTrim, deepCopyObject, isJsonString, generateRndNum, formatDate, isValidData } from '../lib/index.esm';
+import { isNumber, camelCaseToKebabCase, camelCase2Underscore, mTrim, deepCopyObject, isJsonString, generateRndNum, formatDate, isValidData, isValidEmail } from '../lib/index.esm';
 
 test('isNumber: Is -1 Number?', () => {
   expect(isNumber(-1)).toBe(true);
@@ -63,4 +63,5 @@ test(`isValidData: Check the valid value?`, () => {
 
 test(`isValidEmail: Check the valid email?`, () => {
   expect(isValidEmail('mazeyqian@gmail.com')).toBe(true);
+  expect(isValidEmail('test-1-2-3@example.com')).toBe(true);
 });
