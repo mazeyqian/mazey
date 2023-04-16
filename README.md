@@ -92,10 +92,9 @@ There ara some examples maintained by hand below. For more information, please c
   * [calLongestCommonSubsequence](#callongestcommonsubsequence)
 - [Browser Information](#browser-information)
   * [getBrowserInfo](#getbrowserinfo)
+  * [isSafePWAEnv](#issafepwaenv)
 - [Web Performance](#web-performance)
   * [getPerformance](#getperformance)
-- [Margin of Safety](#margin-of-safety)
-  * [isSafePWAEnv](#issafepwaenv)
 - [Debug](#debug)
   * [genCustomConsole](#gencustomconsole)
 <!-- toc - end -->
@@ -208,7 +207,8 @@ isNumber(NaN, { isNaNAsNumber: true, isUnFiniteAsNumber: true }); // true
 <!-- @param {*} num 被判断的值
 @param {boolean} options.isNaNAsNumber 是否 NaN 算数字（默认不算）
 @param {boolean} options.isUnFiniteAsNumber 是否 无限 算数字（默认不算）
-@returns {boolean} true 是数字 -->
+@returns {boolean} true 是数字
+@category Util -->
 
 #### generateRndNum
 
@@ -218,6 +218,10 @@ Produce a random string of number, `generateRndNum(7)` => '7658495'.
 generateRndNum(4); // '9730'
 generateRndNum(7); // '2262490'
 ```
+
+<!-- @param {number} n Length
+@returns {string} Return the random string.
+@category Util -->
 
 #### isJsonString
 
@@ -238,7 +242,8 @@ true
 ```
 
 <!-- @param {string} str The string to check.
-@returns {boolean} Return the result of checking. -->
+@returns {boolean} Return the result of checking.
+@category Util -->
 
 #### formatDate
 
@@ -264,7 +269,8 @@ Date formatDate value: 02/11/2014
 
 <!-- @param {Date|number|string} dateIns Original Date
 @param {string} format Format String
-@returns {string} Return the formatted date string. -->
+@returns {string} Return the formatted date string.
+@category Util -->
 
 #### debounce
 
@@ -277,6 +283,8 @@ const foo = debounce(() => {
   console.log('The debounced function will only be invoked in 1000 milliseconds, the other invoking will disappear during the wait time.');
 }, 1000, true);
 ```
+
+<!-- @category Util -->
 
 #### throttle
 
@@ -292,6 +300,8 @@ const foo = throttle(() => {
 
 Reference: [Lodash](https://lodash.com/docs/4.17.15#throttle)
 
+<!-- @category Util -->
+
 #### camelCaseToKebabCase
 
 Transfer CamelCase to KebabCase.
@@ -302,7 +312,8 @@ camelCaseToKebabCase('aBC'); // a-b-c
 ```
 
 <!-- @param {string} camelCase 'aBC' or 'ABC'
-@returns {string} 'a-b-c' -->
+@returns {string} 'a-b-c'
+@category Util -->
 
 #### camelCase2Underscore
 
@@ -314,7 +325,8 @@ camelCase2Underscore('aBC'); // a_b_c
 ```
 
 <!-- @param {string} camelCase 'aBC' or 'ABC'
-@returns {string} 'a_b_c' -->
+@returns {string} 'a_b_c'
+@category Util -->
 
 #### mTrim
 
@@ -326,7 +338,8 @@ mTrim('abc '); // 'abc'
 ```
 
 <!-- @param {string} str The string to trim.
-@returns {string} Trimmed string. -->
+@returns {string} Trimmed string.
+@category Util -->
 
 #### deepCopyObject
 
@@ -347,7 +360,8 @@ Output:
 ```
 
 <!-- @param {object} obj The value to clone.
-@returns {object} Returns the deep cloned value. -->
+@returns {object} Returns the deep cloned value.
+@category Util -->
 
 #### isValidData
 
@@ -384,7 +398,8 @@ isValidDataResC: false
 <!-- @param {any} data Original Data
 @param {string[]} attributes Data Attributes
 @param {any} validValue Given Value for verifying.
-@returns {boolean} Return TRUE if the data is valid. -->
+@returns {boolean} Return TRUE if the data is valid.
+@category Util -->
 
 ### DOM
 
@@ -392,7 +407,9 @@ isValidDataResC: false
 
 Add `<style>` in `<head>`.
 
-Case 1: Add the `<style>` with `id`, and repeated invoking will update the content instead of adding a new one.
+<!-- ZH: 添加样式标签; style: 样式标签内的字符串; id: `<style>` 标签的 `id`; 返回: 添加成功/失败 -->
+
+Example 1: Add the `<style>` with `id`, and repeated invoking will update the content instead of adding a new one.
 
 ```
 addStyle(
@@ -412,7 +429,7 @@ addStyle(
 // </style>
 ```
 
-Case 2: Add the `<style>` without `id`, and repeated invoking will adding a new one.
+Example 2: Add the `<style>` without `id`, and repeated invoking will adding a new one.
 
 ```
 addStyle(
@@ -429,6 +446,8 @@ addStyle(
 // </style>
 ```
 
+<!-- @category DOM -->
+
 #### newLine
 
 Make a newline of HTML.
@@ -437,6 +456,10 @@ Make a newline of HTML.
 newLine('a\nb\nc'); // 'a<br />b<br />c'
 newLine('a\n\nbc'); // 'a<br /><br />bc'
 ```
+
+<!-- @param {string} str The string to make a newline.
+@returns {string} A newline with `br`.
+@category DOM -->
 
 #### Class
 
@@ -452,6 +475,8 @@ addClass(dom, 'test');
 // Remove `class`
 removeClass(dom, 'test');
 ```
+
+<!-- @category DOM -->
 
 ### URL
 
@@ -560,6 +585,8 @@ http://example.com/?t1=1&t2=2&t3=3&t4=four
 
 Handle Storage (Keep fit for JSON, it can tansfer format automatically).
 
+<!-- ZH: 存储/获取数据到 sessionStorage/localStorage -->
+
 ```
 setSessionStorage('test', '123');
 getSessionStorage('test'); // 123
@@ -577,14 +604,22 @@ function mGetLocalStorage (key) {
 }
 ```
 
+<!-- @param {string} key 键
+@returns {any} 返回值
+@category Cache Data -->
+
 #### Cookie
 
 Handle Cookie.
+
+<!-- ZH: 设置/获取 Cookie -->
 
 ```
 setCookie('test', '123', 30, 'example.com'); // key value day domain
 getCookie('test'); // 123
 ```
+
+<!-- @category Cache Data -->
 
 ### Calculate and Formula
 
@@ -623,7 +658,8 @@ console.log(trueCount, falseCount); // 499994 500006
 ```
 
 <!-- @param {number} rate -- 0.1 ~ 1 => 1% ~ 100%
-@returns {boolean} true 命中 -->
+@returns {boolean} true 命中
+@category Calculate and Formula -->
 
 #### calLongestCommonSubstring
 
@@ -645,7 +681,8 @@ Output:
 
 <!-- @param {string} aStr String
 @param {string} bStr String
-@returns {number} Length -->
+@returns {number} Length
+@category Calculate and Formula -->
 
 #### calLongestCommonSubsequence
 
@@ -667,7 +704,8 @@ Output:
 
 <!-- @param {string} aStr 字符串
 @param {string} bStr 字符串
-@returns {number} 长度 -->
+@returns {number} 长度
+@category Calculate and Formula -->
 
 ### Browser Information
 
@@ -691,18 +729,18 @@ Output:
 
 Results:
 
-| Index | Field | Description |
-| --- | --- | --- |
-| System | system | android, ios, windows, macos, linux |
-| System version | systemVs | windows: 2000, xp, 2003, vista, 7, 8, 8.1, 10 <br />macos: ... |
-| Platform | platform | desktop, mobile |
-| Engine | engine | webkit, gecko, presto, trident |
-| Engine version | engineVs | - |
-| Supporter | supporter | edge, opera, chrome, safari, firefox, iexplore |
-| Supporter version | supporterVs | - |
-| Shell | shell | (Optional) wechat, qq_browser, qq_app, uc, 360, 2345, sougou, liebao, maxthon, bilibili |
-| Shell version | shellVs | (Optional) 20/... |
-| Apple device type | appleType | (Optional) ipad, iphone, ipod, iwatch |
+| Attribute | Description | Type | Values |
+| --- | --- | --- | --- |
+| **system** | System | string | android, ios, windows, macos, linux |
+| systemVs | System version | string | windows: 2000, xp, 2003, vista, 7, 8, 8.1, 10 <br />macos: ... |
+| platform | Platform | string | desktop, mobile |
+| engine | Engine | string | webkit, gecko, presto, trident |
+| engineVs | Engine version | string | - |
+| supporter | Supporter | string | edge, opera, chrome, safari, firefox, iexplore |
+| supporterVs | Supporter version | string | - |
+| shell | Shell | string | (Optional) wechat, qq_browser, qq_app, uc, 360, 2345, sougou, liebao, maxthon, bilibili |
+| shellVs | Shell version | string | (Optional) 20/... |
+| appleType | Apple device type | string | (Optional) ipad, iphone, ipod, iwatch |
 
 Example: Determine the environment of the mobile QQ.
 
@@ -712,6 +750,27 @@ const isMobileQQ = ['android', 'ios'].includes(system) && ['qq_browser', 'qq_app
 ```
 
 <!-- @returns 浏览器信息
+@category Browser Information -->
+
+#### isSafePWAEnv
+
+Detect the margin of Safety. Determine if it is a secure PWA environment that it can run.
+
+<!-- ZH: 判断是否是安全的 PWA 环境 -->
+
+Usage:
+
+```
+isSafePWAEnv();
+```
+
+Output:
+
+```
+true
+```
+
+<!-- @returns {boolean} true 是
 @category Browser Information -->
 
 ### Web Performance
@@ -757,29 +816,8 @@ Results:
 | Download | download_time | (Optional) responseEnd - responseStart |
 
 <!-- @param {boolean} camelCase -- false（默认） 以下划线形式返回数据 true 以驼峰形式返回数据
-@returns {Promise<object>} 加载数据 -->
-
-### Margin of Safety
-
-#### isSafePWAEnv
-
-Determine if it is a secure PWA environment that it can run.
-
-<!-- ZH: 判断是否是安全的 PWA 环境 -->
-
-Usage:
-
-```
-isSafePWAEnv();
-```
-
-Output:
-
-```
-true
-```
-
-<!-- @returns {boolean} true 是 -->
+@returns {Promise<object>} 加载数据
+@category Web Performance -->
 
 ### Debug
 
@@ -812,7 +850,8 @@ MazeyLog: I am object. {a: 123, b: 456}
 @param {string} locales A locale string.
 @param {function} logFn The function with Log.
 @param {function} errorFn The function with Error.
-@returns {object} 新实例 -->
+@returns {object} 新实例
+@category Debug -->
 
 ## Contributing
 

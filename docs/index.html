@@ -145,14 +145,11 @@
 					</li>
 					<li><a href="#browser-information">Browser Information</a><ul>
 							<li><a href="#getbrowserinfo">getBrowserInfo</a></li>
+							<li><a href="#issafepwaenv">isSafePWAEnv</a></li>
 						</ul>
 					</li>
 					<li><a href="#web-performance">Web Performance</a><ul>
 							<li><a href="#getperformance">getPerformance</a></li>
-						</ul>
-					</li>
-					<li><a href="#margin-of-safety">Margin of Safety</a><ul>
-							<li><a href="#issafepwaenv">isSafePWAEnv</a></li>
 						</ul>
 					</li>
 					<li><a href="#debug">Debug</a><ul>
@@ -255,7 +252,8 @@
 				<!-- @param {*} num 被判断的值
 @param {boolean} options.isNaNAsNumber 是否 NaN 算数字（默认不算）
 @param {boolean} options.isUnFiniteAsNumber 是否 无限 算数字（默认不算）
-@returns {boolean} true 是数字 -->
+@returns {boolean} true 是数字
+@category Util -->
 				<a href="#generaterndnum" id="generaterndnum" style="color: inherit; text-decoration: none;">
 					<h4>generateRndNum</h4>
 				</a>
@@ -263,6 +261,9 @@
 				<pre><code><span style="color: #795E26">generateRndNum</span><span style="color: #000000">(</span><span style="color: #098658">4</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;9730&#039;</span>
 <span style="color: #795E26">generateRndNum</span><span style="color: #000000">(</span><span style="color: #098658">7</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;2262490&#039;</span>
 </code></pre>
+				<!-- @param {number} n Length
+@returns {string} Return the random string.
+@category Util -->
 				<a href="#isjsonstring" id="isjsonstring" style="color: inherit; text-decoration: none;">
 					<h4>isJsonString</h4>
 				</a>
@@ -276,7 +277,8 @@
 <span style="color: #0000FF">true</span>
 </code></pre>
 				<!-- @param {string} str The string to check.
-@returns {boolean} Return the result of checking. -->
+@returns {boolean} Return the result of checking.
+@category Util -->
 				<a href="#formatdate" id="formatdate" style="color: inherit; text-decoration: none;">
 					<h4>formatDate</h4>
 				</a>
@@ -295,7 +297,8 @@
 </code></pre>
 				<!-- @param {Date|number|string} dateIns Original Date
 @param {string} format Format String
-@returns {string} Return the formatted date string. -->
+@returns {string} Return the formatted date string.
+@category Util -->
 				<a href="#debounce" id="debounce" style="color: inherit; text-decoration: none;">
 					<h4>debounce</h4>
 				</a>
@@ -305,6 +308,7 @@
 <span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;The debounced function will only be invoked in 1000 milliseconds, the other invoking will disappear during the wait time.&#039;</span><span style="color: #000000">);</span>
 <span style="color: #000000">}, </span><span style="color: #098658">1000</span><span style="color: #000000">, </span><span style="color: #0000FF">true</span><span style="color: #000000">);</span>
 </code></pre>
+				<!-- @category Util -->
 				<a href="#throttle" id="throttle" style="color: inherit; text-decoration: none;">
 					<h4>throttle</h4>
 				</a>
@@ -315,6 +319,7 @@
 <span style="color: #000000">}, </span><span style="color: #098658">1000</span><span style="color: #000000">, { </span><span style="color: #001080">leading:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000"> });</span>
 </code></pre>
 				<p>Reference: <a href="https://lodash.com/docs/4.17.15#throttle">Lodash</a></p>
+				<!-- @category Util -->
 				<a href="#camelcasetokebabcase" id="camelcasetokebabcase" style="color: inherit; text-decoration: none;">
 					<h4>camelCaseToKebabCase</h4>
 				</a>
@@ -323,7 +328,8 @@
 <span style="color: #795E26">camelCaseToKebabCase</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;aBC&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// a-b-c</span>
 </code></pre>
 				<!-- @param {string} camelCase 'aBC' or 'ABC'
-@returns {string} 'a-b-c' -->
+@returns {string} 'a-b-c'
+@category Util -->
 				<a href="#camelcase2underscore" id="camelcase2underscore" style="color: inherit; text-decoration: none;">
 					<h4>camelCase2Underscore</h4>
 				</a>
@@ -332,7 +338,8 @@
 <span style="color: #795E26">camelCase2Underscore</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;aBC&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// a_b_c</span>
 </code></pre>
 				<!-- @param {string} camelCase 'aBC' or 'ABC'
-@returns {string} 'a_b_c' -->
+@returns {string} 'a_b_c'
+@category Util -->
 				<a href="#mtrim" id="mtrim" style="color: inherit; text-decoration: none;">
 					<h4>mTrim</h4>
 				</a>
@@ -341,7 +348,8 @@
 <span style="color: #795E26">mTrim</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;abc &#039;</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;abc&#039;</span>
 </code></pre>
 				<!-- @param {string} str The string to trim.
-@returns {string} Trimmed string. -->
+@returns {string} Trimmed string.
+@category Util -->
 				<a href="#deepcopyobject" id="deepcopyobject" style="color: inherit; text-decoration: none;">
 					<h4>deepCopyObject</h4>
 				</a>
@@ -355,7 +363,8 @@
 <span style="color: #A31515">&#039;abc&#039;</span>
 </code></pre>
 				<!-- @param {object} obj The value to clone.
-@returns {object} Returns the deep cloned value. -->
+@returns {object} Returns the deep cloned value.
+@category Util -->
 				<a href="#isvaliddata" id="isvaliddata" style="color: inherit; text-decoration: none;">
 					<h4>isValidData</h4>
 				</a>
@@ -385,7 +394,8 @@
 				<!-- @param {any} data Original Data
 @param {string[]} attributes Data Attributes
 @param {any} validValue Given Value for verifying.
-@returns {boolean} Return TRUE if the data is valid. -->
+@returns {boolean} Return TRUE if the data is valid.
+@category Util -->
 				<a href="#dom" id="dom" style="color: inherit; text-decoration: none;">
 					<h3>DOM</h3>
 				</a>
@@ -393,7 +403,8 @@
 					<h4>addStyle</h4>
 				</a>
 				<p>Add <code>&lt;style&gt;</code> in <code>&lt;head&gt;</code>.</p>
-				<p>Case 1: Add the <code>&lt;style&gt;</code> with <code>id</code>, and repeated invoking will update the content instead of adding a new one.</p>
+				<!-- ZH: 添加样式标签; style: 样式标签内的字符串; id: `<style>` 标签的 `id`; 返回: 添加成功/失败 -->
+				<p>Example 1: Add the <code>&lt;style&gt;</code> with <code>id</code>, and repeated invoking will update the content instead of adding a new one.</p>
 				<pre><code><span style="color: #795E26">addStyle</span><span style="color: #000000">(</span>
 <span style="color: #000000">  </span><span style="color: #A31515">`</span>
 <span style="color: #A31515">    body {</span>
@@ -410,7 +421,7 @@
 <span style="color: #008000">//   }</span>
 <span style="color: #008000">// &lt;/style&gt;</span>
 </code></pre>
-				<p>Case 2: Add the <code>&lt;style&gt;</code> without <code>id</code>, and repeated invoking will adding a new one.</p>
+				<p>Example 2: Add the <code>&lt;style&gt;</code> without <code>id</code>, and repeated invoking will adding a new one.</p>
 				<pre><code><span style="color: #795E26">addStyle</span><span style="color: #000000">(</span>
 <span style="color: #000000">  </span><span style="color: #A31515">`</span>
 <span style="color: #A31515">    body {</span>
@@ -424,6 +435,7 @@
 <span style="color: #008000">//   }</span>
 <span style="color: #008000">// &lt;/style&gt;</span>
 </code></pre>
+				<!-- @category DOM -->
 				<a href="#newline" id="newline" style="color: inherit; text-decoration: none;">
 					<h4>newLine</h4>
 				</a>
@@ -431,6 +443,9 @@
 				<pre><code><span style="color: #795E26">newLine</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;a</span><span style="color: #EE0000">\n</span><span style="color: #A31515">b</span><span style="color: #EE0000">\n</span><span style="color: #A31515">c&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;a&lt;br /&gt;b&lt;br /&gt;c&#039;</span>
 <span style="color: #795E26">newLine</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;a</span><span style="color: #EE0000">\n\n</span><span style="color: #A31515">bc&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;a&lt;br /&gt;&lt;br /&gt;bc&#039;</span>
 </code></pre>
+				<!-- @param {string} str The string to make a newline.
+@returns {string} A newline with `br`.
+@category DOM -->
 				<a href="#class" id="class" style="color: inherit; text-decoration: none;">
 					<h4>Class</h4>
 				</a>
@@ -444,6 +459,7 @@
 <span style="color: #008000">// Remove `class`</span>
 <span style="color: #795E26">removeClass</span><span style="color: #000000">(</span><span style="color: #001080">dom</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;test&#039;</span><span style="color: #000000">);</span>
 </code></pre>
+				<!-- @category DOM -->
 				<a href="#url" id="url" style="color: inherit; text-decoration: none;">
 					<h3>URL</h3>
 				</a>
@@ -526,6 +542,7 @@
 					<h4>Storage</h4>
 				</a>
 				<p>Handle Storage (Keep fit for JSON, it can tansfer format automatically).</p>
+				<!-- ZH: 存储/获取数据到 sessionStorage/localStorage -->
 				<pre><code><span style="color: #795E26">setSessionStorage</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;test&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;123&#039;</span><span style="color: #000000">);</span>
 <span style="color: #795E26">getSessionStorage</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;test&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// 123</span>
 <span style="color: #795E26">setLocalStorage</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;test&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;123&#039;</span><span style="color: #000000">);</span>
@@ -541,13 +558,18 @@
 <span style="color: #000000">  </span><span style="color: #AF00DB">return</span><span style="color: #000000"> </span><span style="color: #795E26">getLocalStorage</span><span style="color: #000000">(</span><span style="color: #A31515">`</span><span style="color: #0000FF">${</span><span style="color: #001080">projectName</span><span style="color: #0000FF">}</span><span style="color: #A31515">_</span><span style="color: #0000FF">${</span><span style="color: #001080">key</span><span style="color: #0000FF">}</span><span style="color: #A31515">`</span><span style="color: #000000">);</span>
 <span style="color: #000000">}</span>
 </code></pre>
+				<!-- @param {string} key 键
+@returns {any} 返回值
+@category Cache Data -->
 				<a href="#cookie" id="cookie" style="color: inherit; text-decoration: none;">
 					<h4>Cookie</h4>
 				</a>
 				<p>Handle Cookie.</p>
+				<!-- ZH: 设置/获取 Cookie -->
 				<pre><code><span style="color: #795E26">setCookie</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;test&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;123&#039;</span><span style="color: #000000">, </span><span style="color: #098658">30</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;example.com&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// key value day domain</span>
 <span style="color: #795E26">getCookie</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;test&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// 123</span>
 </code></pre>
+				<!-- @category Cache Data -->
 				<a href="#calculate-and-formula" id="calculate-and-formula" style="color: inherit; text-decoration: none;">
 					<h3>Calculate and Formula</h3>
 				</a>
@@ -576,7 +598,8 @@
 <span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">trueCount</span><span style="color: #000000">, </span><span style="color: #001080">falseCount</span><span style="color: #000000">); </span><span style="color: #008000">// 499994 500006</span>
 </code></pre>
 				<!-- @param {number} rate -- 0.1 ~ 1 => 1% ~ 100%
-@returns {boolean} true 命中 -->
+@returns {boolean} true 命中
+@category Calculate and Formula -->
 				<a href="#callongestcommonsubstring" id="callongestcommonsubstring" style="color: inherit; text-decoration: none;">
 					<h4>calLongestCommonSubstring</h4>
 				</a>
@@ -590,7 +613,8 @@
 </code></pre>
 				<!-- @param {string} aStr String
 @param {string} bStr String
-@returns {number} Length -->
+@returns {number} Length
+@category Calculate and Formula -->
 				<a href="#callongestcommonsubsequence" id="callongestcommonsubsequence" style="color: inherit; text-decoration: none;">
 					<h4>calLongestCommonSubsequence</h4>
 				</a>
@@ -604,7 +628,8 @@
 </code></pre>
 				<!-- @param {string} aStr 字符串
 @param {string} bStr 字符串
-@returns {number} 长度 -->
+@returns {number} 长度
+@category Calculate and Formula -->
 				<a href="#browser-information" id="browser-information" style="color: inherit; text-decoration: none;">
 					<h3>Browser Information</h3>
 				</a>
@@ -623,59 +648,70 @@
 				<table>
 					<thead>
 						<tr>
-							<th>Index</th>
-							<th>Field</th>
+							<th>Attribute</th>
 							<th>Description</th>
+							<th>Type</th>
+							<th>Values</th>
 						</tr>
 					</thead>
 					<tbody><tr>
+							<td><strong>system</strong></td>
 							<td>System</td>
-							<td>system</td>
+							<td>string</td>
 							<td>android, ios, windows, macos, linux</td>
 						</tr>
 						<tr>
-							<td>System version</td>
 							<td>systemVs</td>
+							<td>System version</td>
+							<td>string</td>
 							<td>windows: 2000, xp, 2003, vista, 7, 8, 8.1, 10 <br />macos: ...</td>
 						</tr>
 						<tr>
-							<td>Platform</td>
 							<td>platform</td>
+							<td>Platform</td>
+							<td>string</td>
 							<td>desktop, mobile</td>
 						</tr>
 						<tr>
-							<td>Engine</td>
 							<td>engine</td>
+							<td>Engine</td>
+							<td>string</td>
 							<td>webkit, gecko, presto, trident</td>
 						</tr>
 						<tr>
-							<td>Engine version</td>
 							<td>engineVs</td>
+							<td>Engine version</td>
+							<td>string</td>
 							<td>-</td>
 						</tr>
 						<tr>
-							<td>Supporter</td>
 							<td>supporter</td>
+							<td>Supporter</td>
+							<td>string</td>
 							<td>edge, opera, chrome, safari, firefox, iexplore</td>
 						</tr>
 						<tr>
-							<td>Supporter version</td>
 							<td>supporterVs</td>
+							<td>Supporter version</td>
+							<td>string</td>
 							<td>-</td>
 						</tr>
 						<tr>
-							<td>Shell</td>
 							<td>shell</td>
+							<td>Shell</td>
+							<td>string</td>
 							<td>(Optional) wechat, qq_browser, qq_app, uc, 360, 2345, sougou, liebao, maxthon, bilibili</td>
 						</tr>
 						<tr>
-							<td>Shell version</td>
 							<td>shellVs</td>
+							<td>Shell version</td>
+							<td>string</td>
 							<td>(Optional) 20/...</td>
 						</tr>
 						<tr>
-							<td>Apple device type</td>
 							<td>appleType</td>
+							<td>Apple device type</td>
+							<td>string</td>
 							<td>(Optional) ipad, iphone, ipod, iwatch</td>
 						</tr>
 				</tbody></table>
@@ -684,6 +720,19 @@
 <span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">isMobileQQ</span><span style="color: #000000"> = [</span><span style="color: #A31515">&#039;android&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;ios&#039;</span><span style="color: #000000">].</span><span style="color: #795E26">includes</span><span style="color: #000000">(</span><span style="color: #001080">system</span><span style="color: #000000">) &amp;&amp; [</span><span style="color: #A31515">&#039;qq_browser&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;qq_app&#039;</span><span style="color: #000000">].</span><span style="color: #795E26">includes</span><span style="color: #000000">(</span><span style="color: #001080">shell</span><span style="color: #000000">);</span>
 </code></pre>
 				<!-- @returns 浏览器信息
+@category Browser Information -->
+				<a href="#issafepwaenv" id="issafepwaenv" style="color: inherit; text-decoration: none;">
+					<h4>isSafePWAEnv</h4>
+				</a>
+				<p>Detect the margin of Safety. Determine if it is a secure PWA environment that it can run.</p>
+				<!-- ZH: 判断是否是安全的 PWA 环境 -->
+				<p>Usage:</p>
+				<pre><code><span style="color: #795E26">isSafePWAEnv</span><span style="color: #000000">();</span>
+</code></pre>
+				<p>Output:</p>
+				<pre><code><span style="color: #0000FF">true</span>
+</code></pre>
+				<!-- @returns {boolean} true 是
 @category Browser Information -->
 				<a href="#web-performance" id="web-performance" style="color: inherit; text-decoration: none;">
 					<h3>Web Performance</h3>
@@ -771,22 +820,8 @@
 						</tr>
 				</tbody></table>
 				<!-- @param {boolean} camelCase -- false（默认） 以下划线形式返回数据 true 以驼峰形式返回数据
-@returns {Promise<object>} 加载数据 -->
-				<a href="#margin-of-safety" id="margin-of-safety" style="color: inherit; text-decoration: none;">
-					<h3>Margin of Safety</h3>
-				</a>
-				<a href="#issafepwaenv" id="issafepwaenv" style="color: inherit; text-decoration: none;">
-					<h4>isSafePWAEnv</h4>
-				</a>
-				<p>Determine if it is a secure PWA environment that it can run.</p>
-				<!-- ZH: 判断是否是安全的 PWA 环境 -->
-				<p>Usage:</p>
-				<pre><code><span style="color: #795E26">isSafePWAEnv</span><span style="color: #000000">();</span>
-</code></pre>
-				<p>Output:</p>
-				<pre><code><span style="color: #0000FF">true</span>
-</code></pre>
-				<!-- @returns {boolean} true 是 -->
+@returns {Promise<object>} 加载数据
+@category Web Performance -->
 				<a href="#debug" id="debug" style="color: inherit; text-decoration: none;">
 					<h3>Debug</h3>
 				</a>
@@ -812,7 +847,8 @@
 @param {string} locales A locale string.
 @param {function} logFn The function with Log.
 @param {function} errorFn The function with Error.
-@returns {object} 新实例 -->
+@returns {object} 新实例
+@category Debug -->
 				<a href="#contributing" id="contributing" style="color: inherit; text-decoration: none;">
 					<h2>Contributing</h2>
 				</a>
@@ -849,6 +885,9 @@
 				<ul class="before-current">
 					<li class=" tsd-kind-function">
 						<a href="modules.html#addClass" class="tsd-kind-icon">add<wbr>Class</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#addEvent" class="tsd-kind-icon">add<wbr>Event</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="modules.html#addStyle" class="tsd-kind-icon">add<wbr>Style</a>
@@ -944,6 +983,9 @@
 						<a href="modules.html#inRate" class="tsd-kind-icon">in<wbr>Rate</a>
 					</li>
 					<li class=" tsd-kind-function">
+						<a href="modules.html#invokeEvent" class="tsd-kind-icon">invoke<wbr>Event</a>
+					</li>
+					<li class=" tsd-kind-function">
 						<a href="modules.html#isJsonString" class="tsd-kind-icon">is<wbr>Json<wbr>String</a>
 					</li>
 					<li class=" tsd-kind-function">
@@ -962,6 +1004,12 @@
 						<a href="modules.html#isValidData" class="tsd-kind-icon">is<wbr>Valid<wbr>Data</a>
 					</li>
 					<li class=" tsd-kind-function">
+						<a href="modules.html#isValidPhoneNumber" class="tsd-kind-icon">is<wbr>Valid<wbr>Phone<wbr>Number</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#isValidUrl" class="tsd-kind-icon">is<wbr>Valid<wbr>Url</a>
+					</li>
+					<li class=" tsd-kind-function">
 						<a href="modules.html#loadCSS" class="tsd-kind-icon">loadCSS</a>
 					</li>
 					<li class=" tsd-kind-function">
@@ -978,6 +1026,9 @@
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="modules.html#removeClass" class="tsd-kind-icon">remove<wbr>Class</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#removeEvent" class="tsd-kind-icon">remove<wbr>Event</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="modules.html#setCookie" class="tsd-kind-icon">set<wbr>Cookie</a>

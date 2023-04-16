@@ -1,5 +1,7 @@
 ⚠️ Note: The document has expired, please check the latest [README.md](./README.md).
 
+⚠️ 注意: 此文档只适用于 v1.4.39 版本，[查看 v3.x 版本的文档](./README.md)
+
 # mazey
 
 [![NPM version][npm-image]][npm-url]
@@ -10,7 +12,7 @@
 [l-image]: https://img.shields.io/npm/l/mazey
 [l-url]: https://github.com/mazeyqian/mazey
 
-后除的 JavaScript 函数库，所有的方法都在线上项目中使用过。
+后除的 JavaScript 函数库，所有的方法都在线上项目中使用过
 
 **目录**
 
@@ -338,7 +340,7 @@ myConsole.info('I am number.', 123, 456); // MazeyLog: I am number. 123 456
 myConsole.info('I am object.', { a: 123, b: 456}); // MazeyLog: I am object. {a: 123, b: 456}
 ```
 
-[更多接口>>](https://mazey.cn/docs/mazey/modules/_index_.html)
+[更多接口>>](https://mazey.cn/t/m)
 
 ## 开发
 
