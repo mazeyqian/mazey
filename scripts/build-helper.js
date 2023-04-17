@@ -12,24 +12,37 @@ const genVersion = () => {
   return version;
 };
 const version = genVersion();
+const defaultHiddenHeadings = [
+  'mazey',
+  'Install',
+  'Usage',
+  'Contributing',
+  'License',
+  'API Examples',
+];
 
-const generateToc = () => {
+/**
+ * Generate table of contents for the markdown file.
+ * 
+ * @param {string} path Path of markdown file.
+ * @param {array} options.hiddenHeadings Hidden headings.
+ * @returns {void}
+ */
+const generateToc = (path = '../README.md', options = {
+  hiddenHeadings: defaultHiddenHeadings,
+}) => {
   console.log('Generating Table of Contents...');
-  const RMFilePath = _resolve('../README.md');
+  options = Object.assign({
+    hiddenHeadings: defaultHiddenHeadings,
+  }, options);
+  const RMFilePath = _resolve(path);
   // https://melvingeorge.me/blog/get-all-the-contents-from-file-as-string-nodejs
   console.log('running...');
   const buffer = fs.readFileSync(RMFilePath);
   const fileContent = buffer.toString();
   // https://github.com/jonschlinkert/markdown-toc
   const removeUnnecessaryHeadings = (str) => {
-    return ![
-      'mazey',
-      'Install',
-      'Usage',
-      'Contributing',
-      'License',
-      'API Examples',
-    ].some(v => {
+    return !options.hiddenHeadings.some(v => {
       return str.includes(v);
     });
   };

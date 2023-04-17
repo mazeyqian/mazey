@@ -5,7 +5,7 @@
 /* eslint-disable quotes */
 // Util
 
-import { isNumber, camelCaseToKebabCase, camelCase2Underscore, mTrim, deepCopyObject, isJsonString, generateRndNum, formatDate, isValidData, isValidEmail } from '../lib/index.esm';
+import { isNumber, camelCaseToKebabCase, camelCase2Underscore, mTrim, deepCopyObject, isJsonString, generateRndNum, formatDate, isValidData, isValidEmail, convert10To26 } from '../lib/index.esm';
 
 test('isNumber: Is -1 Number?', () => {
   expect(isNumber(-1)).toBe(true);
@@ -64,4 +64,18 @@ test(`isValidData: Check the valid value?`, () => {
 test(`isValidEmail: Check the valid email?`, () => {
   expect(isValidEmail('mazeyqian@gmail.com')).toBe(true);
   expect(isValidEmail('test-1-2-3@example.com')).toBe(true);
+});
+
+// Use Jest to test convert10To26 in a `test`
+// console.log(convert10To26(1)); // a
+// console.log(convert10To26(26)); // z
+// console.log(convert10To26(27)); // aa
+// console.log(convert10To26(52)); // az
+// console.log(convert10To26(53)); // ba
+test('convert10To26: Convert 1 to "a"?', () => {
+  expect(convert10To26(1)).toBe('a');
+  expect(convert10To26(26)).toBe('z');
+  expect(convert10To26(27)).toBe('aa');
+  expect(convert10To26(52)).toBe('az');
+  expect(convert10To26(53)).toBe('ba');
 });

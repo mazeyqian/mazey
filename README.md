@@ -1,4 +1,4 @@
-English | [简体中文](https://github.com/mazeyqian/mazey/blob/master/README_CN.md)
+English | [简体中文](https://github.com/mazeyqian/mazey/blob/master/README_ZH.md)
 
 # mazey
 
@@ -10,7 +10,7 @@ English | [简体中文](https://github.com/mazeyqian/mazey/blob/master/README_C
 [l-image]: https://img.shields.io/npm/l/mazey
 [l-url]: https://github.com/mazeyqian/mazey
 
-Mazey's functional library for daily front-end work. There are already many excellent libraries for front-end development, but creating a file named UtilsJS or CommonJS is generally used to supply common functions in projects. It's boring to copy similar functions among projects again and again. Therefore, I will consistently update the library during my work life to save time.
+Mazey's functional library for daily front-end work. There are already many excellent libraries for front-end development, but creating a file named `utils.js` or `common.js` is generally used to supply common functions in projects. It's boring to copy similar functions across multiple projects. That's why I've created this library and will keep updating it to serve as a reliable resource for front-end needs.
 
 ## Install
 
@@ -801,19 +801,19 @@ Output:
 
 Results:
 
-| Index | Field | Description |
-| --- | --- | --- |
-| DNS lookup | dns_time | domainLookupEnd - domainLookupStart |
-| Connection negotiation | tcp_time | connectEnd - connectStart |
-| Requests and responses | response_time | responseStart - requestStart |
-| White screen | white_time | responseStart - navigationStart |
-| DomReady | domready_time  | domContentLoadedEventStart - navigationStart |
-| Onload | onload_time | loadEventStart - navigationStart |
-| EventEnd | render_time | loadEventEnd -navigationStart |
-| Unload | unload_time | (Optional) unloadEventEnd - unloadEventStart |
-| Redirect | redirect_time | (Optional) redirectEnd - redirectStart |
-| SSL | ssl_time | (Optional) connectEnd - secureConnectionStart |
-| Download | download_time | (Optional) responseEnd - responseStart |
+| Attribute | Description | Type | Values |
+| --- | --- | --- | --- |
+| dns_time | DNS Lookup | number | domainLookupEnd - domainLookupStart |
+| tcp_time | Connection Negotiation | number | connectEnd - connectStart |
+| response_time | Requests and Responses | number | responseStart - requestStart |
+| white_time | White Screen | number | responseStart - navigationStart |
+| domready_time | DomReady | number | domContentLoadedEventStart - navigationStart |
+| onload_time | Onload | number | loadEventStart - navigationStart |
+| render_time | EventEnd | number | loadEventEnd -navigationStart |
+| unload_time | Unload | number | (Optional) unloadEventEnd - unloadEventStart |
+| redirect_time | Redirect | number | (Optional) redirectEnd - redirectStart |
+| ssl_time | SSL | number | (Optional) connectEnd - secureConnectionStart |
+| download_time | Download | number | (Optional) responseEnd - responseStart |
 
 <!-- @param {boolean} camelCase -- false（默认） 以下划线形式返回数据 true 以驼峰形式返回数据
 @returns {Promise<object>} 加载数据
