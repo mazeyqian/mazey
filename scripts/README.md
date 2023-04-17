@@ -26,3 +26,11 @@ release();
 
 <!-- @param {string} ver Version
 @returns {void} -->
+
+## generateToc
+
+Generate table of contents for the markdown file.
+
+<!-- @param {string} path Path of markdown file.
+@param {array} options.hiddenHeadings Hidden headings.
+@returns {void} -->
