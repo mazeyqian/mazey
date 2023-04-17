@@ -1,6 +1,6 @@
 {
   "name": "mazey",
-  "version": "3.6.0",
+  "version": "3.6.1",
   "description": "Mazey's library for front-end.",
   "main": "lib/index.cjs.js",
   "module": "lib/index.esm.js",
@@ -14,6 +14,7 @@
     "build": "cross-env SCRIPTS_NPM_PACKAGE_DEBUG=\"close\" rollup --config ./scripts/rollup.config.js",
     "build:debug": "cross-env SCRIPTS_NPM_PACKAGE_DEBUG=\"open\" rollup --config ./scripts/rollup.config.js",
     "test": "jest",
+    "test:debug": "npm run build:debug && npm run test",
     "docs": "typedoc --hideGenerator --plugin typedoc-plugin-merge-modules --mergeModulesMergeMode project",
     "lint:fix": "eslint ./src/index.ts --ext 'ts,tsx' --fix",
     "preview": "npm run docs && npm run build && npm run test",

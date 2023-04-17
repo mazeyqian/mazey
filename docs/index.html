@@ -106,22 +106,16 @@
 					</li>
 					<li><a href="#util">Util</a><ul>
 							<li><a href="#isnumber">isNumber</a></li>
-							<li><a href="#generaterndnum">generateRndNum</a></li>
 							<li><a href="#isjsonstring">isJsonString</a></li>
+							<li><a href="#isvaliddata">isValidData</a></li>
+							<li><a href="#generaterndnum">generateRndNum</a></li>
 							<li><a href="#formatdate">formatDate</a></li>
 							<li><a href="#debounce">debounce</a></li>
 							<li><a href="#throttle">throttle</a></li>
 							<li><a href="#camelcasetokebabcase">camelCaseToKebabCase</a></li>
 							<li><a href="#camelcase2underscore">camelCase2Underscore</a></li>
-							<li><a href="#mtrim">mTrim</a></li>
 							<li><a href="#deepcopyobject">deepCopyObject</a></li>
-							<li><a href="#isvaliddata">isValidData</a></li>
-						</ul>
-					</li>
-					<li><a href="#dom">DOM</a><ul>
-							<li><a href="#addstyle">addStyle</a></li>
-							<li><a href="#newline">newLine</a></li>
-							<li><a href="#class">Class</a></li>
+							<li><a href="#mtrim">mTrim</a></li>
 						</ul>
 					</li>
 					<li><a href="#url">URL</a><ul>
@@ -133,8 +127,14 @@
 						</ul>
 					</li>
 					<li><a href="#cache-data">Cache Data</a><ul>
-							<li><a href="#storage">Storage</a></li>
 							<li><a href="#cookie">Cookie</a></li>
+							<li><a href="#storage">Storage</a></li>
+						</ul>
+					</li>
+					<li><a href="#dom">DOM</a><ul>
+							<li><a href="#addstyle">addStyle</a></li>
+							<li><a href="#class">Class</a></li>
+							<li><a href="#newline">newLine</a></li>
 						</ul>
 					</li>
 					<li><a href="#calculate-and-formula">Calculate and Formula</a><ul>
@@ -254,16 +254,6 @@
 @param {boolean} options.isUnFiniteAsNumber 是否 无限 算数字（默认不算）
 @returns {boolean} true 是数字
 @category Util -->
-				<a href="#generaterndnum" id="generaterndnum" style="color: inherit; text-decoration: none;">
-					<h4>generateRndNum</h4>
-				</a>
-				<p>Produce a random string of number, <code>generateRndNum(7)</code> =&gt; &#39;7658495&#39;.</p>
-				<pre><code><span style="color: #795E26">generateRndNum</span><span style="color: #000000">(</span><span style="color: #098658">4</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;9730&#039;</span>
-<span style="color: #795E26">generateRndNum</span><span style="color: #000000">(</span><span style="color: #098658">7</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;2262490&#039;</span>
-</code></pre>
-				<!-- @param {number} n Length
-@returns {string} Return the random string.
-@category Util -->
 				<a href="#isjsonstring" id="isjsonstring" style="color: inherit; text-decoration: none;">
 					<h4>isJsonString</h4>
 				</a>
@@ -278,6 +268,47 @@
 </code></pre>
 				<!-- @param {string} str The string to check.
 @returns {boolean} Return the result of checking.
+@category Util -->
+				<a href="#isvaliddata" id="isvaliddata" style="color: inherit; text-decoration: none;">
+					<h4>isValidData</h4>
+				</a>
+				<p>Determine the validity of the data.</p>
+				<p>Usage:</p>
+				<pre><code><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">validData</span><span style="color: #000000"> = {</span>
+<span style="color: #000000">  </span><span style="color: #001080">a:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">b:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">      </span><span style="color: #001080">c:</span><span style="color: #000000"> </span><span style="color: #098658">413</span>
+<span style="color: #000000">    }</span>
+<span style="color: #000000">  }</span>
+<span style="color: #000000">};</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">isValidDataResA</span><span style="color: #000000"> = </span><span style="color: #795E26">isValidData</span><span style="color: #000000">(</span><span style="color: #001080">validData</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;a&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;b&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;c&#039;</span><span style="color: #000000">], </span><span style="color: #098658">2333</span><span style="color: #000000">);</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">isValidDataResB</span><span style="color: #000000"> = </span><span style="color: #795E26">isValidData</span><span style="color: #000000">(</span><span style="color: #001080">validData</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;a&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;b&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;c&#039;</span><span style="color: #000000">], </span><span style="color: #098658">413</span><span style="color: #000000">);</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">isValidDataResC</span><span style="color: #000000"> = </span><span style="color: #795E26">isValidData</span><span style="color: #000000">(</span><span style="color: #001080">validData</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;d&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;d&#039;</span><span style="color: #000000">], </span><span style="color: #098658">413</span><span style="color: #000000">);</span>
+
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;isValidDataResA:&#039;</span><span style="color: #000000">, </span><span style="color: #001080">isValidDataResA</span><span style="color: #000000">);</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;isValidDataResB:&#039;</span><span style="color: #000000">, </span><span style="color: #001080">isValidDataResB</span><span style="color: #000000">);</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;isValidDataResC:&#039;</span><span style="color: #000000">, </span><span style="color: #001080">isValidDataResC</span><span style="color: #000000">);</span>
+</code></pre>
+				<p>Output:</p>
+				<pre><code><span style="color: #000000">isValidDataResA: </span><span style="color: #0000FF">false</span>
+<span style="color: #000000">isValidDataResB: </span><span style="color: #0000FF">true</span>
+<span style="color: #000000">isValidDataResC: </span><span style="color: #0000FF">false</span>
+</code></pre>
+				<!-- @param {any} data Original Data
+@param {string[]} attributes Data Attributes
+@param {any} validValue Given Value for verifying.
+@returns {boolean} Return TRUE if the data is valid.
+@category Util -->
+				<a href="#generaterndnum" id="generaterndnum" style="color: inherit; text-decoration: none;">
+					<h4>generateRndNum</h4>
+				</a>
+				<p>Produce a random string of number, <code>generateRndNum(7)</code> =&gt; &#39;7658495&#39;.</p>
+				<pre><code><span style="color: #795E26">generateRndNum</span><span style="color: #000000">(</span><span style="color: #098658">4</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;9730&#039;</span>
+<span style="color: #795E26">generateRndNum</span><span style="color: #000000">(</span><span style="color: #098658">7</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;2262490&#039;</span>
+</code></pre>
+				<!-- @param {number} n Length
+@returns {string} Return the random string.
 @category Util -->
 				<a href="#formatdate" id="formatdate" style="color: inherit; text-decoration: none;">
 					<h4>formatDate</h4>
@@ -340,16 +371,6 @@
 				<!-- @param {string} camelCase 'aBC' or 'ABC'
 @returns {string} 'a_b_c'
 @category Util -->
-				<a href="#mtrim" id="mtrim" style="color: inherit; text-decoration: none;">
-					<h4>mTrim</h4>
-				</a>
-				<p>Remove leading and trailing whitespace or specified characters from string.</p>
-				<pre><code><span style="color: #795E26">mTrim</span><span style="color: #000000">(</span><span style="color: #A31515">&#039; 1 2 3 &#039;</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;1 2 3&#039;</span>
-<span style="color: #795E26">mTrim</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;abc &#039;</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;abc&#039;</span>
-</code></pre>
-				<!-- @param {string} str The string to trim.
-@returns {string} Trimmed string.
-@category Util -->
 				<a href="#deepcopyobject" id="deepcopyobject" style="color: inherit; text-decoration: none;">
 					<h4>deepCopyObject</h4>
 				</a>
@@ -365,101 +386,16 @@
 				<!-- @param {object} obj The value to clone.
 @returns {object} Returns the deep cloned value.
 @category Util -->
-				<a href="#isvaliddata" id="isvaliddata" style="color: inherit; text-decoration: none;">
-					<h4>isValidData</h4>
+				<a href="#mtrim" id="mtrim" style="color: inherit; text-decoration: none;">
+					<h4>mTrim</h4>
 				</a>
-				<p>Determine the validity of the data.</p>
-				<p>Usage:</p>
-				<pre><code><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">validData</span><span style="color: #000000"> = {</span>
-<span style="color: #000000">  </span><span style="color: #001080">a:</span><span style="color: #000000"> {</span>
-<span style="color: #000000">    </span><span style="color: #001080">b:</span><span style="color: #000000"> {</span>
-<span style="color: #000000">      </span><span style="color: #001080">c:</span><span style="color: #000000"> </span><span style="color: #098658">413</span>
-<span style="color: #000000">    }</span>
-<span style="color: #000000">  }</span>
-<span style="color: #000000">};</span>
-
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">isValidDataResA</span><span style="color: #000000"> = </span><span style="color: #795E26">isValidData</span><span style="color: #000000">(</span><span style="color: #001080">validData</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;a&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;b&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;c&#039;</span><span style="color: #000000">], </span><span style="color: #098658">2333</span><span style="color: #000000">);</span>
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">isValidDataResB</span><span style="color: #000000"> = </span><span style="color: #795E26">isValidData</span><span style="color: #000000">(</span><span style="color: #001080">validData</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;a&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;b&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;c&#039;</span><span style="color: #000000">], </span><span style="color: #098658">413</span><span style="color: #000000">);</span>
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">isValidDataResC</span><span style="color: #000000"> = </span><span style="color: #795E26">isValidData</span><span style="color: #000000">(</span><span style="color: #001080">validData</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;d&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;d&#039;</span><span style="color: #000000">], </span><span style="color: #098658">413</span><span style="color: #000000">);</span>
-
-<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;isValidDataResA:&#039;</span><span style="color: #000000">, </span><span style="color: #001080">isValidDataResA</span><span style="color: #000000">);</span>
-<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;isValidDataResB:&#039;</span><span style="color: #000000">, </span><span style="color: #001080">isValidDataResB</span><span style="color: #000000">);</span>
-<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;isValidDataResC:&#039;</span><span style="color: #000000">, </span><span style="color: #001080">isValidDataResC</span><span style="color: #000000">);</span>
+				<p>Remove leading and trailing whitespace or specified characters from string.</p>
+				<pre><code><span style="color: #795E26">mTrim</span><span style="color: #000000">(</span><span style="color: #A31515">&#039; 1 2 3 &#039;</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;1 2 3&#039;</span>
+<span style="color: #795E26">mTrim</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;abc &#039;</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;abc&#039;</span>
 </code></pre>
-				<p>Output:</p>
-				<pre><code><span style="color: #000000">isValidDataResA: </span><span style="color: #0000FF">false</span>
-<span style="color: #000000">isValidDataResB: </span><span style="color: #0000FF">true</span>
-<span style="color: #000000">isValidDataResC: </span><span style="color: #0000FF">false</span>
-</code></pre>
-				<!-- @param {any} data Original Data
-@param {string[]} attributes Data Attributes
-@param {any} validValue Given Value for verifying.
-@returns {boolean} Return TRUE if the data is valid.
+				<!-- @param {string} str The string to trim.
+@returns {string} Trimmed string.
 @category Util -->
-				<a href="#dom" id="dom" style="color: inherit; text-decoration: none;">
-					<h3>DOM</h3>
-				</a>
-				<a href="#addstyle" id="addstyle" style="color: inherit; text-decoration: none;">
-					<h4>addStyle</h4>
-				</a>
-				<p>Add <code>&lt;style&gt;</code> in <code>&lt;head&gt;</code>.</p>
-				<!-- ZH: 添加样式标签; style: 样式标签内的字符串; id: `<style>` 标签的 `id`; 返回: 添加成功/失败 -->
-				<p>Example 1: Add the <code>&lt;style&gt;</code> with <code>id</code>, and repeated invoking will update the content instead of adding a new one.</p>
-				<pre><code><span style="color: #795E26">addStyle</span><span style="color: #000000">(</span>
-<span style="color: #000000">  </span><span style="color: #A31515">`</span>
-<span style="color: #A31515">    body {</span>
-<span style="color: #A31515">      background-color: #333;</span>
-<span style="color: #A31515">    }</span>
-<span style="color: #A31515">  `</span><span style="color: #000000">,</span>
-<span style="color: #000000">  {</span>
-<span style="color: #000000">    </span><span style="color: #001080">id:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;test&#039;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  }</span>
-<span style="color: #000000">);</span>
-<span style="color: #008000">// &lt;style id=&quot;test&quot;&gt;</span>
-<span style="color: #008000">//   body {</span>
-<span style="color: #008000">//     background-color: #333;</span>
-<span style="color: #008000">//   }</span>
-<span style="color: #008000">// &lt;/style&gt;</span>
-</code></pre>
-				<p>Example 2: Add the <code>&lt;style&gt;</code> without <code>id</code>, and repeated invoking will adding a new one.</p>
-				<pre><code><span style="color: #795E26">addStyle</span><span style="color: #000000">(</span>
-<span style="color: #000000">  </span><span style="color: #A31515">`</span>
-<span style="color: #A31515">    body {</span>
-<span style="color: #A31515">      background-color: #444;</span>
-<span style="color: #A31515">    }</span>
-<span style="color: #A31515">  `</span>
-<span style="color: #000000">);</span>
-<span style="color: #008000">// &lt;style&gt;</span>
-<span style="color: #008000">//   body {</span>
-<span style="color: #008000">//     background-color: #444;</span>
-<span style="color: #008000">//   }</span>
-<span style="color: #008000">// &lt;/style&gt;</span>
-</code></pre>
-				<!-- @category DOM -->
-				<a href="#newline" id="newline" style="color: inherit; text-decoration: none;">
-					<h4>newLine</h4>
-				</a>
-				<p>Make a newline of HTML.</p>
-				<pre><code><span style="color: #795E26">newLine</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;a</span><span style="color: #EE0000">\n</span><span style="color: #A31515">b</span><span style="color: #EE0000">\n</span><span style="color: #A31515">c&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;a&lt;br /&gt;b&lt;br /&gt;c&#039;</span>
-<span style="color: #795E26">newLine</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;a</span><span style="color: #EE0000">\n\n</span><span style="color: #A31515">bc&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;a&lt;br /&gt;&lt;br /&gt;bc&#039;</span>
-</code></pre>
-				<!-- @param {string} str The string to make a newline.
-@returns {string} A newline with `br`.
-@category DOM -->
-				<a href="#class" id="class" style="color: inherit; text-decoration: none;">
-					<h4>Class</h4>
-				</a>
-				<p>Modify <code>class</code>.</p>
-				<pre><code><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">dom</span><span style="color: #000000"> = </span><span style="color: #001080">document</span><span style="color: #000000">.</span><span style="color: #795E26">querySelector</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;#box&#039;</span><span style="color: #000000">);</span>
-
-<span style="color: #008000">// Determine `class`</span>
-<span style="color: #795E26">hasClass</span><span style="color: #000000">(</span><span style="color: #001080">dom</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;test&#039;</span><span style="color: #000000">);</span>
-<span style="color: #008000">// Add `class`</span>
-<span style="color: #795E26">addClass</span><span style="color: #000000">(</span><span style="color: #001080">dom</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;test&#039;</span><span style="color: #000000">);</span>
-<span style="color: #008000">// Remove `class`</span>
-<span style="color: #795E26">removeClass</span><span style="color: #000000">(</span><span style="color: #001080">dom</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;test&#039;</span><span style="color: #000000">);</span>
-</code></pre>
-				<!-- @category DOM -->
 				<a href="#url" id="url" style="color: inherit; text-decoration: none;">
 					<h3>URL</h3>
 				</a>
@@ -538,6 +474,15 @@
 				<a href="#cache-data" id="cache-data" style="color: inherit; text-decoration: none;">
 					<h3>Cache Data</h3>
 				</a>
+				<a href="#cookie" id="cookie" style="color: inherit; text-decoration: none;">
+					<h4>Cookie</h4>
+				</a>
+				<p>Handle Cookie.</p>
+				<!-- ZH: 设置/获取 Cookie -->
+				<pre><code><span style="color: #795E26">setCookie</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;test&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;123&#039;</span><span style="color: #000000">, </span><span style="color: #098658">30</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;example.com&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// key value day domain</span>
+<span style="color: #795E26">getCookie</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;test&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// 123</span>
+</code></pre>
+				<!-- @category Cache Data -->
 				<a href="#storage" id="storage" style="color: inherit; text-decoration: none;">
 					<h4>Storage</h4>
 				</a>
@@ -561,15 +506,70 @@
 				<!-- @param {string} key 键
 @returns {any} 返回值
 @category Cache Data -->
-				<a href="#cookie" id="cookie" style="color: inherit; text-decoration: none;">
-					<h4>Cookie</h4>
+				<a href="#dom" id="dom" style="color: inherit; text-decoration: none;">
+					<h3>DOM</h3>
 				</a>
-				<p>Handle Cookie.</p>
-				<!-- ZH: 设置/获取 Cookie -->
-				<pre><code><span style="color: #795E26">setCookie</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;test&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;123&#039;</span><span style="color: #000000">, </span><span style="color: #098658">30</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;example.com&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// key value day domain</span>
-<span style="color: #795E26">getCookie</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;test&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// 123</span>
+				<a href="#addstyle" id="addstyle" style="color: inherit; text-decoration: none;">
+					<h4>addStyle</h4>
+				</a>
+				<p>Add <code>&lt;style&gt;</code> in <code>&lt;head&gt;</code>.</p>
+				<!-- ZH: 添加样式标签; style: 样式标签内的字符串; id: `<style>` 标签的 `id`; 返回: 添加成功/失败 -->
+				<p>Example 1: Add the <code>&lt;style&gt;</code> with <code>id</code>, and repeated invoking will update the content instead of adding a new one.</p>
+				<pre><code><span style="color: #795E26">addStyle</span><span style="color: #000000">(</span>
+<span style="color: #000000">  </span><span style="color: #A31515">`</span>
+<span style="color: #A31515">    body {</span>
+<span style="color: #A31515">      background-color: #333;</span>
+<span style="color: #A31515">    }</span>
+<span style="color: #A31515">  `</span><span style="color: #000000">,</span>
+<span style="color: #000000">  {</span>
+<span style="color: #000000">    </span><span style="color: #001080">id:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;test&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  }</span>
+<span style="color: #000000">);</span>
+<span style="color: #008000">// &lt;style id=&quot;test&quot;&gt;</span>
+<span style="color: #008000">//   body {</span>
+<span style="color: #008000">//     background-color: #333;</span>
+<span style="color: #008000">//   }</span>
+<span style="color: #008000">// &lt;/style&gt;</span>
 </code></pre>
-				<!-- @category Cache Data -->
+				<p>Example 2: Add the <code>&lt;style&gt;</code> without <code>id</code>, and repeated invoking will adding a new one.</p>
+				<pre><code><span style="color: #795E26">addStyle</span><span style="color: #000000">(</span>
+<span style="color: #000000">  </span><span style="color: #A31515">`</span>
+<span style="color: #A31515">    body {</span>
+<span style="color: #A31515">      background-color: #444;</span>
+<span style="color: #A31515">    }</span>
+<span style="color: #A31515">  `</span>
+<span style="color: #000000">);</span>
+<span style="color: #008000">// &lt;style&gt;</span>
+<span style="color: #008000">//   body {</span>
+<span style="color: #008000">//     background-color: #444;</span>
+<span style="color: #008000">//   }</span>
+<span style="color: #008000">// &lt;/style&gt;</span>
+</code></pre>
+				<!-- @category DOM -->
+				<a href="#class" id="class" style="color: inherit; text-decoration: none;">
+					<h4>Class</h4>
+				</a>
+				<p>Modify <code>class</code>.</p>
+				<pre><code><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">dom</span><span style="color: #000000"> = </span><span style="color: #001080">document</span><span style="color: #000000">.</span><span style="color: #795E26">querySelector</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;#box&#039;</span><span style="color: #000000">);</span>
+
+<span style="color: #008000">// Determine `class`</span>
+<span style="color: #795E26">hasClass</span><span style="color: #000000">(</span><span style="color: #001080">dom</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;test&#039;</span><span style="color: #000000">);</span>
+<span style="color: #008000">// Add `class`</span>
+<span style="color: #795E26">addClass</span><span style="color: #000000">(</span><span style="color: #001080">dom</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;test&#039;</span><span style="color: #000000">);</span>
+<span style="color: #008000">// Remove `class`</span>
+<span style="color: #795E26">removeClass</span><span style="color: #000000">(</span><span style="color: #001080">dom</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;test&#039;</span><span style="color: #000000">);</span>
+</code></pre>
+				<!-- @category DOM -->
+				<a href="#newline" id="newline" style="color: inherit; text-decoration: none;">
+					<h4>newLine</h4>
+				</a>
+				<p>Make a newline of HTML.</p>
+				<pre><code><span style="color: #795E26">newLine</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;a</span><span style="color: #EE0000">\n</span><span style="color: #A31515">b</span><span style="color: #EE0000">\n</span><span style="color: #A31515">c&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;a&lt;br /&gt;b&lt;br /&gt;c&#039;</span>
+<span style="color: #795E26">newLine</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;a</span><span style="color: #EE0000">\n\n</span><span style="color: #A31515">bc&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;a&lt;br /&gt;&lt;br /&gt;bc&#039;</span>
+</code></pre>
+				<!-- @param {string} str The string to make a newline.
+@returns {string} A newline with `br`.
+@category DOM -->
 				<a href="#calculate-and-formula" id="calculate-and-formula" style="color: inherit; text-decoration: none;">
 					<h3>Calculate and Formula</h3>
 				</a>
@@ -1004,6 +1004,9 @@
 						<a href="modules.html#isValidData" class="tsd-kind-icon">is<wbr>Valid<wbr>Data</a>
 					</li>
 					<li class=" tsd-kind-function">
+						<a href="modules.html#isValidEmail" class="tsd-kind-icon">is<wbr>Valid<wbr>Email</a>
+					</li>
+					<li class=" tsd-kind-function">
 						<a href="modules.html#isValidPhoneNumber" class="tsd-kind-icon">is<wbr>Valid<wbr>Phone<wbr>Number</a>
 					</li>
 					<li class=" tsd-kind-function">
@@ -1047,9 +1050,6 @@
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="modules.html#windowLoaded" class="tsd-kind-icon">window<wbr>Loaded</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#zAxiosIsValidRes" class="tsd-kind-icon">z<wbr>Axios<wbr>IsValid<wbr>Res</a>
 					</li>
 				</ul>
 			</nav>

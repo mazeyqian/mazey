@@ -6,6 +6,9 @@ doc/
 docs/
 undefined/
 temp/
+src/
+examples/
+images/
 
 # .
 .idea
@@ -38,3 +41,5 @@ webpack.config.js
 jsdoc.config.json
 tsconfig.json
 typing.d.ts
+README_CN.md
+README_ZH.md

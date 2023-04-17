@@ -1,4 +1,4 @@
-English | [简体中文](https://github.com/mazeyqian/mazey/blob/master/README_CN.md)
+English | [简体中文](https://github.com/mazeyqian/mazey/blob/master/README_ZH.md)
 
 # mazey
 
@@ -10,7 +10,7 @@ English | [简体中文](https://github.com/mazeyqian/mazey/blob/master/README_C
 [l-image]: https://img.shields.io/npm/l/mazey
 [l-url]: https://github.com/mazeyqian/mazey
 
-Mazey's functional library for daily front-end work. There are already many excellent libraries for front-end development, but creating a file named UtilsJS or CommonJS is generally used to supply common functions in projects. It's boring to copy similar functions among projects again and again. Therefore, I will consistently update the library during my work life to save time.
+Mazey's functional library for daily front-end work. There are already many excellent libraries for front-end development, but creating a file named `utils.js` or `common.js` is generally used to supply common functions in projects. It's boring to copy similar functions across multiple projects. That's why I've created this library and will keep updating it to serve as a reliable resource for front-end needs.
 
 ## Install
 
@@ -63,20 +63,16 @@ There ara some examples maintained by hand below. For more information, please c
   * [windowLoaded](#windowloaded)
 - [Util](#util)
   * [isNumber](#isnumber)
-  * [generateRndNum](#generaterndnum)
   * [isJsonString](#isjsonstring)
+  * [isValidData](#isvaliddata)
+  * [generateRndNum](#generaterndnum)
   * [formatDate](#formatdate)
   * [debounce](#debounce)
   * [throttle](#throttle)
   * [camelCaseToKebabCase](#camelcasetokebabcase)
   * [camelCase2Underscore](#camelcase2underscore)
-  * [mTrim](#mtrim)
   * [deepCopyObject](#deepcopyobject)
-  * [isValidData](#isvaliddata)
-- [DOM](#dom)
-  * [addStyle](#addstyle)
-  * [newLine](#newline)
-  * [Class](#class)
+  * [mTrim](#mtrim)
 - [URL](#url)
   * [getQueryParam](#getqueryparam)
   * [getUrlParam](#geturlparam)
@@ -84,8 +80,12 @@ There ara some examples maintained by hand below. For more information, please c
   * [getDomain](#getdomain)
   * [updateQueryParam](#updatequeryparam)
 - [Cache Data](#cache-data)
-  * [Storage](#storage)
   * [Cookie](#cookie)
+  * [Storage](#storage)
+- [DOM](#dom)
+  * [addStyle](#addstyle)
+  * [Class](#class)
+  * [newLine](#newline)
 - [Calculate and Formula](#calculate-and-formula)
   * [inRate](#inrate)
   * [calLongestCommonSubstring](#callongestcommonsubstring)
@@ -210,19 +210,6 @@ isNumber(NaN, { isNaNAsNumber: true, isUnFiniteAsNumber: true }); // true
 @returns {boolean} true 是数字
 @category Util -->
 
-#### generateRndNum
-
-Produce a random string of number, `generateRndNum(7)` => '7658495'.
-
-```
-generateRndNum(4); // '9730'
-generateRndNum(7); // '2262490'
-```
-
-<!-- @param {number} n Length
-@returns {string} Return the random string.
-@category Util -->
-
 #### isJsonString
 
 Check whether it is a valid JSON string.
@@ -243,6 +230,57 @@ true
 
 <!-- @param {string} str The string to check.
 @returns {boolean} Return the result of checking.
+@category Util -->
+
+#### isValidData
+
+Determine the validity of the data.
+
+Usage:
+
+```
+const validData = {
+  a: {
+    b: {
+      c: 413
+    }
+  }
+};
+
+const isValidDataResA = isValidData(validData, ['a', 'b', 'c'], 2333);
+const isValidDataResB = isValidData(validData, ['a', 'b', 'c'], 413);
+const isValidDataResC = isValidData(validData, ['d', 'd'], 413);
+
+console.log('isValidDataResA:', isValidDataResA);
+console.log('isValidDataResB:', isValidDataResB);
+console.log('isValidDataResC:', isValidDataResC);
+```
+
+Output:
+
+```
+isValidDataResA: false
+isValidDataResB: true
+isValidDataResC: false
+```
+
+<!-- @param {any} data Original Data
+@param {string[]} attributes Data Attributes
+@param {any} validValue Given Value for verifying.
+@returns {boolean} Return TRUE if the data is valid.
+@category Util -->
+
+#### generateRndNum
+
+Produce a random string of number, `generateRndNum(7)` => '7658495'.
+
+```
+generateRndNum(4); // '9730'
+generateRndNum(7); // '2262490'
+```
+
+<!-- @param {number} n Length
+@returns {string} Return the random string.
 @category Util -->
 
 #### formatDate
@@ -328,19 +366,6 @@ camelCase2Underscore('aBC'); // a_b_c
 @returns {string} 'a_b_c'
 @category Util -->
 
-#### mTrim
-
-Remove leading and trailing whitespace or specified characters from string.
-
-```
-mTrim(' 1 2 3 '); // '1 2 3'
-mTrim('abc '); // 'abc'
-```
-
-<!-- @param {string} str The string to trim.
-@returns {string} Trimmed string.
-@category Util -->
-
 #### deepCopyObject
 
 Clone Object deeply.
@@ -363,120 +388,18 @@ Output:
 @returns {object} Returns the deep cloned value.
 @category Util -->
 
-#### isValidData
+#### mTrim
 
-Determine the validity of the data.
-
-Usage:
+Remove leading and trailing whitespace or specified characters from string.
 
 ```
-const validData = {
-  a: {
-    b: {
-      c: 413
-    }
-  }
-};
-
-const isValidDataResA = isValidData(validData, ['a', 'b', 'c'], 2333);
-const isValidDataResB = isValidData(validData, ['a', 'b', 'c'], 413);
-const isValidDataResC = isValidData(validData, ['d', 'd'], 413);
-
-console.log('isValidDataResA:', isValidDataResA);
-console.log('isValidDataResB:', isValidDataResB);
-console.log('isValidDataResC:', isValidDataResC);
+mTrim(' 1 2 3 '); // '1 2 3'
+mTrim('abc '); // 'abc'
 ```
 
-Output:
-
-```
-isValidDataResA: false
-isValidDataResB: true
-isValidDataResC: false
-```
-
-<!-- @param {any} data Original Data
-@param {string[]} attributes Data Attributes
-@param {any} validValue Given Value for verifying.
-@returns {boolean} Return TRUE if the data is valid.
+<!-- @param {string} str The string to trim.
+@returns {string} Trimmed string.
 @category Util -->
-
-### DOM
-
-#### addStyle
-
-Add `<style>` in `<head>`.
-
-<!-- ZH: 添加样式标签; style: 样式标签内的字符串; id: `<style>` 标签的 `id`; 返回: 添加成功/失败 -->
-
-Example 1: Add the `<style>` with `id`, and repeated invoking will update the content instead of adding a new one.
-
-```
-addStyle(
-  `
-    body {
-      background-color: #333;
-    }
-  `,
-  {
-    id: 'test',
-  }
-);
-// <style id="test">
-//   body {
-//     background-color: #333;
-//   }
-// </style>
-```
-
-Example 2: Add the `<style>` without `id`, and repeated invoking will adding a new one.
-
-```
-addStyle(
-  `
-    body {
-      background-color: #444;
-    }
-  `
-);
-// <style>
-//   body {
-//     background-color: #444;
-//   }
-// </style>
-```
-
-<!-- @category DOM -->
-
-#### newLine
-
-Make a newline of HTML.
-
-```
-newLine('a\nb\nc'); // 'a<br />b<br />c'
-newLine('a\n\nbc'); // 'a<br /><br />bc'
-```
-
-<!-- @param {string} str The string to make a newline.
-@returns {string} A newline with `br`.
-@category DOM -->
-
-#### Class
-
-Modify `class`.
-
-```
-const dom = document.querySelector('#box');
-
-// Determine `class`
-hasClass(dom, 'test');
-// Add `class`
-addClass(dom, 'test');
-// Remove `class`
-removeClass(dom, 'test');
-```
-
-<!-- @category DOM -->
 
 ### URL
 
@@ -581,6 +504,19 @@ http://example.com/?t1=1&t2=2&t3=3&t4=four
 
 ### Cache Data
 
+#### Cookie
+
+Handle Cookie.
+
+<!-- ZH: 设置/获取 Cookie -->
+
+```
+setCookie('test', '123', 30, 'example.com'); // key value day domain
+getCookie('test'); // 123
+```
+
+<!-- @category Cache Data -->
+
 #### Storage
 
 Handle Storage (Keep fit for JSON, it can tansfer format automatically).
@@ -608,18 +544,82 @@ function mGetLocalStorage (key) {
 @returns {any} 返回值
 @category Cache Data -->
 
-#### Cookie
+### DOM
 
-Handle Cookie.
+#### addStyle
 
-<!-- ZH: 设置/获取 Cookie -->
+Add `<style>` in `<head>`.
+
+<!-- ZH: 添加样式标签; style: 样式标签内的字符串; id: `<style>` 标签的 `id`; 返回: 添加成功/失败 -->
+
+Example 1: Add the `<style>` with `id`, and repeated invoking will update the content instead of adding a new one.
 
 ```
-setCookie('test', '123', 30, 'example.com'); // key value day domain
-getCookie('test'); // 123
+addStyle(
+  `
+    body {
+      background-color: #333;
+    }
+  `,
+  {
+    id: 'test',
+  }
+);
+// <style id="test">
+//   body {
+//     background-color: #333;
+//   }
+// </style>
 ```
 
-<!-- @category Cache Data -->
+Example 2: Add the `<style>` without `id`, and repeated invoking will adding a new one.
+
+```
+addStyle(
+  `
+    body {
+      background-color: #444;
+    }
+  `
+);
+// <style>
+//   body {
+//     background-color: #444;
+//   }
+// </style>
+```
+
+<!-- @category DOM -->
+
+#### Class
+
+Modify `class`.
+
+```
+const dom = document.querySelector('#box');
+
+// Determine `class`
+hasClass(dom, 'test');
+// Add `class`
+addClass(dom, 'test');
+// Remove `class`
+removeClass(dom, 'test');
+```
+
+<!-- @category DOM -->
+
+#### newLine
+
+Make a newline of HTML.
+
+```
+newLine('a\nb\nc'); // 'a<br />b<br />c'
+newLine('a\n\nbc'); // 'a<br /><br />bc'
+```
+
+<!-- @param {string} str The string to make a newline.
+@returns {string} A newline with `br`.
+@category DOM -->
 
 ### Calculate and Formula
 
@@ -801,19 +801,19 @@ Output:
 
 Results:
 
-| Index | Field | Description |
-| --- | --- | --- |
-| DNS lookup | dns_time | domainLookupEnd - domainLookupStart |
-| Connection negotiation | tcp_time | connectEnd - connectStart |
-| Requests and responses | response_time | responseStart - requestStart |
-| White screen | white_time | responseStart - navigationStart |
-| DomReady | domready_time  | domContentLoadedEventStart - navigationStart |
-| Onload | onload_time | loadEventStart - navigationStart |
-| EventEnd | render_time | loadEventEnd -navigationStart |
-| Unload | unload_time | (Optional) unloadEventEnd - unloadEventStart |
-| Redirect | redirect_time | (Optional) redirectEnd - redirectStart |
-| SSL | ssl_time | (Optional) connectEnd - secureConnectionStart |
-| Download | download_time | (Optional) responseEnd - responseStart |
+| Attribute | Description | Type | Values |
+| --- | --- | --- | --- |
+| dns_time | DNS Lookup | number | domainLookupEnd - domainLookupStart |
+| tcp_time | Connection Negotiation | number | connectEnd - connectStart |
+| response_time | Requests and Responses | number | responseStart - requestStart |
+| white_time | White Screen | number | responseStart - navigationStart |
+| domready_time | DomReady | number | domContentLoadedEventStart - navigationStart |
+| onload_time | Onload | number | loadEventStart - navigationStart |
+| render_time | EventEnd | number | loadEventEnd -navigationStart |
+| unload_time | Unload | number | (Optional) unloadEventEnd - unloadEventStart |
+| redirect_time | Redirect | number | (Optional) redirectEnd - redirectStart |
+| ssl_time | SSL | number | (Optional) connectEnd - secureConnectionStart |
+| download_time | Download | number | (Optional) responseEnd - responseStart |
 
 <!-- @param {boolean} camelCase -- false（默认） 以下划线形式返回数据 true 以驼峰形式返回数据
 @returns {Promise<object>} 加载数据
