@@ -12,6 +12,14 @@ const genVersion = () => {
   return version;
 };
 const version = genVersion();
+const defaultHiddenHeadings = [
+  'mazey',
+  'Install',
+  'Usage',
+  'Contributing',
+  'License',
+  'API Examples',
+];
 
 /**
  * Generate table of contents for the markdown file.
@@ -21,25 +29,11 @@ const version = genVersion();
  * @returns {void}
  */
 const generateToc = (path = '../README.md', options = {
-  hiddenHeadings: [
-    'mazey',
-    'Install',
-    'Usage',
-    'Contributing',
-    'License',
-    'API Examples',
-  ],
+  hiddenHeadings: defaultHiddenHeadings,
 }) => {
   console.log('Generating Table of Contents...');
   options = Object.assign({
-    hiddenHeadings: [
-      'mazey',
-      'Install',
-      'Usage',
-      'Contributing',
-      'License',
-      'API Examples',
-    ],
+    hiddenHeadings: defaultHiddenHeadings,
   }, options);
   const RMFilePath = _resolve(path);
   // https://melvingeorge.me/blog/get-all-the-contents-from-file-as-string-nodejs
