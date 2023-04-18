@@ -242,6 +242,8 @@ export function getHashQueryParam(param: string): string {
  * getDomain('http://example.com/test/thanks?t1=1&t2=2&t3=3&t4=4', ['hostname', 'pathname']);
  * getDomain('http://example.com:7890/test/thanks', ['hostname']);
  * getDomain('http://example.com:7890/test/thanks', ['host']); // With Port
+ * getDomain('http://example.com:7890/test/thanks', ['origin']);
+ * getDomain('http://example.com:7890/test/thanks?id=1', ['origin', 'pathname', 'search']);
  * ```
  *
  * Output:
@@ -251,10 +253,12 @@ export function getHashQueryParam(param: string): string {
  * example.com/test/thanks
  * example.com
  * example.com:7890
+ * http://example.com:7890
+ * http://example.com:7890/test/thanks?id=1
  * ```
  *
  * @param {string} url
- * @param {array} rules Object.keys(location), ['href', 'protocol', 'host', 'hostname', 'port', 'pathname', 'search', 'hash'], ['hostname', 'pathname'] = 'km.mazey.net/plugins/servlet/mobile'
+ * @param {array} rules Object.keys(location), ['href', 'origin', 'protocol', 'host', 'hostname', 'port', 'pathname', 'search', 'hash'], ['hostname', 'pathname'] = 'km.mazey.net/plugins/servlet/mobile'
  * @category URL
  */
 export function getDomain(url: string, rules = ['hostname']): string {
