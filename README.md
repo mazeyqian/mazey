@@ -738,7 +738,7 @@ Output:
 Results:
 
 | Attribute | Description | Type | Values |
-| --- | --- | --- | --- |
+| :------------ | :------------ | :------------ | :------------ |
 | **system** | System | string | android, ios, windows, macos, linux |
 | systemVs | System version | string | windows: 2000, xp, 2003, vista, 7, 8, 8.1, 10 <br />macos: ... |
 | platform | Platform | string | desktop, mobile |
@@ -810,7 +810,7 @@ Output:
 Results:
 
 | Attribute | Description | Type | Values |
-| --- | --- | --- | --- |
+| :------------ | :------------ | :------------ | :------------ |
 | dns_time | DNS Lookup | number | domainLookupEnd - domainLookupStart |
 | tcp_time | Connection Negotiation | number | connectEnd - connectStart |
 | response_time | Requests and Responses | number | responseStart - requestStart |
