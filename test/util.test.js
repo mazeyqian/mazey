@@ -5,7 +5,7 @@
 /* eslint-disable quotes */
 // Util
 
-import { isNumber, camelCaseToKebabCase, camelCase2Underscore, mTrim, deepCopyObject, isJsonString, generateRndNum, formatDate, isValidData, isValidEmail, convert10To26 } from '../lib/index.esm';
+import { isNumber, camelCaseToKebabCase, camelCase2Underscore, mTrim, deepCopyObject, isJsonString, generateRndNum, formatDate, isValidData, isValidEmail, convert10To26, getFriendlyInterval } from '../lib/index.esm';
 
 test('isNumber: Is -1 Number?', () => {
   expect(isNumber(-1)).toBe(true);
@@ -78,4 +78,14 @@ test('convert10To26: Convert 1 to "a"?', () => {
   expect(convert10To26(27)).toBe('aa');
   expect(convert10To26(52)).toBe('az');
   expect(convert10To26(53)).toBe('ba');
+});
+
+// Use Jest to test getFriendlyInterval in a `test`
+// console.log('getFriendlyInterval:', getFriendlyInterval(new Date('2020-03-28 00:09:27'), new Date('2023-04-18 10:54:00'), { type: 'd' })); // 1116
+// console.log('getFriendlyInterval:', getFriendlyInterval(1585325367000, 1681786440000, { type: 'text' })); // 1116 天 10 时 44 分 33 秒
+// console.log('getFriendlyInterval:', getFriendlyInterval('2020-03-28 00:09:27', '2023-04-18 10:54:00', { type: 'text' })); // 1116 天 10 时 44 分 33 秒
+test('getFriendlyInterval: Get 1116 days?', () => {
+  expect(getFriendlyInterval(new Date('2020-03-28 00:09:27'), new Date('2023-04-18 10:54:00'), { type: 'd' })).toBe(1116);
+  expect(getFriendlyInterval(1585325367000, 1681786440000, { type: 'text' })).toBe('1116 天 10 时 44 分 33 秒');
+  expect(getFriendlyInterval('2020-03-28 00:09:27', '2023-04-18 10:54:00', { type: 'text' })).toBe('1116 天 10 时 44 分 33 秒');
 });

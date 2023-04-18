@@ -657,24 +657,36 @@ export function debounce(func: any, wait: number, immediate?: any): any {
   };
 }
 
+const defaultGetFriendlyIntervalOptions = {
+  type: 'd'
+};
+
 /**
- * @method friendlyInterval
- * @description 获取间隔时间。
+ * 获取间隔时间
+ *
+ * @example
+ * ```js
+ * console.log('getFriendlyInterval:', getFriendlyInterval(new Date('2020-03-28 00:09:27'), new Date('2023-04-18 10:54:00'), { type: 'd' })); // 1116
+ * console.log('getFriendlyInterval:', getFriendlyInterval(1585325367000, 1681786440000, { type: 'text' })); // 1116 天 10 时 44 分 33 秒
+ * console.log('getFriendlyInterval:', getFriendlyInterval('2020-03-28 00:09:27', '2023-04-18 10:54:00', { type: 'text' })); // 1116 天 10 时 44 分 33 秒
+ * ```
+ *
  * @param {number/Date} start 开始时间戳 1585325367122
  * @param {number/Date} end 结束时间戳 1585325367122
  * @param {string} options.type 返回类型 d: 2(天) text: 2 天 4 时...
  * @returns {string/number} 取决于 type
  * @category Util
  */
-export function friendlyInterval(
-  start = 0,
-  end = 0,
-  options: { type?: string } = { type: 'd' }
+export function getFriendlyInterval(
+  start: number | string | Date = 0,
+  end: number | string | Date = 0,
+  options: { type?: string } = defaultGetFriendlyIntervalOptions
 ): number | string {
+  options = Object.assign(defaultGetFriendlyIntervalOptions, options);
   const { type } = options;
   if (!isNumber(start)) start = new Date(start).getTime();
   if (!isNumber(end)) end = new Date(end).getTime();
-  const t = end - start;
+  const t = Number(end) - Number(start);
   let ret = '';
   let [d, h, m, s] = new Array(4).fill(0);
   if (t >= 0) {
