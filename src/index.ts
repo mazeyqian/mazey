@@ -2627,3 +2627,35 @@ export function convert10To26(num: number): string {
   }
   return result;
 }
+
+/**
+ * EN: Get the file type of the url.
+ *
+ * ZH: 获取文件后缀名
+ *
+ * @example
+ * ```js
+ * console.log(getUrlFileType('https://example.com/a/b/c.png')); // png
+ * console.log(getUrlFileType('https://example.com/a/b/c.jpg')); // jpg
+ * console.log(getUrlFileType('https://example.com/a/b/c.jpeg')); // jpeg
+ * console.log(getUrlFileType('https://example.com/a/b/c.v/a')); // ''
+ * ```
+ *
+ * @param url
+ * @returns
+ * @category URL
+ */
+export function getUrlFileType(url: string): boolean | string {
+  let ret = '';
+  if (typeof url != 'string' || url == '') {
+    return ret;
+  }
+  const type = /\.[^.]+$/.exec(url);
+  if (!type) {
+    return ret;
+  }
+  if (type[0].length > 1) {
+    ret = type[0].substring(1);
+  }
+  return ret;
+}
