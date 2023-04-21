@@ -37,7 +37,9 @@ Import from [npm](https://www.npmjs.com/package/mazey).
 ```
 import { isNumber } from 'mazey';
 
-isNumber(Infinity, { isUnFiniteAsNumber: true }); // true
+const x = Infinity;
+isNumber(x); // <=> typeof x === 'string' && !isNaN(x) && isFinite(x)
+// Output: false
 ```
 
 Import from CDN.
@@ -45,7 +47,9 @@ Import from CDN.
 ```
 <script type="text/javascript" src="//i.mazey.net/mazey/lib/mazey.min.js"></script>
 <script>
-  mazey.isNumber(Infinity, { isUnFiniteAsNumber: true }); // true
+  const x = Infinity;
+  mazey.isNumber(x, { isUnFiniteAsNumber: true }); // <=> typeof x === 'string' && !isNaN(x)
+  // Output: true
 </script>
 ```
 
