@@ -2638,6 +2638,7 @@ export function convert10To26(num: number): string {
  * console.log(getUrlFileType('https://example.com/a/b/c.png')); // png
  * console.log(getUrlFileType('https://example.com/a/b/c.jpg')); // jpg
  * console.log(getUrlFileType('https://example.com/a/b/c.jpeg')); // jpeg
+ * console.log(getUrlFileType('/a/b/c.jpeg')); // jpeg
  * console.log(getUrlFileType('https://example.com/a/b/c.v/a')); // ''
  * ```
  *
@@ -2650,12 +2651,18 @@ export function getUrlFileType(url: string): boolean | string {
   if (typeof url != 'string' || url == '') {
     return ret;
   }
-  const type = /\.[^/?]+$/.exec(url);
+  const type = /\.[^/?#]+$/.exec(url);
   if (!type) {
     return ret;
   }
   if (type[0].length > 1) {
     ret = type[0].substring(1);
   }
+  // if (ret.includes('?')) {
+  //   const arr = ret.split('?');
+  //   if (arr.length > 0) {
+  //     ret = arr[0];
+  //   }
+  // }
   return ret;
 }
