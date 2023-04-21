@@ -2650,7 +2650,7 @@ export function getUrlFileType(url: string): boolean | string {
   if (typeof url != 'string' || url == '') {
     return ret;
   }
-  const type = /\.[^.]+$/.exec(url);
+  const type = /\.[^/?]+$/.exec(url);
   if (!type) {
     return ret;
   }
