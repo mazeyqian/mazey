@@ -274,34 +274,52 @@ export function getDomain(url: string, rules = ['hostname']): string {
  * Transfer CamelCase to KebabCase.
  *
  * ```
- * camelCaseToKebabCase('ABC'); // a-b-c
- * camelCaseToKebabCase('aBC'); // a-b-c
+ * convertCamelToKebab('ABC'); // a-b-c
+ * convertCamelToKebab('aBC'); // a-b-c
  * ```
  *
  * @param {string} camelCase 'aBC' or 'ABC'
  * @returns {string} 'a-b-c'
  * @category Util
  */
-export function camelCaseToKebabCase(camelCase: string): string {
+export function convertCamelToKebab(camelCase: string): string {
   const kebabCase = camelCase.replace(/([A-Z])/g, '-$1').toLowerCase();
   return kebabCase[0] === '-' ? kebabCase.substr(1) : kebabCase;
+}
+
+/**
+ * Alias of convertCamelToKebab
+ *
+ * @hidden
+ */
+export function camelCaseToKebabCase(camelCase: string): string {
+  return convertCamelToKebab(camelCase);
 }
 
 /**
  * Transfer CamelCase to Underscore.
  *
  * ```
- * camelCase2Underscore('ABC'); // a_b_c
- * camelCase2Underscore('aBC'); // a_b_c
+ * convertCamelToUnder('ABC'); // a_b_c
+ * convertCamelToUnder('aBC'); // a_b_c
  * ```
  *
  * @param {string} camelCase 'aBC' or 'ABC'
  * @returns {string} 'a_b_c'
  * @category Util
  */
-export function camelCase2Underscore(camelCase: string): string {
+export function convertCamelToUnder(camelCase: string): string {
   const kebabCase = camelCase.replace(/([A-Z])/g, '_$1').toLowerCase();
   return kebabCase[0] === '_' ? kebabCase.substr(1) : kebabCase;
+}
+
+/**
+ * Alias of convertCamelToUnder
+ *
+ * @hidden
+ */
+export function camelCase2Underscore(camelCase: string): string {
+  return convertCamelToUnder(camelCase);
 }
 
 /**
@@ -377,8 +395,8 @@ export function deepCopyObject(obj: any): any {
  * Usage:
  *
  * ```
- * isJsonString(`['a', 'b', 'c']`);
- * isJsonString(`["a", "b", "c"]`);
+ * isJSONString(`['a', 'b', 'c']`);
+ * isJSONString(`["a", "b", "c"]`);
  * ```
  *
  * Output:
@@ -392,7 +410,7 @@ export function deepCopyObject(obj: any): any {
  * @returns {boolean} Return the result of checking.
  * @category Util
  */
-export function isJsonString(str: string): boolean {
+export function isJSONString(str: string): boolean {
   try {
     if (typeof JSON.parse(str) === 'object') {
       return true;
@@ -401,6 +419,15 @@ export function isJsonString(str: string): boolean {
     /* pass */
   }
   return false;
+}
+
+/**
+ * Alias of isJSONString
+ *
+ * @hidden
+ */
+export function isJsonString(str: string): boolean {
+  return isJSONString(str);
 }
 
 /**
@@ -1925,15 +1952,19 @@ export function clearHtml(str: string): string {
 }
 
 /**
- * @method cutCHSString
- * @description 截取字符串，中文算2个字节
+ * 截取字符串，中文算 2 个字节
+ *
  * @param {string} str 要截取的字符串
  * @param {number} len
  * @param {boolean} hasDot
  * @returns {string} 返回截取后的字符串
  * @category Util
  */
-export function cutCHSString(str: string, len: number, hasDot = false): string {
+export function truncateZHString(
+  str: string,
+  len: number,
+  hasDot = false
+): string {
   if (str == '' || !str) {
     return '';
   } else {
@@ -1961,6 +1992,15 @@ export function cutCHSString(str: string, len: number, hasDot = false): string {
     }
     return newStr;
   }
+}
+
+/**
+ * Alias of truncateZHString
+ *
+ * @hidden
+ */
+export function cutCHSString(str: string, len: number, hasDot = false): string {
+  return truncateZHString(str, len, hasDot);
 }
 
 /**

@@ -67,14 +67,14 @@ There ara some examples maintained by hand below. For more information, please c
   * [windowLoaded](#windowloaded)
 - [Util](#util)
   * [isNumber](#isnumber)
-  * [isJsonString](#isjsonstring)
+  * [isJSONString](#isjsonstring)
   * [isValidData](#isvaliddata)
   * [generateRndNum](#generaterndnum)
   * [formatDate](#formatdate)
   * [debounce](#debounce)
   * [throttle](#throttle)
-  * [camelCaseToKebabCase](#camelcasetokebabcase)
-  * [camelCase2Underscore](#camelcase2underscore)
+  * [convertCamelToKebab](#convertCamelToKebab)
+  * [convertCamelToUnder](#convertCamelToUnder)
   * [deepCopyObject](#deepcopyobject)
   * [mTrim](#mtrim)
 - [URL](#url)
@@ -214,15 +214,15 @@ isNumber(NaN, { isNaNAsNumber: true, isUnFiniteAsNumber: true }); // true
 @returns {boolean} true 是数字
 @category Util -->
 
-#### isJsonString
+#### isJSONString
 
 Check whether it is a valid JSON string.
 
 Usage:
 
 ```
-isJsonString(`['a', 'b', 'c']`);
-isJsonString(`["a", "b", "c"]`);
+isJSONString(`['a', 'b', 'c']`);
+isJSONString(`["a", "b", "c"]`);
 ```
 
 Output:
@@ -344,26 +344,26 @@ Reference: [Lodash](https://lodash.com/docs/4.17.15#throttle)
 
 <!-- @category Util -->
 
-#### camelCaseToKebabCase
+#### convertCamelToKebab
 
 Transfer CamelCase to KebabCase.
 
 ```
-camelCaseToKebabCase('ABC'); // a-b-c
-camelCaseToKebabCase('aBC'); // a-b-c
+convertCamelToKebab('ABC'); // a-b-c
+convertCamelToKebab('aBC'); // a-b-c
 ```
 
 <!-- @param {string} camelCase 'aBC' or 'ABC'
 @returns {string} 'a-b-c'
 @category Util -->
 
-#### camelCase2Underscore
+#### convertCamelToUnder
 
 Transfer CamelCase to Underscore.
 
 ```
-camelCase2Underscore('ABC'); // a_b_c
-camelCase2Underscore('aBC'); // a_b_c
+convertCamelToUnder('ABC'); // a_b_c
+convertCamelToUnder('aBC'); // a_b_c
 ```
 
 <!-- @param {string} camelCase 'aBC' or 'ABC'
