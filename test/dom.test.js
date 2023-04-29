@@ -4,7 +4,7 @@
 /* eslint-disable no-undef */
 // DOM
 
-import { newLine, getDomain } from '../lib/index.esm';
+import { newLine, getDomain, getBrowserInfo } from '../lib/index.esm';
 
 test('newLine: Transfer \'a\nb\nc\' to \'a<br />b<br />c\'?', () => {
   expect(newLine('a\nb\nc')).toBe('a<br />b<br />c');
@@ -42,4 +42,28 @@ function wasteTime (ms) {
 test('Can run async test?', async () => {
   const res = await wasteTime(1000);
   expect(res).toBe(1000);
+});
+
+// Use Jest to test `getBrowserInfo`
+// {
+//   "engine": "webkit",
+//   "engineVs": "605.1.15",
+//   "platform": "mobile",
+//   "supporter": "safari",
+//   "supporterVs": "",
+//   "system": "ios",
+//   "systemVs": "13.3",
+//   "appleType": "ipad",
+//   "shell": "",
+//   "shellVs": ""
+// }
+test('Can get browser info correctly?', () => {
+  const res = getBrowserInfo();
+  expect(res).toHaveProperty('engine');
+  expect(res).toHaveProperty('engineVs');
+  expect(res).toHaveProperty('platform');
+  expect(res).toHaveProperty('supporter');
+  expect(res).toHaveProperty('supporterVs');
+  expect(res).toHaveProperty('system');
+  expect(res).toHaveProperty('systemVs');
 });
