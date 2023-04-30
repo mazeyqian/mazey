@@ -240,6 +240,10 @@ export function getHashQueryParam(param: string): string {
  * ```
  * getDomain('http://example.com/?t1=1&t2=2&t3=3&t4=4');
  * getDomain('http://example.com/test/thanks?t1=1&t2=2&t3=3&t4=4', ['hostname', 'pathname']);
+ * getDomain('http://example.com:7890/test/thanks', ['hostname']);
+ * getDomain('http://example.com:7890/test/thanks', ['host']); // With Port
+ * getDomain('http://example.com:7890/test/thanks', ['origin']);
+ * getDomain('http://example.com:7890/test/thanks?id=1', ['origin', 'pathname', 'search']);
  * ```
  *
  * Output:
@@ -247,10 +251,14 @@ export function getHashQueryParam(param: string): string {
  * ```
  * example.com
  * example.com/test/thanks
+ * example.com
+ * example.com:7890
+ * http://example.com:7890
+ * http://example.com:7890/test/thanks?id=1
  * ```
  *
  * @param {string} url
- * @param {array} rules Object.keys(location), ['href', 'protocol', 'host', 'hostname', 'port', 'pathname', 'search', 'hash'], ['hostname', 'pathname'] = 'km.mazey.net/plugins/servlet/mobile'
+ * @param {array} rules Object.keys(location), ['href', 'origin', 'protocol', 'host', 'hostname', 'port', 'pathname', 'search', 'hash'], ['hostname', 'pathname'] = 'km.mazey.net/plugins/servlet/mobile'
  * @category URL
  */
 export function getDomain(url: string, rules = ['hostname']): string {
@@ -266,34 +274,52 @@ export function getDomain(url: string, rules = ['hostname']): string {
  * Transfer CamelCase to KebabCase.
  *
  * ```
- * camelCaseToKebabCase('ABC'); // a-b-c
- * camelCaseToKebabCase('aBC'); // a-b-c
+ * convertCamelToKebab('ABC'); // a-b-c
+ * convertCamelToKebab('aBC'); // a-b-c
  * ```
  *
  * @param {string} camelCase 'aBC' or 'ABC'
  * @returns {string} 'a-b-c'
  * @category Util
  */
-export function camelCaseToKebabCase(camelCase: string): string {
+export function convertCamelToKebab(camelCase: string): string {
   const kebabCase = camelCase.replace(/([A-Z])/g, '-$1').toLowerCase();
   return kebabCase[0] === '-' ? kebabCase.substr(1) : kebabCase;
+}
+
+/**
+ * Alias of convertCamelToKebab
+ *
+ * @hidden
+ */
+export function camelCaseToKebabCase(camelCase: string): string {
+  return convertCamelToKebab(camelCase);
 }
 
 /**
  * Transfer CamelCase to Underscore.
  *
  * ```
- * camelCase2Underscore('ABC'); // a_b_c
- * camelCase2Underscore('aBC'); // a_b_c
+ * convertCamelToUnder('ABC'); // a_b_c
+ * convertCamelToUnder('aBC'); // a_b_c
  * ```
  *
  * @param {string} camelCase 'aBC' or 'ABC'
  * @returns {string} 'a_b_c'
  * @category Util
  */
-export function camelCase2Underscore(camelCase: string): string {
+export function convertCamelToUnder(camelCase: string): string {
   const kebabCase = camelCase.replace(/([A-Z])/g, '_$1').toLowerCase();
   return kebabCase[0] === '_' ? kebabCase.substr(1) : kebabCase;
+}
+
+/**
+ * Alias of convertCamelToUnder
+ *
+ * @hidden
+ */
+export function camelCase2Underscore(camelCase: string): string {
+  return convertCamelToUnder(camelCase);
 }
 
 /**
@@ -369,8 +395,8 @@ export function deepCopyObject(obj: any): any {
  * Usage:
  *
  * ```
- * isJsonString(`['a', 'b', 'c']`);
- * isJsonString(`["a", "b", "c"]`);
+ * isJSONString(`['a', 'b', 'c']`);
+ * isJSONString(`["a", "b", "c"]`);
  * ```
  *
  * Output:
@@ -384,7 +410,7 @@ export function deepCopyObject(obj: any): any {
  * @returns {boolean} Return the result of checking.
  * @category Util
  */
-export function isJsonString(str: string): boolean {
+export function isJSONString(str: string): boolean {
   try {
     if (typeof JSON.parse(str) === 'object') {
       return true;
@@ -393,6 +419,15 @@ export function isJsonString(str: string): boolean {
     /* pass */
   }
   return false;
+}
+
+/**
+ * Alias of isJSONString
+ *
+ * @hidden
+ */
+export function isJsonString(str: string): boolean {
+  return isJSONString(str);
 }
 
 /**
@@ -657,24 +692,36 @@ export function debounce(func: any, wait: number, immediate?: any): any {
   };
 }
 
+const defaultGetFriendlyIntervalOptions = {
+  type: 'd'
+};
+
 /**
- * @method friendlyInterval
- * @description 获取间隔时间。
+ * 获取间隔时间
+ *
+ * @example
+ * ```js
+ * console.log('getFriendlyInterval:', getFriendlyInterval(new Date('2020-03-28 00:09:27'), new Date('2023-04-18 10:54:00'), { type: 'd' })); // 1116
+ * console.log('getFriendlyInterval:', getFriendlyInterval(1585325367000, 1681786440000, { type: 'text' })); // 1116 天 10 时 44 分 33 秒
+ * console.log('getFriendlyInterval:', getFriendlyInterval('2020-03-28 00:09:27', '2023-04-18 10:54:00', { type: 'text' })); // 1116 天 10 时 44 分 33 秒
+ * ```
+ *
  * @param {number/Date} start 开始时间戳 1585325367122
  * @param {number/Date} end 结束时间戳 1585325367122
  * @param {string} options.type 返回类型 d: 2(天) text: 2 天 4 时...
  * @returns {string/number} 取决于 type
  * @category Util
  */
-export function friendlyInterval(
-  start = 0,
-  end = 0,
-  options: { type?: string } = { type: 'd' }
+export function getFriendlyInterval(
+  start: number | string | Date = 0,
+  end: number | string | Date = 0,
+  options: { type?: string } = defaultGetFriendlyIntervalOptions
 ): number | string {
+  options = Object.assign(defaultGetFriendlyIntervalOptions, options);
   const { type } = options;
   if (!isNumber(start)) start = new Date(start).getTime();
   if (!isNumber(end)) end = new Date(end).getTime();
-  const t = end - start;
+  const t = Number(end) - Number(start);
   let ret = '';
   let [d, h, m, s] = new Array(4).fill(0);
   if (t >= 0) {
@@ -1283,7 +1330,7 @@ interface WebPerformance {
  * Results:
  *
  * | Attribute | Description | Type | Values |
- * | --- | --- | --- | --- |
+ * | :------------ | :------------ | :------------ | :------------ |
  * | dns_time | DNS Lookup | number | domainLookupEnd - domainLookupStart |
  * | tcp_time | Connection Negotiation | number | connectEnd - connectStart |
  * | response_time | Requests and Responses | number | responseStart - requestStart |
@@ -1677,7 +1724,7 @@ export function isSafePWAEnv(): boolean {
  * Results:
  *
  * | Attribute | Description | Type | Values |
- * | --- | --- | --- | --- |
+ * | :------------ | :------------ | :------------ | :------------ |
  * | **system** | System | string | android, ios, windows, macos, linux |
  * | systemVs | System version | string | windows: 2000, xp, 2003, vista, 7, 8, 8.1, 10 <br />macos: ... |
  * | platform | Platform | string | desktop, mobile |
@@ -1905,15 +1952,19 @@ export function clearHtml(str: string): string {
 }
 
 /**
- * @method cutCHSString
- * @description 截取字符串，中文算2个字节
+ * 截取字符串，中文算 2 个字节
+ *
  * @param {string} str 要截取的字符串
  * @param {number} len
  * @param {boolean} hasDot
  * @returns {string} 返回截取后的字符串
  * @category Util
  */
-export function cutCHSString(str: string, len: number, hasDot = false): string {
+export function truncateZHString(
+  str: string,
+  len: number,
+  hasDot = false
+): string {
   if (str == '' || !str) {
     return '';
   } else {
@@ -1941,6 +1992,15 @@ export function cutCHSString(str: string, len: number, hasDot = false): string {
     }
     return newStr;
   }
+}
+
+/**
+ * Alias of truncateZHString
+ *
+ * @hidden
+ */
+export function cutCHSString(str: string, len: number, hasDot = false): string {
+  return truncateZHString(str, len, hasDot);
 }
 
 /**
@@ -2606,4 +2666,43 @@ export function convert10To26(num: number): string {
     num = (num - remainder) / 26;
   }
   return result;
+}
+
+/**
+ * EN: Get the file type of the url.
+ *
+ * ZH: 获取文件后缀名
+ *
+ * @example
+ * ```js
+ * console.log(getUrlFileType('https://example.com/a/b/c.png')); // png
+ * console.log(getUrlFileType('https://example.com/a/b/c.jpg')); // jpg
+ * console.log(getUrlFileType('https://example.com/a/b/c.jpeg')); // jpeg
+ * console.log(getUrlFileType('/a/b/c.jpeg')); // jpeg
+ * console.log(getUrlFileType('https://example.com/a/b/c.v/a')); // ''
+ * ```
+ *
+ * @param url
+ * @returns
+ * @category URL
+ */
+export function getUrlFileType(url: string): boolean | string {
+  let ret = '';
+  if (typeof url != 'string' || url == '') {
+    return ret;
+  }
+  const type = /\.[^/?#]+$/.exec(url);
+  if (!type) {
+    return ret;
+  }
+  if (type[0].length > 1) {
+    ret = type[0].substring(1);
+  }
+  // if (ret.includes('?')) {
+  //   const arr = ret.split('?');
+  //   if (arr.length > 0) {
+  //     ret = arr[0];
+  //   }
+  // }
+  return ret;
 }

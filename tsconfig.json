@@ -75,6 +75,18 @@
   ],
   "typedocOptions": {
     "entryPoints": ["./src"],
-    "out": "docs"
+    "out": "docs",
+    "categoryOrder": [
+      "Load Resource",
+      "Util",
+      "URL",
+      "Cache Data",
+      "DOM",
+      "Calculate and Formula",
+      "Browser Information",
+      "Event",
+      "Web Performance",
+      "Debug"
+    ]
   }
 }

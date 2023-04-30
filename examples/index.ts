@@ -14,7 +14,8 @@ import {
   debounce,
   genCustomConsole,
   formatDate,
-  isValidData
+  isValidData,
+  getFriendlyInterval
 } from '../src/index';
 
 // Sync
@@ -93,6 +94,25 @@ console.log('isValidDataResC:', isValidDataResC);
 // isValidDataResA: false
 // isValidDataResB: true
 // isValidDataResC: false
+
+console.log(
+  'getFriendlyInterval:',
+  getFriendlyInterval(
+    new Date('2020-03-28 00:09:27'),
+    new Date('2023-04-18 10:54:00'),
+    { type: 'd' }
+  )
+); // 1116
+console.log(
+  'getFriendlyInterval:',
+  getFriendlyInterval(1585325367000, 1681786440000, { type: 'text' })
+); // 1116 天 10 时 44 分 33 秒
+console.log(
+  'getFriendlyInterval:',
+  getFriendlyInterval('2020-03-28 00:09:27', '2023-04-18 10:54:00', {
+    type: 'text'
+  })
+); // 1116 天 10 时 44 分 33 秒
 
 // Async
 (async () => {
