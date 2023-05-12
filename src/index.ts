@@ -2810,3 +2810,40 @@ export function genStyleString(
   }
   return `.${className}{${style}}`;
 }
+
+/**
+ * Load the image from the given url.
+ * The target image will be loaded in the background, and the Promise status will change after the image is loaded.
+ * If the image fails to load, the Promise status will change to `reject`.
+ * If the image is loaded successfully, the Promise status will change to `resolve`.
+ * If the image is loaded successfully, the Promise will return the image object.
+ * If the image fails to load, the Promise will return the error object.
+ * The method will help Web to preload the image. And the image will be cached by the browser.
+ * We can use it to implement the lazy loading of images.
+ * The method will not add the image to the DOM.
+ *
+ * @example
+ * ```js
+ * loadImage('https://example.com/example.png').then((img) => {
+ *  console.log(img);
+ * }).catch((err) => {
+ *  console.log(err);
+ * });
+ * ```
+ *
+ * @param {string} url - The image url.
+ * @returns {Promise} Return the Promise object.
+ * @category Load Resource
+ */
+export function loadImage(url: string): Promise<HTMLImageElement> {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => {
+      resolve(img);
+    };
+    img.onerror = err => {
+      reject(err);
+    };
+    img.src = url;
+  });
+}
