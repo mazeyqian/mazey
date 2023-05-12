@@ -488,9 +488,9 @@ export function floatFixed(num: string, size = 0): string {
 }
 
 /**
- * @method cancelBubble
- * @description 阻止冒泡。
- * @category Util
+ * 阻止冒泡
+ *
+ * @category Event
  */
 export function cancelBubble(e: any): void {
   const ev = e || window.event;
@@ -2730,7 +2730,6 @@ export function getUrlFileType(url: string): boolean | string {
  * The `src` attribute should contain `width` and/or `height` values in the format "width=100" or "height=100".
  * If jQuery is available, this function uses jQuery to select the images. Otherwise, it uses pure JavaScript.
  *
- *
  * @example
  * ```
  * // Example images with `src` attributes containing `width` and/or `height` values
@@ -2783,4 +2782,31 @@ export function setImgWidHeiBySrc(): boolean {
     }
   }
   return false;
+}
+
+/**
+ * Generate the inline style string from the given parameters, First parameter is the ClassNames, Second parameter is the style array.
+ *
+ * @example
+ * ```js
+ * console.log(genStyleString('a', [ 'color:red' ])); // '.a{color:red;}'
+ * console.log(genStyleString('b', [ 'color:red', 'font-size:12px' ])); // '.b{color:red;font-size:12px;}'
+ * ```
+ *
+ * @param {string} className
+ * @param {Array} styleArray
+ * @returns {string} Return the inline style string.
+ * @category DOM
+ */
+export function genStyleString(
+  className: string,
+  styleArray: Array<string>
+): string {
+  let style = '';
+  if (styleArray && styleArray.length > 0) {
+    // It's wrong. Last item will not include `;`.
+    // style = styleArray.join(';');
+    style = styleArray.join(';') + ';';
+  }
+  return `.${className}{${style}}`;
 }
