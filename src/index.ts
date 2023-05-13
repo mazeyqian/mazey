@@ -1746,36 +1746,45 @@ export function isSafePWAEnv(): boolean {
  * @returns 浏览器信息
  * @category Browser Information
  */
-export function getBrowserInfo(): {
-  engine: string; // webkit gecko presto trident
-  engineVs: string;
-  platform: string; // desktop mobile
-  supporter: string; // chrome safari firefox opera iexplore edge
-  supporterVs: string;
-  system: string; // windows macos linux android ios
-  systemVs: string;
-  shell?: string; // wechat qq uc 360 2345 sougou liebao maxthon
-  shellVs?: string;
-  appleType?: string;
-} {
+export function getBrowserInfo(): BrowserInfo {
+  // Cache
+  if (
+    window.MAZEY_BROWSER_INFO &&
+    typeof window.MAZEY_BROWSER_INFO === 'object'
+  ) {
+    // console.log('getBrowserInfo cache');
+    return window.MAZEY_BROWSER_INFO;
+  }
+  let browserInfo: BrowserInfo = {
+    engine: '', // webkit gecko presto trident
+    engineVs: '',
+    platform: '', // desktop mobile
+    supporter: '', // chrome safari firefox opera iexplore edge
+    supporterVs: '',
+    system: '', // windows macos linux android ios
+    systemVs: ''
+  };
   try {
     // 权重：系统 + 系统版本 > 平台 > 内核 + 载体 + 内核版本 + 载体版本 > 外壳 + 外壳版本
     const ua: string = navigator.userAgent.toLowerCase();
-    const testUa: (regexp: RegExp) => boolean = regexp => regexp.test(ua);
-    const testVs: (regexp: RegExp) => string = regexp => {
-      const matchRes = ua.match(regexp);
+    if (!ua) {
+      return browserInfo;
+    }
+    const testUa: TestUa = regexp => regexp.test(ua);
+    const testVs: TestVs = regexp => {
       let ret = '';
-      if (matchRes) {
-        ret = matchRes
-          .toString()
-          .replace(/[^0-9|_.]/g, '')
-          .replace(/_/g, '.');
+      const matchRes = ua.match(regexp); // ['os 13_2_3']
+      // Confirm the Safety of the match result
+      if (matchRes && isNonEmptyArray(matchRes)) {
+        ret = matchRes.toString();
+        ret = ret.replace(/[^0-9|_.]/g, ''); // 1323
+        ret = ret.replace(/_/g, '.'); // 13.2.3
       }
       return ret;
     };
-    // 系统
+    // System
     let system = '';
-    // Apple device type.
+    // Apple Device Type
     let appleType = '';
     if (testUa(/windows|win32|win64|wow32|wow64/g)) {
       system = 'windows'; // windows系统
@@ -1797,7 +1806,12 @@ export function getBrowserInfo(): {
         appleType = 'ipod';
       }
     }
-    // 系统版本
+    browserInfo = {
+      ...browserInfo,
+      system,
+      appleType
+    };
+    // System Version
     let systemVs = '';
     if (system === 'windows') {
       if (testUa(/windows nt 5.0|windows 2000/g)) {
@@ -1820,18 +1834,26 @@ export function getBrowserInfo(): {
     } else if (system === 'macos') {
       systemVs = testVs(/os x [\d._]+/g);
     } else if (system === 'android') {
-      systemVs = testVs(/android [\d._]+/g);
+      systemVs = testVs(/android [\d._]+/g); // 8.0
     } else if (system === 'ios') {
-      systemVs = testVs(/os [\d._]+/g);
+      systemVs = testVs(/os [\d._]+/g); // 13.2.3 13.3
     }
-    // 平台
+    browserInfo = {
+      ...browserInfo,
+      systemVs
+    };
+    // Platform
     let platform = '';
     if (system === 'windows' || system === 'macos' || system === 'linux') {
       platform = 'desktop'; // 桌面端
     } else if (system === 'android' || system === 'ios' || testUa(/mobile/g)) {
       platform = 'mobile'; // 移动端
     }
-    // 内核和载体
+    browserInfo = {
+      ...browserInfo,
+      platform
+    };
+    // Engine and Shell
     let engine = '';
     let supporter = '';
     if (testUa(/applewebkit/g)) {
@@ -1855,7 +1877,12 @@ export function getBrowserInfo(): {
       engine = 'trident'; // trident内核
       supporter = 'iexplore'; // iexplore浏览器
     }
-    // 内核版本
+    browserInfo = {
+      ...browserInfo,
+      engine,
+      supporter
+    };
+    // Engine Version
     let engineVs = '';
     if (engine === 'webkit') {
       engineVs = testVs(/applewebkit\/[\d._]+/g);
@@ -1866,7 +1893,11 @@ export function getBrowserInfo(): {
     } else if (engine === 'trident') {
       engineVs = testVs(/trident\/[\d._]+/g);
     }
-    // 载体版本
+    browserInfo = {
+      ...browserInfo,
+      engineVs
+    };
+    // Supporter Version
     let supporterVs = '';
     if (supporter === 'chrome') {
       supporterVs = testVs(/chrome\/[\d._]+/g);
@@ -1881,7 +1912,11 @@ export function getBrowserInfo(): {
     } else if (supporter === 'edge') {
       supporterVs = testVs(/edge\/[\d._]+/g);
     }
-    // 外壳和外壳版本
+    browserInfo = {
+      ...browserInfo,
+      supporterVs
+    };
+    // Shell Name and Shell Version
     let shell = '';
     let shellVs = '';
     if (testUa(/micromessenger/g)) {
@@ -1910,33 +1945,16 @@ export function getBrowserInfo(): {
     } else if (testUa(/biliapp/g)) {
       shell = 'bilibili'; // 哔哩哔哩
     }
-    return Object.assign(
-      {
-        engine, // webkit gecko presto trident
-        engineVs,
-        platform, // desktop mobile
-        supporter, // chrome safari firefox opera iexplore edge
-        supporterVs,
-        system, // windows macos linux android ios
-        systemVs
-      },
-      {
-        shell, // wechat qq uc 360 2345 sougou liebao maxthon
-        shellVs,
-        appleType
-      }
-    );
-  } catch (err) {
-    console.warn('mazey:', err);
-    return {
-      engine: '', // webkit gecko presto trident
-      engineVs: '',
-      platform: '', // desktop mobile
-      supporter: '', // chrome safari firefox opera iexplore edge
-      supporterVs: '',
-      system: '', // windows macos linux android ios
-      systemVs: ''
+    browserInfo = {
+      ...browserInfo,
+      shell,
+      shellVs
     };
+    window.MAZEY_BROWSER_INFO = browserInfo;
+    return browserInfo;
+  } catch (err) {
+    console.warn('MazeyCon:', err);
+    return browserInfo;
   }
 }
 

@@ -15,7 +15,8 @@ import {
   genCustomConsole,
   formatDate,
   isValidData,
-  getFriendlyInterval
+  getFriendlyInterval,
+  getBrowserInfo
 } from '../src/index';
 
 // Sync
@@ -113,6 +114,9 @@ console.log(
     type: 'text'
   })
 ); // 1116 天 10 时 44 分 33 秒
+
+console.log('getBrowserInfo:', getBrowserInfo());
+console.log('getBrowserInfo again:', getBrowserInfo());
 
 // Async
 (async () => {

@@ -82,12 +82,16 @@
 				<p>Import from <a href="https://www.npmjs.com/package/mazey">npm</a>.</p>
 				<pre><code><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">isNumber</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;mazey&#039;</span><span style="color: #000000">;</span>
 
-<span style="color: #795E26">isNumber</span><span style="color: #000000">(</span><span style="color: #0000FF">Infinity</span><span style="color: #000000">, { </span><span style="color: #001080">isUnFiniteAsNumber:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000"> }); </span><span style="color: #008000">// true</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">x</span><span style="color: #000000"> = </span><span style="color: #0000FF">Infinity</span><span style="color: #000000">;</span>
+<span style="color: #795E26">isNumber</span><span style="color: #000000">(</span><span style="color: #001080">x</span><span style="color: #000000">); </span><span style="color: #008000">// &lt;=&gt; typeof x === &#039;string&#039; &amp;&amp; !isNaN(x) &amp;&amp; isFinite(x)</span>
+<span style="color: #008000">// Output: false</span>
 </code></pre>
 				<p>Import from CDN.</p>
 				<pre><code><span style="color: #000000">&lt;</span><span style="color: #001080">script</span><span style="color: #000000"> </span><span style="color: #001080">type</span><span style="color: #000000">=</span><span style="color: #A31515">&quot;text/javascript&quot;</span><span style="color: #000000"> </span><span style="color: #001080">src</span><span style="color: #000000">=</span><span style="color: #A31515">&quot;//i.mazey.net/mazey/lib/mazey.min.js&quot;</span><span style="color: #000000">&gt;&lt;/</span><span style="color: #267F99">script</span><span style="color: #000000">&gt;</span>
 <span style="color: #000000">&lt;</span><span style="color: #267F99">script</span><span style="color: #000000">&gt;</span>
-<span style="color: #000000">  </span><span style="color: #001080">mazey</span><span style="color: #000000">.</span><span style="color: #795E26">isNumber</span><span style="color: #000000">(</span><span style="color: #0000FF">Infinity</span><span style="color: #000000">, { </span><span style="color: #001080">isUnFiniteAsNumber:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000"> }); </span><span style="color: #008000">// true</span>
+<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">x</span><span style="color: #000000"> = </span><span style="color: #0000FF">Infinity</span><span style="color: #000000">;</span>
+<span style="color: #000000">  </span><span style="color: #001080">mazey</span><span style="color: #000000">.</span><span style="color: #795E26">isNumber</span><span style="color: #000000">(</span><span style="color: #001080">x</span><span style="color: #000000">, { </span><span style="color: #001080">isUnFiniteAsNumber:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000"> }); </span><span style="color: #008000">// &lt;=&gt; typeof x === &#039;string&#039; &amp;&amp; !isNaN(x)</span>
+<span style="color: #000000">  </span><span style="color: #008000">// Output: true</span>
 <span style="color: #000000">&lt;/</span><span style="color: #001080">script</span><span style="color: #000000">&gt;</span>
 </code></pre>
 				<a href="#api-examples" id="api-examples" style="color: inherit; text-decoration: none;">
@@ -106,14 +110,14 @@
 					</li>
 					<li><a href="#util">Util</a><ul>
 							<li><a href="#isnumber">isNumber</a></li>
-							<li><a href="#isjsonstring">isJsonString</a></li>
+							<li><a href="#isjsonstring">isJSONString</a></li>
 							<li><a href="#isvaliddata">isValidData</a></li>
 							<li><a href="#generaterndnum">generateRndNum</a></li>
 							<li><a href="#formatdate">formatDate</a></li>
 							<li><a href="#debounce">debounce</a></li>
 							<li><a href="#throttle">throttle</a></li>
-							<li><a href="#camelcasetokebabcase">camelCaseToKebabCase</a></li>
-							<li><a href="#camelcase2underscore">camelCase2Underscore</a></li>
+							<li><a href="#convertcameltokebab">convertCamelToKebab</a></li>
+							<li><a href="#convertcameltounder">convertCamelToUnder</a></li>
 							<li><a href="#deepcopyobject">deepCopyObject</a></li>
 							<li><a href="#mtrim">mTrim</a></li>
 						</ul>
@@ -255,12 +259,12 @@
 @returns {boolean} true 是数字
 @category Util -->
 				<a href="#isjsonstring" id="isjsonstring" style="color: inherit; text-decoration: none;">
-					<h4>isJsonString</h4>
+					<h4>isJSONString</h4>
 				</a>
 				<p>Check whether it is a valid JSON string.</p>
 				<p>Usage:</p>
-				<pre><code><span style="color: #795E26">isJsonString</span><span style="color: #000000">(</span><span style="color: #A31515">`[&#039;a&#039;, &#039;b&#039;, &#039;c&#039;]`</span><span style="color: #000000">);</span>
-<span style="color: #795E26">isJsonString</span><span style="color: #000000">(</span><span style="color: #A31515">`[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]`</span><span style="color: #000000">);</span>
+				<pre><code><span style="color: #795E26">isJSONString</span><span style="color: #000000">(</span><span style="color: #A31515">`[&#039;a&#039;, &#039;b&#039;, &#039;c&#039;]`</span><span style="color: #000000">);</span>
+<span style="color: #795E26">isJSONString</span><span style="color: #000000">(</span><span style="color: #A31515">`[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]`</span><span style="color: #000000">);</span>
 </code></pre>
 				<p>Output:</p>
 				<pre><code><span style="color: #0000FF">false</span>
@@ -351,22 +355,22 @@
 </code></pre>
 				<p>Reference: <a href="https://lodash.com/docs/4.17.15#throttle">Lodash</a></p>
 				<!-- @category Util -->
-				<a href="#camelcasetokebabcase" id="camelcasetokebabcase" style="color: inherit; text-decoration: none;">
-					<h4>camelCaseToKebabCase</h4>
+				<a href="#convertcameltokebab" id="convertcameltokebab" style="color: inherit; text-decoration: none;">
+					<h4>convertCamelToKebab</h4>
 				</a>
 				<p>Transfer CamelCase to KebabCase.</p>
-				<pre><code><span style="color: #795E26">camelCaseToKebabCase</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;ABC&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// a-b-c</span>
-<span style="color: #795E26">camelCaseToKebabCase</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;aBC&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// a-b-c</span>
+				<pre><code><span style="color: #795E26">convertCamelToKebab</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;ABC&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// a-b-c</span>
+<span style="color: #795E26">convertCamelToKebab</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;aBC&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// a-b-c</span>
 </code></pre>
 				<!-- @param {string} camelCase 'aBC' or 'ABC'
 @returns {string} 'a-b-c'
 @category Util -->
-				<a href="#camelcase2underscore" id="camelcase2underscore" style="color: inherit; text-decoration: none;">
-					<h4>camelCase2Underscore</h4>
+				<a href="#convertcameltounder" id="convertcameltounder" style="color: inherit; text-decoration: none;">
+					<h4>convertCamelToUnder</h4>
 				</a>
 				<p>Transfer CamelCase to Underscore.</p>
-				<pre><code><span style="color: #795E26">camelCase2Underscore</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;ABC&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// a_b_c</span>
-<span style="color: #795E26">camelCase2Underscore</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;aBC&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// a_b_c</span>
+				<pre><code><span style="color: #795E26">convertCamelToUnder</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;ABC&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// a_b_c</span>
+<span style="color: #795E26">convertCamelToUnder</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;aBC&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// a_b_c</span>
 </code></pre>
 				<!-- @param {string} camelCase 'aBC' or 'ABC'
 @returns {string} 'a_b_c'
@@ -446,13 +450,21 @@
 				<p>Usage:</p>
 				<pre><code><span style="color: #795E26">getDomain</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;http://example.com/?t1=1&amp;t2=2&amp;t3=3&amp;t4=4&#039;</span><span style="color: #000000">);</span>
 <span style="color: #795E26">getDomain</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;http://example.com/test/thanks?t1=1&amp;t2=2&amp;t3=3&amp;t4=4&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;hostname&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;pathname&#039;</span><span style="color: #000000">]);</span>
+<span style="color: #795E26">getDomain</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;http://example.com:7890/test/thanks&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;hostname&#039;</span><span style="color: #000000">]);</span>
+<span style="color: #795E26">getDomain</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;http://example.com:7890/test/thanks&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;host&#039;</span><span style="color: #000000">]); </span><span style="color: #008000">// With Port</span>
+<span style="color: #795E26">getDomain</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;http://example.com:7890/test/thanks&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;origin&#039;</span><span style="color: #000000">]);</span>
+<span style="color: #795E26">getDomain</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;http://example.com:7890/test/thanks?id=1&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;origin&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;pathname&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;search&#039;</span><span style="color: #000000">]);</span>
 </code></pre>
 				<p>Output:</p>
 				<pre><code><span style="color: #001080">example</span><span style="color: #000000">.</span><span style="color: #001080">com</span>
 <span style="color: #001080">example</span><span style="color: #000000">.</span><span style="color: #001080">com</span><span style="color: #000000">/</span><span style="color: #001080">test</span><span style="color: #000000">/</span><span style="color: #001080">thanks</span>
+<span style="color: #001080">example</span><span style="color: #000000">.</span><span style="color: #001080">com</span>
+<span style="color: #001080">example</span><span style="color: #000000">.</span><span style="color: #001080">com</span><span style="color: #000000">:</span><span style="color: #098658">7890</span>
+<span style="color: #000000">http:</span><span style="color: #008000">//example.com:7890</span>
+<span style="color: #000000">http:</span><span style="color: #008000">//example.com:7890/test/thanks?id=1</span>
 </code></pre>
 				<!-- @param {string} url
-@param {array} rules Object.keys(location), ['href', 'protocol', 'host', 'hostname', 'port', 'pathname', 'search', 'hash'], ['hostname', 'pathname'] = 'km.mazey.net/plugins/servlet/mobile'
+@param {array} rules Object.keys(location), ['href', 'origin', 'protocol', 'host', 'hostname', 'port', 'pathname', 'search', 'hash'], ['hostname', 'pathname'] = 'km.mazey.net/plugins/servlet/mobile'
 @category URL -->
 				<a href="#updatequeryparam" id="updatequeryparam" style="color: inherit; text-decoration: none;">
 					<h4>updateQueryParam</h4>
@@ -648,71 +660,71 @@
 				<table>
 					<thead>
 						<tr>
-							<th>Attribute</th>
-							<th>Description</th>
-							<th>Type</th>
-							<th>Values</th>
+							<th align="left">Attribute</th>
+							<th align="left">Description</th>
+							<th align="left">Type</th>
+							<th align="left">Values</th>
 						</tr>
 					</thead>
 					<tbody><tr>
-							<td><strong>system</strong></td>
-							<td>System</td>
-							<td>string</td>
-							<td>android, ios, windows, macos, linux</td>
+							<td align="left"><strong>system</strong></td>
+							<td align="left">System</td>
+							<td align="left">string</td>
+							<td align="left">android, ios, windows, macos, linux</td>
 						</tr>
 						<tr>
-							<td>systemVs</td>
-							<td>System version</td>
-							<td>string</td>
-							<td>windows: 2000, xp, 2003, vista, 7, 8, 8.1, 10 <br />macos: ...</td>
+							<td align="left">systemVs</td>
+							<td align="left">System version</td>
+							<td align="left">string</td>
+							<td align="left">windows: 2000, xp, 2003, vista, 7, 8, 8.1, 10 <br />macos: ...</td>
 						</tr>
 						<tr>
-							<td>platform</td>
-							<td>Platform</td>
-							<td>string</td>
-							<td>desktop, mobile</td>
+							<td align="left">platform</td>
+							<td align="left">Platform</td>
+							<td align="left">string</td>
+							<td align="left">desktop, mobile</td>
 						</tr>
 						<tr>
-							<td>engine</td>
-							<td>Engine</td>
-							<td>string</td>
-							<td>webkit, gecko, presto, trident</td>
+							<td align="left">engine</td>
+							<td align="left">Engine</td>
+							<td align="left">string</td>
+							<td align="left">webkit, gecko, presto, trident</td>
 						</tr>
 						<tr>
-							<td>engineVs</td>
-							<td>Engine version</td>
-							<td>string</td>
-							<td>-</td>
+							<td align="left">engineVs</td>
+							<td align="left">Engine version</td>
+							<td align="left">string</td>
+							<td align="left">-</td>
 						</tr>
 						<tr>
-							<td>supporter</td>
-							<td>Supporter</td>
-							<td>string</td>
-							<td>edge, opera, chrome, safari, firefox, iexplore</td>
+							<td align="left">supporter</td>
+							<td align="left">Supporter</td>
+							<td align="left">string</td>
+							<td align="left">edge, opera, chrome, safari, firefox, iexplore</td>
 						</tr>
 						<tr>
-							<td>supporterVs</td>
-							<td>Supporter version</td>
-							<td>string</td>
-							<td>-</td>
+							<td align="left">supporterVs</td>
+							<td align="left">Supporter version</td>
+							<td align="left">string</td>
+							<td align="left">-</td>
 						</tr>
 						<tr>
-							<td>shell</td>
-							<td>Shell</td>
-							<td>string</td>
-							<td>(Optional) wechat, qq_browser, qq_app, uc, 360, 2345, sougou, liebao, maxthon, bilibili</td>
+							<td align="left">shell</td>
+							<td align="left">Shell</td>
+							<td align="left">string</td>
+							<td align="left">(Optional) wechat, qq_browser, qq_app, uc, 360, 2345, sougou, liebao, maxthon, bilibili</td>
 						</tr>
 						<tr>
-							<td>shellVs</td>
-							<td>Shell version</td>
-							<td>string</td>
-							<td>(Optional) 20/...</td>
+							<td align="left">shellVs</td>
+							<td align="left">Shell version</td>
+							<td align="left">string</td>
+							<td align="left">(Optional) 20/...</td>
 						</tr>
 						<tr>
-							<td>appleType</td>
-							<td>Apple device type</td>
-							<td>string</td>
-							<td>(Optional) ipad, iphone, ipod, iwatch</td>
+							<td align="left">appleType</td>
+							<td align="left">Apple device type</td>
+							<td align="left">string</td>
+							<td align="left">(Optional) ipad, iphone, ipod, iwatch</td>
 						</tr>
 				</tbody></table>
 				<p>Example: Determine the environment of the mobile QQ.</p>
@@ -758,77 +770,77 @@
 				<table>
 					<thead>
 						<tr>
-							<th>Attribute</th>
-							<th>Description</th>
-							<th>Type</th>
-							<th>Values</th>
+							<th align="left">Attribute</th>
+							<th align="left">Description</th>
+							<th align="left">Type</th>
+							<th align="left">Values</th>
 						</tr>
 					</thead>
 					<tbody><tr>
-							<td>dns_time</td>
-							<td>DNS Lookup</td>
-							<td>number</td>
-							<td>domainLookupEnd - domainLookupStart</td>
+							<td align="left">dns_time</td>
+							<td align="left">DNS Lookup</td>
+							<td align="left">number</td>
+							<td align="left">domainLookupEnd - domainLookupStart</td>
 						</tr>
 						<tr>
-							<td>tcp_time</td>
-							<td>Connection Negotiation</td>
-							<td>number</td>
-							<td>connectEnd - connectStart</td>
+							<td align="left">tcp_time</td>
+							<td align="left">Connection Negotiation</td>
+							<td align="left">number</td>
+							<td align="left">connectEnd - connectStart</td>
 						</tr>
 						<tr>
-							<td>response_time</td>
-							<td>Requests and Responses</td>
-							<td>number</td>
-							<td>responseStart - requestStart</td>
+							<td align="left">response_time</td>
+							<td align="left">Requests and Responses</td>
+							<td align="left">number</td>
+							<td align="left">responseStart - requestStart</td>
 						</tr>
 						<tr>
-							<td>white_time</td>
-							<td>White Screen</td>
-							<td>number</td>
-							<td>responseStart - navigationStart</td>
+							<td align="left">white_time</td>
+							<td align="left">White Screen</td>
+							<td align="left">number</td>
+							<td align="left">responseStart - navigationStart</td>
 						</tr>
 						<tr>
-							<td>domready_time</td>
-							<td>DomReady</td>
-							<td>number</td>
-							<td>domContentLoadedEventStart - navigationStart</td>
+							<td align="left">domready_time</td>
+							<td align="left">DomReady</td>
+							<td align="left">number</td>
+							<td align="left">domContentLoadedEventStart - navigationStart</td>
 						</tr>
 						<tr>
-							<td>onload_time</td>
-							<td>Onload</td>
-							<td>number</td>
-							<td>loadEventStart - navigationStart</td>
+							<td align="left">onload_time</td>
+							<td align="left">Onload</td>
+							<td align="left">number</td>
+							<td align="left">loadEventStart - navigationStart</td>
 						</tr>
 						<tr>
-							<td>render_time</td>
-							<td>EventEnd</td>
-							<td>number</td>
-							<td>loadEventEnd -navigationStart</td>
+							<td align="left">render_time</td>
+							<td align="left">EventEnd</td>
+							<td align="left">number</td>
+							<td align="left">loadEventEnd -navigationStart</td>
 						</tr>
 						<tr>
-							<td>unload_time</td>
-							<td>Unload</td>
-							<td>number</td>
-							<td>(Optional) unloadEventEnd - unloadEventStart</td>
+							<td align="left">unload_time</td>
+							<td align="left">Unload</td>
+							<td align="left">number</td>
+							<td align="left">(Optional) unloadEventEnd - unloadEventStart</td>
 						</tr>
 						<tr>
-							<td>redirect_time</td>
-							<td>Redirect</td>
-							<td>number</td>
-							<td>(Optional) redirectEnd - redirectStart</td>
+							<td align="left">redirect_time</td>
+							<td align="left">Redirect</td>
+							<td align="left">number</td>
+							<td align="left">(Optional) redirectEnd - redirectStart</td>
 						</tr>
 						<tr>
-							<td>ssl_time</td>
-							<td>SSL</td>
-							<td>number</td>
-							<td>(Optional) connectEnd - secureConnectionStart</td>
+							<td align="left">ssl_time</td>
+							<td align="left">SSL</td>
+							<td align="left">number</td>
+							<td align="left">(Optional) connectEnd - secureConnectionStart</td>
 						</tr>
 						<tr>
-							<td>download_time</td>
-							<td>Download</td>
-							<td>number</td>
-							<td>(Optional) responseEnd - responseStart</td>
+							<td align="left">download_time</td>
+							<td align="left">Download</td>
+							<td align="left">number</td>
+							<td align="left">(Optional) responseEnd - responseStart</td>
 						</tr>
 				</tbody></table>
 				<!-- @param {boolean} camelCase -- false（默认） 以下划线形式返回数据 true 以驼峰形式返回数据
@@ -911,12 +923,6 @@
 						<a href="modules.html#calLongestCommonSubstring" class="tsd-kind-icon">cal<wbr>Longest<wbr>Common<wbr>Substring</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="modules.html#camelCase2Underscore" class="tsd-kind-icon">camel<wbr>Case2<wbr>Underscore</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#camelCaseToKebabCase" class="tsd-kind-icon">camel<wbr>Case<wbr>ToKebab<wbr>Case</a>
-					</li>
-					<li class=" tsd-kind-function">
 						<a href="modules.html#cancelBubble" class="tsd-kind-icon">cancel<wbr>Bubble</a>
 					</li>
 					<li class=" tsd-kind-function">
@@ -926,7 +932,10 @@
 						<a href="modules.html#convert10To26" class="tsd-kind-icon">convert10<wbr>To26</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="modules.html#cutCHSString" class="tsd-kind-icon">cutCHSString</a>
+						<a href="modules.html#convertCamelToKebab" class="tsd-kind-icon">convert<wbr>Camel<wbr>ToKebab</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#convertCamelToUnder" class="tsd-kind-icon">convert<wbr>Camel<wbr>ToUnder</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="modules.html#debounce" class="tsd-kind-icon">debounce</a>
@@ -945,9 +954,6 @@
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="modules.html#formatDate" class="tsd-kind-icon">format<wbr>Date</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#friendlyInterval" class="tsd-kind-icon">friendly<wbr>Interval</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="modules.html#genCustomConsole" class="tsd-kind-icon">gen<wbr>Custom<wbr>Console</a>
@@ -974,6 +980,9 @@
 						<a href="modules.html#getFileSize" class="tsd-kind-icon">get<wbr>File<wbr>Size</a>
 					</li>
 					<li class=" tsd-kind-function">
+						<a href="modules.html#getFriendlyInterval" class="tsd-kind-icon">get<wbr>Friendly<wbr>Interval</a>
+					</li>
+					<li class=" tsd-kind-function">
 						<a href="modules.html#getHashQueryParam" class="tsd-kind-icon">get<wbr>Hash<wbr>Query<wbr>Param</a>
 					</li>
 					<li class=" tsd-kind-function">
@@ -989,6 +998,9 @@
 						<a href="modules.html#getSessionStorage" class="tsd-kind-icon">get<wbr>Session<wbr>Storage</a>
 					</li>
 					<li class=" tsd-kind-function">
+						<a href="modules.html#getUrlFileType" class="tsd-kind-icon">get<wbr>Url<wbr>File<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-function">
 						<a href="modules.html#getUrlParam" class="tsd-kind-icon">get<wbr>Url<wbr>Param</a>
 					</li>
 					<li class=" tsd-kind-function">
@@ -1001,7 +1013,7 @@
 						<a href="modules.html#invokeEvent" class="tsd-kind-icon">invoke<wbr>Event</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="modules.html#isJsonString" class="tsd-kind-icon">is<wbr>Json<wbr>String</a>
+						<a href="modules.html#isJSONString" class="tsd-kind-icon">isJSONString</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="modules.html#isNonEmptyArray" class="tsd-kind-icon">is<wbr>Non<wbr>Empty<wbr>Array</a>
@@ -1059,6 +1071,9 @@
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="modules.html#throttle" class="tsd-kind-icon">throttle</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#truncateZHString" class="tsd-kind-icon">truncateZHString</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="modules.html#updateQueryParam" class="tsd-kind-icon">update<wbr>Query<wbr>Param</a>
