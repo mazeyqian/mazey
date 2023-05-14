@@ -46,7 +46,7 @@ async function release (ver, { canGenerateToc = false, defaultBranch = 'master' 
     generateToc();
   }
   // Commit
-  await gitCommit('stage');
+  await gitCommit(`${releaseVersion} stage`);
   // Marge
   await gitMergeMaster2Release(defaultBranch);
   // Build
@@ -56,10 +56,35 @@ async function release (ver, { canGenerateToc = false, defaultBranch = 'master' 
   await gitCommit(releaseVersion);
   // Push
   console.log('Pushing to GitHub...');
-  await execa('git', ['tag', '-a', `${releaseVersion}`, '-m', `Release ${releaseVersion}`]);
-  await execa('git', ['push', 'origin', `refs/tags/${releaseVersion}`]);
+  // await execa('git', ['tag', '-a', `${releaseVersion}`, '-m', `Release ${releaseVersion}`]);
+  // await execa('git', ['push', 'origin', `refs/tags/${releaseVersion}`]);
+  await gitTagPush(releaseVersion);
   await gitPush();
   console.log('All done.');
+}
+
+/**
+ * Push git tag.
+ * 
+ * @example
+ * ```
+ * await gitTagPush('v1.0.0');
+ * ```
+ * 
+ * @param {string} ver Release version
+ * @returns {boolean} Is success
+ */
+async function gitTagPush (ver = '') {
+  if (!ver) {
+    console.error('Fail to get the current version.');
+    return false;
+  }
+  if (!ver.startsWith('v')) {
+    ver = `v${ver}`;
+  }
+  await execa('git', ['tag', '-a', `${ver}`, '-m', `Release ${ver}`]);
+  await execa('git', ['push', 'origin', `refs/tags/${ver}`]);
+  return true;
 }
 
 /**
