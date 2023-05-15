@@ -2277,11 +2277,8 @@ export function genCustomConsole(
  * @hidden
  */
 export function zAxiosIsValidRes(
-  res: any,
-  options: {
-    validStatusRange?: number[];
-    validCode?: number[];
-  } = {
+  res: ZResResponse | undefined,
+  options: ZResIsValidResOptions = {
     validStatusRange: [200, 300],
     validCode: [0]
   }
@@ -2317,7 +2314,7 @@ export function zAxiosIsValidRes(
  *
  * @category Util
  */
-export function isNonEmptyArray(arr: any[]): boolean {
+export function isNonEmptyArray<T>(arr: Array<T>): boolean {
   let ret = false;
   if (Array.isArray(arr) && arr.length) {
     ret = true;
@@ -2362,22 +2359,19 @@ export function isNonEmptyArray(arr: any[]): boolean {
  * @returns {boolean} Return TRUE if the data is valid.
  * @category Util
  */
-export function isValidData(
-  data: any,
-  attributes: string[],
-  validValue: any
+export function isValidData<T, K extends keyof T>(
+  data: T,
+  attributes: K[],
+  validValue: T[K]
 ): boolean {
   let ret = false;
   const foundRet = attributes.reduce((foundValue, curr) => {
-    if (foundValue[curr]) {
-      foundValue = foundValue[curr];
+    if (foundValue && Object.prototype.hasOwnProperty.call(foundValue, curr)) {
+      return foundValue[curr];
     } else {
       return Object.create(null);
     }
-    // console.log('foundValue', foundValue);
-    return foundValue;
   }, data);
-  // console.log('foundRet', foundRet);
   if (foundRet === validValue) {
     ret = true;
   }

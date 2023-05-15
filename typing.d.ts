@@ -53,4 +53,16 @@ declare global {
   }
 
   type AnyFunction = (...args: any[]) => any;
+
+  interface ZResResponse {
+    status: number;
+    data: {
+      code: number;
+    };
+  }
+
+  interface ZResIsValidResOptions {
+    validStatusRange?: [number, number];
+    validCode?: number[];
+  }
 }
