@@ -129,36 +129,36 @@ export function getQueryParam(param: string): string {
 }
 
 /**
- * Get the query param's value of the input URL.
+ * Returns the value of the specified query parameter in the input URL.
  *
+ * @example
  * ```
- * getUrlParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't3'); // 3
- * getUrlParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't4'); // 4
+ * getUrlParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't3'); // Returns '3'
+ * getUrlParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't4'); // Returns '4'
  * ```
  *
- * @param {string} url URL string.
- * @param {string} param Query param.
- * @returns {string} value
+ * @param {string} url The URL string.
+ * @param {string} param The query parameter to retrieve the value for.
+ * @returns {string|string[]} The value of the specified query parameter, or an empty string if the parameter is not found.
  * @category URL
  */
 export function getUrlParam(url: string, param: string): string | string[] {
-  const result: {
-    [key: string]: string | string[] | any;
-  } = {};
-  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace
-  url.replace(/\??(\w+)=([^&]*)&?/g, function(a, k, v): any {
+  const result: UrlParams = {};
+  url.replace(/\??(\w+)=([^&]*)&?/g, function(
+    _: string,
+    k: string,
+    v: string
+  ): string {
     if (result[k] !== undefined) {
       const t = result[k];
-      result[k] = [].concat(t, v);
+      // Cast `t` to `string[]` to ensure that `concat` receives an array
+      result[k] = ([] as string[]).concat(t, v);
     } else {
       result[k] = v;
     }
+    // Return an empty string to satisfy the signature of the replace method
+    return '';
   });
-  // if (param === undefined) {
-  //   return result;
-  // } else {
-  //   return result[param] || '';
-  // }
   return result[param] || '';
 }
 

@@ -34,4 +34,8 @@ declare global {
     $: typeof $;
     jQuery: typeof $;
   }
+
+  interface UrlParams {
+    [key: string]: string | string[];
+  }
 }
