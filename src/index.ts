@@ -262,10 +262,10 @@ export function getHashQueryParam(param: string): string {
  * @category URL
  */
 export function getDomain(url: string, rules = ['hostname']): string {
-  const aEl: any = document.createElement('a');
+  const aEl: HTMLAnchorElement = document.createElement('a');
   aEl.href = url;
   return rules.reduce((ret, v) => {
-    ret += aEl[v];
+    ret += aEl[v as keyof HTMLAnchorElement];
     return ret;
   }, '');
 }
@@ -385,7 +385,7 @@ export function newLine(str: string): string {
  * @returns {object} Returns the deep cloned value.
  * @category Util
  */
-export function deepCopyObject(obj: any): any {
+export function deepCopyObject<T>(obj: T): T {
   return JSON.parse(JSON.stringify(obj));
 }
 
@@ -492,7 +492,7 @@ export function floatFixed(num: string, size = 0): string {
  *
  * @category Event
  */
-export function cancelBubble(e: any): void {
+export function cancelBubble(e: Event): void {
   const ev = e || window.event;
   if (ev.stopPropagation) {
     // W3C
@@ -519,7 +519,7 @@ export function cancelBubble(e: any): void {
  *
  * @category DOM
  */
-export function hasClass(obj: any, cls: string): boolean {
+export function hasClass(obj: HTMLElement, cls: string): boolean {
   const oriCls = obj.className; // 获取对象的class值
   const oriClsArr = oriCls.split(/\s+/); // 分隔空格转换成数组
   for (let i = 0; i < oriClsArr.length; i++) {
@@ -546,7 +546,7 @@ export function hasClass(obj: any, cls: string): boolean {
  *
  * @category DOM
  */
-export function addClass(obj: any, cls: string): void {
+export function addClass(obj: HTMLElement, cls: string): void {
   const oriCls = obj.className;
   let space = '';
   let newCls = ''; // 获取对象的class值
@@ -573,7 +573,7 @@ export function addClass(obj: any, cls: string): void {
  *
  * @category DOM
  */
-export function removeClass(obj: any, cls: string): void {
+export function removeClass(obj: HTMLElement, cls: string): void {
   const oriCls = obj.className;
   let newCls; // 获取对象的class值
   newCls = ' ' + oriCls + ' '; // 前后加空格
@@ -598,27 +598,25 @@ export function removeClass(obj: any, cls: string): void {
  *
  * @category Util
  */
-export function throttle(
-  func: any,
+export function throttle<T extends (...args: any[]) => any>(
+  func: T,
   wait: number,
   options: { leading?: boolean; trailing?: boolean } = {}
-): any {
+): ThrottleFunc<T> {
   options = Object.assign({}, options);
-  // timeout: setTimeout Handle
-  // previous: 上次时间戳
-  let context: any = null;
-  let args: any = null;
-  let timeout: any = null;
+  let context: unknown | null = null;
+  let args: Parameters<T> | null = null;
+  let timeout: ReturnType<typeof setTimeout> | null = null;
   let [result, previous] = [null, 0];
-  const later = function() {
+  const later = function(this: unknown) {
     previous = options.leading === false ? 0 : mNow();
     timeout = null;
-    result = func.apply(context, args);
+    result = func.apply(this as T, args!);
     if (!timeout) {
       context = args = null;
     }
   };
-  return function(...argRest: Array<any>) {
+  return function(this: unknown, ...argRest: Parameters<T>) {
     const now = mNow();
     if (!previous && options.leading === false) {
       previous = now;
@@ -632,12 +630,12 @@ export function throttle(
         timeout = null;
       }
       previous = now;
-      result = func.apply(context, args);
+      result = func.apply(context as T, args!);
       if (!timeout) {
         context = args = null;
       }
     } else if (!timeout && options.trailing !== false) {
-      timeout = setTimeout(later, remaining);
+      timeout = setTimeout(later.bind(context), remaining);
     }
     return result;
   };
@@ -656,27 +654,31 @@ export function throttle(
  *
  * @category Util
  */
-export function debounce(func: any, wait: number, immediate?: any): any {
-  let context: any = null;
-  let timeout: any = null;
-  let timestamp: any = null;
-  let args: any = null;
-  let [result] = [null];
+export function debounce<T extends (...args: any[]) => any>(
+  func: T,
+  wait: number,
+  immediate?: boolean
+): DebounceFunc<T> {
+  let context: unknown | null = null;
+  let timeout: ReturnType<typeof setTimeout> | null = null;
+  let timestamp: number | null = null;
+  let args: Parameters<T> | null = null;
+  let result: ReturnType<T> | null = null;
   const later = function() {
-    const last = mNow() - timestamp;
+    const last = mNow() - (timestamp as number);
     if (last < wait && last >= 0) {
       timeout = setTimeout(later, wait - last);
     } else {
       timeout = null;
       if (!immediate) {
-        result = func.apply(context, args);
+        result = func.apply(context as T, args!);
         if (!timeout) {
           context = args = null;
         }
       }
     }
   };
-  return function(...argRest: Array<any>) {
+  return function(this: unknown, ...argRest: Parameters<T>) {
     context = this;
     args = argRest;
     timestamp = mNow();
@@ -685,10 +687,10 @@ export function debounce(func: any, wait: number, immediate?: any): any {
       timeout = setTimeout(later, wait);
     }
     if (callNow) {
-      result = func.apply(context, args);
+      result = func.apply(context as T, args!);
       context = args = null;
     }
-    return result;
+    return result as ReturnType<T>;
   };
 }
 
@@ -768,33 +770,18 @@ export function getFriendlyInterval(
  * @returns {boolean} true 是数字
  * @category Util
  */
-export function isNumber(
-  num: any,
-  options: { isNaNAsNumber?: boolean; isUnFiniteAsNumber?: boolean } = {
-    isNaNAsNumber: false,
-    isUnFiniteAsNumber: false
-  }
-): boolean {
-  const { isNaNAsNumber, isUnFiniteAsNumber } = Object.assign(
-    { isNaNAsNumber: false, isUnFiniteAsNumber: false },
-    options
-  );
-  let ret = true;
-  // 数字类型
+export function isNumber(num: unknown, options: IsNumberOptions = {}): boolean {
+  const { isNaNAsNumber = false, isFiniteAsNumber = false } = options;
   if (typeof num !== 'number') {
-    ret = false;
+    return false;
   }
-  // 无限值
-  if (isUnFiniteAsNumber === false && !isFinite(num)) {
-    // console.log('1333');
-    ret = false;
+  if (!isFiniteAsNumber && !isFinite(num)) {
+    return false;
   }
-  // NaN
-  if (isNaNAsNumber === false && isNaN(num)) {
-    // console.log('2333');
-    ret = false;
+  if (!isNaNAsNumber && isNaN(num)) {
+    return false;
   }
-  return ret;
+  return true;
 }
 
 /**
@@ -803,8 +790,11 @@ export function isNumber(
  * @param {function} fn 等待被执行的未知是否有效的函数
  * @category Util
  */
-export function doFn(fn: any, ...params: any[]): any {
-  let ret = null;
+export function doFn(
+  fn: AnyFunction,
+  ...params: Parameters<AnyFunction>
+): ReturnType<AnyFunction> | null {
+  let ret: ReturnType<AnyFunction> | null = null;
   if (fn && typeof fn === 'function') {
     ret = fn(...params);
   }
@@ -834,10 +824,13 @@ export function doFn(fn: any, ...params: any[]): any {
  * ```
  *
  * @param {string} key 键
- * @returns {any} 返回值
+ * @returns {void} 返回值
  * @category Cache Data
  */
-export function setSessionStorage(key: string, value: any = null): void {
+export function setSessionStorage<T>(
+  key: string,
+  value: T | null = null
+): void {
   if (key) {
     sessionStorage.setItem(key, JSON.stringify(value));
   }
@@ -869,12 +862,12 @@ export function setSessionStorage(key: string, value: any = null): void {
  * @returns {any} 返回值
  * @category Cache Data
  */
-export function getSessionStorage(key: string): any {
-  let ret = null;
+export function getSessionStorage<T>(key: string): T | null {
+  let ret: T | null = null;
   if (key) {
     const value = sessionStorage.getItem(key);
     if (value) {
-      ret = JSON.parse(value);
+      ret = JSON.parse(value) as T;
     }
   }
   return ret;
@@ -903,10 +896,10 @@ export function getSessionStorage(key: string): any {
  * ```
  *
  * @param {string} key 键
- * @returns {any} 返回值
+ * @returns {void} 返回值
  * @category Cache Data
  */
-export function setLocalStorage(key: string, value: any = null): void {
+export function setLocalStorage<T>(key: string, value: T | null = null): void {
   if (key) {
     localStorage.setItem(key, JSON.stringify(value));
   }
@@ -938,12 +931,12 @@ export function setLocalStorage(key: string, value: any = null): void {
  * @returns {any} 返回值
  * @category Cache Data
  */
-export function getLocalStorage(key: string): any {
-  let ret = null;
+export function getLocalStorage<T>(key: string): T | null {
+  let ret: T | null = null;
   if (key) {
     const value = localStorage.getItem(key);
     if (value) {
-      ret = JSON.parse(value);
+      ret = JSON.parse(value) as T;
     }
   }
   return ret;
@@ -1234,11 +1227,11 @@ export function setCookie(
   domain: string
 ): void {
   let domainParts, expires;
-  let date: any;
+  // let date: any;
   if (days) {
-    date = new Date();
+    const date = new Date();
     date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-    expires = '; expires=' + date.toGMTString();
+    expires = '; expires=' + date.toUTCString();
   } else {
     expires = '';
   }

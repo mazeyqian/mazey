@@ -553,7 +553,7 @@ function mGetLocalStorage (key) {
 ```
 
 <!-- @param {string} key 键
-@returns {any} 返回值
+@returns {void} 返回值
 @category Cache Data -->
 
 ### DOM

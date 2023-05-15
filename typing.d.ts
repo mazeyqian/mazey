@@ -38,4 +38,19 @@ declare global {
   interface UrlParams {
     [key: string]: string | string[];
   }
+
+  type ThrottleFunc<T extends (...args: any[]) => any> = (
+    ...args: Parameters<T>
+  ) => ReturnType<T> | null;
+
+  type DebounceFunc<T extends (...args: any[]) => any> = (
+    ...args: Parameters<T>
+  ) => ReturnType<T>;
+
+  interface IsNumberOptions {
+    isNaNAsNumber?: boolean;
+    isFiniteAsNumber?: boolean;
+  }
+
+  type AnyFunction = (...args: any[]) => any;
 }
