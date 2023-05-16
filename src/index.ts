@@ -451,8 +451,8 @@ export function generateRndNum(n = 5): string {
 }
 
 /**
- * @method generateUniqueNum
- * @description 根据时间生成唯一标志的数字 mGenerateUniqueNum() => 1538324722364123。
+ * 根据时间生成唯一标志的数字 mGenerateUniqueNum() => 1538324722364123
+ *
  * @param {number} n 随机数的长度
  * @category Util
  */
@@ -462,8 +462,8 @@ export function generateUniqueNum(n = 3): string {
 }
 
 /**
- * @method floatToPercent
- * @description 浮点数转为百分比 0.2 => 20%。
+ * 浮点数转为百分比 0.2 => 20%
+ *
  * @param {number} num 浮点数
  * @param {number} fixSize 保留几位浮点数
  * @category Util
@@ -479,8 +479,8 @@ export function floatToPercent(num: number, fixSize = 0): string {
 }
 
 /**
- * @method floatFixed
- * @description 浮点数保留指定位。
+ * 浮点数保留指定位
+ *
  * @category Util
  */
 export function floatFixed(num: string, size = 0): string {
@@ -785,8 +785,8 @@ export function isNumber(num: unknown, options: IsNumberOptions = {}): boolean {
 }
 
 /**
- * @method doFn
- * @description 执行有效函数
+ * 执行有效函数
+ *
  * @param {function} fn 等待被执行的未知是否有效的函数
  * @category Util
  */
@@ -1194,8 +1194,8 @@ export function loadScript(
 }
 
 /**
- * @method mNow
- * @description 获取时间戳
+ * 获取时间戳
+ *
  * @category Util
  */
 export function mNow(): number {
