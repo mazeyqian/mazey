@@ -1962,7 +1962,7 @@ export function clearHtml(
   str: string,
   options: { removeNewLine?: boolean } = {}
 ): string {
-  const { removeNewLine = true } = options;
+  const { removeNewLine = false } = options;
   let ret = '';
   if (str) {
     ret = str.replace(/<\/?.+?>/g, '');
