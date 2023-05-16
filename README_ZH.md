@@ -12,7 +12,7 @@
 [l-image]: https://img.shields.io/npm/l/mazey
 [l-url]: https://github.com/mazeyqian/mazey
 
-后除的 JavaScript 函数库，所有的方法都在线上项目中使用过
+后除的 JavaScript 函数库，所有的方法都在线上项目中使用过。
 
 **目录**
 
