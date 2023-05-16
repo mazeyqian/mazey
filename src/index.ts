@@ -1952,14 +1952,26 @@ export function getBrowserInfo(): BrowserInfo {
 }
 
 /**
- * @method clearHtml
- * @description 去除HTML标签
+ * 去除 HTML 标签
+ *
  * @param {string} str 带html标签的字符串
  * @returns {string} 字符串
  * @category Util
  */
-export function clearHtml(str: string): string {
-  return str.replace(/<\/?.+?>/g, '').replace(/[\r\n]/g, '');
+export function clearHtml(
+  str: string,
+  options: { removeNewLine?: boolean } = {}
+): string {
+  const { removeNewLine = true } = options;
+  let ret = '';
+  if (str) {
+    ret = str.replace(/<\/?.+?>/g, '');
+    if (removeNewLine) {
+      ret = ret.replace(/[\r\n]/g, '');
+    }
+  }
+  return ret;
+  // return str.replace(/<\/?.+?>/g, '').replace(/[\r\n]/g, '');
 }
 
 /**
