@@ -1975,6 +1975,31 @@ export function clearHtml(
 }
 
 /**
+ * Sanitizes user input to prevent XSS attacks
+ *
+ * @param input - The input string to sanitize
+ * @returns The sanitized input string
+ */
+export function sanitizeInput(input: string): string {
+  const regex = /[&<>"'/]/g;
+  const replacements: { [key: string]: string } = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    '\'': '&#x27;',
+    '/': '&#x2F;'
+  };
+  if (typeof input !== 'string') {
+    console.error('Input must be a string');
+  }
+  return input.replace(
+    regex,
+    (match: keyof typeof replacements) => replacements[match]
+  );
+}
+
+/**
  * 截取字符串，中文算 2 个字节
  *
  * @param {string} str 要截取的字符串
