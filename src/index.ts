@@ -2773,18 +2773,22 @@ export function setImgWidHeiBySrc(): boolean {
   const $ = window.jQuery || window.$;
   if ($) {
     // Use jQuery to select all images on the page
-    $('img').each(function() {
+    const images = $('img');
+    if (!(images && images.length)) return false;
+    images.each(function() {
       const $this = $(this);
       if (!$this) return;
       // Get the `src` attribute of the image
       const src = $this.attr('src');
-      if (!src) return;
+      const canMatch = src && typeof src === 'string' && src.length;
+      if (!canMatch) return;
       // Use regular expressions to extract the `width` and `height` values from the `src` attribute
       const width = src.match(/width=([0-9]+[a-z%]*)/);
       const height = src.match(/height=([0-9]+[a-z%]*)/);
       // Set the width and height of the image using jQuery's `width()` and `height()` methods
-      if (width && width[1]) $this.width(width[1]);
-      if (height && height[1]) $this.height(height[1]);
+      if (width && isNonEmptyArray(width) && width[1]) $this.width(width[1]);
+      if (height && isNonEmptyArray(height) && height[1])
+        $this.height(height[1]);
     });
     return true;
   } else {
@@ -2793,14 +2797,20 @@ export function setImgWidHeiBySrc(): boolean {
     if (images.length > 0) {
       // Loop through each image and set its width and height based on the `src` attribute
       Array.from(images).forEach(function(img) {
+        const $this = img;
+        if (!$this) return;
         // Get the `src` attribute of the image
-        const src = img.getAttribute('src');
+        const src = $this.getAttribute('src');
+        const canMatch = src && typeof src === 'string' && src.length;
+        if (!canMatch) return;
         // Use regular expressions to extract the `width` and `height` values from the `src` attribute
-        const width = src ? src.match(/width=([0-9]+[a-z%]*)/) : null;
-        const height = src ? src.match(/height=([0-9]+[a-z%]*)/) : null;
+        const width = src.match(/width=([0-9]+[a-z%]*)/);
+        const height = src.match(/height=([0-9]+[a-z%]*)/);
         // Set the width and height of the image using the `style.width` and `style.height` properties
-        if (width && width[1]) img.style.width = width[1];
-        if (height && height[1]) img.style.height = height[1];
+        if (width && isNonEmptyArray(width) && width[1])
+          $this.style.width = width[1];
+        if (height && isNonEmptyArray(height) && height[1])
+          $this.style.height = height[1];
       });
       return true;
     }
