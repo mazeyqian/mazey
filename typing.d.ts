@@ -49,7 +49,8 @@ declare global {
 
   interface IsNumberOptions {
     isNaNAsNumber?: boolean;
-    isFiniteAsNumber?: boolean;
+    isInfinityAsNumber?: boolean;
+    isUnFiniteAsNumber?: boolean;
   }
 
   type AnyFunction = (...args: any[]) => any;

@@ -48,7 +48,7 @@ Import from CDN.
 <script type="text/javascript" src="//i.mazey.net/mazey/lib/mazey.min.js"></script>
 <script>
   const x = Infinity;
-  mazey.isNumber(x, { isUnFiniteAsNumber: true }); // <=> typeof x === 'string' && !isNaN(x)
+  mazey.isNumber(x, { isInfinityAsNumber: true }); // <=> typeof x === 'string' && !isNaN(x)
   // Output: true
 </script>
 ```
@@ -203,14 +203,14 @@ isNumber(123); // true
 isNumber('123'); // false
 // Default: NaN, Infinity is not Number
 isNumber(Infinity); // false
-isNumber(Infinity, { isUnFiniteAsNumber: true }); // true
+isNumber(Infinity, { isInfinityAsNumber: true }); // true
 isNumber(NaN); // false
-isNumber(NaN, { isNaNAsNumber: true, isUnFiniteAsNumber: true }); // true
+isNumber(NaN, { isNaNAsNumber: true, isInfinityAsNumber: true }); // true
 ```
 
 <!-- @param {*} num 被判断的值
 @param {boolean} options.isNaNAsNumber 是否 NaN 算数字（默认不算）
-@param {boolean} options.isUnFiniteAsNumber 是否 无限 算数字（默认不算）
+@param {boolean} options.isInfinityAsNumber 是否 无限 算数字（默认不算）
 @returns {boolean} true 是数字
 @category Util -->
 

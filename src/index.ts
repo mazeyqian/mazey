@@ -759,23 +759,31 @@ export function getFriendlyInterval(
  * isNumber('123'); // false
  * // Default: NaN, Infinity is not Number
  * isNumber(Infinity); // false
- * isNumber(Infinity, { isUnFiniteAsNumber: true }); // true
+ * isNumber(Infinity, { isInfinityAsNumber: true }); // true
  * isNumber(NaN); // false
- * isNumber(NaN, { isNaNAsNumber: true, isUnFiniteAsNumber: true }); // true
+ * isNumber(NaN, { isNaNAsNumber: true, isInfinityAsNumber: true }); // true
  * ```
  *
  * @param {*} num 被判断的值
  * @param {boolean} options.isNaNAsNumber 是否 NaN 算数字（默认不算）
- * @param {boolean} options.isUnFiniteAsNumber 是否 无限 算数字（默认不算）
+ * @param {boolean} options.isInfinityAsNumber 是否 无限 算数字（默认不算）
  * @returns {boolean} true 是数字
  * @category Util
  */
 export function isNumber(num: unknown, options: IsNumberOptions = {}): boolean {
-  const { isNaNAsNumber = false, isFiniteAsNumber = false } = options;
+  const {
+    isNaNAsNumber = false,
+    isInfinityAsNumber = false,
+    isUnFiniteAsNumber = false
+  } = options;
   if (typeof num !== 'number') {
     return false;
   }
-  if (!isFiniteAsNumber && !isFinite(num)) {
+  if (!isInfinityAsNumber && !isFinite(num)) {
+    return false;
+  }
+  // Be compatible with previous versions.
+  if (!isUnFiniteAsNumber && !isFinite(num)) {
     return false;
   }
   if (!isNaNAsNumber && isNaN(num)) {
