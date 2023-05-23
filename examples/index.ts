@@ -21,8 +21,8 @@ import {
 
 // Sync
 console.log(
-  'Is Infinity number?',
-  isNumber(Infinity, { isUnFiniteAsNumber: true })
+  '[v1]Is Infinity number?',
+  isNumber(Infinity, { isInfinityAsNumber: true })
 );
 console.log(
   'Is NaN number?',
@@ -77,9 +77,9 @@ console.log(
 );
 // Date formatDate value: 02/11/2014
 const validData = {
-  a: {
-    b: {
-      c: 413
+  ['a']: {
+    ['b']: {
+      ['c']: 413
     }
   }
 };

@@ -779,13 +779,16 @@ export function isNumber(num: unknown, options: IsNumberOptions = {}): boolean {
   if (typeof num !== 'number') {
     return false;
   }
-  if (!isInfinityAsNumber && !isFinite(num)) {
+  if (
+    !(isInfinityAsNumber === true || isUnFiniteAsNumber === true) &&
+    !isFinite(num)
+  ) {
     return false;
   }
   // Be compatible with previous versions.
-  if (!isUnFiniteAsNumber && !isFinite(num)) {
-    return false;
-  }
+  // if (!isUnFiniteAsNumber && !isFinite(num)) {
+  //   return false;
+  // }
   if (!isNaNAsNumber && isNaN(num)) {
     return false;
   }
@@ -2404,19 +2407,22 @@ export function isNonEmptyArray<T>(arr: Array<T>): boolean {
  * @returns {boolean} Return TRUE if the data is valid.
  * @category Util
  */
-export function isValidData<T, K extends keyof T>(
-  data: T,
-  attributes: K[],
-  validValue: T[K]
+export function isValidData(
+  data: any,
+  attributes: string[],
+  validValue: any
 ): boolean {
   let ret = false;
   const foundRet = attributes.reduce((foundValue, curr) => {
-    if (foundValue && Object.prototype.hasOwnProperty.call(foundValue, curr)) {
-      return foundValue[curr];
+    if (foundValue[curr]) {
+      foundValue = foundValue[curr];
     } else {
       return Object.create(null);
     }
+    // console.log('foundValue', foundValue);
+    return foundValue;
   }, data);
+  // console.log('foundRet', foundRet);
   if (foundRet === validValue) {
     ret = true;
   }

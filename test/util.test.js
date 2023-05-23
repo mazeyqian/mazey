@@ -13,7 +13,7 @@ import { isNumber, camelCaseToKebabCase, camelCase2Underscore, mTrim, deepCopyOb
 // isNumber(Infinity, { isInfinityAsNumber: true }); // true
 // isNumber(NaN); // false
 // isNumber(NaN, { isNaNAsNumber: true, isInfinityAsNumber: true }); // true
-test('isNumber: Is -1 Number?', () => {
+test('isNumber: Is -1/123/Infinity/NaN Number?', () => {
   expect(isNumber(-1)).toBe(true);
   expect(isNumber(123)).toBe(true);
   expect(isNumber('123')).toBe(false);
