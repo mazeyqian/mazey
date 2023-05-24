@@ -66,4 +66,11 @@ declare global {
     validStatusRange?: [number, number];
     validCode?: number[];
   }
+
+  interface RepeatUntilOptions {
+    interval?: number;
+    times?: number;
+    context?: any;
+    args?: Array<any>;
+  }
 }
