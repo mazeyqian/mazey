@@ -979,7 +979,7 @@ export function getLocalStorage<T>(key: string): T | null {
  *
  * @param {string} url -- css资源路径
  * @param {string} options.id -- link标签id
- * @returns {Promise<boolean>} true -- 加载成功
+ * @returns {Promise<string>} true -- 加载成功
  * @category Load Resource
  */
 export function loadCSS(
