@@ -1,7 +1,7 @@
-Load a script from the given URL if it has not already been loaded.
+Load a script from the given URL if it (`window['attribute']`) has not already been loaded.
 
 ```js
-loadScriptIfUndefined('$', 'https://example.com/lib/jquery.min.js')
+loadScriptIfUndefined('jQuery', 'https://example.com/lib/jquery.min.js')
   .then(() => {
     console.log('jQuery is loaded.');
   })
