@@ -18,7 +18,8 @@ import {
   getFriendlyInterval,
   getBrowserInfo,
   repeatUntilConditionMet,
-  inRate
+  inRate,
+  loadScriptIfUndefined
 } from '../src/index';
 
 // Sync
@@ -126,6 +127,14 @@ const conFn = () => {
   return ret;
 };
 repeatUntilConditionMet(conFn);
+
+loadScriptIfUndefined('$', 'https://i.mazey.net/lib/jquery/3.1.1/jquery.min.js')
+  .then(res => {
+    console.log('loadScriptIfUndefined success', res);
+  })
+  .catch(err => {
+    console.log('loadScriptIfUndefined fail', err);
+  });
 
 // Async
 (async () => {

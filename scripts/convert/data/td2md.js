@@ -1,22 +1,19 @@
 /**
- * EN: Computes the longest common subsequence of two strings.
- *
- * ZH: 计算两个字符串的最长公共子序列
- *
- * Usage:
- *
+ * Load a script from the given URL if it has not already been loaded.
+ * 
+ * @example
+ * ```js
+ * loadScriptIfUndefined('$', 'https://example.com/lib/jquery.min.js')
+ *   .then(() => {
+ *     console.log('jQuery is loaded.');
+ *   })
+ *   .catch(err => {
+ *     console.log('Failed to load jQuery.', err);
+ *   });
  * ```
- * calLongestCommonSubsequence('fish', 'finish');
- * ```
- *
- * Output:
- *
- * ```
- * 4
- * ```
- *
- * @param {string} aStr 字符串
- * @param {string} bStr 字符串
- * @returns {number} 长度
- * @category Calculate and Formula
+ * 
+ * @param {string} windowAttribute - The name of the window attribute to check.
+ * @param {string} url - The URL of the script to load.
+ * @returns {Promise} A Promise that resolves when the script has been loaded.
+ * @category Load Resource
  */

@@ -1,13 +1,11 @@
-Computes the longest common subsequence of two strings.
+Load a script from the given URL if it has not already been loaded.
 
-Usage:
-
-```
-calLongestCommonSubsequence('fish', 'finish');
-```
-
-Output:
-
-```
-4
+```js
+loadScriptIfUndefined('$', 'https://example.com/lib/jquery.min.js')
+  .then(() => {
+    console.log('jQuery is loaded.');
+  })
+  .catch(err => {
+    console.log('Failed to load jQuery.', err);
+  });
 ```

@@ -140,6 +140,20 @@ loadScript(
 @returns {Promise<boolean>} -- true 成功
 @category Load Resource -->
 
+#### loadScriptIfUndefined
+
+Load a script from the given URL if it has not already been loaded.
+
+```js
+loadScriptIfUndefined('jQuery', 'https://example.com/lib/jquery.min.js')
+  .then(() => {
+    console.log('jQuery is loaded.');
+  })
+  .catch(err => {
+    console.log('Failed to load jQuery.', err);
+  });
+```
+
 #### loadCSS
 
 Load a CSS file from the server.
@@ -883,6 +897,17 @@ npm run docs
 # Test
 npm run test
 ```
+
+Returns:
+
+| Values     | Description                              | Type   |
+| :--------- | :--------------------------------------- | :----- |
+| ok         | The operation was successful.            | string |
+| loaded     | Some assets have been loaded.            | string |
+| fail       | An error occurred.                       | string |
+| defined    | The value is defined.                    | string |
+| undefined  | The value is undefined.                  | string |
+| timeout    | The operation timed out.                 | string |
 
 ## License
 

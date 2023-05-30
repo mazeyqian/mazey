@@ -987,7 +987,7 @@ export function loadCSS(
   options: { id?: string } = { id: '' }
 ): Promise<boolean | Error | any> {
   const { id } = options;
-  let success: (v: boolean) => void;
+  let success: (v: boolean | string) => void;
   let fail: (v: Error) => void;
   const status = new Promise((resolve, reject) => {
     [success, fail] = [resolve, reject];
@@ -995,7 +995,7 @@ export function loadCSS(
   // const tempCB = (typeof callback === 'function' ? callback : function () { });
   const callback = function() {
     // doFn(success, true);
-    success(true);
+    success('loaded');
   };
   let node: any = document.createElement('link');
   const supportOnload = 'onload' in node;
@@ -1136,7 +1136,7 @@ export function loadCSS(
  * @param {function} options.callback -- 加载后回调函数
  * @param {number} options.timeout -- 超时时长
  * @param {boolean} options.isDefer -- 是否添加 defer 标签
- * @returns {Promise<boolean>} -- true 成功
+ * @returns {Promise<string>} -- true 成功
  * @category Load Resource
  */
 export function loadScript(
@@ -1154,7 +1154,7 @@ export function loadScript(
     timeout: 5000,
     isDefer: false
   }
-): Promise<boolean | string | Error> {
+): LoadScriptReturns {
   const { id, callback, timeout, isDefer } = Object.assign(
     {
       id: '',
@@ -1184,14 +1184,14 @@ export function loadScript(
       if (script.readyState === 'loaded' || script.readyState === 'complete') {
         script.onreadystatechange = null;
         doFn(callback);
-        doFn(success, true);
+        doFn(success, 'loaded');
       }
     };
   } else {
     // Others
     script.onload = function() {
       doFn(callback);
-      doFn(success, true);
+      doFn(success, 'loaded');
     };
   }
   script.src = url;
@@ -1199,7 +1199,7 @@ export function loadScript(
   return new Promise((resolve, reject) => {
     [success, fail] = [resolve, reject];
     if (timeout) {
-      setTimeout(fail.bind(null, Error('timeout')), timeout);
+      setTimeout(fail.bind(null, 'timeout'), timeout);
     }
   });
 }
@@ -2950,4 +2950,33 @@ export function repeatUntilConditionMet<T extends (...args: any[]) => any>(
   }
 
   clearAndInvokeNext();
+}
+
+/**
+ * Load a script from the given URL if it has not already been loaded.
+ *
+ * @example
+ * ```js
+ * loadScriptIfUndefined('jQuery', 'https://example.com/lib/jquery.min.js')
+ *   .then(() => {
+ *     console.log('jQuery is loaded.');
+ *   })
+ *   .catch(err => {
+ *     console.log('Failed to load jQuery.', err);
+ *   });
+ * ```
+ *
+ * @param {string} windowAttribute - The name of the window attribute to check.
+ * @param {string} url - The URL of the script to load.
+ * @returns {Promise} A Promise that resolves when the script has been loaded.
+ * @category Load Resource
+ */
+export function loadScriptIfUndefined(
+  windowAttribute: string,
+  url: string
+): LoadScriptReturns {
+  if ((window as { [k: string]: any })[windowAttribute]) {
+    return Promise.resolve('defined');
+  }
+  return loadScript(url);
 }
