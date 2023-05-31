@@ -1,19 +1,22 @@
 /**
- * Load a script from the given URL if it (`window['attribute']`) has not already been loaded.
+ * Load an image from the given URL.
+ *
+ * The target image will be loaded in the background, and the Promise status will change after the image is loaded. If the image fails to load, the Promise status will change to `reject` with the error object. If the image is loaded successfully, the Promise status will change to `resolve` with the image object. This method can be used to preload images and cache them in the browser. It can also be used to implement lazy loading of images.
+ *
+ * Note that this method will not add the image to the DOM.
  *
  * @example
  * ```js
- * loadScriptIfUndefined('jQuery', 'https://example.com/lib/jquery.min.js')
- *   .then(() => {
- *     console.log('jQuery is loaded.');
+ * loadImage('https://example.com/example.png')
+ *   .then((img) => {
+ *     console.log(img);
  *   })
- *   .catch(err => {
- *     console.log('Failed to load jQuery.', err);
+ *   .catch((err) => {
+ *     console.log(err);
  *   });
  * ```
  *
- * @param {string} windowAttribute - The name of the window attribute to check (e.g. `jQuery`, `axios`, etc.).
- * @param {string} url - The URL of the script to load.
- * @returns {Promise} A Promise that resolves when the script has been loaded.
+ * @param {string} url - The URL of the image to load.
+ * @returns {Promise} A Promise that resolves with the loaded image or rejects with an error.
  * @category Load Resource
  */
