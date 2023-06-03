@@ -30,7 +30,7 @@ const { generateToc } = require('./build-helper');
  * @param {string} ver Version
  * @returns {void}
  */
-async function release (ver, { canGenerateToc = false } = {}) {
+async function release (ver, { canGenerateToc = false, defaultBranch = 'master' } = {}) {
   if (!ver) {
     ver = process.env.SCRIPTS_NPM_PACKAGE_VERSION;
   }
@@ -48,7 +48,7 @@ async function release (ver, { canGenerateToc = false } = {}) {
   // Commit
   await gitCommit('stage');
   // Marge
-  await gitMergeMaster2Release();
+  await gitMergeMaster2Release(defaultBranch);
   // Build
   await execa('npm', ['run', 'preview']);
   await execa('npm', ['publish']);
@@ -80,12 +80,12 @@ async function gitPush () {
 /**
  * Merge master to current branch.
  */
-async function gitMergeMaster2Release () {
+async function gitMergeMaster2Release (defaultBranch = 'master') {
   const currentBranch = await getGitCurrentBranch();
-  await execa('git', ['checkout', 'master']);
+  await execa('git', ['checkout', defaultBranch]);
   await execa('git', ['pull']);
   await execa('git', ['checkout', currentBranch]);
-  await execa('git', ['merge', 'master']);
+  await execa('git', ['merge', defaultBranch]);
   return true;
 }
 
