@@ -195,6 +195,18 @@
 @param {boolean} options.isDefer -- 是否添加 defer 标签
 @returns {Promise<boolean>} -- true 成功
 @category Load Resource -->
+				<a href="#loadscriptifundefined" id="loadscriptifundefined" style="color: inherit; text-decoration: none;">
+					<h4>loadScriptIfUndefined</h4>
+				</a>
+				<p>Load a script from the given URL if it (<code>window[&#39;attribute&#39;]</code>) has not already been loaded.</p>
+				<pre><code class="language-js"><span style="color: #795E26">loadScriptIfUndefined</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;jQuery&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;https://example.com/lib/jquery.min.js&#039;</span><span style="color: #000000">)</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">then</span><span style="color: #000000">(() </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;jQuery is loaded.&#039;</span><span style="color: #000000">);</span>
+<span style="color: #000000">  })</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">catch</span><span style="color: #000000">(</span><span style="color: #001080">err</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;Failed to load jQuery.&#039;</span><span style="color: #000000">, </span><span style="color: #001080">err</span><span style="color: #000000">);</span>
+<span style="color: #000000">  });</span>
+</code></pre>
 				<a href="#loadcss" id="loadcss" style="color: inherit; text-decoration: none;">
 					<h4>loadCSS</h4>
 				</a>
@@ -221,6 +233,20 @@
 @param {string} options.id -- link标签id
 @returns {Promise<boolean>} true -- 加载成功
 @category Load Resource -->
+				<a href="#loadimage" id="loadimage" style="color: inherit; text-decoration: none;">
+					<h4>loadImage</h4>
+				</a>
+				<p>Load an image from the given URL.</p>
+				<p>The target image will be loaded in the background, and the Promise status will change after the image is loaded. If the image fails to load, the Promise status will change to <code>reject</code> with the error object. If the image is loaded successfully, the Promise status will change to <code>resolve</code> with the image object. This method can be used to preload images and cache them in the browser. It can also be used to implement lazy loading of images.</p>
+				<p>Note that this method will not add the image to the DOM.</p>
+				<pre><code class="language-js"><span style="color: #795E26">loadImage</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;https://example.com/example.png&#039;</span><span style="color: #000000">)</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">then</span><span style="color: #000000">((</span><span style="color: #001080">img</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">img</span><span style="color: #000000">);</span>
+<span style="color: #000000">  })</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">catch</span><span style="color: #000000">((</span><span style="color: #001080">err</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">err</span><span style="color: #000000">);</span>
+<span style="color: #000000">  });</span>
+</code></pre>
 				<a href="#windowloaded" id="windowloaded" style="color: inherit; text-decoration: none;">
 					<h4>windowLoaded</h4>
 				</a>
@@ -891,6 +917,56 @@
 <span style="color: #000000"># </span><span style="color: #001080">Test</span>
 <span style="color: #001080">npm</span><span style="color: #000000"> </span><span style="color: #001080">run</span><span style="color: #000000"> </span><span style="color: #001080">test</span>
 </code></pre>
+				<p>Returns:</p>
+				<table>
+					<thead>
+						<tr>
+							<th align="left">Values</th>
+							<th align="left">Description</th>
+							<th align="left">Type</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td align="left">ok</td>
+							<td align="left">The operation was successful.</td>
+							<td align="left">string</td>
+						</tr>
+						<tr>
+							<td align="left">loaded</td>
+							<td align="left">Some assets have been loaded.</td>
+							<td align="left">string</td>
+						</tr>
+						<tr>
+							<td align="left">fail</td>
+							<td align="left">An error occurred.</td>
+							<td align="left">string</td>
+						</tr>
+						<tr>
+							<td align="left">defined</td>
+							<td align="left">The value is defined.</td>
+							<td align="left">string</td>
+						</tr>
+						<tr>
+							<td align="left">undefined</td>
+							<td align="left">The value is undefined.</td>
+							<td align="left">string</td>
+						</tr>
+						<tr>
+							<td align="left">timeout</td>
+							<td align="left">The operation timed out.</td>
+							<td align="left">string</td>
+						</tr>
+						<tr>
+							<td align="left">true</td>
+							<td align="left">The value is true.</td>
+							<td align="left">boolean</td>
+						</tr>
+						<tr>
+							<td align="left">false</td>
+							<td align="left">The value is false.</td>
+							<td align="left">boolean</td>
+						</tr>
+				</tbody></table>
 				<a href="#license" id="license" style="color: inherit; text-decoration: none;">
 					<h2>License</h2>
 				</a>
@@ -1050,6 +1126,9 @@
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="modules.html#loadScript" class="tsd-kind-icon">load<wbr>Script</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#loadScriptIfUndefined" class="tsd-kind-icon">load<wbr>Script<wbr>IfUndefined</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="modules.html#mNow" class="tsd-kind-icon">m<wbr>Now</a>
