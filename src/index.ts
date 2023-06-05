@@ -325,6 +325,8 @@ export function camelCase2Underscore(camelCase: string): string {
 /**
  * Remove leading and trailing whitespace or specified characters from string.
  *
+ * Note: This method is used to replace the native `String.prototype.trim()`. But it is not necessary to use it in modern browsers.
+ *
  * ```
  * mTrim(' 1 2 3 '); // '1 2 3'
  * mTrim('abc '); // 'abc'
@@ -333,6 +335,7 @@ export function camelCase2Underscore(camelCase: string): string {
  * @param {string} str The string to trim.
  * @returns {string} Trimmed string.
  * @category Util
+ * @hidden
  */
 export function mTrim(str: string): string {
   str = str.replace(/^\s+/, ''); // 去除头部空格

@@ -426,19 +426,6 @@ Output:
 @returns {object} Returns the deep cloned value.
 @category Util -->
 
-#### mTrim
-
-Remove leading and trailing whitespace or specified characters from string.
-
-```
-mTrim(' 1 2 3 '); // '1 2 3'
-mTrim('abc '); // 'abc'
-```
-
-<!-- @param {string} str The string to trim.
-@returns {string} Trimmed string.
-@category Util -->
-
 ### URL
 
 #### getQueryParam
