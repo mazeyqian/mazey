@@ -686,16 +686,14 @@ console.log(trueCount, falseCount); // 499994 500006
 @returns {boolean} true 命中
 @category Calculate and Formula -->
 
-#### calLongestCommonSubstring
+#### longestComSubstring
 
 Computes the longest common substring of two strings.
-
-<!-- ZH: 计算两个字符串的最长公共子串 -->
 
 Usage:
 
 ```
-calLongestCommonSubstring('fish', 'finish');
+longestComSubstring('fish', 'finish');
 ```
 
 Output:
@@ -704,21 +702,14 @@ Output:
 3
 ```
 
-<!-- @param {string} aStr String
-@param {string} bStr String
-@returns {number} Length
-@category Calculate and Formula -->
-
-#### calLongestCommonSubsequence
+#### longestComSubsequence
 
 Computes the longest common subsequence of two strings.
-
-<!-- ZH: 计算两个字符串的最长公共子序列 -->
 
 Usage:
 
 ```
-calLongestCommonSubsequence('fish', 'finish');
+longestComSubsequence('fish', 'finish');
 ```
 
 Output:
@@ -726,11 +717,6 @@ Output:
 ```
 4
 ```
-
-<!-- @param {string} aStr 字符串
-@param {string} bStr 字符串
-@returns {number} 长度
-@category Calculate and Formula -->
 
 ### Browser Information
 

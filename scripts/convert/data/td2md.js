@@ -1,12 +1,22 @@
 /**
- * Produce a random string of number, `genRndNumString(7)` => '7658495'.
+ * EN: Computes the longest common subsequence of two strings.
+ *
+ * ZH: 计算两个字符串的最长公共子序列
+ *
+ * Usage:
  *
  * ```
- * genRndNumString(4); // '9730'
- * genRndNumString(7); // '2262490'
+ * longestComSubsequence('fish', 'finish');
  * ```
  *
- * @param {number} n Length
- * @returns {string} Return the random string.
- * @category Util
+ * Output:
+ *
+ * ```
+ * 4
+ * ```
+ *
+ * @param {string} aStr 字符串
+ * @param {string} bStr 字符串
+ * @returns {number} 长度
+ * @category Calculate and Formula
  */

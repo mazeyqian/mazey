@@ -10,7 +10,7 @@
  * Usage:
  *
  * ```
- * calLongestCommonSubstring('fish', 'finish');
+ * longestComSubstring('fish', 'finish');
  * ```
  *
  * Output:
@@ -24,7 +24,7 @@
  * @returns {number} Length
  * @category Calculate and Formula
  */
-export function calLongestCommonSubstring(aStr: string, bStr: string): number {
+export function longestComSubstring(aStr: string, bStr: string): number {
   const aLen = aStr.length;
   const bLen = bStr.length;
   // 创建二维数组并且深拷贝
@@ -48,6 +48,15 @@ export function calLongestCommonSubstring(aStr: string, bStr: string): number {
 }
 
 /**
+ * Alias of `longestComSubstring`
+ *
+ * @hidden
+ */
+export function calLongestCommonSubstring(aStr: string, bStr: string): number {
+  return longestComSubstring(aStr, bStr);
+}
+
+/**
  * EN: Computes the longest common subsequence of two strings.
  *
  * ZH: 计算两个字符串的最长公共子序列
@@ -55,7 +64,7 @@ export function calLongestCommonSubstring(aStr: string, bStr: string): number {
  * Usage:
  *
  * ```
- * calLongestCommonSubsequence('fish', 'finish');
+ * longestComSubsequence('fish', 'finish');
  * ```
  *
  * Output:
@@ -69,10 +78,7 @@ export function calLongestCommonSubstring(aStr: string, bStr: string): number {
  * @returns {number} 长度
  * @category Calculate and Formula
  */
-export function calLongestCommonSubsequence(
-  aStr: string,
-  bStr: string
-): number {
+export function longestComSubsequence(aStr: string, bStr: string): number {
   const aLen = aStr.length;
   const bLen = bStr.length;
   // 创建二维数组并且深拷贝
@@ -102,6 +108,18 @@ export function calLongestCommonSubsequence(
   // 获取最长公共子串
   const maxLong = Math.max(...arr1);
   return maxLong;
+}
+
+/**
+ * Alias of `longestComSubsequence`
+ *
+ * @hidden
+ */
+export function calLongestCommonSubsequence(
+  aStr: string,
+  bStr: string
+): number {
+  return longestComSubsequence(aStr, bStr);
 }
 
 /**
