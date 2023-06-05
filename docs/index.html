@@ -332,16 +332,13 @@
 @param {any} validValue Given Value for verifying.
 @returns {boolean} Return TRUE if the data is valid.
 @category Util -->
-				<a href="#generaterndnum" id="generaterndnum" style="color: inherit; text-decoration: none;">
-					<h4>generateRndNum</h4>
+				<a href="#genrndnumstring" id="genrndnumstring" style="color: inherit; text-decoration: none;">
+					<h4>genRndNumString</h4>
 				</a>
-				<p>Produce a random string of number, <code>generateRndNum(7)</code> =&gt; &#39;7658495&#39;.</p>
-				<pre><code><span style="color: #795E26">generateRndNum</span><span style="color: #000000">(</span><span style="color: #098658">4</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;9730&#039;</span>
-<span style="color: #795E26">generateRndNum</span><span style="color: #000000">(</span><span style="color: #098658">7</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;2262490&#039;</span>
+				<p>Produce a random string of number, <code>genRndNumString(7)</code> =&gt; &#39;7658495&#39;.</p>
+				<pre><code><span style="color: #795E26">genRndNumString</span><span style="color: #000000">(</span><span style="color: #098658">4</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;9730&#039;</span>
+<span style="color: #795E26">genRndNumString</span><span style="color: #000000">(</span><span style="color: #098658">7</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;2262490&#039;</span>
 </code></pre>
-				<!-- @param {number} n Length
-@returns {string} Return the random string.
-@category Util -->
 				<a href="#formatdate" id="formatdate" style="color: inherit; text-decoration: none;">
 					<h4>formatDate</h4>
 				</a>
@@ -403,31 +400,18 @@
 				<!-- @param {string} camelCase 'aBC' or 'ABC'
 @returns {string} 'a_b_c'
 @category Util -->
-				<a href="#deepcopyobject" id="deepcopyobject" style="color: inherit; text-decoration: none;">
-					<h4>deepCopyObject</h4>
+				<a href="#deepcopy" id="deepcopy" style="color: inherit; text-decoration: none;">
+					<h4>deepCopy</h4>
 				</a>
-				<p>Clone Object deeply.</p>
+				<p>Copy/Clone Object deeply.</p>
 				<p>Usage:</p>
-				<pre><code><span style="color: #795E26">deepCopyObject</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;a&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;b&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;c&#039;</span><span style="color: #000000">]);</span>
-<span style="color: #795E26">deepCopyObject</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;abc&#039;</span><span style="color: #000000">);</span>
+				<pre><code><span style="color: #795E26">deepCopy</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;a&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;b&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;c&#039;</span><span style="color: #000000">]);</span>
+<span style="color: #795E26">deepCopy</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;abc&#039;</span><span style="color: #000000">);</span>
 </code></pre>
 				<p>Output:</p>
 				<pre><code><span style="color: #000000">[</span><span style="color: #A31515">&#039;a&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;b&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;c&#039;</span><span style="color: #000000">]</span>
 <span style="color: #A31515">&#039;abc&#039;</span>
 </code></pre>
-				<!-- @param {object} obj The value to clone.
-@returns {object} Returns the deep cloned value.
-@category Util -->
-				<a href="#mtrim" id="mtrim" style="color: inherit; text-decoration: none;">
-					<h4>mTrim</h4>
-				</a>
-				<p>Remove leading and trailing whitespace or specified characters from string.</p>
-				<pre><code><span style="color: #795E26">mTrim</span><span style="color: #000000">(</span><span style="color: #A31515">&#039; 1 2 3 &#039;</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;1 2 3&#039;</span>
-<span style="color: #795E26">mTrim</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;abc &#039;</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;abc&#039;</span>
-</code></pre>
-				<!-- @param {string} str The string to trim.
-@returns {string} Trimmed string.
-@category Util -->
 				<a href="#url" id="url" style="color: inherit; text-decoration: none;">
 					<h3>URL</h3>
 				</a>
@@ -640,36 +624,26 @@
 				<!-- @param {number} rate -- 0.1 ~ 1 => 1% ~ 100%
 @returns {boolean} true 命中
 @category Calculate and Formula -->
-				<a href="#callongestcommonsubstring" id="callongestcommonsubstring" style="color: inherit; text-decoration: none;">
-					<h4>calLongestCommonSubstring</h4>
+				<a href="#longestcomsubstring" id="longestcomsubstring" style="color: inherit; text-decoration: none;">
+					<h4>longestComSubstring</h4>
 				</a>
 				<p>Computes the longest common substring of two strings.</p>
-				<!-- ZH: 计算两个字符串的最长公共子串 -->
 				<p>Usage:</p>
-				<pre><code><span style="color: #795E26">calLongestCommonSubstring</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;fish&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;finish&#039;</span><span style="color: #000000">);</span>
+				<pre><code><span style="color: #795E26">longestComSubstring</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;fish&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;finish&#039;</span><span style="color: #000000">);</span>
 </code></pre>
 				<p>Output:</p>
 				<pre><code><span style="color: #098658">3</span>
 </code></pre>
-				<!-- @param {string} aStr String
-@param {string} bStr String
-@returns {number} Length
-@category Calculate and Formula -->
-				<a href="#callongestcommonsubsequence" id="callongestcommonsubsequence" style="color: inherit; text-decoration: none;">
-					<h4>calLongestCommonSubsequence</h4>
+				<a href="#longestcomsubsequence" id="longestcomsubsequence" style="color: inherit; text-decoration: none;">
+					<h4>longestComSubsequence</h4>
 				</a>
 				<p>Computes the longest common subsequence of two strings.</p>
-				<!-- ZH: 计算两个字符串的最长公共子序列 -->
 				<p>Usage:</p>
-				<pre><code><span style="color: #795E26">calLongestCommonSubsequence</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;fish&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;finish&#039;</span><span style="color: #000000">);</span>
+				<pre><code><span style="color: #795E26">longestComSubsequence</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;fish&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;finish&#039;</span><span style="color: #000000">);</span>
 </code></pre>
 				<p>Output:</p>
 				<pre><code><span style="color: #098658">4</span>
 </code></pre>
-				<!-- @param {string} aStr 字符串
-@param {string} bStr 字符串
-@returns {number} 长度
-@category Calculate and Formula -->
 				<a href="#browser-information" id="browser-information" style="color: inherit; text-decoration: none;">
 					<h3>Browser Information</h3>
 				</a>
@@ -995,12 +969,6 @@
 						<a href="modules.html#addStyle" class="tsd-kind-icon">add<wbr>Style</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="modules.html#calLongestCommonSubsequence" class="tsd-kind-icon">cal<wbr>Longest<wbr>Common<wbr>Subsequence</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#calLongestCommonSubstring" class="tsd-kind-icon">cal<wbr>Longest<wbr>Common<wbr>Substring</a>
-					</li>
-					<li class=" tsd-kind-function">
 						<a href="modules.html#cancelBubble" class="tsd-kind-icon">cancel<wbr>Bubble</a>
 					</li>
 					<li class=" tsd-kind-function">
@@ -1019,7 +987,7 @@
 						<a href="modules.html#debounce" class="tsd-kind-icon">debounce</a>
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
-						<a href="modules.html#deepCopyObject" class="tsd-kind-icon">deep<wbr>Copy<wbr>Object</a>
+						<a href="modules.html#deepCopy" class="tsd-kind-icon">deep<wbr>Copy</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="modules.html#doFn" class="tsd-kind-icon">do<wbr>Fn</a>
@@ -1040,10 +1008,10 @@
 						<a href="modules.html#genHashCode" class="tsd-kind-icon">gen<wbr>Hash<wbr>Code</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="modules.html#genStyleString" class="tsd-kind-icon">gen<wbr>Style<wbr>String</a>
+						<a href="modules.html#genRndNumString" class="tsd-kind-icon">gen<wbr>Rnd<wbr>Num<wbr>String</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="modules.html#generateRndNum" class="tsd-kind-icon">generate<wbr>Rnd<wbr>Num</a>
+						<a href="modules.html#genStyleString" class="tsd-kind-icon">gen<wbr>Style<wbr>String</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="modules.html#generateUniqueNum" class="tsd-kind-icon">generate<wbr>Unique<wbr>Num</a>
@@ -1133,10 +1101,13 @@
 						<a href="modules.html#loadScriptIfUndefined" class="tsd-kind-icon">load<wbr>Script<wbr>IfUndefined</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="modules.html#mNow" class="tsd-kind-icon">m<wbr>Now</a>
+						<a href="modules.html#longestComSubsequence" class="tsd-kind-icon">longest<wbr>Com<wbr>Subsequence</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="modules.html#mTrim" class="tsd-kind-icon">m<wbr>Trim</a>
+						<a href="modules.html#longestComSubstring" class="tsd-kind-icon">longest<wbr>Com<wbr>Substring</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#mNow" class="tsd-kind-icon">m<wbr>Now</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="modules.html#newLine" class="tsd-kind-icon">new<wbr>Line</a>
