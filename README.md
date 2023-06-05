@@ -308,18 +308,14 @@ isValidDataResC: false
 @returns {boolean} Return TRUE if the data is valid.
 @category Util -->
 
-#### generateRndNum
+#### genRndNumString
 
-Produce a random string of number, `generateRndNum(7)` => '7658495'.
+Produce a random string of number, `genRndNumString(7)` => '7658495'.
 
 ```
-generateRndNum(4); // '9730'
-generateRndNum(7); // '2262490'
+genRndNumString(4); // '9730'
+genRndNumString(7); // '2262490'
 ```
-
-<!-- @param {number} n Length
-@returns {string} Return the random string.
-@category Util -->
 
 #### formatDate
 
@@ -404,15 +400,15 @@ convertCamelToUnder('aBC'); // a_b_c
 @returns {string} 'a_b_c'
 @category Util -->
 
-#### deepCopyObject
+#### deepCopy
 
-Clone Object deeply.
+Copy/Clone Object deeply.
 
 Usage:
 
 ```
-deepCopyObject(['a', 'b', 'c']);
-deepCopyObject('abc');
+deepCopy(['a', 'b', 'c']);
+deepCopy('abc');
 ```
 
 Output:
@@ -421,10 +417,6 @@ Output:
 ['a', 'b', 'c']
 'abc'
 ```
-
-<!-- @param {object} obj The value to clone.
-@returns {object} Returns the deep cloned value.
-@category Util -->
 
 ### URL
 

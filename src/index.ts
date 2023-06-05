@@ -368,13 +368,13 @@ export function newLine(str: string): string {
 }
 
 /**
- * Clone Object deeply.
+ * Copy/Clone Object deeply.
  *
  * Usage:
  *
  * ```
- * deepCopyObject(['a', 'b', 'c']);
- * deepCopyObject('abc');
+ * deepCopy(['a', 'b', 'c']);
+ * deepCopy('abc');
  * ```
  *
  * Output:
@@ -388,8 +388,33 @@ export function newLine(str: string): string {
  * @returns {object} Returns the deep cloned value.
  * @category Util
  */
-export function deepCopyObject<T>(obj: T): T {
+export function deepCopy<T>(obj: T): T {
+  // Jugde whether it is a primitive type
+  if (typeof obj !== 'object') {
+    return obj;
+  }
+  // Judge whether its key-value is simple type, string | number | boolean | null | undefined
+  // ...rest
+  const simpleTypes = ['string', 'number', 'boolean', 'undefined'];
+  const values = Object.values(obj as simpleObject);
+  const isSimpleTypeObj = values.every(v => simpleTypes.includes(typeof v));
+  if (isSimpleTypeObj) {
+    // console.log('it is isSimpleTypeObj');
+    return {
+      ...obj
+    };
+  }
+  // console.log('it is not isSimpleTypeObj');
   return JSON.parse(JSON.stringify(obj));
+}
+
+/**
+ * Alias of deepCopy
+ *
+ * @hidden
+ */
+export function deepCopyObject<T>(obj: T): T {
+  return deepCopy(obj);
 }
 
 /**
@@ -434,23 +459,32 @@ export function isJsonString(str: string): boolean {
 }
 
 /**
- * Produce a random string of number, `generateRndNum(7)` => '7658495'.
+ * Produce a random string of number, `genRndNumString(7)` => '7658495'.
  *
  * ```
- * generateRndNum(4); // '9730'
- * generateRndNum(7); // '2262490'
+ * genRndNumString(4); // '9730'
+ * genRndNumString(7); // '2262490'
  * ```
  *
  * @param {number} n Length
  * @returns {string} Return the random string.
  * @category Util
  */
-export function generateRndNum(n = 5): string {
+export function genRndNumString(n = 5): string {
   let ret = '';
   while (n--) {
     ret += Math.floor(Math.random() * 10);
   }
   return ret;
+}
+
+/**
+ * Alias of genRndNumString
+ *
+ * @hidden
+ */
+export function generateRndNum(n = 5): string {
+  return genRndNumString(n);
 }
 
 /**
