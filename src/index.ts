@@ -2450,6 +2450,9 @@ export function isValidData(
   validValue: any
 ): boolean {
   let ret = false;
+  if (typeof data !== 'object') {
+    return ret;
+  }
   const foundRet = attributes.reduce((foundValue, curr) => {
     if (typeof foundValue[curr] !== 'undefined') {
       foundValue = foundValue[curr];
