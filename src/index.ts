@@ -2573,7 +2573,7 @@ export function formatDate(
   } = {
     yyyy: tempDate.getFullYear(),
     MM: tempDate.getMonth() + 1,
-    dd: tempDate.getDate(),
+    dd: tempDate.getDate() < 10 ? '0' + tempDate.getDate() : tempDate.getDate(),
     hh:
       tempDate.getHours() < 10
         ? '0' + tempDate.getHours()
