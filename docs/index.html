@@ -494,6 +494,16 @@
 @param {string} value Param's value.
 @returns {string} URL.
 @category URL -->
+				<a href="#isvalidurl" id="isvalidurl" style="color: inherit; text-decoration: none;">
+					<h4>isValidUrl</h4>
+				</a>
+				<p>Checks if the given string is a valid URL, including scheme URLs.</p>
+				<pre><code class="language-js"><span style="color: #795E26">isValidUrl</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;https://www.example.com&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// true</span>
+<span style="color: #795E26">isValidUrl</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;http://example.com/path/exx/ss&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// true</span>
+<span style="color: #795E26">isValidUrl</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;https://www.example.com/?q=hello&amp;age=24#world&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// true</span>
+<span style="color: #795E26">isValidUrl</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;http://www.example.com/#world?id=9&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// true</span>
+<span style="color: #795E26">isValidUrl</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;ftp://example.com&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// true</span>
+</code></pre>
 				<a href="#cache-data" id="cache-data" style="color: inherit; text-decoration: none;">
 					<h3>Cache Data</h3>
 				</a>
@@ -877,6 +887,25 @@
 				<a href="#contributing" id="contributing" style="color: inherit; text-decoration: none;">
 					<h2>Contributing</h2>
 				</a>
+				<a href="#development-environment" id="development-environment" style="color: inherit; text-decoration: none;">
+					<h3>Development Environment</h3>
+				</a>
+				<a href="#nodejs" id="nodejs" style="color: inherit; text-decoration: none;">
+					<h4>Node.js</h4>
+				</a>
+				<ul>
+					<li>v14.21.3</li>
+					<li>v14.7.0</li>
+				</ul>
+				<a href="#typescript" id="typescript" style="color: inherit; text-decoration: none;">
+					<h4>TypeScript</h4>
+				</a>
+				<ul>
+					<li>v4.4.4</li>
+				</ul>
+				<a href="#scripts" id="scripts" style="color: inherit; text-decoration: none;">
+					<h3>Scripts</h3>
+				</a>
 				<pre><code><span style="color: #000000"># </span><span style="color: #001080">Install</span>
 <span style="color: #001080">npm</span><span style="color: #000000"> </span><span style="color: #001080">i</span>
 
@@ -892,7 +921,9 @@
 <span style="color: #000000"># </span><span style="color: #001080">Test</span>
 <span style="color: #001080">npm</span><span style="color: #000000"> </span><span style="color: #001080">run</span><span style="color: #000000"> </span><span style="color: #001080">test</span>
 </code></pre>
-				<p>Returns:</p>
+				<a href="#returns" id="returns" style="color: inherit; text-decoration: none;">
+					<h3>Returns</h3>
+				</a>
 				<table>
 					<thead>
 						<tr>
