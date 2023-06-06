@@ -35,6 +35,7 @@ const invalidUrls = [
   '    https://example.com/t/eee',
   'hahha',
   '哈哈哈哈',
+  'file:///C:/Users/Username/Documents/Example.txt',
 ];
 
 test('isValidUrl', () => {
