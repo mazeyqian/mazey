@@ -22,6 +22,7 @@ const validUrls = [
   'http://223.255.255.66',
   'http://223.255.255.66:23/page?id=33',
   'http://142.2.2.2:8080/',
+  'http://example.com/a/index.html?msg=%3Ca%20href%3D%22https',
   'ftp://example.com',
   'ssssss://app_test/deploy?id=99',
 ];
@@ -36,6 +37,8 @@ const invalidUrls = [
   'hahha',
   '哈哈哈哈',
   'file:///C:/Users/Username/Documents/Example.txt',
+  '<a href="https://b.example.com/t/i/y" target="_blank">xxx</a><br/>',
+  'http://example.com/a/index.html?msg=<a href="https://b.example.com/t/i/y" target="_blank">xxx</a><br/>',
 ];
 
 test('isValidUrl', () => {
