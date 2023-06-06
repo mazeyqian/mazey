@@ -2712,7 +2712,7 @@ export function removeEvent(type: string, fn: any): void {
  * @category URL
  */
 export function isValidUrl(url: string): boolean {
-  const reg = /[a-zA-Z0-9]+:\/\/[-a-zA-Z0-9@:%._+~#=]{1,256}\b([-a-zA-Z0-9\u4E00-\u9FA5()!@:%_+.~#?&//=]*)/gm;
+  const reg = /^[a-zA-Z0-9]+:\/\/[-a-zA-Z0-9@:%._+~#=]{1,256}\b([-a-zA-Z0-9\u4E00-\u9FA5()!@:%_+.~#?&//=]*)$/;
   return reg.test(url);
 }
 
