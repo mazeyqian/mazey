@@ -877,6 +877,19 @@ MazeyLog: I am object. {a: 123, b: 456}
 
 ## Contributing
 
+### Development Environment
+
+#### Node.js
+
+- v14.21.3
+- v14.7.0
+
+#### TypeScript
+
+- v4.4.4
+
+### Scripts
+
 ```
 # Install
 npm i
@@ -894,7 +907,7 @@ npm run docs
 npm run test
 ```
 
-Returns:
+### Returns
 
 | Values    | Description                              | Type    |
 | :-------- | :--------------------------------------- | :------ |
