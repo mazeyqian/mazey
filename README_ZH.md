@@ -49,7 +49,7 @@ npm install mazey@1.4.39 --save
 import { loadScript } from 'mazey';
 
 loadScript({
-  url: 'http://www.mazey.net/js/plugin/jquery/jquery-2.1.1.min.js',
+  url: 'http://example.com/path/example.js',
   id: 'iamid', // 可选，script 标签 ID，默认无 ID
   timeout: 5000, // 可选，超时时间，默认 5000
   isDefer: false, // 可选，defer，默认 false
