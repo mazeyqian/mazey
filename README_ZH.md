@@ -72,7 +72,7 @@ loadScript({
 import { loadCSS } from 'mazey';
 
 loadCSS({
-  url: 'http://www.mazey.net/css/mazey-base.css',
+  url: 'http://example.com/path/example.css',
   id: 'iamid', // 可选，link 标签 ID，默认无 ID
 })
   .then(

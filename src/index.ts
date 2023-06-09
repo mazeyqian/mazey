@@ -1015,7 +1015,7 @@ export function getLocalStorage<T>(key: string): T | null {
  *
  * ```
  * loadCSS(
- *     'http://example.com/css/mazey-base.css',
+ *     'http://example.com/path/example.css',
  *     {
  *       id: 'iamid', // Optional, link ID, default none
  *     }
