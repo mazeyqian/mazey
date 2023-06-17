@@ -5,7 +5,7 @@
 /* eslint-disable quotes */
 // Util
 
-import { isNumber, camelCaseToKebabCase, camelCase2Underscore, mTrim, deepCopyObject, isJsonString, generateRndNum, formatDate, isValidData, isValidEmail, convert10To26, getFriendlyInterval } from '../lib/index.esm';
+import { isNumber, camelCaseToKebabCase, camelCase2Underscore, mTrim, deepCopyObject, isJsonString, generateRndNum, formatDate, isValidData, isValidEmail, convert10To26, getFriendlyInterval, unsanitize } from '../lib/index.esm';
 
 // isNumber(123); // true
 // isNumber('123'); // false
@@ -100,4 +100,28 @@ test('getFriendlyInterval: Get 1116 days?', () => {
   expect(getFriendlyInterval(new Date('2020-03-28 00:09:27'), new Date('2023-04-18 10:54:00'), { type: 'd' })).toBe(1116);
   expect(getFriendlyInterval(1585325367000, 1681786440000, { type: 'text' })).toBe('1116 天 10 时 44 分 33 秒');
   expect(getFriendlyInterval('2020-03-28 00:09:27', '2023-04-18 10:54:00', { type: 'text' })).toBe('1116 天 10 时 44 分 33 秒');
+});
+
+describe('unsanitize', () => {
+  it('should unsanitize HTML entities', () => {
+    const input = '&lt;div&gt;Hello, &quot;world&quot;!&lt;/div&gt;';
+    const expectedOutput = '<div>Hello, "world"!</div>';
+    expect(unsanitize(input)).toEqual(expectedOutput);
+  });
+
+  it('should unsanitize special characters', () => {
+    const input = '&#x27;Hello, &lt;world&gt;!&#x27;';
+    const expectedOutput = '\'Hello, <world>!\'';
+    expect(unsanitize(input)).toEqual(expectedOutput);
+  });
+
+  it('should return the input string if it does not contain any HTML entities or special characters', () => {
+    const input = 'Hello, world!';
+    expect(unsanitize(input)).toEqual(input);
+  });
+
+  it('should throw an error if the input is not a string', () => {
+    const input = 123;
+    expect(() => unsanitize(input)).toThrow('Input must be a string');
+  });
 });
