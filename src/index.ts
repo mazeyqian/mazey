@@ -2068,7 +2068,7 @@ export function sanitizeInput(input: string): string {
     '/': '&#x2F;'
   };
   if (typeof input !== 'string') {
-    console.error('Input must be a string');
+    throw new Error('Input must be a string');
   }
   return input.replace(
     regex,
@@ -2094,7 +2094,8 @@ export function unsanitize(input: string): string {
     '&#x2F;': '/'
   };
   if (typeof input !== 'string') {
-    console.error('Input must be a string');
+    throw new Error('Input must be a string');
+    // console.error('Input must be a string');
   }
   return input.replace(
     regex,
