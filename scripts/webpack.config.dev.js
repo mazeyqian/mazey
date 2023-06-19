@@ -14,6 +14,9 @@ module.exports = {
   },
   devServer: {
     contentBase: _resolve('../dist'),
+    allowedHosts: [
+      '.mazey.net',
+    ],
   },
   module: {
     rules: [
