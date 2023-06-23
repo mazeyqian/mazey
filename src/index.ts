@@ -129,36 +129,36 @@ export function getQueryParam(param: string): string {
 }
 
 /**
- * Get the query param's value of the input URL.
+ * Returns the value of the specified query parameter in the input URL.
  *
+ * @example
  * ```
- * getUrlParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't3'); // 3
- * getUrlParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't4'); // 4
+ * getUrlParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't3'); // Returns '3'
+ * getUrlParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't4'); // Returns '4'
  * ```
  *
- * @param {string} url URL string.
- * @param {string} param Query param.
- * @returns {string} value
+ * @param {string} url The URL string.
+ * @param {string} param The query parameter to retrieve the value for.
+ * @returns {string|string[]} The value of the specified query parameter, or an empty string if the parameter is not found.
  * @category URL
  */
 export function getUrlParam(url: string, param: string): string | string[] {
-  const result: {
-    [key: string]: string | string[] | any;
-  } = {};
-  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace
-  url.replace(/\??(\w+)=([^&]*)&?/g, function(a, k, v): any {
+  const result: UrlParams = {};
+  url.replace(/\??(\w+)=([^&]*)&?/g, function(
+    _: string,
+    k: string,
+    v: string
+  ): string {
     if (result[k] !== undefined) {
       const t = result[k];
-      result[k] = [].concat(t, v);
+      // Cast `t` to `string[]` to ensure that `concat` receives an array
+      result[k] = ([] as string[]).concat(t, v);
     } else {
       result[k] = v;
     }
+    // Return an empty string to satisfy the signature of the replace method
+    return '';
   });
-  // if (param === undefined) {
-  //   return result;
-  // } else {
-  //   return result[param] || '';
-  // }
   return result[param] || '';
 }
 
@@ -262,10 +262,10 @@ export function getHashQueryParam(param: string): string {
  * @category URL
  */
 export function getDomain(url: string, rules = ['hostname']): string {
-  const aEl: any = document.createElement('a');
+  const aEl: HTMLAnchorElement = document.createElement('a');
   aEl.href = url;
   return rules.reduce((ret, v) => {
-    ret += aEl[v];
+    ret += aEl[v as keyof HTMLAnchorElement];
     return ret;
   }, '');
 }
@@ -385,7 +385,7 @@ export function newLine(str: string): string {
  * @returns {object} Returns the deep cloned value.
  * @category Util
  */
-export function deepCopyObject(obj: any): any {
+export function deepCopyObject<T>(obj: T): T {
   return JSON.parse(JSON.stringify(obj));
 }
 
@@ -451,8 +451,8 @@ export function generateRndNum(n = 5): string {
 }
 
 /**
- * @method generateUniqueNum
- * @description 根据时间生成唯一标志的数字 mGenerateUniqueNum() => 1538324722364123。
+ * 根据时间生成唯一标志的数字 mGenerateUniqueNum() => 1538324722364123
+ *
  * @param {number} n 随机数的长度
  * @category Util
  */
@@ -462,8 +462,8 @@ export function generateUniqueNum(n = 3): string {
 }
 
 /**
- * @method floatToPercent
- * @description 浮点数转为百分比 0.2 => 20%。
+ * 浮点数转为百分比 0.2 => 20%
+ *
  * @param {number} num 浮点数
  * @param {number} fixSize 保留几位浮点数
  * @category Util
@@ -479,8 +479,8 @@ export function floatToPercent(num: number, fixSize = 0): string {
 }
 
 /**
- * @method floatFixed
- * @description 浮点数保留指定位。
+ * 浮点数保留指定位
+ *
  * @category Util
  */
 export function floatFixed(num: string, size = 0): string {
@@ -488,11 +488,11 @@ export function floatFixed(num: string, size = 0): string {
 }
 
 /**
- * @method cancelBubble
- * @description 阻止冒泡。
- * @category Util
+ * 阻止冒泡
+ *
+ * @category Event
  */
-export function cancelBubble(e: any): void {
+export function cancelBubble(e: Event): void {
   const ev = e || window.event;
   if (ev.stopPropagation) {
     // W3C
@@ -519,7 +519,7 @@ export function cancelBubble(e: any): void {
  *
  * @category DOM
  */
-export function hasClass(obj: any, cls: string): boolean {
+export function hasClass(obj: HTMLElement, cls: string): boolean {
   const oriCls = obj.className; // 获取对象的class值
   const oriClsArr = oriCls.split(/\s+/); // 分隔空格转换成数组
   for (let i = 0; i < oriClsArr.length; i++) {
@@ -546,7 +546,7 @@ export function hasClass(obj: any, cls: string): boolean {
  *
  * @category DOM
  */
-export function addClass(obj: any, cls: string): void {
+export function addClass(obj: HTMLElement, cls: string): void {
   const oriCls = obj.className;
   let space = '';
   let newCls = ''; // 获取对象的class值
@@ -573,7 +573,7 @@ export function addClass(obj: any, cls: string): void {
  *
  * @category DOM
  */
-export function removeClass(obj: any, cls: string): void {
+export function removeClass(obj: HTMLElement, cls: string): void {
   const oriCls = obj.className;
   let newCls; // 获取对象的class值
   newCls = ' ' + oriCls + ' '; // 前后加空格
@@ -598,27 +598,25 @@ export function removeClass(obj: any, cls: string): void {
  *
  * @category Util
  */
-export function throttle(
-  func: any,
+export function throttle<T extends (...args: any[]) => any>(
+  func: T,
   wait: number,
   options: { leading?: boolean; trailing?: boolean } = {}
-): any {
+): ThrottleFunc<T> {
   options = Object.assign({}, options);
-  // timeout: setTimeout Handle
-  // previous: 上次时间戳
-  let context: any = null;
-  let args: any = null;
-  let timeout: any = null;
+  let context: unknown | null = null;
+  let args: Parameters<T> | null = null;
+  let timeout: ReturnType<typeof setTimeout> | null = null;
   let [result, previous] = [null, 0];
-  const later = function() {
+  const later = function(this: unknown) {
     previous = options.leading === false ? 0 : mNow();
     timeout = null;
-    result = func.apply(context, args);
+    result = func.apply(this as T, args!);
     if (!timeout) {
       context = args = null;
     }
   };
-  return function(...argRest: Array<any>) {
+  return function(this: unknown, ...argRest: Parameters<T>) {
     const now = mNow();
     if (!previous && options.leading === false) {
       previous = now;
@@ -632,12 +630,12 @@ export function throttle(
         timeout = null;
       }
       previous = now;
-      result = func.apply(context, args);
+      result = func.apply(context as T, args!);
       if (!timeout) {
         context = args = null;
       }
     } else if (!timeout && options.trailing !== false) {
-      timeout = setTimeout(later, remaining);
+      timeout = setTimeout(later.bind(context), remaining);
     }
     return result;
   };
@@ -656,27 +654,31 @@ export function throttle(
  *
  * @category Util
  */
-export function debounce(func: any, wait: number, immediate?: any): any {
-  let context: any = null;
-  let timeout: any = null;
-  let timestamp: any = null;
-  let args: any = null;
-  let [result] = [null];
+export function debounce<T extends (...args: any[]) => any>(
+  func: T,
+  wait: number,
+  immediate?: boolean
+): DebounceFunc<T> {
+  let context: unknown | null = null;
+  let timeout: ReturnType<typeof setTimeout> | null = null;
+  let timestamp: number | null = null;
+  let args: Parameters<T> | null = null;
+  let result: ReturnType<T> | null = null;
   const later = function() {
-    const last = mNow() - timestamp;
+    const last = mNow() - (timestamp as number);
     if (last < wait && last >= 0) {
       timeout = setTimeout(later, wait - last);
     } else {
       timeout = null;
       if (!immediate) {
-        result = func.apply(context, args);
+        result = func.apply(context as T, args!);
         if (!timeout) {
           context = args = null;
         }
       }
     }
   };
-  return function(...argRest: Array<any>) {
+  return function(this: unknown, ...argRest: Parameters<T>) {
     context = this;
     args = argRest;
     timestamp = mNow();
@@ -685,10 +687,10 @@ export function debounce(func: any, wait: number, immediate?: any): any {
       timeout = setTimeout(later, wait);
     }
     if (callNow) {
-      result = func.apply(context, args);
+      result = func.apply(context as T, args!);
       context = args = null;
     }
-    return result;
+    return result as ReturnType<T>;
   };
 }
 
@@ -768,43 +770,31 @@ export function getFriendlyInterval(
  * @returns {boolean} true 是数字
  * @category Util
  */
-export function isNumber(
-  num: any,
-  options: { isNaNAsNumber?: boolean; isUnFiniteAsNumber?: boolean } = {
-    isNaNAsNumber: false,
-    isUnFiniteAsNumber: false
-  }
-): boolean {
-  const { isNaNAsNumber, isUnFiniteAsNumber } = Object.assign(
-    { isNaNAsNumber: false, isUnFiniteAsNumber: false },
-    options
-  );
-  let ret = true;
-  // 数字类型
+export function isNumber(num: unknown, options: IsNumberOptions = {}): boolean {
+  const { isNaNAsNumber = false, isFiniteAsNumber = false } = options;
   if (typeof num !== 'number') {
-    ret = false;
+    return false;
   }
-  // 无限值
-  if (isUnFiniteAsNumber === false && !isFinite(num)) {
-    // console.log('1333');
-    ret = false;
+  if (!isFiniteAsNumber && !isFinite(num)) {
+    return false;
   }
-  // NaN
-  if (isNaNAsNumber === false && isNaN(num)) {
-    // console.log('2333');
-    ret = false;
+  if (!isNaNAsNumber && isNaN(num)) {
+    return false;
   }
-  return ret;
+  return true;
 }
 
 /**
- * @method doFn
- * @description 执行有效函数
+ * 执行有效函数
+ *
  * @param {function} fn 等待被执行的未知是否有效的函数
  * @category Util
  */
-export function doFn(fn: any, ...params: any[]): any {
-  let ret = null;
+export function doFn(
+  fn: AnyFunction,
+  ...params: Parameters<AnyFunction>
+): ReturnType<AnyFunction> | null {
+  let ret: ReturnType<AnyFunction> | null = null;
   if (fn && typeof fn === 'function') {
     ret = fn(...params);
   }
@@ -834,10 +824,13 @@ export function doFn(fn: any, ...params: any[]): any {
  * ```
  *
  * @param {string} key 键
- * @returns {any} 返回值
+ * @returns {void} 返回值
  * @category Cache Data
  */
-export function setSessionStorage(key: string, value: any = null): void {
+export function setSessionStorage<T>(
+  key: string,
+  value: T | null = null
+): void {
   if (key) {
     sessionStorage.setItem(key, JSON.stringify(value));
   }
@@ -869,12 +862,12 @@ export function setSessionStorage(key: string, value: any = null): void {
  * @returns {any} 返回值
  * @category Cache Data
  */
-export function getSessionStorage(key: string): any {
-  let ret = null;
+export function getSessionStorage<T>(key: string): T | null {
+  let ret: T | null = null;
   if (key) {
     const value = sessionStorage.getItem(key);
     if (value) {
-      ret = JSON.parse(value);
+      ret = JSON.parse(value) as T;
     }
   }
   return ret;
@@ -903,10 +896,10 @@ export function getSessionStorage(key: string): any {
  * ```
  *
  * @param {string} key 键
- * @returns {any} 返回值
+ * @returns {void} 返回值
  * @category Cache Data
  */
-export function setLocalStorage(key: string, value: any = null): void {
+export function setLocalStorage<T>(key: string, value: T | null = null): void {
   if (key) {
     localStorage.setItem(key, JSON.stringify(value));
   }
@@ -938,12 +931,12 @@ export function setLocalStorage(key: string, value: any = null): void {
  * @returns {any} 返回值
  * @category Cache Data
  */
-export function getLocalStorage(key: string): any {
-  let ret = null;
+export function getLocalStorage<T>(key: string): T | null {
+  let ret: T | null = null;
   if (key) {
     const value = localStorage.getItem(key);
     if (value) {
-      ret = JSON.parse(value);
+      ret = JSON.parse(value) as T;
     }
   }
   return ret;
@@ -1201,8 +1194,8 @@ export function loadScript(
 }
 
 /**
- * @method mNow
- * @description 获取时间戳
+ * 获取时间戳
+ *
  * @category Util
  */
 export function mNow(): number {
@@ -1234,11 +1227,11 @@ export function setCookie(
   domain: string
 ): void {
   let domainParts, expires;
-  let date: any;
+  // let date: any;
   if (days) {
-    date = new Date();
+    const date = new Date();
     date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-    expires = '; expires=' + date.toGMTString();
+    expires = '; expires=' + date.toUTCString();
   } else {
     expires = '';
   }
@@ -1959,14 +1952,51 @@ export function getBrowserInfo(): BrowserInfo {
 }
 
 /**
- * @method clearHtml
- * @description 去除HTML标签
+ * 去除 HTML 标签
+ *
  * @param {string} str 带html标签的字符串
  * @returns {string} 字符串
  * @category Util
  */
-export function clearHtml(str: string): string {
-  return str.replace(/<\/?.+?>/g, '').replace(/[\r\n]/g, '');
+export function clearHtml(
+  str: string,
+  options: { removeNewLine?: boolean } = {}
+): string {
+  const { removeNewLine = false } = options;
+  let ret = '';
+  if (str) {
+    ret = str.replace(/<\/?.+?>/g, '');
+    if (removeNewLine) {
+      ret = ret.replace(/[\r\n]/g, '');
+    }
+  }
+  return ret;
+  // return str.replace(/<\/?.+?>/g, '').replace(/[\r\n]/g, '');
+}
+
+/**
+ * Sanitizes user input to prevent XSS attacks
+ *
+ * @param input - The input string to sanitize
+ * @returns The sanitized input string
+ */
+export function sanitizeInput(input: string): string {
+  const regex = /[&<>"'/]/g;
+  const replacements: { [key: string]: string } = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    '\'': '&#x27;',
+    '/': '&#x2F;'
+  };
+  if (typeof input !== 'string') {
+    console.error('Input must be a string');
+  }
+  return input.replace(
+    regex,
+    (match: keyof typeof replacements) => replacements[match]
+  );
 }
 
 /**
@@ -2284,11 +2314,8 @@ export function genCustomConsole(
  * @hidden
  */
 export function zAxiosIsValidRes(
-  res: any,
-  options: {
-    validStatusRange?: number[];
-    validCode?: number[];
-  } = {
+  res: ZResResponse | undefined,
+  options: ZResIsValidResOptions = {
     validStatusRange: [200, 300],
     validCode: [0]
   }
@@ -2324,7 +2351,7 @@ export function zAxiosIsValidRes(
  *
  * @category Util
  */
-export function isNonEmptyArray(arr: any[]): boolean {
+export function isNonEmptyArray<T>(arr: Array<T>): boolean {
   let ret = false;
   if (Array.isArray(arr) && arr.length) {
     ret = true;
@@ -2369,22 +2396,19 @@ export function isNonEmptyArray(arr: any[]): boolean {
  * @returns {boolean} Return TRUE if the data is valid.
  * @category Util
  */
-export function isValidData(
-  data: any,
-  attributes: string[],
-  validValue: any
+export function isValidData<T, K extends keyof T>(
+  data: T,
+  attributes: K[],
+  validValue: T[K]
 ): boolean {
   let ret = false;
   const foundRet = attributes.reduce((foundValue, curr) => {
-    if (foundValue[curr]) {
-      foundValue = foundValue[curr];
+    if (foundValue && Object.prototype.hasOwnProperty.call(foundValue, curr)) {
+      return foundValue[curr];
     } else {
       return Object.create(null);
     }
-    // console.log('foundValue', foundValue);
-    return foundValue;
   }, data);
-  // console.log('foundRet', foundRet);
   if (foundRet === validValue) {
     ret = true;
   }
@@ -2730,7 +2754,6 @@ export function getUrlFileType(url: string): boolean | string {
  * The `src` attribute should contain `width` and/or `height` values in the format "width=100" or "height=100".
  * If jQuery is available, this function uses jQuery to select the images. Otherwise, it uses pure JavaScript.
  *
- *
  * @example
  * ```
  * // Example images with `src` attributes containing `width` and/or `height` values
@@ -2750,18 +2773,22 @@ export function setImgWidHeiBySrc(): boolean {
   const $ = window.jQuery || window.$;
   if ($) {
     // Use jQuery to select all images on the page
-    $('img').each(function() {
+    const images = $('img');
+    if (!(images && images.length)) return false;
+    images.each(function() {
       const $this = $(this);
       if (!$this) return;
       // Get the `src` attribute of the image
       const src = $this.attr('src');
-      if (!src) return;
+      const canMatch = src && typeof src === 'string' && src.length;
+      if (!canMatch) return;
       // Use regular expressions to extract the `width` and `height` values from the `src` attribute
       const width = src.match(/width=([0-9]+[a-z%]*)/);
       const height = src.match(/height=([0-9]+[a-z%]*)/);
       // Set the width and height of the image using jQuery's `width()` and `height()` methods
-      if (width && width[1]) $this.width(width[1]);
-      if (height && height[1]) $this.height(height[1]);
+      if (width && isNonEmptyArray(width) && width[1]) $this.width(width[1]);
+      if (height && isNonEmptyArray(height) && height[1])
+        $this.height(height[1]);
     });
     return true;
   } else {
@@ -2770,17 +2797,87 @@ export function setImgWidHeiBySrc(): boolean {
     if (images.length > 0) {
       // Loop through each image and set its width and height based on the `src` attribute
       Array.from(images).forEach(function(img) {
+        const $this = img;
+        if (!$this) return;
         // Get the `src` attribute of the image
-        const src = img.getAttribute('src');
+        const src = $this.getAttribute('src');
+        const canMatch = src && typeof src === 'string' && src.length;
+        if (!canMatch) return;
         // Use regular expressions to extract the `width` and `height` values from the `src` attribute
-        const width = src ? src.match(/width=([0-9]+[a-z%]*)/) : null;
-        const height = src ? src.match(/height=([0-9]+[a-z%]*)/) : null;
+        const width = src.match(/width=([0-9]+[a-z%]*)/);
+        const height = src.match(/height=([0-9]+[a-z%]*)/);
         // Set the width and height of the image using the `style.width` and `style.height` properties
-        if (width && width[1]) img.style.width = width[1];
-        if (height && height[1]) img.style.height = height[1];
+        if (width && isNonEmptyArray(width) && width[1])
+          $this.style.width = width[1];
+        if (height && isNonEmptyArray(height) && height[1])
+          $this.style.height = height[1];
       });
       return true;
     }
   }
   return false;
+}
+
+/**
+ * Generate the inline style string from the given parameters, First parameter is the ClassNames, Second parameter is the style array.
+ *
+ * @example
+ * ```js
+ * console.log(genStyleString('a', [ 'color:red' ])); // '.a{color:red;}'
+ * console.log(genStyleString('b', [ 'color:red', 'font-size:12px' ])); // '.b{color:red;font-size:12px;}'
+ * ```
+ *
+ * @param {string} className
+ * @param {Array} styleArray
+ * @returns {string} Return the inline style string.
+ * @category DOM
+ */
+export function genStyleString(
+  className: string,
+  styleArray: Array<string>
+): string {
+  let style = '';
+  if (styleArray && styleArray.length > 0) {
+    // It's wrong. Last item will not include `;`.
+    // style = styleArray.join(';');
+    style = styleArray.join(';') + ';';
+  }
+  return `.${className}{${style}}`;
+}
+
+/**
+ * Load the image from the given url.
+ * The target image will be loaded in the background, and the Promise status will change after the image is loaded.
+ * If the image fails to load, the Promise status will change to `reject`.
+ * If the image is loaded successfully, the Promise status will change to `resolve`.
+ * If the image is loaded successfully, the Promise will return the image object.
+ * If the image fails to load, the Promise will return the error object.
+ * The method will help Web to preload the image. And the image will be cached by the browser.
+ * We can use it to implement the lazy loading of images.
+ * The method will not add the image to the DOM.
+ *
+ * @example
+ * ```js
+ * loadImage('https://example.com/example.png').then((img) => {
+ *  console.log(img);
+ * }).catch((err) => {
+ *  console.log(err);
+ * });
+ * ```
+ *
+ * @param {string} url - The image url.
+ * @returns {Promise} Return the Promise object.
+ * @category Load Resource
+ */
+export function loadImage(url: string): Promise<HTMLImageElement> {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => {
+      resolve(img);
+    };
+    img.onerror = err => {
+      reject(err);
+    };
+    img.src = url;
+  });
 }

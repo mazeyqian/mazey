@@ -424,16 +424,16 @@ getQueryParam('t4'); // 4
 
 #### getUrlParam
 
-Get the query param's value of the input URL.
+Returns the value of the specified query parameter in the input URL.
 
 ```
-getUrlParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't3'); // 3
-getUrlParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't4'); // 4
+getUrlParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't3'); // Returns '3'
+getUrlParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't4'); // Returns '4'
 ```
 
-<!-- @param {string} url URL string.
-@param {string} param Query param.
-@returns {string} value
+<!-- @param {string} url The URL string.
+@param {string} param The query parameter to retrieve the value for.
+@returns {string|string[]} The value of the specified query parameter, or an empty string if the parameter is not found.
 @category URL -->
 
 #### getHashQueryParam
@@ -553,7 +553,7 @@ function mGetLocalStorage (key) {
 ```
 
 <!-- @param {string} key 键
-@returns {any} 返回值
+@returns {void} 返回值
 @category Cache Data -->
 
 ### DOM

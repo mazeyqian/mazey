@@ -34,4 +34,35 @@ declare global {
     $: typeof $;
     jQuery: typeof $;
   }
+
+  interface UrlParams {
+    [key: string]: string | string[];
+  }
+
+  type ThrottleFunc<T extends (...args: any[]) => any> = (
+    ...args: Parameters<T>
+  ) => ReturnType<T> | null;
+
+  type DebounceFunc<T extends (...args: any[]) => any> = (
+    ...args: Parameters<T>
+  ) => ReturnType<T>;
+
+  interface IsNumberOptions {
+    isNaNAsNumber?: boolean;
+    isFiniteAsNumber?: boolean;
+  }
+
+  type AnyFunction = (...args: any[]) => any;
+
+  interface ZResResponse {
+    status: number;
+    data: {
+      code: number;
+    };
+  }
+
+  interface ZResIsValidResOptions {
+    validStatusRange?: [number, number];
+    validCode?: number[];
+  }
 }
