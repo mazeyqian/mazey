@@ -759,25 +759,36 @@ export function getFriendlyInterval(
  * isNumber('123'); // false
  * // Default: NaN, Infinity is not Number
  * isNumber(Infinity); // false
- * isNumber(Infinity, { isUnFiniteAsNumber: true }); // true
+ * isNumber(Infinity, { isInfinityAsNumber: true }); // true
  * isNumber(NaN); // false
- * isNumber(NaN, { isNaNAsNumber: true, isUnFiniteAsNumber: true }); // true
+ * isNumber(NaN, { isNaNAsNumber: true, isInfinityAsNumber: true }); // true
  * ```
  *
  * @param {*} num 被判断的值
  * @param {boolean} options.isNaNAsNumber 是否 NaN 算数字（默认不算）
- * @param {boolean} options.isUnFiniteAsNumber 是否 无限 算数字（默认不算）
+ * @param {boolean} options.isInfinityAsNumber 是否 无限 算数字（默认不算）
  * @returns {boolean} true 是数字
  * @category Util
  */
 export function isNumber(num: unknown, options: IsNumberOptions = {}): boolean {
-  const { isNaNAsNumber = false, isFiniteAsNumber = false } = options;
+  const {
+    isNaNAsNumber = false,
+    isInfinityAsNumber = false,
+    isUnFiniteAsNumber = false
+  } = options;
   if (typeof num !== 'number') {
     return false;
   }
-  if (!isFiniteAsNumber && !isFinite(num)) {
+  if (
+    !(isInfinityAsNumber === true || isUnFiniteAsNumber === true) &&
+    !isFinite(num)
+  ) {
     return false;
   }
+  // Be compatible with previous versions.
+  // if (!isUnFiniteAsNumber && !isFinite(num)) {
+  //   return false;
+  // }
   if (!isNaNAsNumber && isNaN(num)) {
     return false;
   }
@@ -2396,19 +2407,22 @@ export function isNonEmptyArray<T>(arr: Array<T>): boolean {
  * @returns {boolean} Return TRUE if the data is valid.
  * @category Util
  */
-export function isValidData<T, K extends keyof T>(
-  data: T,
-  attributes: K[],
-  validValue: T[K]
+export function isValidData(
+  data: any,
+  attributes: string[],
+  validValue: any
 ): boolean {
   let ret = false;
   const foundRet = attributes.reduce((foundValue, curr) => {
-    if (foundValue && Object.prototype.hasOwnProperty.call(foundValue, curr)) {
-      return foundValue[curr];
+    if (foundValue[curr]) {
+      foundValue = foundValue[curr];
     } else {
       return Object.create(null);
     }
+    // console.log('foundValue', foundValue);
+    return foundValue;
   }, data);
+  // console.log('foundRet', foundRet);
   if (foundRet === validValue) {
     ret = true;
   }

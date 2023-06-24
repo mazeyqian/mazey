@@ -7,8 +7,20 @@
 
 import { isNumber, camelCaseToKebabCase, camelCase2Underscore, mTrim, deepCopyObject, isJsonString, generateRndNum, formatDate, isValidData, isValidEmail, convert10To26, getFriendlyInterval } from '../lib/index.esm';
 
-test('isNumber: Is -1 Number?', () => {
+// isNumber(123); // true
+// isNumber('123'); // false
+// isNumber(Infinity); // false
+// isNumber(Infinity, { isInfinityAsNumber: true }); // true
+// isNumber(NaN); // false
+// isNumber(NaN, { isNaNAsNumber: true, isInfinityAsNumber: true }); // true
+test('isNumber: Is -1/123/Infinity/NaN Number?', () => {
   expect(isNumber(-1)).toBe(true);
+  expect(isNumber(123)).toBe(true);
+  expect(isNumber('123')).toBe(false);
+  expect(isNumber(Infinity)).toBe(false);
+  expect(isNumber(Infinity, { isInfinityAsNumber: true })).toBe(true);
+  expect(isNumber(NaN)).toBe(false);
+  expect(isNumber(NaN, { isNaNAsNumber: true, isInfinityAsNumber: true })).toBe(true);
 });
 
 test(`camelCaseToKebabCase: Transfer 'aBC' to 'a-b-c'?`, () => {
