@@ -2895,3 +2895,12 @@ export function loadImage(url: string): Promise<HTMLImageElement> {
     img.src = url;
   });
 }
+
+/**
+ * Get the current version.
+ *
+ * @hidden
+ */
+export function getCurrentVersion(): string {
+  return 'v3.x';
+}
