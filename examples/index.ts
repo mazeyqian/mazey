@@ -16,7 +16,9 @@ import {
   formatDate,
   isValidData,
   getFriendlyInterval,
-  getBrowserInfo
+  getBrowserInfo,
+  repeatUntilConditionMet,
+  inRate
 } from '../src/index';
 
 // Sync
@@ -117,6 +119,13 @@ console.log(
 
 console.log('getBrowserInfo:', getBrowserInfo());
 console.log('getBrowserInfo again:', getBrowserInfo());
+
+const conFn = () => {
+  const ret = inRate(0.3);
+  console.log('conFn', ret, Date.now());
+  return ret;
+};
+repeatUntilConditionMet(conFn);
 
 // Async
 (async () => {
