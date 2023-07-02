@@ -22,6 +22,8 @@ const defaultHiddenHeadings = [
   'Development Environment',
   'Returns',
   'Scripts',
+  'Node.js',
+  'TypeScript',
 ];
 
 /**
