@@ -9,6 +9,7 @@ temp/
 src/
 examples/
 images/
+scripts/convert/
 
 # .
 .idea
