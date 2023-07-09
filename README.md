@@ -103,8 +103,6 @@ There ara some examples maintained by hand below. For more information, please c
   * [getPerformance](#getperformance)
 - [Debug](#debug)
   * [genCustomConsole](#gencustomconsole)
-  * [Node.js](#nodejs)
-  * [TypeScript](#typescript)
 <!-- toc - end -->
 
 ### Load Resource
