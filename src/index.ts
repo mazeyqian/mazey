@@ -979,7 +979,7 @@ export function getLocalStorage<T>(key: string): T | null {
  *
  * @param {string} url -- css资源路径
  * @param {string} options.id -- link标签id
- * @returns {Promise<boolean>} true -- 加载成功
+ * @returns {Promise<string>} true -- 加载成功
  * @category Load Resource
  */
 export function loadCSS(
@@ -987,7 +987,7 @@ export function loadCSS(
   options: { id?: string } = { id: '' }
 ): Promise<boolean | Error | any> {
   const { id } = options;
-  let success: (v: boolean) => void;
+  let success: (v: boolean | string) => void;
   let fail: (v: Error) => void;
   const status = new Promise((resolve, reject) => {
     [success, fail] = [resolve, reject];
@@ -995,7 +995,7 @@ export function loadCSS(
   // const tempCB = (typeof callback === 'function' ? callback : function () { });
   const callback = function() {
     // doFn(success, true);
-    success(true);
+    success('loaded');
   };
   let node: any = document.createElement('link');
   const supportOnload = 'onload' in node;
@@ -1136,7 +1136,7 @@ export function loadCSS(
  * @param {function} options.callback -- 加载后回调函数
  * @param {number} options.timeout -- 超时时长
  * @param {boolean} options.isDefer -- 是否添加 defer 标签
- * @returns {Promise<boolean>} -- true 成功
+ * @returns {Promise<string>} -- true 成功
  * @category Load Resource
  */
 export function loadScript(
@@ -1154,7 +1154,7 @@ export function loadScript(
     timeout: 5000,
     isDefer: false
   }
-): Promise<boolean | string | Error> {
+): LoadScriptReturns {
   const { id, callback, timeout, isDefer } = Object.assign(
     {
       id: '',
@@ -1184,14 +1184,14 @@ export function loadScript(
       if (script.readyState === 'loaded' || script.readyState === 'complete') {
         script.onreadystatechange = null;
         doFn(callback);
-        doFn(success, true);
+        doFn(success, 'loaded');
       }
     };
   } else {
     // Others
     script.onload = function() {
       doFn(callback);
-      doFn(success, true);
+      doFn(success, 'loaded');
     };
   }
   script.src = url;
@@ -1199,7 +1199,7 @@ export function loadScript(
   return new Promise((resolve, reject) => {
     [success, fail] = [resolve, reject];
     if (timeout) {
-      setTimeout(fail.bind(null, Error('timeout')), timeout);
+      setTimeout(fail.bind(null, 'timeout'), timeout);
     }
   });
 }
@@ -2860,27 +2860,25 @@ export function genStyleString(
 }
 
 /**
- * Load the image from the given url.
- * The target image will be loaded in the background, and the Promise status will change after the image is loaded.
- * If the image fails to load, the Promise status will change to `reject`.
- * If the image is loaded successfully, the Promise status will change to `resolve`.
- * If the image is loaded successfully, the Promise will return the image object.
- * If the image fails to load, the Promise will return the error object.
- * The method will help Web to preload the image. And the image will be cached by the browser.
- * We can use it to implement the lazy loading of images.
- * The method will not add the image to the DOM.
+ * Load an image from the given URL.
+ *
+ * The target image will be loaded in the background, and the Promise status will change after the image is loaded. If the image fails to load, the Promise status will change to `reject` with the error object. If the image is loaded successfully, the Promise status will change to `resolve` with the image object. This method can be used to preload images and cache them in the browser. It can also be used to implement lazy loading of images.
+ *
+ * Note that this method will not add the image to the DOM.
  *
  * @example
  * ```js
- * loadImage('https://example.com/example.png').then((img) => {
- *  console.log(img);
- * }).catch((err) => {
- *  console.log(err);
- * });
+ * loadImage('https://example.com/example.png')
+ *   .then((img) => {
+ *     console.log(img);
+ *   })
+ *   .catch((err) => {
+ *     console.log(err);
+ *   });
  * ```
  *
- * @param {string} url - The image url.
- * @returns {Promise} Return the Promise object.
+ * @param {string} url - The URL of the image to load.
+ * @returns {Promise} A Promise that resolves with the loaded image or rejects with an error.
  * @category Load Resource
  */
 export function loadImage(url: string): Promise<HTMLImageElement> {
@@ -2950,4 +2948,33 @@ export function repeatUntilConditionMet<T extends (...args: any[]) => any>(
   }
 
   clearAndInvokeNext();
+}
+
+/**
+ * Load a script from the given URL if it (`window['attribute']`) has not already been loaded.
+ *
+ * @example
+ * ```js
+ * loadScriptIfUndefined('jQuery', 'https://example.com/lib/jquery.min.js')
+ *   .then(() => {
+ *     console.log('jQuery is loaded.');
+ *   })
+ *   .catch(err => {
+ *     console.log('Failed to load jQuery.', err);
+ *   });
+ * ```
+ *
+ * @param {string} windowAttribute - The name of the window attribute to check (e.g. `jQuery`, `axios`, etc.).
+ * @param {string} url - The URL of the script to load.
+ * @returns {Promise} A Promise that resolves when the script has been loaded.
+ * @category Load Resource
+ */
+export function loadScriptIfUndefined(
+  windowAttribute: string,
+  url: string
+): LoadScriptReturns {
+  if ((window as { [k: string]: any })[windowAttribute]) {
+    return Promise.resolve('defined');
+  }
+  return loadScript(url);
 }

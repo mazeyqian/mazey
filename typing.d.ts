@@ -73,4 +73,6 @@ declare global {
     context?: any;
     args?: Array<any>;
   }
+
+  type LoadScriptReturns = Promise<boolean | string | Error | void>;
 }

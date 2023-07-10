@@ -140,6 +140,20 @@ loadScript(
 @returns {Promise<boolean>} -- true 成功
 @category Load Resource -->
 
+#### loadScriptIfUndefined
+
+Load a script from the given URL if it (`window['attribute']`) has not already been loaded.
+
+```js
+loadScriptIfUndefined('jQuery', 'https://example.com/lib/jquery.min.js')
+  .then(() => {
+    console.log('jQuery is loaded.');
+  })
+  .catch(err => {
+    console.log('Failed to load jQuery.', err);
+  });
+```
+
 #### loadCSS
 
 Load a CSS file from the server.
@@ -169,6 +183,24 @@ loadCSS(
 @param {string} options.id -- link标签id
 @returns {Promise<boolean>} true -- 加载成功
 @category Load Resource -->
+
+#### loadImage
+
+Load an image from the given URL.
+
+The target image will be loaded in the background, and the Promise status will change after the image is loaded. If the image fails to load, the Promise status will change to `reject` with the error object. If the image is loaded successfully, the Promise status will change to `resolve` with the image object. This method can be used to preload images and cache them in the browser. It can also be used to implement lazy loading of images.
+
+Note that this method will not add the image to the DOM.
+
+```js
+loadImage('https://example.com/example.png')
+  .then((img) => {
+    console.log(img);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+```
 
 #### windowLoaded
 
@@ -883,6 +915,19 @@ npm run docs
 # Test
 npm run test
 ```
+
+Returns:
+
+| Values    | Description                              | Type    |
+| :-------- | :--------------------------------------- | :------ |
+| ok        | The operation was successful.            | string  |
+| loaded    | Some assets have been loaded.            | string  |
+| fail      | An error occurred.                       | string  |
+| defined   | The value is defined.                    | string  |
+| undefined | The value is undefined.                  | string  |
+| timeout   | The operation timed out.                 | string  |
+| true      | The value is true.                       | boolean |
+| false     | The value is false.                      | boolean |
 
 ## License
 
