@@ -160,8 +160,9 @@ setCookie('test2', 'testValue2');
 console.log('getCookie test2', getCookie('test2'));
 setCookie('test3', 'testValue3', 1);
 console.log('getCookie test3', getCookie('test3'));
-delCookie('test2');
-console.log('getCookie test', getCookie('test1'));
+console.log('delCookie test2', delCookie('test2'));
+console.log('delCookie test2 again', delCookie('test2'));
+console.log('getCookie test1', getCookie('test1'));
 console.log('All Cookie', document.cookie);
 
 // Async

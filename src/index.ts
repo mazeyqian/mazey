@@ -1374,13 +1374,26 @@ export function getCookie(name: string): string {
  * @category Cache Data
  */
 export function delCookie(name: string): boolean {
-  try {
-    setCookie(name, '', -1, '');
-    return true;
-  } catch (error) {
-    console.error(`Error deleting cookie "${name}"`);
-    return false;
+  const cookies = document.cookie.split(';');
+
+  for (let i = 0; i < cookies.length; i++) {
+    const cookie = cookies[i].trim();
+
+    if (cookie.startsWith(`${name}=`)) {
+      const cookieParts = cookie.split('=');
+      const cookieName = cookieParts[0];
+      // const cookieValue = cookieParts[1];
+
+      const expires = new Date();
+      expires.setTime(expires.getTime() - 1);
+
+      document.cookie = `${cookieName}=;expires=${expires.toUTCString()}`;
+
+      return true;
+    }
   }
+
+  return false;
 }
 
 /**
