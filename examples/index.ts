@@ -24,7 +24,8 @@ import {
   deepCopy,
   setCookie,
   getCookie,
-  delCookie
+  delCookie,
+  getScriptQueryParam
 } from '../src/index';
 
 // Sync
@@ -164,6 +165,10 @@ console.log('delCookie test2', delCookie('test2'));
 console.log('delCookie test2 again', delCookie('test2'));
 console.log('getCookie test1', getCookie('test1'));
 console.log('All Cookie', document.cookie);
+
+console.log('getScriptQueryParams id', getScriptQueryParam('id', 'jquery'));
+console.log('getScriptQueryParams _', getScriptQueryParam('_', ''));
+console.log('getScriptQueryParams empty', getScriptQueryParam('empty'));
 
 // Async
 (async () => {

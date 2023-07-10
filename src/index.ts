@@ -3102,3 +3102,29 @@ export function loadScriptIfUndefined(
   }
   return loadScript(url);
 }
+
+/**
+ * Retrieves a query parameter from a script URL in the browser.
+ *
+ * @param param - The name of the query parameter to retrieve.
+ * @param matchString - An optional substring to match in the script URL.
+ *                      If not provided, defaults to matching the ".js" substring.
+ * @returns The decoded value of the specified query parameter, or an empty string if no matching parameter is found.
+ */
+export function getScriptQueryParam(param: string, matchString = ''): string {
+  if (!matchString) {
+    matchString = '.js';
+  }
+  const paramRegExp = new RegExp(`[?&]${param}=([^&]*)`);
+  const scriptTags = document.querySelectorAll(`script[src*="${matchString}"]`);
+  for (let i = 0; i < scriptTags.length; i++) {
+    const src = scriptTags[i].getAttribute('src');
+    if (src && src.indexOf(matchString) !== -1) {
+      const match = src.match(paramRegExp);
+      if (match) {
+        return decodeURIComponent(match[1]);
+      }
+    }
+  }
+  return '';
+}
