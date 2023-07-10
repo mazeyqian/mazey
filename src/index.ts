@@ -3104,7 +3104,7 @@ export function loadScriptIfUndefined(
 }
 
 /**
- * Retrieves a query parameter from a script URL in the browser.
+ * Retrieve a query parameter from a script URL in the browser.
  *
  * @param param - The name of the query parameter to retrieve.
  * @param matchString - An optional substring to match in the script URL.
