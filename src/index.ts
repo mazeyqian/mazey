@@ -3110,6 +3110,7 @@ export function loadScriptIfUndefined(
  * @param matchString - An optional substring to match in the script URL.
  *                      If not provided, defaults to matching the ".js" substring.
  * @returns The decoded value of the specified query parameter, or an empty string if no matching parameter is found.
+ * @category URL
  */
 export function getScriptQueryParam(param: string, matchString = ''): string {
   if (!matchString) {
