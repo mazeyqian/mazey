@@ -138,7 +138,7 @@ export function calLongestCommonSubsequence(
  */
 export function getQueryParam(param: string): string {
   const reg = new RegExp('(^|&)' + param + '=([^&]*)(&|$)');
-  const r = location.search.substr(1).match(reg);
+  const r = location.search.substring(1).match(reg);
   if (r !== null) {
     // return decodeURIComponent(unescape(r[2]));
     return decodeURIComponent(r[2]);
@@ -302,7 +302,7 @@ export function getDomain(url: string, rules = ['hostname']): string {
  */
 export function convertCamelToKebab(camelCase: string): string {
   const kebabCase = camelCase.replace(/([A-Z])/g, '-$1').toLowerCase();
-  return kebabCase[0] === '-' ? kebabCase.substr(1) : kebabCase;
+  return kebabCase[0] === '-' ? kebabCase.substring(1) : kebabCase;
 }
 
 /**
@@ -328,7 +328,7 @@ export function camelCaseToKebabCase(camelCase: string): string {
  */
 export function convertCamelToUnder(camelCase: string): string {
   const kebabCase = camelCase.replace(/([A-Z])/g, '_$1').toLowerCase();
-  return kebabCase[0] === '_' ? kebabCase.substr(1) : kebabCase;
+  return kebabCase[0] === '_' ? kebabCase.substring(1) : kebabCase;
 }
 
 /**
