@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable no-undef */
-// Github Helper
+// Git Helper
 const execa = require('execa');
-const { generateToc } = require('./build-helper');
 
 /**
  * Release this project with version by `process.env.VERSION` or `package.json`.
@@ -38,6 +37,7 @@ async function release (ver, { canGenerateToc = false, defaultBranch = 'master' 
     console.error('Fail to get the current version.');
     return;
   }
+  const { generateToc } = require('./build-helper');
   const releaseVersion = `v${ver}`;
   const { stdout: releaseStdout } = await execa('echo', [`Start release ${releaseVersion}...`]);
   console.log(releaseStdout);
@@ -55,7 +55,7 @@ async function release (ver, { canGenerateToc = false, defaultBranch = 'master' 
   // Commit Again
   await gitCommit(releaseVersion);
   // Push
-  console.log('Pushing to GitHub...');
+  console.log('Pushing to the remote Git...');
   // await execa('git', ['tag', '-a', `${releaseVersion}`, '-m', `Release ${releaseVersion}`]);
   // await execa('git', ['push', 'origin', `refs/tags/${releaseVersion}`]);
   await gitTagPush(releaseVersion);
@@ -149,4 +149,5 @@ module.exports = {
   gitMergeMaster2Release,
   getGitCurrentBranch,
   gitCommit,
+  gitTagPush,
 };
