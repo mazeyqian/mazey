@@ -76,6 +76,7 @@
 								<li class="tsd-kind-function"><a href="modules.html#loadCSS" class="tsd-kind-icon">loadCSS</a></li>
 								<li class="tsd-kind-function"><a href="modules.html#loadImage" class="tsd-kind-icon">load<wbr>Image</a></li>
 								<li class="tsd-kind-function"><a href="modules.html#loadScript" class="tsd-kind-icon">load<wbr>Script</a></li>
+								<li class="tsd-kind-function"><a href="modules.html#loadScriptIfUndefined" class="tsd-kind-icon">load<wbr>Script<wbr>IfUndefined</a></li>
 								<li class="tsd-kind-function"><a href="modules.html#windowLoaded" class="tsd-kind-icon">window<wbr>Loaded</a></li>
 							</ul>
 							<h3>Util Functions</h3>
@@ -183,7 +184,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L985">index.ts:985</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L985">index.ts:985</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -244,28 +245,24 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L2886">index.ts:2886</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L2884">index.ts:2884</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Load the image from the given url.
-										The target image will be loaded in the background, and the Promise status will change after the image is loaded.
-										If the image fails to load, the Promise status will change to <code>reject</code>.
-										If the image is loaded successfully, the Promise status will change to <code>resolve</code>.
-										If the image is loaded successfully, the Promise will return the image object.
-										If the image fails to load, the Promise will return the error object.
-										The method will help Web to preload the image. And the image will be cached by the browser.
-										We can use it to implement the lazy loading of images.
-									The method will not add the image to the DOM.</p>
+									<p>Load an image from the given URL.</p>
 								</div>
+								<p>The target image will be loaded in the background, and the Promise status will change after the image is loaded. If the image fails to load, the Promise status will change to <code>reject</code> with the error object. If the image is loaded successfully, the Promise status will change to <code>resolve</code> with the image object. This method can be used to preload images and cache them in the browser. It can also be used to implement lazy loading of images.</p>
+								<p>Note that this method will not add the image to the DOM.</p>
 								<dl class="tsd-comment-tags">
 									<dt>example</dt>
-									<dd><pre><code class="language-js"><span style="color: #795E26">loadImage</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;https://example.com/example.png&#039;</span><span style="color: #000000">).</span><span style="color: #795E26">then</span><span style="color: #000000">((</span><span style="color: #001080">img</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
-<span style="color: #000000"> </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">img</span><span style="color: #000000">);</span>
-<span style="color: #000000">}).</span><span style="color: #795E26">catch</span><span style="color: #000000">((</span><span style="color: #001080">err</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
-<span style="color: #000000"> </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">err</span><span style="color: #000000">);</span>
-<span style="color: #000000">});</span>
+									<dd><pre><code class="language-js"><span style="color: #795E26">loadImage</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;https://example.com/example.png&#039;</span><span style="color: #000000">)</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">then</span><span style="color: #000000">((</span><span style="color: #001080">img</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">img</span><span style="color: #000000">);</span>
+<span style="color: #000000">  })</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">catch</span><span style="color: #000000">((</span><span style="color: #001080">err</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">err</span><span style="color: #000000">);</span>
+<span style="color: #000000">  });</span>
 </code></pre>
 									</dd>
 								</dl>
@@ -275,12 +272,12 @@
 								<li>
 									<h5>url: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>The image url.</p>
+										<p>The URL of the image to load.</p>
 									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">HTMLImageElement</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>Return the Promise object.</p>
+							<p>A Promise that resolves with the loaded image or rejects with an error.</p>
 						</li>
 					</ul>
 				</section>
@@ -288,13 +285,13 @@
 					<a name="loadScript" class="tsd-anchor"></a>
 					<h3>load<wbr>Script</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">load<wbr>Script<span class="tsd-signature-symbol">(</span>url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">{ </span>id<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>isDefer<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>timeout<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>callback<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">load<wbr>Script<span class="tsd-signature-symbol">(</span>url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">{ </span>id<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>isDefer<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>timeout<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>callback<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">LoadScriptReturns</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L1142">index.ts:1142</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L1142">index.ts:1142</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -360,7 +357,7 @@
 												<li class="tsd-description">
 													<aside class="tsd-sources">
 														<ul>
-															<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L1146">index.ts:1146</a></li>
+															<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L1146">index.ts:1146</a></li>
 														</ul>
 													</aside>
 													<div class="tsd-comment tsd-typography">
@@ -379,8 +376,58 @@
 									</ul>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">LoadScriptReturns</span></h4>
 							<p>-- true 成功</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="loadScriptIfUndefined" class="tsd-anchor"></a>
+					<h3>load<wbr>Script<wbr>IfUndefined</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">load<wbr>Script<wbr>IfUndefined<span class="tsd-signature-symbol">(</span>windowAttribute<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">LoadScriptReturns</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L2972">index.ts:2972</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Load a script from the given URL if it (<code>window[&#39;attribute&#39;]</code>) has not already been loaded.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><pre><code class="language-js"><span style="color: #795E26">loadScriptIfUndefined</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;jQuery&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;https://example.com/lib/jquery.min.js&#039;</span><span style="color: #000000">)</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">then</span><span style="color: #000000">(() </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;jQuery is loaded.&#039;</span><span style="color: #000000">);</span>
+<span style="color: #000000">  })</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">catch</span><span style="color: #000000">(</span><span style="color: #001080">err</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;Failed to load jQuery.&#039;</span><span style="color: #000000">, </span><span style="color: #001080">err</span><span style="color: #000000">);</span>
+<span style="color: #000000">  });</span>
+</code></pre>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>windowAttribute: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The name of the window attribute to check (e.g. <code>jQuery</code>, <code>axios</code>, etc.).</p>
+									</div>
+								</li>
+								<li>
+									<h5>url: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The URL of the script to load.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">LoadScriptReturns</span></h4>
+							<p>A Promise that resolves when the script has been loaded.</p>
 						</li>
 					</ul>
 				</section>
@@ -394,7 +441,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L2084">index.ts:2084</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L2084">index.ts:2084</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -438,7 +485,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L1972">index.ts:1972</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L1972">index.ts:1972</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -478,7 +525,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L2714">index.ts:2714</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L2714">index.ts:2714</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -517,7 +564,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L285">index.ts:285</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L285">index.ts:285</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -552,7 +599,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L311">index.ts:311</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L311">index.ts:311</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -587,7 +634,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L657">index.ts:657</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L657">index.ts:657</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -632,7 +679,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L388">index.ts:388</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L388">index.ts:388</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -678,7 +725,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L804">index.ts:804</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L804">index.ts:804</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -712,7 +759,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L486">index.ts:486</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L486">index.ts:486</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -743,7 +790,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L471">index.ts:471</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L471">index.ts:471</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -780,7 +827,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L2523">index.ts:2523</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L2523">index.ts:2523</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -830,7 +877,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L2485">index.ts:2485</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L2485">index.ts:2485</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -859,7 +906,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L445">index.ts:445</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L445">index.ts:445</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -894,7 +941,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L459">index.ts:459</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L459">index.ts:459</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -925,7 +972,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L2437">index.ts:2437</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L2437">index.ts:2437</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -953,7 +1000,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L717">index.ts:717</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L717">index.ts:717</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1010,7 +1057,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L413">index.ts:413</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L413">index.ts:413</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1050,7 +1097,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L2365">index.ts:2365</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L2365">index.ts:2365</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1084,7 +1131,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L773">index.ts:773</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L773">index.ts:773</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1128,7 +1175,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L2410">index.ts:2410</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L2410">index.ts:2410</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1194,7 +1241,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L2693">index.ts:2693</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L2693">index.ts:2693</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1229,7 +1276,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L2676">index.ts:2676</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L2676">index.ts:2676</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1267,7 +1314,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L1212">index.ts:1212</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L1212">index.ts:1212</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1289,7 +1336,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L337">index.ts:337</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L337">index.ts:337</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1324,7 +1371,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L2920">index.ts:2920</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L2918">index.ts:2918</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1391,7 +1438,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L601">index.ts:601</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L601">index.ts:601</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1445,7 +1492,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L2022">index.ts:2022</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L2022">index.ts:2022</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1486,7 +1533,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L264">index.ts:264</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L264">index.ts:264</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1536,7 +1583,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L225">index.ts:225</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L225">index.ts:225</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1578,7 +1625,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L121">index.ts:121</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L121">index.ts:121</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1615,7 +1662,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L2745">index.ts:2745</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L2745">index.ts:2745</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1654,7 +1701,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L145">index.ts:145</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L145">index.ts:145</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1699,7 +1746,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L2656">index.ts:2656</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L2656">index.ts:2656</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1741,7 +1788,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L188">index.ts:188</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L188">index.ts:188</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1796,7 +1843,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L1291">index.ts:1291</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L1291">index.ts:1291</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1828,7 +1875,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L945">index.ts:945</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L945">index.ts:945</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1882,7 +1929,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L876">index.ts:876</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L876">index.ts:876</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1936,7 +1983,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L1234">index.ts:1234</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L1234">index.ts:1234</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1977,7 +2024,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L913">index.ts:913</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L913">index.ts:913</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2034,7 +2081,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L841">index.ts:841</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L841">index.ts:841</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2094,7 +2141,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L549">index.ts:549</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L549">index.ts:549</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2134,7 +2181,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L2147">index.ts:2147</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L2147">index.ts:2147</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2202,7 +2249,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L2849">index.ts:2849</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L2849">index.ts:2849</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2241,7 +2288,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L522">index.ts:522</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L522">index.ts:522</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2281,7 +2328,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L359">index.ts:359</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L359">index.ts:359</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2316,7 +2363,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L576">index.ts:576</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L576">index.ts:576</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2359,7 +2406,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L72">index.ts:72</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L72">index.ts:72</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2404,7 +2451,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L27">index.ts:27</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L27">index.ts:27</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2449,7 +2496,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L1641">index.ts:1641</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L1641">index.ts:1641</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2504,7 +2551,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L1753">index.ts:1753</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L1753">index.ts:1753</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2609,7 +2656,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L1668">index.ts:1668</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L1668">index.ts:1668</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2639,7 +2686,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L2463">index.ts:2463</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L2463">index.ts:2463</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2665,7 +2712,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L2583">index.ts:2583</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L2583">index.ts:2583</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2696,7 +2743,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L495">index.ts:495</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L495">index.ts:495</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2724,7 +2771,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L2599">index.ts:2599</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L2599">index.ts:2599</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2752,7 +2799,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L2620">index.ts:2620</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L2620">index.ts:2620</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2786,7 +2833,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L1354">index.ts:1354</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L1354">index.ts:1354</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2911,7 +2958,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L2216">index.ts:2216</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L2216">index.ts:2216</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2965,7 +3012,7 @@
 												<li class="tsd-description">
 													<aside class="tsd-sources">
 														<ul>
-															<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L2224">index.ts:2224</a></li>
+															<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L2224">index.ts:2224</a></li>
 														</ul>
 													</aside>
 													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -2981,7 +3028,7 @@
 												<li class="tsd-description">
 													<aside class="tsd-sources">
 														<ul>
-															<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L2223">index.ts:2223</a></li>
+															<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L2223">index.ts:2223</a></li>
 														</ul>
 													</aside>
 													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -3009,7 +3056,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L1994">index.ts:1994</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L1994">index.ts:1994</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3041,7 +3088,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/addeadb/src/index.ts#L2785">index.ts:2785</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/a493de9/src/index.ts#L2785">index.ts:2785</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3226,6 +3273,9 @@
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="modules.html#loadScript" class="tsd-kind-icon">load<wbr>Script</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#loadScriptIfUndefined" class="tsd-kind-icon">load<wbr>Script<wbr>IfUndefined</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="modules.html#mNow" class="tsd-kind-icon">m<wbr>Now</a>

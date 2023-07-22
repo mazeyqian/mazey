@@ -2414,7 +2414,7 @@ export function isValidData(
 ): boolean {
   let ret = false;
   const foundRet = attributes.reduce((foundValue, curr) => {
-    if (foundValue[curr]) {
+    if (typeof foundValue[curr] !== 'undefined') {
       foundValue = foundValue[curr];
     } else {
       return Object.create(null);

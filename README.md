@@ -63,7 +63,9 @@ There ara some examples maintained by hand below. For more information, please c
 - Generated with ❤️
 - [Load Resource](#load-resource)
   * [loadScript](#loadscript)
+  * [loadScriptIfUndefined](#loadscriptifundefined)
   * [loadCSS](#loadcss)
+  * [loadImage](#loadimage)
   * [windowLoaded](#windowloaded)
 - [Util](#util)
   * [isNumber](#isnumber)
