@@ -19,6 +19,11 @@ const defaultHiddenHeadings = [
   'Contributing',
   'License',
   'API Examples',
+  'Development Environment',
+  'Returns',
+  'Scripts',
+  'Node.js',
+  'TypeScript',
 ];
 
 /**

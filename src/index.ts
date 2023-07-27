@@ -10,7 +10,7 @@
  * Usage:
  *
  * ```
- * calLongestCommonSubstring('fish', 'finish');
+ * longestComSubstring('fish', 'finish');
  * ```
  *
  * Output:
@@ -24,7 +24,7 @@
  * @returns {number} Length
  * @category Calculate and Formula
  */
-export function calLongestCommonSubstring(aStr: string, bStr: string): number {
+export function longestComSubstring(aStr: string, bStr: string): number {
   const aLen = aStr.length;
   const bLen = bStr.length;
   // 创建二维数组并且深拷贝
@@ -48,6 +48,15 @@ export function calLongestCommonSubstring(aStr: string, bStr: string): number {
 }
 
 /**
+ * Alias of `longestComSubstring`
+ *
+ * @hidden
+ */
+export function calLongestCommonSubstring(aStr: string, bStr: string): number {
+  return longestComSubstring(aStr, bStr);
+}
+
+/**
  * EN: Computes the longest common subsequence of two strings.
  *
  * ZH: 计算两个字符串的最长公共子序列
@@ -55,7 +64,7 @@ export function calLongestCommonSubstring(aStr: string, bStr: string): number {
  * Usage:
  *
  * ```
- * calLongestCommonSubsequence('fish', 'finish');
+ * longestComSubsequence('fish', 'finish');
  * ```
  *
  * Output:
@@ -69,10 +78,7 @@ export function calLongestCommonSubstring(aStr: string, bStr: string): number {
  * @returns {number} 长度
  * @category Calculate and Formula
  */
-export function calLongestCommonSubsequence(
-  aStr: string,
-  bStr: string
-): number {
+export function longestComSubsequence(aStr: string, bStr: string): number {
   const aLen = aStr.length;
   const bLen = bStr.length;
   // 创建二维数组并且深拷贝
@@ -105,6 +111,18 @@ export function calLongestCommonSubsequence(
 }
 
 /**
+ * Alias of `longestComSubsequence`
+ *
+ * @hidden
+ */
+export function calLongestCommonSubsequence(
+  aStr: string,
+  bStr: string
+): number {
+  return longestComSubsequence(aStr, bStr);
+}
+
+/**
  * Get the query param's value of the current Web URL(`location.search`).
  *
  * ```
@@ -120,7 +138,7 @@ export function calLongestCommonSubsequence(
  */
 export function getQueryParam(param: string): string {
   const reg = new RegExp('(^|&)' + param + '=([^&]*)(&|$)');
-  const r = location.search.substr(1).match(reg);
+  const r = location.search.substring(1).match(reg);
   if (r !== null) {
     // return decodeURIComponent(unescape(r[2]));
     return decodeURIComponent(r[2]);
@@ -284,11 +302,11 @@ export function getDomain(url: string, rules = ['hostname']): string {
  */
 export function convertCamelToKebab(camelCase: string): string {
   const kebabCase = camelCase.replace(/([A-Z])/g, '-$1').toLowerCase();
-  return kebabCase[0] === '-' ? kebabCase.substr(1) : kebabCase;
+  return kebabCase[0] === '-' ? kebabCase.substring(1) : kebabCase;
 }
 
 /**
- * Alias of convertCamelToKebab
+ * Alias of `convertCamelToKebab`
  *
  * @hidden
  */
@@ -310,11 +328,11 @@ export function camelCaseToKebabCase(camelCase: string): string {
  */
 export function convertCamelToUnder(camelCase: string): string {
   const kebabCase = camelCase.replace(/([A-Z])/g, '_$1').toLowerCase();
-  return kebabCase[0] === '_' ? kebabCase.substr(1) : kebabCase;
+  return kebabCase[0] === '_' ? kebabCase.substring(1) : kebabCase;
 }
 
 /**
- * Alias of convertCamelToUnder
+ * Alias of `convertCamelToUnder`
  *
  * @hidden
  */
@@ -325,6 +343,8 @@ export function camelCase2Underscore(camelCase: string): string {
 /**
  * Remove leading and trailing whitespace or specified characters from string.
  *
+ * Note: This method is used to replace the native `String.prototype.trim()`. But it is not necessary to use it in modern browsers.
+ *
  * ```
  * mTrim(' 1 2 3 '); // '1 2 3'
  * mTrim('abc '); // 'abc'
@@ -333,6 +353,7 @@ export function camelCase2Underscore(camelCase: string): string {
  * @param {string} str The string to trim.
  * @returns {string} Trimmed string.
  * @category Util
+ * @hidden
  */
 export function mTrim(str: string): string {
   str = str.replace(/^\s+/, ''); // 去除头部空格
@@ -365,13 +386,13 @@ export function newLine(str: string): string {
 }
 
 /**
- * Clone Object deeply.
+ * Copy/Clone Object deeply.
  *
  * Usage:
  *
  * ```
- * deepCopyObject(['a', 'b', 'c']);
- * deepCopyObject('abc');
+ * deepCopy(['a', 'b', 'c']);
+ * deepCopy('abc');
  * ```
  *
  * Output:
@@ -385,8 +406,33 @@ export function newLine(str: string): string {
  * @returns {object} Returns the deep cloned value.
  * @category Util
  */
-export function deepCopyObject<T>(obj: T): T {
+export function deepCopy<T>(obj: T): T {
+  // Jugde whether it is a primitive type
+  if (typeof obj !== 'object') {
+    return obj;
+  }
+  // Judge whether its key-value is simple type, string | number | boolean | null | undefined
+  // ...rest
+  const simpleTypes = ['string', 'number', 'boolean', 'undefined'];
+  const values = Object.values(obj as simpleObject);
+  const isSimpleTypeObj = values.every(v => simpleTypes.includes(typeof v));
+  if (isSimpleTypeObj) {
+    // console.log('it is isSimpleTypeObj');
+    return {
+      ...obj
+    };
+  }
+  // console.log('it is not isSimpleTypeObj');
   return JSON.parse(JSON.stringify(obj));
+}
+
+/**
+ * Alias of `deepCopy`
+ *
+ * @hidden
+ */
+export function deepCopyObject<T>(obj: T): T {
+  return deepCopy(obj);
 }
 
 /**
@@ -422,7 +468,7 @@ export function isJSONString(str: string): boolean {
 }
 
 /**
- * Alias of isJSONString
+ * Alias of `isJSONString`
  *
  * @hidden
  */
@@ -431,18 +477,18 @@ export function isJsonString(str: string): boolean {
 }
 
 /**
- * Produce a random string of number, `generateRndNum(7)` => '7658495'.
+ * Produce a random string of number, `genRndNumString(7)` => '7658495'.
  *
  * ```
- * generateRndNum(4); // '9730'
- * generateRndNum(7); // '2262490'
+ * genRndNumString(4); // '9730'
+ * genRndNumString(7); // '2262490'
  * ```
  *
  * @param {number} n Length
  * @returns {string} Return the random string.
  * @category Util
  */
-export function generateRndNum(n = 5): string {
+export function genRndNumString(n = 5): string {
   let ret = '';
   while (n--) {
     ret += Math.floor(Math.random() * 10);
@@ -451,14 +497,33 @@ export function generateRndNum(n = 5): string {
 }
 
 /**
- * 根据时间生成唯一标志的数字 mGenerateUniqueNum() => 1538324722364123
+ * Alias of `genRndNumString`
+ *
+ * @hidden
+ */
+export function generateRndNum(n = 5): string {
+  return genRndNumString(n);
+}
+
+/**
+ * 根据时间生成唯一标志的数字 genUniqueNumString() => 1538324722364123
  *
  * @param {number} n 随机数的长度
  * @category Util
  */
-export function generateUniqueNum(n = 3): string {
+// export function generateUniqueNum(n = 3): string {
+export function genUniqueNumString(n = 3): string {
   const [now, rnd] = [mNow(), generateRndNum(n || 3)];
   return now + rnd;
+}
+
+/**
+ * Alias of `genUniqueNumString`
+ *
+ * @hidden
+ */
+export function generateUniqueNum(n = 3): string {
+  return genUniqueNumString(n);
 }
 
 /**
@@ -960,7 +1025,7 @@ export function getLocalStorage<T>(key: string): T | null {
  *
  * ```
  * loadCSS(
- *     'http://example.com/css/mazey-base.css',
+ *     'http://example.com/path/example.css',
  *     {
  *       id: 'iamid', // Optional, link ID, default none
  *     }
@@ -1234,8 +1299,8 @@ export function mNow(): number {
 export function setCookie(
   name: string,
   value: string,
-  days: number,
-  domain: string
+  days?: number,
+  domain?: string
 ): void {
   let domainParts, expires;
   // let date: any;
@@ -1299,6 +1364,36 @@ export function getCookie(name: string): string {
     if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
   }
   return '';
+}
+
+/**
+ * Delete a cookie by name.
+ *
+ * @param name - The name of the cookie to delete.
+ * @returns `true` if the cookie was deleted successfully, `false` otherwise.
+ * @category Cache Data
+ */
+export function delCookie(name: string): boolean {
+  const cookies = document.cookie.split(';');
+
+  for (let i = 0; i < cookies.length; i++) {
+    const cookie = cookies[i].trim();
+
+    if (cookie.startsWith(`${name}=`)) {
+      const cookieParts = cookie.split('=');
+      const cookieName = cookieParts[0];
+      // const cookieValue = cookieParts[1];
+
+      const expires = new Date();
+      expires.setTime(expires.getTime() - 1);
+
+      document.cookie = `${cookieName}=;expires=${expires.toUTCString()}`;
+
+      return true;
+    }
+  }
+
+  return false;
 }
 
 /**
@@ -1990,6 +2085,7 @@ export function clearHtml(
  *
  * @param input - The input string to sanitize
  * @returns The sanitized input string
+ * @category Util
  */
 export function sanitizeInput(input: string): string {
   const regex = /[&<>"'/]/g;
@@ -2002,7 +2098,34 @@ export function sanitizeInput(input: string): string {
     '/': '&#x2F;'
   };
   if (typeof input !== 'string') {
-    console.error('Input must be a string');
+    throw new Error('Input must be a string');
+  }
+  return input.replace(
+    regex,
+    (match: keyof typeof replacements) => replacements[match]
+  );
+}
+
+/**
+ * Reverses the sanitization done by the `sanitizeInput` function.
+ *
+ * @param input - The input string to unsanitize
+ * @returns The unsanitized input string
+ * @category Util
+ */
+export function unsanitize(input: string): string {
+  const regex = /(&amp;|&lt;|&gt;|&quot;|&#x27;|&#x2F;)/g;
+  const replacements: { [key: string]: string } = {
+    '&amp;': '&',
+    '&lt;': '<',
+    '&gt;': '>',
+    '&quot;': '"',
+    '&#x27;': '\'',
+    '&#x2F;': '/'
+  };
+  if (typeof input !== 'string') {
+    throw new Error('Input must be a string');
+    // console.error('Input must be a string');
   }
   return input.replace(
     regex,
@@ -2054,7 +2177,7 @@ export function truncateZHString(
 }
 
 /**
- * Alias of truncateZHString
+ * Alias of `truncateZHString`
  *
  * @hidden
  */
@@ -2413,6 +2536,9 @@ export function isValidData(
   validValue: any
 ): boolean {
   let ret = false;
+  if (typeof data !== 'object') {
+    return ret;
+  }
   const foundRet = attributes.reduce((foundValue, curr) => {
     if (typeof foundValue[curr] !== 'undefined') {
       foundValue = foundValue[curr];
@@ -2533,7 +2659,7 @@ export function formatDate(
   } = {
     yyyy: tempDate.getFullYear(),
     MM: tempDate.getMonth() + 1,
-    dd: tempDate.getDate(),
+    dd: tempDate.getDate() < 10 ? '0' + tempDate.getDate() : tempDate.getDate(),
     hh:
       tempDate.getHours() < 10
         ? '0' + tempDate.getHours()
@@ -2635,26 +2761,23 @@ export function removeEvent(type: string, fn: any): void {
 }
 
 /**
- * Check if the given string is a valid url.
+ * Checks if the given string is a valid URL, including scheme URLs.
  *
  * @example
  * ```js
- * console.log(isUrl('https://www.google.com')); // true
- * console.log(isUrl('https://www.google.com/')); // true
- * console.log(isUrl('https://www.google.com/?q=hello')); // true
- * console.log(isUrl('https://www.google.com/?q=hello#world')); // true
- * console.log(isUrl('https://www.google.com/#world')); // true
- * console.log(isUrl('https://www.google.com/#')); // true
- * console.log(isUrl('https://www.google.com/#?q=hello')); // true
- * console.log(isUrl('https://www.google.com/#?q=hello#world')); // true
+ * isValidUrl('https://www.example.com'); // true
+ * isValidUrl('http://example.com/path/exx/ss'); // true
+ * isValidUrl('https://www.example.com/?q=hello&age=24#world'); // true
+ * isValidUrl('http://www.example.com/#world?id=9'); // true
+ * isValidUrl('ftp://example.com'); // true
  * ```
  *
- * @param url
- * @returns {boolean} Return true if the given url is a valid url.
+ * @param url - The URL to check.
+ * @returns Returns `true` if the given string is a valid URL, else `false`.
  * @category URL
  */
 export function isValidUrl(url: string): boolean {
-  const reg = /[a-zA-Z0-9]+:\/\/[-a-zA-Z0-9@:%._+~#=]{1,256}\b([-a-zA-Z0-9\u4E00-\u9FA5()!@:%_+.~#?&//=]*)/gm;
+  const reg = /^[a-zA-Z0-9]+:\/\/[-a-zA-Z0-9@:%._+~#=]{1,256}\b([-a-zA-Z0-9\u4E00-\u9FA5()!@:%_+.~#?&//=]*)$/;
   return reg.test(url);
 }
 
@@ -2781,6 +2904,7 @@ export function getUrlFileType(url: string): boolean | string {
  * ```
  *
  * @returns {boolean} - Returns `true` if images were found and their dimensions were set, otherwise `false`.
+ * @category DOM
  */
 export function setImgWidHeiBySrc(): boolean {
   // Use jQuery if available, otherwise fall back to pure JavaScript
@@ -2977,4 +3101,31 @@ export function loadScriptIfUndefined(
     return Promise.resolve('defined');
   }
   return loadScript(url);
+}
+
+/**
+ * Retrieve a query parameter from a script URL in the browser.
+ *
+ * @param param - The name of the query parameter to retrieve.
+ * @param matchString - An optional substring to match in the script URL.
+ *                      If not provided, defaults to matching the ".js" substring.
+ * @returns The decoded value of the specified query parameter, or an empty string if no matching parameter is found.
+ * @category URL
+ */
+export function getScriptQueryParam(param: string, matchString = ''): string {
+  if (!matchString) {
+    matchString = '.js';
+  }
+  const paramRegExp = new RegExp(`[?&]${param}=([^&]*)`);
+  const scriptTags = document.querySelectorAll(`script[src*="${matchString}"]`);
+  for (let i = 0; i < scriptTags.length; i++) {
+    const src = scriptTags[i].getAttribute('src');
+    if (src && src.indexOf(matchString) !== -1) {
+      const match = src.match(paramRegExp);
+      if (match) {
+        return decodeURIComponent(match[1]);
+      }
+    }
+  }
+  return '';
 }

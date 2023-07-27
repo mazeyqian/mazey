@@ -1,6 +1,6 @@
 {
   "name": "mazey",
-  "version": "3.8.0",
+  "version": "3.9.1",
   "description": "Mazey's library for front-end.",
   "main": "lib/index.cjs.js",
   "module": "lib/index.esm.js",
@@ -52,7 +52,7 @@
   "author": {
     "name": "Mazey Chu",
     "email": "mazeyqian@gmail.com",
-    "url": "https://blog.mazey.net"
+    "url": "https://blog.mazey.net/"
   },
   "license": "MIT",
   "bugs": {

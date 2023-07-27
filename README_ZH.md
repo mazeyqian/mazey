@@ -4,14 +4,6 @@
 
 # mazey
 
-[![NPM version][npm-image]][npm-url]
-[![l][l-image]][l-url]
-
-[npm-image]: ./images/mazey-v1.4.39.svg
-[npm-url]: https://www.npmjs.com/package/mazey/v/1.4.39
-[l-image]: https://img.shields.io/npm/l/mazey
-[l-url]: https://github.com/mazeyqian/mazey
-
 后除的 JavaScript 函数库，所有的方法都在线上项目中使用过。
 
 **目录**
@@ -49,7 +41,7 @@ npm install mazey@1.4.39 --save
 import { loadScript } from 'mazey';
 
 loadScript({
-  url: 'http://www.mazey.net/js/plugin/jquery/jquery-2.1.1.min.js',
+  url: 'http://example.com/path/example.js',
   id: 'iamid', // 可选，script 标签 ID，默认无 ID
   timeout: 5000, // 可选，超时时间，默认 5000
   isDefer: false, // 可选，defer，默认 false
@@ -72,7 +64,7 @@ loadScript({
 import { loadCSS } from 'mazey';
 
 loadCSS({
-  url: 'http://www.mazey.net/css/mazey-base.css',
+  url: 'http://example.com/path/example.css',
   id: 'iamid', // 可选，link 标签 ID，默认无 ID
 })
   .then(

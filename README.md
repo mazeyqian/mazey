@@ -71,20 +71,20 @@ There ara some examples maintained by hand below. For more information, please c
   * [isNumber](#isnumber)
   * [isJSONString](#isjsonstring)
   * [isValidData](#isvaliddata)
-  * [generateRndNum](#generaterndnum)
+  * [genRndNumString](#genrndnumstring)
   * [formatDate](#formatdate)
   * [debounce](#debounce)
   * [throttle](#throttle)
   * [convertCamelToKebab](#convertcameltokebab)
   * [convertCamelToUnder](#convertcameltounder)
-  * [deepCopyObject](#deepcopyobject)
-  * [mTrim](#mtrim)
+  * [deepCopy](#deepcopy)
 - [URL](#url)
   * [getQueryParam](#getqueryparam)
   * [getUrlParam](#geturlparam)
   * [getHashQueryParam](#gethashqueryparam)
   * [getDomain](#getdomain)
   * [updateQueryParam](#updatequeryparam)
+  * [isValidUrl](#isvalidurl)
 - [Cache Data](#cache-data)
   * [Cookie](#cookie)
   * [Storage](#storage)
@@ -94,8 +94,8 @@ There ara some examples maintained by hand below. For more information, please c
   * [newLine](#newline)
 - [Calculate and Formula](#calculate-and-formula)
   * [inRate](#inrate)
-  * [calLongestCommonSubstring](#callongestcommonsubstring)
-  * [calLongestCommonSubsequence](#callongestcommonsubsequence)
+  * [longestComSubstring](#longestcomsubstring)
+  * [longestComSubsequence](#longestcomsubsequence)
 - [Browser Information](#browser-information)
   * [getBrowserInfo](#getbrowserinfo)
   * [isSafePWAEnv](#issafepwaenv)
@@ -164,7 +164,7 @@ Load a CSS file from the server.
 
 ```
 loadCSS(
-    'http://example.com/css/mazey-base.css',
+    'http://example.com/path/example.css',
     {
       id: 'iamid', // Optional, link ID, default none
     }
@@ -308,18 +308,14 @@ isValidDataResC: false
 @returns {boolean} Return TRUE if the data is valid.
 @category Util -->
 
-#### generateRndNum
+#### genRndNumString
 
-Produce a random string of number, `generateRndNum(7)` => '7658495'.
+Produce a random string of number, `genRndNumString(7)` => '7658495'.
 
 ```
-generateRndNum(4); // '9730'
-generateRndNum(7); // '2262490'
+genRndNumString(4); // '9730'
+genRndNumString(7); // '2262490'
 ```
-
-<!-- @param {number} n Length
-@returns {string} Return the random string.
-@category Util -->
 
 #### formatDate
 
@@ -404,15 +400,15 @@ convertCamelToUnder('aBC'); // a_b_c
 @returns {string} 'a_b_c'
 @category Util -->
 
-#### deepCopyObject
+#### deepCopy
 
-Clone Object deeply.
+Copy/Clone Object deeply.
 
 Usage:
 
 ```
-deepCopyObject(['a', 'b', 'c']);
-deepCopyObject('abc');
+deepCopy(['a', 'b', 'c']);
+deepCopy('abc');
 ```
 
 Output:
@@ -421,23 +417,6 @@ Output:
 ['a', 'b', 'c']
 'abc'
 ```
-
-<!-- @param {object} obj The value to clone.
-@returns {object} Returns the deep cloned value.
-@category Util -->
-
-#### mTrim
-
-Remove leading and trailing whitespace or specified characters from string.
-
-```
-mTrim(' 1 2 3 '); // '1 2 3'
-mTrim('abc '); // 'abc'
-```
-
-<!-- @param {string} str The string to trim.
-@returns {string} Trimmed string.
-@category Util -->
 
 ### URL
 
@@ -547,6 +526,18 @@ http://example.com/?t1=1&t2=2&t3=3&t4=four
 @param {string} value Param's value.
 @returns {string} URL.
 @category URL -->
+
+#### isValidUrl
+
+Checks if the given string is a valid URL, including scheme URLs.
+
+```js
+isValidUrl('https://www.example.com'); // true
+isValidUrl('http://example.com/path/exx/ss'); // true
+isValidUrl('https://www.example.com/?q=hello&age=24#world'); // true
+isValidUrl('http://www.example.com/#world?id=9'); // true
+isValidUrl('ftp://example.com'); // true
+```
 
 ### Cache Data
 
@@ -707,16 +698,14 @@ console.log(trueCount, falseCount); // 499994 500006
 @returns {boolean} true 命中
 @category Calculate and Formula -->
 
-#### calLongestCommonSubstring
+#### longestComSubstring
 
 Computes the longest common substring of two strings.
-
-<!-- ZH: 计算两个字符串的最长公共子串 -->
 
 Usage:
 
 ```
-calLongestCommonSubstring('fish', 'finish');
+longestComSubstring('fish', 'finish');
 ```
 
 Output:
@@ -725,21 +714,14 @@ Output:
 3
 ```
 
-<!-- @param {string} aStr String
-@param {string} bStr String
-@returns {number} Length
-@category Calculate and Formula -->
-
-#### calLongestCommonSubsequence
+#### longestComSubsequence
 
 Computes the longest common subsequence of two strings.
-
-<!-- ZH: 计算两个字符串的最长公共子序列 -->
 
 Usage:
 
 ```
-calLongestCommonSubsequence('fish', 'finish');
+longestComSubsequence('fish', 'finish');
 ```
 
 Output:
@@ -747,11 +729,6 @@ Output:
 ```
 4
 ```
-
-<!-- @param {string} aStr 字符串
-@param {string} bStr 字符串
-@returns {number} 长度
-@category Calculate and Formula -->
 
 ### Browser Information
 
@@ -901,6 +878,19 @@ MazeyLog: I am object. {a: 123, b: 456}
 
 ## Contributing
 
+### Development Environment
+
+#### Node.js
+
+- v14.21.3
+- v14.7.0
+
+#### TypeScript
+
+- v4.4.4
+
+### Scripts
+
 ```
 # Install
 npm i
@@ -918,7 +908,7 @@ npm run docs
 npm run test
 ```
 
-Returns:
+### Returns
 
 | Values    | Description                              | Type    |
 | :-------- | :--------------------------------------- | :------ |

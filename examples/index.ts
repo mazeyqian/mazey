@@ -19,7 +19,13 @@ import {
   getBrowserInfo,
   repeatUntilConditionMet,
   inRate,
-  loadScriptIfUndefined
+  loadScriptIfUndefined,
+  deepCopyObject,
+  deepCopy,
+  setCookie,
+  getCookie,
+  delCookie,
+  getScriptQueryParam
 } from '../src/index';
 
 // Sync
@@ -135,6 +141,34 @@ loadScriptIfUndefined('$', 'https://i.mazey.net/lib/jquery/3.1.1/jquery.min.js')
   .catch(err => {
     console.log('loadScriptIfUndefined fail', err);
   });
+
+const obj = {
+  a: 1,
+  b: {
+    c: 2,
+    d: { e: 3 }
+  }
+};
+const obj2 = deepCopyObject(obj);
+console.log('deepCopyObject obj2', obj2);
+const simpleObj = { a: 1, b: 2 };
+const simpleObj2 = deepCopy(simpleObj);
+console.log('deepCopyObject simpleObj2', simpleObj2);
+
+setCookie('test1', 'testValue1');
+console.log('getCookie test1', getCookie('test1'));
+setCookie('test2', 'testValue2');
+console.log('getCookie test2', getCookie('test2'));
+setCookie('test3', 'testValue3', 1);
+console.log('getCookie test3', getCookie('test3'));
+console.log('delCookie test2', delCookie('test2'));
+console.log('delCookie test2 again', delCookie('test2'));
+console.log('getCookie test1', getCookie('test1'));
+console.log('All Cookie', document.cookie);
+
+console.log('getScriptQueryParams id', getScriptQueryParam('id', 'jquery'));
+console.log('getScriptQueryParams _', getScriptQueryParam('_', ''));
+console.log('getScriptQueryParams empty', getScriptQueryParam('empty'));
 
 // Async
 (async () => {
