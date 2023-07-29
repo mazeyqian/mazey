@@ -77,6 +77,7 @@ export default {
       file: _resolve('../lib/index.cjs.js'),
       format: 'cjs',
       banner,
+      plugins: iifePlugins,
     },
     {
       file: _resolve('../lib/index.esm.js'),

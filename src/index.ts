@@ -10,7 +10,7 @@
  * Usage:
  *
  * ```
- * calLongestCommonSubstring('fish', 'finish');
+ * longestComSubstring('fish', 'finish');
  * ```
  *
  * Output:
@@ -24,7 +24,7 @@
  * @returns {number} Length
  * @category Calculate and Formula
  */
-export function calLongestCommonSubstring(aStr: string, bStr: string): number {
+export function longestComSubstring(aStr: string, bStr: string): number {
   const aLen = aStr.length;
   const bLen = bStr.length;
   // 创建二维数组并且深拷贝
@@ -48,6 +48,15 @@ export function calLongestCommonSubstring(aStr: string, bStr: string): number {
 }
 
 /**
+ * Alias of `longestComSubstring`
+ *
+ * @hidden
+ */
+export function calLongestCommonSubstring(aStr: string, bStr: string): number {
+  return longestComSubstring(aStr, bStr);
+}
+
+/**
  * EN: Computes the longest common subsequence of two strings.
  *
  * ZH: 计算两个字符串的最长公共子序列
@@ -55,7 +64,7 @@ export function calLongestCommonSubstring(aStr: string, bStr: string): number {
  * Usage:
  *
  * ```
- * calLongestCommonSubsequence('fish', 'finish');
+ * longestComSubsequence('fish', 'finish');
  * ```
  *
  * Output:
@@ -69,10 +78,7 @@ export function calLongestCommonSubstring(aStr: string, bStr: string): number {
  * @returns {number} 长度
  * @category Calculate and Formula
  */
-export function calLongestCommonSubsequence(
-  aStr: string,
-  bStr: string
-): number {
+export function longestComSubsequence(aStr: string, bStr: string): number {
   const aLen = aStr.length;
   const bLen = bStr.length;
   // 创建二维数组并且深拷贝
@@ -102,6 +108,18 @@ export function calLongestCommonSubsequence(
   // 获取最长公共子串
   const maxLong = Math.max(...arr1);
   return maxLong;
+}
+
+/**
+ * Alias of `longestComSubsequence`
+ *
+ * @hidden
+ */
+export function calLongestCommonSubsequence(
+  aStr: string,
+  bStr: string
+): number {
+  return longestComSubsequence(aStr, bStr);
 }
 
 /**
@@ -325,6 +343,8 @@ export function camelCase2Underscore(camelCase: string): string {
 /**
  * Remove leading and trailing whitespace or specified characters from string.
  *
+ * Note: This method is used to replace the native `String.prototype.trim()`. But it is not necessary to use it in modern browsers.
+ *
  * ```
  * mTrim(' 1 2 3 '); // '1 2 3'
  * mTrim('abc '); // 'abc'
@@ -333,6 +353,7 @@ export function camelCase2Underscore(camelCase: string): string {
  * @param {string} str The string to trim.
  * @returns {string} Trimmed string.
  * @category Util
+ * @hidden
  */
 export function mTrim(str: string): string {
   str = str.replace(/^\s+/, ''); // 去除头部空格
@@ -365,13 +386,13 @@ export function newLine(str: string): string {
 }
 
 /**
- * Clone Object deeply.
+ * Copy/Clone Object deeply.
  *
  * Usage:
  *
  * ```
- * deepCopyObject(['a', 'b', 'c']);
- * deepCopyObject('abc');
+ * deepCopy(['a', 'b', 'c']);
+ * deepCopy('abc');
  * ```
  *
  * Output:
@@ -385,8 +406,33 @@ export function newLine(str: string): string {
  * @returns {object} Returns the deep cloned value.
  * @category Util
  */
-export function deepCopyObject<T>(obj: T): T {
+export function deepCopy<T>(obj: T): T {
+  // Jugde whether it is a primitive type
+  if (typeof obj !== 'object') {
+    return obj;
+  }
+  // Judge whether its key-value is simple type, string | number | boolean | null | undefined
+  // ...rest
+  const simpleTypes = ['string', 'number', 'boolean', 'undefined'];
+  const values = Object.values(obj as simpleObject);
+  const isSimpleTypeObj = values.every(v => simpleTypes.includes(typeof v));
+  if (isSimpleTypeObj) {
+    // console.log('it is isSimpleTypeObj');
+    return {
+      ...obj
+    };
+  }
+  // console.log('it is not isSimpleTypeObj');
   return JSON.parse(JSON.stringify(obj));
+}
+
+/**
+ * Alias of deepCopy
+ *
+ * @hidden
+ */
+export function deepCopyObject<T>(obj: T): T {
+  return deepCopy(obj);
 }
 
 /**
@@ -431,23 +477,32 @@ export function isJsonString(str: string): boolean {
 }
 
 /**
- * Produce a random string of number, `generateRndNum(7)` => '7658495'.
+ * Produce a random string of number, `genRndNumString(7)` => '7658495'.
  *
  * ```
- * generateRndNum(4); // '9730'
- * generateRndNum(7); // '2262490'
+ * genRndNumString(4); // '9730'
+ * genRndNumString(7); // '2262490'
  * ```
  *
  * @param {number} n Length
  * @returns {string} Return the random string.
  * @category Util
  */
-export function generateRndNum(n = 5): string {
+export function genRndNumString(n = 5): string {
   let ret = '';
   while (n--) {
     ret += Math.floor(Math.random() * 10);
   }
   return ret;
+}
+
+/**
+ * Alias of genRndNumString
+ *
+ * @hidden
+ */
+export function generateRndNum(n = 5): string {
+  return genRndNumString(n);
 }
 
 /**
@@ -2413,6 +2468,9 @@ export function isValidData(
   validValue: any
 ): boolean {
   let ret = false;
+  if (typeof data !== 'object') {
+    return ret;
+  }
   const foundRet = attributes.reduce((foundValue, curr) => {
     if (typeof foundValue[curr] !== 'undefined') {
       foundValue = foundValue[curr];
@@ -2533,7 +2591,7 @@ export function formatDate(
   } = {
     yyyy: tempDate.getFullYear(),
     MM: tempDate.getMonth() + 1,
-    dd: tempDate.getDate(),
+    dd: tempDate.getDate() < 10 ? '0' + tempDate.getDate() : tempDate.getDate(),
     hh:
       tempDate.getHours() < 10
         ? '0' + tempDate.getHours()

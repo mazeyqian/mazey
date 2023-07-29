@@ -19,7 +19,9 @@ import {
   getBrowserInfo,
   repeatUntilConditionMet,
   inRate,
-  loadScriptIfUndefined
+  loadScriptIfUndefined,
+  deepCopyObject,
+  deepCopy
 } from '../src/index';
 
 // Sync
@@ -135,6 +137,19 @@ loadScriptIfUndefined('$', 'https://i.mazey.net/lib/jquery/3.1.1/jquery.min.js')
   .catch(err => {
     console.log('loadScriptIfUndefined fail', err);
   });
+
+const obj = {
+  a: 1,
+  b: {
+    c: 2,
+    d: { e: 3 }
+  }
+};
+const obj2 = deepCopyObject(obj);
+console.log('deepCopyObject obj2', obj2);
+const simpleObj = { a: 1, b: 2 };
+const simpleObj2 = deepCopy(simpleObj);
+console.log('deepCopyObject simpleObj2', simpleObj2);
 
 // Async
 (async () => {

@@ -75,4 +75,9 @@ declare global {
   }
 
   type LoadScriptReturns = Promise<boolean | string | Error | void>;
+
+  type simpleType = string | number | boolean | null | undefined;
+  type simpleObject = {
+    [key: string]: simpleType | simpleType[] | simpleObject | simpleObject[];
+  };
 }
