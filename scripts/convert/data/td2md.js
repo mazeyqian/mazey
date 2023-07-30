@@ -1,22 +1,16 @@
 /**
- * EN: Computes the longest common subsequence of two strings.
+ * Checks if the given string is a valid URL, including scheme URLs.
  *
- * ZH: 计算两个字符串的最长公共子序列
- *
- * Usage:
- *
- * ```
- * longestComSubsequence('fish', 'finish');
- * ```
- *
- * Output:
- *
- * ```
- * 4
+ * @example
+ * ```js
+ * isValidUrl('https://www.example.com'); // true
+ * isValidUrl('http://example.com/path/exx/ss'); // true
+ * isValidUrl('https://www.example.com/?q=hello&age=24#world'); // true
+ * isValidUrl('http://www.example.com/#world?id=9'); // true
+ * isValidUrl('ftp://example.com'); // true
  * ```
  *
- * @param {string} aStr 字符串
- * @param {string} bStr 字符串
- * @returns {number} 长度
- * @category Calculate and Formula
+ * @param url - The URL to check.
+ * @returns Returns `true` if the given string is a valid URL, else `false`.
+ * @category URL
  */

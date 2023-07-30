@@ -84,6 +84,7 @@ There ara some examples maintained by hand below. For more information, please c
   * [getHashQueryParam](#gethashqueryparam)
   * [getDomain](#getdomain)
   * [updateQueryParam](#updatequeryparam)
+  * [isValidUrl](#isvalidurl)
 - [Cache Data](#cache-data)
   * [Cookie](#cookie)
   * [Storage](#storage)
@@ -102,6 +103,11 @@ There ara some examples maintained by hand below. For more information, please c
   * [getPerformance](#getperformance)
 - [Debug](#debug)
   * [genCustomConsole](#gencustomconsole)
+- [Development Environment](#development-environment)
+  * [Node.js](#nodejs)
+  * [TypeScript](#typescript)
+- [Scripts](#scripts)
+- [Returns](#returns)
 <!-- toc - end -->
 
 ### Load Resource
@@ -526,6 +532,18 @@ http://example.com/?t1=1&t2=2&t3=3&t4=four
 @returns {string} URL.
 @category URL -->
 
+#### isValidUrl
+
+Checks if the given string is a valid URL, including scheme URLs.
+
+```js
+isValidUrl('https://www.example.com'); // true
+isValidUrl('http://example.com/path/exx/ss'); // true
+isValidUrl('https://www.example.com/?q=hello&age=24#world'); // true
+isValidUrl('http://www.example.com/#world?id=9'); // true
+isValidUrl('ftp://example.com'); // true
+```
+
 ### Cache Data
 
 #### Cookie
@@ -865,6 +883,19 @@ MazeyLog: I am object. {a: 123, b: 456}
 
 ## Contributing
 
+### Development Environment
+
+#### Node.js
+
+- v14.21.3
+- v14.7.0
+
+#### TypeScript
+
+- v4.4.4
+
+### Scripts
+
 ```
 # Install
 npm i
@@ -882,7 +913,7 @@ npm run docs
 npm run test
 ```
 
-Returns:
+### Returns
 
 | Values    | Description                              | Type    |
 | :-------- | :--------------------------------------- | :------ |
