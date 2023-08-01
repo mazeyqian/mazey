@@ -169,7 +169,7 @@ Load a CSS file from the server.
 
 ```
 loadCSS(
-    'http://example.com/css/mazey-base.css',
+    'http://example.com/path/example.css',
     {
       id: 'iamid', // Optional, link ID, default none
     }

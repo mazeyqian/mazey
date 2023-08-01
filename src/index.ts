@@ -306,7 +306,7 @@ export function convertCamelToKebab(camelCase: string): string {
 }
 
 /**
- * Alias of convertCamelToKebab
+ * Alias of `convertCamelToKebab`
  *
  * @hidden
  */
@@ -332,7 +332,7 @@ export function convertCamelToUnder(camelCase: string): string {
 }
 
 /**
- * Alias of convertCamelToUnder
+ * Alias of `convertCamelToUnder`
  *
  * @hidden
  */
@@ -427,7 +427,7 @@ export function deepCopy<T>(obj: T): T {
 }
 
 /**
- * Alias of deepCopy
+ * Alias of `deepCopy`
  *
  * @hidden
  */
@@ -468,7 +468,7 @@ export function isJSONString(str: string): boolean {
 }
 
 /**
- * Alias of isJSONString
+ * Alias of `isJSONString`
  *
  * @hidden
  */
@@ -497,7 +497,7 @@ export function genRndNumString(n = 5): string {
 }
 
 /**
- * Alias of genRndNumString
+ * Alias of `genRndNumString`
  *
  * @hidden
  */
@@ -506,14 +506,24 @@ export function generateRndNum(n = 5): string {
 }
 
 /**
- * 根据时间生成唯一标志的数字 mGenerateUniqueNum() => 1538324722364123
+ * 根据时间生成唯一标志的数字 genUniqueNumString() => 1538324722364123
  *
  * @param {number} n 随机数的长度
  * @category Util
  */
-export function generateUniqueNum(n = 3): string {
+// export function generateUniqueNum(n = 3): string {
+export function genUniqueNumString(n = 3): string {
   const [now, rnd] = [mNow(), generateRndNum(n || 3)];
   return now + rnd;
+}
+
+/**
+ * Alias of `genUniqueNumString`
+ *
+ * @hidden
+ */
+export function generateUniqueNum(n = 3): string {
+  return genUniqueNumString(n);
 }
 
 /**
@@ -1015,7 +1025,7 @@ export function getLocalStorage<T>(key: string): T | null {
  *
  * ```
  * loadCSS(
- *     'http://example.com/css/mazey-base.css',
+ *     'http://example.com/path/example.css',
  *     {
  *       id: 'iamid', // Optional, link ID, default none
  *     }
@@ -2045,6 +2055,7 @@ export function clearHtml(
  *
  * @param input - The input string to sanitize
  * @returns The sanitized input string
+ * @category Util
  */
 export function sanitizeInput(input: string): string {
   const regex = /[&<>"'/]/g;
@@ -2057,7 +2068,34 @@ export function sanitizeInput(input: string): string {
     '/': '&#x2F;'
   };
   if (typeof input !== 'string') {
-    console.error('Input must be a string');
+    throw new Error('Input must be a string');
+  }
+  return input.replace(
+    regex,
+    (match: keyof typeof replacements) => replacements[match]
+  );
+}
+
+/**
+ * Reverses the sanitization done by the `sanitizeInput` function.
+ *
+ * @param input - The input string to unsanitize
+ * @returns The unsanitized input string
+ * @category Util
+ */
+export function unsanitize(input: string): string {
+  const regex = /(&amp;|&lt;|&gt;|&quot;|&#x27;|&#x2F;)/g;
+  const replacements: { [key: string]: string } = {
+    '&amp;': '&',
+    '&lt;': '<',
+    '&gt;': '>',
+    '&quot;': '"',
+    '&#x27;': '\'',
+    '&#x2F;': '/'
+  };
+  if (typeof input !== 'string') {
+    throw new Error('Input must be a string');
+    // console.error('Input must be a string');
   }
   return input.replace(
     regex,
@@ -2109,7 +2147,7 @@ export function truncateZHString(
 }
 
 /**
- * Alias of truncateZHString
+ * Alias of `truncateZHString`
  *
  * @hidden
  */
@@ -2836,6 +2874,7 @@ export function getUrlFileType(url: string): boolean | string {
  * ```
  *
  * @returns {boolean} - Returns `true` if images were found and their dimensions were set, otherwise `false`.
+ * @category DOM
  */
 export function setImgWidHeiBySrc(): boolean {
   // Use jQuery if available, otherwise fall back to pure JavaScript
