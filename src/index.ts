@@ -1299,8 +1299,8 @@ export function mNow(): number {
 export function setCookie(
   name: string,
   value: string,
-  days: number,
-  domain: string
+  days?: number,
+  domain?: string
 ): void {
   let domainParts, expires;
   // let date: any;
@@ -1364,6 +1364,23 @@ export function getCookie(name: string): string {
     if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
   }
   return '';
+}
+
+/**
+ * Delete a cookie by name.
+ *
+ * @param name - The name of the cookie to delete.
+ * @returns `true` if the cookie was deleted successfully, `false` otherwise.
+ * @category Cache Data
+ */
+export function delCookie(name: string): boolean {
+  try {
+    setCookie(name, '', -1, '');
+    return true;
+  } catch (error) {
+    console.error(`Error deleting cookie "${name}"`);
+    return false;
+  }
 }
 
 /**

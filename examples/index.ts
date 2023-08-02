@@ -21,7 +21,10 @@ import {
   inRate,
   loadScriptIfUndefined,
   deepCopyObject,
-  deepCopy
+  deepCopy,
+  setCookie,
+  getCookie,
+  delCookie
 } from '../src/index';
 
 // Sync
@@ -150,6 +153,16 @@ console.log('deepCopyObject obj2', obj2);
 const simpleObj = { a: 1, b: 2 };
 const simpleObj2 = deepCopy(simpleObj);
 console.log('deepCopyObject simpleObj2', simpleObj2);
+
+setCookie('test1', 'testValue1');
+console.log('getCookie test1', getCookie('test1'));
+setCookie('test2', 'testValue2');
+console.log('getCookie test2', getCookie('test2'));
+setCookie('test3', 'testValue3', 1);
+console.log('getCookie test3', getCookie('test3'));
+delCookie('test2');
+console.log('getCookie test', getCookie('test1'));
+console.log('All Cookie', document.cookie);
 
 // Async
 (async () => {
