@@ -13,7 +13,7 @@ const pkgVersion = process.env.SCRIPTS_NPM_PACKAGE_VERSION || process.env.VERSIO
 const debugMode = process.env.SCRIPTS_NPM_PACKAGE_DEBUG;
 const banner =
   '/*!\n' +
-  ` * mazey v${pkgVersion}\n` +
+  ` * mazey v${pkgVersion} https://www.npmjs.com/package/mazey\n` +
   ` * (c) 2018-${new Date().getFullYear()} Mazey Chu\n` +
   ' * Released under the MIT License.\n' +
   ' */';
@@ -83,6 +83,7 @@ export default {
       file: _resolve('../lib/index.esm.js'),
       format: 'esm',
       banner,
+      plugins: iifePlugins,
     },
     {
       file: _resolve('../lib/mazey.min.js'),
