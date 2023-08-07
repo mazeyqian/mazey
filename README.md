@@ -55,7 +55,7 @@ Import from CDN.
 
 ## API Examples
 
-There ara some examples maintained by hand below. For more information, please check the [full documentation](https://mazey.cn/t/m).
+There are some examples maintained by hand below. For more information, please check the [full documentation](https://mazey.cn/t/m).
 
 **Table of Contents**
 
@@ -206,7 +206,7 @@ loadImage('https://example.com/example.png')
 
 #### windowLoaded
 
-Check whether the page is loaded successfully (Keepe the compatibility in case that browser's `load` event has been triggered).
+Check whether the page is loaded successfully (Keep the compatibility if the browser's `load` event has been triggered).
 
 <!-- ZH: 页面加载完成 -->
 
@@ -556,7 +556,7 @@ getCookie('test'); // 123
 
 #### Storage
 
-Handle Storage (Keep fit for JSON, it can tansfer format automatically).
+Handle Storage (Keep fit for JSON, it can transfer format automatically).
 
 <!-- ZH: 存储/获取数据到 sessionStorage/localStorage -->
 
@@ -609,7 +609,7 @@ addStyle(
 // </style>
 ```
 
-Example 2: Add the `<style>` without `id`, and repeated invoking will adding a new one.
+Example 2: Add the `<style>` without `id`, and repeated invoking will add a new one.
 
 ```
 addStyle(
@@ -647,14 +647,14 @@ removeClass(dom, 'test');
 
 #### newLine
 
-Make a newline of HTML.
+Make a new line of HTML.
 
 ```
 newLine('a\nb\nc'); // 'a<br />b<br />c'
 newLine('a\n\nbc'); // 'a<br /><br />bc'
 ```
 
-<!-- @param {string} str The string to make a newline.
+<!-- @param {string} str The string to make a new line.
 @returns {string} A newline with `br`.
 @category DOM -->
 
