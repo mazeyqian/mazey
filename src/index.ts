@@ -3024,7 +3024,7 @@ export function loadImage(url: string): Promise<HTMLImageElement> {
  * @hidden
  */
 export function getCurrentVersion(): string {
-  return 'v3.x';
+  return 'v3';
 }
 
 /**
