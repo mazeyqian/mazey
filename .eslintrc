@@ -24,6 +24,7 @@
         "ignoreTemplateLiterals": true,
         "ignoreUrls": true
       }
-    ]
+    ],
+    "spaced-comment": ["warn", "always"]
   }
 }

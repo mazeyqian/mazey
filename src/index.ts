@@ -1413,7 +1413,7 @@ export function getPerformance(camelCase = false): Promise<WebPerformance | Erro
   } else {
     // console.log('creating')
     window.addEventListener('load', function() {
-      //不能影响最后的时间计算
+      // 不能影响最后的时间计算
       window.setTimeout(function() {
         getTiming();
       }, 0);
@@ -1448,21 +1448,21 @@ export function getPerformance(camelCase = false): Promise<WebPerformance | Erro
         deviceType: getDeviceType(),
         network: getNetWork(),
         screenDirection: getOrientationStatu(),
-        unloadTime: timing.unloadEventEnd - timing.unloadEventStart, //上个文档的卸载时间
-        redirectTime: timing.redirectEnd - timing.redirectStart, //*重定向时间
-        dnsTime: timing.domainLookupEnd - timing.domainLookupStart, //*DNS查询时间
-        tcpTime: timing.connectEnd - timing.connectStart, //*服务器连接时间
-        sslTime: getSSLTime(timing.connectEnd, timing.secureConnectionStart), //*ssl连接时间
-        responseTime: timing.responseStart - timing.requestStart, //*服务器响应时间
-        downloadTime: timing.responseEnd - timing.responseStart, //*网页下载时间
-        firstPaintTime: firstPaintTime, //*首次渲染时间
-        firstContentfulPaintTime: firstContentfulPaintTime, //*首次渲染内容时间
-        domreadyTime: timing.domContentLoadedEventStart - startTime || 0, //*dom ready时间（总和）
-        onloadTime: timing.loadEventStart - startTime || 0, //*onload时间（总和）
-        whiteTime: timing.responseStart - startTime, //*白屏时间
-        renderTime: timing.loadEventEnd - startTime || 0, //整个过程的时间之和
-        decodedBodySize: performanceNavigationTiming.decodedBodySize || '', //页面压缩前大小
-        encodedBodySize: performanceNavigationTiming.encodedBodySize || '', //页面压缩后大小
+        unloadTime: timing.unloadEventEnd - timing.unloadEventStart, // 上个文档的卸载时间
+        redirectTime: timing.redirectEnd - timing.redirectStart, // *重定向时间
+        dnsTime: timing.domainLookupEnd - timing.domainLookupStart, // *DNS查询时间
+        tcpTime: timing.connectEnd - timing.connectStart, // *服务器连接时间
+        sslTime: getSSLTime(timing.connectEnd, timing.secureConnectionStart), // *ssl连接时间
+        responseTime: timing.responseStart - timing.requestStart, // *服务器响应时间
+        downloadTime: timing.responseEnd - timing.responseStart, // *网页下载时间
+        firstPaintTime: firstPaintTime, // *首次渲染时间
+        firstContentfulPaintTime: firstContentfulPaintTime, // *首次渲染内容时间
+        domreadyTime: timing.domContentLoadedEventStart - startTime || 0, // *dom ready时间（总和）
+        onloadTime: timing.loadEventStart - startTime || 0, // *onload时间（总和）
+        whiteTime: timing.responseStart - startTime, // *白屏时间
+        renderTime: timing.loadEventEnd - startTime || 0, // 整个过程的时间之和
+        decodedBodySize: performanceNavigationTiming.decodedBodySize || '', // 页面压缩前大小
+        encodedBodySize: performanceNavigationTiming.encodedBodySize || '', // 页面压缩后大小
       };
       // 过滤异常数据
       Object.keys(data).forEach(k => {
@@ -1492,7 +1492,7 @@ export function getPerformance(camelCase = false): Promise<WebPerformance | Erro
       fail(Error('getEntries'));
     }
   }
-  //获取当前操作系统
+  // 获取当前操作系统
   function getOS() {
     let os;
     if (navigator.userAgent.indexOf('Android') > -1 || navigator.userAgent.indexOf('Linux') > -1) {
@@ -1510,8 +1510,8 @@ export function getPerformance(camelCase = false): Promise<WebPerformance | Erro
   function getOSVersion() {
     let OSVision: any;
     const u = navigator.userAgent;
-    const isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //Android
-    const isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+    const isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; // Android
+    const isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); // ios终端
     if (isAndroid) {
       OSVision = (navigator.userAgent.split(';')[1].match(/\d+\.\d+/g) || [])[0];
     }
@@ -1520,7 +1520,7 @@ export function getPerformance(camelCase = false): Promise<WebPerformance | Erro
     }
     return OSVision;
   }
-  //获取设备类型
+  // 获取设备类型
   function getDeviceType() {
     let deviceType;
     const sUserAgent = navigator.userAgent.toLowerCase();
@@ -1533,11 +1533,11 @@ export function getPerformance(camelCase = false): Promise<WebPerformance | Erro
     const bIsCE = sUserAgent.match(/windows ce/i) && 'windows ce';
     const bIsWM = sUserAgent.match(/windows mobile/i) && 'windows mobile';
     if (!(bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM)) {
-      deviceType = 'pc'; //pc
+      deviceType = 'pc'; // pc
     } else if (bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) {
-      deviceType = 'phone'; //phone
+      deviceType = 'phone'; // phone
     } else if (bIsIpad) {
-      deviceType = 'ipad'; //ipad
+      deviceType = 'ipad'; // ipad
     } else {
       deviceType = undefined;
     }
