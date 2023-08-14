@@ -67,9 +67,9 @@ test(`isValidData: Check the valid value?`, () => {
   expect(isValidData({
     a: {
       b: {
-        c: 413
-      }
-    }
+        c: 413,
+      },
+    },
   }, ['a', 'b', 'c'], 413)).toBe(true);
 });
 
