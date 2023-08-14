@@ -1406,22 +1406,19 @@ export function getPerformance(camelCase = false): Promise<WebPerformance | Erro
   const startTime = timing.navigationStart || timing.fetchStart;
   let firstPaintTime: any;
   let firstContentfulPaintTime: any;
-  // 是否已经形成数据（页面加载完成之后）
+  // Whether the data has been formed (after the page has finished loading).
   if (window.performance && window.performance.timing && window.performance.timing.loadEventEnd > 0) {
-    // console.log('created')
     getTiming();
   } else {
-    // console.log('creating')
     window.addEventListener('load', function() {
-      // 不能影响最后的时间计算
+      // Cannot affect the final time calculation.
       window.setTimeout(function() {
         getTiming();
       }, 0);
     });
   }
-  // performance
   function getTiming() {
-    // 获取首次渲染时间
+    // Get the first render time.
     try {
       if (window.performance && Boolean(window.performance.getEntriesByType)) {
         const performance = window.performance;
@@ -1437,7 +1434,7 @@ export function getPerformance(camelCase = false): Promise<WebPerformance | Erro
     } catch (e) {
       console.error((e as any).message);
     }
-    // 获取加载时间
+    // Get the loading time.
     if (window.performance && typeof window.performance.getEntries === 'function') {
       const performanceNavigationTiming: any = (window.performance.getEntries() || [])[0] || {};
       const data: any = {
@@ -1464,14 +1461,14 @@ export function getPerformance(camelCase = false): Promise<WebPerformance | Erro
         decodedBodySize: performanceNavigationTiming.decodedBodySize || '', // 页面压缩前大小
         encodedBodySize: performanceNavigationTiming.encodedBodySize || '', // 页面压缩后大小
       };
-      // 过滤异常数据
+      // Filter abnormal data.
       Object.keys(data).forEach(k => {
-        // 过滤掉 <0 的数据
+        // Filter out data less than 0.
         if (isNumber(data[k]) && data[k] < 0) {
           data[k] = 0;
         }
       });
-      // 过滤掉白屏时间 > onload 的数据
+      // Filter out data where the blank screen time is greater than the onload time.
       if (isNumber(data.whiteTime) && data.whiteTime > data.onloadTime) {
         data.whiteTime = 0;
       }
@@ -1480,7 +1477,6 @@ export function getPerformance(camelCase = false): Promise<WebPerformance | Erro
         if (!camelCase) {
           Object.keys(data).forEach(k => {
             if (!Underscore) Underscore = {};
-            // console.log('camelCase2Underscore', k, data, )
             Underscore[camelCase2Underscore(k)] = data[k];
           });
         }
@@ -1492,7 +1488,7 @@ export function getPerformance(camelCase = false): Promise<WebPerformance | Erro
       fail(Error('getEntries'));
     }
   }
-  // 获取当前操作系统
+  // Get the current operating system.
   function getOS() {
     let os;
     if (navigator.userAgent.indexOf('Android') > -1 || navigator.userAgent.indexOf('Linux') > -1) {
@@ -1506,7 +1502,7 @@ export function getPerformance(camelCase = false): Promise<WebPerformance | Erro
     }
     return os;
   }
-  // 获取操作系统版本
+  // Get the operating system version.
   function getOSVersion() {
     let OSVision: any;
     const u = navigator.userAgent;
@@ -1520,7 +1516,7 @@ export function getPerformance(camelCase = false): Promise<WebPerformance | Erro
     }
     return OSVision;
   }
-  // 获取设备类型
+  // Get the device type.
   function getDeviceType() {
     let deviceType;
     const sUserAgent = navigator.userAgent.toLowerCase();
@@ -1543,7 +1539,7 @@ export function getPerformance(camelCase = false): Promise<WebPerformance | Erro
     }
     return deviceType;
   }
-  // 获取网络状态
+  // Get the network status.
   function getNetWork() {
     let netWork: any;
     if ((navigator as any).connection && (navigator as any).connection.effectiveType) {
@@ -1570,7 +1566,7 @@ export function getPerformance(camelCase = false): Promise<WebPerformance | Erro
     }
     return netWork;
   }
-  // 获取横竖屏状态
+  // Get the screen orientation status.
   function getOrientationStatu() {
     let orientationStatu: any;
     if (window.screen && window.screen.orientation && window.screen.orientation.angle) {
@@ -1585,7 +1581,7 @@ export function getPerformance(camelCase = false): Promise<WebPerformance | Erro
     }
     return orientationStatu;
   }
-  // 获取ssl连接时间
+  // Get the SSL connection time.
   function getSSLTime(connectEnd: any, secureConnectionStart: any) {
     let ssl_time: any;
     if (secureConnectionStart) {
