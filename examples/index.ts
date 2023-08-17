@@ -26,6 +26,12 @@ import {
   getCookie,
   delCookie,
   getScriptQueryParam,
+  getFCP,
+  getFP,
+  getLCP,
+  getFID,
+  getCLS,
+  getTTFB,
 } from '../src/index';
 
 // Sync
@@ -157,4 +163,19 @@ console.log('getScriptQueryParams empty', getScriptQueryParam('empty'));
     console.log('Test debounce - 10000ms third');
   }, 10000);
   console.log('Test debounce - end');
+
+  getCLS().then(cls => {
+    console.log('getCLS', cls);
+  });
+  getFID().then(fid => {
+    console.log('getFID', fid);
+  });
+  const fcp = await getFCP();
+  console.log('getFCP', fcp);
+  const fp = await getFP();
+  console.log('getFP', fp);
+  const lcp = await getLCP();
+  console.log('getLCP', lcp);
+  const ttfb = await getTTFB();
+  console.log('getTTFB', ttfb);
 })();
