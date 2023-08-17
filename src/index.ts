@@ -1502,6 +1502,12 @@ export async function getCLS(): Promise<number> {
  * @category Web Performance
  */
 export function getTTFB(): number {
+  if (!isSupportedEntryType('navigation')) {
+    return 0;
+  }
+  if (!window.performance || !window.performance.getEntriesByType) {
+    return 0;
+  }
   const navigationTiming = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
   let ttfb = 0;
   if (!navigationTiming) {
