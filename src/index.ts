@@ -1501,7 +1501,7 @@ export async function getCLS(): Promise<number> {
  * @returns The TTFB in milliseconds, or 0 if the navigation timing information is not available.
  * @category Web Performance
  */
-export function getTTFB(): number {
+export async function getTTFB(): Promise<number> {
   if (!isSupportedEntryType('navigation')) {
     return 0;
   }

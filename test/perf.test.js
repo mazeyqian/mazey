@@ -30,8 +30,8 @@ describe('Web Performance Metrics', () => {
     expect(cls).toBeGreaterThanOrEqual(0);
   });
   
-  it('should return TTFB time in milliseconds', () => {
-    const ttfb = getTTFB();
+  it('should return TTFB time in milliseconds', async () => {
+    const ttfb = await getTTFB();
     expect(ttfb).toBeGreaterThanOrEqual(0);
   });
 });
