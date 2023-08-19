@@ -138,7 +138,7 @@ export function calLongestCommonSubsequence(
  */
 export function getQueryParam(param: string): string {
   const reg = new RegExp('(^|&)' + param + '=([^&]*)(&|$)');
-  const r = location.search.substr(1).match(reg);
+  const r = location.search.substring(1).match(reg);
   if (r !== null) {
     // return decodeURIComponent(unescape(r[2]));
     return decodeURIComponent(r[2]);
@@ -302,7 +302,7 @@ export function getDomain(url: string, rules = ['hostname']): string {
  */
 export function convertCamelToKebab(camelCase: string): string {
   const kebabCase = camelCase.replace(/([A-Z])/g, '-$1').toLowerCase();
-  return kebabCase[0] === '-' ? kebabCase.substr(1) : kebabCase;
+  return kebabCase[0] === '-' ? kebabCase.substring(1) : kebabCase;
 }
 
 /**
@@ -328,7 +328,7 @@ export function camelCaseToKebabCase(camelCase: string): string {
  */
 export function convertCamelToUnder(camelCase: string): string {
   const kebabCase = camelCase.replace(/([A-Z])/g, '_$1').toLowerCase();
-  return kebabCase[0] === '_' ? kebabCase.substr(1) : kebabCase;
+  return kebabCase[0] === '_' ? kebabCase.substring(1) : kebabCase;
 }
 
 /**
@@ -1374,13 +1374,26 @@ export function getCookie(name: string): string {
  * @category Cache Data
  */
 export function delCookie(name: string): boolean {
-  try {
-    setCookie(name, '', -1, '');
-    return true;
-  } catch (error) {
-    console.error(`Error deleting cookie "${name}"`);
-    return false;
+  const cookies = document.cookie.split(';');
+
+  for (let i = 0; i < cookies.length; i++) {
+    const cookie = cookies[i].trim();
+
+    if (cookie.startsWith(`${name}=`)) {
+      const cookieParts = cookie.split('=');
+      const cookieName = cookieParts[0];
+      // const cookieValue = cookieParts[1];
+
+      const expires = new Date();
+      expires.setTime(expires.getTime() - 1);
+
+      document.cookie = `${cookieName}=;expires=${expires.toUTCString()}`;
+
+      return true;
+    }
   }
+
+  return false;
 }
 
 /**
@@ -3088,4 +3101,31 @@ export function loadScriptIfUndefined(
     return Promise.resolve('defined');
   }
   return loadScript(url);
+}
+
+/**
+ * Retrieve a query parameter from a script URL in the browser.
+ *
+ * @param param - The name of the query parameter to retrieve.
+ * @param matchString - An optional substring to match in the script URL.
+ *                      If not provided, defaults to matching the ".js" substring.
+ * @returns The decoded value of the specified query parameter, or an empty string if no matching parameter is found.
+ * @category URL
+ */
+export function getScriptQueryParam(param: string, matchString = ''): string {
+  if (!matchString) {
+    matchString = '.js';
+  }
+  const paramRegExp = new RegExp(`[?&]${param}=([^&]*)`);
+  const scriptTags = document.querySelectorAll(`script[src*="${matchString}"]`);
+  for (let i = 0; i < scriptTags.length; i++) {
+    const src = scriptTags[i].getAttribute('src');
+    if (src && src.indexOf(matchString) !== -1) {
+      const match = src.match(paramRegExp);
+      if (match) {
+        return decodeURIComponent(match[1]);
+      }
+    }
+  }
+  return '';
 }
