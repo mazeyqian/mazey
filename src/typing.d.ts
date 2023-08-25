@@ -1,9 +1,8 @@
 /**
  * @author: Mazey Chu
  */
-import $ from 'jquery';
 
-interface BrowserInfo {
+export interface BrowserInfo {
   engine: string; // webkit gecko presto trident
   engineVs: string;
   platform: string; // desktop mobile
@@ -16,62 +15,51 @@ interface BrowserInfo {
   appleType?: string;
 }
 
-interface DefineListeners {
+export interface DefineListeners {
   [key: string]: any;
 }
 
-type TestUa = (regexp: RegExp) => boolean;
-type TestVs = (regexp: RegExp) => string;
+export type TestUa = (regexp: RegExp) => boolean;
+export type TestVs = (regexp: RegExp) => string;
 
-interface Window {
-  // VAR
-  MAZEY_DEFINE_LISTENERS: {
-    [key: string]: DefineListeners;
-  };
-  MAZEY_BROWSER_INFO: BrowserInfo;
-  // LIB
-  $: typeof $;
-  jQuery: typeof $;
-}
-
-interface UrlParams {
+export interface UrlParams {
   [key: string]: string | string[];
 }
 
-type ThrottleFunc<T extends (...args: any[]) => any> = (...args: Parameters<T>) => ReturnType<T> | null;
+export type ThrottleFunc<T extends (...args: any[]) => any> = (...args: Parameters<T>) => ReturnType<T> | null;
 
-type DebounceFunc<T extends (...args: any[]) => any> = (...args: Parameters<T>) => ReturnType<T>;
+export type DebounceFunc<T extends (...args: any[]) => any> = (...args: Parameters<T>) => ReturnType<T>;
 
-interface IsNumberOptions {
+export interface IsNumberOptions {
   isNaNAsNumber?: boolean;
   isInfinityAsNumber?: boolean;
   isUnFiniteAsNumber?: boolean;
 }
 
-type AnyFunction = (...args: any[]) => any;
+export type AnyFunction = (...args: any[]) => any;
 
-interface ZResResponse {
+export interface ZResResponse {
   status: number;
   data: {
     code: number;
   };
 }
 
-interface ZResIsValidResOptions {
+export interface ZResIsValidResOptions {
   validStatusRange?: [number, number];
   validCode?: number[];
 }
 
-interface RepeatUntilOptions {
+export interface RepeatUntilOptions {
   interval?: number;
   times?: number;
   context?: any;
   args?: Array<any>;
 }
 
-type LoadScriptReturns = Promise<boolean | string | Error | void>;
+export type LoadScriptReturns = Promise<boolean | string | Error | void>;
 
 type simpleType = string | number | boolean | null | undefined;
-type simpleObject = {
+export type simpleObject = {
   [key: string]: simpleType | simpleType[] | simpleObject | simpleObject[];
 };
