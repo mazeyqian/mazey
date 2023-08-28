@@ -784,6 +784,10 @@ export function getFriendlyInterval(start: number | string | Date = 0, end: numb
   const t = Number(end) - Number(start);
   let ret = '';
   let [d, h, m, s] = new Array(4).fill(0);
+  const zhD = decodeURIComponent('%20%E5%A4%A9%20'); // ' 天 '
+  const zhH = decodeURIComponent('%20%E6%97%B6%20'); // ' 时 '
+  const zhM = decodeURIComponent('%20%E5%88%86%20'); // ' 分 '
+  const zhS = decodeURIComponent('%20%E7%A7%92'); // ' 秒'
   if (t >= 0) {
     d = Math.floor(t / 1000 / 60 / 60 / 24);
     h = Math.floor(t / 1000 / 60 / 60);
@@ -798,7 +802,8 @@ export function getFriendlyInterval(start: number | string | Date = 0, end: numb
         h = Math.floor((t / 1000 / 60 / 60) % 24);
         m = Math.floor((t / 1000 / 60) % 60);
         s = Math.floor((t / 1000) % 60);
-        ret = d + ' 天 ' + h + ' 时 ' + m + ' 分 ' + s + ' 秒';
+        // ret = d + ' 天 ' + h + ' 时 ' + m + ' 分 ' + s + ' 秒';
+        ret = d + zhD + h + zhH + m + zhM + s + zhS;
         break;
       default:
         ret = s;
