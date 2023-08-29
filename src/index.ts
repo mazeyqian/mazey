@@ -108,7 +108,7 @@ export function longestComSubsequence(aStr: string, bStr: string): number {
         }
         arr[i][j] = baseNum + 1;
       } else {
-        let [leftValue, topValue] = [0, 0];
+        let [ leftValue, topValue ] = [ 0, 0 ];
         if (j > 0) {
           leftValue = arr[i][j - 1];
         }
@@ -284,7 +284,7 @@ export function getHashQueryParam(param: string): string {
  * @param {array} rules Object.keys(location), ['href', 'origin', 'protocol', 'host', 'hostname', 'port', 'pathname', 'search', 'hash'], ['hostname', 'pathname'] = 'km.mazey.net/plugins/servlet/mobile'
  * @category URL
  */
-export function getDomain(url: string, rules = ['hostname']): string {
+export function getDomain(url: string, rules = [ 'hostname' ]): string {
   const aEl: HTMLAnchorElement = document.createElement('a');
   aEl.href = url;
   return rules.reduce((ret, v) => {
@@ -418,7 +418,7 @@ export function deepCopy<T>(obj: T): T {
   }
   // Judge whether its key-value is simple type, string | number | boolean | null | undefined
   // ...rest
-  const simpleTypes = ['string', 'number', 'boolean', 'undefined'];
+  const simpleTypes = [ 'string', 'number', 'boolean', 'undefined' ];
   const values = Object.values(obj as simpleObject);
   const isSimpleTypeObj = values.every(v => simpleTypes.includes(typeof v));
   if (isSimpleTypeObj) {
@@ -518,7 +518,7 @@ export function generateRndNum(n = 5): string {
  */
 // export function generateUniqueNum(n = 3): string {
 export function genUniqueNumString(n = 3): string {
-  const [now, rnd] = [mNow(), generateRndNum(n || 3)];
+  const [ now, rnd ] = [ mNow(), generateRndNum(n || 3) ];
   return now + rnd;
 }
 
@@ -673,7 +673,7 @@ export function throttle<T extends (...args: any[]) => any>(func: T, wait: numbe
   let context: unknown | null = null;
   let args: Parameters<T> | null = null;
   let timeout: ReturnType<typeof setTimeout> | null = null;
-  let [result, previous] = [null, 0];
+  let [ result, previous ] = [ null, 0 ];
   const later = function(this: unknown) {
     previous = options.leading === false ? 0 : mNow();
     timeout = null;
@@ -783,7 +783,7 @@ export function getFriendlyInterval(start: number | string | Date = 0, end: numb
   if (!isNumber(end)) end = new Date(end).getTime();
   const t = Number(end) - Number(start);
   let ret = '';
-  let [d, h, m, s] = new Array(4).fill(0);
+  let [ d, h, m, s ] = new Array(4).fill(0);
   const zhD = decodeURIComponent('%20%E5%A4%A9%20'); // ' 天 '
   const zhH = decodeURIComponent('%20%E6%97%B6%20'); // ' 时 '
   const zhM = decodeURIComponent('%20%E5%88%86%20'); // ' 分 '
@@ -1037,7 +1037,7 @@ export function loadCSS(url: string, options: { id?: string } = { id: '' }): Pro
   let success: (v: boolean | string) => void;
   let fail: (v: Error) => void;
   const status = new Promise((resolve, reject) => {
-    [success, fail] = [resolve, reject];
+    [ success, fail ] = [ resolve, reject ];
   });
   // const tempCB = (typeof callback === 'function' ? callback : function () { });
   const callback = function() {
@@ -1240,7 +1240,7 @@ export function loadScript(
   script.src = url;
   firstScript && firstScript.parentNode.insertBefore(script, firstScript);
   return new Promise((resolve, reject) => {
-    [success, fail] = [resolve, reject];
+    [ success, fail ] = [ resolve, reject ];
     if (timeout) {
       setTimeout(fail.bind(null, 'timeout'), timeout);
     }
@@ -1592,7 +1592,7 @@ export async function getPerformance(camelCase = false): Promise<WebPerformance 
   let success: (v: WebPerformance) => void;
   // let fail: (v: Error) => void;
   const status: Promise<WebPerformance> = new Promise(resolve => {
-    [success] = [resolve];
+    [ success ] = [ resolve ];
   });
   let navigationTiming: PerformanceNavigationTiming | null = null;
   const navs = performance.getEntriesByType('navigation');
@@ -1680,7 +1680,7 @@ export async function getPerformance(camelCase = false): Promise<WebPerformance 
   // const startTime = navigationStart || fetchStart;
   // let firstPaintTime: any;
   // let firstContentfulPaintTime: any;
-  const [firstPaintTime, firstContentfulPaintTime] = await Promise.all([getFP(), getFCP()]);
+  const [ firstPaintTime, firstContentfulPaintTime ] = await Promise.all([ getFP(), getFCP() ]);
   // Whether the data has been formed (after the page has finished loading).
   if (isNumber(loadEventEnd) && loadEventEnd > 0) {
     getTiming();
@@ -2534,7 +2534,7 @@ export function genCustomConsole(
     },
     options
   );
-  const methods = ['log', 'info', 'warn', 'error'];
+  const methods = [ 'log', 'info', 'warn', 'error' ];
   const newConsole = Object.create(null);
   // https://stackoverflow.com/questions/3552461/how-do-i-format-a-date-in-javascript
   const formatDate = () => {
@@ -2612,14 +2612,14 @@ export function genCustomConsole(
 export function zAxiosIsValidRes(
   res: ZResResponse | undefined,
   options: ZResIsValidResOptions = {
-    validStatusRange: [200, 300],
-    validCode: [0],
+    validStatusRange: [ 200, 300 ],
+    validCode: [ 0 ],
   }
 ): boolean {
   const { validStatusRange, validCode } = Object.assign(
     {
-      validStatusRange: [200, 300],
-      validCode: [0],
+      validStatusRange: [ 200, 300 ],
+      validCode: [ 0 ],
     },
     options
   );

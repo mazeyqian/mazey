@@ -25,6 +25,8 @@
         "ignoreUrls": true
       }
     ],
-    "spaced-comment": ["warn", "always"]
+    "spaced-comment": ["warn", "always"],
+    "object-curly-spacing": ["warn", "always"],
+    "array-bracket-spacing": ["warn", "always"]
   }
 }
