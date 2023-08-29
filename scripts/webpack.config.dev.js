@@ -5,6 +5,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const { _resolve } = require('./build-helper');
 
 module.exports = {
+  mode: 'development',
   entry: {
     index: _resolve('../examples/index.ts'),
   },

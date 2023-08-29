@@ -1581,18 +1581,89 @@ export async function getTTFB(): Promise<number> {
  * @returns {Promise<object>} 加载数据
  * @category Web Performance
  */
-export function getPerformance(camelCase = false): Promise<WebPerformance | Error> {
+export async function getPerformance(camelCase = false): Promise<WebPerformance | Error> {
+  if (!isSupportedEntryType('navigation')) {
+    return Promise.reject(new Error('navigation is not supported'));
+  }
+  if (!(typeof window.performance && typeof window.performance.getEntries === 'function')) {
+    return Promise.reject(new Error('performance is not supported'));
+  }
   let success: (v: WebPerformance) => void;
-  let fail: (v: Error) => void;
-  const status: Promise<WebPerformance> = new Promise((resolve, reject) => {
-    [success, fail] = [resolve, reject];
+  // let fail: (v: Error) => void;
+  const status: Promise<WebPerformance> = new Promise(resolve => {
+    [success] = [resolve];
   });
+  const navigationTiming = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
+  let [
+    unloadEventEnd,
+    unloadEventStart,
+    redirectEnd,
+    redirectStart,
+    domainLookupEnd,
+    domainLookupStart,
+    connectEnd,
+    connectStart,
+    secureConnectionStart,
+    responseStart,
+    requestStart,
+    responseEnd,
+    domContentLoadedEventStart,
+    loadEventStart,
+    loadEventEnd,
+    navigationStart,
+    fetchStart,
+  ] = new Array(17).fill(0);
+  const { decodedBodySize, encodedBodySize } = navigationTiming;
   const timing = window.performance.timing;
-  const startTime = timing.navigationStart || timing.fetchStart;
-  let firstPaintTime: any;
-  let firstContentfulPaintTime: any;
+  if (navigationTiming && navigationStart > 0) {
+    ({
+      unloadEventEnd,
+      unloadEventStart,
+      redirectEnd,
+      redirectStart,
+      domainLookupEnd,
+      domainLookupStart,
+      connectEnd,
+      connectStart,
+      secureConnectionStart,
+      responseStart,
+      requestStart,
+      responseEnd,
+      domContentLoadedEventStart,
+      loadEventStart,
+      loadEventEnd,
+      startTime: navigationStart,
+      fetchStart,
+    } = navigationTiming);
+  } else if (timing) {
+    ({
+      unloadEventEnd,
+      unloadEventStart,
+      redirectEnd,
+      redirectStart,
+      domainLookupEnd,
+      domainLookupStart,
+      connectEnd,
+      connectStart,
+      secureConnectionStart,
+      responseStart,
+      requestStart,
+      responseEnd,
+      domContentLoadedEventStart,
+      loadEventStart,
+      loadEventEnd,
+      navigationStart,
+      fetchStart,
+    } = timing);
+  } else {
+    return Promise.reject(new Error('NavigationTiming and Timing are not supported'));
+  }
+  const startTime = navigationStart || fetchStart;
+  // let firstPaintTime: any;
+  // let firstContentfulPaintTime: any;
+  const [firstPaintTime, firstContentfulPaintTime] = await Promise.all([getFP(), getFCP()]);
   // Whether the data has been formed (after the page has finished loading).
-  if (window.performance && window.performance.timing && window.performance.timing.loadEventEnd > 0) {
+  if (isNumber(loadEventEnd) && loadEventEnd > 0) {
     getTiming();
   } else {
     window.addEventListener('load', function() {
@@ -1602,7 +1673,6 @@ export function getPerformance(camelCase = false): Promise<WebPerformance | Erro
       }, 0);
     });
   }
-
   // Get the loading time.
   // if (window.performance && typeof window.performance.getEntries === 'function') {
   //   const performanceNavigationTiming: any = (window.performance.getEntries() || [])[0] || {};
@@ -1613,74 +1683,87 @@ export function getPerformance(camelCase = false): Promise<WebPerformance | Erro
   //     osVersion: getOSVersion(),
   function getTiming() {
     // Get the first render time.
-    try {
-      if (window.performance && Boolean(window.performance.getEntriesByType)) {
-        const performance = window.performance;
-        const performanceEntries = performance.getEntriesByType('paint');
-        performanceEntries.forEach((performanceEntry, i, entries) => {
-          const startTime = Math.round(performanceEntry.startTime);
-          if (performanceEntry.name === 'first-paint') firstPaintTime = startTime;
-          else if (performanceEntry.name === 'first-contentful-paint') firstContentfulPaintTime = startTime;
-        });
-      } else {
-        console.error('paint');
-      }
-    } catch (e) {
-      console.error((e as any).message);
-    }
+    // try {
+    //   if (window.performance && Boolean(window.performance.getEntriesByType)) {
+    //     const performance = window.performance;
+    //     const performanceEntries = performance.getEntriesByType('paint');
+    //     performanceEntries.forEach((performanceEntry, i, entries) => {
+    //       const startTime = Math.round(performanceEntry.startTime);
+    //       if (performanceEntry.name === 'first-paint') firstPaintTime = startTime;
+    //       else if (performanceEntry.name === 'first-contentful-paint') firstContentfulPaintTime = startTime;
+    //     });
+    //   } else {
+    //     console.error('paint');
+    //   }
+    // } catch (e) {
+    //   console.error((e as any).message);
+    // }
     // Get the loading time.
-    if (window.performance && typeof window.performance.getEntries === 'function') {
-      const performanceNavigationTiming: any = (window.performance.getEntries() || [])[0] || {};
-      const data: any = {
-        // url: encodeURI(location.href),
-        // ua: navigator.userAgent,
-        os: getOS(),
-        osVersion: getOSVersion(),
-        deviceType: getDeviceType(),
-        network: getNetWork(),
-        screenDirection: getOrientationStatu(),
-        unloadTime: timing.unloadEventEnd - timing.unloadEventStart, // 上个文档的卸载时间
-        redirectTime: timing.redirectEnd - timing.redirectStart, // *重定向时间
-        dnsTime: timing.domainLookupEnd - timing.domainLookupStart, // *DNS查询时间
-        tcpTime: timing.connectEnd - timing.connectStart, // *服务器连接时间
-        sslTime: getSSLTime(timing.connectEnd, timing.secureConnectionStart), // *ssl连接时间
-        responseTime: timing.responseStart - timing.requestStart, // *服务器响应时间
-        downloadTime: timing.responseEnd - timing.responseStart, // *网页下载时间
-        firstPaintTime: firstPaintTime, // *首次渲染时间
-        firstContentfulPaintTime: firstContentfulPaintTime, // *首次渲染内容时间
-        domreadyTime: timing.domContentLoadedEventStart - startTime || 0, // *dom ready时间（总和）
-        onloadTime: timing.loadEventStart - startTime || 0, // *onload时间（总和）
-        whiteTime: timing.responseStart - startTime, // *白屏时间
-        renderTime: timing.loadEventEnd - startTime || 0, // 整个过程的时间之和
-        decodedBodySize: performanceNavigationTiming.decodedBodySize || '', // 页面压缩前大小
-        encodedBodySize: performanceNavigationTiming.encodedBodySize || '', // 页面压缩后大小
-      };
-      // Filter abnormal data.
-      Object.keys(data).forEach(k => {
-        // Filter out data less than 0.
-        if (isNumber(data[k]) && data[k] < 0) {
+    const data: WebPerformance = {
+      // url: encodeURI(location.href),
+      // ua: navigator.userAgent,
+      os: getOS(),
+      osVersion: getOSVersion(),
+      deviceType: getDeviceType(),
+      network: getNetWork(),
+      screenDirection: getOrientationStatu(),
+      unloadTime: unloadEventEnd - unloadEventStart, // 上个文档的卸载时间
+      redirectTime: redirectEnd - redirectStart, // * 重定向时间
+      dnsTime: domainLookupEnd - domainLookupStart, // * DNS 查询时间
+      tcpTime: connectEnd - connectStart, // * 服务器连接时间
+      sslTime: getSSLTime(connectEnd, secureConnectionStart), // * SSL 连接时间
+      responseTime: responseStart - requestStart, // * 服务器响应时间
+      downloadTime: responseEnd - responseStart, // * 网页下载时间
+      firstPaintTime: firstPaintTime, // * 首次渲染时间
+      firstContentfulPaintTime: firstContentfulPaintTime, // * 首次渲染内容时间
+      domreadyTime: domContentLoadedEventStart - startTime, // * DOM Ready 时间（总和）
+      onloadTime: loadEventStart - startTime, // * onload 时间（总和）
+      whiteTime: responseStart - startTime, // * 白屏时间
+      renderTime: loadEventEnd - startTime, // 整个过程的时间之和
+      decodedBodySize: decodedBodySize, // 页面压缩前大小
+      encodedBodySize: encodedBodySize, // 页面压缩后大小
+    };
+    // Filter abnormal data.
+    Object.keys(data).forEach(k => {
+      // Filter out data less than 0.
+      // if (isNumber(data[k]) && data[k] as number < 0) {
+      //   data[k] = 0;
+      // } else {
+      //   data[k] = Math.round(data[k] as number);
+      // }
+      if (isNumber(data[k])) {
+        if ((data[k] as number) < 0) {
           data[k] = 0;
+        } else {
+          data[k] = Math.round(data[k] as number);
         }
-      });
-      // Filter out data where the blank screen time is greater than the onload time.
-      if (isNumber(data.whiteTime) && data.whiteTime > data.onloadTime) {
-        data.whiteTime = 0;
       }
-      if (startTime > 0) {
-        let Underscore: any;
-        if (!camelCase) {
-          Object.keys(data).forEach(k => {
-            if (!Underscore) Underscore = {};
-            Underscore[camelCase2Underscore(k)] = data[k];
-          });
-        }
-        success(Underscore || data);
-      } else {
-        fail(Error('startTime'));
-      }
-    } else {
-      fail(Error('getEntries'));
+    });
+    // Filter out data where the blank screen time is greater than the onload time.
+    if (isNumber(data.whiteTime) && data.whiteTime > data.onloadTime) {
+      data.whiteTime = 0;
     }
+    const Underscore: WebPerformance = {};
+    if (!camelCase) {
+      Object.keys(data).forEach(k => {
+        // if (!Underscore) Underscore = {};
+        Underscore[camelCase2Underscore(k)] = data[k];
+      });
+    }
+    if (Object.keys(Underscore).length) {
+      success(Underscore);
+    } else {
+      success(data);
+    }
+    // if (window.performance && typeof window.performance.getEntries === 'function') {
+    //   // const performanceNavigationTiming: any = (window.performance.getEntries() || [])[0] || {};
+    //   // if (startTime > 0) {
+    //   // } else {
+    //   //   fail(new Error('startTime'));
+    //   // }
+    // } else {
+    //   fail(new Error('getEntries'));
+    // }
   }
   // Get the current operating system.
   function getOS() {
@@ -1698,16 +1781,21 @@ export function getPerformance(camelCase = false): Promise<WebPerformance | Erro
   }
   // Get the operating system version.
   function getOSVersion() {
-    let OSVision: any;
+    let OSVision: string | undefined = '';
     const u = navigator.userAgent;
     const isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; // Android
-    const isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); // ios终端
+    const isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); // iOS 终端
+    const uas = navigator.userAgent.split(';');
+    if (uas.length < 2) return OSVision;
+    const validUaStr = uas[1];
+    if (!validUaStr) return OSVision;
     if (isAndroid) {
-      OSVision = (navigator.userAgent.split(';')[1].match(/\d+\.\d+/g) || [])[0];
+      OSVision = (validUaStr.match(/\d+\.\d+/g) || [])[0];
     }
     if (isIOS) {
-      OSVision = (navigator.userAgent.split(';')[1].match(/(\d+)_(\d+)_?(\d+)?/) || [])[0];
+      OSVision = (validUaStr.match(/(\d+)_(\d+)_?(\d+)?/) || [])[0];
     }
+    if (!OSVision) OSVision = '';
     return OSVision;
   }
   // Get the device type.
@@ -1731,13 +1819,15 @@ export function getPerformance(camelCase = false): Promise<WebPerformance | Erro
     } else {
       deviceType = undefined;
     }
+    if (!deviceType) deviceType = '';
     return deviceType;
   }
   // Get the network status.
   function getNetWork() {
-    let netWork: any;
-    if ((navigator as any).connection && (navigator as any).connection.effectiveType) {
-      switch ((navigator as any).connection.effectiveType) {
+    let netWork: string | undefined = '';
+    const nav = window.navigator;
+    if (nav.connection && nav.connection.effectiveType) {
+      switch (nav.connection.effectiveType) {
         case 'wifi':
           netWork = 'wifi'; // wifi
           break;
@@ -1758,11 +1848,12 @@ export function getPerformance(camelCase = false): Promise<WebPerformance | Erro
           break;
       }
     }
+    if (!netWork) netWork = '';
     return netWork;
   }
   // Get the screen orientation status.
   function getOrientationStatu() {
-    let orientationStatu: any;
+    let orientationStatu = '';
     if (window.screen && window.screen.orientation && window.screen.orientation.angle) {
       if (window.screen.orientation.angle === 180 || window.screen.orientation.angle === 0) {
         // 竖屏
@@ -1776,8 +1867,8 @@ export function getPerformance(camelCase = false): Promise<WebPerformance | Erro
     return orientationStatu;
   }
   // Get the SSL connection time.
-  function getSSLTime(connectEnd: any, secureConnectionStart: any) {
-    let ssl_time: any;
+  function getSSLTime(connectEnd: number, secureConnectionStart: number) {
+    let ssl_time = 0;
     if (secureConnectionStart) {
       ssl_time = connectEnd - secureConnectionStart;
     }

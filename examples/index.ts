@@ -32,6 +32,7 @@ import {
   getFID,
   getCLS,
   getTTFB,
+  getPerformance,
 } from '../src/index';
 
 // Sync
@@ -170,6 +171,12 @@ console.log('getScriptQueryParams empty', getScriptQueryParam('empty'));
   getFID().then(fid => {
     console.log('getFID', fid);
   });
+
+  getPerformance().then(performance => {
+    console.log('getPerformance', performance);
+  });
+
+  // await
   const fcp = await getFCP();
   console.log('getFCP', fcp);
   const fp = await getFP();
