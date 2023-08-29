@@ -1546,8 +1546,8 @@ export async function getTTFB(): Promise<number> {
  * Usage:
  *
  * ```
- * // `camelCase：false` (Default) Return underline data.
- * // `camelCase：true` Return hump data.
+ * // `camelCase：false` (Default) Return underline(`a_b`) data.
+ * // `camelCase：true` Return hump(`aB`) data.
  * getPerformance()
  *  .then(res => {
  *   console.log(JSON.stringify(res));
@@ -1585,7 +1585,8 @@ export async function getPerformance(camelCase = false): Promise<WebPerformance 
   if (!isSupportedEntryType('navigation')) {
     return Promise.reject(new Error('navigation is not supported'));
   }
-  if (!(typeof window.performance && typeof window.performance.getEntries === 'function')) {
+  const performance = window.performance;
+  if (!(performance && typeof performance.getEntries === 'function' && typeof performance.getEntriesByType === 'function')) {
     return Promise.reject(new Error('performance is not supported'));
   }
   let success: (v: WebPerformance) => void;
@@ -1593,7 +1594,12 @@ export async function getPerformance(camelCase = false): Promise<WebPerformance 
   const status: Promise<WebPerformance> = new Promise(resolve => {
     [success] = [resolve];
   });
-  const navigationTiming = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
+  let navigationTiming: PerformanceNavigationTiming | null = null;
+  const navs = performance.getEntriesByType('navigation');
+  if (isNonEmptyArray(navs)) {
+    navigationTiming = navs[0] as PerformanceNavigationTiming;
+  }
+  // const navigationTiming = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
   let [
     unloadEventEnd,
     unloadEventStart,
@@ -1612,10 +1618,14 @@ export async function getPerformance(camelCase = false): Promise<WebPerformance 
     loadEventEnd,
     navigationStart,
     fetchStart,
-  ] = new Array(17).fill(0);
-  const { decodedBodySize, encodedBodySize } = navigationTiming;
-  const timing = window.performance.timing;
-  if (navigationTiming && navigationStart > 0) {
+    decodedBodySize,
+    encodedBodySize,
+  ] = new Array(19).fill(0);
+  const timing = performance.timing;
+  let source = '';
+  if (navigationTiming) {
+    source = 'PerformanceNavigationTiming';
+    ({ decodedBodySize, encodedBodySize } = navigationTiming);
     ({
       unloadEventEnd,
       unloadEventStart,
@@ -1636,6 +1646,7 @@ export async function getPerformance(camelCase = false): Promise<WebPerformance 
       fetchStart,
     } = navigationTiming);
   } else if (timing) {
+    source = 'PerformanceTiming';
     ({
       unloadEventEnd,
       unloadEventStart,
@@ -1658,7 +1669,15 @@ export async function getPerformance(camelCase = false): Promise<WebPerformance 
   } else {
     return Promise.reject(new Error('NavigationTiming and Timing are not supported'));
   }
-  const startTime = navigationStart || fetchStart;
+  let startTime = 0;
+  if (isNumber(navigationStart)) {
+    startTime = navigationStart;
+  } else if (isNumber(fetchStart)) {
+    startTime = fetchStart;
+  } else {
+    return Promise.reject(new Error('startTime, navigationStart or fetchStart are required'));
+  }
+  // const startTime = navigationStart || fetchStart;
   // let firstPaintTime: any;
   // let firstContentfulPaintTime: any;
   const [firstPaintTime, firstContentfulPaintTime] = await Promise.all([getFP(), getFCP()]);
@@ -1702,6 +1721,7 @@ export async function getPerformance(camelCase = false): Promise<WebPerformance 
     const data: WebPerformance = {
       // url: encodeURI(location.href),
       // ua: navigator.userAgent,
+      source,
       os: getOS(),
       osVersion: getOSVersion(),
       deviceType: getDeviceType(),

@@ -172,7 +172,7 @@ console.log('getScriptQueryParams empty', getScriptQueryParam('empty'));
     console.log('getFID', fid);
   });
 
-  getPerformance().then(performance => {
+  getPerformance(true).then(performance => {
     console.log('getPerformance', performance);
   });
 
