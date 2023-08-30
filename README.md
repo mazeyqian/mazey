@@ -529,7 +529,7 @@ http://example.com/?t1=1&t2=2&t3=3&t4=four
 
 #### isValidUrl
 
-Checks if the given string is a valid URL, including scheme URLs.
+Checks if the given string is a valid URL, including **scheme URLs**.
 
 ```js
 isValidUrl('https://www.example.com'); // true
@@ -537,6 +537,21 @@ isValidUrl('http://example.com/path/exx/ss'); // true
 isValidUrl('https://www.example.com/?q=hello&age=24#world'); // true
 isValidUrl('http://www.example.com/#world?id=9'); // true
 isValidUrl('ftp://example.com'); // true
+```
+
+If you are specifically checking for HTTP/HTTPS URLs, it is recommended to use the `isValidHttpUrl` function instead.
+The `isValidUrl` function matches all scheme URLs, including FTP and other non-HTTP schemes.
+
+#### isValidHttpUrl
+
+Check if the given string is a valid HTTP/HTTPS URL.
+
+```js
+isValidHttpUrl('https://www.example.com'); // true
+isValidHttpUrl('http://example.com/path/exx/ss'); // true
+isValidHttpUrl('https://www.example.com/?q=hello&age=24#world'); // true
+isValidHttpUrl('http://www.example.com/#world?id=9'); // true
+isValidHttpUrl('ftp://example.com'); // false
 ```
 
 ### Cache Data

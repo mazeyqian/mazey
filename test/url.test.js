@@ -79,12 +79,17 @@ describe('isValidHttpUrl', () => {
     expect(isValidHttpUrl('http://example.com/path/exx/ss')).toBe(true);
     expect(isValidHttpUrl('https://www.example.com/?q=hello&age=24#world')).toBe(true);
     expect(isValidHttpUrl('http://www.example.com/#world?id=9')).toBe(true);
+    expect(isValidHttpUrl('http://example.com:8080')).toBe(true);
+    expect(isValidHttpUrl('http://www.example.com/哈哈哈哈哈')).toBe(true);
   });
 
   it('should return false for invalid URLs', () => {
     expect(isValidHttpUrl('ftp://example.com')).toBe(false);
     expect(isValidHttpUrl('example.com')).toBe(false);
     expect(isValidHttpUrl('www.example.com')).toBe(false);
-    expect(isValidHttpUrl('http://example.com:8080')).toBe(false);
+    expect(isValidHttpUrl('v=0618')).toBe(false);
+    expect(isValidHttpUrl('http://ssssssssssss')).toBe(false);
+    expect(isValidHttpUrl(`https://this-shouldn't.match@example.com`)).toBe(false);
+    expect(isValidHttpUrl('abcdef')).toBe(false);
   });
 });

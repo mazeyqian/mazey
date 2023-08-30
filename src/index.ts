@@ -1577,6 +1577,8 @@ export async function getTTFB(): Promise<number> {
  * | ssl_time | SSL | number | (Optional) connectEnd - secureConnectionStart |
  * | download_time | Download | number | (Optional) responseEnd - responseStart |
  *
+ * Reference: [PerformanceNavigationTiming](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceNavigationTiming)
+ *
  * @param {boolean} camelCase -- false（默认） 以下划线形式返回数据 true 以驼峰形式返回数据
  * @returns {Promise<object>} 加载数据
  * @category Web Performance
@@ -2900,7 +2902,7 @@ export function removeEvent(type: string, fn: any): void {
 }
 
 /**
- * Checks if the given string is a valid URL, including scheme URLs.
+ * Checks if the given string is a valid URL, including **scheme URLs**.
  *
  * @example
  * ```js
@@ -2910,6 +2912,10 @@ export function removeEvent(type: string, fn: any): void {
  * isValidUrl('http://www.example.com/#world?id=9'); // true
  * isValidUrl('ftp://example.com'); // true
  * ```
+ *
+ * @remarks
+ * If you are specifically checking for HTTP/HTTPS URLs, it is recommended to use the `isValidHttpUrl` function instead.
+ * The `isValidUrl` function matches all scheme URLs, including FTP and other non-HTTP schemes.
  *
  * @param url - The URL to check.
  * @returns Returns `true` if the given string is a valid URL, else `false`.
@@ -2937,7 +2943,7 @@ export function isValidUrl(url: string): boolean {
  * @category URL
  */
 export function isValidHttpUrl(url: string): boolean {
-  const reg = /^https?:\/\/[-a-zA-Z0-9@:%._+~#=]{1,256}\b([-a-zA-Z0-9\u4E00-\u9FA5()!@:%_+.~#?&//=]*)/;
+  const reg = /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9\u4E00-\u9FA5()!@:%_+.~#?&//=]*)/;
   return reg.test(url);
 }
 
