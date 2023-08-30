@@ -1543,6 +1543,10 @@ export async function getTTFB(): Promise<number> {
  *
  * ZH: 获取页面加载相关的各项数据
  *
+ * @remarks
+ * This function uses the [`PerformanceNavigationTiming`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceNavigationTiming) API to get page load time data.
+ * If you still want to use the deprecated [`PerformanceTiming`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming) API, please use the previous version of this library (`v3.9.7`).
+ *
  * Usage:
  *
  * ```
@@ -1576,8 +1580,6 @@ export async function getTTFB(): Promise<number> {
  * | redirect_time | Redirect | number | (Optional) redirectEnd - redirectStart |
  * | ssl_time | SSL | number | (Optional) connectEnd - secureConnectionStart |
  * | download_time | Download | number | (Optional) responseEnd - responseStart |
- *
- * Reference: [PerformanceNavigationTiming](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceNavigationTiming)
  *
  * @param {boolean} camelCase -- false（默认） 以下划线形式返回数据 true 以驼峰形式返回数据
  * @returns {Promise<object>} 加载数据
