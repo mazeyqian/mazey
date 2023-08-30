@@ -1546,7 +1546,7 @@ export async function getTTFB(): Promise<number> {
  * @remarks
  * This function uses the [`PerformanceNavigationTiming`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceNavigationTiming) API to get page load time data.
  * The `PerformanceNavigationTiming` API provides more accurate and detailed information about page load time than the deprecated [`PerformanceTiming`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming) API.
- * If you are using an older browser that does not support `PerformanceNavigationTiming`, you can still use the `PerformanceTiming` API by using the previous version of this library (`v3.9.7`).
+ * If you are using an older browser that does not support `PerformanceNavigationTiming`, you can still use the `PerformanceTiming` API by using the previous version of this library ([`v3.9.7`](https://www.npmjs.com/package/mazey/v/3.9.7)).
  *
  * Usage:
  *
@@ -1563,7 +1563,7 @@ export async function getTTFB(): Promise<number> {
  * Output:
  *
  * ```
- * {"os":"ios","os_version":"13_2_3","device_type":"phone","network":"4g","unload_time":0,"redirect_time":0,"dns_time":0,"tcp_time":0,"response_time":289,"download_time":762,"first_paint_time":469,"first_contentful_paint_time":469,"domready_time":1318,"onload_time":2767,"white_time":299,"render_time":2768,"decoded_body_size":979570,"encoded_body_size":324938}
+ * {"source":"PerformanceNavigationTiming","os":"others","os_version":"","device_type":"pc","network":"4g","screen_direction":"","unload_time":0,"redirect_time":0,"dns_time":0,"tcp_time":0,"ssl_time":0,"response_time":2,"download_time":2,"first_paint_time":288,"first_contentful_paint_time":288,"dom_ready_time":0,"onload_time":0,"white_time":0,"render_time":0,"decoded_body_size":718,"encoded_body_size":718}
  * ```
  *
  * Results:
@@ -1574,7 +1574,7 @@ export async function getTTFB(): Promise<number> {
  * | tcp_time | Connection Negotiation | number | connectEnd - connectStart |
  * | response_time | Requests and Responses | number | responseStart - requestStart |
  * | white_time | White Screen | number | responseStart - navigationStart |
- * | domready_time | DomReady | number | domContentLoadedEventStart - navigationStart |
+ * | dom_ready_time | Dom Ready | number | domContentLoadedEventStart - navigationStart |
  * | onload_time | Onload | number | loadEventStart - navigationStart |
  * | render_time | EventEnd | number | loadEventEnd -navigationStart |
  * | unload_time | Unload | number | (Optional) unloadEventEnd - unloadEventStart |
@@ -1741,7 +1741,7 @@ export async function getPerformance(camelCase = false): Promise<WebPerformance 
       downloadTime: responseEnd - responseStart, // * 网页下载时间
       firstPaintTime: firstPaintTime, // * 首次渲染时间
       firstContentfulPaintTime: firstContentfulPaintTime, // * 首次渲染内容时间
-      domreadyTime: domContentLoadedEventStart - startTime, // * DOM Ready 时间（总和）
+      domReadyTime: domContentLoadedEventStart - startTime, // * DOM Ready 时间（总和）
       onloadTime: loadEventStart - startTime, // * onload 时间（总和）
       whiteTime: responseStart - startTime, // * 白屏时间
       renderTime: loadEventEnd - startTime, // 整个过程的时间之和
