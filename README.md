@@ -815,7 +815,7 @@ true
 
 #### getPerformance
 
-Get page load time(PerformanceTiming).
+Get page load time(`PerformanceNavigationTiming`).
 
 This function uses the [`PerformanceNavigationTiming`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceNavigationTiming) API to get page load time data.
 The `PerformanceNavigationTiming` API provides more accurate and detailed information about page load time than the deprecated [`PerformanceTiming`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming) API.

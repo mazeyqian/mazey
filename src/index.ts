@@ -1539,7 +1539,7 @@ export async function getTTFB(): Promise<number> {
 }
 
 /**
- * EN: Get page load time(PerformanceTiming).
+ * EN: Get page load time(`PerformanceNavigationTiming`).
  *
  * ZH: 获取页面加载相关的各项数据
  *
