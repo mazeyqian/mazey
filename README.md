@@ -85,6 +85,7 @@ There are some examples maintained by hand below. For more information, please c
   * [getDomain](#getdomain)
   * [updateQueryParam](#updatequeryparam)
   * [isValidUrl](#isvalidurl)
+  * [isValidHttpUrl](#isvalidhttpurl)
 - [Cache Data](#cache-data)
   * [Cookie](#cookie)
   * [Storage](#storage)
