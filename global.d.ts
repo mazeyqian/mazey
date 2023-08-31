@@ -21,6 +21,36 @@ declare global {
     readonly connection?: NetworkInformation;
   }
 
+  interface HTMLLinkElement {
+    onreadystatechange: any;
+    readyState: any;
+    sheet: any;
+  }
+
+  interface HTMLScriptElement {
+    readyState: any;
+    onreadystatechange: any;
+    parentNode: any;
+  }
+
+  interface Console {
+    [key: string]: any;
+  }
+
+  interface ErrorEvent {
+    type?: string;
+    time?: number;
+    message: string;
+    filename?: string; // Deprecated, but still supported.
+    fileName?: string;
+    lineno?: number; // Deprecated, but still supported.
+    line?: number;
+    colno?: number; // Deprecated, but still supported.
+    column?: number;
+    stack?: string;
+    name?: string;
+  }
+
   interface Window {
     // VAR
     MAZEY_DEFINE_LISTENERS: {

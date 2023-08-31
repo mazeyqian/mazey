@@ -59,7 +59,7 @@ export interface RepeatUntilOptions {
 
 export type LoadScriptReturns = Promise<boolean | string | Error | void>;
 
-type simpleType = string | number | boolean | null | undefined;
+export type simpleType = string | number | boolean | null | undefined;
 export type simpleObject = {
   [key: string]: simpleType | simpleType[] | simpleObject | simpleObject[];
 };

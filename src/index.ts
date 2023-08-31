@@ -15,6 +15,7 @@ import {
   ZResIsValidResOptions,
   RepeatUntilOptions,
   LoadScriptReturns,
+  simpleType,
   simpleObject,
 } from './typing';
 
@@ -1032,10 +1033,10 @@ export function getLocalStorage<T>(key: string): T | null {
  * @returns {Promise<string>} true -- 加载成功
  * @category Load Resource
  */
-export function loadCSS(url: string, options: { id?: string } = { id: '' }): Promise<boolean | Error | any> {
+export function loadCSS(url: string, options: { id?: string } = { id: '' }): Promise<unknown> {
   const { id } = options;
   let success: (v: boolean | string) => void;
-  let fail: (v: Error) => void;
+  let fail: (v: Error) => void = () => undefined;
   const status = new Promise((resolve, reject) => {
     [ success, fail ] = [ resolve, reject ];
   });
@@ -1044,11 +1045,13 @@ export function loadCSS(url: string, options: { id?: string } = { id: '' }): Pro
     // doFn(success, true);
     success('loaded');
   };
-  let node: any = document.createElement('link');
+  let node: HTMLLinkElement | null = document.createElement('link');
+  if (!node) {
+    fail(new Error('Not support create link element'));
+  }
   const supportOnload = 'onload' in node;
   const isOldWebKit = +navigator.userAgent.replace(/.*(?:AppleWebKit|AndroidWebKit)\/?(\d+).*/i, '$1') < 536; // webkit旧内核做特殊处理
-  const protectNum = 300000; // 阈值10分钟，一秒钟执行pollCss 500次
-
+  const protectNum = 300000; // 阈值10分钟，一秒钟执行 pollCss 500 次
   node.rel = 'stylesheet';
   node.type = 'text/css';
   node.href = url;
@@ -1056,7 +1059,6 @@ export function loadCSS(url: string, options: { id?: string } = { id: '' }): Pro
     node.id = id;
   }
   document.getElementsByTagName('head')[0].appendChild(node);
-
   // for Old WebKit and Old Firefox
   if (isOldWebKit || !supportOnload) {
     // Begin after node insertion
@@ -1065,7 +1067,6 @@ export function loadCSS(url: string, options: { id?: string } = { id: '' }): Pro
     }, 1);
     return status;
   }
-
   if (supportOnload) {
     node.onload = onload;
     node.onerror = function() {
@@ -1075,45 +1076,37 @@ export function loadCSS(url: string, options: { id?: string } = { id: '' }): Pro
   } else {
     // todo: 和 !supportOnload 重复
     node.onreadystatechange = function() {
-      if (/loaded|complete/.test(node.readyState)) {
+      if (node && /loaded|complete/.test(node.readyState)) {
         onload();
       }
     };
   }
-
   function onload() {
     // 确保只跑一次下载操作
-    node.onload = node.onerror = node.onreadystatechange = null;
-
-    // 清空node引用，在低版本IE，不清除会造成内存泄露
+    if (node) node.onload = node.onerror = node.onreadystatechange = null;
+    // 清空 node 引用，在低版本 IE，不清除会造成内存泄露
     node = null;
-
     callback();
   }
-
   // 循环判断css是否已加载成功
   /*
    * @param node -- link节点
    * @param callback -- 回调函数
    * @param step -- 计步器，避免无限循环
    */
-  function pollCss(node: any, callback: any, step: number) {
+  function pollCss(node: HTMLLinkElement | null, callback: () => void, step: number) {
+    if (!node) return;
     const sheet = node.sheet;
-    let isLoaded: any;
-
+    let isLoaded: boolean;
     step += 1;
-
-    // 保护，大于10分钟，则不再轮询
+    // 保护，大于 10 分钟，则不再轮询
     if (step > protectNum) {
       isLoaded = true;
-
-      // 清空node引用
-      node = null;
-
+      // 清空 node 引用
+      if (node) node = null;
       callback();
       return;
     }
-
     if (isOldWebKit) {
       // for WebKit < 536
       if (sheet) {
@@ -1126,16 +1119,17 @@ export function loadCSS(url: string, options: { id?: string } = { id: '' }): Pro
           isLoaded = true;
         }
       } catch (ex) {
+        const err = ex as ErrorEvent;
+        if (!err.name) return;
         // 火狐特殊版本，通过特定值获知是否下载成功
         // The value of `ex.name` is changed from "NS_ERROR_DOM_SECURITY_ERR"
         // to "SecurityError" since Firefox 13.0. But Firefox is less than 9.0
         // in here, So it is ok to just rely on "NS_ERROR_DOM_SECURITY_ERR"
-        if ((ex as any).name === 'NS_ERROR_DOM_SECURITY_ERR') {
+        if (err.name === 'NS_ERROR_DOM_SECURITY_ERR') {
           isLoaded = true;
         }
       }
     }
-
     setTimeout(function() {
       if (isLoaded) {
         // 延迟20ms是为了给下载的样式留够渲染的时间
@@ -1209,14 +1203,17 @@ export function loadScript(
     },
     options
   );
-  let success: any = null;
-  let fail: any = null;
-  const script: any = document.createElement('script');
+  let success: (v: string) => void;
+  let fail: (v: string) => void;
+  const script: HTMLScriptElement = document.createElement('script');
+  if (!script) {
+    Promise.reject('Not support create script element');
+  }
   // 如果没有 script 标签，那么代码就不会运行。可以利用这一事实，在页面的第一个 script 标签上使用 insertBefore()。
-  const firstScript: any = document.getElementsByTagName('script')[0];
+  const firstScript: HTMLScriptElement = document.getElementsByTagName('script')[0];
   script.type = 'text/javascript';
   if (isDefer) {
-    script.defer = 'defer';
+    script.defer = true; // 'defer';
   }
   if (id) {
     script.id = id;
@@ -2588,9 +2585,9 @@ export function genCustomConsole(
         }
       }
       if (prefix || showDate) {
-        (console as any)[method](datePrefix, ...argu);
+        console[method](datePrefix, ...argu);
       } else {
-        (console as any)[method](...argu);
+        console[method](...argu);
       }
       if (method === 'log') {
         logFn();
@@ -2691,7 +2688,7 @@ export function isNonEmptyArray<T>(arr: Array<T>): boolean {
  * @returns {boolean} Return TRUE if the data is valid.
  * @category Util
  */
-export function isValidData(data: any, attributes: string[], validValue: any): boolean {
+export function isValidData(data: any, attributes: string[], validValue: simpleType): boolean {
   let ret = false;
   if (typeof data !== 'object') {
     return ret;
