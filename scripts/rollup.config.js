@@ -1,11 +1,13 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable no-undef */
+// import json from '@rollup/plugin-json'
 import babel from 'rollup-plugin-babel';
 import rollupTypescript from 'rollup-plugin-typescript2';
 import { DEFAULT_EXTENSIONS } from '@babel/core';
 import commonjs from 'rollup-plugin-commonjs';
 import cleaner from 'rollup-plugin-cleaner';
 import { terser } from 'rollup-plugin-terser';
+// import replace from '@rollup/plugin-replace';
 // import copy from 'rollup-plugin-copy';
 
 const { _resolve } = require('./build-helper');
@@ -19,6 +21,9 @@ const banner =
   ' */';
 
 const plugins = [
+  // replace({
+  //   __MAZEY_NPM_PACKAGE_VERSION__: pkgVersion,
+  // }),
   // Remove the `lib` directory before rebuilding.
   // https://github.com/aMarCruz/rollup-plugin-cleanup
   cleaner({

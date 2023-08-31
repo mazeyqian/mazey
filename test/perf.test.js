@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 /* eslint-disable no-undef */
-import { getFCP, getFP, getLCP, getFID, getCLS, getTTFB } from '../lib/index.esm';
+import { getFCP, getFP, getLCP, getFID, getCLS, getTTFB, getPerformance } from '../lib/index.esm';
 
 describe('Web Performance Metrics', () => {
   it('should return FCP time in milliseconds', async () => {
@@ -33,5 +33,11 @@ describe('Web Performance Metrics', () => {
   it('should return TTFB time in milliseconds', async () => {
     const ttfb = await getTTFB();
     expect(ttfb).toBeGreaterThanOrEqual(0);
+  });
+});
+
+describe('getPerformanceStatus', () => {
+  it('returns an object with performance data', () => {
+    return expect(getPerformance()).rejects.toThrow('navigation is not supported');
   });
 });

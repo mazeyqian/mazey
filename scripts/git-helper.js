@@ -39,7 +39,7 @@ async function release (ver, { canGenerateToc = false, defaultBranch = 'master' 
   }
   const { generateToc } = require('./build-helper');
   const releaseVersion = `v${ver}`;
-  const { stdout: releaseStdout } = await execa('echo', [`Start release ${releaseVersion}...`]);
+  const { stdout: releaseStdout } = await execa('echo', [ `Start release ${releaseVersion}...` ]);
   console.log(releaseStdout);
   // Generating Table of Contents
   if (canGenerateToc) {
@@ -50,8 +50,8 @@ async function release (ver, { canGenerateToc = false, defaultBranch = 'master' 
   // Marge
   await gitMergeMaster2Release(defaultBranch);
   // Build
-  await execa('npm', ['run', 'preview']);
-  await execa('npm', ['publish']);
+  await execa('npm', [ 'run', 'preview' ]);
+  await execa('npm', [ 'publish' ]);
   // Commit Again
   await gitCommit(releaseVersion);
   // Push
@@ -82,8 +82,8 @@ async function gitTagPush (ver = '') {
   if (!ver.startsWith('v')) {
     ver = `v${ver}`;
   }
-  await execa('git', ['tag', '-a', `${ver}`, '-m', `Release ${ver}`]);
-  await execa('git', ['push', 'origin', `refs/tags/${ver}`]);
+  await execa('git', [ 'tag', '-a', `${ver}`, '-m', `Release ${ver}` ]);
+  await execa('git', [ 'push', 'origin', `refs/tags/${ver}` ]);
   return true;
 }
 
@@ -92,12 +92,12 @@ async function gitTagPush (ver = '') {
  */
 async function gitPush () {
   try {
-    await execa('git', ['push'], { stdio: 'pipe' });
+    await execa('git', [ 'push' ], { stdio: 'pipe' });
   } catch (error) {
     console.log('Error:', error.message);
-    const { stdout: currentBranch } = await execa('git', ['branch', '--show-current'], { stdio: 'pipe' });
+    const { stdout: currentBranch } = await execa('git', [ 'branch', '--show-current' ], { stdio: 'pipe' });
     console.log(`Current Branch: ${currentBranch}`);
-    await execa('git', ['push', '--set-upstream', 'origin', currentBranch]);
+    await execa('git', [ 'push', '--set-upstream', 'origin', currentBranch ]);
   }
   return true;
 }
@@ -107,10 +107,10 @@ async function gitPush () {
  */
 async function gitMergeMaster2Release (defaultBranch = 'master') {
   const currentBranch = await getGitCurrentBranch();
-  await execa('git', ['checkout', defaultBranch]);
-  await execa('git', ['pull']);
-  await execa('git', ['checkout', currentBranch]);
-  await execa('git', ['merge', defaultBranch]);
+  await execa('git', [ 'checkout', defaultBranch ]);
+  await execa('git', [ 'pull' ]);
+  await execa('git', [ 'checkout', currentBranch ]);
+  await execa('git', [ 'merge', defaultBranch ]);
   return true;
 }
 
@@ -120,9 +120,9 @@ async function gitMergeMaster2Release (defaultBranch = 'master') {
 async function getGitCurrentBranch () {
   let currentBranch = '';
   try {
-    ({ stdout: currentBranch } = await execa('git', ['branch', '--show-current'], { stdio: 'pipe' }));
+    ({ stdout: currentBranch } = await execa('git', [ 'branch', '--show-current' ], { stdio: 'pipe' }));
   } catch (error) {
-    ({ stdout: currentBranch } = await execa('git', ['rev-parse', '--abbrev-ref', 'HEAD'], { stdio: 'pipe' }));
+    ({ stdout: currentBranch } = await execa('git', [ 'rev-parse', '--abbrev-ref', 'HEAD' ], { stdio: 'pipe' }));
   }
   console.log(`Current Branch: ${currentBranch}`);
   return currentBranch;
@@ -132,11 +132,11 @@ async function getGitCurrentBranch () {
  * Commit current code.
  */
 async function gitCommit (releaseVersion = 0) {
-  const { stdout: diffStdout } = await execa('git', ['diff'], { stdio: 'pipe' });
+  const { stdout: diffStdout } = await execa('git', [ 'diff' ], { stdio: 'pipe' });
   if (diffStdout) {
     console.log('Committing changes...');
-    await execa('git', ['add', '-A']);
-    await execa('git', ['commit', '-m', `release: ${releaseVersion}`]);
+    await execa('git', [ 'add', '-A' ]);
+    await execa('git', [ 'commit', '-m', `release: ${releaseVersion}` ]);
   } else {
     console.log('No changes to commit.');
   }

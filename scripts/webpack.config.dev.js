@@ -5,6 +5,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const { _resolve } = require('./build-helper');
 
 module.exports = {
+  mode: 'development',
   entry: {
     index: _resolve('../examples/index.ts'),
   },
@@ -34,9 +35,9 @@ module.exports = {
       inject: true,
       chunksSortMode: 'dependency',
     }),
-    new CleanWebpackPlugin([_resolve('../dist')]),
+    new CleanWebpackPlugin([ _resolve('../dist') ]),
   ],
   resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
+    extensions: [ '.tsx', '.ts', '.js' ],
   },
 };
