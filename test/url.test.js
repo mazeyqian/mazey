@@ -5,7 +5,7 @@
 /* eslint-disable quotes */
 // URL
 
-import { isValidUrl, getUrlFileType, isValidHttpUrl } from '../src/index.ts';
+import { isValidUrl, getUrlFileType, isValidHttpUrl } from '../lib/index.esm';
 
 const validUrls = [
   'https://www.example.com/events/#&product=browser',
@@ -45,16 +45,16 @@ const invalidUrls = [
 
 test('isValidUrl', () => {
   validUrls.forEach(url => {
-    console.log('validUrls', url);
+    // console.log('validUrls', url);
     expect(isValidUrl(url)).toBe(true);
   });
 
   invalidUrls.forEach(url => {
     // console.log('invalidUrls', url);
     let ret = isValidUrl(url);
-    if (ret) {
-      console.log('invalidUrls', url, ret);
-    }
+    // if (ret) {
+    //   console.log('invalidUrls', url, ret);
+    // }
     expect(ret).toBe(false);
     // expect(isValidUrl(url)).toBe(false);
   });

@@ -70,7 +70,7 @@ test(`isValidData: Check the valid value?`, () => {
         c: 413,
       },
     },
-  }, ['a', 'b', 'c'], 413)).toBe(true);
+  }, [ 'a', 'b', 'c' ], 413)).toBe(true);
 });
 
 test(`isValidEmail: Check the valid email?`, () => {
