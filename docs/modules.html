@@ -57,19 +57,35 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<dl class="tsd-comment-tags">
-						<dt>author:</dt>
-						<dd><p>Mazey Chu</p>
-						</dd>
-					</dl>
-				</div>
-			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>Interfaces</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-interface"><a href="interfaces/BrowserInfo.html" class="tsd-kind-icon">Browser<wbr>Info</a></li>
+								<li class="tsd-kind-interface"><a href="interfaces/DefineListeners.html" class="tsd-kind-icon">Define<wbr>Listeners</a></li>
+								<li class="tsd-kind-interface"><a href="interfaces/IsNumberOptions.html" class="tsd-kind-icon">Is<wbr>Number<wbr>Options</a></li>
+								<li class="tsd-kind-interface"><a href="interfaces/RepeatUntilOptions.html" class="tsd-kind-icon">Repeat<wbr>Until<wbr>Options</a></li>
+								<li class="tsd-kind-interface"><a href="interfaces/UrlParams.html" class="tsd-kind-icon">Url<wbr>Params</a></li>
+								<li class="tsd-kind-interface"><a href="interfaces/ZResIsValidResOptions.html" class="tsd-kind-icon">ZRes<wbr>IsValid<wbr>Res<wbr>Options</a></li>
+								<li class="tsd-kind-interface"><a href="interfaces/ZResResponse.html" class="tsd-kind-icon">ZRes<wbr>Response</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Type aliases</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-type-alias"><a href="modules.html#AnyFunction" class="tsd-kind-icon">Any<wbr>Function</a></li>
+								<li class="tsd-kind-type-alias tsd-has-type-parameter"><a href="modules.html#DebounceFunc" class="tsd-kind-icon">Debounce<wbr>Func</a></li>
+								<li class="tsd-kind-type-alias"><a href="modules.html#LoadScriptReturns" class="tsd-kind-icon">Load<wbr>Script<wbr>Returns</a></li>
+								<li class="tsd-kind-type-alias"><a href="modules.html#TestUa" class="tsd-kind-icon">Test<wbr>Ua</a></li>
+								<li class="tsd-kind-type-alias"><a href="modules.html#TestVs" class="tsd-kind-icon">Test<wbr>Vs</a></li>
+								<li class="tsd-kind-type-alias tsd-has-type-parameter"><a href="modules.html#ThrottleFunc" class="tsd-kind-icon">Throttle<wbr>Func</a></li>
+								<li class="tsd-kind-type-alias"><a href="modules.html#simpleObject" class="tsd-kind-icon">simple<wbr>Object</a></li>
+								<li class="tsd-kind-type-alias"><a href="modules.html#simpleType" class="tsd-kind-icon">simple<wbr>Type</a></li>
+							</ul>
+						</section>
 						<section class="tsd-index-section ">
 							<h3>Load Resource Functions</h3>
 							<ul class="tsd-index-list">
@@ -117,6 +133,7 @@
 								<li class="tsd-kind-function"><a href="modules.html#getScriptQueryParam" class="tsd-kind-icon">get<wbr>Script<wbr>Query<wbr>Param</a></li>
 								<li class="tsd-kind-function"><a href="modules.html#getUrlFileType" class="tsd-kind-icon">get<wbr>Url<wbr>File<wbr>Type</a></li>
 								<li class="tsd-kind-function"><a href="modules.html#getUrlParam" class="tsd-kind-icon">get<wbr>Url<wbr>Param</a></li>
+								<li class="tsd-kind-function"><a href="modules.html#isValidHttpUrl" class="tsd-kind-icon">is<wbr>Valid<wbr>Http<wbr>Url</a></li>
 								<li class="tsd-kind-function"><a href="modules.html#isValidUrl" class="tsd-kind-icon">is<wbr>Valid<wbr>Url</a></li>
 								<li class="tsd-kind-function"><a href="modules.html#updateQueryParam" class="tsd-kind-icon">update<wbr>Query<wbr>Param</a></li>
 							</ul>
@@ -178,18 +195,226 @@
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Type aliases</h2>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias">
+					<a name="AnyFunction" class="tsd-anchor"></a>
+					<h3>Any<wbr>Function</h3>
+					<div class="tsd-signature tsd-kind-icon">Any<wbr>Function<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">any</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/typing.d.ts#L39">typing.d.ts:39</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-signature">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-alias">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-has-type-parameter">
+					<a name="DebounceFunc" class="tsd-anchor"></a>
+					<h3>Debounce<wbr>Func</h3>
+					<div class="tsd-signature tsd-kind-icon">Debounce<wbr>Func&lt;T&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Parameters</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">ReturnType</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/typing.d.ts#L31">typing.d.ts:31</a></li>
+						</ul>
+					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>T<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">any</span></h4>
+						</li>
+					</ul>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-signature">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-alias">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Parameters</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ReturnType</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">Parameters</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">ReturnType</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias">
+					<a name="LoadScriptReturns" class="tsd-anchor"></a>
+					<h3>Load<wbr>Script<wbr>Returns</h3>
+					<div class="tsd-signature tsd-kind-icon">Load<wbr>Script<wbr>Returns<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/typing.d.ts#L60">typing.d.ts:60</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias">
+					<a name="TestUa" class="tsd-anchor"></a>
+					<h3>Test<wbr>Ua</h3>
+					<div class="tsd-signature tsd-kind-icon">Test<wbr>Ua<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>regexp<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/typing.d.ts#L22">typing.d.ts:22</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-signature">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-alias">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>regexp<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>regexp: <span class="tsd-signature-type">RegExp</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias">
+					<a name="TestVs" class="tsd-anchor"></a>
+					<h3>Test<wbr>Vs</h3>
+					<div class="tsd-signature tsd-kind-icon">Test<wbr>Vs<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>regexp<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/typing.d.ts#L23">typing.d.ts:23</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-signature">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-alias">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>regexp<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>regexp: <span class="tsd-signature-type">RegExp</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-has-type-parameter">
+					<a name="ThrottleFunc" class="tsd-anchor"></a>
+					<h3>Throttle<wbr>Func</h3>
+					<div class="tsd-signature tsd-kind-icon">Throttle<wbr>Func&lt;T&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Parameters</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">ReturnType</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/typing.d.ts#L29">typing.d.ts:29</a></li>
+						</ul>
+					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>T<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">any</span></h4>
+						</li>
+					</ul>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-signature">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-alias">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Parameters</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ReturnType</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">Parameters</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">ReturnType</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias">
+					<a name="simpleObject" class="tsd-anchor"></a>
+					<h3>simple<wbr>Object</h3>
+					<div class="tsd-signature tsd-kind-icon">simple<wbr>Object<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{}</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/typing.d.ts#L63">typing.d.ts:63</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-index-signature">
+								<h5><span class="tsd-signature-symbol">[</span>key: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><a href="modules.html#simpleType" class="tsd-signature-type" data-tsd-kind="Type alias">simpleType</a><span class="tsd-signature-symbol"> | </span><a href="modules.html#simpleType" class="tsd-signature-type" data-tsd-kind="Type alias">simpleType</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><a href="modules.html#simpleObject" class="tsd-signature-type" data-tsd-kind="Type alias">simpleObject</a><span class="tsd-signature-symbol"> | </span><a href="modules.html#simpleObject" class="tsd-signature-type" data-tsd-kind="Type alias">simpleObject</a><span class="tsd-signature-symbol">[]</span></h5>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias">
+					<a name="simpleType" class="tsd-anchor"></a>
+					<h3>simple<wbr>Type</h3>
+					<div class="tsd-signature tsd-kind-icon">simple<wbr>Type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/typing.d.ts#L62">typing.d.ts:62</a></li>
+						</ul>
+					</aside>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Load Resource Functions</h2>
 				<section class="tsd-panel tsd-member tsd-kind-function">
 					<a name="loadCSS" class="tsd-anchor"></a>
 					<h3>loadCSS</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">loadCSS<span class="tsd-signature-symbol">(</span>url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">{ </span>id<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">loadCSS<span class="tsd-signature-symbol">(</span>url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">{ </span>id<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L1014">index.ts:1014</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L1036">index.ts:1036</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -235,7 +460,7 @@
 									</ul>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>true -- 加载成功</p>
 						</li>
 					</ul>
@@ -250,7 +475,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L3009">index.ts:3009</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L3168">index.ts:3168</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -290,13 +515,13 @@
 					<a name="loadScript" class="tsd-anchor"></a>
 					<h3>load<wbr>Script</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">load<wbr>Script<span class="tsd-signature-symbol">(</span>url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">{ </span>id<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>isDefer<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>timeout<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>callback<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">LoadScriptReturns</span></li>
+						<li class="tsd-signature tsd-kind-icon">load<wbr>Script<span class="tsd-signature-symbol">(</span>url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">{ </span>id<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>isDefer<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>timeout<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>callback<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="modules.html#LoadScriptReturns" class="tsd-signature-type" data-tsd-kind="Type alias">LoadScriptReturns</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L1164">index.ts:1164</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L1179">index.ts:1179</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -362,7 +587,7 @@
 												<li class="tsd-description">
 													<aside class="tsd-sources">
 														<ul>
-															<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L1168">index.ts:1168</a></li>
+															<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L1183">index.ts:1183</a></li>
 														</ul>
 													</aside>
 													<div class="tsd-comment tsd-typography">
@@ -381,7 +606,7 @@
 									</ul>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">LoadScriptReturns</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="modules.html#LoadScriptReturns" class="tsd-signature-type" data-tsd-kind="Type alias">LoadScriptReturns</a></h4>
 							<p>-- true 成功</p>
 						</li>
 					</ul>
@@ -390,13 +615,13 @@
 					<a name="loadScriptIfUndefined" class="tsd-anchor"></a>
 					<h3>load<wbr>Script<wbr>IfUndefined</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">load<wbr>Script<wbr>IfUndefined<span class="tsd-signature-symbol">(</span>windowAttribute<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">LoadScriptReturns</span></li>
+						<li class="tsd-signature tsd-kind-icon">load<wbr>Script<wbr>IfUndefined<span class="tsd-signature-symbol">(</span>windowAttribute<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="modules.html#LoadScriptReturns" class="tsd-signature-type" data-tsd-kind="Type alias">LoadScriptReturns</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L3097">index.ts:3097</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L3256">index.ts:3256</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -431,7 +656,7 @@
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">LoadScriptReturns</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="modules.html#LoadScriptReturns" class="tsd-signature-type" data-tsd-kind="Type alias">LoadScriptReturns</a></h4>
 							<p>A Promise that resolves when the script has been loaded.</p>
 						</li>
 					</ul>
@@ -446,7 +671,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L2249">index.ts:2249</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L2383">index.ts:2383</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -490,7 +715,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L2122">index.ts:2122</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L2256">index.ts:2256</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -530,7 +755,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L2844">index.ts:2844</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L3003">index.ts:3003</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -569,7 +794,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L292">index.ts:292</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L309">index.ts:309</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -604,7 +829,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L318">index.ts:318</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L335">index.ts:335</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -633,13 +858,13 @@
 					<a name="debounce" class="tsd-anchor"></a>
 					<h3>debounce</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">debounce&lt;T&gt;<span class="tsd-signature-symbol">(</span>func<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span>, wait<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, immediate<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">DebounceFunc</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">debounce&lt;T&gt;<span class="tsd-signature-symbol">(</span>func<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span>, wait<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, immediate<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="modules.html#DebounceFunc" class="tsd-signature-type" data-tsd-kind="Type alias">DebounceFunc</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L707">index.ts:707</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L724">index.ts:724</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -670,7 +895,7 @@
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> immediate: <span class="tsd-signature-type">boolean</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">DebounceFunc</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="modules.html#DebounceFunc" class="tsd-signature-type" data-tsd-kind="Type alias">DebounceFunc</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -684,7 +909,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L398">index.ts:398</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L415">index.ts:415</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -724,13 +949,13 @@
 					<a name="doFn" class="tsd-anchor"></a>
 					<h3>do<wbr>Fn</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">do<wbr>Fn<span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AnyFunction</span>, <span class="tsd-signature-symbol">...</span>params<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Parameters</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">AnyFunction</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ReturnType</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">AnyFunction</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></li>
+						<li class="tsd-signature tsd-kind-icon">do<wbr>Fn<span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><a href="modules.html#AnyFunction" class="tsd-signature-type" data-tsd-kind="Type alias">AnyFunction</a>, <span class="tsd-signature-symbol">...</span>params<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Parameters</span><span class="tsd-signature-symbol">&lt;</span><a href="modules.html#AnyFunction" class="tsd-signature-type" data-tsd-kind="Type alias">AnyFunction</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ReturnType</span><span class="tsd-signature-symbol">&lt;</span><a href="modules.html#AnyFunction" class="tsd-signature-type" data-tsd-kind="Type alias">AnyFunction</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L839">index.ts:839</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L861">index.ts:861</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -741,16 +966,16 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>fn: <span class="tsd-signature-type">AnyFunction</span></h5>
+									<h5>fn: <a href="modules.html#AnyFunction" class="tsd-signature-type" data-tsd-kind="Type alias">AnyFunction</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>等待被执行的未知是否有效的函数</p>
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>params: <span class="tsd-signature-type">Parameters</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">AnyFunction</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>params: <span class="tsd-signature-type">Parameters</span><span class="tsd-signature-symbol">&lt;</span><a href="modules.html#AnyFunction" class="tsd-signature-type" data-tsd-kind="Type alias">AnyFunction</a><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">ReturnType</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">AnyFunction</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">ReturnType</span><span class="tsd-signature-symbol">&lt;</span><a href="modules.html#AnyFunction" class="tsd-signature-type" data-tsd-kind="Type alias">AnyFunction</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -764,7 +989,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L540">index.ts:540</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L557">index.ts:557</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -795,7 +1020,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L525">index.ts:525</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L542">index.ts:542</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -832,7 +1057,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L2668">index.ts:2668</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L2802">index.ts:2802</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -882,7 +1107,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L2630">index.ts:2630</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L2764">index.ts:2764</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -911,7 +1136,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L480">index.ts:480</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L497">index.ts:497</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -946,7 +1171,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L504">index.ts:504</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L521">index.ts:521</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -977,7 +1202,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L2583">index.ts:2583</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L2717">index.ts:2717</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1005,7 +1230,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L763">index.ts:763</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L780">index.ts:780</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1062,7 +1287,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L448">index.ts:448</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L465">index.ts:465</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1102,7 +1327,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L2512">index.ts:2512</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L2646">index.ts:2646</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1130,13 +1355,13 @@
 					<a name="isNumber" class="tsd-anchor"></a>
 					<h3>is<wbr>Number</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">is<wbr>Number<span class="tsd-signature-symbol">(</span>num<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">IsNumberOptions</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Number<span class="tsd-signature-symbol">(</span>num<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span>, options<span class="tsd-signature-symbol">?: </span><a href="interfaces/IsNumberOptions.html" class="tsd-signature-type" data-tsd-kind="Interface">IsNumberOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L815">index.ts:815</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L837">index.ts:837</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1162,7 +1387,7 @@
 									</div>
 								</li>
 								<li>
-									<h5>options: <span class="tsd-signature-type">IsNumberOptions</span><span class="tsd-signature-symbol"> = {}</span></h5>
+									<h5>options: <a href="interfaces/IsNumberOptions.html" class="tsd-signature-type" data-tsd-kind="Interface">IsNumberOptions</a><span class="tsd-signature-symbol"> = {}</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -1174,13 +1399,13 @@
 					<a name="isValidData" class="tsd-anchor"></a>
 					<h3>is<wbr>Valid<wbr>Data</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">is<wbr>Valid<wbr>Data<span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, attributes<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, validValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Valid<wbr>Data<span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, attributes<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, validValue<span class="tsd-signature-symbol">: </span><a href="modules.html#simpleType" class="tsd-signature-type" data-tsd-kind="Type alias">simpleType</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L2557">index.ts:2557</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L2691">index.ts:2691</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1225,7 +1450,7 @@
 									</div>
 								</li>
 								<li>
-									<h5>validValue: <span class="tsd-signature-type">any</span></h5>
+									<h5>validValue: <a href="modules.html#simpleType" class="tsd-signature-type" data-tsd-kind="Type alias">simpleType</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Given Value for verifying.</p>
 									</div>
@@ -1246,7 +1471,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L2823">index.ts:2823</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L2982">index.ts:2982</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1281,7 +1506,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L2806">index.ts:2806</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L2965">index.ts:2965</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1319,7 +1544,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L1234">index.ts:1234</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L1252">index.ts:1252</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1335,13 +1560,13 @@
 					<a name="repeatUntilConditionMet" class="tsd-anchor"></a>
 					<h3>repeat<wbr>Until<wbr>Condition<wbr>Met</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">repeat<wbr>Until<wbr>Condition<wbr>Met&lt;T&gt;<span class="tsd-signature-symbol">(</span>callback<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">RepeatUntilOptions</span>, condition<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">(</span>result<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ReturnType</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">repeat<wbr>Until<wbr>Condition<wbr>Met&lt;T&gt;<span class="tsd-signature-symbol">(</span>callback<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span>, options<span class="tsd-signature-symbol">?: </span><a href="interfaces/RepeatUntilOptions.html" class="tsd-signature-type" data-tsd-kind="Interface">RepeatUntilOptions</a>, condition<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">(</span>result<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ReturnType</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L3043">index.ts:3043</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L3202">index.ts:3202</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1364,7 +1589,7 @@
 									</div>
 								</li>
 								<li>
-									<h5>options: <span class="tsd-signature-type">RepeatUntilOptions</span><span class="tsd-signature-symbol"> = {}</span></h5>
+									<h5>options: <a href="interfaces/RepeatUntilOptions.html" class="tsd-signature-type" data-tsd-kind="Interface">RepeatUntilOptions</a><span class="tsd-signature-symbol"> = {}</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>An object containing the options for the function.</p>
 									</div>
@@ -1408,7 +1633,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L2142">index.ts:2142</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L2276">index.ts:2276</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1434,13 +1659,13 @@
 					<a name="throttle" class="tsd-anchor"></a>
 					<h3>throttle</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">throttle&lt;T&gt;<span class="tsd-signature-symbol">(</span>func<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span>, wait<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">{ </span>leading<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>trailing<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ThrottleFunc</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">throttle&lt;T&gt;<span class="tsd-signature-symbol">(</span>func<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span>, wait<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">{ </span>leading<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>trailing<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="modules.html#ThrottleFunc" class="tsd-signature-type" data-tsd-kind="Type alias">ThrottleFunc</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L655">index.ts:655</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L672">index.ts:672</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1480,7 +1705,7 @@
 									</ul>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">ThrottleFunc</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="modules.html#ThrottleFunc" class="tsd-signature-type" data-tsd-kind="Type alias">ThrottleFunc</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -1494,7 +1719,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L2191">index.ts:2191</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L2325">index.ts:2325</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1532,7 +1757,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L2165">index.ts:2165</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L2299">index.ts:2299</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1567,7 +1792,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L271">index.ts:271</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L288">index.ts:288</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1617,7 +1842,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L232">index.ts:232</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L249">index.ts:249</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1659,7 +1884,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L136">index.ts:136</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L153">index.ts:153</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1696,7 +1921,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L3113">index.ts:3113</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L3272">index.ts:3272</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1735,7 +1960,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L2875">index.ts:2875</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L3034">index.ts:3034</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1774,7 +1999,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L160">index.ts:160</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L177">index.ts:177</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1810,6 +2035,45 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="isValidHttpUrl" class="tsd-anchor"></a>
+					<h3>is<wbr>Valid<wbr>Http<wbr>Url</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Valid<wbr>Http<wbr>Url<span class="tsd-signature-symbol">(</span>url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L2945">index.ts:2945</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Check if the given string is a valid HTTP/HTTPS URL.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><pre><code class="language-js"><span style="color: #795E26">isValidHttpUrl</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;https://www.example.com&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// true</span>
+<span style="color: #795E26">isValidHttpUrl</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;http://example.com/path/exx/ss&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// true</span>
+<span style="color: #795E26">isValidHttpUrl</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;https://www.example.com/?q=hello&amp;age=24#world&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// true</span>
+<span style="color: #795E26">isValidHttpUrl</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;http://www.example.com/#world?id=9&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// true</span>
+<span style="color: #795E26">isValidHttpUrl</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;ftp://example.com&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// false</span>
+</code></pre>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>url: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>Return true if the given string is a valid HTTP/HTTPS URL.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
 					<a name="isValidUrl" class="tsd-anchor"></a>
 					<h3>is<wbr>Valid<wbr>Url</h3>
 					<ul class="tsd-signatures tsd-kind-function">
@@ -1819,12 +2083,12 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L2786">index.ts:2786</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L2924">index.ts:2924</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Checks if the given string is a valid URL, including scheme URLs.</p>
+									<p>Checks if the given string is a valid URL, including <strong>scheme URLs</strong>.</p>
 								</div>
 								<dl class="tsd-comment-tags">
 									<dt>example</dt>
@@ -1834,6 +2098,10 @@
 <span style="color: #795E26">isValidUrl</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;http://www.example.com/#world?id=9&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// true</span>
 <span style="color: #795E26">isValidUrl</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;ftp://example.com&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// true</span>
 </code></pre>
+									</dd>
+									<dt>remarks</dt>
+									<dd><p>If you are specifically checking for HTTP/HTTPS URLs, it is recommended to use the <code>isValidHttpUrl</code> function instead.
+										The <code>isValidUrl</code> function matches all scheme URLs, including FTP and other non-HTTP schemes.</p>
 									</dd>
 								</dl>
 							</div>
@@ -1861,7 +2129,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L199">index.ts:199</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L216">index.ts:216</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1916,7 +2184,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L1326">index.ts:1326</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L1344">index.ts:1344</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1948,7 +2216,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L1306">index.ts:1306</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L1324">index.ts:1324</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1980,7 +2248,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L974">index.ts:974</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L996">index.ts:996</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2034,7 +2302,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L905">index.ts:905</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L927">index.ts:927</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2088,7 +2356,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L1256">index.ts:1256</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L1274">index.ts:1274</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2129,7 +2397,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L942">index.ts:942</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L964">index.ts:964</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2186,7 +2454,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L873">index.ts:873</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L895">index.ts:895</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2246,7 +2514,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L603">index.ts:603</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L620">index.ts:620</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2286,7 +2554,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L2310">index.ts:2310</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L2444">index.ts:2444</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2354,7 +2622,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L2977">index.ts:2977</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L3136">index.ts:3136</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2393,7 +2661,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L576">index.ts:576</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L593">index.ts:593</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2433,7 +2701,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L369">index.ts:369</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L386">index.ts:386</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2468,7 +2736,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L630">index.ts:630</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L647">index.ts:647</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2508,7 +2776,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L2916">index.ts:2916</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L3075">index.ts:3075</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2551,7 +2819,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L1805">index.ts:1805</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L1939">index.ts:1939</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2603,7 +2871,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L81">index.ts:81</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L98">index.ts:98</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2648,7 +2916,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L27">index.ts:27</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L44">index.ts:44</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2690,13 +2958,13 @@
 					<a name="getBrowserInfo" class="tsd-anchor"></a>
 					<h3>get<wbr>Browser<wbr>Info</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Browser<wbr>Info<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">BrowserInfo</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Browser<wbr>Info<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/BrowserInfo.html" class="tsd-signature-type" data-tsd-kind="Interface">BrowserInfo</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L1906">index.ts:1906</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L2040">index.ts:2040</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2786,7 +3054,7 @@
 <span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">isMobileQQ</span><span style="color: #000000"> = [</span><span style="color: #A31515">&#039;android&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;ios&#039;</span><span style="color: #000000">].</span><span style="color: #795E26">includes</span><span style="color: #000000">(</span><span style="color: #001080">system</span><span style="color: #000000">) &amp;&amp; [</span><span style="color: #A31515">&#039;qq_browser&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;qq_app&#039;</span><span style="color: #000000">].</span><span style="color: #795E26">includes</span><span style="color: #000000">(</span><span style="color: #001080">shell</span><span style="color: #000000">);</span>
 </code></pre>
 							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">BrowserInfo</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="interfaces/BrowserInfo.html" class="tsd-signature-type" data-tsd-kind="Interface">BrowserInfo</a></h4>
 							<p>浏览器信息</p>
 						</li>
 					</ul>
@@ -2801,7 +3069,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L1832">index.ts:1832</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L1966">index.ts:1966</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2831,7 +3099,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L2609">index.ts:2609</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L2743">index.ts:2743</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2857,7 +3125,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L2716">index.ts:2716</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L2850">index.ts:2850</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2888,7 +3156,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L549">index.ts:549</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L566">index.ts:566</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2916,7 +3184,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L2732">index.ts:2732</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L2866">index.ts:2866</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2944,7 +3212,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L2753">index.ts:2753</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L2887">index.ts:2887</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2978,7 +3246,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L1476">index.ts:1476</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L1494">index.ts:1494</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3002,7 +3270,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L1375">index.ts:1375</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L1393">index.ts:1393</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3026,7 +3294,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L1447">index.ts:1447</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L1465">index.ts:1465</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3050,7 +3318,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L1399">index.ts:1399</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L1417">index.ts:1417</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3074,7 +3342,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L1423">index.ts:1423</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L1441">index.ts:1441</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3098,103 +3366,110 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L1563">index.ts:1563</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L1586">index.ts:1586</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>EN: Get page load time(PerformanceTiming).</p>
+									<p>EN: Get page load time(<code>PerformanceNavigationTiming</code>).</p>
 								</div>
 								<p>ZH: 获取页面加载相关的各项数据</p>
-								<p>Usage:</p>
-								<pre><code><span style="color: #008000">// `camelCase：false` (Default) Return underline data.</span>
-<span style="color: #008000">// `camelCase：true` Return hump data.</span>
+								<dl class="tsd-comment-tags">
+									<dt>remarks</dt>
+									<dd><p>This function uses the <a href="https://developer.mozilla.org/en-US/docs/Web/API/PerformanceNavigationTiming"><code>PerformanceNavigationTiming</code></a> API to get page load time data.
+											The <code>PerformanceNavigationTiming</code> API provides more accurate and detailed information about page load time than the deprecated <a href="https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming"><code>PerformanceTiming</code></a> API.
+										If you are using an older browser that does not support <code>PerformanceNavigationTiming</code>, you can still use the <code>PerformanceTiming</code> API by using the previous version of this library (<a href="https://www.npmjs.com/package/mazey/v/3.9.7"><code>v3.9.7</code></a>).</p>
+										<p>Usage:</p>
+										<pre><code><span style="color: #008000">// `camelCase：false` (Default) Return underline(`a_b`) data.</span>
+<span style="color: #008000">// `camelCase：true` Return hump(`aB`) data.</span>
 <span style="color: #795E26">getPerformance</span><span style="color: #000000">()</span>
 <span style="color: #000000"> .</span><span style="color: #795E26">then</span><span style="color: #000000">(</span><span style="color: #001080">res</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
 <span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #267F99">JSON</span><span style="color: #000000">.</span><span style="color: #795E26">stringify</span><span style="color: #000000">(</span><span style="color: #001080">res</span><span style="color: #000000">));</span>
 <span style="color: #000000"> })</span>
 <span style="color: #000000"> .</span><span style="color: #795E26">catch</span><span style="color: #000000">(</span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #001080">error</span><span style="color: #000000">);</span>
 </code></pre>
-								<p>Output:</p>
-								<pre><code><span style="color: #000000">{</span><span style="color: #A31515">&quot;os&quot;</span><span style="color: #000000">:</span><span style="color: #A31515">&quot;ios&quot;</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;os_version&quot;</span><span style="color: #000000">:</span><span style="color: #A31515">&quot;13_2_3&quot;</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;device_type&quot;</span><span style="color: #000000">:</span><span style="color: #A31515">&quot;phone&quot;</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;network&quot;</span><span style="color: #000000">:</span><span style="color: #A31515">&quot;4g&quot;</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;unload_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">0</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;redirect_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">0</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;dns_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">0</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;tcp_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">0</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;response_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">289</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;download_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">762</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;first_paint_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">469</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;first_contentful_paint_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">469</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;domready_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">1318</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;onload_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">2767</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;white_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">299</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;render_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">2768</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;decoded_body_size&quot;</span><span style="color: #000000">:</span><span style="color: #098658">979570</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;encoded_body_size&quot;</span><span style="color: #000000">:</span><span style="color: #098658">324938</span><span style="color: #000000">}</span>
+										<p>Output:</p>
+										<pre><code><span style="color: #000000">{</span><span style="color: #A31515">&quot;source&quot;</span><span style="color: #000000">:</span><span style="color: #A31515">&quot;PerformanceNavigationTiming&quot;</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;os&quot;</span><span style="color: #000000">:</span><span style="color: #A31515">&quot;others&quot;</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;os_version&quot;</span><span style="color: #000000">:</span><span style="color: #A31515">&quot;&quot;</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;device_type&quot;</span><span style="color: #000000">:</span><span style="color: #A31515">&quot;pc&quot;</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;network&quot;</span><span style="color: #000000">:</span><span style="color: #A31515">&quot;4g&quot;</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;screen_direction&quot;</span><span style="color: #000000">:</span><span style="color: #A31515">&quot;&quot;</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;unload_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">0</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;redirect_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">0</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;dns_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">0</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;tcp_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">0</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;ssl_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">0</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;response_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">2</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;download_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">2</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;first_paint_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">288</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;first_contentful_paint_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">288</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;dom_ready_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">0</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;onload_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">0</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;white_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">0</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;render_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">0</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;decoded_body_size&quot;</span><span style="color: #000000">:</span><span style="color: #098658">718</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;encoded_body_size&quot;</span><span style="color: #000000">:</span><span style="color: #098658">718</span><span style="color: #000000">}</span>
 </code></pre>
-								<p>Results:</p>
-								<table>
-									<thead>
-										<tr>
-											<th align="left">Attribute</th>
-											<th align="left">Description</th>
-											<th align="left">Type</th>
-											<th align="left">Values</th>
-										</tr>
-									</thead>
-									<tbody><tr>
-											<td align="left">dns_time</td>
-											<td align="left">DNS Lookup</td>
-											<td align="left">number</td>
-											<td align="left">domainLookupEnd - domainLookupStart</td>
-										</tr>
-										<tr>
-											<td align="left">tcp_time</td>
-											<td align="left">Connection Negotiation</td>
-											<td align="left">number</td>
-											<td align="left">connectEnd - connectStart</td>
-										</tr>
-										<tr>
-											<td align="left">response_time</td>
-											<td align="left">Requests and Responses</td>
-											<td align="left">number</td>
-											<td align="left">responseStart - requestStart</td>
-										</tr>
-										<tr>
-											<td align="left">white_time</td>
-											<td align="left">White Screen</td>
-											<td align="left">number</td>
-											<td align="left">responseStart - navigationStart</td>
-										</tr>
-										<tr>
-											<td align="left">domready_time</td>
-											<td align="left">DomReady</td>
-											<td align="left">number</td>
-											<td align="left">domContentLoadedEventStart - navigationStart</td>
-										</tr>
-										<tr>
-											<td align="left">onload_time</td>
-											<td align="left">Onload</td>
-											<td align="left">number</td>
-											<td align="left">loadEventStart - navigationStart</td>
-										</tr>
-										<tr>
-											<td align="left">render_time</td>
-											<td align="left">EventEnd</td>
-											<td align="left">number</td>
-											<td align="left">loadEventEnd -navigationStart</td>
-										</tr>
-										<tr>
-											<td align="left">unload_time</td>
-											<td align="left">Unload</td>
-											<td align="left">number</td>
-											<td align="left">(Optional) unloadEventEnd - unloadEventStart</td>
-										</tr>
-										<tr>
-											<td align="left">redirect_time</td>
-											<td align="left">Redirect</td>
-											<td align="left">number</td>
-											<td align="left">(Optional) redirectEnd - redirectStart</td>
-										</tr>
-										<tr>
-											<td align="left">ssl_time</td>
-											<td align="left">SSL</td>
-											<td align="left">number</td>
-											<td align="left">(Optional) connectEnd - secureConnectionStart</td>
-										</tr>
-										<tr>
-											<td align="left">download_time</td>
-											<td align="left">Download</td>
-											<td align="left">number</td>
-											<td align="left">(Optional) responseEnd - responseStart</td>
-										</tr>
-								</tbody></table>
+										<p>Results:</p>
+										<table>
+											<thead>
+												<tr>
+													<th align="left">Attribute</th>
+													<th align="left">Description</th>
+													<th align="left">Type</th>
+													<th align="left">Values</th>
+												</tr>
+											</thead>
+											<tbody><tr>
+													<td align="left">dns_time</td>
+													<td align="left">DNS Lookup</td>
+													<td align="left">number</td>
+													<td align="left">domainLookupEnd - domainLookupStart</td>
+												</tr>
+												<tr>
+													<td align="left">tcp_time</td>
+													<td align="left">Connection Negotiation</td>
+													<td align="left">number</td>
+													<td align="left">connectEnd - connectStart</td>
+												</tr>
+												<tr>
+													<td align="left">response_time</td>
+													<td align="left">Requests and Responses</td>
+													<td align="left">number</td>
+													<td align="left">responseStart - requestStart</td>
+												</tr>
+												<tr>
+													<td align="left">white_time</td>
+													<td align="left">White Screen</td>
+													<td align="left">number</td>
+													<td align="left">responseStart - navigationStart</td>
+												</tr>
+												<tr>
+													<td align="left">dom_ready_time</td>
+													<td align="left">Dom Ready</td>
+													<td align="left">number</td>
+													<td align="left">domContentLoadedEventStart - navigationStart</td>
+												</tr>
+												<tr>
+													<td align="left">onload_time</td>
+													<td align="left">Onload</td>
+													<td align="left">number</td>
+													<td align="left">loadEventStart - navigationStart</td>
+												</tr>
+												<tr>
+													<td align="left">render_time</td>
+													<td align="left">EventEnd</td>
+													<td align="left">number</td>
+													<td align="left">loadEventEnd -navigationStart</td>
+												</tr>
+												<tr>
+													<td align="left">unload_time</td>
+													<td align="left">Unload</td>
+													<td align="left">number</td>
+													<td align="left">(Optional) unloadEventEnd - unloadEventStart</td>
+												</tr>
+												<tr>
+													<td align="left">redirect_time</td>
+													<td align="left">Redirect</td>
+													<td align="left">number</td>
+													<td align="left">(Optional) redirectEnd - redirectStart</td>
+												</tr>
+												<tr>
+													<td align="left">ssl_time</td>
+													<td align="left">SSL</td>
+													<td align="left">number</td>
+													<td align="left">(Optional) connectEnd - secureConnectionStart</td>
+												</tr>
+												<tr>
+													<td align="left">download_time</td>
+													<td align="left">Download</td>
+													<td align="left">number</td>
+													<td align="left">(Optional) responseEnd - responseStart</td>
+												</tr>
+										</tbody></table>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -3220,7 +3495,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L1504">index.ts:1504</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L1522">index.ts:1522</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3247,7 +3522,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L2376">index.ts:2376</a></li>
+									<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L2510">index.ts:2510</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3301,7 +3576,7 @@
 												<li class="tsd-description">
 													<aside class="tsd-sources">
 														<ul>
-															<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L2384">index.ts:2384</a></li>
+															<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L2518">index.ts:2518</a></li>
 														</ul>
 													</aside>
 													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -3317,7 +3592,7 @@
 												<li class="tsd-description">
 													<aside class="tsd-sources">
 														<ul>
-															<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d13d3d8/src/index.ts#L2383">index.ts:2383</a></li>
+															<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/8395f06/src/index.ts#L2517">index.ts:2517</a></li>
 														</ul>
 													</aside>
 													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -3344,6 +3619,51 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/BrowserInfo.html" class="tsd-kind-icon">Browser<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/DefineListeners.html" class="tsd-kind-icon">Define<wbr>Listeners</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/IsNumberOptions.html" class="tsd-kind-icon">Is<wbr>Number<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/RepeatUntilOptions.html" class="tsd-kind-icon">Repeat<wbr>Until<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/UrlParams.html" class="tsd-kind-icon">Url<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/ZResIsValidResOptions.html" class="tsd-kind-icon">ZRes<wbr>IsValid<wbr>Res<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/ZResResponse.html" class="tsd-kind-icon">ZRes<wbr>Response</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="modules.html#AnyFunction" class="tsd-kind-icon">Any<wbr>Function</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="modules.html#DebounceFunc" class="tsd-kind-icon">Debounce<wbr>Func</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="modules.html#LoadScriptReturns" class="tsd-kind-icon">Load<wbr>Script<wbr>Returns</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="modules.html#TestUa" class="tsd-kind-icon">Test<wbr>Ua</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="modules.html#TestVs" class="tsd-kind-icon">Test<wbr>Vs</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="modules.html#ThrottleFunc" class="tsd-kind-icon">Throttle<wbr>Func</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="modules.html#simpleObject" class="tsd-kind-icon">simple<wbr>Object</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="modules.html#simpleType" class="tsd-kind-icon">simple<wbr>Type</a>
+					</li>
 					<li class=" tsd-kind-function">
 						<a href="modules.html#addClass" class="tsd-kind-icon">add<wbr>Class</a>
 					</li>
@@ -3492,6 +3812,9 @@
 						<a href="modules.html#isValidEmail" class="tsd-kind-icon">is<wbr>Valid<wbr>Email</a>
 					</li>
 					<li class=" tsd-kind-function">
+						<a href="modules.html#isValidHttpUrl" class="tsd-kind-icon">is<wbr>Valid<wbr>Http<wbr>Url</a>
+					</li>
+					<li class=" tsd-kind-function">
 						<a href="modules.html#isValidPhoneNumber" class="tsd-kind-icon">is<wbr>Valid<wbr>Phone<wbr>Number</a>
 					</li>
 					<li class=" tsd-kind-function">
@@ -3569,6 +3892,9 @@
 	<div class="container">
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+			</ul>
 		</div>
 	</div>
 </footer>

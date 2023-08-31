@@ -130,6 +130,7 @@
 							<li><a href="#getdomain">getDomain</a></li>
 							<li><a href="#updatequeryparam">updateQueryParam</a></li>
 							<li><a href="#isvalidurl">isValidUrl</a></li>
+							<li><a href="#isvalidhttpurl">isValidHttpUrl</a></li>
 						</ul>
 					</li>
 					<li><a href="#cache-data">Cache Data</a><ul>
@@ -498,12 +499,24 @@
 				<a href="#isvalidurl" id="isvalidurl" style="color: inherit; text-decoration: none;">
 					<h4>isValidUrl</h4>
 				</a>
-				<p>Checks if the given string is a valid URL, including scheme URLs.</p>
+				<p>Checks if the given string is a valid URL, including <strong>scheme URLs</strong>.</p>
 				<pre><code class="language-js"><span style="color: #795E26">isValidUrl</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;https://www.example.com&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// true</span>
 <span style="color: #795E26">isValidUrl</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;http://example.com/path/exx/ss&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// true</span>
 <span style="color: #795E26">isValidUrl</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;https://www.example.com/?q=hello&amp;age=24#world&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// true</span>
 <span style="color: #795E26">isValidUrl</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;http://www.example.com/#world?id=9&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// true</span>
 <span style="color: #795E26">isValidUrl</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;ftp://example.com&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// true</span>
+</code></pre>
+				<p>If you are specifically checking for HTTP/HTTPS URLs, it is recommended to use the <code>isValidHttpUrl</code> function instead.
+				The <code>isValidUrl</code> function matches all scheme URLs, including FTP and other non-HTTP schemes.</p>
+				<a href="#isvalidhttpurl" id="isvalidhttpurl" style="color: inherit; text-decoration: none;">
+					<h4>isValidHttpUrl</h4>
+				</a>
+				<p>Check if the given string is a valid HTTP/HTTPS URL.</p>
+				<pre><code class="language-js"><span style="color: #795E26">isValidHttpUrl</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;https://www.example.com&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// true</span>
+<span style="color: #795E26">isValidHttpUrl</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;http://example.com/path/exx/ss&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// true</span>
+<span style="color: #795E26">isValidHttpUrl</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;https://www.example.com/?q=hello&amp;age=24#world&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// true</span>
+<span style="color: #795E26">isValidHttpUrl</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;http://www.example.com/#world?id=9&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// true</span>
+<span style="color: #795E26">isValidHttpUrl</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;ftp://example.com&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// false</span>
 </code></pre>
 				<a href="#cache-data" id="cache-data" style="color: inherit; text-decoration: none;">
 					<h3>Cache Data</h3>
@@ -764,11 +777,13 @@
 				<a href="#getperformance" id="getperformance" style="color: inherit; text-decoration: none;">
 					<h4>getPerformance</h4>
 				</a>
-				<p>Get page load time(PerformanceTiming).</p>
-				<!-- ZH: 获取页面加载相关的各项数据 -->
+				<p>Get page load time(<code>PerformanceNavigationTiming</code>).</p>
+				<p>This function uses the <a href="https://developer.mozilla.org/en-US/docs/Web/API/PerformanceNavigationTiming"><code>PerformanceNavigationTiming</code></a> API to get page load time data.
+					The <code>PerformanceNavigationTiming</code> API provides more accurate and detailed information about page load time than the deprecated <a href="https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming"><code>PerformanceTiming</code></a> API.
+				If you are using an older browser that does not support <code>PerformanceNavigationTiming</code>, you can still use the <code>PerformanceTiming</code> API by using the previous version of this library (<a href="https://www.npmjs.com/package/mazey/v/3.9.7"><code>v3.9.7</code></a>).</p>
 				<p>Usage:</p>
-				<pre><code><span style="color: #008000">// `camelCase：false` (Default) Return underline data.</span>
-<span style="color: #008000">// `camelCase：true` Return hump data.</span>
+				<pre><code><span style="color: #008000">// `camelCase：false` (Default) Return underline(`a_b`) data.</span>
+<span style="color: #008000">// `camelCase：true` Return hump(`aB`) data.</span>
 <span style="color: #795E26">getPerformance</span><span style="color: #000000">()</span>
 <span style="color: #000000"> .</span><span style="color: #795E26">then</span><span style="color: #000000">(</span><span style="color: #001080">res</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
 <span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #267F99">JSON</span><span style="color: #000000">.</span><span style="color: #795E26">stringify</span><span style="color: #000000">(</span><span style="color: #001080">res</span><span style="color: #000000">));</span>
@@ -776,7 +791,7 @@
 <span style="color: #000000"> .</span><span style="color: #795E26">catch</span><span style="color: #000000">(</span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #001080">error</span><span style="color: #000000">);</span>
 </code></pre>
 				<p>Output:</p>
-				<pre><code><span style="color: #000000">{</span><span style="color: #A31515">&quot;os&quot;</span><span style="color: #000000">:</span><span style="color: #A31515">&quot;ios&quot;</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;os_version&quot;</span><span style="color: #000000">:</span><span style="color: #A31515">&quot;13_2_3&quot;</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;device_type&quot;</span><span style="color: #000000">:</span><span style="color: #A31515">&quot;phone&quot;</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;network&quot;</span><span style="color: #000000">:</span><span style="color: #A31515">&quot;4g&quot;</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;unload_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">0</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;redirect_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">0</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;dns_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">0</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;tcp_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">0</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;response_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">289</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;download_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">762</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;first_paint_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">469</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;first_contentful_paint_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">469</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;domready_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">1318</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;onload_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">2767</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;white_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">299</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;render_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">2768</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;decoded_body_size&quot;</span><span style="color: #000000">:</span><span style="color: #098658">979570</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;encoded_body_size&quot;</span><span style="color: #000000">:</span><span style="color: #098658">324938</span><span style="color: #000000">}</span>
+				<pre><code><span style="color: #000000">{</span><span style="color: #A31515">&quot;source&quot;</span><span style="color: #000000">:</span><span style="color: #A31515">&quot;PerformanceNavigationTiming&quot;</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;os&quot;</span><span style="color: #000000">:</span><span style="color: #A31515">&quot;others&quot;</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;os_version&quot;</span><span style="color: #000000">:</span><span style="color: #A31515">&quot;&quot;</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;device_type&quot;</span><span style="color: #000000">:</span><span style="color: #A31515">&quot;pc&quot;</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;network&quot;</span><span style="color: #000000">:</span><span style="color: #A31515">&quot;4g&quot;</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;screen_direction&quot;</span><span style="color: #000000">:</span><span style="color: #A31515">&quot;&quot;</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;unload_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">0</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;redirect_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">0</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;dns_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">0</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;tcp_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">0</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;ssl_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">0</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;response_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">2</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;download_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">2</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;first_paint_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">288</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;first_contentful_paint_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">288</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;dom_ready_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">0</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;onload_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">0</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;white_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">0</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;render_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">0</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;decoded_body_size&quot;</span><span style="color: #000000">:</span><span style="color: #098658">718</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;encoded_body_size&quot;</span><span style="color: #000000">:</span><span style="color: #098658">718</span><span style="color: #000000">}</span>
 </code></pre>
 				<p>Results:</p>
 				<table>
@@ -813,8 +828,8 @@
 							<td align="left">responseStart - navigationStart</td>
 						</tr>
 						<tr>
-							<td align="left">domready_time</td>
-							<td align="left">DomReady</td>
+							<td align="left">dom_ready_time</td>
+							<td align="left">Dom Ready</td>
 							<td align="left">number</td>
 							<td align="left">domContentLoadedEventStart - navigationStart</td>
 						</tr>
@@ -855,9 +870,6 @@
 							<td align="left">(Optional) responseEnd - responseStart</td>
 						</tr>
 				</tbody></table>
-				<!-- @param {boolean} camelCase -- false（默认） 以下划线形式返回数据 true 以驼峰形式返回数据
-@returns {Promise<object>} 加载数据
-@category Web Performance -->
 				<a href="#debug" id="debug" style="color: inherit; text-decoration: none;">
 					<h3>Debug</h3>
 				</a>
@@ -990,6 +1002,51 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/BrowserInfo.html" class="tsd-kind-icon">Browser<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/DefineListeners.html" class="tsd-kind-icon">Define<wbr>Listeners</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/IsNumberOptions.html" class="tsd-kind-icon">Is<wbr>Number<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/RepeatUntilOptions.html" class="tsd-kind-icon">Repeat<wbr>Until<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/UrlParams.html" class="tsd-kind-icon">Url<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/ZResIsValidResOptions.html" class="tsd-kind-icon">ZRes<wbr>IsValid<wbr>Res<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/ZResResponse.html" class="tsd-kind-icon">ZRes<wbr>Response</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="modules.html#AnyFunction" class="tsd-kind-icon">Any<wbr>Function</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="modules.html#DebounceFunc" class="tsd-kind-icon">Debounce<wbr>Func</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="modules.html#LoadScriptReturns" class="tsd-kind-icon">Load<wbr>Script<wbr>Returns</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="modules.html#TestUa" class="tsd-kind-icon">Test<wbr>Ua</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="modules.html#TestVs" class="tsd-kind-icon">Test<wbr>Vs</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="modules.html#ThrottleFunc" class="tsd-kind-icon">Throttle<wbr>Func</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="modules.html#simpleObject" class="tsd-kind-icon">simple<wbr>Object</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="modules.html#simpleType" class="tsd-kind-icon">simple<wbr>Type</a>
+					</li>
 					<li class=" tsd-kind-function">
 						<a href="modules.html#addClass" class="tsd-kind-icon">add<wbr>Class</a>
 					</li>
@@ -1138,6 +1195,9 @@
 						<a href="modules.html#isValidEmail" class="tsd-kind-icon">is<wbr>Valid<wbr>Email</a>
 					</li>
 					<li class=" tsd-kind-function">
+						<a href="modules.html#isValidHttpUrl" class="tsd-kind-icon">is<wbr>Valid<wbr>Http<wbr>Url</a>
+					</li>
+					<li class=" tsd-kind-function">
 						<a href="modules.html#isValidPhoneNumber" class="tsd-kind-icon">is<wbr>Valid<wbr>Phone<wbr>Number</a>
 					</li>
 					<li class=" tsd-kind-function">
@@ -1215,6 +1275,9 @@
 	<div class="container">
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+			</ul>
 		</div>
 	</div>
 </footer>
