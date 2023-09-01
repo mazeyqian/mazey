@@ -3,16 +3,8 @@
  */
 /* eslint-disable no-undef */
 /* eslint-disable quotes */
-// Util
-
 import { isNumber, camelCaseToKebabCase, camelCase2Underscore, mTrim, deepCopyObject, isJsonString, generateRndNum, formatDate, isValidData, isValidEmail, convert10To26, getFriendlyInterval, unsanitize } from '../lib/index.esm';
 
-// isNumber(123); // true
-// isNumber('123'); // false
-// isNumber(Infinity); // false
-// isNumber(Infinity, { isInfinityAsNumber: true }); // true
-// isNumber(NaN); // false
-// isNumber(NaN, { isNaNAsNumber: true, isInfinityAsNumber: true }); // true
 test('isNumber: Is -1/123/Infinity/NaN Number?', () => {
   expect(isNumber(-1)).toBe(true);
   expect(isNumber(123)).toBe(true);
@@ -79,11 +71,6 @@ test(`isValidEmail: Check the valid email?`, () => {
 });
 
 // Use Jest to test convert10To26 in a `test`
-// console.log(convert10To26(1)); // a
-// console.log(convert10To26(26)); // z
-// console.log(convert10To26(27)); // aa
-// console.log(convert10To26(52)); // az
-// console.log(convert10To26(53)); // ba
 test('convert10To26: Convert 1 to "a"?', () => {
   expect(convert10To26(1)).toBe('a');
   expect(convert10To26(26)).toBe('z');
@@ -93,9 +80,6 @@ test('convert10To26: Convert 1 to "a"?', () => {
 });
 
 // Use Jest to test getFriendlyInterval in a `test`
-// console.log('getFriendlyInterval:', getFriendlyInterval(new Date('2020-03-28 00:09:27'), new Date('2023-04-18 10:54:00'), { type: 'd' })); // 1116
-// console.log('getFriendlyInterval:', getFriendlyInterval(1585325367000, 1681786440000, { type: 'text' })); // 1116 天 10 时 44 分 33 秒
-// console.log('getFriendlyInterval:', getFriendlyInterval('2020-03-28 00:09:27', '2023-04-18 10:54:00', { type: 'text' })); // 1116 天 10 时 44 分 33 秒
 test('getFriendlyInterval: Get 1116 days?', () => {
   expect(getFriendlyInterval(new Date('2020-03-28 00:09:27'), new Date('2023-04-18 10:54:00'), { type: 'd' })).toBe(1116);
   expect(getFriendlyInterval(1585325367000, 1681786440000, { type: 'text' })).toBe('1116 天 10 时 44 分 33 秒');

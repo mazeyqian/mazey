@@ -27,6 +27,7 @@
     ],
     "spaced-comment": ["warn", "always"],
     "object-curly-spacing": ["warn", "always"],
-    "array-bracket-spacing": ["warn", "always"]
+    "array-bracket-spacing": ["warn", "always"],
+    "@typescript-eslint/no-non-null-assertion": "off"
   }
 }
