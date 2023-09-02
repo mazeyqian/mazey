@@ -135,14 +135,6 @@ loadScript(
   );
 ```
 
-<!-- @param {string} url -- JavaScript 资源路径
-@param {string} options.id -- DOM ID
-@param {function} options.callback -- 加载后回调函数
-@param {number} options.timeout -- 超时时长
-@param {boolean} options.isDefer -- 是否添加 defer 标签
-@returns {Promise<boolean>} -- true 成功
-@category Load Resource -->
-
 #### loadScriptIfUndefined
 
 Load a script from the given URL if it (`window['attribute']`) has not already been loaded.
@@ -182,11 +174,6 @@ loadCSS(
   );
 ```
 
-<!-- @param {string} url -- css资源路径
-@param {string} options.id -- link标签id
-@returns {Promise<boolean>} true -- 加载成功
-@category Load Resource -->
-
 #### loadImage
 
 Load an image from the given URL.
@@ -221,10 +208,6 @@ windowLoaded(30) // second
   });
 ```
 
-<!-- @param {number} timeout 超时时间 / 单位：秒
-@returns {Promise<string>} document is loaded? 'complete' 'load' / 'timeout'
-@category Load Resource -->
-
 ### Util
 
 #### isNumber
@@ -243,12 +226,6 @@ isNumber(NaN); // false
 isNumber(NaN, { isNaNAsNumber: true, isInfinityAsNumber: true }); // true
 ```
 
-<!-- @param {*} num 被判断的值
-@param {boolean} options.isNaNAsNumber 是否 NaN 算数字（默认不算）
-@param {boolean} options.isInfinityAsNumber 是否 无限 算数字（默认不算）
-@returns {boolean} true 是数字
-@category Util -->
-
 #### isJSONString
 
 Check whether it is a valid JSON string.
@@ -266,10 +243,6 @@ Output:
 false
 true
 ```
-
-<!-- @param {string} str The string to check.
-@returns {boolean} Return the result of checking.
-@category Util -->
 
 #### isValidData
 
@@ -303,12 +276,6 @@ isValidDataResB: true
 isValidDataResC: false
 ```
 
-<!-- @param {any} data Original Data
-@param {string[]} attributes Data Attributes
-@param {any} validValue Given Value for verifying.
-@returns {boolean} Return TRUE if the data is valid.
-@category Util -->
-
 #### genRndNumString
 
 Produce a random string of number, `genRndNumString(7)` => '7658495'.
@@ -340,11 +307,6 @@ Number formatDate value: 2022-01-11 14:07:15
 Date formatDate value: 02/11/2014
 ```
 
-<!-- @param {Date|number|string} dateIns Original Date
-@param {string} format Format String
-@returns {string} Return the formatted date string.
-@category Util -->
-
 #### debounce
 
 Debounce
@@ -356,8 +318,6 @@ const foo = debounce(() => {
   console.log('The debounced function will only be invoked in 1000 milliseconds, the other invoking will disappear during the wait time.');
 }, 1000, true);
 ```
-
-<!-- @category Util -->
 
 #### throttle
 
@@ -373,8 +333,6 @@ const foo = throttle(() => {
 
 Reference: [Lodash](https://lodash.com/docs/4.17.15#throttle)
 
-<!-- @category Util -->
-
 #### convertCamelToKebab
 
 Transfer CamelCase to KebabCase.
@@ -384,10 +342,6 @@ convertCamelToKebab('ABC'); // a-b-c
 convertCamelToKebab('aBC'); // a-b-c
 ```
 
-<!-- @param {string} camelCase 'aBC' or 'ABC'
-@returns {string} 'a-b-c'
-@category Util -->
-
 #### convertCamelToUnder
 
 Transfer CamelCase to Underscore.
@@ -396,10 +350,6 @@ Transfer CamelCase to Underscore.
 convertCamelToUnder('ABC'); // a_b_c
 convertCamelToUnder('aBC'); // a_b_c
 ```
-
-<!-- @param {string} camelCase 'aBC' or 'ABC'
-@returns {string} 'a_b_c'
-@category Util -->
 
 #### deepCopy
 
@@ -432,10 +382,6 @@ getQueryParam('t3'); // 3
 getQueryParam('t4'); // 4
 ```
 
-<!-- @param {string} param Query param.
-@returns {string} value
-@category URL -->
-
 #### getUrlParam
 
 Returns the value of the specified query parameter in the input URL.
@@ -444,11 +390,6 @@ Returns the value of the specified query parameter in the input URL.
 getUrlParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't3'); // Returns '3'
 getUrlParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't4'); // Returns '4'
 ```
-
-<!-- @param {string} url The URL string.
-@param {string} param The query parameter to retrieve the value for.
-@returns {string|string[]} The value of the specified query parameter, or an empty string if the parameter is not found.
-@category URL -->
 
 #### getHashQueryParam
 
@@ -469,10 +410,6 @@ Output:
 3
 4
 ```
-
-<!-- @param {string} param Query param.
-@returns {string} value
-@category URL -->
 
 #### getDomain
 
@@ -500,10 +437,6 @@ http://example.com:7890
 http://example.com:7890/test/thanks?id=1
 ```
 
-<!-- @param {string} url
-@param {array} rules Object.keys(location), ['href', 'origin', 'protocol', 'host', 'hostname', 'port', 'pathname', 'search', 'hash'], ['hostname', 'pathname'] = 'km.mazey.net/plugins/servlet/mobile'
-@category URL -->
-
 #### updateQueryParam
 
 Update the query param's value of the input URL.
@@ -521,12 +454,6 @@ Output:
 http://example.com/?t1=1&t2=2&t3=three&t4=4
 http://example.com/?t1=1&t2=2&t3=3&t4=four
 ```
-
-<!-- @param {string} url URL string.
-@param {string} param Query param.
-@param {string} value Param's value.
-@returns {string} URL.
-@category URL -->
 
 #### isValidUrl
 
@@ -568,8 +495,6 @@ setCookie('test', '123', 30, 'example.com'); // key value day domain
 getCookie('test'); // 123
 ```
 
-<!-- @category Cache Data -->
-
 #### Storage
 
 Handle Storage (Keep fit for JSON, it can transfer format automatically).
@@ -592,10 +517,6 @@ function mGetLocalStorage (key) {
   return getLocalStorage(`${projectName}_${key}`);
 }
 ```
-
-<!-- @param {string} key 键
-@returns {void} 返回值
-@category Cache Data -->
 
 ### DOM
 
@@ -642,8 +563,6 @@ addStyle(
 // </style>
 ```
 
-<!-- @category DOM -->
-
 #### Class
 
 Modify `class`.
@@ -659,8 +578,6 @@ addClass(dom, 'test');
 removeClass(dom, 'test');
 ```
 
-<!-- @category DOM -->
-
 #### newLine
 
 Make a new line of HTML.
@@ -669,10 +586,6 @@ Make a new line of HTML.
 newLine('a\nb\nc'); // 'a<br />b<br />c'
 newLine('a\n\nbc'); // 'a<br /><br />bc'
 ```
-
-<!-- @param {string} str The string to make a new line.
-@returns {string} A newline with `br`.
-@category DOM -->
 
 ### Calculate and Formula
 
@@ -709,10 +622,6 @@ new Array(1000000).fill(0).forEach(() => {
 });
 console.log(trueCount, falseCount); // 499994 500006
 ```
-
-<!-- @param {number} rate -- 0.1 ~ 1 => 1% ~ 100%
-@returns {boolean} true 命中
-@category Calculate and Formula -->
 
 #### longestComSubstring
 
@@ -788,9 +697,6 @@ const { system, shell } = getBrowserInfo();
 const isMobileQQ = ['android', 'ios'].includes(system) && ['qq_browser', 'qq_app'].includes(shell);
 ```
 
-<!-- @returns 浏览器信息
-@category Browser Information -->
-
 #### isSafePWAEnv
 
 Detect the margin of Safety. Determine if it is a secure PWA environment that it can run.
@@ -808,9 +714,6 @@ Output:
 ```
 true
 ```
-
-<!-- @returns {boolean} true 是
-@category Browser Information -->
 
 ### Web Performance
 
@@ -882,13 +785,6 @@ MazeyLog: I am boolean. true
 MazeyLog: I am number. 123 456
 MazeyLog: I am object. {a: 123, b: 456}
 ```
-
-<!-- @param {string} prefix 前缀
-@param {string} locales A locale string.
-@param {function} logFn The function with Log.
-@param {function} errorFn The function with Error.
-@returns {object} 新实例
-@category Debug -->
 
 ## Contributing
 

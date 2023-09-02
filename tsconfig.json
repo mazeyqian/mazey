@@ -76,6 +76,12 @@
   "typedocOptions": {
     "entryPoints": ["./src"],
     "out": "docs",
+    "excludeNotDocumented": true,
+    "excludeNotDocumentedKinds": ["Property", "Interface", "TypeAlias"],
+    "validation": {
+      "notExported": false,
+      "notDocumented": false
+    },
     "categoryOrder": [
       "Load Resource",
       "Util",
