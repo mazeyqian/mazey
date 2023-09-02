@@ -1,1287 +1,698 @@
-<!doctype html>
-<html class="default no-js">
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>mazey</title>
-	<meta name="description" content="Documentation for mazey">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="assets/css/main.css">
-	<script async src="assets/js/search.js" id="search-script"></script>
-</head>
-<body>
-<header>
-	<div class="tsd-page-toolbar">
-		<div class="container">
-			<div class="table-wrap">
-				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
-					<div class="field">
-						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
-						<input id="tsd-search-field" type="text" />
-					</div>
-					<ul class="results">
-						<li class="state loading">Preparing search index...</li>
-						<li class="state failure">The search index is not available</li>
-					</ul>
-					<a href="index.html" class="title">mazey</a>
-				</div>
-				<div class="table-cell" id="tsd-widgets">
-					<div id="tsd-filter">
-						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
-						<div class="tsd-filter-group">
-							<div class="tsd-select" id="tsd-filter-visibility">
-								<span class="tsd-select-label">All</span>
-								<ul class="tsd-select-list">
-									<li data-value="public">Public</li>
-									<li data-value="protected">Public/Protected</li>
-									<li data-value="private" class="selected">All</li>
-								</ul>
-							</div>
-							<input type="checkbox" id="tsd-filter-inherited" checked />
-							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
-							<input type="checkbox" id="tsd-filter-externals" checked />
-							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
-						</div>
-					</div>
-					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="tsd-page-title">
-		<div class="container">
-			<h1>mazey</h1>
-		</div>
-	</div>
-</header>
+<!DOCTYPE html><html class="default" lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>mazey</title><meta name="description" content="Documentation for mazey"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script defer src="assets/main.js"></script><script async src="assets/search.js" id="tsd-search-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os"</script><header class="tsd-page-toolbar">
+<div class="tsd-toolbar-contents container">
+<div class="table-cell" id="tsd-search" data-base=".">
+<div class="field"><label for="tsd-search-field" class="tsd-widget tsd-toolbar-icon search no-caption"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M15.7824 13.833L12.6666 10.7177C12.5259 10.5771 12.3353 10.499 12.1353 10.499H11.6259C12.4884 9.39596 13.001 8.00859 13.001 6.49937C13.001 2.90909 10.0914 0 6.50048 0C2.90959 0 0 2.90909 0 6.49937C0 10.0896 2.90959 12.9987 6.50048 12.9987C8.00996 12.9987 9.39756 12.4863 10.5008 11.6239V12.1332C10.5008 12.3332 10.5789 12.5238 10.7195 12.6644L13.8354 15.7797C14.1292 16.0734 14.6042 16.0734 14.8948 15.7797L15.7793 14.8954C16.0731 14.6017 16.0731 14.1267 15.7824 13.833ZM6.50048 10.499C4.29094 10.499 2.50018 8.71165 2.50018 6.49937C2.50018 4.29021 4.28781 2.49976 6.50048 2.49976C8.71001 2.49976 10.5008 4.28708 10.5008 6.49937C10.5008 8.70852 8.71314 10.499 6.50048 10.499Z" fill="var(--color-text)"></path></svg></label><input type="text" id="tsd-search-field" aria-label="Search"/></div>
+<div class="field">
+<div id="tsd-toolbar-links"></div></div>
+<ul class="results">
+<li class="state loading">Preparing search index...</li>
+<li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">mazey</a></div>
+<div class="table-cell" id="tsd-widgets"><a href="#" class="tsd-widget tsd-toolbar-icon menu no-caption" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="2" fill="var(--color-text)"></rect><rect x="1" y="7" width="14" height="2" fill="var(--color-text)"></rect><rect x="1" y="11" width="14" height="2" fill="var(--color-text)"></rect></svg></a></div></div></header>
 <div class="container container-main">
-	<div class="row">
-		<div class="col-8 col-content">
-			<div class="tsd-panel tsd-typography">
-				<p>English | <a href="https://github.com/mazeyqian/mazey/blob/master/README_ZH.md">简体中文</a></p>
-				<a href="#mazey" id="mazey" style="color: inherit; text-decoration: none;">
-					<h1>mazey</h1>
-				</a>
-				<p><a href="https://npmjs.org/package/mazey"><img src="https://img.shields.io/npm/v/mazey" alt="NPM version"></a>
-				<a href="https://github.com/mazeyqian/mazey"><img src="https://img.shields.io/npm/l/mazey" alt="l"></a></p>
-				<p><strong>mazey</strong> is a functional library for daily front-end work. There are already many excellent libraries for front-end development, but creating a file named <code>utils.js</code> or <code>common.js</code> is generally used to supply common functions in projects. It&#39;s boring to copy similar functions across multiple projects. That&#39;s why I&#39;ve created this library and will keep updating it to serve as a reliable resource for front-end needs.</p>
-				<a href="#install" id="install" style="color: inherit; text-decoration: none;">
-					<h2>Install</h2>
-				</a>
-				<p>Use mazey via <a href="https://www.npmjs.com/package/mazey">npm</a>.</p>
-				<pre><code><span style="color: #001080">npm</span><span style="color: #000000"> </span><span style="color: #001080">install</span><span style="color: #000000"> </span><span style="color: #001080">mazey</span><span style="color: #000000"> --</span><span style="color: #001080">save</span>
-</code></pre>
-				<p>Use mazey from CDN.</p>
-				<pre><code><span style="color: #000000">&lt;</span><span style="color: #001080">script</span><span style="color: #000000"> </span><span style="color: #001080">type</span><span style="color: #000000">=</span><span style="color: #A31515">&quot;text/javascript&quot;</span><span style="color: #000000"> </span><span style="color: #001080">src</span><span style="color: #000000">=</span><span style="color: #A31515">&quot;//i.mazey.net/mazey/lib/mazey.min.js&quot;</span><span style="color: #000000">&gt;&lt;/</span><span style="color: #267F99">script</span><span style="color: #000000">&gt;</span>
-</code></pre>
-				<p>Of course, you can also download this file and serve it yourself. The file locates at the <code>lib/mazey.min.js</code>.</p>
-				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
-					<h2>Usage</h2>
-				</a>
-				<p>Example: Use a function to load JavaScript script.</p>
-				<p>Import from <a href="https://www.npmjs.com/package/mazey">npm</a>.</p>
-				<pre><code><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">isNumber</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;mazey&#039;</span><span style="color: #000000">;</span>
+<div class="col-content">
+<div class="tsd-page-title">
+<h2>mazey</h2></div>
+<div class="tsd-panel tsd-typography"><p>English | <a href="https://github.com/mazeyqian/mazey/blob/master/README_ZH.md">简体中文</a></p>
+<a id="md:mazey" class="tsd-anchor"></a><h1><a href="#md:mazey">mazey</a></h1><p><a href="https://npmjs.org/package/mazey"><img src="https://img.shields.io/npm/v/mazey" alt="NPM version"></a>
+<a href="https://github.com/mazeyqian/mazey"><img src="https://img.shields.io/npm/l/mazey" alt="l"></a></p>
+<p><strong>mazey</strong> is a functional library for daily front-end work. There are already many excellent libraries for front-end development, but creating a file named <code>utils.js</code> or <code>common.js</code> is generally used to supply common functions in projects. It&#39;s boring to copy similar functions across multiple projects. That&#39;s why I&#39;ve created this library and will keep updating it to serve as a reliable resource for front-end needs.</p>
+<a id="md:install" class="tsd-anchor"></a><h2><a href="#md:install">Install</a></h2><p>Use mazey via <a href="https://www.npmjs.com/package/mazey">npm</a>.</p>
+<pre><code><span class="hl-0">npm</span><span class="hl-1"> </span><span class="hl-0">install</span><span class="hl-1"> </span><span class="hl-0">mazey</span><span class="hl-1"> --</span><span class="hl-0">save</span>
+</code><button>Copy</button></pre>
+<p>Use mazey from CDN.</p>
+<pre><code><span class="hl-1">&lt;</span><span class="hl-0">script</span><span class="hl-1"> </span><span class="hl-0">type</span><span class="hl-1">=</span><span class="hl-2">&quot;text/javascript&quot;</span><span class="hl-1"> </span><span class="hl-0">src</span><span class="hl-1">=</span><span class="hl-2">&quot;//i.mazey.net/mazey/lib/mazey.min.js&quot;</span><span class="hl-1">&gt;&lt;/</span><span class="hl-3">script</span><span class="hl-1">&gt;</span>
+</code><button>Copy</button></pre>
+<p>Of course, you can also download this file and serve it yourself. The file locates at the <code>lib/mazey.min.js</code>.</p>
+<a id="md:usage" class="tsd-anchor"></a><h2><a href="#md:usage">Usage</a></h2><p>Example: Use a function to load JavaScript script.</p>
+<p>Import from <a href="https://www.npmjs.com/package/mazey">npm</a>.</p>
+<pre><code><span class="hl-4">import</span><span class="hl-1"> { </span><span class="hl-0">isNumber</span><span class="hl-1"> } </span><span class="hl-4">from</span><span class="hl-1"> </span><span class="hl-2">&#39;mazey&#39;</span><span class="hl-1">;</span><br/><br/><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-6">x</span><span class="hl-1"> = </span><span class="hl-5">Infinity</span><span class="hl-1">;</span><br/><span class="hl-7">isNumber</span><span class="hl-1">(</span><span class="hl-0">x</span><span class="hl-1">); </span><span class="hl-8">// &lt;=&gt; typeof x === &#39;string&#39; &amp;&amp; !isNaN(x) &amp;&amp; isFinite(x)</span><br/><span class="hl-8">// Output: false</span>
+</code><button>Copy</button></pre>
+<p>Import from CDN.</p>
+<pre><code><span class="hl-1">&lt;</span><span class="hl-0">script</span><span class="hl-1"> </span><span class="hl-0">type</span><span class="hl-1">=</span><span class="hl-2">&quot;text/javascript&quot;</span><span class="hl-1"> </span><span class="hl-0">src</span><span class="hl-1">=</span><span class="hl-2">&quot;//i.mazey.net/mazey/lib/mazey.min.js&quot;</span><span class="hl-1">&gt;&lt;/</span><span class="hl-3">script</span><span class="hl-1">&gt;</span><br/><span class="hl-1">&lt;</span><span class="hl-3">script</span><span class="hl-1">&gt;</span><br/><span class="hl-1">  </span><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-6">x</span><span class="hl-1"> = </span><span class="hl-5">Infinity</span><span class="hl-1">;</span><br/><span class="hl-1">  </span><span class="hl-0">mazey</span><span class="hl-1">.</span><span class="hl-7">isNumber</span><span class="hl-1">(</span><span class="hl-0">x</span><span class="hl-1">, { </span><span class="hl-0">isInfinityAsNumber:</span><span class="hl-1"> </span><span class="hl-5">true</span><span class="hl-1"> }); </span><span class="hl-8">// &lt;=&gt; typeof x === &#39;string&#39; &amp;&amp; !isNaN(x)</span><br/><span class="hl-1">  </span><span class="hl-8">// Output: true</span><br/><span class="hl-1">&lt;/</span><span class="hl-0">script</span><span class="hl-1">&gt;</span>
+</code><button>Copy</button></pre>
+<a id="md:api-examples" class="tsd-anchor"></a><h2><a href="#md:api-examples">API Examples</a></h2><p>There are some examples maintained by hand below. For more information, please check the <a href="https://mazey.cn/t/m">full documentation</a>.</p>
+<p><strong>Table of Contents</strong></p>
+<!-- toc - begin -->
+<ul>
+<li>Generated with ❤️</li>
+<li><a href="#load-resource">Load Resource</a><ul>
+<li><a href="#loadscript">loadScript</a></li>
+<li><a href="#loadscriptifundefined">loadScriptIfUndefined</a></li>
+<li><a href="#loadcss">loadCSS</a></li>
+<li><a href="#loadimage">loadImage</a></li>
+<li><a href="#windowloaded">windowLoaded</a></li>
+</ul>
+</li>
+<li><a href="#util">Util</a><ul>
+<li><a href="#isnumber">isNumber</a></li>
+<li><a href="#isjsonstring">isJSONString</a></li>
+<li><a href="#isvaliddata">isValidData</a></li>
+<li><a href="#genrndnumstring">genRndNumString</a></li>
+<li><a href="#formatdate">formatDate</a></li>
+<li><a href="#debounce">debounce</a></li>
+<li><a href="#throttle">throttle</a></li>
+<li><a href="#convertcameltokebab">convertCamelToKebab</a></li>
+<li><a href="#convertcameltounder">convertCamelToUnder</a></li>
+<li><a href="#deepcopy">deepCopy</a></li>
+</ul>
+</li>
+<li><a href="#url">URL</a><ul>
+<li><a href="#getqueryparam">getQueryParam</a></li>
+<li><a href="#geturlparam">getUrlParam</a></li>
+<li><a href="#gethashqueryparam">getHashQueryParam</a></li>
+<li><a href="#getdomain">getDomain</a></li>
+<li><a href="#updatequeryparam">updateQueryParam</a></li>
+<li><a href="#isvalidurl">isValidUrl</a></li>
+<li><a href="#isvalidhttpurl">isValidHttpUrl</a></li>
+</ul>
+</li>
+<li><a href="#cache-data">Cache Data</a><ul>
+<li><a href="#cookie">Cookie</a></li>
+<li><a href="#storage">Storage</a></li>
+</ul>
+</li>
+<li><a href="#dom">DOM</a><ul>
+<li><a href="#addstyle">addStyle</a></li>
+<li><a href="#class">Class</a></li>
+<li><a href="#newline">newLine</a></li>
+</ul>
+</li>
+<li><a href="#calculate-and-formula">Calculate and Formula</a><ul>
+<li><a href="#inrate">inRate</a></li>
+<li><a href="#longestcomsubstring">longestComSubstring</a></li>
+<li><a href="#longestcomsubsequence">longestComSubsequence</a></li>
+</ul>
+</li>
+<li><a href="#browser-information">Browser Information</a><ul>
+<li><a href="#getbrowserinfo">getBrowserInfo</a></li>
+<li><a href="#issafepwaenv">isSafePWAEnv</a></li>
+</ul>
+</li>
+<li><a href="#web-performance">Web Performance</a><ul>
+<li><a href="#getperformance">getPerformance</a></li>
+</ul>
+</li>
+<li><a href="#debug">Debug</a><ul>
+<li><a href="#gencustomconsole">genCustomConsole</a><!-- toc - end --></li>
+</ul>
+</li>
+</ul>
+<a id="md:load-resource" class="tsd-anchor"></a><h3><a href="#md:load-resource">Load Resource</a></h3><a id="md:loadscript" class="tsd-anchor"></a><h4><a href="#md:loadscript">loadScript</a></h4><p>Load a JavaScript file from the server and execute it.</p>
+<!-- ZH: 动态加载 JavaScript 文件 -->
 
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">x</span><span style="color: #000000"> = </span><span style="color: #0000FF">Infinity</span><span style="color: #000000">;</span>
-<span style="color: #795E26">isNumber</span><span style="color: #000000">(</span><span style="color: #001080">x</span><span style="color: #000000">); </span><span style="color: #008000">// &lt;=&gt; typeof x === &#039;string&#039; &amp;&amp; !isNaN(x) &amp;&amp; isFinite(x)</span>
-<span style="color: #008000">// Output: false</span>
-</code></pre>
-				<p>Import from CDN.</p>
-				<pre><code><span style="color: #000000">&lt;</span><span style="color: #001080">script</span><span style="color: #000000"> </span><span style="color: #001080">type</span><span style="color: #000000">=</span><span style="color: #A31515">&quot;text/javascript&quot;</span><span style="color: #000000"> </span><span style="color: #001080">src</span><span style="color: #000000">=</span><span style="color: #A31515">&quot;//i.mazey.net/mazey/lib/mazey.min.js&quot;</span><span style="color: #000000">&gt;&lt;/</span><span style="color: #267F99">script</span><span style="color: #000000">&gt;</span>
-<span style="color: #000000">&lt;</span><span style="color: #267F99">script</span><span style="color: #000000">&gt;</span>
-<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">x</span><span style="color: #000000"> = </span><span style="color: #0000FF">Infinity</span><span style="color: #000000">;</span>
-<span style="color: #000000">  </span><span style="color: #001080">mazey</span><span style="color: #000000">.</span><span style="color: #795E26">isNumber</span><span style="color: #000000">(</span><span style="color: #001080">x</span><span style="color: #000000">, { </span><span style="color: #001080">isInfinityAsNumber:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000"> }); </span><span style="color: #008000">// &lt;=&gt; typeof x === &#039;string&#039; &amp;&amp; !isNaN(x)</span>
-<span style="color: #000000">  </span><span style="color: #008000">// Output: true</span>
-<span style="color: #000000">&lt;/</span><span style="color: #001080">script</span><span style="color: #000000">&gt;</span>
-</code></pre>
-				<a href="#api-examples" id="api-examples" style="color: inherit; text-decoration: none;">
-					<h2>API Examples</h2>
-				</a>
-				<p>There are some examples maintained by hand below. For more information, please check the <a href="https://mazey.cn/t/m">full documentation</a>.</p>
-				<p><strong>Table of Contents</strong></p>
-				<!-- toc - begin -->
-				<ul>
-					<li>Generated with ❤️</li>
-					<li><a href="#load-resource">Load Resource</a><ul>
-							<li><a href="#loadscript">loadScript</a></li>
-							<li><a href="#loadscriptifundefined">loadScriptIfUndefined</a></li>
-							<li><a href="#loadcss">loadCSS</a></li>
-							<li><a href="#loadimage">loadImage</a></li>
-							<li><a href="#windowloaded">windowLoaded</a></li>
-						</ul>
-					</li>
-					<li><a href="#util">Util</a><ul>
-							<li><a href="#isnumber">isNumber</a></li>
-							<li><a href="#isjsonstring">isJSONString</a></li>
-							<li><a href="#isvaliddata">isValidData</a></li>
-							<li><a href="#genrndnumstring">genRndNumString</a></li>
-							<li><a href="#formatdate">formatDate</a></li>
-							<li><a href="#debounce">debounce</a></li>
-							<li><a href="#throttle">throttle</a></li>
-							<li><a href="#convertcameltokebab">convertCamelToKebab</a></li>
-							<li><a href="#convertcameltounder">convertCamelToUnder</a></li>
-							<li><a href="#deepcopy">deepCopy</a></li>
-						</ul>
-					</li>
-					<li><a href="#url">URL</a><ul>
-							<li><a href="#getqueryparam">getQueryParam</a></li>
-							<li><a href="#geturlparam">getUrlParam</a></li>
-							<li><a href="#gethashqueryparam">getHashQueryParam</a></li>
-							<li><a href="#getdomain">getDomain</a></li>
-							<li><a href="#updatequeryparam">updateQueryParam</a></li>
-							<li><a href="#isvalidurl">isValidUrl</a></li>
-							<li><a href="#isvalidhttpurl">isValidHttpUrl</a></li>
-						</ul>
-					</li>
-					<li><a href="#cache-data">Cache Data</a><ul>
-							<li><a href="#cookie">Cookie</a></li>
-							<li><a href="#storage">Storage</a></li>
-						</ul>
-					</li>
-					<li><a href="#dom">DOM</a><ul>
-							<li><a href="#addstyle">addStyle</a></li>
-							<li><a href="#class">Class</a></li>
-							<li><a href="#newline">newLine</a></li>
-						</ul>
-					</li>
-					<li><a href="#calculate-and-formula">Calculate and Formula</a><ul>
-							<li><a href="#inrate">inRate</a></li>
-							<li><a href="#longestcomsubstring">longestComSubstring</a></li>
-							<li><a href="#longestcomsubsequence">longestComSubsequence</a></li>
-						</ul>
-					</li>
-					<li><a href="#browser-information">Browser Information</a><ul>
-							<li><a href="#getbrowserinfo">getBrowserInfo</a></li>
-							<li><a href="#issafepwaenv">isSafePWAEnv</a></li>
-						</ul>
-					</li>
-					<li><a href="#web-performance">Web Performance</a><ul>
-							<li><a href="#getperformance">getPerformance</a></li>
-						</ul>
-					</li>
-					<li><a href="#debug">Debug</a><ul>
-							<li><a href="#gencustomconsole">genCustomConsole</a><!-- toc - end --></li>
-						</ul>
-					</li>
-				</ul>
-				<a href="#load-resource" id="load-resource" style="color: inherit; text-decoration: none;">
-					<h3>Load Resource</h3>
-				</a>
-				<a href="#loadscript" id="loadscript" style="color: inherit; text-decoration: none;">
-					<h4>loadScript</h4>
-				</a>
-				<p>Load a JavaScript file from the server and execute it.</p>
-				<!-- ZH: 动态加载 JavaScript 文件 -->
-				<pre><code><span style="color: #795E26">loadScript</span><span style="color: #000000">(</span>
-<span style="color: #000000">    </span><span style="color: #A31515">&#039;http://example.com/static/js/plugin-2.1.1.min.js&#039;</span><span style="color: #000000">,</span>
-<span style="color: #000000">    {</span>
-<span style="color: #000000">      </span><span style="color: #001080">id:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;iamid&#039;</span><span style="color: #000000">, </span><span style="color: #008000">// (Optional) script ID, default none</span>
-<span style="color: #000000">      </span><span style="color: #001080">timeout:</span><span style="color: #000000"> </span><span style="color: #098658">5000</span><span style="color: #000000">, </span><span style="color: #008000">// (Optional) timeout, default `5000`</span>
-<span style="color: #000000">      </span><span style="color: #001080">isDefer:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">, </span><span style="color: #008000">// (Optional) defer, default `false`</span>
-<span style="color: #000000">    }</span>
-<span style="color: #000000">  )</span>
-<span style="color: #000000">  .</span><span style="color: #795E26">then</span><span style="color: #000000">(</span>
-<span style="color: #000000">    </span><span style="color: #001080">res</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
-<span style="color: #000000">      </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">`Load JavaScript script: </span><span style="color: #0000FF">${</span><span style="color: #001080">res</span><span style="color: #0000FF">}</span><span style="color: #A31515">`</span><span style="color: #000000">);</span>
-<span style="color: #000000">    }</span>
-<span style="color: #000000">  )</span>
-<span style="color: #000000">  .</span><span style="color: #795E26">catch</span><span style="color: #000000">(</span>
-<span style="color: #000000">    </span><span style="color: #001080">err</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
-<span style="color: #000000">      </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">error</span><span style="color: #000000">(</span><span style="color: #A31515">`Load JavaScript script: </span><span style="color: #0000FF">${</span><span style="color: #001080">err</span><span style="color: #000000FF">.</span><span style="color: #001080">message</span><span style="color: #0000FF">}</span><span style="color: #A31515">`</span><span style="color: #000000">)</span>
-<span style="color: #000000">    }</span>
-<span style="color: #000000">  );</span>
-</code></pre>
-				<!-- @param {string} url -- JavaScript 资源路径
-@param {string} options.id -- DOM ID
-@param {function} options.callback -- 加载后回调函数
-@param {number} options.timeout -- 超时时长
-@param {boolean} options.isDefer -- 是否添加 defer 标签
-@returns {Promise<boolean>} -- true 成功
-@category Load Resource -->
-				<a href="#loadscriptifundefined" id="loadscriptifundefined" style="color: inherit; text-decoration: none;">
-					<h4>loadScriptIfUndefined</h4>
-				</a>
-				<p>Load a script from the given URL if it (<code>window[&#39;attribute&#39;]</code>) has not already been loaded.</p>
-				<pre><code class="language-js"><span style="color: #795E26">loadScriptIfUndefined</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;jQuery&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;https://example.com/lib/jquery.min.js&#039;</span><span style="color: #000000">)</span>
-<span style="color: #000000">  .</span><span style="color: #795E26">then</span><span style="color: #000000">(() </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
-<span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;jQuery is loaded.&#039;</span><span style="color: #000000">);</span>
-<span style="color: #000000">  })</span>
-<span style="color: #000000">  .</span><span style="color: #795E26">catch</span><span style="color: #000000">(</span><span style="color: #001080">err</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
-<span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;Failed to load jQuery.&#039;</span><span style="color: #000000">, </span><span style="color: #001080">err</span><span style="color: #000000">);</span>
-<span style="color: #000000">  });</span>
-</code></pre>
-				<a href="#loadcss" id="loadcss" style="color: inherit; text-decoration: none;">
-					<h4>loadCSS</h4>
-				</a>
-				<p>Load a CSS file from the server.</p>
-				<!-- ZH: 动态加载 CSS 文件 -->
-				<pre><code><span style="color: #795E26">loadCSS</span><span style="color: #000000">(</span>
-<span style="color: #000000">    </span><span style="color: #A31515">&#039;http://example.com/path/example.css&#039;</span><span style="color: #000000">,</span>
-<span style="color: #000000">    {</span>
-<span style="color: #000000">      </span><span style="color: #001080">id:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;iamid&#039;</span><span style="color: #000000">, </span><span style="color: #008000">// Optional, link ID, default none</span>
-<span style="color: #000000">    }</span>
-<span style="color: #000000">  )</span>
-<span style="color: #000000">  .</span><span style="color: #795E26">then</span><span style="color: #000000">(</span>
-<span style="color: #000000">    </span><span style="color: #001080">res</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
-<span style="color: #000000">      </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">`Load CSS Success: </span><span style="color: #0000FF">${</span><span style="color: #001080">res</span><span style="color: #0000FF">}</span><span style="color: #A31515">`</span><span style="color: #000000">);</span>
-<span style="color: #000000">    }</span>
-<span style="color: #000000">  )</span>
-<span style="color: #000000">  .</span><span style="color: #795E26">catch</span><span style="color: #000000">(</span>
-<span style="color: #000000">    </span><span style="color: #001080">err</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
-<span style="color: #000000">      </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">error</span><span style="color: #000000">(</span><span style="color: #A31515">`Load CSS Fail: </span><span style="color: #0000FF">${</span><span style="color: #001080">err</span><span style="color: #000000FF">.</span><span style="color: #001080">message</span><span style="color: #0000FF">}</span><span style="color: #A31515">`</span><span style="color: #000000">)</span>
-<span style="color: #000000">    }</span>
-<span style="color: #000000">  );</span>
-</code></pre>
-				<!-- @param {string} url -- css资源路径
-@param {string} options.id -- link标签id
-@returns {Promise<boolean>} true -- 加载成功
-@category Load Resource -->
-				<a href="#loadimage" id="loadimage" style="color: inherit; text-decoration: none;">
-					<h4>loadImage</h4>
-				</a>
-				<p>Load an image from the given URL.</p>
-				<p>The target image will be loaded in the background, and the Promise status will change after the image is loaded. If the image fails to load, the Promise status will change to <code>reject</code> with the error object. If the image is loaded successfully, the Promise status will change to <code>resolve</code> with the image object. This method can be used to preload images and cache them in the browser. It can also be used to implement lazy loading of images.</p>
-				<p>Note that this method will not add the image to the DOM.</p>
-				<pre><code class="language-js"><span style="color: #795E26">loadImage</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;https://example.com/example.png&#039;</span><span style="color: #000000">)</span>
-<span style="color: #000000">  .</span><span style="color: #795E26">then</span><span style="color: #000000">((</span><span style="color: #001080">img</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
-<span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">img</span><span style="color: #000000">);</span>
-<span style="color: #000000">  })</span>
-<span style="color: #000000">  .</span><span style="color: #795E26">catch</span><span style="color: #000000">((</span><span style="color: #001080">err</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
-<span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">err</span><span style="color: #000000">);</span>
-<span style="color: #000000">  });</span>
-</code></pre>
-				<a href="#windowloaded" id="windowloaded" style="color: inherit; text-decoration: none;">
-					<h4>windowLoaded</h4>
-				</a>
-				<p>Check whether the page is loaded successfully (Keep the compatibility if the browser&#39;s <code>load</code> event has been triggered).</p>
-				<!-- ZH: 页面加载完成 -->
-				<pre><code><span style="color: #795E26">windowLoaded</span><span style="color: #000000">(</span><span style="color: #098658">30</span><span style="color: #000000">) </span><span style="color: #008000">// second</span>
-<span style="color: #000000">  .</span><span style="color: #795E26">then</span><span style="color: #000000">(</span><span style="color: #001080">res</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
-<span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">`Load Success: </span><span style="color: #0000FF">${</span><span style="color: #001080">res</span><span style="color: #0000FF">}</span><span style="color: #A31515">`</span><span style="color: #000000">); </span><span style="color: #008000">// Load Success: load</span>
-<span style="color: #000000">  })</span>
-<span style="color: #000000">  .</span><span style="color: #795E26">catch</span><span style="color: #000000">(</span><span style="color: #001080">err</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
-<span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">`Load Timeout or Fail: </span><span style="color: #0000FF">${</span><span style="color: #001080">err</span><span style="color: #000000FF">.</span><span style="color: #001080">message</span><span style="color: #0000FF">}</span><span style="color: #A31515">`</span><span style="color: #000000">);</span>
-<span style="color: #000000">  });</span>
-</code></pre>
-				<!-- @param {number} timeout 超时时间 / 单位：秒
-@returns {Promise<string>} document is loaded? 'complete' 'load' / 'timeout'
-@category Load Resource -->
-				<a href="#util" id="util" style="color: inherit; text-decoration: none;">
-					<h3>Util</h3>
-				</a>
-				<a href="#isnumber" id="isnumber" style="color: inherit; text-decoration: none;">
-					<h4>isNumber</h4>
-				</a>
-				<p>Check whether it is a right number.</p>
-				<!-- ZH: 判断是否有效数字 -->
-				<pre><code><span style="color: #795E26">isNumber</span><span style="color: #000000">(</span><span style="color: #098658">123</span><span style="color: #000000">); </span><span style="color: #008000">// true</span>
-<span style="color: #795E26">isNumber</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;123&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// false</span>
-<span style="color: #008000">// Default: NaN, Infinity is not Number</span>
-<span style="color: #795E26">isNumber</span><span style="color: #000000">(</span><span style="color: #0000FF">Infinity</span><span style="color: #000000">); </span><span style="color: #008000">// false</span>
-<span style="color: #795E26">isNumber</span><span style="color: #000000">(</span><span style="color: #0000FF">Infinity</span><span style="color: #000000">, { </span><span style="color: #001080">isInfinityAsNumber:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000"> }); </span><span style="color: #008000">// true</span>
-<span style="color: #795E26">isNumber</span><span style="color: #000000">(</span><span style="color: #0000FF">NaN</span><span style="color: #000000">); </span><span style="color: #008000">// false</span>
-<span style="color: #795E26">isNumber</span><span style="color: #000000">(</span><span style="color: #0000FF">NaN</span><span style="color: #000000">, { </span><span style="color: #001080">isNaNAsNumber:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">, </span><span style="color: #001080">isInfinityAsNumber:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000"> }); </span><span style="color: #008000">// true</span>
-</code></pre>
-				<!-- @param {*} num 被判断的值
-@param {boolean} options.isNaNAsNumber 是否 NaN 算数字（默认不算）
-@param {boolean} options.isInfinityAsNumber 是否 无限 算数字（默认不算）
-@returns {boolean} true 是数字
-@category Util -->
-				<a href="#isjsonstring" id="isjsonstring" style="color: inherit; text-decoration: none;">
-					<h4>isJSONString</h4>
-				</a>
-				<p>Check whether it is a valid JSON string.</p>
-				<p>Usage:</p>
-				<pre><code><span style="color: #795E26">isJSONString</span><span style="color: #000000">(</span><span style="color: #A31515">`[&#039;a&#039;, &#039;b&#039;, &#039;c&#039;]`</span><span style="color: #000000">);</span>
-<span style="color: #795E26">isJSONString</span><span style="color: #000000">(</span><span style="color: #A31515">`[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]`</span><span style="color: #000000">);</span>
-</code></pre>
-				<p>Output:</p>
-				<pre><code><span style="color: #0000FF">false</span>
-<span style="color: #0000FF">true</span>
-</code></pre>
-				<!-- @param {string} str The string to check.
-@returns {boolean} Return the result of checking.
-@category Util -->
-				<a href="#isvaliddata" id="isvaliddata" style="color: inherit; text-decoration: none;">
-					<h4>isValidData</h4>
-				</a>
-				<p>Determine the validity of the data.</p>
-				<p>Usage:</p>
-				<pre><code><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">validData</span><span style="color: #000000"> = {</span>
-<span style="color: #000000">  </span><span style="color: #001080">a:</span><span style="color: #000000"> {</span>
-<span style="color: #000000">    </span><span style="color: #001080">b:</span><span style="color: #000000"> {</span>
-<span style="color: #000000">      </span><span style="color: #001080">c:</span><span style="color: #000000"> </span><span style="color: #098658">413</span>
-<span style="color: #000000">    }</span>
-<span style="color: #000000">  }</span>
-<span style="color: #000000">};</span>
+<pre><code><span class="hl-7">loadScript</span><span class="hl-1">(</span><br/><span class="hl-1">    </span><span class="hl-2">&#39;http://example.com/static/js/plugin-2.1.1.min.js&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">    {</span><br/><span class="hl-1">      </span><span class="hl-0">id:</span><span class="hl-1"> </span><span class="hl-2">&#39;iamid&#39;</span><span class="hl-1">, </span><span class="hl-8">// (Optional) script ID, default none</span><br/><span class="hl-1">      </span><span class="hl-0">timeout:</span><span class="hl-1"> </span><span class="hl-9">5000</span><span class="hl-1">, </span><span class="hl-8">// (Optional) timeout, default `5000`</span><br/><span class="hl-1">      </span><span class="hl-0">isDefer:</span><span class="hl-1"> </span><span class="hl-5">false</span><span class="hl-1">, </span><span class="hl-8">// (Optional) defer, default `false`</span><br/><span class="hl-1">    }</span><br/><span class="hl-1">  )</span><br/><span class="hl-1">  .</span><span class="hl-7">then</span><span class="hl-1">(</span><br/><span class="hl-1">    </span><span class="hl-0">res</span><span class="hl-1"> </span><span class="hl-5">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">      </span><span class="hl-0">console</span><span class="hl-1">.</span><span class="hl-7">log</span><span class="hl-1">(</span><span class="hl-2">`Load JavaScript script: </span><span class="hl-5">${</span><span class="hl-0">res</span><span class="hl-5">}</span><span class="hl-2">`</span><span class="hl-1">);</span><br/><span class="hl-1">    }</span><br/><span class="hl-1">  )</span><br/><span class="hl-1">  .</span><span class="hl-7">catch</span><span class="hl-1">(</span><br/><span class="hl-1">    </span><span class="hl-0">err</span><span class="hl-1"> </span><span class="hl-5">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">      </span><span class="hl-0">console</span><span class="hl-1">.</span><span class="hl-7">error</span><span class="hl-1">(</span><span class="hl-2">`Load JavaScript script: </span><span class="hl-5">${</span><span class="hl-0">err</span><span class="hl-10">.</span><span class="hl-0">message</span><span class="hl-5">}</span><span class="hl-2">`</span><span class="hl-1">)</span><br/><span class="hl-1">    }</span><br/><span class="hl-1">  );</span>
+</code><button>Copy</button></pre>
+<a id="md:loadscriptifundefined" class="tsd-anchor"></a><h4><a href="#md:loadscriptifundefined">loadScriptIfUndefined</a></h4><p>Load a script from the given URL if it (<code>window[&#39;attribute&#39;]</code>) has not already been loaded.</p>
+<pre><code class="language-js"><span class="hl-7">loadScriptIfUndefined</span><span class="hl-1">(</span><span class="hl-2">&#39;jQuery&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;https://example.com/lib/jquery.min.js&#39;</span><span class="hl-1">)</span><br/><span class="hl-1">  .</span><span class="hl-7">then</span><span class="hl-1">(() </span><span class="hl-5">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-0">console</span><span class="hl-1">.</span><span class="hl-7">log</span><span class="hl-1">(</span><span class="hl-2">&#39;jQuery is loaded.&#39;</span><span class="hl-1">);</span><br/><span class="hl-1">  })</span><br/><span class="hl-1">  .</span><span class="hl-7">catch</span><span class="hl-1">(</span><span class="hl-0">err</span><span class="hl-1"> </span><span class="hl-5">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-0">console</span><span class="hl-1">.</span><span class="hl-7">log</span><span class="hl-1">(</span><span class="hl-2">&#39;Failed to load jQuery.&#39;</span><span class="hl-1">, </span><span class="hl-0">err</span><span class="hl-1">);</span><br/><span class="hl-1">  });</span>
+</code><button>Copy</button></pre>
+<a id="md:loadcss" class="tsd-anchor"></a><h4><a href="#md:loadcss">loadCSS</a></h4><p>Load a CSS file from the server.</p>
+<!-- ZH: 动态加载 CSS 文件 -->
 
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">isValidDataResA</span><span style="color: #000000"> = </span><span style="color: #795E26">isValidData</span><span style="color: #000000">(</span><span style="color: #001080">validData</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;a&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;b&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;c&#039;</span><span style="color: #000000">], </span><span style="color: #098658">2333</span><span style="color: #000000">);</span>
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">isValidDataResB</span><span style="color: #000000"> = </span><span style="color: #795E26">isValidData</span><span style="color: #000000">(</span><span style="color: #001080">validData</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;a&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;b&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;c&#039;</span><span style="color: #000000">], </span><span style="color: #098658">413</span><span style="color: #000000">);</span>
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">isValidDataResC</span><span style="color: #000000"> = </span><span style="color: #795E26">isValidData</span><span style="color: #000000">(</span><span style="color: #001080">validData</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;d&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;d&#039;</span><span style="color: #000000">], </span><span style="color: #098658">413</span><span style="color: #000000">);</span>
+<pre><code><span class="hl-7">loadCSS</span><span class="hl-1">(</span><br/><span class="hl-1">    </span><span class="hl-2">&#39;http://example.com/path/example.css&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">    {</span><br/><span class="hl-1">      </span><span class="hl-0">id:</span><span class="hl-1"> </span><span class="hl-2">&#39;iamid&#39;</span><span class="hl-1">, </span><span class="hl-8">// Optional, link ID, default none</span><br/><span class="hl-1">    }</span><br/><span class="hl-1">  )</span><br/><span class="hl-1">  .</span><span class="hl-7">then</span><span class="hl-1">(</span><br/><span class="hl-1">    </span><span class="hl-0">res</span><span class="hl-1"> </span><span class="hl-5">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">      </span><span class="hl-0">console</span><span class="hl-1">.</span><span class="hl-7">log</span><span class="hl-1">(</span><span class="hl-2">`Load CSS Success: </span><span class="hl-5">${</span><span class="hl-0">res</span><span class="hl-5">}</span><span class="hl-2">`</span><span class="hl-1">);</span><br/><span class="hl-1">    }</span><br/><span class="hl-1">  )</span><br/><span class="hl-1">  .</span><span class="hl-7">catch</span><span class="hl-1">(</span><br/><span class="hl-1">    </span><span class="hl-0">err</span><span class="hl-1"> </span><span class="hl-5">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">      </span><span class="hl-0">console</span><span class="hl-1">.</span><span class="hl-7">error</span><span class="hl-1">(</span><span class="hl-2">`Load CSS Fail: </span><span class="hl-5">${</span><span class="hl-0">err</span><span class="hl-10">.</span><span class="hl-0">message</span><span class="hl-5">}</span><span class="hl-2">`</span><span class="hl-1">)</span><br/><span class="hl-1">    }</span><br/><span class="hl-1">  );</span>
+</code><button>Copy</button></pre>
+<a id="md:loadimage" class="tsd-anchor"></a><h4><a href="#md:loadimage">loadImage</a></h4><p>Load an image from the given URL.</p>
+<p>The target image will be loaded in the background, and the Promise status will change after the image is loaded. If the image fails to load, the Promise status will change to <code>reject</code> with the error object. If the image is loaded successfully, the Promise status will change to <code>resolve</code> with the image object. This method can be used to preload images and cache them in the browser. It can also be used to implement lazy loading of images.</p>
+<p>Note that this method will not add the image to the DOM.</p>
+<pre><code class="language-js"><span class="hl-7">loadImage</span><span class="hl-1">(</span><span class="hl-2">&#39;https://example.com/example.png&#39;</span><span class="hl-1">)</span><br/><span class="hl-1">  .</span><span class="hl-7">then</span><span class="hl-1">((</span><span class="hl-0">img</span><span class="hl-1">) </span><span class="hl-5">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-0">console</span><span class="hl-1">.</span><span class="hl-7">log</span><span class="hl-1">(</span><span class="hl-0">img</span><span class="hl-1">);</span><br/><span class="hl-1">  })</span><br/><span class="hl-1">  .</span><span class="hl-7">catch</span><span class="hl-1">((</span><span class="hl-0">err</span><span class="hl-1">) </span><span class="hl-5">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-0">console</span><span class="hl-1">.</span><span class="hl-7">log</span><span class="hl-1">(</span><span class="hl-0">err</span><span class="hl-1">);</span><br/><span class="hl-1">  });</span>
+</code><button>Copy</button></pre>
+<a id="md:windowloaded" class="tsd-anchor"></a><h4><a href="#md:windowloaded">windowLoaded</a></h4><p>Check whether the page is loaded successfully (Keep the compatibility if the browser&#39;s <code>load</code> event has been triggered).</p>
+<!-- ZH: 页面加载完成 -->
 
-<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;isValidDataResA:&#039;</span><span style="color: #000000">, </span><span style="color: #001080">isValidDataResA</span><span style="color: #000000">);</span>
-<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;isValidDataResB:&#039;</span><span style="color: #000000">, </span><span style="color: #001080">isValidDataResB</span><span style="color: #000000">);</span>
-<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;isValidDataResC:&#039;</span><span style="color: #000000">, </span><span style="color: #001080">isValidDataResC</span><span style="color: #000000">);</span>
-</code></pre>
-				<p>Output:</p>
-				<pre><code><span style="color: #000000">isValidDataResA: </span><span style="color: #0000FF">false</span>
-<span style="color: #000000">isValidDataResB: </span><span style="color: #0000FF">true</span>
-<span style="color: #000000">isValidDataResC: </span><span style="color: #0000FF">false</span>
-</code></pre>
-				<!-- @param {any} data Original Data
-@param {string[]} attributes Data Attributes
-@param {any} validValue Given Value for verifying.
-@returns {boolean} Return TRUE if the data is valid.
-@category Util -->
-				<a href="#genrndnumstring" id="genrndnumstring" style="color: inherit; text-decoration: none;">
-					<h4>genRndNumString</h4>
-				</a>
-				<p>Produce a random string of number, <code>genRndNumString(7)</code> =&gt; &#39;7658495&#39;.</p>
-				<pre><code><span style="color: #795E26">genRndNumString</span><span style="color: #000000">(</span><span style="color: #098658">4</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;9730&#039;</span>
-<span style="color: #795E26">genRndNumString</span><span style="color: #000000">(</span><span style="color: #098658">7</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;2262490&#039;</span>
-</code></pre>
-				<a href="#formatdate" id="formatdate" style="color: inherit; text-decoration: none;">
-					<h4>formatDate</h4>
-				</a>
-				<p>Return the formatted date string in the given format.</p>
-				<p>Usage:</p>
-				<pre><code><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;Default formatDate value:&#039;</span><span style="color: #000000">, </span><span style="color: #795E26">formatDate</span><span style="color: #000000">());</span>
-<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;String formatDate value:&#039;</span><span style="color: #000000">, </span><span style="color: #795E26">formatDate</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;Tue Jan 11 2022 14:12:26 GMT+0800 (China Standard Time)&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;yyyy-MM-dd hh:mm:ss&#039;</span><span style="color: #000000">));</span>
-<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;Number formatDate value:&#039;</span><span style="color: #000000">, </span><span style="color: #795E26">formatDate</span><span style="color: #000000">(</span><span style="color: #098658">1641881235000</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;yyyy-MM-dd hh:mm:ss&#039;</span><span style="color: #000000">));</span>
-<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;Date formatDate value:&#039;</span><span style="color: #000000">, </span><span style="color: #795E26">formatDate</span><span style="color: #000000">(</span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #267F99">Date</span><span style="color: #000000">(</span><span style="color: #098658">2014</span><span style="color: #000000">, </span><span style="color: #098658">1</span><span style="color: #000000">, </span><span style="color: #098658">11</span><span style="color: #000000">), </span><span style="color: #A31515">&#039;MM/dd/yyyy&#039;</span><span style="color: #000000">));</span>
-</code></pre>
-				<p>Output:</p>
-				<pre><code><span style="color: #001080">Default</span><span style="color: #000000"> </span><span style="color: #001080">formatDate</span><span style="color: #000000"> value: </span><span style="color: #098658">2023</span><span style="color: #000000">-</span><span style="color: #098658">01</span><span style="color: #000000">-</span><span style="color: #098658">11</span>
-<span style="color: #267F99">String</span><span style="color: #000000"> </span><span style="color: #001080">formatDate</span><span style="color: #000000"> value: </span><span style="color: #098658">2022</span><span style="color: #000000">-</span><span style="color: #098658">01</span><span style="color: #000000">-</span><span style="color: #098658">11</span><span style="color: #000000"> </span><span style="color: #098658">14</span><span style="color: #000000">:</span><span style="color: #098658">12</span><span style="color: #000000">:</span><span style="color: #098658">26</span>
-<span style="color: #267F99">Number</span><span style="color: #000000"> </span><span style="color: #001080">formatDate</span><span style="color: #000000"> value: </span><span style="color: #098658">2022</span><span style="color: #000000">-</span><span style="color: #098658">01</span><span style="color: #000000">-</span><span style="color: #098658">11</span><span style="color: #000000"> </span><span style="color: #098658">14</span><span style="color: #000000">:</span><span style="color: #098658">07</span><span style="color: #000000">:</span><span style="color: #098658">15</span>
-<span style="color: #267F99">Date</span><span style="color: #000000"> </span><span style="color: #001080">formatDate</span><span style="color: #000000"> value: </span><span style="color: #098658">02</span><span style="color: #000000">/</span><span style="color: #098658">11</span><span style="color: #000000">/</span><span style="color: #098658">2014</span>
-</code></pre>
-				<!-- @param {Date|number|string} dateIns Original Date
-@param {string} format Format String
-@returns {string} Return the formatted date string.
-@category Util -->
-				<a href="#debounce" id="debounce" style="color: inherit; text-decoration: none;">
-					<h4>debounce</h4>
-				</a>
-				<p>Debounce</p>
-				<!-- ZH: 去抖 -->
-				<pre><code><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">foo</span><span style="color: #000000"> = </span><span style="color: #795E26">debounce</span><span style="color: #000000">(() </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
-<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;The debounced function will only be invoked in 1000 milliseconds, the other invoking will disappear during the wait time.&#039;</span><span style="color: #000000">);</span>
-<span style="color: #000000">}, </span><span style="color: #098658">1000</span><span style="color: #000000">, </span><span style="color: #0000FF">true</span><span style="color: #000000">);</span>
-</code></pre>
-				<!-- @category Util -->
-				<a href="#throttle" id="throttle" style="color: inherit; text-decoration: none;">
-					<h4>throttle</h4>
-				</a>
-				<p>Throttle</p>
-				<!-- ZH: 节流 -->
-				<pre><code><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">foo</span><span style="color: #000000"> = </span><span style="color: #795E26">throttle</span><span style="color: #000000">(() </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
-<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;The function will be invoked at most once per every wait 1000 milliseconds.&#039;</span><span style="color: #000000">);</span>
-<span style="color: #000000">}, </span><span style="color: #098658">1000</span><span style="color: #000000">, { </span><span style="color: #001080">leading:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000"> });</span>
-</code></pre>
-				<p>Reference: <a href="https://lodash.com/docs/4.17.15#throttle">Lodash</a></p>
-				<!-- @category Util -->
-				<a href="#convertcameltokebab" id="convertcameltokebab" style="color: inherit; text-decoration: none;">
-					<h4>convertCamelToKebab</h4>
-				</a>
-				<p>Transfer CamelCase to KebabCase.</p>
-				<pre><code><span style="color: #795E26">convertCamelToKebab</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;ABC&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// a-b-c</span>
-<span style="color: #795E26">convertCamelToKebab</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;aBC&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// a-b-c</span>
-</code></pre>
-				<!-- @param {string} camelCase 'aBC' or 'ABC'
-@returns {string} 'a-b-c'
-@category Util -->
-				<a href="#convertcameltounder" id="convertcameltounder" style="color: inherit; text-decoration: none;">
-					<h4>convertCamelToUnder</h4>
-				</a>
-				<p>Transfer CamelCase to Underscore.</p>
-				<pre><code><span style="color: #795E26">convertCamelToUnder</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;ABC&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// a_b_c</span>
-<span style="color: #795E26">convertCamelToUnder</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;aBC&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// a_b_c</span>
-</code></pre>
-				<!-- @param {string} camelCase 'aBC' or 'ABC'
-@returns {string} 'a_b_c'
-@category Util -->
-				<a href="#deepcopy" id="deepcopy" style="color: inherit; text-decoration: none;">
-					<h4>deepCopy</h4>
-				</a>
-				<p>Copy/Clone Object deeply.</p>
-				<p>Usage:</p>
-				<pre><code><span style="color: #795E26">deepCopy</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;a&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;b&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;c&#039;</span><span style="color: #000000">]);</span>
-<span style="color: #795E26">deepCopy</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;abc&#039;</span><span style="color: #000000">);</span>
-</code></pre>
-				<p>Output:</p>
-				<pre><code><span style="color: #000000">[</span><span style="color: #A31515">&#039;a&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;b&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;c&#039;</span><span style="color: #000000">]</span>
-<span style="color: #A31515">&#039;abc&#039;</span>
-</code></pre>
-				<a href="#url" id="url" style="color: inherit; text-decoration: none;">
-					<h3>URL</h3>
-				</a>
-				<a href="#getqueryparam" id="getqueryparam" style="color: inherit; text-decoration: none;">
-					<h4>getQueryParam</h4>
-				</a>
-				<p>Get the query param&#39;s value of the current Web URL(<code>location.search</code>).</p>
-				<pre><code><span style="color: #008000">// http://example.com/?t1=1&amp;t2=2&amp;t3=3&amp;t4=4#2333</span>
-<span style="color: #008000">// ?t1=1&amp;t2=2&amp;t3=3&amp;t4=4</span>
-<span style="color: #795E26">getQueryParam</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;t3&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// 3</span>
-<span style="color: #795E26">getQueryParam</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;t4&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// 4</span>
-</code></pre>
-				<!-- @param {string} param Query param.
-@returns {string} value
-@category URL -->
-				<a href="#geturlparam" id="geturlparam" style="color: inherit; text-decoration: none;">
-					<h4>getUrlParam</h4>
-				</a>
-				<p>Returns the value of the specified query parameter in the input URL.</p>
-				<pre><code><span style="color: #795E26">getUrlParam</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;http://example.com/?t1=1&amp;t2=2&amp;t3=3&amp;t4=4&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;t3&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// Returns &#039;3&#039;</span>
-<span style="color: #795E26">getUrlParam</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;http://example.com/?t1=1&amp;t2=2&amp;t3=3&amp;t4=4&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;t4&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// Returns &#039;4&#039;</span>
-</code></pre>
-				<!-- @param {string} url The URL string.
-@param {string} param The query parameter to retrieve the value for.
-@returns {string|string[]} The value of the specified query parameter, or an empty string if the parameter is not found.
-@category URL -->
-				<a href="#gethashqueryparam" id="gethashqueryparam" style="color: inherit; text-decoration: none;">
-					<h4>getHashQueryParam</h4>
-				</a>
-				<p>Get the hash query param&#39;s value of the current Web URL(<code>location.hash</code>).</p>
-				<p>Usage:</p>
-				<pre><code><span style="color: #008000">// http://example.com/?#2333?t1=1&amp;t2=2&amp;t3=3&amp;t4=4</span>
-<span style="color: #008000">// #2333?t1=1&amp;t2=2&amp;t3=3&amp;t4=4</span>
-<span style="color: #795E26">getHashQueryParam</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;t3&#039;</span><span style="color: #000000">);</span>
-<span style="color: #795E26">getHashQueryParam</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;t4&#039;</span><span style="color: #000000">);</span>
-</code></pre>
-				<p>Output:</p>
-				<pre><code><span style="color: #098658">3</span>
-<span style="color: #098658">4</span>
-</code></pre>
-				<!-- @param {string} param Query param.
-@returns {string} value
-@category URL -->
-				<a href="#getdomain" id="getdomain" style="color: inherit; text-decoration: none;">
-					<h4>getDomain</h4>
-				</a>
-				<p>Get the domain of URL, and other params.</p>
-				<p>Usage:</p>
-				<pre><code><span style="color: #795E26">getDomain</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;http://example.com/?t1=1&amp;t2=2&amp;t3=3&amp;t4=4&#039;</span><span style="color: #000000">);</span>
-<span style="color: #795E26">getDomain</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;http://example.com/test/thanks?t1=1&amp;t2=2&amp;t3=3&amp;t4=4&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;hostname&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;pathname&#039;</span><span style="color: #000000">]);</span>
-<span style="color: #795E26">getDomain</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;http://example.com:7890/test/thanks&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;hostname&#039;</span><span style="color: #000000">]);</span>
-<span style="color: #795E26">getDomain</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;http://example.com:7890/test/thanks&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;host&#039;</span><span style="color: #000000">]); </span><span style="color: #008000">// With Port</span>
-<span style="color: #795E26">getDomain</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;http://example.com:7890/test/thanks&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;origin&#039;</span><span style="color: #000000">]);</span>
-<span style="color: #795E26">getDomain</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;http://example.com:7890/test/thanks?id=1&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;origin&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;pathname&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;search&#039;</span><span style="color: #000000">]);</span>
-</code></pre>
-				<p>Output:</p>
-				<pre><code><span style="color: #001080">example</span><span style="color: #000000">.</span><span style="color: #001080">com</span>
-<span style="color: #001080">example</span><span style="color: #000000">.</span><span style="color: #001080">com</span><span style="color: #000000">/</span><span style="color: #001080">test</span><span style="color: #000000">/</span><span style="color: #001080">thanks</span>
-<span style="color: #001080">example</span><span style="color: #000000">.</span><span style="color: #001080">com</span>
-<span style="color: #001080">example</span><span style="color: #000000">.</span><span style="color: #001080">com</span><span style="color: #000000">:</span><span style="color: #098658">7890</span>
-<span style="color: #000000">http:</span><span style="color: #008000">//example.com:7890</span>
-<span style="color: #000000">http:</span><span style="color: #008000">//example.com:7890/test/thanks?id=1</span>
-</code></pre>
-				<!-- @param {string} url
-@param {array} rules Object.keys(location), ['href', 'origin', 'protocol', 'host', 'hostname', 'port', 'pathname', 'search', 'hash'], ['hostname', 'pathname'] = 'km.mazey.net/plugins/servlet/mobile'
-@category URL -->
-				<a href="#updatequeryparam" id="updatequeryparam" style="color: inherit; text-decoration: none;">
-					<h4>updateQueryParam</h4>
-				</a>
-				<p>Update the query param&#39;s value of the input URL.</p>
-				<p>Usage:</p>
-				<pre><code><span style="color: #795E26">updateQueryParam</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;http://example.com/?t1=1&amp;t2=2&amp;t3=3&amp;t4=4&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;t3&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;three&#039;</span><span style="color: #000000">);</span>
-<span style="color: #795E26">updateQueryParam</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;http://example.com/?t1=1&amp;t2=2&amp;t3=3&amp;t4=4&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;t4&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;four&#039;</span><span style="color: #000000">);</span>
-</code></pre>
-				<p>Output:</p>
-				<pre><code><span style="color: #000000">http:</span><span style="color: #008000">//example.com/?t1=1&amp;t2=2&amp;t3=three&amp;t4=4</span>
-<span style="color: #000000">http:</span><span style="color: #008000">//example.com/?t1=1&amp;t2=2&amp;t3=3&amp;t4=four</span>
-</code></pre>
-				<!-- @param {string} url URL string.
-@param {string} param Query param.
-@param {string} value Param's value.
-@returns {string} URL.
-@category URL -->
-				<a href="#isvalidurl" id="isvalidurl" style="color: inherit; text-decoration: none;">
-					<h4>isValidUrl</h4>
-				</a>
-				<p>Checks if the given string is a valid URL, including <strong>scheme URLs</strong>.</p>
-				<pre><code class="language-js"><span style="color: #795E26">isValidUrl</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;https://www.example.com&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// true</span>
-<span style="color: #795E26">isValidUrl</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;http://example.com/path/exx/ss&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// true</span>
-<span style="color: #795E26">isValidUrl</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;https://www.example.com/?q=hello&amp;age=24#world&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// true</span>
-<span style="color: #795E26">isValidUrl</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;http://www.example.com/#world?id=9&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// true</span>
-<span style="color: #795E26">isValidUrl</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;ftp://example.com&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// true</span>
-</code></pre>
-				<p>If you are specifically checking for HTTP/HTTPS URLs, it is recommended to use the <code>isValidHttpUrl</code> function instead.
-				The <code>isValidUrl</code> function matches all scheme URLs, including FTP and other non-HTTP schemes.</p>
-				<a href="#isvalidhttpurl" id="isvalidhttpurl" style="color: inherit; text-decoration: none;">
-					<h4>isValidHttpUrl</h4>
-				</a>
-				<p>Check if the given string is a valid HTTP/HTTPS URL.</p>
-				<pre><code class="language-js"><span style="color: #795E26">isValidHttpUrl</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;https://www.example.com&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// true</span>
-<span style="color: #795E26">isValidHttpUrl</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;http://example.com/path/exx/ss&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// true</span>
-<span style="color: #795E26">isValidHttpUrl</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;https://www.example.com/?q=hello&amp;age=24#world&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// true</span>
-<span style="color: #795E26">isValidHttpUrl</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;http://www.example.com/#world?id=9&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// true</span>
-<span style="color: #795E26">isValidHttpUrl</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;ftp://example.com&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// false</span>
-</code></pre>
-				<a href="#cache-data" id="cache-data" style="color: inherit; text-decoration: none;">
-					<h3>Cache Data</h3>
-				</a>
-				<a href="#cookie" id="cookie" style="color: inherit; text-decoration: none;">
-					<h4>Cookie</h4>
-				</a>
-				<p>Handle Cookie.</p>
-				<!-- ZH: 设置/获取 Cookie -->
-				<pre><code><span style="color: #795E26">setCookie</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;test&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;123&#039;</span><span style="color: #000000">, </span><span style="color: #098658">30</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;example.com&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// key value day domain</span>
-<span style="color: #795E26">getCookie</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;test&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// 123</span>
-</code></pre>
-				<!-- @category Cache Data -->
-				<a href="#storage" id="storage" style="color: inherit; text-decoration: none;">
-					<h4>Storage</h4>
-				</a>
-				<p>Handle Storage (Keep fit for JSON, it can transfer format automatically).</p>
-				<!-- ZH: 存储/获取数据到 sessionStorage/localStorage -->
-				<pre><code><span style="color: #795E26">setSessionStorage</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;test&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;123&#039;</span><span style="color: #000000">);</span>
-<span style="color: #795E26">getSessionStorage</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;test&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// 123</span>
-<span style="color: #795E26">setLocalStorage</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;test&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;123&#039;</span><span style="color: #000000">);</span>
-<span style="color: #795E26">getLocalStorage</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;test&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// 123</span>
+<pre><code><span class="hl-7">windowLoaded</span><span class="hl-1">(</span><span class="hl-9">30</span><span class="hl-1">) </span><span class="hl-8">// second</span><br/><span class="hl-1">  .</span><span class="hl-7">then</span><span class="hl-1">(</span><span class="hl-0">res</span><span class="hl-1"> </span><span class="hl-5">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-0">console</span><span class="hl-1">.</span><span class="hl-7">log</span><span class="hl-1">(</span><span class="hl-2">`Load Success: </span><span class="hl-5">${</span><span class="hl-0">res</span><span class="hl-5">}</span><span class="hl-2">`</span><span class="hl-1">); </span><span class="hl-8">// Load Success: load</span><br/><span class="hl-1">  })</span><br/><span class="hl-1">  .</span><span class="hl-7">catch</span><span class="hl-1">(</span><span class="hl-0">err</span><span class="hl-1"> </span><span class="hl-5">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-0">console</span><span class="hl-1">.</span><span class="hl-7">log</span><span class="hl-1">(</span><span class="hl-2">`Load Timeout or Fail: </span><span class="hl-5">${</span><span class="hl-0">err</span><span class="hl-10">.</span><span class="hl-0">message</span><span class="hl-5">}</span><span class="hl-2">`</span><span class="hl-1">);</span><br/><span class="hl-1">  });</span>
+</code><button>Copy</button></pre>
+<a id="md:util" class="tsd-anchor"></a><h3><a href="#md:util">Util</a></h3><a id="md:isnumber" class="tsd-anchor"></a><h4><a href="#md:isnumber">isNumber</a></h4><p>Check whether it is a right number.</p>
+<!-- ZH: 判断是否有效数字 -->
 
-<span style="color: #008000">// or package in usage</span>
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">projectName</span><span style="color: #000000"> = </span><span style="color: #A31515">&#039;mazey&#039;</span><span style="color: #000000">;</span>
-<span style="color: #0000FF">function</span><span style="color: #000000"> </span><span style="color: #795E26">mSetLocalStorage</span><span style="color: #000000"> (</span><span style="color: #001080">key</span><span style="color: #000000">, </span><span style="color: #001080">value</span><span style="color: #000000">) {</span>
-<span style="color: #000000">  </span><span style="color: #AF00DB">return</span><span style="color: #000000"> </span><span style="color: #795E26">setLocalStorage</span><span style="color: #000000">(</span><span style="color: #A31515">`</span><span style="color: #0000FF">${</span><span style="color: #001080">projectName</span><span style="color: #0000FF">}</span><span style="color: #A31515">_</span><span style="color: #0000FF">${</span><span style="color: #001080">key</span><span style="color: #0000FF">}</span><span style="color: #A31515">`</span><span style="color: #000000">, </span><span style="color: #001080">value</span><span style="color: #000000">);</span>
-<span style="color: #000000">}</span>
+<pre><code><span class="hl-7">isNumber</span><span class="hl-1">(</span><span class="hl-9">123</span><span class="hl-1">); </span><span class="hl-8">// true</span><br/><span class="hl-7">isNumber</span><span class="hl-1">(</span><span class="hl-2">&#39;123&#39;</span><span class="hl-1">); </span><span class="hl-8">// false</span><br/><span class="hl-8">// Default: NaN, Infinity is not Number</span><br/><span class="hl-7">isNumber</span><span class="hl-1">(</span><span class="hl-5">Infinity</span><span class="hl-1">); </span><span class="hl-8">// false</span><br/><span class="hl-7">isNumber</span><span class="hl-1">(</span><span class="hl-5">Infinity</span><span class="hl-1">, { </span><span class="hl-0">isInfinityAsNumber:</span><span class="hl-1"> </span><span class="hl-5">true</span><span class="hl-1"> }); </span><span class="hl-8">// true</span><br/><span class="hl-7">isNumber</span><span class="hl-1">(</span><span class="hl-5">NaN</span><span class="hl-1">); </span><span class="hl-8">// false</span><br/><span class="hl-7">isNumber</span><span class="hl-1">(</span><span class="hl-5">NaN</span><span class="hl-1">, { </span><span class="hl-0">isNaNAsNumber:</span><span class="hl-1"> </span><span class="hl-5">true</span><span class="hl-1">, </span><span class="hl-0">isInfinityAsNumber:</span><span class="hl-1"> </span><span class="hl-5">true</span><span class="hl-1"> }); </span><span class="hl-8">// true</span>
+</code><button>Copy</button></pre>
+<a id="md:isjsonstring" class="tsd-anchor"></a><h4><a href="#md:isjsonstring">isJSONString</a></h4><p>Check whether it is a valid JSON string.</p>
+<p>Usage:</p>
+<pre><code><span class="hl-7">isJSONString</span><span class="hl-1">(</span><span class="hl-2">`[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]`</span><span class="hl-1">);</span><br/><span class="hl-7">isJSONString</span><span class="hl-1">(</span><span class="hl-2">`[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]`</span><span class="hl-1">);</span>
+</code><button>Copy</button></pre>
+<p>Output:</p>
+<pre><code><span class="hl-5">false</span><br/><span class="hl-5">true</span>
+</code><button>Copy</button></pre>
+<a id="md:isvaliddata" class="tsd-anchor"></a><h4><a href="#md:isvaliddata">isValidData</a></h4><p>Determine the validity of the data.</p>
+<p>Usage:</p>
+<pre><code><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-6">validData</span><span class="hl-1"> = {</span><br/><span class="hl-1">  </span><span class="hl-0">a:</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-0">b:</span><span class="hl-1"> {</span><br/><span class="hl-1">      </span><span class="hl-0">c:</span><span class="hl-1"> </span><span class="hl-9">413</span><br/><span class="hl-1">    }</span><br/><span class="hl-1">  }</span><br/><span class="hl-1">};</span><br/><br/><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-6">isValidDataResA</span><span class="hl-1"> = </span><span class="hl-7">isValidData</span><span class="hl-1">(</span><span class="hl-0">validData</span><span class="hl-1">, [</span><span class="hl-2">&#39;a&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;b&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;c&#39;</span><span class="hl-1">], </span><span class="hl-9">2333</span><span class="hl-1">);</span><br/><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-6">isValidDataResB</span><span class="hl-1"> = </span><span class="hl-7">isValidData</span><span class="hl-1">(</span><span class="hl-0">validData</span><span class="hl-1">, [</span><span class="hl-2">&#39;a&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;b&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;c&#39;</span><span class="hl-1">], </span><span class="hl-9">413</span><span class="hl-1">);</span><br/><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-6">isValidDataResC</span><span class="hl-1"> = </span><span class="hl-7">isValidData</span><span class="hl-1">(</span><span class="hl-0">validData</span><span class="hl-1">, [</span><span class="hl-2">&#39;d&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;d&#39;</span><span class="hl-1">], </span><span class="hl-9">413</span><span class="hl-1">);</span><br/><br/><span class="hl-0">console</span><span class="hl-1">.</span><span class="hl-7">log</span><span class="hl-1">(</span><span class="hl-2">&#39;isValidDataResA:&#39;</span><span class="hl-1">, </span><span class="hl-0">isValidDataResA</span><span class="hl-1">);</span><br/><span class="hl-0">console</span><span class="hl-1">.</span><span class="hl-7">log</span><span class="hl-1">(</span><span class="hl-2">&#39;isValidDataResB:&#39;</span><span class="hl-1">, </span><span class="hl-0">isValidDataResB</span><span class="hl-1">);</span><br/><span class="hl-0">console</span><span class="hl-1">.</span><span class="hl-7">log</span><span class="hl-1">(</span><span class="hl-2">&#39;isValidDataResC:&#39;</span><span class="hl-1">, </span><span class="hl-0">isValidDataResC</span><span class="hl-1">);</span>
+</code><button>Copy</button></pre>
+<p>Output:</p>
+<pre><code><span class="hl-11">isValidDataResA</span><span class="hl-1">: </span><span class="hl-5">false</span><br/><span class="hl-11">isValidDataResB</span><span class="hl-1">: </span><span class="hl-5">true</span><br/><span class="hl-11">isValidDataResC</span><span class="hl-1">: </span><span class="hl-5">false</span>
+</code><button>Copy</button></pre>
+<a id="md:genrndnumstring" class="tsd-anchor"></a><h4><a href="#md:genrndnumstring">genRndNumString</a></h4><p>Produce a random string of number, <code>genRndNumString(7)</code> =&gt; &#39;7658495&#39;.</p>
+<pre><code><span class="hl-7">genRndNumString</span><span class="hl-1">(</span><span class="hl-9">4</span><span class="hl-1">); </span><span class="hl-8">// &#39;9730&#39;</span><br/><span class="hl-7">genRndNumString</span><span class="hl-1">(</span><span class="hl-9">7</span><span class="hl-1">); </span><span class="hl-8">// &#39;2262490&#39;</span>
+</code><button>Copy</button></pre>
+<a id="md:formatdate" class="tsd-anchor"></a><h4><a href="#md:formatdate">formatDate</a></h4><p>Return the formatted date string in the given format.</p>
+<p>Usage:</p>
+<pre><code><span class="hl-0">console</span><span class="hl-1">.</span><span class="hl-7">log</span><span class="hl-1">(</span><span class="hl-2">&#39;Default formatDate value:&#39;</span><span class="hl-1">, </span><span class="hl-7">formatDate</span><span class="hl-1">());</span><br/><span class="hl-0">console</span><span class="hl-1">.</span><span class="hl-7">log</span><span class="hl-1">(</span><span class="hl-2">&#39;String formatDate value:&#39;</span><span class="hl-1">, </span><span class="hl-7">formatDate</span><span class="hl-1">(</span><span class="hl-2">&#39;Tue Jan 11 2022 14:12:26 GMT+0800 (China Standard Time)&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;yyyy-MM-dd hh:mm:ss&#39;</span><span class="hl-1">));</span><br/><span class="hl-0">console</span><span class="hl-1">.</span><span class="hl-7">log</span><span class="hl-1">(</span><span class="hl-2">&#39;Number formatDate value:&#39;</span><span class="hl-1">, </span><span class="hl-7">formatDate</span><span class="hl-1">(</span><span class="hl-9">1641881235000</span><span class="hl-1">, </span><span class="hl-2">&#39;yyyy-MM-dd hh:mm:ss&#39;</span><span class="hl-1">));</span><br/><span class="hl-0">console</span><span class="hl-1">.</span><span class="hl-7">log</span><span class="hl-1">(</span><span class="hl-2">&#39;Date formatDate value:&#39;</span><span class="hl-1">, </span><span class="hl-7">formatDate</span><span class="hl-1">(</span><span class="hl-5">new</span><span class="hl-1"> </span><span class="hl-7">Date</span><span class="hl-1">(</span><span class="hl-9">2014</span><span class="hl-1">, </span><span class="hl-9">1</span><span class="hl-1">, </span><span class="hl-9">11</span><span class="hl-1">), </span><span class="hl-2">&#39;MM/dd/yyyy&#39;</span><span class="hl-1">));</span>
+</code><button>Copy</button></pre>
+<p>Output:</p>
+<pre><code><span class="hl-0">Default</span><span class="hl-1"> </span><span class="hl-0">formatDate</span><span class="hl-1"> </span><span class="hl-11">value</span><span class="hl-1">: </span><span class="hl-9">2023</span><span class="hl-1">-</span><span class="hl-9">01</span><span class="hl-1">-</span><span class="hl-9">11</span><br/><span class="hl-0">String</span><span class="hl-1"> </span><span class="hl-0">formatDate</span><span class="hl-1"> </span><span class="hl-11">value</span><span class="hl-1">: </span><span class="hl-9">2022</span><span class="hl-1">-</span><span class="hl-9">01</span><span class="hl-1">-</span><span class="hl-9">11</span><span class="hl-1"> </span><span class="hl-9">14</span><span class="hl-1">:</span><span class="hl-9">12</span><span class="hl-1">:</span><span class="hl-9">26</span><br/><span class="hl-0">Number</span><span class="hl-1"> </span><span class="hl-0">formatDate</span><span class="hl-1"> </span><span class="hl-11">value</span><span class="hl-1">: </span><span class="hl-9">2022</span><span class="hl-1">-</span><span class="hl-9">01</span><span class="hl-1">-</span><span class="hl-9">11</span><span class="hl-1"> </span><span class="hl-9">14</span><span class="hl-1">:</span><span class="hl-9">07</span><span class="hl-1">:</span><span class="hl-9">15</span><br/><span class="hl-0">Date</span><span class="hl-1"> </span><span class="hl-0">formatDate</span><span class="hl-1"> </span><span class="hl-11">value</span><span class="hl-1">: </span><span class="hl-9">02</span><span class="hl-1">/</span><span class="hl-9">11</span><span class="hl-1">/</span><span class="hl-9">2014</span>
+</code><button>Copy</button></pre>
+<a id="md:debounce" class="tsd-anchor"></a><h4><a href="#md:debounce">debounce</a></h4><p>Debounce</p>
+<!-- ZH: 去抖 -->
 
-<span style="color: #0000FF">function</span><span style="color: #000000"> </span><span style="color: #795E26">mGetLocalStorage</span><span style="color: #000000"> (</span><span style="color: #001080">key</span><span style="color: #000000">) {</span>
-<span style="color: #000000">  </span><span style="color: #AF00DB">return</span><span style="color: #000000"> </span><span style="color: #795E26">getLocalStorage</span><span style="color: #000000">(</span><span style="color: #A31515">`</span><span style="color: #0000FF">${</span><span style="color: #001080">projectName</span><span style="color: #0000FF">}</span><span style="color: #A31515">_</span><span style="color: #0000FF">${</span><span style="color: #001080">key</span><span style="color: #0000FF">}</span><span style="color: #A31515">`</span><span style="color: #000000">);</span>
-<span style="color: #000000">}</span>
-</code></pre>
-				<!-- @param {string} key 键
-@returns {void} 返回值
-@category Cache Data -->
-				<a href="#dom" id="dom" style="color: inherit; text-decoration: none;">
-					<h3>DOM</h3>
-				</a>
-				<a href="#addstyle" id="addstyle" style="color: inherit; text-decoration: none;">
-					<h4>addStyle</h4>
-				</a>
-				<p>Add <code>&lt;style&gt;</code> in <code>&lt;head&gt;</code>.</p>
-				<!-- ZH: 添加样式标签; style: 样式标签内的字符串; id: `<style>` 标签的 `id`; 返回: 添加成功/失败 -->
-				<p>Example 1: Add the <code>&lt;style&gt;</code> with <code>id</code>, and repeated invoking will update the content instead of adding a new one.</p>
-				<pre><code><span style="color: #795E26">addStyle</span><span style="color: #000000">(</span>
-<span style="color: #000000">  </span><span style="color: #A31515">`</span>
-<span style="color: #A31515">    body {</span>
-<span style="color: #A31515">      background-color: #333;</span>
-<span style="color: #A31515">    }</span>
-<span style="color: #A31515">  `</span><span style="color: #000000">,</span>
-<span style="color: #000000">  {</span>
-<span style="color: #000000">    </span><span style="color: #001080">id:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;test&#039;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  }</span>
-<span style="color: #000000">);</span>
-<span style="color: #008000">// &lt;style id=&quot;test&quot;&gt;</span>
-<span style="color: #008000">//   body {</span>
-<span style="color: #008000">//     background-color: #333;</span>
-<span style="color: #008000">//   }</span>
-<span style="color: #008000">// &lt;/style&gt;</span>
-</code></pre>
-				<p>Example 2: Add the <code>&lt;style&gt;</code> without <code>id</code>, and repeated invoking will add a new one.</p>
-				<pre><code><span style="color: #795E26">addStyle</span><span style="color: #000000">(</span>
-<span style="color: #000000">  </span><span style="color: #A31515">`</span>
-<span style="color: #A31515">    body {</span>
-<span style="color: #A31515">      background-color: #444;</span>
-<span style="color: #A31515">    }</span>
-<span style="color: #A31515">  `</span>
-<span style="color: #000000">);</span>
-<span style="color: #008000">// &lt;style&gt;</span>
-<span style="color: #008000">//   body {</span>
-<span style="color: #008000">//     background-color: #444;</span>
-<span style="color: #008000">//   }</span>
-<span style="color: #008000">// &lt;/style&gt;</span>
-</code></pre>
-				<!-- @category DOM -->
-				<a href="#class" id="class" style="color: inherit; text-decoration: none;">
-					<h4>Class</h4>
-				</a>
-				<p>Modify <code>class</code>.</p>
-				<pre><code><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">dom</span><span style="color: #000000"> = </span><span style="color: #001080">document</span><span style="color: #000000">.</span><span style="color: #795E26">querySelector</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;#box&#039;</span><span style="color: #000000">);</span>
+<pre><code><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-6">foo</span><span class="hl-1"> = </span><span class="hl-7">debounce</span><span class="hl-1">(() </span><span class="hl-5">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-0">console</span><span class="hl-1">.</span><span class="hl-7">log</span><span class="hl-1">(</span><span class="hl-2">&#39;The debounced function will only be invoked in 1000 milliseconds, the other invoking will disappear during the wait time.&#39;</span><span class="hl-1">);</span><br/><span class="hl-1">}, </span><span class="hl-9">1000</span><span class="hl-1">, </span><span class="hl-5">true</span><span class="hl-1">);</span>
+</code><button>Copy</button></pre>
+<a id="md:throttle" class="tsd-anchor"></a><h4><a href="#md:throttle">throttle</a></h4><p>Throttle</p>
+<!-- ZH: 节流 -->
 
-<span style="color: #008000">// Determine `class`</span>
-<span style="color: #795E26">hasClass</span><span style="color: #000000">(</span><span style="color: #001080">dom</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;test&#039;</span><span style="color: #000000">);</span>
-<span style="color: #008000">// Add `class`</span>
-<span style="color: #795E26">addClass</span><span style="color: #000000">(</span><span style="color: #001080">dom</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;test&#039;</span><span style="color: #000000">);</span>
-<span style="color: #008000">// Remove `class`</span>
-<span style="color: #795E26">removeClass</span><span style="color: #000000">(</span><span style="color: #001080">dom</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;test&#039;</span><span style="color: #000000">);</span>
-</code></pre>
-				<!-- @category DOM -->
-				<a href="#newline" id="newline" style="color: inherit; text-decoration: none;">
-					<h4>newLine</h4>
-				</a>
-				<p>Make a new line of HTML.</p>
-				<pre><code><span style="color: #795E26">newLine</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;a</span><span style="color: #EE0000">\n</span><span style="color: #A31515">b</span><span style="color: #EE0000">\n</span><span style="color: #A31515">c&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;a&lt;br /&gt;b&lt;br /&gt;c&#039;</span>
-<span style="color: #795E26">newLine</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;a</span><span style="color: #EE0000">\n\n</span><span style="color: #A31515">bc&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;a&lt;br /&gt;&lt;br /&gt;bc&#039;</span>
-</code></pre>
-				<!-- @param {string} str The string to make a new line.
-@returns {string} A newline with `br`.
-@category DOM -->
-				<a href="#calculate-and-formula" id="calculate-and-formula" style="color: inherit; text-decoration: none;">
-					<h3>Calculate and Formula</h3>
-				</a>
-				<a href="#inrate" id="inrate" style="color: inherit; text-decoration: none;">
-					<h4>inRate</h4>
-				</a>
-				<p>Hit probability (1% ~ 100%).</p>
-				<!-- ZH: 百分位概率 -->
-				<p>Usage:</p>
-				<pre><code><span style="color: #795E26">inRate</span><span style="color: #000000">(</span><span style="color: #098658">0.5</span><span style="color: #000000">); </span><span style="color: #008000">// 0.01 ~ 1 true/false</span>
-</code></pre>
-				<p>Output:</p>
-				<pre><code><span style="color: #0000FF">true</span>
-</code></pre>
-				<p>Example: Test the precision.</p>
-				<pre><code><span style="color: #008000">// Test</span>
-<span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">trueCount</span><span style="color: #000000"> = </span><span style="color: #098658">0</span><span style="color: #000000">;</span>
-<span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">falseCount</span><span style="color: #000000"> = </span><span style="color: #098658">0</span><span style="color: #000000">;</span>
-<span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #267F99">Array</span><span style="color: #000000">(</span><span style="color: #098658">1000000</span><span style="color: #000000">).</span><span style="color: #795E26">fill</span><span style="color: #000000">(</span><span style="color: #098658">0</span><span style="color: #000000">).</span><span style="color: #795E26">forEach</span><span style="color: #000000">(() </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
-<span style="color: #000000">  </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #795E26">inRate</span><span style="color: #000000">(</span><span style="color: #098658">0.5</span><span style="color: #000000">)) {</span>
-<span style="color: #000000">    </span><span style="color: #001080">trueCount</span><span style="color: #000000">++;</span>
-<span style="color: #000000">  } </span><span style="color: #AF00DB">else</span><span style="color: #000000"> {</span>
-<span style="color: #000000">    </span><span style="color: #001080">falseCount</span><span style="color: #000000">++;</span>
-<span style="color: #000000">  }</span>
-<span style="color: #000000">});</span>
-<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">trueCount</span><span style="color: #000000">, </span><span style="color: #001080">falseCount</span><span style="color: #000000">); </span><span style="color: #008000">// 499994 500006</span>
-</code></pre>
-				<!-- @param {number} rate -- 0.1 ~ 1 => 1% ~ 100%
-@returns {boolean} true 命中
-@category Calculate and Formula -->
-				<a href="#longestcomsubstring" id="longestcomsubstring" style="color: inherit; text-decoration: none;">
-					<h4>longestComSubstring</h4>
-				</a>
-				<p>Computes the longest common substring of two strings.</p>
-				<p>Usage:</p>
-				<pre><code><span style="color: #795E26">longestComSubstring</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;fish&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;finish&#039;</span><span style="color: #000000">);</span>
-</code></pre>
-				<p>Output:</p>
-				<pre><code><span style="color: #098658">3</span>
-</code></pre>
-				<a href="#longestcomsubsequence" id="longestcomsubsequence" style="color: inherit; text-decoration: none;">
-					<h4>longestComSubsequence</h4>
-				</a>
-				<p>Computes the longest common subsequence of two strings.</p>
-				<p>Usage:</p>
-				<pre><code><span style="color: #795E26">longestComSubsequence</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;fish&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;finish&#039;</span><span style="color: #000000">);</span>
-</code></pre>
-				<p>Output:</p>
-				<pre><code><span style="color: #098658">4</span>
-</code></pre>
-				<a href="#browser-information" id="browser-information" style="color: inherit; text-decoration: none;">
-					<h3>Browser Information</h3>
-				</a>
-				<a href="#getbrowserinfo" id="getbrowserinfo" style="color: inherit; text-decoration: none;">
-					<h4>getBrowserInfo</h4>
-				</a>
-				<p>Browser Information</p>
-				<!-- ZH: 返回浏览器信息 https://github.com/JowayYoung/juejin-code/blob/master/browser-type.js -->
-				<p>Usage:</p>
-				<pre><code><span style="color: #795E26">getBrowserInfo</span><span style="color: #000000">();</span>
-</code></pre>
-				<p>Output:</p>
-				<pre><code><span style="color: #000000">{</span><span style="color: #A31515">&quot;engine&quot;</span><span style="color: #000000">:</span><span style="color: #A31515">&quot;webkit&quot;</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;engineVs&quot;</span><span style="color: #000000">:</span><span style="color: #A31515">&quot;537.36&quot;</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;platform&quot;</span><span style="color: #000000">:</span><span style="color: #A31515">&quot;desktop&quot;</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;supporter&quot;</span><span style="color: #000000">:</span><span style="color: #A31515">&quot;chrome&quot;</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;supporterVs&quot;</span><span style="color: #000000">:</span><span style="color: #A31515">&quot;85.0.4183.121&quot;</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;system&quot;</span><span style="color: #000000">:</span><span style="color: #A31515">&quot;windows&quot;</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;systemVs&quot;</span><span style="color: #000000">:</span><span style="color: #A31515">&quot;10&quot;</span><span style="color: #000000">}</span>
-</code></pre>
-				<p>Results:</p>
-				<table>
-					<thead>
-						<tr>
-							<th align="left">Attribute</th>
-							<th align="left">Description</th>
-							<th align="left">Type</th>
-							<th align="left">Values</th>
-						</tr>
-					</thead>
-					<tbody><tr>
-							<td align="left"><strong>system</strong></td>
-							<td align="left">System</td>
-							<td align="left">string</td>
-							<td align="left">android, ios, windows, macos, linux</td>
-						</tr>
-						<tr>
-							<td align="left">systemVs</td>
-							<td align="left">System version</td>
-							<td align="left">string</td>
-							<td align="left">windows: 2000, xp, 2003, vista, 7, 8, 8.1, 10 <br />macos: ...</td>
-						</tr>
-						<tr>
-							<td align="left">platform</td>
-							<td align="left">Platform</td>
-							<td align="left">string</td>
-							<td align="left">desktop, mobile</td>
-						</tr>
-						<tr>
-							<td align="left">engine</td>
-							<td align="left">Engine</td>
-							<td align="left">string</td>
-							<td align="left">webkit, gecko, presto, trident</td>
-						</tr>
-						<tr>
-							<td align="left">engineVs</td>
-							<td align="left">Engine version</td>
-							<td align="left">string</td>
-							<td align="left">-</td>
-						</tr>
-						<tr>
-							<td align="left">supporter</td>
-							<td align="left">Supporter</td>
-							<td align="left">string</td>
-							<td align="left">edge, opera, chrome, safari, firefox, iexplore</td>
-						</tr>
-						<tr>
-							<td align="left">supporterVs</td>
-							<td align="left">Supporter version</td>
-							<td align="left">string</td>
-							<td align="left">-</td>
-						</tr>
-						<tr>
-							<td align="left">shell</td>
-							<td align="left">Shell</td>
-							<td align="left">string</td>
-							<td align="left">(Optional) wechat, qq_browser, qq_app, uc, 360, 2345, sougou, liebao, maxthon, bilibili</td>
-						</tr>
-						<tr>
-							<td align="left">shellVs</td>
-							<td align="left">Shell version</td>
-							<td align="left">string</td>
-							<td align="left">(Optional) 20/...</td>
-						</tr>
-						<tr>
-							<td align="left">appleType</td>
-							<td align="left">Apple device type</td>
-							<td align="left">string</td>
-							<td align="left">(Optional) ipad, iphone, ipod, iwatch</td>
-						</tr>
-				</tbody></table>
-				<p>Example: Determine the environment of the mobile QQ.</p>
-				<pre><code><span style="color: #0000FF">const</span><span style="color: #000000"> { </span><span style="color: #0070C1">system</span><span style="color: #000000">, </span><span style="color: #0070C1">shell</span><span style="color: #000000"> } = </span><span style="color: #795E26">getBrowserInfo</span><span style="color: #000000">();</span>
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">isMobileQQ</span><span style="color: #000000"> = [</span><span style="color: #A31515">&#039;android&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;ios&#039;</span><span style="color: #000000">].</span><span style="color: #795E26">includes</span><span style="color: #000000">(</span><span style="color: #001080">system</span><span style="color: #000000">) &amp;&amp; [</span><span style="color: #A31515">&#039;qq_browser&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;qq_app&#039;</span><span style="color: #000000">].</span><span style="color: #795E26">includes</span><span style="color: #000000">(</span><span style="color: #001080">shell</span><span style="color: #000000">);</span>
-</code></pre>
-				<!-- @returns 浏览器信息
-@category Browser Information -->
-				<a href="#issafepwaenv" id="issafepwaenv" style="color: inherit; text-decoration: none;">
-					<h4>isSafePWAEnv</h4>
-				</a>
-				<p>Detect the margin of Safety. Determine if it is a secure PWA environment that it can run.</p>
-				<!-- ZH: 判断是否是安全的 PWA 环境 -->
-				<p>Usage:</p>
-				<pre><code><span style="color: #795E26">isSafePWAEnv</span><span style="color: #000000">();</span>
-</code></pre>
-				<p>Output:</p>
-				<pre><code><span style="color: #0000FF">true</span>
-</code></pre>
-				<!-- @returns {boolean} true 是
-@category Browser Information -->
-				<a href="#web-performance" id="web-performance" style="color: inherit; text-decoration: none;">
-					<h3>Web Performance</h3>
-				</a>
-				<a href="#getperformance" id="getperformance" style="color: inherit; text-decoration: none;">
-					<h4>getPerformance</h4>
-				</a>
-				<p>Get page load time(<code>PerformanceNavigationTiming</code>).</p>
-				<p>This function uses the <a href="https://developer.mozilla.org/en-US/docs/Web/API/PerformanceNavigationTiming"><code>PerformanceNavigationTiming</code></a> API to get page load time data.
-					The <code>PerformanceNavigationTiming</code> API provides more accurate and detailed information about page load time than the deprecated <a href="https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming"><code>PerformanceTiming</code></a> API.
-				If you are using an older browser that does not support <code>PerformanceNavigationTiming</code>, you can still use the <code>PerformanceTiming</code> API by using the previous version of this library (<a href="https://www.npmjs.com/package/mazey/v/3.9.7"><code>v3.9.7</code></a>).</p>
-				<p>Usage:</p>
-				<pre><code><span style="color: #008000">// `camelCase：false` (Default) Return underline(`a_b`) data.</span>
-<span style="color: #008000">// `camelCase：true` Return hump(`aB`) data.</span>
-<span style="color: #795E26">getPerformance</span><span style="color: #000000">()</span>
-<span style="color: #000000"> .</span><span style="color: #795E26">then</span><span style="color: #000000">(</span><span style="color: #001080">res</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
-<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #267F99">JSON</span><span style="color: #000000">.</span><span style="color: #795E26">stringify</span><span style="color: #000000">(</span><span style="color: #001080">res</span><span style="color: #000000">));</span>
-<span style="color: #000000"> })</span>
-<span style="color: #000000"> .</span><span style="color: #795E26">catch</span><span style="color: #000000">(</span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #001080">error</span><span style="color: #000000">);</span>
-</code></pre>
-				<p>Output:</p>
-				<pre><code><span style="color: #000000">{</span><span style="color: #A31515">&quot;source&quot;</span><span style="color: #000000">:</span><span style="color: #A31515">&quot;PerformanceNavigationTiming&quot;</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;os&quot;</span><span style="color: #000000">:</span><span style="color: #A31515">&quot;others&quot;</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;os_version&quot;</span><span style="color: #000000">:</span><span style="color: #A31515">&quot;&quot;</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;device_type&quot;</span><span style="color: #000000">:</span><span style="color: #A31515">&quot;pc&quot;</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;network&quot;</span><span style="color: #000000">:</span><span style="color: #A31515">&quot;4g&quot;</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;screen_direction&quot;</span><span style="color: #000000">:</span><span style="color: #A31515">&quot;&quot;</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;unload_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">0</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;redirect_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">0</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;dns_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">0</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;tcp_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">0</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;ssl_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">0</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;response_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">2</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;download_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">2</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;first_paint_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">288</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;first_contentful_paint_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">288</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;dom_ready_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">0</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;onload_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">0</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;white_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">0</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;render_time&quot;</span><span style="color: #000000">:</span><span style="color: #098658">0</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;decoded_body_size&quot;</span><span style="color: #000000">:</span><span style="color: #098658">718</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;encoded_body_size&quot;</span><span style="color: #000000">:</span><span style="color: #098658">718</span><span style="color: #000000">}</span>
-</code></pre>
-				<p>Results:</p>
-				<table>
-					<thead>
-						<tr>
-							<th align="left">Attribute</th>
-							<th align="left">Description</th>
-							<th align="left">Type</th>
-							<th align="left">Values</th>
-						</tr>
-					</thead>
-					<tbody><tr>
-							<td align="left">dns_time</td>
-							<td align="left">DNS Lookup</td>
-							<td align="left">number</td>
-							<td align="left">domainLookupEnd - domainLookupStart</td>
-						</tr>
-						<tr>
-							<td align="left">tcp_time</td>
-							<td align="left">Connection Negotiation</td>
-							<td align="left">number</td>
-							<td align="left">connectEnd - connectStart</td>
-						</tr>
-						<tr>
-							<td align="left">response_time</td>
-							<td align="left">Requests and Responses</td>
-							<td align="left">number</td>
-							<td align="left">responseStart - requestStart</td>
-						</tr>
-						<tr>
-							<td align="left">white_time</td>
-							<td align="left">White Screen</td>
-							<td align="left">number</td>
-							<td align="left">responseStart - navigationStart</td>
-						</tr>
-						<tr>
-							<td align="left">dom_ready_time</td>
-							<td align="left">Dom Ready</td>
-							<td align="left">number</td>
-							<td align="left">domContentLoadedEventStart - navigationStart</td>
-						</tr>
-						<tr>
-							<td align="left">onload_time</td>
-							<td align="left">Onload</td>
-							<td align="left">number</td>
-							<td align="left">loadEventStart - navigationStart</td>
-						</tr>
-						<tr>
-							<td align="left">render_time</td>
-							<td align="left">EventEnd</td>
-							<td align="left">number</td>
-							<td align="left">loadEventEnd -navigationStart</td>
-						</tr>
-						<tr>
-							<td align="left">unload_time</td>
-							<td align="left">Unload</td>
-							<td align="left">number</td>
-							<td align="left">(Optional) unloadEventEnd - unloadEventStart</td>
-						</tr>
-						<tr>
-							<td align="left">redirect_time</td>
-							<td align="left">Redirect</td>
-							<td align="left">number</td>
-							<td align="left">(Optional) redirectEnd - redirectStart</td>
-						</tr>
-						<tr>
-							<td align="left">ssl_time</td>
-							<td align="left">SSL</td>
-							<td align="left">number</td>
-							<td align="left">(Optional) connectEnd - secureConnectionStart</td>
-						</tr>
-						<tr>
-							<td align="left">download_time</td>
-							<td align="left">Download</td>
-							<td align="left">number</td>
-							<td align="left">(Optional) responseEnd - responseStart</td>
-						</tr>
-				</tbody></table>
-				<a href="#debug" id="debug" style="color: inherit; text-decoration: none;">
-					<h3>Debug</h3>
-				</a>
-				<a href="#gencustomconsole" id="gencustomconsole" style="color: inherit; text-decoration: none;">
-					<h4>genCustomConsole</h4>
-				</a>
-				<p>Custom console printing (<code>console</code>).</p>
-				<!-- ZH: 生成自定义控制台打印 -->
-				<p>Usage:</p>
-				<pre><code><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">myConsole</span><span style="color: #000000"> = </span><span style="color: #795E26">genCustomConsole</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;MazeyLog:&#039;</span><span style="color: #000000">);</span>
-<span style="color: #001080">myConsole</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;I am string.&#039;</span><span style="color: #000000">);</span>
-<span style="color: #001080">myConsole</span><span style="color: #000000">.</span><span style="color: #795E26">info</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;I am boolean.&#039;</span><span style="color: #000000">, </span><span style="color: #0000FF">true</span><span style="color: #000000">);</span>
-<span style="color: #001080">myConsole</span><span style="color: #000000">.</span><span style="color: #795E26">info</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;I am number.&#039;</span><span style="color: #000000">, </span><span style="color: #098658">123</span><span style="color: #000000">, </span><span style="color: #098658">456</span><span style="color: #000000">);</span>
-<span style="color: #001080">myConsole</span><span style="color: #000000">.</span><span style="color: #795E26">info</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;I am object.&#039;</span><span style="color: #000000">, { </span><span style="color: #001080">a:</span><span style="color: #000000"> </span><span style="color: #098658">123</span><span style="color: #000000">, </span><span style="color: #001080">b:</span><span style="color: #000000"> </span><span style="color: #098658">456</span><span style="color: #000000">});</span>
-</code></pre>
-				<p>Output:</p>
-				<pre><code><span style="color: #000000">MazeyLog: </span><span style="color: #0070C1">I</span><span style="color: #000000"> </span><span style="color: #001080">am</span><span style="color: #000000"> </span><span style="color: #001080">string</span><span style="color: #000000">.</span>
-<span style="color: #000000">MazeyLog: </span><span style="color: #0070C1">I</span><span style="color: #000000"> </span><span style="color: #001080">am</span><span style="color: #000000"> </span><span style="color: #001080">boolean</span><span style="color: #000000">. </span><span style="color: #001080">true</span>
-<span style="color: #000000">MazeyLog: </span><span style="color: #0070C1">I</span><span style="color: #000000"> </span><span style="color: #001080">am</span><span style="color: #000000"> </span><span style="color: #001080">number</span><span style="color: #000000">. </span><span style="color: #098658">123</span><span style="color: #000000"> </span><span style="color: #098658">456</span>
-<span style="color: #000000">MazeyLog: </span><span style="color: #0070C1">I</span><span style="color: #000000"> </span><span style="color: #001080">am</span><span style="color: #000000"> </span><span style="color: #001080">object</span><span style="color: #000000">. {a: </span><span style="color: #098658">123</span><span style="color: #000000">, b: </span><span style="color: #098658">456</span><span style="color: #000000">}</span>
-</code></pre>
-				<!-- @param {string} prefix 前缀
-@param {string} locales A locale string.
-@param {function} logFn The function with Log.
-@param {function} errorFn The function with Error.
-@returns {object} 新实例
-@category Debug -->
-				<a href="#contributing" id="contributing" style="color: inherit; text-decoration: none;">
-					<h2>Contributing</h2>
-				</a>
-				<a href="#development-environment" id="development-environment" style="color: inherit; text-decoration: none;">
-					<h3>Development Environment</h3>
-				</a>
-				<a href="#nodejs" id="nodejs" style="color: inherit; text-decoration: none;">
-					<h4>Node.js</h4>
-				</a>
-				<ul>
-					<li>v14.21.3</li>
-					<li>v14.7.0</li>
-				</ul>
-				<a href="#typescript" id="typescript" style="color: inherit; text-decoration: none;">
-					<h4>TypeScript</h4>
-				</a>
-				<ul>
-					<li>v4.4.4</li>
-				</ul>
-				<a href="#scripts" id="scripts" style="color: inherit; text-decoration: none;">
-					<h3>Scripts</h3>
-				</a>
-				<p><strong>Install Dependencies</strong></p>
-				<pre><code><span style="color: #001080">npm</span><span style="color: #000000"> </span><span style="color: #001080">i</span>
-</code></pre>
-				<p><strong>Development</strong></p>
-				<pre><code><span style="color: #001080">npm</span><span style="color: #000000"> </span><span style="color: #001080">run</span><span style="color: #000000"> </span><span style="color: #001080">dev</span>
-</code></pre>
-				<p><strong>Build</strong></p>
-				<pre><code><span style="color: #001080">npm</span><span style="color: #000000"> </span><span style="color: #001080">run</span><span style="color: #000000"> </span><span style="color: #001080">build</span>
-</code></pre>
-				<p><strong>Document</strong></p>
-				<pre><code><span style="color: #001080">npm</span><span style="color: #000000"> </span><span style="color: #001080">run</span><span style="color: #000000"> </span><span style="color: #001080">docs</span>
-</code></pre>
-				<p><strong>Test</strong></p>
-				<pre><code><span style="color: #001080">npm</span><span style="color: #000000"> </span><span style="color: #001080">run</span><span style="color: #000000"> </span><span style="color: #001080">test</span>
-</code></pre>
-				<a href="#returns" id="returns" style="color: inherit; text-decoration: none;">
-					<h3>Returns</h3>
-				</a>
-				<table>
-					<thead>
-						<tr>
-							<th align="left">Values</th>
-							<th align="left">Description</th>
-							<th align="left">Type</th>
-						</tr>
-					</thead>
-					<tbody><tr>
-							<td align="left">ok</td>
-							<td align="left">The operation was successful.</td>
-							<td align="left">string</td>
-						</tr>
-						<tr>
-							<td align="left">loaded</td>
-							<td align="left">Some assets have been loaded.</td>
-							<td align="left">string</td>
-						</tr>
-						<tr>
-							<td align="left">fail</td>
-							<td align="left">An error occurred.</td>
-							<td align="left">string</td>
-						</tr>
-						<tr>
-							<td align="left">defined</td>
-							<td align="left">The value is defined.</td>
-							<td align="left">string</td>
-						</tr>
-						<tr>
-							<td align="left">undefined</td>
-							<td align="left">The value is undefined.</td>
-							<td align="left">string</td>
-						</tr>
-						<tr>
-							<td align="left">timeout</td>
-							<td align="left">The operation timed out.</td>
-							<td align="left">string</td>
-						</tr>
-						<tr>
-							<td align="left">true</td>
-							<td align="left">The value is true.</td>
-							<td align="left">boolean</td>
-						</tr>
-						<tr>
-							<td align="left">false</td>
-							<td align="left">The value is false.</td>
-							<td align="left">boolean</td>
-						</tr>
-				</tbody></table>
-				<a href="#license" id="license" style="color: inherit; text-decoration: none;">
-					<h2>License</h2>
-				</a>
-				<p>This software is released under the terms of the <a href="https://github.com/mazeyqian/mazey/blob/master/LICENSE">MIT license</a>.</p>
-			</div>
-		</div>
-		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
-			<nav class="tsd-navigation primary">
-				<ul>
-					<li class=" ">
-						<a href="modules.html">Exports</a>
-					</li>
-				</ul>
-			</nav>
-			<nav class="tsd-navigation secondary menu-sticky">
-				<ul class="before-current">
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/BrowserInfo.html" class="tsd-kind-icon">Browser<wbr>Info</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/DefineListeners.html" class="tsd-kind-icon">Define<wbr>Listeners</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/IsNumberOptions.html" class="tsd-kind-icon">Is<wbr>Number<wbr>Options</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/RepeatUntilOptions.html" class="tsd-kind-icon">Repeat<wbr>Until<wbr>Options</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/UrlParams.html" class="tsd-kind-icon">Url<wbr>Params</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/ZResIsValidResOptions.html" class="tsd-kind-icon">ZRes<wbr>IsValid<wbr>Res<wbr>Options</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/ZResResponse.html" class="tsd-kind-icon">ZRes<wbr>Response</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#AnyFunction" class="tsd-kind-icon">Any<wbr>Function</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
-						<a href="modules.html#DebounceFunc" class="tsd-kind-icon">Debounce<wbr>Func</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#LoadScriptReturns" class="tsd-kind-icon">Load<wbr>Script<wbr>Returns</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#TestUa" class="tsd-kind-icon">Test<wbr>Ua</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#TestVs" class="tsd-kind-icon">Test<wbr>Vs</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
-						<a href="modules.html#ThrottleFunc" class="tsd-kind-icon">Throttle<wbr>Func</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#simpleObject" class="tsd-kind-icon">simple<wbr>Object</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#simpleType" class="tsd-kind-icon">simple<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#addClass" class="tsd-kind-icon">add<wbr>Class</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#addEvent" class="tsd-kind-icon">add<wbr>Event</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#addStyle" class="tsd-kind-icon">add<wbr>Style</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#cancelBubble" class="tsd-kind-icon">cancel<wbr>Bubble</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#clearHtml" class="tsd-kind-icon">clear<wbr>Html</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#convert10To26" class="tsd-kind-icon">convert10<wbr>To26</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#convertCamelToKebab" class="tsd-kind-icon">convert<wbr>Camel<wbr>ToKebab</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#convertCamelToUnder" class="tsd-kind-icon">convert<wbr>Camel<wbr>ToUnder</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter">
-						<a href="modules.html#debounce" class="tsd-kind-icon">debounce</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter">
-						<a href="modules.html#deepCopy" class="tsd-kind-icon">deep<wbr>Copy</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#delCookie" class="tsd-kind-icon">del<wbr>Cookie</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#doFn" class="tsd-kind-icon">do<wbr>Fn</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#floatFixed" class="tsd-kind-icon">float<wbr>Fixed</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#floatToPercent" class="tsd-kind-icon">float<wbr>ToPercent</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#formatDate" class="tsd-kind-icon">format<wbr>Date</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#genCustomConsole" class="tsd-kind-icon">gen<wbr>Custom<wbr>Console</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#genHashCode" class="tsd-kind-icon">gen<wbr>Hash<wbr>Code</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#genRndNumString" class="tsd-kind-icon">gen<wbr>Rnd<wbr>Num<wbr>String</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#genStyleString" class="tsd-kind-icon">gen<wbr>Style<wbr>String</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#genUniqueNumString" class="tsd-kind-icon">gen<wbr>Unique<wbr>Num<wbr>String</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#getBrowserInfo" class="tsd-kind-icon">get<wbr>Browser<wbr>Info</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#getCLS" class="tsd-kind-icon">getCLS</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#getCookie" class="tsd-kind-icon">get<wbr>Cookie</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#getDomain" class="tsd-kind-icon">get<wbr>Domain</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#getFCP" class="tsd-kind-icon">getFCP</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#getFID" class="tsd-kind-icon">getFID</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#getFP" class="tsd-kind-icon">getFP</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#getFileSize" class="tsd-kind-icon">get<wbr>File<wbr>Size</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#getFriendlyInterval" class="tsd-kind-icon">get<wbr>Friendly<wbr>Interval</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#getHashQueryParam" class="tsd-kind-icon">get<wbr>Hash<wbr>Query<wbr>Param</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#getLCP" class="tsd-kind-icon">getLCP</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter">
-						<a href="modules.html#getLocalStorage" class="tsd-kind-icon">get<wbr>Local<wbr>Storage</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#getPerformance" class="tsd-kind-icon">get<wbr>Performance</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#getQueryParam" class="tsd-kind-icon">get<wbr>Query<wbr>Param</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#getScriptQueryParam" class="tsd-kind-icon">get<wbr>Script<wbr>Query<wbr>Param</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter">
-						<a href="modules.html#getSessionStorage" class="tsd-kind-icon">get<wbr>Session<wbr>Storage</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#getTTFB" class="tsd-kind-icon">getTTFB</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#getUrlFileType" class="tsd-kind-icon">get<wbr>Url<wbr>File<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#getUrlParam" class="tsd-kind-icon">get<wbr>Url<wbr>Param</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#hasClass" class="tsd-kind-icon">has<wbr>Class</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#inRate" class="tsd-kind-icon">in<wbr>Rate</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#invokeEvent" class="tsd-kind-icon">invoke<wbr>Event</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#isJSONString" class="tsd-kind-icon">isJSONString</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter">
-						<a href="modules.html#isNonEmptyArray" class="tsd-kind-icon">is<wbr>Non<wbr>Empty<wbr>Array</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#isNumber" class="tsd-kind-icon">is<wbr>Number</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#isSafePWAEnv" class="tsd-kind-icon">is<wbr>SafePWAEnv</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#isSupportWebp" class="tsd-kind-icon">is<wbr>Support<wbr>Webp</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#isValidData" class="tsd-kind-icon">is<wbr>Valid<wbr>Data</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#isValidEmail" class="tsd-kind-icon">is<wbr>Valid<wbr>Email</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#isValidHttpUrl" class="tsd-kind-icon">is<wbr>Valid<wbr>Http<wbr>Url</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#isValidPhoneNumber" class="tsd-kind-icon">is<wbr>Valid<wbr>Phone<wbr>Number</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#isValidUrl" class="tsd-kind-icon">is<wbr>Valid<wbr>Url</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#loadCSS" class="tsd-kind-icon">loadCSS</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#loadImage" class="tsd-kind-icon">load<wbr>Image</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#loadScript" class="tsd-kind-icon">load<wbr>Script</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#loadScriptIfUndefined" class="tsd-kind-icon">load<wbr>Script<wbr>IfUndefined</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#longestComSubsequence" class="tsd-kind-icon">longest<wbr>Com<wbr>Subsequence</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#longestComSubstring" class="tsd-kind-icon">longest<wbr>Com<wbr>Substring</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#mNow" class="tsd-kind-icon">m<wbr>Now</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#newLine" class="tsd-kind-icon">new<wbr>Line</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#removeClass" class="tsd-kind-icon">remove<wbr>Class</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#removeEvent" class="tsd-kind-icon">remove<wbr>Event</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter">
-						<a href="modules.html#repeatUntilConditionMet" class="tsd-kind-icon">repeat<wbr>Until<wbr>Condition<wbr>Met</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#sanitizeInput" class="tsd-kind-icon">sanitize<wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#setCookie" class="tsd-kind-icon">set<wbr>Cookie</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#setImgWidHeiBySrc" class="tsd-kind-icon">set<wbr>Img<wbr>Wid<wbr>Hei<wbr>BySrc</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter">
-						<a href="modules.html#setLocalStorage" class="tsd-kind-icon">set<wbr>Local<wbr>Storage</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter">
-						<a href="modules.html#setSessionStorage" class="tsd-kind-icon">set<wbr>Session<wbr>Storage</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter">
-						<a href="modules.html#throttle" class="tsd-kind-icon">throttle</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#truncateZHString" class="tsd-kind-icon">truncateZHString</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#unsanitize" class="tsd-kind-icon">unsanitize</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#updateQueryParam" class="tsd-kind-icon">update<wbr>Query<wbr>Param</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#windowLoaded" class="tsd-kind-icon">window<wbr>Loaded</a>
-					</li>
-				</ul>
-			</nav>
-		</div>
-	</div>
-</div>
-<footer>
-	<div class="container">
-		<h2>Legend</h2>
-		<div class="tsd-legend-group">
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
-			</ul>
-		</div>
-	</div>
-</footer>
-<div class="overlay"></div>
-<script src="assets/js/main.js"></script>
-</body>
-</html>
+<pre><code><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-6">foo</span><span class="hl-1"> = </span><span class="hl-7">throttle</span><span class="hl-1">(() </span><span class="hl-5">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-0">console</span><span class="hl-1">.</span><span class="hl-7">log</span><span class="hl-1">(</span><span class="hl-2">&#39;The function will be invoked at most once per every wait 1000 milliseconds.&#39;</span><span class="hl-1">);</span><br/><span class="hl-1">}, </span><span class="hl-9">1000</span><span class="hl-1">, { </span><span class="hl-0">leading:</span><span class="hl-1"> </span><span class="hl-5">true</span><span class="hl-1"> });</span>
+</code><button>Copy</button></pre>
+<p>Reference: <a href="https://lodash.com/docs/4.17.15#throttle">Lodash</a></p>
+<a id="md:convertcameltokebab" class="tsd-anchor"></a><h4><a href="#md:convertcameltokebab">convertCamelToKebab</a></h4><p>Transfer CamelCase to KebabCase.</p>
+<pre><code><span class="hl-7">convertCamelToKebab</span><span class="hl-1">(</span><span class="hl-2">&#39;ABC&#39;</span><span class="hl-1">); </span><span class="hl-8">// a-b-c</span><br/><span class="hl-7">convertCamelToKebab</span><span class="hl-1">(</span><span class="hl-2">&#39;aBC&#39;</span><span class="hl-1">); </span><span class="hl-8">// a-b-c</span>
+</code><button>Copy</button></pre>
+<a id="md:convertcameltounder" class="tsd-anchor"></a><h4><a href="#md:convertcameltounder">convertCamelToUnder</a></h4><p>Transfer CamelCase to Underscore.</p>
+<pre><code><span class="hl-7">convertCamelToUnder</span><span class="hl-1">(</span><span class="hl-2">&#39;ABC&#39;</span><span class="hl-1">); </span><span class="hl-8">// a_b_c</span><br/><span class="hl-7">convertCamelToUnder</span><span class="hl-1">(</span><span class="hl-2">&#39;aBC&#39;</span><span class="hl-1">); </span><span class="hl-8">// a_b_c</span>
+</code><button>Copy</button></pre>
+<a id="md:deepcopy" class="tsd-anchor"></a><h4><a href="#md:deepcopy">deepCopy</a></h4><p>Copy/Clone Object deeply.</p>
+<p>Usage:</p>
+<pre><code><span class="hl-7">deepCopy</span><span class="hl-1">([</span><span class="hl-2">&#39;a&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;b&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;c&#39;</span><span class="hl-1">]);</span><br/><span class="hl-7">deepCopy</span><span class="hl-1">(</span><span class="hl-2">&#39;abc&#39;</span><span class="hl-1">);</span>
+</code><button>Copy</button></pre>
+<p>Output:</p>
+<pre><code><span class="hl-1">[</span><span class="hl-2">&#39;a&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;b&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;c&#39;</span><span class="hl-1">]</span><br/><span class="hl-2">&#39;abc&#39;</span>
+</code><button>Copy</button></pre>
+<a id="md:url" class="tsd-anchor"></a><h3><a href="#md:url">URL</a></h3><a id="md:getqueryparam" class="tsd-anchor"></a><h4><a href="#md:getqueryparam">getQueryParam</a></h4><p>Get the query param&#39;s value of the current Web URL(<code>location.search</code>).</p>
+<pre><code><span class="hl-8">// http://example.com/?t1=1&amp;t2=2&amp;t3=3&amp;t4=4#2333</span><br/><span class="hl-8">// ?t1=1&amp;t2=2&amp;t3=3&amp;t4=4</span><br/><span class="hl-7">getQueryParam</span><span class="hl-1">(</span><span class="hl-2">&#39;t3&#39;</span><span class="hl-1">); </span><span class="hl-8">// 3</span><br/><span class="hl-7">getQueryParam</span><span class="hl-1">(</span><span class="hl-2">&#39;t4&#39;</span><span class="hl-1">); </span><span class="hl-8">// 4</span>
+</code><button>Copy</button></pre>
+<a id="md:geturlparam" class="tsd-anchor"></a><h4><a href="#md:geturlparam">getUrlParam</a></h4><p>Returns the value of the specified query parameter in the input URL.</p>
+<pre><code><span class="hl-7">getUrlParam</span><span class="hl-1">(</span><span class="hl-2">&#39;http://example.com/?t1=1&amp;t2=2&amp;t3=3&amp;t4=4&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;t3&#39;</span><span class="hl-1">); </span><span class="hl-8">// Returns &#39;3&#39;</span><br/><span class="hl-7">getUrlParam</span><span class="hl-1">(</span><span class="hl-2">&#39;http://example.com/?t1=1&amp;t2=2&amp;t3=3&amp;t4=4&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;t4&#39;</span><span class="hl-1">); </span><span class="hl-8">// Returns &#39;4&#39;</span>
+</code><button>Copy</button></pre>
+<a id="md:gethashqueryparam" class="tsd-anchor"></a><h4><a href="#md:gethashqueryparam">getHashQueryParam</a></h4><p>Get the hash query param&#39;s value of the current Web URL(<code>location.hash</code>).</p>
+<p>Usage:</p>
+<pre><code><span class="hl-8">// http://example.com/?#2333?t1=1&amp;t2=2&amp;t3=3&amp;t4=4</span><br/><span class="hl-8">// #2333?t1=1&amp;t2=2&amp;t3=3&amp;t4=4</span><br/><span class="hl-7">getHashQueryParam</span><span class="hl-1">(</span><span class="hl-2">&#39;t3&#39;</span><span class="hl-1">);</span><br/><span class="hl-7">getHashQueryParam</span><span class="hl-1">(</span><span class="hl-2">&#39;t4&#39;</span><span class="hl-1">);</span>
+</code><button>Copy</button></pre>
+<p>Output:</p>
+<pre><code><span class="hl-9">3</span><br/><span class="hl-9">4</span>
+</code><button>Copy</button></pre>
+<a id="md:getdomain" class="tsd-anchor"></a><h4><a href="#md:getdomain">getDomain</a></h4><p>Get the domain of URL, and other params.</p>
+<p>Usage:</p>
+<pre><code><span class="hl-7">getDomain</span><span class="hl-1">(</span><span class="hl-2">&#39;http://example.com/?t1=1&amp;t2=2&amp;t3=3&amp;t4=4&#39;</span><span class="hl-1">);</span><br/><span class="hl-7">getDomain</span><span class="hl-1">(</span><span class="hl-2">&#39;http://example.com/test/thanks?t1=1&amp;t2=2&amp;t3=3&amp;t4=4&#39;</span><span class="hl-1">, [</span><span class="hl-2">&#39;hostname&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;pathname&#39;</span><span class="hl-1">]);</span><br/><span class="hl-7">getDomain</span><span class="hl-1">(</span><span class="hl-2">&#39;http://example.com:7890/test/thanks&#39;</span><span class="hl-1">, [</span><span class="hl-2">&#39;hostname&#39;</span><span class="hl-1">]);</span><br/><span class="hl-7">getDomain</span><span class="hl-1">(</span><span class="hl-2">&#39;http://example.com:7890/test/thanks&#39;</span><span class="hl-1">, [</span><span class="hl-2">&#39;host&#39;</span><span class="hl-1">]); </span><span class="hl-8">// With Port</span><br/><span class="hl-7">getDomain</span><span class="hl-1">(</span><span class="hl-2">&#39;http://example.com:7890/test/thanks&#39;</span><span class="hl-1">, [</span><span class="hl-2">&#39;origin&#39;</span><span class="hl-1">]);</span><br/><span class="hl-7">getDomain</span><span class="hl-1">(</span><span class="hl-2">&#39;http://example.com:7890/test/thanks?id=1&#39;</span><span class="hl-1">, [</span><span class="hl-2">&#39;origin&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;pathname&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;search&#39;</span><span class="hl-1">]);</span>
+</code><button>Copy</button></pre>
+<p>Output:</p>
+<pre><code><span class="hl-0">example</span><span class="hl-1">.</span><span class="hl-0">com</span><br/><span class="hl-0">example</span><span class="hl-1">.</span><span class="hl-0">com</span><span class="hl-1">/</span><span class="hl-0">test</span><span class="hl-1">/</span><span class="hl-0">thanks</span><br/><span class="hl-0">example</span><span class="hl-1">.</span><span class="hl-0">com</span><br/><span class="hl-0">example</span><span class="hl-1">.</span><span class="hl-0">com</span><span class="hl-1">:</span><span class="hl-9">7890</span><br/><span class="hl-11">http</span><span class="hl-1">:</span><span class="hl-8">//example.com:7890</span><br/><span class="hl-11">http</span><span class="hl-1">:</span><span class="hl-8">//example.com:7890/test/thanks?id=1</span>
+</code><button>Copy</button></pre>
+<a id="md:updatequeryparam" class="tsd-anchor"></a><h4><a href="#md:updatequeryparam">updateQueryParam</a></h4><p>Update the query param&#39;s value of the input URL.</p>
+<p>Usage:</p>
+<pre><code><span class="hl-7">updateQueryParam</span><span class="hl-1">(</span><span class="hl-2">&#39;http://example.com/?t1=1&amp;t2=2&amp;t3=3&amp;t4=4&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;t3&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;three&#39;</span><span class="hl-1">);</span><br/><span class="hl-7">updateQueryParam</span><span class="hl-1">(</span><span class="hl-2">&#39;http://example.com/?t1=1&amp;t2=2&amp;t3=3&amp;t4=4&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;t4&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;four&#39;</span><span class="hl-1">);</span>
+</code><button>Copy</button></pre>
+<p>Output:</p>
+<pre><code><span class="hl-11">http</span><span class="hl-1">:</span><span class="hl-8">//example.com/?t1=1&amp;t2=2&amp;t3=three&amp;t4=4</span><br/><span class="hl-11">http</span><span class="hl-1">:</span><span class="hl-8">//example.com/?t1=1&amp;t2=2&amp;t3=3&amp;t4=four</span>
+</code><button>Copy</button></pre>
+<a id="md:isvalidurl" class="tsd-anchor"></a><h4><a href="#md:isvalidurl">isValidUrl</a></h4><p>Checks if the given string is a valid URL, including <strong>scheme URLs</strong>.</p>
+<pre><code class="language-js"><span class="hl-7">isValidUrl</span><span class="hl-1">(</span><span class="hl-2">&#39;https://www.example.com&#39;</span><span class="hl-1">); </span><span class="hl-8">// true</span><br/><span class="hl-7">isValidUrl</span><span class="hl-1">(</span><span class="hl-2">&#39;http://example.com/path/exx/ss&#39;</span><span class="hl-1">); </span><span class="hl-8">// true</span><br/><span class="hl-7">isValidUrl</span><span class="hl-1">(</span><span class="hl-2">&#39;https://www.example.com/?q=hello&amp;age=24#world&#39;</span><span class="hl-1">); </span><span class="hl-8">// true</span><br/><span class="hl-7">isValidUrl</span><span class="hl-1">(</span><span class="hl-2">&#39;http://www.example.com/#world?id=9&#39;</span><span class="hl-1">); </span><span class="hl-8">// true</span><br/><span class="hl-7">isValidUrl</span><span class="hl-1">(</span><span class="hl-2">&#39;ftp://example.com&#39;</span><span class="hl-1">); </span><span class="hl-8">// true</span>
+</code><button>Copy</button></pre>
+<p>If you are specifically checking for HTTP/HTTPS URLs, it is recommended to use the <code>isValidHttpUrl</code> function instead.
+The <code>isValidUrl</code> function matches all scheme URLs, including FTP and other non-HTTP schemes.</p>
+<a id="md:isvalidhttpurl" class="tsd-anchor"></a><h4><a href="#md:isvalidhttpurl">isValidHttpUrl</a></h4><p>Check if the given string is a valid HTTP/HTTPS URL.</p>
+<pre><code class="language-js"><span class="hl-7">isValidHttpUrl</span><span class="hl-1">(</span><span class="hl-2">&#39;https://www.example.com&#39;</span><span class="hl-1">); </span><span class="hl-8">// true</span><br/><span class="hl-7">isValidHttpUrl</span><span class="hl-1">(</span><span class="hl-2">&#39;http://example.com/path/exx/ss&#39;</span><span class="hl-1">); </span><span class="hl-8">// true</span><br/><span class="hl-7">isValidHttpUrl</span><span class="hl-1">(</span><span class="hl-2">&#39;https://www.example.com/?q=hello&amp;age=24#world&#39;</span><span class="hl-1">); </span><span class="hl-8">// true</span><br/><span class="hl-7">isValidHttpUrl</span><span class="hl-1">(</span><span class="hl-2">&#39;http://www.example.com/#world?id=9&#39;</span><span class="hl-1">); </span><span class="hl-8">// true</span><br/><span class="hl-7">isValidHttpUrl</span><span class="hl-1">(</span><span class="hl-2">&#39;ftp://example.com&#39;</span><span class="hl-1">); </span><span class="hl-8">// false</span>
+</code><button>Copy</button></pre>
+<a id="md:cache-data" class="tsd-anchor"></a><h3><a href="#md:cache-data">Cache Data</a></h3><a id="md:cookie" class="tsd-anchor"></a><h4><a href="#md:cookie">Cookie</a></h4><p>Handle Cookie.</p>
+<!-- ZH: 设置/获取 Cookie -->
+
+<pre><code><span class="hl-7">setCookie</span><span class="hl-1">(</span><span class="hl-2">&#39;test&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;123&#39;</span><span class="hl-1">, </span><span class="hl-9">30</span><span class="hl-1">, </span><span class="hl-2">&#39;example.com&#39;</span><span class="hl-1">); </span><span class="hl-8">// key value day domain</span><br/><span class="hl-7">getCookie</span><span class="hl-1">(</span><span class="hl-2">&#39;test&#39;</span><span class="hl-1">); </span><span class="hl-8">// 123</span>
+</code><button>Copy</button></pre>
+<a id="md:storage" class="tsd-anchor"></a><h4><a href="#md:storage">Storage</a></h4><p>Handle Storage (Keep fit for JSON, it can transfer format automatically).</p>
+<!-- ZH: 存储/获取数据到 sessionStorage/localStorage -->
+
+<pre><code><span class="hl-7">setSessionStorage</span><span class="hl-1">(</span><span class="hl-2">&#39;test&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;123&#39;</span><span class="hl-1">);</span><br/><span class="hl-7">getSessionStorage</span><span class="hl-1">(</span><span class="hl-2">&#39;test&#39;</span><span class="hl-1">); </span><span class="hl-8">// 123</span><br/><span class="hl-7">setLocalStorage</span><span class="hl-1">(</span><span class="hl-2">&#39;test&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;123&#39;</span><span class="hl-1">);</span><br/><span class="hl-7">getLocalStorage</span><span class="hl-1">(</span><span class="hl-2">&#39;test&#39;</span><span class="hl-1">); </span><span class="hl-8">// 123</span><br/><br/><span class="hl-8">// or package in usage</span><br/><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-6">projectName</span><span class="hl-1"> = </span><span class="hl-2">&#39;mazey&#39;</span><span class="hl-1">;</span><br/><span class="hl-5">function</span><span class="hl-1"> </span><span class="hl-7">mSetLocalStorage</span><span class="hl-1"> (</span><span class="hl-0">key</span><span class="hl-1">, </span><span class="hl-0">value</span><span class="hl-1">) {</span><br/><span class="hl-1">  </span><span class="hl-4">return</span><span class="hl-1"> </span><span class="hl-7">setLocalStorage</span><span class="hl-1">(</span><span class="hl-2">`</span><span class="hl-5">${</span><span class="hl-0">projectName</span><span class="hl-5">}</span><span class="hl-2">_</span><span class="hl-5">${</span><span class="hl-0">key</span><span class="hl-5">}</span><span class="hl-2">`</span><span class="hl-1">, </span><span class="hl-0">value</span><span class="hl-1">);</span><br/><span class="hl-1">}</span><br/><br/><span class="hl-5">function</span><span class="hl-1"> </span><span class="hl-7">mGetLocalStorage</span><span class="hl-1"> (</span><span class="hl-0">key</span><span class="hl-1">) {</span><br/><span class="hl-1">  </span><span class="hl-4">return</span><span class="hl-1"> </span><span class="hl-7">getLocalStorage</span><span class="hl-1">(</span><span class="hl-2">`</span><span class="hl-5">${</span><span class="hl-0">projectName</span><span class="hl-5">}</span><span class="hl-2">_</span><span class="hl-5">${</span><span class="hl-0">key</span><span class="hl-5">}</span><span class="hl-2">`</span><span class="hl-1">);</span><br/><span class="hl-1">}</span>
+</code><button>Copy</button></pre>
+<a id="md:dom" class="tsd-anchor"></a><h3><a href="#md:dom">DOM</a></h3><a id="md:addstyle" class="tsd-anchor"></a><h4><a href="#md:addstyle">addStyle</a></h4><p>Add <code>&lt;style&gt;</code> in <code>&lt;head&gt;</code>.</p>
+<!-- ZH: 添加样式标签; style: 样式标签内的字符串; id: `<style>` 标签的 `id`; 返回: 添加成功/失败 -->
+
+<p>Example 1: Add the <code>&lt;style&gt;</code> with <code>id</code>, and repeated invoking will update the content instead of adding a new one.</p>
+<pre><code><span class="hl-7">addStyle</span><span class="hl-1">(</span><br/><span class="hl-1">  </span><span class="hl-2">`</span><br/><span class="hl-2">    body {</span><br/><span class="hl-2">      background-color: #333;</span><br/><span class="hl-2">    }</span><br/><span class="hl-2">  `</span><span class="hl-1">,</span><br/><span class="hl-1">  {</span><br/><span class="hl-1">    </span><span class="hl-0">id:</span><span class="hl-1"> </span><span class="hl-2">&#39;test&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">  }</span><br/><span class="hl-1">);</span><br/><span class="hl-8">// &lt;style id=&quot;test&quot;&gt;</span><br/><span class="hl-8">//   body {</span><br/><span class="hl-8">//     background-color: #333;</span><br/><span class="hl-8">//   }</span><br/><span class="hl-8">// &lt;/style&gt;</span>
+</code><button>Copy</button></pre>
+<p>Example 2: Add the <code>&lt;style&gt;</code> without <code>id</code>, and repeated invoking will add a new one.</p>
+<pre><code><span class="hl-7">addStyle</span><span class="hl-1">(</span><br/><span class="hl-1">  </span><span class="hl-2">`</span><br/><span class="hl-2">    body {</span><br/><span class="hl-2">      background-color: #444;</span><br/><span class="hl-2">    }</span><br/><span class="hl-2">  `</span><br/><span class="hl-1">);</span><br/><span class="hl-8">// &lt;style&gt;</span><br/><span class="hl-8">//   body {</span><br/><span class="hl-8">//     background-color: #444;</span><br/><span class="hl-8">//   }</span><br/><span class="hl-8">// &lt;/style&gt;</span>
+</code><button>Copy</button></pre>
+<a id="md:class" class="tsd-anchor"></a><h4><a href="#md:class">Class</a></h4><p>Modify <code>class</code>.</p>
+<pre><code><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-6">dom</span><span class="hl-1"> = </span><span class="hl-0">document</span><span class="hl-1">.</span><span class="hl-7">querySelector</span><span class="hl-1">(</span><span class="hl-2">&#39;#box&#39;</span><span class="hl-1">);</span><br/><br/><span class="hl-8">// Determine `class`</span><br/><span class="hl-7">hasClass</span><span class="hl-1">(</span><span class="hl-0">dom</span><span class="hl-1">, </span><span class="hl-2">&#39;test&#39;</span><span class="hl-1">);</span><br/><span class="hl-8">// Add `class`</span><br/><span class="hl-7">addClass</span><span class="hl-1">(</span><span class="hl-0">dom</span><span class="hl-1">, </span><span class="hl-2">&#39;test&#39;</span><span class="hl-1">);</span><br/><span class="hl-8">// Remove `class`</span><br/><span class="hl-7">removeClass</span><span class="hl-1">(</span><span class="hl-0">dom</span><span class="hl-1">, </span><span class="hl-2">&#39;test&#39;</span><span class="hl-1">);</span>
+</code><button>Copy</button></pre>
+<a id="md:newline" class="tsd-anchor"></a><h4><a href="#md:newline">newLine</a></h4><p>Make a new line of HTML.</p>
+<pre><code><span class="hl-7">newLine</span><span class="hl-1">(</span><span class="hl-2">&#39;a</span><span class="hl-12">\n</span><span class="hl-2">b</span><span class="hl-12">\n</span><span class="hl-2">c&#39;</span><span class="hl-1">); </span><span class="hl-8">// &#39;a&lt;br /&gt;b&lt;br /&gt;c&#39;</span><br/><span class="hl-7">newLine</span><span class="hl-1">(</span><span class="hl-2">&#39;a</span><span class="hl-12">\n\n</span><span class="hl-2">bc&#39;</span><span class="hl-1">); </span><span class="hl-8">// &#39;a&lt;br /&gt;&lt;br /&gt;bc&#39;</span>
+</code><button>Copy</button></pre>
+<a id="md:calculate-and-formula" class="tsd-anchor"></a><h3><a href="#md:calculate-and-formula">Calculate and Formula</a></h3><a id="md:inrate" class="tsd-anchor"></a><h4><a href="#md:inrate">inRate</a></h4><p>Hit probability (1% ~ 100%).</p>
+<!-- ZH: 百分位概率 -->
+
+<p>Usage:</p>
+<pre><code><span class="hl-7">inRate</span><span class="hl-1">(</span><span class="hl-9">0.5</span><span class="hl-1">); </span><span class="hl-8">// 0.01 ~ 1 true/false</span>
+</code><button>Copy</button></pre>
+<p>Output:</p>
+<pre><code><span class="hl-5">true</span>
+</code><button>Copy</button></pre>
+<p>Example: Test the precision.</p>
+<pre><code><span class="hl-8">// Test</span><br/><span class="hl-5">let</span><span class="hl-1"> </span><span class="hl-0">trueCount</span><span class="hl-1"> = </span><span class="hl-9">0</span><span class="hl-1">;</span><br/><span class="hl-5">let</span><span class="hl-1"> </span><span class="hl-0">falseCount</span><span class="hl-1"> = </span><span class="hl-9">0</span><span class="hl-1">;</span><br/><span class="hl-5">new</span><span class="hl-1"> </span><span class="hl-7">Array</span><span class="hl-1">(</span><span class="hl-9">1000000</span><span class="hl-1">).</span><span class="hl-7">fill</span><span class="hl-1">(</span><span class="hl-9">0</span><span class="hl-1">).</span><span class="hl-7">forEach</span><span class="hl-1">(() </span><span class="hl-5">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-4">if</span><span class="hl-1"> (</span><span class="hl-7">inRate</span><span class="hl-1">(</span><span class="hl-9">0.5</span><span class="hl-1">)) {</span><br/><span class="hl-1">    </span><span class="hl-0">trueCount</span><span class="hl-1">++;</span><br/><span class="hl-1">  } </span><span class="hl-4">else</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-0">falseCount</span><span class="hl-1">++;</span><br/><span class="hl-1">  }</span><br/><span class="hl-1">});</span><br/><span class="hl-0">console</span><span class="hl-1">.</span><span class="hl-7">log</span><span class="hl-1">(</span><span class="hl-0">trueCount</span><span class="hl-1">, </span><span class="hl-0">falseCount</span><span class="hl-1">); </span><span class="hl-8">// 499994 500006</span>
+</code><button>Copy</button></pre>
+<a id="md:longestcomsubstring" class="tsd-anchor"></a><h4><a href="#md:longestcomsubstring">longestComSubstring</a></h4><p>Computes the longest common substring of two strings.</p>
+<p>Usage:</p>
+<pre><code><span class="hl-7">longestComSubstring</span><span class="hl-1">(</span><span class="hl-2">&#39;fish&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;finish&#39;</span><span class="hl-1">);</span>
+</code><button>Copy</button></pre>
+<p>Output:</p>
+<pre><code><span class="hl-9">3</span>
+</code><button>Copy</button></pre>
+<a id="md:longestcomsubsequence" class="tsd-anchor"></a><h4><a href="#md:longestcomsubsequence">longestComSubsequence</a></h4><p>Computes the longest common subsequence of two strings.</p>
+<p>Usage:</p>
+<pre><code><span class="hl-7">longestComSubsequence</span><span class="hl-1">(</span><span class="hl-2">&#39;fish&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;finish&#39;</span><span class="hl-1">);</span>
+</code><button>Copy</button></pre>
+<p>Output:</p>
+<pre><code><span class="hl-9">4</span>
+</code><button>Copy</button></pre>
+<a id="md:browser-information" class="tsd-anchor"></a><h3><a href="#md:browser-information">Browser Information</a></h3><a id="md:getbrowserinfo" class="tsd-anchor"></a><h4><a href="#md:getbrowserinfo">getBrowserInfo</a></h4><p>Browser Information</p>
+<!-- ZH: 返回浏览器信息 https://github.com/JowayYoung/juejin-code/blob/master/browser-type.js -->
+
+<p>Usage:</p>
+<pre><code><span class="hl-7">getBrowserInfo</span><span class="hl-1">();</span>
+</code><button>Copy</button></pre>
+<p>Output:</p>
+<pre><code><span class="hl-1">{</span><span class="hl-2">&quot;engine&quot;</span><span class="hl-1">:</span><span class="hl-2">&quot;webkit&quot;</span><span class="hl-1">,</span><span class="hl-2">&quot;engineVs&quot;</span><span class="hl-1">:</span><span class="hl-2">&quot;537.36&quot;</span><span class="hl-1">,</span><span class="hl-2">&quot;platform&quot;</span><span class="hl-1">:</span><span class="hl-2">&quot;desktop&quot;</span><span class="hl-1">,</span><span class="hl-2">&quot;supporter&quot;</span><span class="hl-1">:</span><span class="hl-2">&quot;chrome&quot;</span><span class="hl-1">,</span><span class="hl-2">&quot;supporterVs&quot;</span><span class="hl-1">:</span><span class="hl-2">&quot;85.0.4183.121&quot;</span><span class="hl-1">,</span><span class="hl-2">&quot;system&quot;</span><span class="hl-1">:</span><span class="hl-2">&quot;windows&quot;</span><span class="hl-1">,</span><span class="hl-2">&quot;systemVs&quot;</span><span class="hl-1">:</span><span class="hl-2">&quot;10&quot;</span><span class="hl-1">}</span>
+</code><button>Copy</button></pre>
+<p>Results:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Attribute</th>
+<th align="left">Description</th>
+<th align="left">Type</th>
+<th align="left">Values</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>system</strong></td>
+<td align="left">System</td>
+<td align="left">string</td>
+<td align="left">android, ios, windows, macos, linux</td>
+</tr>
+<tr>
+<td align="left">systemVs</td>
+<td align="left">System version</td>
+<td align="left">string</td>
+<td align="left">windows: 2000, xp, 2003, vista, 7, 8, 8.1, 10 <br />macos: ...</td>
+</tr>
+<tr>
+<td align="left">platform</td>
+<td align="left">Platform</td>
+<td align="left">string</td>
+<td align="left">desktop, mobile</td>
+</tr>
+<tr>
+<td align="left">engine</td>
+<td align="left">Engine</td>
+<td align="left">string</td>
+<td align="left">webkit, gecko, presto, trident</td>
+</tr>
+<tr>
+<td align="left">engineVs</td>
+<td align="left">Engine version</td>
+<td align="left">string</td>
+<td align="left">-</td>
+</tr>
+<tr>
+<td align="left">supporter</td>
+<td align="left">Supporter</td>
+<td align="left">string</td>
+<td align="left">edge, opera, chrome, safari, firefox, iexplore</td>
+</tr>
+<tr>
+<td align="left">supporterVs</td>
+<td align="left">Supporter version</td>
+<td align="left">string</td>
+<td align="left">-</td>
+</tr>
+<tr>
+<td align="left">shell</td>
+<td align="left">Shell</td>
+<td align="left">string</td>
+<td align="left">(Optional) wechat, qq_browser, qq_app, uc, 360, 2345, sougou, liebao, maxthon, bilibili</td>
+</tr>
+<tr>
+<td align="left">shellVs</td>
+<td align="left">Shell version</td>
+<td align="left">string</td>
+<td align="left">(Optional) 20/...</td>
+</tr>
+<tr>
+<td align="left">appleType</td>
+<td align="left">Apple device type</td>
+<td align="left">string</td>
+<td align="left">(Optional) ipad, iphone, ipod, iwatch</td>
+</tr>
+</tbody></table>
+<p>Example: Determine the environment of the mobile QQ.</p>
+<pre><code><span class="hl-5">const</span><span class="hl-1"> { </span><span class="hl-6">system</span><span class="hl-1">, </span><span class="hl-6">shell</span><span class="hl-1"> } = </span><span class="hl-7">getBrowserInfo</span><span class="hl-1">();</span><br/><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-6">isMobileQQ</span><span class="hl-1"> = [</span><span class="hl-2">&#39;android&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;ios&#39;</span><span class="hl-1">].</span><span class="hl-7">includes</span><span class="hl-1">(</span><span class="hl-0">system</span><span class="hl-1">) &amp;&amp; [</span><span class="hl-2">&#39;qq_browser&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;qq_app&#39;</span><span class="hl-1">].</span><span class="hl-7">includes</span><span class="hl-1">(</span><span class="hl-0">shell</span><span class="hl-1">);</span>
+</code><button>Copy</button></pre>
+<a id="md:issafepwaenv" class="tsd-anchor"></a><h4><a href="#md:issafepwaenv">isSafePWAEnv</a></h4><p>Detect the margin of Safety. Determine if it is a secure PWA environment that it can run.</p>
+<!-- ZH: 判断是否是安全的 PWA 环境 -->
+
+<p>Usage:</p>
+<pre><code><span class="hl-7">isSafePWAEnv</span><span class="hl-1">();</span>
+</code><button>Copy</button></pre>
+<p>Output:</p>
+<pre><code><span class="hl-5">true</span>
+</code><button>Copy</button></pre>
+<a id="md:web-performance" class="tsd-anchor"></a><h3><a href="#md:web-performance">Web Performance</a></h3><a id="md:getperformance" class="tsd-anchor"></a><h4><a href="#md:getperformance">getPerformance</a></h4><p>Get page load time(<code>PerformanceNavigationTiming</code>).</p>
+<p>This function uses the <a href="https://developer.mozilla.org/en-US/docs/Web/API/PerformanceNavigationTiming"><code>PerformanceNavigationTiming</code></a> API to get page load time data.
+The <code>PerformanceNavigationTiming</code> API provides more accurate and detailed information about page load time than the deprecated <a href="https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming"><code>PerformanceTiming</code></a> API.
+If you are using an older browser that does not support <code>PerformanceNavigationTiming</code>, you can still use the <code>PerformanceTiming</code> API by using the previous version of this library (<a href="https://www.npmjs.com/package/mazey/v/3.9.7"><code>v3.9.7</code></a>).</p>
+<p>Usage:</p>
+<pre><code><span class="hl-8">// `camelCase：false` (Default) Return underline(`a_b`) data.</span><br/><span class="hl-8">// `camelCase：true` Return hump(`aB`) data.</span><br/><span class="hl-7">getPerformance</span><span class="hl-1">()</span><br/><span class="hl-1"> .</span><span class="hl-7">then</span><span class="hl-1">(</span><span class="hl-0">res</span><span class="hl-1"> </span><span class="hl-5">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-0">console</span><span class="hl-1">.</span><span class="hl-7">log</span><span class="hl-1">(</span><span class="hl-6">JSON</span><span class="hl-1">.</span><span class="hl-7">stringify</span><span class="hl-1">(</span><span class="hl-0">res</span><span class="hl-1">));</span><br/><span class="hl-1"> })</span><br/><span class="hl-1"> .</span><span class="hl-7">catch</span><span class="hl-1">(</span><span class="hl-0">console</span><span class="hl-1">.</span><span class="hl-0">error</span><span class="hl-1">);</span>
+</code><button>Copy</button></pre>
+<p>Output:</p>
+<pre><code><span class="hl-1">{</span><span class="hl-2">&quot;source&quot;</span><span class="hl-1">:</span><span class="hl-2">&quot;PerformanceNavigationTiming&quot;</span><span class="hl-1">,</span><span class="hl-2">&quot;os&quot;</span><span class="hl-1">:</span><span class="hl-2">&quot;others&quot;</span><span class="hl-1">,</span><span class="hl-2">&quot;os_version&quot;</span><span class="hl-1">:</span><span class="hl-2">&quot;&quot;</span><span class="hl-1">,</span><span class="hl-2">&quot;device_type&quot;</span><span class="hl-1">:</span><span class="hl-2">&quot;pc&quot;</span><span class="hl-1">,</span><span class="hl-2">&quot;network&quot;</span><span class="hl-1">:</span><span class="hl-2">&quot;4g&quot;</span><span class="hl-1">,</span><span class="hl-2">&quot;screen_direction&quot;</span><span class="hl-1">:</span><span class="hl-2">&quot;&quot;</span><span class="hl-1">,</span><span class="hl-2">&quot;unload_time&quot;</span><span class="hl-1">:</span><span class="hl-9">0</span><span class="hl-1">,</span><span class="hl-2">&quot;redirect_time&quot;</span><span class="hl-1">:</span><span class="hl-9">0</span><span class="hl-1">,</span><span class="hl-2">&quot;dns_time&quot;</span><span class="hl-1">:</span><span class="hl-9">0</span><span class="hl-1">,</span><span class="hl-2">&quot;tcp_time&quot;</span><span class="hl-1">:</span><span class="hl-9">0</span><span class="hl-1">,</span><span class="hl-2">&quot;ssl_time&quot;</span><span class="hl-1">:</span><span class="hl-9">0</span><span class="hl-1">,</span><span class="hl-2">&quot;response_time&quot;</span><span class="hl-1">:</span><span class="hl-9">2</span><span class="hl-1">,</span><span class="hl-2">&quot;download_time&quot;</span><span class="hl-1">:</span><span class="hl-9">2</span><span class="hl-1">,</span><span class="hl-2">&quot;first_paint_time&quot;</span><span class="hl-1">:</span><span class="hl-9">288</span><span class="hl-1">,</span><span class="hl-2">&quot;first_contentful_paint_time&quot;</span><span class="hl-1">:</span><span class="hl-9">288</span><span class="hl-1">,</span><span class="hl-2">&quot;dom_ready_time&quot;</span><span class="hl-1">:</span><span class="hl-9">0</span><span class="hl-1">,</span><span class="hl-2">&quot;onload_time&quot;</span><span class="hl-1">:</span><span class="hl-9">0</span><span class="hl-1">,</span><span class="hl-2">&quot;white_time&quot;</span><span class="hl-1">:</span><span class="hl-9">0</span><span class="hl-1">,</span><span class="hl-2">&quot;render_time&quot;</span><span class="hl-1">:</span><span class="hl-9">0</span><span class="hl-1">,</span><span class="hl-2">&quot;decoded_body_size&quot;</span><span class="hl-1">:</span><span class="hl-9">718</span><span class="hl-1">,</span><span class="hl-2">&quot;encoded_body_size&quot;</span><span class="hl-1">:</span><span class="hl-9">718</span><span class="hl-1">}</span>
+</code><button>Copy</button></pre>
+<p>Results:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Attribute</th>
+<th align="left">Description</th>
+<th align="left">Type</th>
+<th align="left">Values</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">dns_time</td>
+<td align="left">DNS Lookup</td>
+<td align="left">number</td>
+<td align="left">domainLookupEnd - domainLookupStart</td>
+</tr>
+<tr>
+<td align="left">tcp_time</td>
+<td align="left">Connection Negotiation</td>
+<td align="left">number</td>
+<td align="left">connectEnd - connectStart</td>
+</tr>
+<tr>
+<td align="left">response_time</td>
+<td align="left">Requests and Responses</td>
+<td align="left">number</td>
+<td align="left">responseStart - requestStart</td>
+</tr>
+<tr>
+<td align="left">white_time</td>
+<td align="left">White Screen</td>
+<td align="left">number</td>
+<td align="left">responseStart - navigationStart</td>
+</tr>
+<tr>
+<td align="left">dom_ready_time</td>
+<td align="left">Dom Ready</td>
+<td align="left">number</td>
+<td align="left">domContentLoadedEventStart - navigationStart</td>
+</tr>
+<tr>
+<td align="left">onload_time</td>
+<td align="left">Onload</td>
+<td align="left">number</td>
+<td align="left">loadEventStart - navigationStart</td>
+</tr>
+<tr>
+<td align="left">render_time</td>
+<td align="left">EventEnd</td>
+<td align="left">number</td>
+<td align="left">loadEventEnd -navigationStart</td>
+</tr>
+<tr>
+<td align="left">unload_time</td>
+<td align="left">Unload</td>
+<td align="left">number</td>
+<td align="left">(Optional) unloadEventEnd - unloadEventStart</td>
+</tr>
+<tr>
+<td align="left">redirect_time</td>
+<td align="left">Redirect</td>
+<td align="left">number</td>
+<td align="left">(Optional) redirectEnd - redirectStart</td>
+</tr>
+<tr>
+<td align="left">ssl_time</td>
+<td align="left">SSL</td>
+<td align="left">number</td>
+<td align="left">(Optional) connectEnd - secureConnectionStart</td>
+</tr>
+<tr>
+<td align="left">download_time</td>
+<td align="left">Download</td>
+<td align="left">number</td>
+<td align="left">(Optional) responseEnd - responseStart</td>
+</tr>
+</tbody></table>
+<a id="md:debug" class="tsd-anchor"></a><h3><a href="#md:debug">Debug</a></h3><a id="md:gencustomconsole" class="tsd-anchor"></a><h4><a href="#md:gencustomconsole">genCustomConsole</a></h4><p>Custom console printing (<code>console</code>).</p>
+<!-- ZH: 生成自定义控制台打印 -->
+
+<p>Usage:</p>
+<pre><code><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-6">myConsole</span><span class="hl-1"> = </span><span class="hl-7">genCustomConsole</span><span class="hl-1">(</span><span class="hl-2">&#39;MazeyLog:&#39;</span><span class="hl-1">);</span><br/><span class="hl-0">myConsole</span><span class="hl-1">.</span><span class="hl-7">log</span><span class="hl-1">(</span><span class="hl-2">&#39;I am string.&#39;</span><span class="hl-1">);</span><br/><span class="hl-0">myConsole</span><span class="hl-1">.</span><span class="hl-7">info</span><span class="hl-1">(</span><span class="hl-2">&#39;I am boolean.&#39;</span><span class="hl-1">, </span><span class="hl-5">true</span><span class="hl-1">);</span><br/><span class="hl-0">myConsole</span><span class="hl-1">.</span><span class="hl-7">info</span><span class="hl-1">(</span><span class="hl-2">&#39;I am number.&#39;</span><span class="hl-1">, </span><span class="hl-9">123</span><span class="hl-1">, </span><span class="hl-9">456</span><span class="hl-1">);</span><br/><span class="hl-0">myConsole</span><span class="hl-1">.</span><span class="hl-7">info</span><span class="hl-1">(</span><span class="hl-2">&#39;I am object.&#39;</span><span class="hl-1">, { </span><span class="hl-0">a:</span><span class="hl-1"> </span><span class="hl-9">123</span><span class="hl-1">, </span><span class="hl-0">b:</span><span class="hl-1"> </span><span class="hl-9">456</span><span class="hl-1">});</span>
+</code><button>Copy</button></pre>
+<p>Output:</p>
+<pre><code><span class="hl-11">MazeyLog</span><span class="hl-1">: </span><span class="hl-6">I</span><span class="hl-1"> </span><span class="hl-0">am</span><span class="hl-1"> </span><span class="hl-0">string</span><span class="hl-1">.</span><br/><span class="hl-11">MazeyLog</span><span class="hl-1">: </span><span class="hl-6">I</span><span class="hl-1"> </span><span class="hl-0">am</span><span class="hl-1"> </span><span class="hl-0">boolean</span><span class="hl-1">. </span><span class="hl-0">true</span><br/><span class="hl-11">MazeyLog</span><span class="hl-1">: </span><span class="hl-6">I</span><span class="hl-1"> </span><span class="hl-0">am</span><span class="hl-1"> </span><span class="hl-0">number</span><span class="hl-1">. </span><span class="hl-9">123</span><span class="hl-1"> </span><span class="hl-9">456</span><br/><span class="hl-11">MazeyLog</span><span class="hl-1">: </span><span class="hl-6">I</span><span class="hl-1"> </span><span class="hl-0">am</span><span class="hl-1"> </span><span class="hl-0">object</span><span class="hl-1">. {</span><span class="hl-11">a</span><span class="hl-1">: </span><span class="hl-9">123</span><span class="hl-1">, </span><span class="hl-11">b</span><span class="hl-1">: </span><span class="hl-9">456</span><span class="hl-1">}</span>
+</code><button>Copy</button></pre>
+<a id="md:contributing" class="tsd-anchor"></a><h2><a href="#md:contributing">Contributing</a></h2><a id="md:development-environment" class="tsd-anchor"></a><h3><a href="#md:development-environment">Development Environment</a></h3><a id="md:nodejs" class="tsd-anchor"></a><h4><a href="#md:nodejs">Node.js</a></h4><ul>
+<li>v14.21.3</li>
+<li>v14.7.0</li>
+</ul>
+<a id="md:typescript" class="tsd-anchor"></a><h4><a href="#md:typescript">TypeScript</a></h4><ul>
+<li>v4.4.4</li>
+</ul>
+<a id="md:scripts" class="tsd-anchor"></a><h3><a href="#md:scripts">Scripts</a></h3><p><strong>Install Dependencies</strong></p>
+<pre><code><span class="hl-0">npm</span><span class="hl-1"> </span><span class="hl-0">i</span>
+</code><button>Copy</button></pre>
+<p><strong>Development</strong></p>
+<pre><code><span class="hl-0">npm</span><span class="hl-1"> </span><span class="hl-0">run</span><span class="hl-1"> </span><span class="hl-0">dev</span>
+</code><button>Copy</button></pre>
+<p><strong>Build</strong></p>
+<pre><code><span class="hl-0">npm</span><span class="hl-1"> </span><span class="hl-0">run</span><span class="hl-1"> </span><span class="hl-0">build</span>
+</code><button>Copy</button></pre>
+<p><strong>Document</strong></p>
+<pre><code><span class="hl-0">npm</span><span class="hl-1"> </span><span class="hl-0">run</span><span class="hl-1"> </span><span class="hl-0">docs</span>
+</code><button>Copy</button></pre>
+<p><strong>Test</strong></p>
+<pre><code><span class="hl-0">npm</span><span class="hl-1"> </span><span class="hl-0">run</span><span class="hl-1"> </span><span class="hl-0">test</span>
+</code><button>Copy</button></pre>
+<a id="md:returns" class="tsd-anchor"></a><h3><a href="#md:returns">Returns</a></h3><table>
+<thead>
+<tr>
+<th align="left">Values</th>
+<th align="left">Description</th>
+<th align="left">Type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">ok</td>
+<td align="left">The operation was successful.</td>
+<td align="left">string</td>
+</tr>
+<tr>
+<td align="left">loaded</td>
+<td align="left">Some assets have been loaded.</td>
+<td align="left">string</td>
+</tr>
+<tr>
+<td align="left">fail</td>
+<td align="left">An error occurred.</td>
+<td align="left">string</td>
+</tr>
+<tr>
+<td align="left">defined</td>
+<td align="left">The value is defined.</td>
+<td align="left">string</td>
+</tr>
+<tr>
+<td align="left">undefined</td>
+<td align="left">The value is undefined.</td>
+<td align="left">string</td>
+</tr>
+<tr>
+<td align="left">timeout</td>
+<td align="left">The operation timed out.</td>
+<td align="left">string</td>
+</tr>
+<tr>
+<td align="left">true</td>
+<td align="left">The value is true.</td>
+<td align="left">boolean</td>
+</tr>
+<tr>
+<td align="left">false</td>
+<td align="left">The value is false.</td>
+<td align="left">boolean</td>
+</tr>
+</tbody></table>
+<a id="md:license" class="tsd-anchor"></a><h2><a href="#md:license">License</a></h2><p>This software is released under the terms of the <a href="https://github.com/mazeyqian/mazey/blob/master/LICENSE">MIT license</a>.</p>
+</div></div>
+<div class="col-sidebar">
+<div class="page-menu">
+<div class="tsd-navigation settings">
+<details class="tsd-index-accordion"><summary class="tsd-accordion-summary">
+<h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4.93896 8.531L12 15.591L19.061 8.531L16.939 6.409L12 11.349L7.06098 6.409L4.93896 8.531Z" fill="var(--color-text)" id="icon-chevronDown"></path></svg>Settings</h3></summary>
+<div class="tsd-accordion-details">
+<div class="tsd-filter-visibility">
+<h4 class="uppercase">Member Visibility</h4><form>
+<ul id="tsd-filter-options">
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li>
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></form></div>
+<div class="tsd-theme-toggle">
+<h4 class="uppercase">Theme</h4><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div>
+<details open class="tsd-index-accordion tsd-page-navigation"><summary class="tsd-accordion-summary">
+<h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><use href="#icon-chevronDown"></use></svg>On This Page</h3></summary>
+<div class="tsd-accordion-details">
+<ul>
+<li>
+<ul>
+<li><a href="#md:mazey"><span>mazey</span></a></li>
+<li>
+<ul>
+<li><a href="#md:install"><span>Install</span></a></li>
+<li><a href="#md:usage"><span>Usage</span></a></li>
+<li><a href="#md:api-examples"><span>API <wbr/>Examples</span></a></li>
+<li>
+<ul>
+<li><a href="#md:load-resource"><span>Load <wbr/>Resource</span></a></li>
+<li>
+<ul>
+<li><a href="#md:loadscript"><span>load<wbr/>Script</span></a></li>
+<li><a href="#md:loadscriptifundefined"><span>load<wbr/>Script<wbr/>If<wbr/>Undefined</span></a></li>
+<li><a href="#md:loadcss"><span>loadCSS</span></a></li>
+<li><a href="#md:loadimage"><span>load<wbr/>Image</span></a></li>
+<li><a href="#md:windowloaded"><span>window<wbr/>Loaded</span></a></li></ul></li>
+<li><a href="#md:util"><span>Util</span></a></li>
+<li>
+<ul>
+<li><a href="#md:isnumber"><span>is<wbr/>Number</span></a></li>
+<li><a href="#md:isjsonstring"><span>isJSONString</span></a></li>
+<li><a href="#md:isvaliddata"><span>is<wbr/>Valid<wbr/>Data</span></a></li>
+<li><a href="#md:genrndnumstring"><span>gen<wbr/>Rnd<wbr/>Num<wbr/>String</span></a></li>
+<li><a href="#md:formatdate"><span>format<wbr/>Date</span></a></li>
+<li><a href="#md:debounce"><span>debounce</span></a></li>
+<li><a href="#md:throttle"><span>throttle</span></a></li>
+<li><a href="#md:convertcameltokebab"><span>convert<wbr/>Camel<wbr/>To<wbr/>Kebab</span></a></li>
+<li><a href="#md:convertcameltounder"><span>convert<wbr/>Camel<wbr/>To<wbr/>Under</span></a></li>
+<li><a href="#md:deepcopy"><span>deep<wbr/>Copy</span></a></li></ul></li>
+<li><a href="#md:url"><span>URL</span></a></li>
+<li>
+<ul>
+<li><a href="#md:getqueryparam"><span>get<wbr/>Query<wbr/>Param</span></a></li>
+<li><a href="#md:geturlparam"><span>get<wbr/>Url<wbr/>Param</span></a></li>
+<li><a href="#md:gethashqueryparam"><span>get<wbr/>Hash<wbr/>Query<wbr/>Param</span></a></li>
+<li><a href="#md:getdomain"><span>get<wbr/>Domain</span></a></li>
+<li><a href="#md:updatequeryparam"><span>update<wbr/>Query<wbr/>Param</span></a></li>
+<li><a href="#md:isvalidurl"><span>is<wbr/>Valid<wbr/>Url</span></a></li>
+<li><a href="#md:isvalidhttpurl"><span>is<wbr/>Valid<wbr/>Http<wbr/>Url</span></a></li></ul></li>
+<li><a href="#md:cache-data"><span>Cache <wbr/>Data</span></a></li>
+<li>
+<ul>
+<li><a href="#md:cookie"><span>Cookie</span></a></li>
+<li><a href="#md:storage"><span>Storage</span></a></li></ul></li>
+<li><a href="#md:dom"><span>DOM</span></a></li>
+<li>
+<ul>
+<li><a href="#md:addstyle"><span>add<wbr/>Style</span></a></li>
+<li><a href="#md:class"><span>Class</span></a></li>
+<li><a href="#md:newline"><span>new<wbr/>Line</span></a></li></ul></li>
+<li><a href="#md:calculate-and-formula"><span>Calculate and <wbr/>Formula</span></a></li>
+<li>
+<ul>
+<li><a href="#md:inrate"><span>in<wbr/>Rate</span></a></li>
+<li><a href="#md:longestcomsubstring"><span>longest<wbr/>Com<wbr/>Substring</span></a></li>
+<li><a href="#md:longestcomsubsequence"><span>longest<wbr/>Com<wbr/>Subsequence</span></a></li></ul></li>
+<li><a href="#md:browser-information"><span>Browser <wbr/>Information</span></a></li>
+<li>
+<ul>
+<li><a href="#md:getbrowserinfo"><span>get<wbr/>Browser<wbr/>Info</span></a></li>
+<li><a href="#md:issafepwaenv"><span>is<wbr/>SafePWAEnv</span></a></li></ul></li>
+<li><a href="#md:web-performance"><span>Web <wbr/>Performance</span></a></li>
+<li>
+<ul>
+<li><a href="#md:getperformance"><span>get<wbr/>Performance</span></a></li></ul></li>
+<li><a href="#md:debug"><span>Debug</span></a></li>
+<li>
+<ul>
+<li><a href="#md:gencustomconsole"><span>gen<wbr/>Custom<wbr/>Console</span></a></li></ul></li></ul></li>
+<li><a href="#md:contributing"><span>Contributing</span></a></li>
+<li>
+<ul>
+<li><a href="#md:development-environment"><span>Development <wbr/>Environment</span></a></li>
+<li>
+<ul>
+<li><a href="#md:nodejs"><span>Node.js</span></a></li>
+<li><a href="#md:typescript"><span>Type<wbr/>Script</span></a></li></ul></li>
+<li><a href="#md:scripts"><span>Scripts</span></a></li>
+<li><a href="#md:returns"><span>Returns</span></a></li></ul></li>
+<li><a href="#md:license"><span>License</span></a></li></ul></li></ul></li></ul></div></details></div>
+<div class="site-menu">
+<nav class="tsd-navigation"><a href="modules.html" class="current"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-4"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-namespace)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6"></rect><path d="M9.33 16V7.24H10.77L13.446 14.74C13.43 14.54 13.41 14.296 13.386 14.008C13.37 13.712 13.354 13.404 13.338 13.084C13.33 12.756 13.326 12.448 13.326 12.16V7.24H14.37V16H12.93L10.266 8.5C10.282 8.692 10.298 8.936 10.314 9.232C10.33 9.52 10.342 9.828 10.35 10.156C10.366 10.476 10.374 10.784 10.374 11.08V16H9.33Z" fill="var(--color-text)"></path></g></svg><span>mazey</span></a>
+<ul class="tsd-small-nested-navigation">
+<li><a href="functions/addClass.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-64"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-function)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6"></rect><path d="M9.39 16V7.24H14.55V8.224H10.446V11.128H14.238V12.112H10.47V16H9.39Z" fill="var(--color-text)"></path></g></svg><span>add<wbr/>Class</span></a></li>
+<li><a href="functions/addEvent.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>add<wbr/>Event</span></a></li>
+<li><a href="functions/addStyle.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>add<wbr/>Style</span></a></li>
+<li><a href="functions/cancelBubble.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>cancel<wbr/>Bubble</span></a></li>
+<li><a href="functions/clearHtml.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>clear<wbr/>Html</span></a></li>
+<li><a href="functions/convert10To26.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>convert10<wbr/>To26</span></a></li>
+<li><a href="functions/convertCamelToKebab.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>convert<wbr/>Camel<wbr/>To<wbr/>Kebab</span></a></li>
+<li><a href="functions/convertCamelToUnder.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>convert<wbr/>Camel<wbr/>To<wbr/>Under</span></a></li>
+<li><a href="functions/debounce.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>debounce</span></a></li>
+<li><a href="functions/deepCopy.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>deep<wbr/>Copy</span></a></li>
+<li><a href="functions/delCookie.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>del<wbr/>Cookie</span></a></li>
+<li><a href="functions/doFn.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>do<wbr/>Fn</span></a></li>
+<li><a href="functions/floatFixed.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>float<wbr/>Fixed</span></a></li>
+<li><a href="functions/floatToPercent.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>float<wbr/>To<wbr/>Percent</span></a></li>
+<li><a href="functions/formatDate.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>format<wbr/>Date</span></a></li>
+<li><a href="functions/genCustomConsole.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>gen<wbr/>Custom<wbr/>Console</span></a></li>
+<li><a href="functions/genHashCode.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>gen<wbr/>Hash<wbr/>Code</span></a></li>
+<li><a href="functions/genRndNumString.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>gen<wbr/>Rnd<wbr/>Num<wbr/>String</span></a></li>
+<li><a href="functions/genStyleString.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>gen<wbr/>Style<wbr/>String</span></a></li>
+<li><a href="functions/genUniqueNumString.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>gen<wbr/>Unique<wbr/>Num<wbr/>String</span></a></li>
+<li><a href="functions/getBrowserInfo.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>get<wbr/>Browser<wbr/>Info</span></a></li>
+<li><a href="functions/getCLS.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>getCLS</span></a></li>
+<li><a href="functions/getCookie.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>get<wbr/>Cookie</span></a></li>
+<li><a href="functions/getDomain.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>get<wbr/>Domain</span></a></li>
+<li><a href="functions/getFCP.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>getFCP</span></a></li>
+<li><a href="functions/getFID.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>getFID</span></a></li>
+<li><a href="functions/getFP.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>getFP</span></a></li>
+<li><a href="functions/getFileSize.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>get<wbr/>File<wbr/>Size</span></a></li>
+<li><a href="functions/getFriendlyInterval.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>get<wbr/>Friendly<wbr/>Interval</span></a></li>
+<li><a href="functions/getHashQueryParam.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>get<wbr/>Hash<wbr/>Query<wbr/>Param</span></a></li>
+<li><a href="functions/getLCP.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>getLCP</span></a></li>
+<li><a href="functions/getLocalStorage.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>get<wbr/>Local<wbr/>Storage</span></a></li>
+<li><a href="functions/getPerformance.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>get<wbr/>Performance</span></a></li>
+<li><a href="functions/getQueryParam.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>get<wbr/>Query<wbr/>Param</span></a></li>
+<li><a href="functions/getScriptQueryParam.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>get<wbr/>Script<wbr/>Query<wbr/>Param</span></a></li>
+<li><a href="functions/getSessionStorage.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>get<wbr/>Session<wbr/>Storage</span></a></li>
+<li><a href="functions/getTTFB.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>getTTFB</span></a></li>
+<li><a href="functions/getUrlFileType.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>get<wbr/>Url<wbr/>File<wbr/>Type</span></a></li>
+<li><a href="functions/getUrlParam.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>get<wbr/>Url<wbr/>Param</span></a></li>
+<li><a href="functions/hasClass.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>has<wbr/>Class</span></a></li>
+<li><a href="functions/inRate.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>in<wbr/>Rate</span></a></li>
+<li><a href="functions/invokeEvent.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>invoke<wbr/>Event</span></a></li>
+<li><a href="functions/isJSONString.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>isJSONString</span></a></li>
+<li><a href="functions/isNonEmptyArray.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>is<wbr/>Non<wbr/>Empty<wbr/>Array</span></a></li>
+<li><a href="functions/isNumber.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>is<wbr/>Number</span></a></li>
+<li><a href="functions/isSafePWAEnv.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>is<wbr/>SafePWAEnv</span></a></li>
+<li><a href="functions/isSupportWebp.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>is<wbr/>Support<wbr/>Webp</span></a></li>
+<li><a href="functions/isValidData.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>is<wbr/>Valid<wbr/>Data</span></a></li>
+<li><a href="functions/isValidEmail.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>is<wbr/>Valid<wbr/>Email</span></a></li>
+<li><a href="functions/isValidHttpUrl.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>is<wbr/>Valid<wbr/>Http<wbr/>Url</span></a></li>
+<li><a href="functions/isValidPhoneNumber.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>is<wbr/>Valid<wbr/>Phone<wbr/>Number</span></a></li>
+<li><a href="functions/isValidUrl.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>is<wbr/>Valid<wbr/>Url</span></a></li>
+<li><a href="functions/loadCSS.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>loadCSS</span></a></li>
+<li><a href="functions/loadImage.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>load<wbr/>Image</span></a></li>
+<li><a href="functions/loadScript.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>load<wbr/>Script</span></a></li>
+<li><a href="functions/loadScriptIfUndefined.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>load<wbr/>Script<wbr/>If<wbr/>Undefined</span></a></li>
+<li><a href="functions/longestComSubsequence.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>longest<wbr/>Com<wbr/>Subsequence</span></a></li>
+<li><a href="functions/longestComSubstring.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>longest<wbr/>Com<wbr/>Substring</span></a></li>
+<li><a href="functions/mNow.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>m<wbr/>Now</span></a></li>
+<li><a href="functions/newLine.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>new<wbr/>Line</span></a></li>
+<li><a href="functions/removeClass.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>remove<wbr/>Class</span></a></li>
+<li><a href="functions/removeEvent.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>remove<wbr/>Event</span></a></li>
+<li><a href="functions/repeatUntilConditionMet.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>repeat<wbr/>Until<wbr/>Condition<wbr/>Met</span></a></li>
+<li><a href="functions/sanitizeInput.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>sanitize<wbr/>Input</span></a></li>
+<li><a href="functions/setCookie.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>set<wbr/>Cookie</span></a></li>
+<li><a href="functions/setImgWidHeiBySrc.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>set<wbr/>Img<wbr/>Wid<wbr/>Hei<wbr/>By<wbr/>Src</span></a></li>
+<li><a href="functions/setLocalStorage.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>set<wbr/>Local<wbr/>Storage</span></a></li>
+<li><a href="functions/setSessionStorage.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>set<wbr/>Session<wbr/>Storage</span></a></li>
+<li><a href="functions/throttle.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>throttle</span></a></li>
+<li><a href="functions/truncateZHString.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>truncateZHString</span></a></li>
+<li><a href="functions/unsanitize.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>unsanitize</span></a></li>
+<li><a href="functions/updateQueryParam.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>update<wbr/>Query<wbr/>Param</span></a></li>
+<li><a href="functions/windowLoaded.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>window<wbr/>Loaded</span></a></li></ul></nav></div></div></div>
+<div class="overlay"></div></body></html>
