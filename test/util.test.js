@@ -3,7 +3,7 @@
  */
 /* eslint-disable no-undef */
 /* eslint-disable quotes */
-import { isNumber, camelCaseToKebabCase, camelCase2Underscore, mTrim, deepCopyObject, isJsonString, generateRndNum, formatDate, isValidData, isValidEmail, convert10To26, getFriendlyInterval, unsanitize } from '../lib/index.esm';
+import { isNumber, camelCaseToKebabCase, camelCase2Underscore, mTrim, deepCopyObject, isJsonString, generateRndNum, formatDate, isValidData, isValidEmail, convert10To26, getFriendlyInterval, unsanitize, waitTime } from '../lib/index.esm';
 
 test('isNumber: Is -1/123/Infinity/NaN Number?', () => {
   expect(isNumber(-1)).toBe(true);
@@ -107,5 +107,14 @@ describe('unsanitize', () => {
   it('should throw an error if the input is not a string', () => {
     const input = 123;
     expect(() => unsanitize(input)).toThrow('Input must be a string');
+  });
+});
+
+describe('waitTime', () => {
+  test('resolves after the specified time has elapsed', async () => {
+    const start = Date.now();
+    await waitTime(1000);
+    const end = Date.now();
+    expect(end - start).toBeGreaterThanOrEqual(1000);
   });
 });

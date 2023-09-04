@@ -3289,3 +3289,18 @@ export function getScriptQueryParam(param: string, matchString = ''): string {
   }
   return '';
 }
+
+/**
+ * Wait for a specified amount of time.
+ *
+ * @param time The amount of time to wait, in milliseconds.
+ * @returns A Promise that resolves after the specified time has elapsed.
+ * @category Util
+ */
+export async function waitTime(time: number): Promise<number> {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve(time);
+    }, time);
+  });
+}
