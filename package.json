@@ -1,6 +1,6 @@
 {
   "name": "mazey",
-  "version": "3.10.1",
+  "version": "3.10.2",
   "description": "A functional library for daily front-end work.",
   "main": "lib/index.cjs.js",
   "module": "lib/index.esm.js",
@@ -18,7 +18,8 @@
     "lint:fix": "eslint ./src --ext 'ts,tsx' --fix",
     "docs": "typedoc --readme ./README.md --excludeProtected --excludePrivate --excludeInternal --hideGenerator",
     "preview": "npm run build && npm run test",
-    "release": "npm run preview && cross-env SCRIPTS_NPM_PACKAGE_VERSION=$npm_package_version node ./scripts/release.js"
+    "release": "npm run preview && cross-env SCRIPTS_NPM_PACKAGE_VERSION=$npm_package_version node ./scripts/release.js",
+    "release:win": "bash scripts/env.sh && npm i && npm run release"
   },
   "repository": {
     "type": "git",
