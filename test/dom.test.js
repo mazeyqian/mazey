@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 /* eslint-disable no-undef */
-import { newLine, getDomain, getBrowserInfo } from '../lib/index.esm';
+import { genStyleString, newLine, getDomain, getBrowserInfo } from '../lib/index.esm';
 
 test('newLine: Transfer \'a\nb\nc\' to \'a<br />b<br />c\'?', () => {
   expect(newLine('a\nb\nc')).toBe('a<br />b<br />c');
@@ -29,19 +29,6 @@ test('Can run async test?', async () => {
   expect(res).toBe(1000);
 });
 
-// Use Jest to test `getBrowserInfo`
-// {
-//   "engine": "webkit",
-//   "engineVs": "605.1.15",
-//   "platform": "mobile",
-//   "supporter": "safari",
-//   "supporterVs": "",
-//   "system": "ios",
-//   "systemVs": "13.3",
-//   "appleType": "ipad",
-//   "shell": "",
-//   "shellVs": ""
-// }
 test('Can get browser info correctly?', () => {
   const res = getBrowserInfo();
   expect(res).toHaveProperty('engine');
@@ -51,4 +38,38 @@ test('Can get browser info correctly?', () => {
   expect(res).toHaveProperty('supporterVs');
   expect(res).toHaveProperty('system');
   expect(res).toHaveProperty('systemVs');
+});
+
+describe('genStyleString', () => {
+  it('should generate the correct style string for a class selector and one style property', () => {
+    const selector = '.a';
+    const styleArray = ['color:red'];
+    const expected = '.a{color:red;}';
+    const result = genStyleString(selector, styleArray);
+    expect(result).toEqual(expected);
+  });
+
+  it('should generate the correct style string for an ID selector and multiple style properties', () => {
+    const selector = '#b';
+    const styleArray = ['color:red', 'font-size:12px'];
+    const expected = '#b{color:red;font-size:12px;}';
+    const result = genStyleString(selector, styleArray);
+    expect(result).toEqual(expected);
+  });
+
+  it('should return an empty string if no style properties are provided', () => {
+    const selector = '.c';
+    const styleArray = [];
+    const expected = '.c{}';
+    const result = genStyleString(selector, styleArray);
+    expect(result).toEqual(expected);
+  });
+
+  it('should handle selectors with multiple classes', () => {
+    const selector = '.d.e.f';
+    const styleArray = ['color:blue', 'font-weight:bold'];
+    const expected = '.d.e.f{color:blue;font-weight:bold;}';
+    const result = genStyleString(selector, styleArray);
+    expect(result).toEqual(expected);
+  });
 });

@@ -3123,27 +3123,25 @@ export function setImgWidHeiBySrc(): boolean {
 }
 
 /**
- * Generate the inline style string from the given parameters, First parameter is the ClassNames, Second parameter is the style array.
+ * Generate the inline style string from the given parameters. The first parameter is the query selector, and the second parameter is the style array.
  *
  * @example
  * ```js
- * console.log(genStyleString('a', [ 'color:red' ])); // '.a{color:red;}'
- * console.log(genStyleString('b', [ 'color:red', 'font-size:12px' ])); // '.b{color:red;font-size:12px;}'
+ * console.log(genStyleString('.a', [ 'color:red' ])); // '.a{color:red;}'
+ * console.log(genStyleString('#b', [ 'color:red', 'font-size:12px' ])); // '#b{color:red;font-size:12px;}'
  * ```
  *
- * @param {string} className
- * @param {Array} styleArray
- * @returns {string} Return the inline style string.
+ * @param {string} selector
+ * @param {array} styleArray
+ * @returns {string} The inline style string.
  * @category DOM
  */
-export function genStyleString(className: string, styleArray: Array<string>): string {
+export function genStyleString(selector: string, styleArray: Array<string>): string {
   let style = '';
   if (styleArray && styleArray.length > 0) {
-    // It's wrong. Last item will not include `;`.
-    // style = styleArray.join(';');
     style = styleArray.join(';') + ';';
   }
-  return `.${className}{${style}}`;
+  return `${selector}{${style}}`;
 }
 
 /**
