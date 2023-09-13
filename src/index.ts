@@ -50,7 +50,7 @@ export function longestComSubstring(aStr: string, bStr: string): number {
   const aLen = aStr.length;
   const bLen = bStr.length;
   // Create a two-dimensional array and deep copy it
-  const arr = [ ...new Array(aLen).fill([ ...new Array(bLen).fill(0) ]) ];
+  const arr = deepCopy(new Array(aLen).fill(new Array(bLen).fill(0)));
   for (let i = 0; i < aLen; ++i) {
     for (let j = 0; j < bLen; ++j) {
       if (aStr[i] === bStr[j]) {
@@ -104,7 +104,7 @@ export function longestComSubsequence(aStr: string, bStr: string): number {
   const aLen = aStr.length;
   const bLen = bStr.length;
   // Create a two-dimensional array and deep copy it
-  const arr = [ ...new Array(aLen).fill([ ...new Array(bLen).fill(0) ]) ];
+  const arr = deepCopy(new Array(aLen).fill(new Array(bLen).fill(0)));
   for (let i = 0; i < aLen; ++i) {
     for (let j = 0; j < bLen; ++j) {
       if (aStr[i] === bStr[j]) {
@@ -694,6 +694,7 @@ export function throttle<T extends (...args: UnknownFnParams) => UnknownFnReturn
       previous = now;
     }
     const remaining = wait - (now - previous);
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
     context = this;
     args = argRest;
     if (remaining <= 0 || remaining > wait) {
@@ -747,6 +748,7 @@ export function debounce<T extends (...args: UnknownFnParams) => UnknownFnReturn
     }
   };
   return function(this: unknown, ...argRest: Parameters<T>) {
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
     context = this;
     args = argRest;
     timestamp = mNow();
