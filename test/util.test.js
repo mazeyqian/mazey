@@ -3,7 +3,22 @@
  */
 /* eslint-disable no-undef */
 /* eslint-disable quotes */
-import { isNumber, camelCaseToKebabCase, camelCase2Underscore, mTrim, deepCopyObject, isJsonString, generateRndNum, formatDate, isValidData, isValidEmail, convert10To26, getFriendlyInterval, unsanitize, waitTime } from '../lib/index.esm';
+import {
+  isNumber,
+  camelCaseToKebabCase,
+  camelCase2Underscore,
+  mTrim,
+  deepCopyObject,
+  isJsonString,
+  generateRndNum,
+  formatDate,
+  isValidData,
+  isValidEmail,
+  convert10To26,
+  getFriendlyInterval,
+  unsanitize,
+  waitTime,
+} from '../lib/index.esm';
 
 test('isNumber: Is -1/123/Infinity/NaN Number?', () => {
   expect(isNumber(-1)).toBe(true);
