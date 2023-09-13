@@ -49,7 +49,7 @@ import {
 export function longestComSubstring(aStr: string, bStr: string): number {
   const aLen = aStr.length;
   const bLen = bStr.length;
-  // 创建二维数组并且深拷贝
+  // Create a two-dimensional array and deep copy it
   const arr = deepCopyObject(new Array(aLen).fill(new Array(bLen).fill(0)));
   for (let i = 0; i < aLen; ++i) {
     for (let j = 0; j < bLen; ++j) {
@@ -62,9 +62,9 @@ export function longestComSubstring(aStr: string, bStr: string): number {
       }
     }
   }
-  // 二维数组转一维数组
+  // Convert the two-dimensional array to a one-dimensional array
   const arr1 = Array.prototype.concat.apply([], arr);
-  // 获取最长公共子串
+  // Get the longest common substring
   const maxLong = Math.max(...arr1);
   return maxLong;
 }
@@ -103,7 +103,7 @@ export function calLongestCommonSubstring(aStr: string, bStr: string): number {
 export function longestComSubsequence(aStr: string, bStr: string): number {
   const aLen = aStr.length;
   const bLen = bStr.length;
-  // 创建二维数组并且深拷贝
+  // Create a two-dimensional array and deep copy it
   const arr = deepCopyObject(new Array(aLen).fill(new Array(bLen).fill(0)));
   for (let i = 0; i < aLen; ++i) {
     for (let j = 0; j < bLen; ++j) {
@@ -125,9 +125,9 @@ export function longestComSubsequence(aStr: string, bStr: string): number {
       }
     }
   }
-  // 二维数组转一维数组
+  // Convert the two-dimensional array to a one-dimensional array
   const arr1 = Array.prototype.concat.apply([], arr);
-  // 获取最长公共子串
+  // Get the longest common subsequence
   const maxLong = Math.max(...arr1);
   return maxLong;
 }
