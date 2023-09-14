@@ -43,7 +43,7 @@ test('Can get browser info correctly?', () => {
 describe('genStyleString', () => {
   it('should generate the correct style string for a class selector and one style property', () => {
     const selector = '.a';
-    const styleArray = ['color:red'];
+    const styleArray = [ 'color:red' ];
     const expected = '.a{color:red;}';
     const result = genStyleString(selector, styleArray);
     expect(result).toEqual(expected);
@@ -51,7 +51,7 @@ describe('genStyleString', () => {
 
   it('should generate the correct style string for an ID selector and multiple style properties', () => {
     const selector = '#b';
-    const styleArray = ['color:red', 'font-size:12px'];
+    const styleArray = [ 'color:red', 'font-size:12px' ];
     const expected = '#b{color:red;font-size:12px;}';
     const result = genStyleString(selector, styleArray);
     expect(result).toEqual(expected);
@@ -67,7 +67,7 @@ describe('genStyleString', () => {
 
   it('should handle selectors with multiple classes', () => {
     const selector = '.d.e.f';
-    const styleArray = ['color:blue', 'font-weight:bold'];
+    const styleArray = [ 'color:blue', 'font-weight:bold' ];
     const expected = '.d.e.f{color:blue;font-weight:bold;}';
     const result = genStyleString(selector, styleArray);
     expect(result).toEqual(expected);
