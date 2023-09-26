@@ -371,6 +371,8 @@ export function camelCaseToKebabCase(camelCase: string): string {
  * ```javascript
  * const ret1 = convertCamelToUnder('ABC');
  * const ret2 = convertCamelToUnder('aBC');
+ * console.log(ret1);
+ * console.log(ret2);
  * ```
  *
  * Output:
@@ -408,6 +410,8 @@ export function camelCase2Underscore(camelCase: string): string {
  * ```javascript
  * const ret1 = mTrim(' 1 2 3 ');
  * const ret2 = mTrim('abc ');
+ * console.log(ret1);
+ * console.log(ret2);
  * ```
  *
  * Output:
@@ -469,8 +473,10 @@ export function newLine(str: string): string {
  * Usage:
  *
  * ```javascript
- * deepCopy(['a', 'b', 'c']);
- * deepCopy('abc');
+ * const ret1 = deepCopy(['a', 'b', 'c']);
+ * const ret2 = deepCopy('abc');
+ * console.log(ret1);
+ * console.log(ret2);
  * ```
  *
  * Output:
@@ -564,6 +570,8 @@ export function isJsonString(str: string): boolean {
  * ```javascript
  * const ret1 = genRndNumString(4);
  * const ret2 = genRndNumString(7);
+ * console.log(ret1);
+ * console.log(ret2);
  * ```
  *
  * Output:
@@ -1480,6 +1488,7 @@ export function loadScript(
  *
  * ```javascript
  * const ret = mNow();
+ * console.log(ret);
  * ```
  *
  * Output:
@@ -1599,7 +1608,8 @@ export function getCookie(name: string): string {
  * Usage:
  *
  * ```javascript
- * delCookie('test');
+ * const ret = delCookie('test');
+ * console.log(ret);
  * ```
  *
  * Output:
@@ -3215,10 +3225,14 @@ export function genHashCode(str: string): number {
  * Usage:
  *
  * ```javascript
- * console.log('Default formatDate value:', formatDate());
- * console.log('String formatDate value:', formatDate('Tue Jan 11 2022 14:12:26 GMT+0800 (China Standard Time)', 'yyyy-MM-dd hh:mm:ss'));
- * console.log('Number formatDate value:', formatDate(1641881235000, 'yyyy-MM-dd hh:mm:ss'));
- * console.log('Date formatDate value:', formatDate(new Date(2014, 1, 11), 'MM/dd/yyyy'));
+ * const ret1 = formatDate();
+ * const ret2 = formatDate('Tue Jan 11 2022 14:12:26 GMT+0800 (China Standard Time)', 'yyyy-MM-dd hh:mm:ss');
+ * const ret3 = formatDate(1641881235000, 'yyyy-MM-dd hh:mm:ss');
+ * const ret4 = formatDate(new Date(2014, 1, 11), 'MM/dd/yyyy');
+ * console.log('Default formatDate value:', ret1);
+ * console.log('String formatDate value:', ret2);
+ * console.log('Number formatDate value:', ret3);
+ * console.log('Date formatDate value:', ret4);
  * ```
  *
  * Output:
