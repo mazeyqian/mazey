@@ -112,9 +112,9 @@ There are some examples maintained by hand below. For more information, please c
 
 Load a JavaScript file from the server and execute it.
 
-<!-- ZH: 动态加载 JavaScript 文件 -->
+Usage:
 
-```
+```javascript
 loadScript(
     'http://example.com/static/js/plugin-2.1.1.min.js',
     {
@@ -135,27 +135,41 @@ loadScript(
   );
 ```
 
+Output:
+
+```text
+Load JavaScript script: loaded
+```
+
 #### loadScriptIfUndefined
 
 Load a script from the given URL if it (`window['attribute']`) has not already been loaded.
 
-```js
-loadScriptIfUndefined('jQuery', 'https://example.com/lib/jquery.min.js')
+Usage:
+
+```javascript
+loadScriptIfUndefined('xyz', 'https://example.com/lib/xyz.min.js')
   .then(() => {
-    console.log('jQuery is loaded.');
+    console.log('xyz is loaded.');
   })
   .catch(err => {
-    console.log('Failed to load jQuery.', err);
+    console.log('Failed to load xyz.', err);
   });
+```
+
+Output:
+
+```text
+xyz is loaded.
 ```
 
 #### loadCSS
 
 Load a CSS file from the server.
 
-<!-- ZH: 动态加载 CSS 文件 -->
+Usage:
 
-```
+```javascript
 loadCSS(
     'http://example.com/path/example.css',
     {
@@ -174,6 +188,12 @@ loadCSS(
   );
 ```
 
+Output:
+
+```text
+Load CSS Success: loaded
+```
+
 #### loadImage
 
 Load an image from the given URL.
@@ -182,7 +202,9 @@ The target image will be loaded in the background, and the Promise status will c
 
 Note that this method will not add the image to the DOM.
 
-```js
+Usage:
+
+```javascript
 loadImage('https://example.com/example.png')
   .then((img) => {
     console.log(img);
@@ -196,16 +218,22 @@ loadImage('https://example.com/example.png')
 
 Check whether the page is loaded successfully (Keep the compatibility if the browser's `load` event has been triggered).
 
-<!-- ZH: 页面加载完成 -->
+Usage:
 
-```
+```javascript
 windowLoaded(30) // second
   .then(res => {
-    console.log(`Load Success: ${res}`); // Load Success: load
+    console.log(`Load Success: ${res}`);
   })
   .catch(err => {
     console.log(`Load Timeout or Fail: ${err.message}`);
   });
+```
+
+Output:
+
+```text
+Load Success: load
 ```
 
 ### Util
@@ -214,16 +242,23 @@ windowLoaded(30) // second
 
 Check whether it is a right number.
 
-<!-- ZH: 判断是否有效数字 -->
+Usage:
 
-```
-isNumber(123); // true
-isNumber('123'); // false
+```javascript
+const ret1 = isNumber(123);
+const ret2 = isNumber('123');
 // Default: NaN, Infinity is not Number
-isNumber(Infinity); // false
-isNumber(Infinity, { isInfinityAsNumber: true }); // true
-isNumber(NaN); // false
-isNumber(NaN, { isNaNAsNumber: true, isInfinityAsNumber: true }); // true
+const ret3 = isNumber(Infinity);
+const ret4 = isNumber(Infinity, { isInfinityAsNumber: true });
+const ret5 = isNumber(NaN);
+const ret6 = isNumber(NaN, { isNaNAsNumber: true, isInfinityAsNumber: true });
+console.log(ret1, ret2, ret3, ret4, ret5, ret6);
+```
+
+Output:
+
+```text
+true false false true false true
 ```
 
 #### isJSONString
@@ -232,14 +267,16 @@ Check whether it is a valid JSON string.
 
 Usage:
 
-```
-isJSONString(`['a', 'b', 'c']`);
-isJSONString(`["a", "b", "c"]`);
+```javascript
+const ret1 = isJSONString(`['a', 'b', 'c']`);
+const ret2 = isJSONString(`["a", "b", "c"]`);
+console.log(ret1);
+console.log(ret2);
 ```
 
 Output:
 
-```
+```text
 false
 true
 ```
@@ -250,7 +287,7 @@ Determine the validity of the data.
 
 Usage:
 
-```
+```javascript
 const validData = {
   a: {
     b: {
@@ -270,7 +307,7 @@ console.log('isValidDataResC:', isValidDataResC);
 
 Output:
 
-```
+```text
 isValidDataResA: false
 isValidDataResB: true
 isValidDataResC: false
@@ -280,9 +317,20 @@ isValidDataResC: false
 
 Produce a random string of number, `genRndNumString(7)` => '7658495'.
 
+Usage:
+
+```javascript
+const ret1 = genRndNumString(4);
+const ret2 = genRndNumString(7);
+console.log(ret1);
+console.log(ret2);
 ```
-genRndNumString(4); // '9730'
-genRndNumString(7); // '2262490'
+
+Output:
+
+```text
+9730
+2262490
 ```
 
 #### formatDate
@@ -291,16 +339,20 @@ Return the formatted date string in the given format.
 
 Usage:
 
-```
-console.log('Default formatDate value:', formatDate());
-console.log('String formatDate value:', formatDate('Tue Jan 11 2022 14:12:26 GMT+0800 (China Standard Time)', 'yyyy-MM-dd hh:mm:ss'));
-console.log('Number formatDate value:', formatDate(1641881235000, 'yyyy-MM-dd hh:mm:ss'));
-console.log('Date formatDate value:', formatDate(new Date(2014, 1, 11), 'MM/dd/yyyy'));
+```javascript
+const ret1 = formatDate();
+const ret2 = formatDate('Tue Jan 11 2022 14:12:26 GMT+0800 (China Standard Time)', 'yyyy-MM-dd hh:mm:ss');
+const ret3 = formatDate(1641881235000, 'yyyy-MM-dd hh:mm:ss');
+const ret4 = formatDate(new Date(2014, 1, 11), 'MM/dd/yyyy');
+console.log('Default formatDate value:', ret1);
+console.log('String formatDate value:', ret2);
+console.log('Number formatDate value:', ret3);
+console.log('Date formatDate value:', ret4);
 ```
 
 Output:
 
-```
+```text
 Default formatDate value: 2023-01-11
 String formatDate value: 2022-01-11 14:12:26
 Number formatDate value: 2022-01-11 14:07:15
@@ -311,9 +363,9 @@ Date formatDate value: 02/11/2014
 
 Debounce
 
-<!-- ZH: 去抖 -->
+Usage:
 
-```
+```javascript
 const foo = debounce(() => {
   console.log('The debounced function will only be invoked in 1000 milliseconds, the other invoking will disappear during the wait time.');
 }, 1000, true);
@@ -323,9 +375,9 @@ const foo = debounce(() => {
 
 Throttle
 
-<!-- ZH: 节流 -->
+Usage:
 
-```
+```javascript
 const foo = throttle(() => {
   console.log('The function will be invoked at most once per every wait 1000 milliseconds.');
 }, 1000, { leading: true });
@@ -337,18 +389,40 @@ Reference: [Lodash](https://lodash.com/docs/4.17.15#throttle)
 
 Transfer CamelCase to KebabCase.
 
+Usage:
+
+```javascript
+const ret1 = convertCamelToKebab('ABC');
+const ret2 = convertCamelToKebab('aBC');
+console.log(ret1);
+console.log(ret2);
 ```
-convertCamelToKebab('ABC'); // a-b-c
-convertCamelToKebab('aBC'); // a-b-c
+
+Output:
+
+```text
+a-b-c
+a-b-c
 ```
 
 #### convertCamelToUnder
 
 Transfer CamelCase to Underscore.
 
+Usage:
+
+```javascript
+const ret1 = convertCamelToUnder('ABC');
+const ret2 = convertCamelToUnder('aBC');
+console.log(ret1);
+console.log(ret2);
 ```
-convertCamelToUnder('ABC'); // a_b_c
-convertCamelToUnder('aBC'); // a_b_c
+
+Output:
+
+```text
+a_b_c
+a_b_c
 ```
 
 #### deepCopy
@@ -357,16 +431,18 @@ Copy/Clone Object deeply.
 
 Usage:
 
-```
-deepCopy(['a', 'b', 'c']);
-deepCopy('abc');
+```javascript
+const ret1 = deepCopy(['a', 'b', 'c']);
+const ret2 = deepCopy('abc');
+console.log(ret1);
+console.log(ret2);
 ```
 
 Output:
 
-```
+```text
 ['a', 'b', 'c']
-'abc'
+abc
 ```
 
 ### URL
