@@ -451,20 +451,38 @@ abc
 
 Get the query param's value of the current Web URL(`location.search`).
 
-```
+Usage:
+
+```javascript
 // http://example.com/?t1=1&t2=2&t3=3&t4=4#2333
 // ?t1=1&t2=2&t3=3&t4=4
-getQueryParam('t3'); // 3
-getQueryParam('t4'); // 4
+const p1 = getQueryParam('t3');
+const p2 = getQueryParam('t4');
+console.log(p1, p2);
+```
+
+Output:
+
+```text
+3 4
 ```
 
 #### getUrlParam
 
 Returns the value of the specified query parameter in the input URL.
 
+Usage:
+
+```javascript
+const p1 = getUrlParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't3');
+const p2 = getUrlParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't4');
+console.log(p1, p2);
 ```
-getUrlParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't3'); // Returns '3'
-getUrlParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't4'); // Returns '4'
+
+Output:
+
+```text
+3 4
 ```
 
 #### getHashQueryParam
@@ -473,18 +491,18 @@ Get the hash query param's value of the current Web URL(`location.hash`).
 
 Usage:
 
-```
+```javascript
 // http://example.com/?#2333?t1=1&t2=2&t3=3&t4=4
 // #2333?t1=1&t2=2&t3=3&t4=4
-getHashQueryParam('t3');
-getHashQueryParam('t4');
+const p1 = getHashQueryParam('t3');
+const p2 = getHashQueryParam('t4');
+console.log(p1, p2);
 ```
 
 Output:
 
-```
-3
-4
+```text
+3 4
 ```
 
 #### getDomain
@@ -493,18 +511,24 @@ Get the domain of URL, and other params.
 
 Usage:
 
-```
-getDomain('http://example.com/?t1=1&t2=2&t3=3&t4=4');
-getDomain('http://example.com/test/thanks?t1=1&t2=2&t3=3&t4=4', ['hostname', 'pathname']);
-getDomain('http://example.com:7890/test/thanks', ['hostname']);
-getDomain('http://example.com:7890/test/thanks', ['host']); // With Port
-getDomain('http://example.com:7890/test/thanks', ['origin']);
-getDomain('http://example.com:7890/test/thanks?id=1', ['origin', 'pathname', 'search']);
+```javascript
+const ret1 = getDomain('http://example.com/?t1=1&t2=2&t3=3&t4=4');
+const ret2 = getDomain('http://example.com/test/thanks?t1=1&t2=2&t3=3&t4=4', ['hostname', 'pathname']);
+const ret3 = getDomain('http://example.com:7890/test/thanks', ['hostname']);
+const ret4 = getDomain('http://example.com:7890/test/thanks', ['host']); // With Port
+const ret5 = getDomain('http://example.com:7890/test/thanks', ['origin']);
+const ret6 = getDomain('http://example.com:7890/test/thanks?id=1', ['origin', 'pathname', 'search']);
+console.log(ret1);
+console.log(ret2);
+console.log(ret3);
+console.log(ret4);
+console.log(ret5);
+console.log(ret6);
 ```
 
 Output:
 
-```
+```text
 example.com
 example.com/test/thanks
 example.com
@@ -519,14 +543,16 @@ Update the query param's value of the input URL.
 
 Usage:
 
-```
-updateQueryParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't3', 'three');
-updateQueryParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't4', 'four');
+```javascript
+const ret1 = updateQueryParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't3', 'three');
+const ret2 = updateQueryParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't4', 'four');
+console.log(ret1);
+console.log(ret2);
 ```
 
 Output:
 
-```
+```text
 http://example.com/?t1=1&t2=2&t3=three&t4=4
 http://example.com/?t1=1&t2=2&t3=3&t4=four
 ```
@@ -535,12 +561,21 @@ http://example.com/?t1=1&t2=2&t3=3&t4=four
 
 Checks if the given string is a valid URL, including **scheme URLs**.
 
-```js
-isValidUrl('https://www.example.com'); // true
-isValidUrl('http://example.com/path/exx/ss'); // true
-isValidUrl('https://www.example.com/?q=hello&age=24#world'); // true
-isValidUrl('http://www.example.com/#world?id=9'); // true
-isValidUrl('ftp://example.com'); // true
+Usage:
+
+```javascript
+const ret1 = isValidUrl('https://www.example.com');
+const ret2 = isValidUrl('http://example.com/path/exx/ss');
+const ret3 = isValidUrl('https://www.example.com/?q=hello&age=24#world');
+const ret4 = isValidUrl('http://www.example.com/#world?id=9');
+const ret5 = isValidUrl('ftp://example.com');
+console.log(ret1, ret2, ret3, ret4, ret5);
+```
+
+Output:
+
+```text
+true true true true true
 ```
 
 If you are specifically checking for HTTP/HTTPS URLs, it is recommended to use the `isValidHttpUrl` function instead.
@@ -550,12 +585,21 @@ The `isValidUrl` function matches all scheme URLs, including FTP and other non-H
 
 Check if the given string is a valid HTTP/HTTPS URL.
 
-```js
-isValidHttpUrl('https://www.example.com'); // true
-isValidHttpUrl('http://example.com/path/exx/ss'); // true
-isValidHttpUrl('https://www.example.com/?q=hello&age=24#world'); // true
-isValidHttpUrl('http://www.example.com/#world?id=9'); // true
-isValidHttpUrl('ftp://example.com'); // false
+Usage:
+
+```javascript
+const ret1 = isValidHttpUrl('https://www.example.com');
+const ret2 = isValidHttpUrl('http://example.com/path/exx/ss');
+const ret3 = isValidHttpUrl('https://www.example.com/?q=hello&age=24#world');
+const ret4 = isValidHttpUrl('http://www.example.com/#world?id=9');
+const ret5 = isValidHttpUrl('ftp://example.com');
+console.log(ret1, ret2, ret3, ret4, ret5);
+```
+
+Output:
+
+```text
+true true true true false
 ```
 
 ### Cache Data
@@ -564,24 +608,32 @@ isValidHttpUrl('ftp://example.com'); // false
 
 Handle Cookie.
 
-<!-- ZH: 设置/获取 Cookie -->
+Usage:
 
-```
+```javascript
 setCookie('test', '123', 30, 'example.com'); // key value day domain
-getCookie('test'); // 123
+const ret = getCookie('test');
+console.log(ret);
+```
+
+Output:
+
+```text
+123
 ```
 
 #### Storage
 
 Handle Storage (Keep fit for JSON, it can transfer format automatically).
 
-<!-- ZH: 存储/获取数据到 sessionStorage/localStorage -->
+Usage:
 
-```
+```javascript
 setSessionStorage('test', '123');
-getSessionStorage('test'); // 123
+const ret1 = getSessionStorage('test');
 setLocalStorage('test', '123');
-getLocalStorage('test'); // 123
+const ret2 = getLocalStorage('test');
+console.log(ret1, ret2);
 
 // or package in usage
 const projectName = 'mazey';
@@ -594,17 +646,21 @@ function mGetLocalStorage (key) {
 }
 ```
 
+Output:
+
+```text
+123 123
+```
+
 ### DOM
 
 #### addStyle
 
 Add `<style>` in `<head>`.
 
-<!-- ZH: 添加样式标签; style: 样式标签内的字符串; id: `<style>` 标签的 `id`; 返回: 添加成功/失败 -->
-
 Example 1: Add the `<style>` with `id`, and repeated invoking will update the content instead of adding a new one.
 
-```
+```javascript
 addStyle(
   `
     body {
@@ -624,7 +680,7 @@ addStyle(
 
 Example 2: Add the `<style>` without `id`, and repeated invoking will add a new one.
 
-```
+```javascript
 addStyle(
   `
     body {
@@ -643,7 +699,9 @@ addStyle(
 
 Modify `class`.
 
-```
+Usage:
+
+```javascript
 const dom = document.querySelector('#box');
 
 // Determine `class`
@@ -658,9 +716,20 @@ removeClass(dom, 'test');
 
 Make a new line of HTML.
 
+Usage:
+
+```javascript
+const ret1 = newLine('a\nb\nc');
+const ret2 = newLine('a\n\nbc');
+console.log(ret1);
+console.log(ret2);
 ```
-newLine('a\nb\nc'); // 'a<br />b<br />c'
-newLine('a\n\nbc'); // 'a<br /><br />bc'
+
+Output:
+
+```text
+a<br />b<br />c
+a<br /><br />bc
 ```
 
 ### Calculate and Formula
@@ -669,23 +738,22 @@ newLine('a\n\nbc'); // 'a<br /><br />bc'
 
 Hit probability (1% ~ 100%).
 
-<!-- ZH: 百分位概率 -->
-
 Usage:
 
-```
-inRate(0.5); // 0.01 ~ 1 true/false
+```javascript
+const ret = inRate(0.5); // 0.01 ~ 1 true/false
+console.log(ret);
 ```
 
 Output:
 
-```
+```text
 true
 ```
 
 Example: Test the precision.
 
-```
+```javascript
 // Test
 let trueCount = 0;
 let falseCount = 0;
@@ -705,13 +773,14 @@ Computes the longest common substring of two strings.
 
 Usage:
 
-```
-longestComSubstring('fish', 'finish');
+```javascript
+const ret = longestComSubstring('fish', 'finish');
+console.log(ret);
 ```
 
 Output:
 
-```
+```text
 3
 ```
 
@@ -721,13 +790,14 @@ Computes the longest common subsequence of two strings.
 
 Usage:
 
-```
-longestComSubsequence('fish', 'finish');
+```javascript
+const ret = longestComSubsequence('fish', 'finish');
+console.log(ret);
 ```
 
 Output:
 
-```
+```text
 4
 ```
 
@@ -737,17 +807,16 @@ Output:
 
 Browser Information
 
-<!-- ZH: 返回浏览器信息 https://github.com/JowayYoung/juejin-code/blob/master/browser-type.js -->
-
 Usage:
 
-```
-getBrowserInfo();
+```javascript
+const ret = getBrowserInfo();
+console.log(ret);
 ```
 
 Output:
 
-```
+```text
 {"engine":"webkit","engineVs":"537.36","platform":"desktop","supporter":"chrome","supporterVs":"85.0.4183.121","system":"windows","systemVs":"10"}
 ```
 
@@ -768,7 +837,7 @@ Results:
 
 Example: Determine the environment of the mobile QQ.
 
-```
+```javascript
 const { system, shell } = getBrowserInfo();
 const isMobileQQ = ['android', 'ios'].includes(system) && ['qq_browser', 'qq_app'].includes(shell);
 ```
@@ -777,17 +846,16 @@ const isMobileQQ = ['android', 'ios'].includes(system) && ['qq_browser', 'qq_app
 
 Detect the margin of Safety. Determine if it is a secure PWA environment that it can run.
 
-<!-- ZH: 判断是否是安全的 PWA 环境 -->
-
 Usage:
 
-```
-isSafePWAEnv();
+```javascript
+const ret = isSafePWAEnv();
+console.log(ret);
 ```
 
 Output:
 
-```
+```text
 true
 ```
 
@@ -799,11 +867,11 @@ Get page load time(`PerformanceNavigationTiming`).
 
 This function uses the [`PerformanceNavigationTiming`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceNavigationTiming) API to get page load time data.
 The `PerformanceNavigationTiming` API provides more accurate and detailed information about page load time than the deprecated [`PerformanceTiming`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming) API.
-If you are using an older browser that does not support `PerformanceNavigationTiming`, you can still use the `PerformanceTiming` API by using the previous version of this library ([`v3.9.7`](https://www.npmjs.com/package/mazey/v/3.9.7)).
+If you are using an older browser that does not support `PerformanceNavigationTiming`, you can still use the `PerformanceTiming` API by using the previous version of this library ([`v3.9.7`](https://github.com/mazeyqian/mazey/releases/tag/v3.9.7)).
 
 Usage:
 
-```
+```javascript
 // `camelCase：false` (Default) Return underline(`a_b`) data.
 // `camelCase：true` Return hump(`aB`) data.
 getPerformance()
@@ -815,7 +883,7 @@ getPerformance()
 
 Output:
 
-```
+```text
 {"source":"PerformanceNavigationTiming","os":"others","os_version":"","device_type":"pc","network":"4g","screen_direction":"","unload_time":0,"redirect_time":0,"dns_time":0,"tcp_time":0,"ssl_time":0,"response_time":2,"download_time":2,"first_paint_time":288,"first_contentful_paint_time":288,"dom_ready_time":0,"onload_time":0,"white_time":0,"render_time":0,"decoded_body_size":718,"encoded_body_size":718}
 ```
 
@@ -841,11 +909,9 @@ Results:
 
 Custom console printing (`console`).
 
-<!-- ZH: 生成自定义控制台打印 -->
-
 Usage:
 
-```
+```javascript
 const myConsole = genCustomConsole('MazeyLog:');
 myConsole.log('I am string.');
 myConsole.info('I am boolean.', true);
@@ -855,7 +921,7 @@ myConsole.info('I am object.', { a: 123, b: 456});
 
 Output:
 
-```
+```text
 MazeyLog: I am string.
 MazeyLog: I am boolean. true
 MazeyLog: I am number. 123 456

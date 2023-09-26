@@ -2364,7 +2364,7 @@ export function isSafePWAEnv(): boolean {
  *
  * Example: Determine the environment of the mobile QQ.
  *
- * ```
+ * ```javascript
  * const { system, shell } = getBrowserInfo();
  * const isMobileQQ = ['android', 'ios'].includes(system) && ['qq_browser', 'qq_app'].includes(shell);
  * ```
@@ -2799,7 +2799,7 @@ export function windowLoaded(timeout = 90): Promise<string | Error> {
  *
  * Example 1: Add the `<style>` with `id`, and repeated invoking will update the content instead of adding a new one.
  *
- * ```
+ * ```javascript
  * addStyle(
  *   `
  *     body {
@@ -2819,7 +2819,7 @@ export function windowLoaded(timeout = 90): Promise<string | Error> {
  *
  * Example 2: Add the `<style>` without `id`, and repeated invoking will add a new one.
  *
- * ```
+ * ```javascript
  * addStyle(
  *   `
  *     body {
@@ -3783,19 +3783,19 @@ export function repeatUntilConditionMet<T extends (...args: UnknownFnParams) => 
  * Usage:
  *
  * ```javascript
- * loadScriptIfUndefined('jQuery', 'https://example.com/lib/jquery.min.js')
+ * loadScriptIfUndefined('xyz', 'https://example.com/lib/jquery.min.js')
  *   .then(() => {
- *     console.log('jQuery is loaded.');
+ *     console.log('xyz is loaded.');
  *   })
  *   .catch(err => {
- *     console.log('Failed to load jQuery.', err);
+ *     console.log('Failed to load xyz.', err);
  *   });
  * ```
  *
  * Output:
  *
  * ```text
- * jQuery is loaded.
+ * xyz is loaded.
  * ```
  *
  * @param {string} windowAttribute - The name of the window attribute to check (e.g. `jQuery`, `axios`, etc.).
