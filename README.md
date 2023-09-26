@@ -16,13 +16,13 @@ English | [简体中文](https://github.com/mazeyqian/mazey/blob/master/README_Z
 
 Use mazey via [npm](https://www.npmjs.com/package/mazey).
 
-```
+```shell
 npm install mazey --save
 ```
 
 Use mazey from CDN.
 
-```
+```html
 <script type="text/javascript" src="//i.mazey.net/mazey/lib/mazey.min.js"></script>
 ```
 
@@ -34,7 +34,7 @@ Example: Use a function to load JavaScript script.
 
 Import from [npm](https://www.npmjs.com/package/mazey).
 
-```
+```javascript
 import { isNumber } from 'mazey';
 
 const x = Infinity;
@@ -44,7 +44,7 @@ isNumber(x); // <=> typeof x === 'string' && !isNaN(x) && isFinite(x)
 
 Import from CDN.
 
-```
+```html
 <script type="text/javascript" src="//i.mazey.net/mazey/lib/mazey.min.js"></script>
 <script>
   const x = Infinity;
@@ -57,7 +57,7 @@ Import from CDN.
 
 There are some examples maintained by hand below. For more information, please check the [full documentation](https://mazey.cn/t/m).
 
-**Table of Contents**
+### Table of Contents
 
 <!-- toc - begin -->
 - Generated with ❤️
@@ -801,33 +801,33 @@ MazeyLog: I am object. {a: 123, b: 456}
 
 ### Scripts
 
-**Install Dependencies**
+Install Dependencies:
 
-```
+```shell
 npm i
 ```
 
-**Development**
+Development:
 
-```
+```shell
 npm run dev
 ```
 
-**Build**
+Build:
 
-```
+```shell
 npm run build
 ```
 
-**Document**
+Document:
 
-```
+```shell
 npm run docs
 ```
 
-**Test**
+Test:
 
-```
+```shell
 npm run test
 ```
 
