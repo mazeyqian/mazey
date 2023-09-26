@@ -825,7 +825,7 @@ Results:
 | Attribute | Description | Type | Values |
 | :------------ | :------------ | :------------ | :------------ |
 | **system** | System | string | android, ios, windows, macos, linux |
-| systemVs | System version | string | windows: 2000, xp, 2003, vista, 7, 8, 8.1, 10 <br />macos: ... |
+| systemVs | System version | string | Windows: 2000, xp, 2003, vista, 7, 8, 8.1, 10 macOS: ... |
 | platform | Platform | string | desktop, mobile |
 | engine | Engine | string | webkit, gecko, presto, trident |
 | engineVs | Engine version | string | - |
