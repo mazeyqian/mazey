@@ -2951,9 +2951,6 @@ export function genCustomConsole(
     const dateStr = todayDateIns.toLocaleDateString(locales, dateOptions);
     return dateStr;
   };
-  // if (showDate) {
-  //   prefix = `${dateStr} ${prefix}`;
-  // }
   methods.forEach(method => {
     newConsole[method] = function(...argu: UnknownFnParams) {
       if (isClosed) {
