@@ -61,7 +61,6 @@ There are some examples maintained by hand below. For more information, please c
 
 <!-- toc - begin -->
 - Generated with ❤️
-- [Table of Contents](#table-of-contents)
 - [Load Resource](#load-resource)
   - [loadScript](#loadscript)
   - [loadScriptIfUndefined](#loadscriptifundefined)
