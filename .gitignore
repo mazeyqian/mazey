@@ -4,6 +4,7 @@ dist/
 test/unit/coverage
 test/e2e/reports
 lib/index.*
+lib/typing.*
 
 # Cache folders
 .sass-cache/
