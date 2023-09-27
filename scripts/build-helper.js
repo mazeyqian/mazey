@@ -24,6 +24,7 @@ const defaultHiddenHeadings = [
   'Scripts',
   'Node.js',
   'TypeScript',
+  'Table of Contents',
 ];
 
 /**
