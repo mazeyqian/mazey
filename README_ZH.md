@@ -4,14 +4,6 @@
 
 # mazey
 
-[![NPM version][npm-image]][npm-url]
-[![l][l-image]][l-url]
-
-[npm-image]: ./images/mazey-v1.4.39.svg
-[npm-url]: https://www.npmjs.com/package/mazey/v/1.4.39
-[l-image]: https://img.shields.io/npm/l/mazey
-[l-url]: https://github.com/mazeyqian/mazey
-
 后除的 JavaScript 函数库，所有的方法都在线上项目中使用过。
 
 **目录**
