@@ -1,5 +1,5 @@
 /**
- * @author: Mazey Chu
+ * @author: Mazey
  */
 // eslint-disable-next-line spaced-comment
 /// <reference path="../global.d.ts" />

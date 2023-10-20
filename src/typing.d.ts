@@ -1,5 +1,5 @@
 /**
- * @author: Mazey Chu
+ * @author: Mazey
  */
 
 export interface BrowserInfo {
