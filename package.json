@@ -1,6 +1,6 @@
 {
   "name": "mazey",
-  "version": "3.9.4",
+  "version": "3.9.5",
   "description": "A functional library for daily front-end work.",
   "main": "lib/index.cjs.js",
   "module": "lib/index.esm.js",
@@ -16,7 +16,7 @@
     "test": "jest",
     "test:debug": "npm run build:debug && npm run test",
     "docs": "typedoc --hideGenerator --plugin typedoc-plugin-merge-modules --mergeModulesMergeMode project",
-    "lint:fix": "eslint ./src/index.ts --ext 'ts,tsx' --fix",
+    "lint:fix": "eslint ./src --ext 'ts,tsx' --fix",
     "preview": "npm run docs && npm run build && npm run test",
     "release": "npm run preview && cross-env SCRIPTS_NPM_PACKAGE_VERSION=$npm_package_version node ./scripts/release.js"
   },

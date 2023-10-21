@@ -366,14 +366,14 @@ export function mTrim(str: string): string {
 }
 
 /**
- * Make a newline of HTML.
+ * Make a new line of HTML.
  *
  * ```
  * newLine('a\nb\nc'); // 'a<br />b<br />c'
  * newLine('a\n\nbc'); // 'a<br /><br />bc'
  * ```
  *
- * @param {string} str The string to make a newline.
+ * @param {string} str The string to make a new line.
  * @returns {string} A newline with `br`.
  * @category DOM
  */
@@ -878,7 +878,7 @@ export function doFn(
 }
 
 /**
- * EN: Handle Storage (Keep fit for JSON, it can tansfer format automatically).
+ * EN: Handle Storage (Keep fit for JSON, it can transfer format automatically).
  *
  * ZH: 存储/获取数据到 sessionStorage/localStorage
  *
@@ -913,7 +913,7 @@ export function setSessionStorage<T>(
 }
 
 /**
- * EN: Handle Storage (Keep fit for JSON, it can tansfer format automatically).
+ * EN: Handle Storage (Keep fit for JSON, it can transfer format automatically).
  *
  * ZH: 存储/获取数据到 sessionStorage/localStorage
  *
@@ -950,7 +950,7 @@ export function getSessionStorage<T>(key: string): T | null {
 }
 
 /**
- * EN: Handle Storage (Keep fit for JSON, it can tansfer format automatically).
+ * EN: Handle Storage (Keep fit for JSON, it can transfer format automatically).
  *
  * ZH: 存储/获取数据到 sessionStorage/localStorage
  *
@@ -982,7 +982,7 @@ export function setLocalStorage<T>(key: string, value: T | null = null): void {
 }
 
 /**
- * EN: Handle Storage (Keep fit for JSON, it can tansfer format automatically).
+ * EN: Handle Storage (Keep fit for JSON, it can transfer format automatically).
  *
  * ZH: 存储/获取数据到 sessionStorage/localStorage
  *
@@ -2186,7 +2186,7 @@ export function cutCHSString(str: string, len: number, hasDot = false): string {
 }
 
 /**
- * EN: Check whether the page is loaded successfully (Keepe the compatibility in case that browser's `load` event has been triggered).
+ * EN: Check whether the page is loaded successfully (Keep the compatibility if the browser's `load` event has been triggered).
  *
  * ZH: 页面加载完成
  *
@@ -2248,7 +2248,7 @@ export function windowLoaded(timeout = 90): Promise<string | Error> {
  * // </style>
  * ```
  *
- * Example 2: Add the `<style>` without `id`, and repeated invoking will adding a new one.
+ * Example 2: Add the `<style>` without `id`, and repeated invoking will add a new one.
  *
  * ```
  * addStyle(
@@ -3024,7 +3024,7 @@ export function loadImage(url: string): Promise<HTMLImageElement> {
  * @hidden
  */
 export function getCurrentVersion(): string {
-  return 'v3.x';
+  return 'v3';
 }
 
 /**
