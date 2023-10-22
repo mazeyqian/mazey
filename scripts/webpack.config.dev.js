@@ -32,7 +32,7 @@ module.exports = {
       filename: _resolve('../dist/index.html'),
       template: _resolve('../examples/index.html'),
       inject: true,
-      chunksSortMode: 'dependency'
+      chunksSortMode: 'dependency',
     }),
     new CleanWebpackPlugin([_resolve('../dist')]),
   ],

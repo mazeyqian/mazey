@@ -10,7 +10,21 @@
     "plugin:@typescript-eslint/recommended"
   ],
   "rules": {
-    "semi": ["error", "always"],
-    "quotes": ["error", "single"]
+    "semi": ["warn", "always"],
+    "quotes": ["warn", "single"],
+    "indent": ["warn", 2, { "SwitchCase": 1 }],
+    "comma-dangle": ["warn", "always-multiline"],
+    "eol-last": ["warn", "always"],
+    "max-len": [
+      "warn",
+      {
+        "code": 200,
+        "ignoreComments": true,
+        "ignoreStrings": true,
+        "ignoreTemplateLiterals": true,
+        "ignoreUrls": true
+      }
+    ],
+    "spaced-comment": ["warn", "always"]
   }
 }

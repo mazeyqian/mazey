@@ -115,10 +115,7 @@ export function longestComSubsequence(aStr: string, bStr: string): number {
  *
  * @hidden
  */
-export function calLongestCommonSubsequence(
-  aStr: string,
-  bStr: string
-): number {
+export function calLongestCommonSubsequence(aStr: string, bStr: string): number {
   return longestComSubsequence(aStr, bStr);
 }
 
@@ -162,11 +159,7 @@ export function getQueryParam(param: string): string {
  */
 export function getUrlParam(url: string, param: string): string | string[] {
   const result: UrlParams = {};
-  url.replace(/\??(\w+)=([^&]*)&?/g, function(
-    _: string,
-    k: string,
-    v: string
-  ): string {
+  url.replace(/\??(\w+)=([^&]*)&?/g, function(_: string, k: string, v: string): string {
     if (result[k] !== undefined) {
       const t = result[k];
       // Cast `t` to `string[]` to ensure that `concat` receives an array
@@ -203,11 +196,7 @@ export function getUrlParam(url: string, param: string): string | string[] {
  * @returns {string} URL.
  * @category URL
  */
-export function updateQueryParam(
-  url: string,
-  param: string,
-  value: string
-): string {
+export function updateQueryParam(url: string, param: string, value: string): string {
   const re = new RegExp('([?&])' + param + '=.*?(&|$)', 'i');
   const separator = url.indexOf('?') !== -1 ? '&' : '?';
   if (url.match(re)) {
@@ -419,7 +408,7 @@ export function deepCopy<T>(obj: T): T {
   if (isSimpleTypeObj) {
     // console.log('it is isSimpleTypeObj');
     return {
-      ...obj
+      ...obj,
     };
   }
   // console.log('it is not isSimpleTypeObj');
@@ -663,11 +652,7 @@ export function removeClass(obj: HTMLElement, cls: string): void {
  *
  * @category Util
  */
-export function throttle<T extends (...args: any[]) => any>(
-  func: T,
-  wait: number,
-  options: { leading?: boolean; trailing?: boolean } = {}
-): ThrottleFunc<T> {
+export function throttle<T extends (...args: any[]) => any>(func: T, wait: number, options: { leading?: boolean; trailing?: boolean } = {}): ThrottleFunc<T> {
   options = Object.assign({}, options);
   let context: unknown | null = null;
   let args: Parameters<T> | null = null;
@@ -719,11 +704,7 @@ export function throttle<T extends (...args: any[]) => any>(
  *
  * @category Util
  */
-export function debounce<T extends (...args: any[]) => any>(
-  func: T,
-  wait: number,
-  immediate?: boolean
-): DebounceFunc<T> {
+export function debounce<T extends (...args: any[]) => any>(func: T, wait: number, immediate?: boolean): DebounceFunc<T> {
   let context: unknown | null = null;
   let timeout: ReturnType<typeof setTimeout> | null = null;
   let timestamp: number | null = null;
@@ -760,7 +741,7 @@ export function debounce<T extends (...args: any[]) => any>(
 }
 
 const defaultGetFriendlyIntervalOptions = {
-  type: 'd'
+  type: 'd',
 };
 
 /**
@@ -779,11 +760,7 @@ const defaultGetFriendlyIntervalOptions = {
  * @returns {string/number} 取决于 type
  * @category Util
  */
-export function getFriendlyInterval(
-  start: number | string | Date = 0,
-  end: number | string | Date = 0,
-  options: { type?: string } = defaultGetFriendlyIntervalOptions
-): number | string {
+export function getFriendlyInterval(start: number | string | Date = 0, end: number | string | Date = 0, options: { type?: string } = defaultGetFriendlyIntervalOptions): number | string {
   options = Object.assign(defaultGetFriendlyIntervalOptions, options);
   const { type } = options;
   if (!isNumber(start)) start = new Date(start).getTime();
@@ -836,18 +813,11 @@ export function getFriendlyInterval(
  * @category Util
  */
 export function isNumber(num: unknown, options: IsNumberOptions = {}): boolean {
-  const {
-    isNaNAsNumber = false,
-    isInfinityAsNumber = false,
-    isUnFiniteAsNumber = false
-  } = options;
+  const { isNaNAsNumber = false, isInfinityAsNumber = false, isUnFiniteAsNumber = false } = options;
   if (typeof num !== 'number') {
     return false;
   }
-  if (
-    !(isInfinityAsNumber === true || isUnFiniteAsNumber === true) &&
-    !isFinite(num)
-  ) {
+  if (!(isInfinityAsNumber === true || isUnFiniteAsNumber === true) && !isFinite(num)) {
     return false;
   }
   // Be compatible with previous versions.
@@ -866,10 +836,7 @@ export function isNumber(num: unknown, options: IsNumberOptions = {}): boolean {
  * @param {function} fn 等待被执行的未知是否有效的函数
  * @category Util
  */
-export function doFn(
-  fn: AnyFunction,
-  ...params: Parameters<AnyFunction>
-): ReturnType<AnyFunction> | null {
+export function doFn(fn: AnyFunction, ...params: Parameters<AnyFunction>): ReturnType<AnyFunction> | null {
   let ret: ReturnType<AnyFunction> | null = null;
   if (fn && typeof fn === 'function') {
     ret = fn(...params);
@@ -903,10 +870,7 @@ export function doFn(
  * @returns {void} 返回值
  * @category Cache Data
  */
-export function setSessionStorage<T>(
-  key: string,
-  value: T | null = null
-): void {
+export function setSessionStorage<T>(key: string, value: T | null = null): void {
   if (key) {
     sessionStorage.setItem(key, JSON.stringify(value));
   }
@@ -1047,10 +1011,7 @@ export function getLocalStorage<T>(key: string): T | null {
  * @returns {Promise<string>} true -- 加载成功
  * @category Load Resource
  */
-export function loadCSS(
-  url: string,
-  options: { id?: string } = { id: '' }
-): Promise<boolean | Error | any> {
+export function loadCSS(url: string, options: { id?: string } = { id: '' }): Promise<boolean | Error | any> {
   const { id } = options;
   let success: (v: boolean | string) => void;
   let fail: (v: Error) => void;
@@ -1064,11 +1025,7 @@ export function loadCSS(
   };
   let node: any = document.createElement('link');
   const supportOnload = 'onload' in node;
-  const isOldWebKit =
-    +navigator.userAgent.replace(
-      /.*(?:AppleWebKit|AndroidWebKit)\/?(\d+).*/i,
-      '$1'
-    ) < 536; // webkit旧内核做特殊处理
+  const isOldWebKit = +navigator.userAgent.replace(/.*(?:AppleWebKit|AndroidWebKit)\/?(\d+).*/i, '$1') < 536; // webkit旧内核做特殊处理
   const protectNum = 300000; // 阈值10分钟，一秒钟执行pollCss 500次
 
   node.rel = 'stylesheet';
@@ -1217,7 +1174,7 @@ export function loadScript(
       /* pass */
     },
     timeout: 5000,
-    isDefer: false
+    isDefer: false,
   }
 ): LoadScriptReturns {
   const { id, callback, timeout, isDefer } = Object.assign(
@@ -1227,7 +1184,7 @@ export function loadScript(
         /* pass */
       },
       timeout: 5000,
-      isDefer: false
+      isDefer: false,
     },
     options
   );
@@ -1296,12 +1253,7 @@ export function mNow(): number {
  *
  * @category Cache Data
  */
-export function setCookie(
-  name: string,
-  value: string,
-  days?: number,
-  domain?: string
-): void {
+export function setCookie(name: string, value: string, days?: number, domain?: string): void {
   let domainParts, expires;
   // let date: any;
   if (days) {
@@ -1328,15 +1280,13 @@ export function setCookie(
     domainParts = host.split('.');
     domainParts.shift();
     domain = domain || '.' + domainParts.join('.');
-    document.cookie =
-      name + '=' + value + expires + '; path=/; domain=' + domain;
+    document.cookie = name + '=' + value + expires + '; path=/; domain=' + domain;
     // check if cookie was successfuly set to the given domain
     // (otherwise it was a Top-Level Domain)
     if (getCookie(name) === null || getCookie(name) !== value) {
       // append "." to current domain
       domain = domain || '.' + host;
-      document.cookie =
-        name + '=' + value + expires + '; path=/; domain=' + domain;
+      document.cookie = name + '=' + value + expires + '; path=/; domain=' + domain;
     }
   }
 }
@@ -1446,9 +1396,7 @@ interface WebPerformance {
  * @returns {Promise<object>} 加载数据
  * @category Web Performance
  */
-export function getPerformance(
-  camelCase = false
-): Promise<WebPerformance | Error> {
+export function getPerformance(camelCase = false): Promise<WebPerformance | Error> {
   let success: (v: WebPerformance) => void;
   let fail: (v: Error) => void;
   const status: Promise<WebPerformance> = new Promise((resolve, reject) => {
@@ -1459,17 +1407,13 @@ export function getPerformance(
   let firstPaintTime: any;
   let firstContentfulPaintTime: any;
   // 是否已经形成数据（页面加载完成之后）
-  if (
-    window.performance &&
-    window.performance.timing &&
-    window.performance.timing.loadEventEnd > 0
-  ) {
+  if (window.performance && window.performance.timing && window.performance.timing.loadEventEnd > 0) {
     // console.log('created')
     getTiming();
   } else {
     // console.log('creating')
     window.addEventListener('load', function() {
-      //不能影响最后的时间计算
+      // 不能影响最后的时间计算
       window.setTimeout(function() {
         getTiming();
       }, 0);
@@ -1484,10 +1428,8 @@ export function getPerformance(
         const performanceEntries = performance.getEntriesByType('paint');
         performanceEntries.forEach((performanceEntry, i, entries) => {
           const startTime = Math.round(performanceEntry.startTime);
-          if (performanceEntry.name === 'first-paint')
-            firstPaintTime = startTime;
-          else if (performanceEntry.name === 'first-contentful-paint')
-            firstContentfulPaintTime = startTime;
+          if (performanceEntry.name === 'first-paint') firstPaintTime = startTime;
+          else if (performanceEntry.name === 'first-contentful-paint') firstContentfulPaintTime = startTime;
         });
       } else {
         console.error('paint');
@@ -1496,12 +1438,8 @@ export function getPerformance(
       console.error((e as any).message);
     }
     // 获取加载时间
-    if (
-      window.performance &&
-      typeof window.performance.getEntries === 'function'
-    ) {
-      const performanceNavigationTiming: any =
-        (window.performance.getEntries() || [])[0] || {};
+    if (window.performance && typeof window.performance.getEntries === 'function') {
+      const performanceNavigationTiming: any = (window.performance.getEntries() || [])[0] || {};
       const data: any = {
         // url: encodeURI(location.href),
         // ua: navigator.userAgent,
@@ -1510,21 +1448,21 @@ export function getPerformance(
         deviceType: getDeviceType(),
         network: getNetWork(),
         screenDirection: getOrientationStatu(),
-        unloadTime: timing.unloadEventEnd - timing.unloadEventStart, //上个文档的卸载时间
-        redirectTime: timing.redirectEnd - timing.redirectStart, //*重定向时间
-        dnsTime: timing.domainLookupEnd - timing.domainLookupStart, //*DNS查询时间
-        tcpTime: timing.connectEnd - timing.connectStart, //*服务器连接时间
-        sslTime: getSSLTime(timing.connectEnd, timing.secureConnectionStart), //*ssl连接时间
-        responseTime: timing.responseStart - timing.requestStart, //*服务器响应时间
-        downloadTime: timing.responseEnd - timing.responseStart, //*网页下载时间
-        firstPaintTime: firstPaintTime, //*首次渲染时间
-        firstContentfulPaintTime: firstContentfulPaintTime, //*首次渲染内容时间
-        domreadyTime: timing.domContentLoadedEventStart - startTime || 0, //*dom ready时间（总和）
-        onloadTime: timing.loadEventStart - startTime || 0, //*onload时间（总和）
-        whiteTime: timing.responseStart - startTime, //*白屏时间
-        renderTime: timing.loadEventEnd - startTime || 0, //整个过程的时间之和
-        decodedBodySize: performanceNavigationTiming.decodedBodySize || '', //页面压缩前大小
-        encodedBodySize: performanceNavigationTiming.encodedBodySize || '' //页面压缩后大小
+        unloadTime: timing.unloadEventEnd - timing.unloadEventStart, // 上个文档的卸载时间
+        redirectTime: timing.redirectEnd - timing.redirectStart, // *重定向时间
+        dnsTime: timing.domainLookupEnd - timing.domainLookupStart, // *DNS查询时间
+        tcpTime: timing.connectEnd - timing.connectStart, // *服务器连接时间
+        sslTime: getSSLTime(timing.connectEnd, timing.secureConnectionStart), // *ssl连接时间
+        responseTime: timing.responseStart - timing.requestStart, // *服务器响应时间
+        downloadTime: timing.responseEnd - timing.responseStart, // *网页下载时间
+        firstPaintTime: firstPaintTime, // *首次渲染时间
+        firstContentfulPaintTime: firstContentfulPaintTime, // *首次渲染内容时间
+        domreadyTime: timing.domContentLoadedEventStart - startTime || 0, // *dom ready时间（总和）
+        onloadTime: timing.loadEventStart - startTime || 0, // *onload时间（总和）
+        whiteTime: timing.responseStart - startTime, // *白屏时间
+        renderTime: timing.loadEventEnd - startTime || 0, // 整个过程的时间之和
+        decodedBodySize: performanceNavigationTiming.decodedBodySize || '', // 页面压缩前大小
+        encodedBodySize: performanceNavigationTiming.encodedBodySize || '', // 页面压缩后大小
       };
       // 过滤异常数据
       Object.keys(data).forEach(k => {
@@ -1554,13 +1492,10 @@ export function getPerformance(
       fail(Error('getEntries'));
     }
   }
-  //获取当前操作系统
+  // 获取当前操作系统
   function getOS() {
     let os;
-    if (
-      navigator.userAgent.indexOf('Android') > -1 ||
-      navigator.userAgent.indexOf('Linux') > -1
-    ) {
+    if (navigator.userAgent.indexOf('Android') > -1 || navigator.userAgent.indexOf('Linux') > -1) {
       os = 'android';
     } else if (navigator.userAgent.indexOf('iPhone') > -1) {
       os = 'ios';
@@ -1575,20 +1510,17 @@ export function getPerformance(
   function getOSVersion() {
     let OSVision: any;
     const u = navigator.userAgent;
-    const isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //Android
-    const isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+    const isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; // Android
+    const isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); // ios终端
     if (isAndroid) {
-      OSVision = (navigator.userAgent.split(';')[1].match(/\d+\.\d+/g) ||
-        [])[0];
+      OSVision = (navigator.userAgent.split(';')[1].match(/\d+\.\d+/g) || [])[0];
     }
     if (isIOS) {
-      OSVision = (navigator.userAgent
-        .split(';')[1]
-        .match(/(\d+)_(\d+)_?(\d+)?/) || [])[0];
+      OSVision = (navigator.userAgent.split(';')[1].match(/(\d+)_(\d+)_?(\d+)?/) || [])[0];
     }
     return OSVision;
   }
-  //获取设备类型
+  // 获取设备类型
   function getDeviceType() {
     let deviceType;
     const sUserAgent = navigator.userAgent.toLowerCase();
@@ -1600,31 +1532,12 @@ export function getPerformance(
     const bIsAndroid = sUserAgent.match(/android/i) && 'android';
     const bIsCE = sUserAgent.match(/windows ce/i) && 'windows ce';
     const bIsWM = sUserAgent.match(/windows mobile/i) && 'windows mobile';
-    if (
-      !(
-        bIsIpad ||
-        bIsIphoneOs ||
-        bIsMidp ||
-        bIsUc7 ||
-        bIsUc ||
-        bIsAndroid ||
-        bIsCE ||
-        bIsWM
-      )
-    ) {
-      deviceType = 'pc'; //pc
-    } else if (
-      bIsIphoneOs ||
-      bIsMidp ||
-      bIsUc7 ||
-      bIsUc ||
-      bIsAndroid ||
-      bIsCE ||
-      bIsWM
-    ) {
-      deviceType = 'phone'; //phone
+    if (!(bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM)) {
+      deviceType = 'pc'; // pc
+    } else if (bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) {
+      deviceType = 'phone'; // phone
     } else if (bIsIpad) {
-      deviceType = 'ipad'; //ipad
+      deviceType = 'ipad'; // ipad
     } else {
       deviceType = undefined;
     }
@@ -1633,10 +1546,7 @@ export function getPerformance(
   // 获取网络状态
   function getNetWork() {
     let netWork: any;
-    if (
-      (navigator as any).connection &&
-      (navigator as any).connection.effectiveType
-    ) {
+    if ((navigator as any).connection && (navigator as any).connection.effectiveType) {
       switch ((navigator as any).connection.effectiveType) {
         case 'wifi':
           netWork = 'wifi'; // wifi
@@ -1663,22 +1573,12 @@ export function getPerformance(
   // 获取横竖屏状态
   function getOrientationStatu() {
     let orientationStatu: any;
-    if (
-      window.screen &&
-      window.screen.orientation &&
-      window.screen.orientation.angle
-    ) {
-      if (
-        window.screen.orientation.angle === 180 ||
-        window.screen.orientation.angle === 0
-      ) {
+    if (window.screen && window.screen.orientation && window.screen.orientation.angle) {
+      if (window.screen.orientation.angle === 180 || window.screen.orientation.angle === 0) {
         // 竖屏
         orientationStatu = '|';
       }
-      if (
-        window.screen.orientation.angle === 90 ||
-        window.screen.orientation.angle === -90
-      ) {
+      if (window.screen.orientation.angle === 90 || window.screen.orientation.angle === -90) {
         // 横屏
         orientationStatu = '-';
       }
@@ -1779,25 +1679,14 @@ export function isSafePWAEnv(): boolean {
   }
   // 判断是否支持 Promise
   function isSupportPromise() {
-    if (
-      typeof Promise !== 'undefined' &&
-      Promise.toString().indexOf('[native code]') !== -1
-    ) {
+    if (typeof Promise !== 'undefined' && Promise.toString().indexOf('[native code]') !== -1) {
       return true;
     }
     return false;
   }
   // 浏览器信息
   const BrowserType = getBrowserInfo();
-  if (
-    'serviceWorker' in navigator &&
-    isSupportAsyncAwait() &&
-    isSupportPromise() &&
-    Boolean(window.fetch) &&
-    Boolean(window.indexedDB) &&
-    Boolean(window.caches) &&
-    !BrowserType['shell']
-  ) {
+  if ('serviceWorker' in navigator && isSupportAsyncAwait() && isSupportPromise() && Boolean(window.fetch) && Boolean(window.indexedDB) && Boolean(window.caches) && !BrowserType['shell']) {
     return true;
   }
   return false;
@@ -1847,10 +1736,7 @@ export function isSafePWAEnv(): boolean {
  */
 export function getBrowserInfo(): BrowserInfo {
   // Cache
-  if (
-    window.MAZEY_BROWSER_INFO &&
-    typeof window.MAZEY_BROWSER_INFO === 'object'
-  ) {
+  if (window.MAZEY_BROWSER_INFO && typeof window.MAZEY_BROWSER_INFO === 'object') {
     // console.log('getBrowserInfo cache');
     return window.MAZEY_BROWSER_INFO;
   }
@@ -1861,7 +1747,7 @@ export function getBrowserInfo(): BrowserInfo {
     supporter: '', // chrome safari firefox opera iexplore edge
     supporterVs: '',
     system: '', // windows macos linux android ios
-    systemVs: ''
+    systemVs: '',
   };
   try {
     // 权重：系统 + 系统版本 > 平台 > 内核 + 载体 + 内核版本 + 载体版本 > 外壳 + 外壳版本
@@ -1908,7 +1794,7 @@ export function getBrowserInfo(): BrowserInfo {
     browserInfo = {
       ...browserInfo,
       system,
-      appleType
+      appleType,
     };
     // System Version
     let systemVs = '';
@@ -1939,7 +1825,7 @@ export function getBrowserInfo(): BrowserInfo {
     }
     browserInfo = {
       ...browserInfo,
-      systemVs
+      systemVs,
     };
     // Platform
     let platform = '';
@@ -1950,7 +1836,7 @@ export function getBrowserInfo(): BrowserInfo {
     }
     browserInfo = {
       ...browserInfo,
-      platform
+      platform,
     };
     // Engine and Shell
     let engine = '';
@@ -1979,7 +1865,7 @@ export function getBrowserInfo(): BrowserInfo {
     browserInfo = {
       ...browserInfo,
       engine,
-      supporter
+      supporter,
     };
     // Engine Version
     let engineVs = '';
@@ -1994,7 +1880,7 @@ export function getBrowserInfo(): BrowserInfo {
     }
     browserInfo = {
       ...browserInfo,
-      engineVs
+      engineVs,
     };
     // Supporter Version
     let supporterVs = '';
@@ -2013,7 +1899,7 @@ export function getBrowserInfo(): BrowserInfo {
     }
     browserInfo = {
       ...browserInfo,
-      supporterVs
+      supporterVs,
     };
     // Shell Name and Shell Version
     let shell = '';
@@ -2047,7 +1933,7 @@ export function getBrowserInfo(): BrowserInfo {
     browserInfo = {
       ...browserInfo,
       shell,
-      shellVs
+      shellVs,
     };
     window.MAZEY_BROWSER_INFO = browserInfo;
     return browserInfo;
@@ -2064,10 +1950,7 @@ export function getBrowserInfo(): BrowserInfo {
  * @returns {string} 字符串
  * @category Util
  */
-export function clearHtml(
-  str: string,
-  options: { removeNewLine?: boolean } = {}
-): string {
+export function clearHtml(str: string, options: { removeNewLine?: boolean } = {}): string {
   const { removeNewLine = false } = options;
   let ret = '';
   if (str) {
@@ -2095,15 +1978,12 @@ export function sanitizeInput(input: string): string {
     '>': '&gt;',
     '"': '&quot;',
     '\'': '&#x27;',
-    '/': '&#x2F;'
+    '/': '&#x2F;',
   };
   if (typeof input !== 'string') {
     throw new Error('Input must be a string');
   }
-  return input.replace(
-    regex,
-    (match: keyof typeof replacements) => replacements[match]
-  );
+  return input.replace(regex, (match: keyof typeof replacements) => replacements[match]);
 }
 
 /**
@@ -2121,16 +2001,13 @@ export function unsanitize(input: string): string {
     '&gt;': '>',
     '&quot;': '"',
     '&#x27;': '\'',
-    '&#x2F;': '/'
+    '&#x2F;': '/',
   };
   if (typeof input !== 'string') {
     throw new Error('Input must be a string');
     // console.error('Input must be a string');
   }
-  return input.replace(
-    regex,
-    (match: keyof typeof replacements) => replacements[match]
-  );
+  return input.replace(regex, (match: keyof typeof replacements) => replacements[match]);
 }
 
 /**
@@ -2142,11 +2019,7 @@ export function unsanitize(input: string): string {
  * @returns {string} 返回截取后的字符串
  * @category Util
  */
-export function truncateZHString(
-  str: string,
-  len: number,
-  hasDot = false
-): string {
+export function truncateZHString(str: string, len: number, hasDot = false): string {
   if (str == '' || !str) {
     return '';
   } else {
@@ -2207,12 +2080,10 @@ export function cutCHSString(str: string, len: number, hasDot = false): string {
 export function windowLoaded(timeout = 90): Promise<string | Error> {
   let loaded: (value: string) => void = () => undefined;
   let loadFail: (value: Error) => void;
-  const status = new Promise(
-    (resolve: (value: string) => void, reject: (value: Error) => void) => {
-      loaded = resolve;
-      loadFail = reject;
-    }
-  );
+  const status = new Promise((resolve: (value: string) => void, reject: (value: Error) => void) => {
+    loaded = resolve;
+    loadFail = reject;
+  });
   if (document.readyState === 'complete') {
     loaded('complete');
   } else {
@@ -2267,10 +2138,7 @@ export function windowLoaded(timeout = 90): Promise<string | Error> {
  *
  * @category DOM
  */
-export function addStyle(
-  style: string,
-  options: { id?: string } = { id: '' }
-): boolean {
+export function addStyle(style: string, options: { id?: string } = { id: '' }): boolean {
   // console.log('_ style', style);
   // console.log('_ options', options);
   if (!style) {
@@ -2351,24 +2219,17 @@ export function genCustomConsole(
     showDate: false,
     locales: 'en-US',
     logFn: () => undefined,
-    errorFn: () => undefined
+    errorFn: () => undefined,
   }
 ): Console {
-  const {
-    isClosed,
-    showWrap,
-    showDate,
-    locales,
-    logFn,
-    errorFn
-  } = Object.assign(
+  const { isClosed, showWrap, showDate, locales, logFn, errorFn } = Object.assign(
     {
       isClosed: false,
       showWrap: false,
       showDate: false,
       locales: 'en-US',
       logFn: () => undefined,
-      errorFn: () => undefined
+      errorFn: () => undefined,
     },
     options
   );
@@ -2384,7 +2245,7 @@ export function genCustomConsole(
       hour: 'numeric',
       // hourCycle: 'h24',
       minute: 'numeric',
-      second: 'numeric'
+      second: 'numeric',
     };
     const todayDateIns = new Date();
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString
@@ -2451,13 +2312,13 @@ export function zAxiosIsValidRes(
   res: ZResResponse | undefined,
   options: ZResIsValidResOptions = {
     validStatusRange: [200, 300],
-    validCode: [0]
+    validCode: [0],
   }
 ): boolean {
   const { validStatusRange, validCode } = Object.assign(
     {
       validStatusRange: [200, 300],
-      validCode: [0]
+      validCode: [0],
     },
     options
   );
@@ -2465,13 +2326,7 @@ export function zAxiosIsValidRes(
     console.error('valid validStatusRange is required');
   }
   let ret = false;
-  if (
-    res &&
-    res.status &&
-    validStatusRange.length === 2 &&
-    res.status >= validStatusRange[0] &&
-    res.status < validStatusRange[1]
-  ) {
+  if (res && res.status && validStatusRange.length === 2 && res.status >= validStatusRange[0] && res.status < validStatusRange[1]) {
     const resData = res.data;
     if (resData && validCode.includes(resData.code)) {
       ret = true;
@@ -2530,11 +2385,7 @@ export function isNonEmptyArray<T>(arr: Array<T>): boolean {
  * @returns {boolean} Return TRUE if the data is valid.
  * @category Util
  */
-export function isValidData(
-  data: any,
-  attributes: string[],
-  validValue: any
-): boolean {
+export function isValidData(data: any, attributes: string[], validValue: any): boolean {
   let ret = false;
   if (typeof data !== 'object') {
     return ret;
@@ -2595,8 +2446,7 @@ export function isSupportWebp(): Promise<boolean> {
     img.onerror = () => {
       resolve(false);
     };
-    img.src =
-      'data:image/webp;base64,UklGRh4AAABXRUJQVlA4TBEAAAAvAAAAAAfQ//73v/+BiOh/AAA=';
+    img.src = 'data:image/webp;base64,UklGRh4AAABXRUJQVlA4TBEAAAAvAAAAAAfQ//73v/+BiOh/AAA=';
   };
   return new Promise(fn);
 }
@@ -2646,10 +2496,7 @@ export function genHashCode(str: string): number {
  * @returns {string} Return the formatted date string.
  * @category Util
  */
-export function formatDate(
-  dateIns?: Date | number | string,
-  format = 'yyyy-MM-dd'
-): string {
+export function formatDate(dateIns?: Date | number | string, format = 'yyyy-MM-dd'): string {
   if (!dateIns) {
     dateIns = new Date();
   }
@@ -2660,18 +2507,9 @@ export function formatDate(
     yyyy: tempDate.getFullYear(),
     MM: tempDate.getMonth() + 1,
     dd: tempDate.getDate() < 10 ? '0' + tempDate.getDate() : tempDate.getDate(),
-    hh:
-      tempDate.getHours() < 10
-        ? '0' + tempDate.getHours()
-        : tempDate.getHours(),
-    mm:
-      tempDate.getMinutes() < 10
-        ? '0' + tempDate.getMinutes()
-        : tempDate.getMinutes(),
-    ss:
-      tempDate.getSeconds() < 10
-        ? '0' + tempDate.getSeconds()
-        : tempDate.getSeconds()
+    hh: tempDate.getHours() < 10 ? '0' + tempDate.getHours() : tempDate.getHours(),
+    mm: tempDate.getMinutes() < 10 ? '0' + tempDate.getMinutes() : tempDate.getMinutes(),
+    ss: tempDate.getSeconds() < 10 ? '0' + tempDate.getSeconds() : tempDate.getSeconds(),
   };
   let tempFormat = format || 'yyyy-MM-dd';
   Object.keys(o).forEach(key => {
@@ -2729,7 +2567,7 @@ export function invokeEvent(type: string): void {
     for (let i = 0, length = arrayEvent.length; i < length; i++) {
       if (typeof arrayEvent[i] === 'function') {
         arrayEvent[i]({
-          type: type
+          type: type,
         });
       }
     }
@@ -2925,8 +2763,7 @@ export function setImgWidHeiBySrc(): boolean {
       const height = src.match(/height=([0-9]+[a-z%]*)/);
       // Set the width and height of the image using jQuery's `width()` and `height()` methods
       if (width && isNonEmptyArray(width) && width[1]) $this.width(width[1]);
-      if (height && isNonEmptyArray(height) && height[1])
-        $this.height(height[1]);
+      if (height && isNonEmptyArray(height) && height[1]) $this.height(height[1]);
     });
     return true;
   } else {
@@ -2945,10 +2782,8 @@ export function setImgWidHeiBySrc(): boolean {
         const width = src.match(/width=([0-9]+[a-z%]*)/);
         const height = src.match(/height=([0-9]+[a-z%]*)/);
         // Set the width and height of the image using the `style.width` and `style.height` properties
-        if (width && isNonEmptyArray(width) && width[1])
-          $this.style.width = width[1];
-        if (height && isNonEmptyArray(height) && height[1])
-          $this.style.height = height[1];
+        if (width && isNonEmptyArray(width) && width[1]) $this.style.width = width[1];
+        if (height && isNonEmptyArray(height) && height[1]) $this.style.height = height[1];
       });
       return true;
     }
@@ -2970,10 +2805,7 @@ export function setImgWidHeiBySrc(): boolean {
  * @returns {string} Return the inline style string.
  * @category DOM
  */
-export function genStyleString(
-  className: string,
-  styleArray: Array<string>
-): string {
+export function genStyleString(className: string, styleArray: Array<string>): string {
   let style = '';
   if (styleArray && styleArray.length > 0) {
     // It's wrong. Last item will not include `;`.
@@ -3093,10 +2925,7 @@ export function repeatUntilConditionMet<T extends (...args: any[]) => any>(
  * @returns {Promise} A Promise that resolves when the script has been loaded.
  * @category Load Resource
  */
-export function loadScriptIfUndefined(
-  windowAttribute: string,
-  url: string
-): LoadScriptReturns {
+export function loadScriptIfUndefined(windowAttribute: string, url: string): LoadScriptReturns {
   if ((window as { [k: string]: any })[windowAttribute]) {
     return Promise.resolve('defined');
   }

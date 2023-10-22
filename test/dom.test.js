@@ -34,8 +34,8 @@ test('Can get Domain\'s params correctly? \'https://i.mazey.net/mazey/lib/mazey.
 // Simulate the async.
 function wasteTime (ms) {
   return new Promise(resolve => setTimeout(() => {
-      resolve(ms);
-      // console.log('waste', ms);
+    resolve(ms);
+    // console.log('waste', ms);
   }, ms));
 }
 
