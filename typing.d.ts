@@ -39,13 +39,9 @@ declare global {
     [key: string]: string | string[];
   }
 
-  type ThrottleFunc<T extends (...args: any[]) => any> = (
-    ...args: Parameters<T>
-  ) => ReturnType<T> | null;
+  type ThrottleFunc<T extends (...args: any[]) => any> = (...args: Parameters<T>) => ReturnType<T> | null;
 
-  type DebounceFunc<T extends (...args: any[]) => any> = (
-    ...args: Parameters<T>
-  ) => ReturnType<T>;
+  type DebounceFunc<T extends (...args: any[]) => any> = (...args: Parameters<T>) => ReturnType<T>;
 
   interface IsNumberOptions {
     isNaNAsNumber?: boolean;
@@ -80,4 +76,10 @@ declare global {
   type simpleObject = {
     [key: string]: simpleType | simpleType[] | simpleObject | simpleObject[];
   };
+
+  interface PerformanceEntry {
+    readonly processingStart?: DOMHighResTimeStamp;
+    readonly processingEnd?: DOMHighResTimeStamp;
+    readonly value?: number;
+  }
 }

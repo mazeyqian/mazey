@@ -1353,6 +1353,170 @@ interface WebPerformance {
   [key: string]: string | number;
 }
 
+function isSupportedEntryType(name: string) {
+  let supportedEntryTypes: readonly string[] = [];
+  const perfObs = window.PerformanceObserver;
+  if (!perfObs) {
+    return false;
+  }
+  if (isNonEmptyArray(perfObs.supportedEntryTypes as unknown[])) {
+    supportedEntryTypes = perfObs.supportedEntryTypes;
+  }
+  return supportedEntryTypes.includes(name);
+}
+
+/**
+ * Gets the first contentful paint (FCP) time of a web page using the Performance API.
+ * The FCP time is the time it takes for the first piece of content to be painted on the screen.
+ *
+ * @returns A promise that resolves with the FCP time in milliseconds, or 0 if the 'paint' entry type is not supported.
+ * @category Web Performance
+ */
+export async function getFCP(): Promise<number> {
+  if (!isSupportedEntryType('paint')) {
+    return 0;
+  }
+  return new Promise(resolve => {
+    const observer = new PerformanceObserver(list => {
+      const entries = list.getEntries();
+      const fcpIns = entries.find(entry => entry.name === 'first-contentful-paint');
+      if (fcpIns) {
+        observer.disconnect();
+        resolve(Math.round(fcpIns.startTime));
+      }
+    });
+    observer.observe({ type: 'paint', buffered: true });
+  });
+}
+
+/**
+ * Gets the first paint (FP) time of a web page using the Performance API.
+ * The FP time is the time it takes for the first pixel to be painted on the screen.
+ *
+ * @returns A promise that resolves with the FP time in milliseconds, or 0 if the 'paint' entry type is not supported.
+ * @category Web Performance
+ */
+export async function getFP(): Promise<number> {
+  if (!isSupportedEntryType('paint')) {
+    return 0;
+  }
+  return new Promise(resolve => {
+    const observer = new PerformanceObserver(list => {
+      const entries = list.getEntries();
+      const fpIns = entries.find(entry => entry.name === 'first-paint');
+      if (fpIns) {
+        observer.disconnect();
+        resolve(Math.round(fpIns.startTime));
+      }
+    });
+    observer.observe({ type: 'paint', buffered: true });
+  });
+}
+
+/**
+ * Gets the largest contentful paint (LCP) time of a web page using the Performance API.
+ * The LCP time is the time it takes for the largest piece of content to be painted on the screen.
+ *
+ * @returns A promise that resolves with the LCP time in milliseconds, or 0 if the 'largest-contentful-paint' entry type is not supported.
+ * @category Web Performance
+ */
+export async function getLCP(): Promise<number> {
+  if (!isSupportedEntryType('largest-contentful-paint')) {
+    return 0;
+  }
+  return new Promise(resolve => {
+    const observer = new PerformanceObserver(list => {
+      const entries = list.getEntries();
+      const lcpIns = entries.find(entry => entry.entryType === 'largest-contentful-paint');
+      if (lcpIns) {
+        observer.disconnect();
+        resolve(Math.round(lcpIns.startTime));
+      }
+    });
+    observer.observe({ type: 'largest-contentful-paint', buffered: true });
+  });
+}
+
+/**
+ * Gets the first input delay (FID) of a web page using the Performance API.
+ * The FID is the time it takes for the first user input to be processed by the browser.
+ *
+ * @returns A promise that resolves with the FID in milliseconds, or 0 if the 'first-input' entry type is not supported.
+ * @category Web Performance
+ */
+export async function getFID(): Promise<number> {
+  if (!isSupportedEntryType('first-input')) {
+    return 0;
+  }
+  return new Promise(resolve => {
+    const observer = new PerformanceObserver(list => {
+      const entries = list.getEntries();
+      const fidIns = entries.find(entry => entry.entryType === 'first-input');
+      if (fidIns) {
+        observer.disconnect();
+        const ps = fidIns.processingStart;
+        if (ps) {
+          resolve(Math.round(fidIns.processingStart - fidIns.startTime));
+        } else {
+          resolve(0);
+        }
+      }
+    });
+    observer.observe({ type: 'first-input', buffered: true });
+  });
+}
+
+/**
+ * Gets the Cumulative Layout Shift (CLS) score of a web page using the Performance API.
+ * The CLS score is a measure of how much the page layout shifts during loading.
+ *
+ * @returns A promise that resolves with the CLS score, or 0 if the 'layout-shift' entry type is not supported.
+ * @category Web Performance
+ */
+export async function getCLS(): Promise<number> {
+  if (!isSupportedEntryType('layout-shift')) {
+    return 0;
+  }
+  return new Promise(resolve => {
+    const observer = new PerformanceObserver(list => {
+      const entries = list.getEntries();
+      const clsScore = entries.reduce((score, entry) => {
+        let ev = 0;
+        if (isNumber(entry.value)) {
+          ev = entry.value as number;
+        }
+        return score + ev;
+      }, 0);
+      observer.disconnect();
+      resolve(clsScore);
+    });
+    observer.observe({ type: 'layout-shift', buffered: true });
+  });
+}
+
+/**
+ * Gets the time to first byte (TTFB) of a web page using the Performance API.
+ * The TTFB is the time it takes for the first byte of the response to be received by the browser.
+ *
+ * @returns The TTFB in milliseconds, or 0 if the navigation timing information is not available.
+ * @category Web Performance
+ */
+export async function getTTFB(): Promise<number> {
+  if (!isSupportedEntryType('navigation')) {
+    return 0;
+  }
+  if (!window.performance || !window.performance.getEntriesByType) {
+    return 0;
+  }
+  const navigationTiming = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
+  let ttfb = 0;
+  if (!navigationTiming) {
+    return 0;
+  }
+  ttfb = navigationTiming.responseStart - navigationTiming.requestStart;
+  return Math.round(ttfb);
+}
+
 /**
  * EN: Get page load time(PerformanceTiming).
  *
@@ -1406,22 +1570,28 @@ export function getPerformance(camelCase = false): Promise<WebPerformance | Erro
   const startTime = timing.navigationStart || timing.fetchStart;
   let firstPaintTime: any;
   let firstContentfulPaintTime: any;
-  // 是否已经形成数据（页面加载完成之后）
+  // Whether the data has been formed (after the page has finished loading).
   if (window.performance && window.performance.timing && window.performance.timing.loadEventEnd > 0) {
-    // console.log('created')
     getTiming();
   } else {
-    // console.log('creating')
     window.addEventListener('load', function() {
-      // 不能影响最后的时间计算
+      // Cannot affect the final time calculation.
       window.setTimeout(function() {
         getTiming();
       }, 0);
     });
   }
-  // performance
+
+  // Get the loading time.
+  // if (window.performance && typeof window.performance.getEntries === 'function') {
+  //   const performanceNavigationTiming: any = (window.performance.getEntries() || [])[0] || {};
+  //   const data: any = {
+  //     // url: encodeURI(location.href),
+  //     // ua: navigator.userAgent,
+  //     os: getOS(),
+  //     osVersion: getOSVersion(),
   function getTiming() {
-    // 获取首次渲染时间
+    // Get the first render time.
     try {
       if (window.performance && Boolean(window.performance.getEntriesByType)) {
         const performance = window.performance;
@@ -1437,7 +1607,7 @@ export function getPerformance(camelCase = false): Promise<WebPerformance | Erro
     } catch (e) {
       console.error((e as any).message);
     }
-    // 获取加载时间
+    // Get the loading time.
     if (window.performance && typeof window.performance.getEntries === 'function') {
       const performanceNavigationTiming: any = (window.performance.getEntries() || [])[0] || {};
       const data: any = {
@@ -1464,14 +1634,14 @@ export function getPerformance(camelCase = false): Promise<WebPerformance | Erro
         decodedBodySize: performanceNavigationTiming.decodedBodySize || '', // 页面压缩前大小
         encodedBodySize: performanceNavigationTiming.encodedBodySize || '', // 页面压缩后大小
       };
-      // 过滤异常数据
+      // Filter abnormal data.
       Object.keys(data).forEach(k => {
-        // 过滤掉 <0 的数据
+        // Filter out data less than 0.
         if (isNumber(data[k]) && data[k] < 0) {
           data[k] = 0;
         }
       });
-      // 过滤掉白屏时间 > onload 的数据
+      // Filter out data where the blank screen time is greater than the onload time.
       if (isNumber(data.whiteTime) && data.whiteTime > data.onloadTime) {
         data.whiteTime = 0;
       }
@@ -1480,7 +1650,6 @@ export function getPerformance(camelCase = false): Promise<WebPerformance | Erro
         if (!camelCase) {
           Object.keys(data).forEach(k => {
             if (!Underscore) Underscore = {};
-            // console.log('camelCase2Underscore', k, data, )
             Underscore[camelCase2Underscore(k)] = data[k];
           });
         }
@@ -1492,7 +1661,7 @@ export function getPerformance(camelCase = false): Promise<WebPerformance | Erro
       fail(Error('getEntries'));
     }
   }
-  // 获取当前操作系统
+  // Get the current operating system.
   function getOS() {
     let os;
     if (navigator.userAgent.indexOf('Android') > -1 || navigator.userAgent.indexOf('Linux') > -1) {
@@ -1506,7 +1675,7 @@ export function getPerformance(camelCase = false): Promise<WebPerformance | Erro
     }
     return os;
   }
-  // 获取操作系统版本
+  // Get the operating system version.
   function getOSVersion() {
     let OSVision: any;
     const u = navigator.userAgent;
@@ -1520,7 +1689,7 @@ export function getPerformance(camelCase = false): Promise<WebPerformance | Erro
     }
     return OSVision;
   }
-  // 获取设备类型
+  // Get the device type.
   function getDeviceType() {
     let deviceType;
     const sUserAgent = navigator.userAgent.toLowerCase();
@@ -1543,7 +1712,7 @@ export function getPerformance(camelCase = false): Promise<WebPerformance | Erro
     }
     return deviceType;
   }
-  // 获取网络状态
+  // Get the network status.
   function getNetWork() {
     let netWork: any;
     if ((navigator as any).connection && (navigator as any).connection.effectiveType) {
@@ -1570,7 +1739,7 @@ export function getPerformance(camelCase = false): Promise<WebPerformance | Erro
     }
     return netWork;
   }
-  // 获取横竖屏状态
+  // Get the screen orientation status.
   function getOrientationStatu() {
     let orientationStatu: any;
     if (window.screen && window.screen.orientation && window.screen.orientation.angle) {
@@ -1585,7 +1754,7 @@ export function getPerformance(camelCase = false): Promise<WebPerformance | Erro
     }
     return orientationStatu;
   }
-  // 获取ssl连接时间
+  // Get the SSL connection time.
   function getSSLTime(connectEnd: any, secureConnectionStart: any) {
     let ssl_time: any;
     if (secureConnectionStart) {
