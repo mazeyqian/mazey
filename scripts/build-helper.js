@@ -53,7 +53,7 @@ const generateToc = (path = '../README.md', options = {
   };
   let tocContent = toc(fileContent, {
     filter: removeUnnecessaryHeadings,
-    bullets: ['-', '*'],
+    bullets: [ '-', '*' ],
   }).content;
   tocContent = tocContent.replace(/[ ]{4}/gm, '');
   tocContent = '<!-- toc - begin -->\n' + '- Generated with ❤️\n' + tocContent;

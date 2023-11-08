@@ -32,6 +32,7 @@ import {
   getFID,
   getCLS,
   getTTFB,
+  getPerformance,
 } from '../src/index';
 
 // Sync
@@ -44,7 +45,7 @@ console.log('What is domain?', getDomain('http://example.com/?t1=1&t2=2&t3=3&t4=
 console.log('Get KebabCase:', camelCaseToKebabCase('aBC'));
 console.log('Get Underscore:', camelCase2Underscore('bBC'));
 console.log('Get a string with random number:', generateRndNum(7));
-console.log('Is non-empty array?', isNonEmptyArray(['a', 123]));
+console.log('Is non-empty array?', isNonEmptyArray([ 'a', 123 ]));
 console.log('Get file size:', getFileSize(2000));
 console.log('Generate a Hash from a string:', genHashCode('123'));
 const genLog = genCustomConsole('GenLog:', {
@@ -72,9 +73,9 @@ const validData = {
   },
 };
 
-const isValidDataResA = isValidData(validData, ['a', 'b', 'c'], 2333);
-const isValidDataResB = isValidData(validData, ['a', 'b', 'c'], 413);
-const isValidDataResC = isValidData(validData, ['d', 'd'], 413);
+const isValidDataResA = isValidData(validData, [ 'a', 'b', 'c' ], 2333);
+const isValidDataResB = isValidData(validData, [ 'a', 'b', 'c' ], 413);
+const isValidDataResC = isValidData(validData, [ 'd', 'd' ], 413);
 
 console.log('isValidDataResA:', isValidDataResA);
 console.log('isValidDataResB:', isValidDataResB);
@@ -170,6 +171,12 @@ console.log('getScriptQueryParams empty', getScriptQueryParam('empty'));
   getFID().then(fid => {
     console.log('getFID', fid);
   });
+
+  getPerformance(false).then(performance => {
+    console.log('getPerformance', performance);
+  });
+
+  // await
   const fcp = await getFCP();
   console.log('getFCP', fcp);
   const fp = await getFP();

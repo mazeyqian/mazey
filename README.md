@@ -85,6 +85,7 @@ There are some examples maintained by hand below. For more information, please c
   * [getDomain](#getdomain)
   * [updateQueryParam](#updatequeryparam)
   * [isValidUrl](#isvalidurl)
+  * [isValidHttpUrl](#isvalidhttpurl)
 - [Cache Data](#cache-data)
   * [Cookie](#cookie)
   * [Storage](#storage)
@@ -529,7 +530,7 @@ http://example.com/?t1=1&t2=2&t3=3&t4=four
 
 #### isValidUrl
 
-Checks if the given string is a valid URL, including scheme URLs.
+Checks if the given string is a valid URL, including **scheme URLs**.
 
 ```js
 isValidUrl('https://www.example.com'); // true
@@ -537,6 +538,21 @@ isValidUrl('http://example.com/path/exx/ss'); // true
 isValidUrl('https://www.example.com/?q=hello&age=24#world'); // true
 isValidUrl('http://www.example.com/#world?id=9'); // true
 isValidUrl('ftp://example.com'); // true
+```
+
+If you are specifically checking for HTTP/HTTPS URLs, it is recommended to use the `isValidHttpUrl` function instead.
+The `isValidUrl` function matches all scheme URLs, including FTP and other non-HTTP schemes.
+
+#### isValidHttpUrl
+
+Check if the given string is a valid HTTP/HTTPS URL.
+
+```js
+isValidHttpUrl('https://www.example.com'); // true
+isValidHttpUrl('http://example.com/path/exx/ss'); // true
+isValidHttpUrl('https://www.example.com/?q=hello&age=24#world'); // true
+isValidHttpUrl('http://www.example.com/#world?id=9'); // true
+isValidHttpUrl('ftp://example.com'); // false
 ```
 
 ### Cache Data
@@ -800,15 +816,17 @@ true
 
 #### getPerformance
 
-Get page load time(PerformanceTiming).
+Get page load time(`PerformanceNavigationTiming`).
 
-<!-- ZH: 获取页面加载相关的各项数据 -->
+This function uses the [`PerformanceNavigationTiming`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceNavigationTiming) API to get page load time data.
+The `PerformanceNavigationTiming` API provides more accurate and detailed information about page load time than the deprecated [`PerformanceTiming`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming) API.
+If you are using an older browser that does not support `PerformanceNavigationTiming`, you can still use the `PerformanceTiming` API by using the previous version of this library ([`v3.9.7`](https://www.npmjs.com/package/mazey/v/3.9.7)).
 
 Usage:
 
 ```
-// `camelCase：false` (Default) Return underline data.
-// `camelCase：true` Return hump data.
+// `camelCase：false` (Default) Return underline(`a_b`) data.
+// `camelCase：true` Return hump(`aB`) data.
 getPerformance()
  .then(res => {
   console.log(JSON.stringify(res));
@@ -819,7 +837,7 @@ getPerformance()
 Output:
 
 ```
-{"os":"ios","os_version":"13_2_3","device_type":"phone","network":"4g","unload_time":0,"redirect_time":0,"dns_time":0,"tcp_time":0,"response_time":289,"download_time":762,"first_paint_time":469,"first_contentful_paint_time":469,"domready_time":1318,"onload_time":2767,"white_time":299,"render_time":2768,"decoded_body_size":979570,"encoded_body_size":324938}
+{"source":"PerformanceNavigationTiming","os":"others","os_version":"","device_type":"pc","network":"4g","screen_direction":"","unload_time":0,"redirect_time":0,"dns_time":0,"tcp_time":0,"ssl_time":0,"response_time":2,"download_time":2,"first_paint_time":288,"first_contentful_paint_time":288,"dom_ready_time":0,"onload_time":0,"white_time":0,"render_time":0,"decoded_body_size":718,"encoded_body_size":718}
 ```
 
 Results:
@@ -830,17 +848,13 @@ Results:
 | tcp_time | Connection Negotiation | number | connectEnd - connectStart |
 | response_time | Requests and Responses | number | responseStart - requestStart |
 | white_time | White Screen | number | responseStart - navigationStart |
-| domready_time | DomReady | number | domContentLoadedEventStart - navigationStart |
+| dom_ready_time | Dom Ready | number | domContentLoadedEventStart - navigationStart |
 | onload_time | Onload | number | loadEventStart - navigationStart |
 | render_time | EventEnd | number | loadEventEnd -navigationStart |
 | unload_time | Unload | number | (Optional) unloadEventEnd - unloadEventStart |
 | redirect_time | Redirect | number | (Optional) redirectEnd - redirectStart |
 | ssl_time | SSL | number | (Optional) connectEnd - secureConnectionStart |
 | download_time | Download | number | (Optional) responseEnd - responseStart |
-
-<!-- @param {boolean} camelCase -- false（默认） 以下划线形式返回数据 true 以驼峰形式返回数据
-@returns {Promise<object>} 加载数据
-@category Web Performance -->
 
 ### Debug
 

@@ -5,7 +5,7 @@
 /* eslint-disable quotes */
 // URL
 
-import { isValidUrl, getUrlFileType } from '../lib/index.esm';
+import { isValidUrl, getUrlFileType, isValidHttpUrl } from '../src/index.ts';
 
 const validUrls = [
   'https://www.example.com/events/#&product=browser',
@@ -25,6 +25,7 @@ const validUrls = [
   'http://example.com/a/index.html?msg=%3Ca%20href%3D%22https',
   'ftp://example.com',
   'ssssss://app_test/deploy?id=99',
+  'http://v=0618',
 ];
 
 const invalidUrls = [
@@ -39,10 +40,12 @@ const invalidUrls = [
   'file:///C:/Users/Username/Documents/Example.txt',
   '<a href="https://b.example.com/t/i/y" target="_blank">xxx</a><br/>',
   'http://example.com/a/index.html?msg=<a href="https://b.example.com/t/i/y" target="_blank">xxx</a><br/>',
+  'v=0618',
 ];
 
 test('isValidUrl', () => {
   validUrls.forEach(url => {
+    console.log('validUrls', url);
     expect(isValidUrl(url)).toBe(true);
   });
 
@@ -68,4 +71,25 @@ test('getUrlFileType', () => {
   expect(getUrlFileType('https://example.com/a/b/c.jpeg')).toBe('jpeg');
   expect(getUrlFileType('/a/b/c.jpeg')).toBe('jpeg');
   expect(getUrlFileType('https://example.com/a/b/c.v/a')).toBe('');
+});
+
+describe('isValidHttpUrl', () => {
+  it('should return true for valid HTTP/HTTPS URLs', () => {
+    expect(isValidHttpUrl('https://www.example.com')).toBe(true);
+    expect(isValidHttpUrl('http://example.com/path/exx/ss')).toBe(true);
+    expect(isValidHttpUrl('https://www.example.com/?q=hello&age=24#world')).toBe(true);
+    expect(isValidHttpUrl('http://www.example.com/#world?id=9')).toBe(true);
+    expect(isValidHttpUrl('http://example.com:8080')).toBe(true);
+    expect(isValidHttpUrl('http://www.example.com/哈哈哈哈哈')).toBe(true);
+  });
+
+  it('should return false for invalid URLs', () => {
+    expect(isValidHttpUrl('ftp://example.com')).toBe(false);
+    expect(isValidHttpUrl('example.com')).toBe(false);
+    expect(isValidHttpUrl('www.example.com')).toBe(false);
+    expect(isValidHttpUrl('v=0618')).toBe(false);
+    expect(isValidHttpUrl('http://ssssssssssss')).toBe(false);
+    expect(isValidHttpUrl(`https://this-shouldn't.match@example.com`)).toBe(false);
+    expect(isValidHttpUrl('abcdef')).toBe(false);
+  });
 });

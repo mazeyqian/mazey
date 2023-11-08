@@ -1,6 +1,23 @@
 /**
  * @author: Mazey Chu
  */
+import {
+  BrowserInfo,
+  DefineListeners,
+  TestUa,
+  TestVs,
+  UrlParams,
+  ThrottleFunc,
+  DebounceFunc,
+  IsNumberOptions,
+  AnyFunction,
+  ZResResponse,
+  ZResIsValidResOptions,
+  RepeatUntilOptions,
+  LoadScriptReturns,
+  simpleType,
+  simpleObject,
+} from './typing';
 
 /**
  * EN: Computes the longest common substring of two strings.
@@ -92,7 +109,7 @@ export function longestComSubsequence(aStr: string, bStr: string): number {
         }
         arr[i][j] = baseNum + 1;
       } else {
-        let [leftValue, topValue] = [0, 0];
+        let [ leftValue, topValue ] = [ 0, 0 ];
         if (j > 0) {
           leftValue = arr[i][j - 1];
         }
@@ -268,7 +285,7 @@ export function getHashQueryParam(param: string): string {
  * @param {array} rules Object.keys(location), ['href', 'origin', 'protocol', 'host', 'hostname', 'port', 'pathname', 'search', 'hash'], ['hostname', 'pathname'] = 'km.mazey.net/plugins/servlet/mobile'
  * @category URL
  */
-export function getDomain(url: string, rules = ['hostname']): string {
+export function getDomain(url: string, rules = [ 'hostname' ]): string {
   const aEl: HTMLAnchorElement = document.createElement('a');
   aEl.href = url;
   return rules.reduce((ret, v) => {
@@ -402,7 +419,7 @@ export function deepCopy<T>(obj: T): T {
   }
   // Judge whether its key-value is simple type, string | number | boolean | null | undefined
   // ...rest
-  const simpleTypes = ['string', 'number', 'boolean', 'undefined'];
+  const simpleTypes = [ 'string', 'number', 'boolean', 'undefined' ];
   const values = Object.values(obj as simpleObject);
   const isSimpleTypeObj = values.every(v => simpleTypes.includes(typeof v));
   if (isSimpleTypeObj) {
@@ -502,7 +519,7 @@ export function generateRndNum(n = 5): string {
  */
 // export function generateUniqueNum(n = 3): string {
 export function genUniqueNumString(n = 3): string {
-  const [now, rnd] = [mNow(), generateRndNum(n || 3)];
+  const [ now, rnd ] = [ mNow(), generateRndNum(n || 3) ];
   return now + rnd;
 }
 
@@ -657,7 +674,7 @@ export function throttle<T extends (...args: any[]) => any>(func: T, wait: numbe
   let context: unknown | null = null;
   let args: Parameters<T> | null = null;
   let timeout: ReturnType<typeof setTimeout> | null = null;
-  let [result, previous] = [null, 0];
+  let [ result, previous ] = [ null, 0 ];
   const later = function(this: unknown) {
     previous = options.leading === false ? 0 : mNow();
     timeout = null;
@@ -767,7 +784,11 @@ export function getFriendlyInterval(start: number | string | Date = 0, end: numb
   if (!isNumber(end)) end = new Date(end).getTime();
   const t = Number(end) - Number(start);
   let ret = '';
-  let [d, h, m, s] = new Array(4).fill(0);
+  let [ d, h, m, s ] = new Array(4).fill(0);
+  const zhD = decodeURIComponent('%20%E5%A4%A9%20'); // ' 天 '
+  const zhH = decodeURIComponent('%20%E6%97%B6%20'); // ' 时 '
+  const zhM = decodeURIComponent('%20%E5%88%86%20'); // ' 分 '
+  const zhS = decodeURIComponent('%20%E7%A7%92'); // ' 秒'
   if (t >= 0) {
     d = Math.floor(t / 1000 / 60 / 60 / 24);
     h = Math.floor(t / 1000 / 60 / 60);
@@ -782,7 +803,8 @@ export function getFriendlyInterval(start: number | string | Date = 0, end: numb
         h = Math.floor((t / 1000 / 60 / 60) % 24);
         m = Math.floor((t / 1000 / 60) % 60);
         s = Math.floor((t / 1000) % 60);
-        ret = d + ' 天 ' + h + ' 时 ' + m + ' 分 ' + s + ' 秒';
+        // ret = d + ' 天 ' + h + ' 时 ' + m + ' 分 ' + s + ' 秒';
+        ret = d + zhD + h + zhH + m + zhM + s + zhS;
         break;
       default:
         ret = s;
@@ -1011,23 +1033,25 @@ export function getLocalStorage<T>(key: string): T | null {
  * @returns {Promise<string>} true -- 加载成功
  * @category Load Resource
  */
-export function loadCSS(url: string, options: { id?: string } = { id: '' }): Promise<boolean | Error | any> {
+export function loadCSS(url: string, options: { id?: string } = { id: '' }): Promise<unknown> {
   const { id } = options;
   let success: (v: boolean | string) => void;
-  let fail: (v: Error) => void;
+  let fail: (v: Error) => void = () => undefined;
   const status = new Promise((resolve, reject) => {
-    [success, fail] = [resolve, reject];
+    [ success, fail ] = [ resolve, reject ];
   });
   // const tempCB = (typeof callback === 'function' ? callback : function () { });
   const callback = function() {
     // doFn(success, true);
     success('loaded');
   };
-  let node: any = document.createElement('link');
+  let node: HTMLLinkElement | null = document.createElement('link');
+  if (!node) {
+    fail(new Error('Not support create link element'));
+  }
   const supportOnload = 'onload' in node;
   const isOldWebKit = +navigator.userAgent.replace(/.*(?:AppleWebKit|AndroidWebKit)\/?(\d+).*/i, '$1') < 536; // webkit旧内核做特殊处理
-  const protectNum = 300000; // 阈值10分钟，一秒钟执行pollCss 500次
-
+  const protectNum = 300000; // 阈值10分钟，一秒钟执行 pollCss 500 次
   node.rel = 'stylesheet';
   node.type = 'text/css';
   node.href = url;
@@ -1035,7 +1059,6 @@ export function loadCSS(url: string, options: { id?: string } = { id: '' }): Pro
     node.id = id;
   }
   document.getElementsByTagName('head')[0].appendChild(node);
-
   // for Old WebKit and Old Firefox
   if (isOldWebKit || !supportOnload) {
     // Begin after node insertion
@@ -1044,7 +1067,6 @@ export function loadCSS(url: string, options: { id?: string } = { id: '' }): Pro
     }, 1);
     return status;
   }
-
   if (supportOnload) {
     node.onload = onload;
     node.onerror = function() {
@@ -1054,45 +1076,37 @@ export function loadCSS(url: string, options: { id?: string } = { id: '' }): Pro
   } else {
     // todo: 和 !supportOnload 重复
     node.onreadystatechange = function() {
-      if (/loaded|complete/.test(node.readyState)) {
+      if (node && /loaded|complete/.test(node.readyState)) {
         onload();
       }
     };
   }
-
   function onload() {
     // 确保只跑一次下载操作
-    node.onload = node.onerror = node.onreadystatechange = null;
-
-    // 清空node引用，在低版本IE，不清除会造成内存泄露
+    if (node) node.onload = node.onerror = node.onreadystatechange = null;
+    // 清空 node 引用，在低版本 IE，不清除会造成内存泄露
     node = null;
-
     callback();
   }
-
   // 循环判断css是否已加载成功
   /*
    * @param node -- link节点
    * @param callback -- 回调函数
    * @param step -- 计步器，避免无限循环
    */
-  function pollCss(node: any, callback: any, step: number) {
+  function pollCss(node: HTMLLinkElement | null, callback: () => void, step: number) {
+    if (!node) return;
     const sheet = node.sheet;
-    let isLoaded: any;
-
+    let isLoaded: boolean;
     step += 1;
-
-    // 保护，大于10分钟，则不再轮询
+    // 保护，大于 10 分钟，则不再轮询
     if (step > protectNum) {
       isLoaded = true;
-
-      // 清空node引用
-      node = null;
-
+      // 清空 node 引用
+      if (node) node = null;
       callback();
       return;
     }
-
     if (isOldWebKit) {
       // for WebKit < 536
       if (sheet) {
@@ -1105,16 +1119,17 @@ export function loadCSS(url: string, options: { id?: string } = { id: '' }): Pro
           isLoaded = true;
         }
       } catch (ex) {
+        const err = ex as ErrorEvent;
+        if (!err.name) return;
         // 火狐特殊版本，通过特定值获知是否下载成功
         // The value of `ex.name` is changed from "NS_ERROR_DOM_SECURITY_ERR"
         // to "SecurityError" since Firefox 13.0. But Firefox is less than 9.0
         // in here, So it is ok to just rely on "NS_ERROR_DOM_SECURITY_ERR"
-        if ((ex as any).name === 'NS_ERROR_DOM_SECURITY_ERR') {
+        if (err.name === 'NS_ERROR_DOM_SECURITY_ERR') {
           isLoaded = true;
         }
       }
     }
-
     setTimeout(function() {
       if (isLoaded) {
         // 延迟20ms是为了给下载的样式留够渲染的时间
@@ -1188,14 +1203,17 @@ export function loadScript(
     },
     options
   );
-  let success: any = null;
-  let fail: any = null;
-  const script: any = document.createElement('script');
+  let success: (v: string) => void;
+  let fail: (v: string) => void;
+  const script: HTMLScriptElement = document.createElement('script');
+  if (!script) {
+    Promise.reject('Not support create script element');
+  }
   // 如果没有 script 标签，那么代码就不会运行。可以利用这一事实，在页面的第一个 script 标签上使用 insertBefore()。
-  const firstScript: any = document.getElementsByTagName('script')[0];
+  const firstScript: HTMLScriptElement = document.getElementsByTagName('script')[0];
   script.type = 'text/javascript';
   if (isDefer) {
-    script.defer = 'defer';
+    script.defer = true; // 'defer';
   }
   if (id) {
     script.id = id;
@@ -1219,7 +1237,7 @@ export function loadScript(
   script.src = url;
   firstScript && firstScript.parentNode.insertBefore(script, firstScript);
   return new Promise((resolve, reject) => {
-    [success, fail] = [resolve, reject];
+    [ success, fail ] = [ resolve, reject ];
     if (timeout) {
       setTimeout(fail.bind(null, 'timeout'), timeout);
     }
@@ -1518,15 +1536,20 @@ export async function getTTFB(): Promise<number> {
 }
 
 /**
- * EN: Get page load time(PerformanceTiming).
+ * EN: Get page load time(`PerformanceNavigationTiming`).
  *
  * ZH: 获取页面加载相关的各项数据
+ *
+ * @remarks
+ * This function uses the [`PerformanceNavigationTiming`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceNavigationTiming) API to get page load time data.
+ * The `PerformanceNavigationTiming` API provides more accurate and detailed information about page load time than the deprecated [`PerformanceTiming`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming) API.
+ * If you are using an older browser that does not support `PerformanceNavigationTiming`, you can still use the `PerformanceTiming` API by using the previous version of this library ([`v3.9.7`](https://www.npmjs.com/package/mazey/v/3.9.7)).
  *
  * Usage:
  *
  * ```
- * // `camelCase：false` (Default) Return underline data.
- * // `camelCase：true` Return hump data.
+ * // `camelCase：false` (Default) Return underline(`a_b`) data.
+ * // `camelCase：true` Return hump(`aB`) data.
  * getPerformance()
  *  .then(res => {
  *   console.log(JSON.stringify(res));
@@ -1537,7 +1560,7 @@ export async function getTTFB(): Promise<number> {
  * Output:
  *
  * ```
- * {"os":"ios","os_version":"13_2_3","device_type":"phone","network":"4g","unload_time":0,"redirect_time":0,"dns_time":0,"tcp_time":0,"response_time":289,"download_time":762,"first_paint_time":469,"first_contentful_paint_time":469,"domready_time":1318,"onload_time":2767,"white_time":299,"render_time":2768,"decoded_body_size":979570,"encoded_body_size":324938}
+ * {"source":"PerformanceNavigationTiming","os":"others","os_version":"","device_type":"pc","network":"4g","screen_direction":"","unload_time":0,"redirect_time":0,"dns_time":0,"tcp_time":0,"ssl_time":0,"response_time":2,"download_time":2,"first_paint_time":288,"first_contentful_paint_time":288,"dom_ready_time":0,"onload_time":0,"white_time":0,"render_time":0,"decoded_body_size":718,"encoded_body_size":718}
  * ```
  *
  * Results:
@@ -1548,7 +1571,7 @@ export async function getTTFB(): Promise<number> {
  * | tcp_time | Connection Negotiation | number | connectEnd - connectStart |
  * | response_time | Requests and Responses | number | responseStart - requestStart |
  * | white_time | White Screen | number | responseStart - navigationStart |
- * | domready_time | DomReady | number | domContentLoadedEventStart - navigationStart |
+ * | dom_ready_time | Dom Ready | number | domContentLoadedEventStart - navigationStart |
  * | onload_time | Onload | number | loadEventStart - navigationStart |
  * | render_time | EventEnd | number | loadEventEnd -navigationStart |
  * | unload_time | Unload | number | (Optional) unloadEventEnd - unloadEventStart |
@@ -1560,18 +1583,108 @@ export async function getTTFB(): Promise<number> {
  * @returns {Promise<object>} 加载数据
  * @category Web Performance
  */
-export function getPerformance(camelCase = false): Promise<WebPerformance | Error> {
+export async function getPerformance(camelCase = false): Promise<WebPerformance | Error> {
+  if (!isSupportedEntryType('navigation')) {
+    return Promise.reject(new Error('navigation is not supported'));
+  }
+  const performance = window.performance;
+  if (!(performance && typeof performance.getEntries === 'function' && typeof performance.getEntriesByType === 'function')) {
+    return Promise.reject(new Error('performance is not supported'));
+  }
   let success: (v: WebPerformance) => void;
-  let fail: (v: Error) => void;
-  const status: Promise<WebPerformance> = new Promise((resolve, reject) => {
-    [success, fail] = [resolve, reject];
+  // let fail: (v: Error) => void;
+  const status: Promise<WebPerformance> = new Promise(resolve => {
+    [ success ] = [ resolve ];
   });
-  const timing = window.performance.timing;
-  const startTime = timing.navigationStart || timing.fetchStart;
-  let firstPaintTime: any;
-  let firstContentfulPaintTime: any;
+  let navigationTiming: PerformanceNavigationTiming | null = null;
+  const navs = performance.getEntriesByType('navigation');
+  if (isNonEmptyArray(navs)) {
+    navigationTiming = navs[0] as PerformanceNavigationTiming;
+  }
+  // const navigationTiming = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
+  let [
+    unloadEventEnd,
+    unloadEventStart,
+    redirectEnd,
+    redirectStart,
+    domainLookupEnd,
+    domainLookupStart,
+    connectEnd,
+    connectStart,
+    secureConnectionStart,
+    responseStart,
+    requestStart,
+    responseEnd,
+    domContentLoadedEventStart,
+    loadEventStart,
+    loadEventEnd,
+    navigationStart,
+    fetchStart,
+    decodedBodySize,
+    encodedBodySize,
+  ] = new Array(19).fill(0);
+  const timing = performance.timing;
+  let source = '';
+  if (navigationTiming) {
+    source = 'PerformanceNavigationTiming';
+    ({ decodedBodySize, encodedBodySize } = navigationTiming);
+    ({
+      unloadEventEnd,
+      unloadEventStart,
+      redirectEnd,
+      redirectStart,
+      domainLookupEnd,
+      domainLookupStart,
+      connectEnd,
+      connectStart,
+      secureConnectionStart,
+      responseStart,
+      requestStart,
+      responseEnd,
+      domContentLoadedEventStart,
+      loadEventStart,
+      loadEventEnd,
+      startTime: navigationStart,
+      fetchStart,
+    } = navigationTiming);
+  } else if (timing) {
+    source = 'PerformanceTiming';
+    ({
+      unloadEventEnd,
+      unloadEventStart,
+      redirectEnd,
+      redirectStart,
+      domainLookupEnd,
+      domainLookupStart,
+      connectEnd,
+      connectStart,
+      secureConnectionStart,
+      responseStart,
+      requestStart,
+      responseEnd,
+      domContentLoadedEventStart,
+      loadEventStart,
+      loadEventEnd,
+      navigationStart,
+      fetchStart,
+    } = timing);
+  } else {
+    return Promise.reject(new Error('NavigationTiming and Timing are not supported'));
+  }
+  let startTime = 0;
+  if (isNumber(navigationStart)) {
+    startTime = navigationStart;
+  } else if (isNumber(fetchStart)) {
+    startTime = fetchStart;
+  } else {
+    return Promise.reject(new Error('startTime, navigationStart or fetchStart are required'));
+  }
+  // const startTime = navigationStart || fetchStart;
+  // let firstPaintTime: any;
+  // let firstContentfulPaintTime: any;
+  const [ firstPaintTime, firstContentfulPaintTime ] = await Promise.all([ getFP(), getFCP() ]);
   // Whether the data has been formed (after the page has finished loading).
-  if (window.performance && window.performance.timing && window.performance.timing.loadEventEnd > 0) {
+  if (isNumber(loadEventEnd) && loadEventEnd > 0) {
     getTiming();
   } else {
     window.addEventListener('load', function() {
@@ -1581,7 +1694,6 @@ export function getPerformance(camelCase = false): Promise<WebPerformance | Erro
       }, 0);
     });
   }
-
   // Get the loading time.
   // if (window.performance && typeof window.performance.getEntries === 'function') {
   //   const performanceNavigationTiming: any = (window.performance.getEntries() || [])[0] || {};
@@ -1592,74 +1704,88 @@ export function getPerformance(camelCase = false): Promise<WebPerformance | Erro
   //     osVersion: getOSVersion(),
   function getTiming() {
     // Get the first render time.
-    try {
-      if (window.performance && Boolean(window.performance.getEntriesByType)) {
-        const performance = window.performance;
-        const performanceEntries = performance.getEntriesByType('paint');
-        performanceEntries.forEach((performanceEntry, i, entries) => {
-          const startTime = Math.round(performanceEntry.startTime);
-          if (performanceEntry.name === 'first-paint') firstPaintTime = startTime;
-          else if (performanceEntry.name === 'first-contentful-paint') firstContentfulPaintTime = startTime;
-        });
-      } else {
-        console.error('paint');
-      }
-    } catch (e) {
-      console.error((e as any).message);
-    }
+    // try {
+    //   if (window.performance && Boolean(window.performance.getEntriesByType)) {
+    //     const performance = window.performance;
+    //     const performanceEntries = performance.getEntriesByType('paint');
+    //     performanceEntries.forEach((performanceEntry, i, entries) => {
+    //       const startTime = Math.round(performanceEntry.startTime);
+    //       if (performanceEntry.name === 'first-paint') firstPaintTime = startTime;
+    //       else if (performanceEntry.name === 'first-contentful-paint') firstContentfulPaintTime = startTime;
+    //     });
+    //   } else {
+    //     console.error('paint');
+    //   }
+    // } catch (e) {
+    //   console.error((e as any).message);
+    // }
     // Get the loading time.
-    if (window.performance && typeof window.performance.getEntries === 'function') {
-      const performanceNavigationTiming: any = (window.performance.getEntries() || [])[0] || {};
-      const data: any = {
-        // url: encodeURI(location.href),
-        // ua: navigator.userAgent,
-        os: getOS(),
-        osVersion: getOSVersion(),
-        deviceType: getDeviceType(),
-        network: getNetWork(),
-        screenDirection: getOrientationStatu(),
-        unloadTime: timing.unloadEventEnd - timing.unloadEventStart, // 上个文档的卸载时间
-        redirectTime: timing.redirectEnd - timing.redirectStart, // *重定向时间
-        dnsTime: timing.domainLookupEnd - timing.domainLookupStart, // *DNS查询时间
-        tcpTime: timing.connectEnd - timing.connectStart, // *服务器连接时间
-        sslTime: getSSLTime(timing.connectEnd, timing.secureConnectionStart), // *ssl连接时间
-        responseTime: timing.responseStart - timing.requestStart, // *服务器响应时间
-        downloadTime: timing.responseEnd - timing.responseStart, // *网页下载时间
-        firstPaintTime: firstPaintTime, // *首次渲染时间
-        firstContentfulPaintTime: firstContentfulPaintTime, // *首次渲染内容时间
-        domreadyTime: timing.domContentLoadedEventStart - startTime || 0, // *dom ready时间（总和）
-        onloadTime: timing.loadEventStart - startTime || 0, // *onload时间（总和）
-        whiteTime: timing.responseStart - startTime, // *白屏时间
-        renderTime: timing.loadEventEnd - startTime || 0, // 整个过程的时间之和
-        decodedBodySize: performanceNavigationTiming.decodedBodySize || '', // 页面压缩前大小
-        encodedBodySize: performanceNavigationTiming.encodedBodySize || '', // 页面压缩后大小
-      };
-      // Filter abnormal data.
-      Object.keys(data).forEach(k => {
-        // Filter out data less than 0.
-        if (isNumber(data[k]) && data[k] < 0) {
+    const data: WebPerformance = {
+      // url: encodeURI(location.href),
+      // ua: navigator.userAgent,
+      source,
+      os: getOS(),
+      osVersion: getOSVersion(),
+      deviceType: getDeviceType(),
+      network: getNetWork(),
+      screenDirection: getOrientationStatu(),
+      unloadTime: unloadEventEnd - unloadEventStart, // 上个文档的卸载时间
+      redirectTime: redirectEnd - redirectStart, // * 重定向时间
+      dnsTime: domainLookupEnd - domainLookupStart, // * DNS 查询时间
+      tcpTime: connectEnd - connectStart, // * 服务器连接时间
+      sslTime: getSSLTime(connectEnd, secureConnectionStart), // * SSL 连接时间
+      responseTime: responseStart - requestStart, // * 服务器响应时间
+      downloadTime: responseEnd - responseStart, // * 网页下载时间
+      firstPaintTime: firstPaintTime, // * 首次渲染时间
+      firstContentfulPaintTime: firstContentfulPaintTime, // * 首次渲染内容时间
+      domReadyTime: domContentLoadedEventStart - startTime, // * DOM Ready 时间（总和）
+      onloadTime: loadEventStart - startTime, // * onload 时间（总和）
+      whiteTime: responseStart - startTime, // * 白屏时间
+      renderTime: loadEventEnd - startTime, // 整个过程的时间之和
+      decodedBodySize: decodedBodySize, // 页面压缩前大小
+      encodedBodySize: encodedBodySize, // 页面压缩后大小
+    };
+    // Filter abnormal data.
+    Object.keys(data).forEach(k => {
+      // Filter out data less than 0.
+      // if (isNumber(data[k]) && data[k] as number < 0) {
+      //   data[k] = 0;
+      // } else {
+      //   data[k] = Math.round(data[k] as number);
+      // }
+      if (isNumber(data[k])) {
+        if ((data[k] as number) < 0) {
           data[k] = 0;
+        } else {
+          data[k] = Math.round(data[k] as number);
         }
-      });
-      // Filter out data where the blank screen time is greater than the onload time.
-      if (isNumber(data.whiteTime) && data.whiteTime > data.onloadTime) {
-        data.whiteTime = 0;
       }
-      if (startTime > 0) {
-        let Underscore: any;
-        if (!camelCase) {
-          Object.keys(data).forEach(k => {
-            if (!Underscore) Underscore = {};
-            Underscore[camelCase2Underscore(k)] = data[k];
-          });
-        }
-        success(Underscore || data);
-      } else {
-        fail(Error('startTime'));
-      }
-    } else {
-      fail(Error('getEntries'));
+    });
+    // Filter out data where the blank screen time is greater than the onload time.
+    if (isNumber(data.whiteTime) && data.whiteTime > data.onloadTime) {
+      data.whiteTime = 0;
     }
+    const Underscore: WebPerformance = {};
+    if (!camelCase) {
+      Object.keys(data).forEach(k => {
+        // if (!Underscore) Underscore = {};
+        Underscore[camelCase2Underscore(k)] = data[k];
+      });
+    }
+    if (Object.keys(Underscore).length) {
+      success(Underscore);
+    } else {
+      success(data);
+    }
+    // if (window.performance && typeof window.performance.getEntries === 'function') {
+    //   // const performanceNavigationTiming: any = (window.performance.getEntries() || [])[0] || {};
+    //   // if (startTime > 0) {
+    //   // } else {
+    //   //   fail(new Error('startTime'));
+    //   // }
+    // } else {
+    //   fail(new Error('getEntries'));
+    // }
   }
   // Get the current operating system.
   function getOS() {
@@ -1677,16 +1803,21 @@ export function getPerformance(camelCase = false): Promise<WebPerformance | Erro
   }
   // Get the operating system version.
   function getOSVersion() {
-    let OSVision: any;
+    let OSVision: string | undefined = '';
     const u = navigator.userAgent;
     const isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; // Android
-    const isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); // ios终端
+    const isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); // iOS 终端
+    const uas = navigator.userAgent.split(';');
+    if (uas.length < 2) return OSVision;
+    const validUaStr = uas[1];
+    if (!validUaStr) return OSVision;
     if (isAndroid) {
-      OSVision = (navigator.userAgent.split(';')[1].match(/\d+\.\d+/g) || [])[0];
+      OSVision = (validUaStr.match(/\d+\.\d+/g) || [])[0];
     }
     if (isIOS) {
-      OSVision = (navigator.userAgent.split(';')[1].match(/(\d+)_(\d+)_?(\d+)?/) || [])[0];
+      OSVision = (validUaStr.match(/(\d+)_(\d+)_?(\d+)?/) || [])[0];
     }
+    if (!OSVision) OSVision = '';
     return OSVision;
   }
   // Get the device type.
@@ -1710,13 +1841,15 @@ export function getPerformance(camelCase = false): Promise<WebPerformance | Erro
     } else {
       deviceType = undefined;
     }
+    if (!deviceType) deviceType = '';
     return deviceType;
   }
   // Get the network status.
   function getNetWork() {
-    let netWork: any;
-    if ((navigator as any).connection && (navigator as any).connection.effectiveType) {
-      switch ((navigator as any).connection.effectiveType) {
+    let netWork: string | undefined = '';
+    const nav = window.navigator;
+    if (nav.connection && nav.connection.effectiveType) {
+      switch (nav.connection.effectiveType) {
         case 'wifi':
           netWork = 'wifi'; // wifi
           break;
@@ -1737,11 +1870,12 @@ export function getPerformance(camelCase = false): Promise<WebPerformance | Erro
           break;
       }
     }
+    if (!netWork) netWork = '';
     return netWork;
   }
   // Get the screen orientation status.
   function getOrientationStatu() {
-    let orientationStatu: any;
+    let orientationStatu = '';
     if (window.screen && window.screen.orientation && window.screen.orientation.angle) {
       if (window.screen.orientation.angle === 180 || window.screen.orientation.angle === 0) {
         // 竖屏
@@ -1755,8 +1889,8 @@ export function getPerformance(camelCase = false): Promise<WebPerformance | Erro
     return orientationStatu;
   }
   // Get the SSL connection time.
-  function getSSLTime(connectEnd: any, secureConnectionStart: any) {
-    let ssl_time: any;
+  function getSSLTime(connectEnd: number, secureConnectionStart: number) {
+    let ssl_time = 0;
     if (secureConnectionStart) {
       ssl_time = connectEnd - secureConnectionStart;
     }
@@ -2402,7 +2536,7 @@ export function genCustomConsole(
     },
     options
   );
-  const methods = ['log', 'info', 'warn', 'error'];
+  const methods = [ 'log', 'info', 'warn', 'error' ];
   const newConsole = Object.create(null);
   // https://stackoverflow.com/questions/3552461/how-do-i-format-a-date-in-javascript
   const formatDate = () => {
@@ -2451,9 +2585,9 @@ export function genCustomConsole(
         }
       }
       if (prefix || showDate) {
-        (console as any)[method](datePrefix, ...argu);
+        console[method](datePrefix, ...argu);
       } else {
-        (console as any)[method](...argu);
+        console[method](...argu);
       }
       if (method === 'log') {
         logFn();
@@ -2480,14 +2614,14 @@ export function genCustomConsole(
 export function zAxiosIsValidRes(
   res: ZResResponse | undefined,
   options: ZResIsValidResOptions = {
-    validStatusRange: [200, 300],
-    validCode: [0],
+    validStatusRange: [ 200, 300 ],
+    validCode: [ 0 ],
   }
 ): boolean {
   const { validStatusRange, validCode } = Object.assign(
     {
-      validStatusRange: [200, 300],
-      validCode: [0],
+      validStatusRange: [ 200, 300 ],
+      validCode: [ 0 ],
     },
     options
   );
@@ -2554,7 +2688,7 @@ export function isNonEmptyArray<T>(arr: Array<T>): boolean {
  * @returns {boolean} Return TRUE if the data is valid.
  * @category Util
  */
-export function isValidData(data: any, attributes: string[], validValue: any): boolean {
+export function isValidData(data: any, attributes: string[], validValue: simpleType): boolean {
   let ret = false;
   if (typeof data !== 'object') {
     return ret;
@@ -2768,7 +2902,7 @@ export function removeEvent(type: string, fn: any): void {
 }
 
 /**
- * Checks if the given string is a valid URL, including scheme URLs.
+ * Checks if the given string is a valid URL, including **scheme URLs**.
  *
  * @example
  * ```js
@@ -2779,12 +2913,37 @@ export function removeEvent(type: string, fn: any): void {
  * isValidUrl('ftp://example.com'); // true
  * ```
  *
+ * @remarks
+ * If you are specifically checking for HTTP/HTTPS URLs, it is recommended to use the `isValidHttpUrl` function instead.
+ * The `isValidUrl` function matches all scheme URLs, including FTP and other non-HTTP schemes.
+ *
  * @param url - The URL to check.
  * @returns Returns `true` if the given string is a valid URL, else `false`.
  * @category URL
  */
 export function isValidUrl(url: string): boolean {
   const reg = /^[a-zA-Z0-9]+:\/\/[-a-zA-Z0-9@:%._+~#=]{1,256}\b([-a-zA-Z0-9\u4E00-\u9FA5()!@:%_+.~#?&//=]*)$/;
+  return reg.test(url);
+}
+
+/**
+ * Check if the given string is a valid HTTP/HTTPS URL.
+ *
+ * @example
+ * ```js
+ * isValidHttpUrl('https://www.example.com'); // true
+ * isValidHttpUrl('http://example.com/path/exx/ss'); // true
+ * isValidHttpUrl('https://www.example.com/?q=hello&age=24#world'); // true
+ * isValidHttpUrl('http://www.example.com/#world?id=9'); // true
+ * isValidHttpUrl('ftp://example.com'); // false
+ * ```
+ *
+ * @param url
+ * @returns {boolean} Return true if the given string is a valid HTTP/HTTPS URL.
+ * @category URL
+ */
+export function isValidHttpUrl(url: string): boolean {
+  const reg = /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9\u4E00-\u9FA5()!@:%_+.~#?&//=]*)/;
   return reg.test(url);
 }
 
