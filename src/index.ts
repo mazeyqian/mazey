@@ -15,8 +15,13 @@ import {
   ZResIsValidResOptions,
   RepeatUntilOptions,
   LoadScriptReturns,
-  simpleType,
-  simpleObject,
+  SimpleType,
+  SimpleObject,
+  UnknownFnParams,
+  UnknownFnReturn,
+  UnknownObject,
+  UnknownFn,
+  UnknownWindow,
 } from './typing';
 
 /**
@@ -420,7 +425,7 @@ export function deepCopy<T>(obj: T): T {
   // Judge whether its key-value is simple type, string | number | boolean | null | undefined
   // ...rest
   const simpleTypes = [ 'string', 'number', 'boolean', 'undefined' ];
-  const values = Object.values(obj as simpleObject);
+  const values = Object.values(obj as SimpleObject);
   const isSimpleTypeObj = values.every(v => simpleTypes.includes(typeof v));
   if (isSimpleTypeObj) {
     // console.log('it is isSimpleTypeObj');
@@ -669,7 +674,7 @@ export function removeClass(obj: HTMLElement, cls: string): void {
  *
  * @category Util
  */
-export function throttle<T extends (...args: any[]) => any>(func: T, wait: number, options: { leading?: boolean; trailing?: boolean } = {}): ThrottleFunc<T> {
+export function throttle<T extends (...args: UnknownFnParams) => UnknownFnReturn>(func: T, wait: number, options: { leading?: boolean; trailing?: boolean } = {}): ThrottleFunc<T> {
   options = Object.assign({}, options);
   let context: unknown | null = null;
   let args: Parameters<T> | null = null;
@@ -721,7 +726,7 @@ export function throttle<T extends (...args: any[]) => any>(func: T, wait: numbe
  *
  * @category Util
  */
-export function debounce<T extends (...args: any[]) => any>(func: T, wait: number, immediate?: boolean): DebounceFunc<T> {
+export function debounce<T extends (...args: UnknownFnParams) => UnknownFnReturn>(func: T, wait: number, immediate?: boolean): DebounceFunc<T> {
   let context: unknown | null = null;
   let timeout: ReturnType<typeof setTimeout> | null = null;
   let timestamp: number | null = null;
@@ -1180,7 +1185,7 @@ export function loadScript(
   url: string,
   options: {
     id?: string;
-    callback?: (...params: any[]) => any;
+    callback?: (...params: UnknownFnParams) => UnknownFnReturn;
     timeout?: number;
     isDefer?: boolean;
   } = {
@@ -2560,7 +2565,7 @@ export function genCustomConsole(
   //   prefix = `${dateStr} ${prefix}`;
   // }
   methods.forEach(method => {
-    newConsole[method] = function(...argu: any) {
+    newConsole[method] = function(...argu: UnknownFnParams) {
       if (isClosed) {
         return false;
       }
@@ -2688,7 +2693,7 @@ export function isNonEmptyArray<T>(arr: Array<T>): boolean {
  * @returns {boolean} Return TRUE if the data is valid.
  * @category Util
  */
-export function isValidData(data: any, attributes: string[], validValue: simpleType): boolean {
+export function isValidData(data: UnknownObject, attributes: string[], validValue: SimpleType): boolean {
   let ret = false;
   if (typeof data !== 'object') {
     return ret;
@@ -2699,10 +2704,8 @@ export function isValidData(data: any, attributes: string[], validValue: simpleT
     } else {
       return Object.create(null);
     }
-    // console.log('foundValue', foundValue);
     return foundValue;
   }, data);
-  // console.log('foundRet', foundRet);
   if (foundRet === validValue) {
     ret = true;
   }
@@ -2847,7 +2850,7 @@ export function getDefineListeners(): DefineListeners {
  * @param fn
  * @category Event
  */
-export function addEvent(type: string, fn: any): void {
+export function addEvent(type: string, fn: UnknownFn): void {
   const defineListeners = getDefineListeners();
   if (typeof defineListeners[type] === 'undefined') {
     defineListeners[type] = [];
@@ -2884,7 +2887,7 @@ export function invokeEvent(type: string): void {
  * @param fn
  * @category Event
  */
-export function removeEvent(type: string, fn: any): void {
+export function removeEvent(type: string, fn: UnknownFn): void {
   const defineListeners = getDefineListeners();
   const arrayEvent = defineListeners[type];
   if (typeof type === 'string' && arrayEvent instanceof Array) {
@@ -3199,7 +3202,7 @@ export function getCurrentVersion(): string {
  * @param condition A function that takes the result of the callback function as its argument and returns a boolean value indicating whether the condition has been met. Defaults to a function that always returns true.
  * @category Util
  */
-export function repeatUntilConditionMet<T extends (...args: any[]) => any>(
+export function repeatUntilConditionMet<T extends (...args: UnknownFnParams) => UnknownFnReturn>(
   callback: T,
   options: RepeatUntilOptions = {},
   condition: (result: ReturnType<T>) => boolean = res => {
@@ -3211,7 +3214,7 @@ export function repeatUntilConditionMet<T extends (...args: any[]) => any>(
 
   const clearAndInvokeNext = () => {
     setTimeout(async () => {
-      const result = await callback.apply(context, args as any[]);
+      const result = await callback.apply(context, args as UnknownFnParams);
       if (condition(result) || ++count >= times) {
         return;
       }
@@ -3254,7 +3257,7 @@ export function repeatUntilConditionMet<T extends (...args: any[]) => any>(
  * @category Load Resource
  */
 export function loadScriptIfUndefined(windowAttribute: string, url: string): LoadScriptReturns {
-  if ((window as { [k: string]: any })[windowAttribute]) {
+  if ((window as UnknownWindow)[windowAttribute]) {
     return Promise.resolve('defined');
   }
   return loadScript(url);
@@ -3285,4 +3288,19 @@ export function getScriptQueryParam(param: string, matchString = ''): string {
     }
   }
   return '';
+}
+
+/**
+ * Wait for a specified amount of time.
+ *
+ * @param time The amount of time to wait, in milliseconds.
+ * @returns A Promise that resolves after the specified time has elapsed.
+ * @category Util
+ */
+export async function waitTime(time: number): Promise<number> {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve(time);
+    }, time);
+  });
 }

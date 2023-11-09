@@ -59,7 +59,16 @@ export interface RepeatUntilOptions {
 
 export type LoadScriptReturns = Promise<boolean | string | Error | void>;
 
-export type simpleType = string | number | boolean | null | undefined;
-export type simpleObject = {
+export type SimpleType = string | number | boolean | null | undefined;
+export type SimpleObject = {
   [key: string]: simpleType | simpleType[] | simpleObject | simpleObject[];
 };
+
+export type UnknownObject = any; // Record<string, unknown>;
+export type UnknownFnParams = any[]; // | Record<string, unknown> | string | number | boolean | null | undefined;
+export type UnknownFnReturn = any;
+export type UnknownFn = (...args: UnknownFnParams) => UnknownFnReturn;
+
+export interface UnknownWindow {
+  [key: string]: any;
+}

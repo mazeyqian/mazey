@@ -3,9 +3,7 @@
  */
 /* eslint-disable no-undef */
 /* eslint-disable quotes */
-// URL
-
-import { isValidUrl, getUrlFileType, isValidHttpUrl } from '../src/index.ts';
+import { isValidUrl, getUrlFileType, isValidHttpUrl } from '../lib/index.esm';
 
 const validUrls = [
   'https://www.example.com/events/#&product=browser',
@@ -45,26 +43,16 @@ const invalidUrls = [
 
 test('isValidUrl', () => {
   validUrls.forEach(url => {
-    console.log('validUrls', url);
     expect(isValidUrl(url)).toBe(true);
   });
 
   invalidUrls.forEach(url => {
-    // console.log('invalidUrls', url);
     let ret = isValidUrl(url);
-    if (ret) {
-      console.log('invalidUrls', url, ret);
-    }
     expect(ret).toBe(false);
-    // expect(isValidUrl(url)).toBe(false);
   });
 });
 
 // Use Jest to test getUrlFileType in a `test`
-// console.log(getUrlFileType('https://example.com/a/b/c.png')); // png
-// console.log(getUrlFileType('https://example.com/a/b/c.jpg')); // jpg
-// console.log(getUrlFileType('https://example.com/a/b/c.jpeg')); // jpeg
-// console.log(getUrlFileType('https://example.com/a/b/c.v/a')); // ''
 test('getUrlFileType', () => {
   expect(getUrlFileType('https://example.com/a/b/c.png')).toBe('png');
   expect(getUrlFileType('https://example.com/a/b/c.jpg')).toBe('jpg');
