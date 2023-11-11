@@ -50,7 +50,7 @@ export function longestComSubstring(aStr: string, bStr: string): number {
   const aLen = aStr.length;
   const bLen = bStr.length;
   // Create a two-dimensional array and deep copy it
-  const arr = [ ...new Array(aLen).fill([ ...new Array(bLen).fill(0) ]) ];
+  const arr = deepCopy(new Array(aLen).fill(new Array(bLen).fill(0)));
   for (let i = 0; i < aLen; ++i) {
     for (let j = 0; j < bLen; ++j) {
       if (aStr[i] === bStr[j]) {
@@ -104,7 +104,7 @@ export function longestComSubsequence(aStr: string, bStr: string): number {
   const aLen = aStr.length;
   const bLen = bStr.length;
   // Create a two-dimensional array and deep copy it
-  const arr = [ ...new Array(aLen).fill([ ...new Array(bLen).fill(0) ]) ];
+  const arr = deepCopy(new Array(aLen).fill(new Array(bLen).fill(0)));
   for (let i = 0; i < aLen; ++i) {
     for (let j = 0; j < bLen; ++j) {
       if (aStr[i] === bStr[j]) {
@@ -694,6 +694,7 @@ export function throttle<T extends (...args: UnknownFnParams) => UnknownFnReturn
       previous = now;
     }
     const remaining = wait - (now - previous);
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
     context = this;
     args = argRest;
     if (remaining <= 0 || remaining > wait) {
@@ -747,6 +748,7 @@ export function debounce<T extends (...args: UnknownFnParams) => UnknownFnReturn
     }
   };
   return function(this: unknown, ...argRest: Parameters<T>) {
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
     context = this;
     args = argRest;
     timestamp = mNow();
@@ -1548,7 +1550,7 @@ export async function getTTFB(): Promise<number> {
  * @remarks
  * This function uses the [`PerformanceNavigationTiming`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceNavigationTiming) API to get page load time data.
  * The `PerformanceNavigationTiming` API provides more accurate and detailed information about page load time than the deprecated [`PerformanceTiming`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming) API.
- * If you are using an older browser that does not support `PerformanceNavigationTiming`, you can still use the `PerformanceTiming` API by using the previous version of this library ([`v3.9.7`](https://www.npmjs.com/package/mazey/v/3.9.7)).
+ * If you are using an older browser that does not support `PerformanceNavigationTiming`, you can still use the `PerformanceTiming` API by using the previous version of this library ([`v3.9.7`](https://github.com/mazeyqian/mazey/releases/tag/v3.9.7)).
  *
  * Usage:
  *
@@ -3123,27 +3125,25 @@ export function setImgWidHeiBySrc(): boolean {
 }
 
 /**
- * Generate the inline style string from the given parameters, First parameter is the ClassNames, Second parameter is the style array.
+ * Generate the inline style string from the given parameters. The first parameter is the query selector, and the second parameter is the style array.
  *
  * @example
  * ```js
- * console.log(genStyleString('a', [ 'color:red' ])); // '.a{color:red;}'
- * console.log(genStyleString('b', [ 'color:red', 'font-size:12px' ])); // '.b{color:red;font-size:12px;}'
+ * console.log(genStyleString('.a', [ 'color:red' ])); // '.a{color:red;}'
+ * console.log(genStyleString('#b', [ 'color:red', 'font-size:12px' ])); // '#b{color:red;font-size:12px;}'
  * ```
  *
- * @param {string} className
- * @param {Array} styleArray
- * @returns {string} Return the inline style string.
+ * @param {string} selector
+ * @param {array} styleArray
+ * @returns {string} The inline style string.
  * @category DOM
  */
-export function genStyleString(className: string, styleArray: Array<string>): string {
+export function genStyleString(selector: string, styleArray: Array<string>): string {
   let style = '';
   if (styleArray && styleArray.length > 0) {
-    // It's wrong. Last item will not include `;`.
-    // style = styleArray.join(';');
     style = styleArray.join(';') + ';';
   }
-  return `.${className}{${style}}`;
+  return `${selector}{${style}}`;
 }
 
 /**

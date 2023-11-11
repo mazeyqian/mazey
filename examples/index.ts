@@ -33,6 +33,7 @@ import {
   getCLS,
   getTTFB,
   getPerformance,
+  longestComSubsequence,
 } from '../src/index';
 
 // Sync
@@ -139,6 +140,9 @@ console.log('All Cookie', document.cookie);
 console.log('getScriptQueryParams id', getScriptQueryParam('id', 'jquery'));
 console.log('getScriptQueryParams _', getScriptQueryParam('_', ''));
 console.log('getScriptQueryParams empty', getScriptQueryParam('empty'));
+
+const longestSS = longestComSubsequence('fish', 'finish');
+console.log('longestComSubsequence:', longestSS);
 
 // Async
 (async () => {
