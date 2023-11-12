@@ -2968,7 +2968,7 @@ export function isValidHttpUrl(url: string): boolean {
  * @category Util
  */
 export function isValidPhoneNumber(mobile: string): boolean {
-  const reg = /^1[3456789]\d{9}$/;
+  const reg = /^1\d{10}$/;
   return reg.test(mobile);
 }
 
@@ -3303,4 +3303,13 @@ export async function waitTime(time: number): Promise<number> {
       resolve(time);
     }, time);
   });
+}
+
+/**
+ * Alias of `waitTime`.
+ *
+ * @hidden
+ */
+export async function sleep(time: number): Promise<number> {
+  return waitTime(time);
 }
