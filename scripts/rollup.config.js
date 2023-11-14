@@ -7,6 +7,7 @@ import { DEFAULT_EXTENSIONS } from '@babel/core';
 import commonjs from 'rollup-plugin-commonjs';
 import cleaner from 'rollup-plugin-cleaner';
 import { terser } from 'rollup-plugin-terser';
+import dts from 'rollup-plugin-dts';
 // import replace from '@rollup/plugin-replace';
 // import copy from 'rollup-plugin-copy';
 
@@ -26,11 +27,11 @@ const plugins = [
   // }),
   // Remove the `lib` directory before rebuilding.
   // https://github.com/aMarCruz/rollup-plugin-cleanup
-  cleaner({
-    targets: [
-      _resolve('../lib/'),
-    ],
-  }),
+  // cleaner({
+  //   targets: [
+  //     _resolve('../lib/'),
+  //   ],
+  // }),
   rollupTypescript(),
   commonjs({
     include: /node_modules/,
@@ -45,6 +46,7 @@ const plugins = [
       '.ts',
     ],
   }),
+  // dts(),
   // uglify(),
   // https://www.npmjs.com/package/rollup-plugin-copy
   // copy({
@@ -73,31 +75,64 @@ if (debugMode !== 'open') {
   );
 }
 
-// https://rollupjs.org/guide/en/
-export default {
-  input: _resolve('../src/index.ts'),
+const dTsConf = {
+  input: _resolve('../src/typing.d.ts'),
   // https://rollupjs.org/guide/en/#outputformat
   output: [
     {
-      file: _resolve('../lib/index.cjs.js'),
-      format: 'cjs',
-      banner,
-      plugins: iifePlugins,
-    },
-    {
-      file: _resolve('../lib/index.esm.js'),
-      format: 'esm',
-      banner,
-      plugins: iifePlugins,
-    },
-    {
-      file: _resolve('../lib/mazey.min.js'),
-      format: 'iife',
-      name: 'mazey',
-      banner,
-      plugins: iifePlugins,
+      file: _resolve('../lib/typing.d.ts'),
+      format: 'es',
     },
   ],
-  plugins,
+  plugins: [
+    // ...plugins,
+    // cleaner({
+    //   targets: [
+    //     _resolve('../lib/index.d.ts'),
+    //   ],
+    // }),
+    dts(),
+  ],
   external: [],
 };
+
+// console.log('dTsConf:', dTsConf);
+
+// https://rollupjs.org/guide/en/
+export default [
+  {
+    input: _resolve('../src/index.ts'),
+    // https://rollupjs.org/guide/en/#outputformat
+    output: [
+      {
+        file: _resolve('../lib/index.cjs.js'),
+        format: 'cjs',
+        banner,
+        plugins: iifePlugins,
+      },
+      {
+        file: _resolve('../lib/index.esm.js'),
+        format: 'esm',
+        banner,
+        plugins: iifePlugins,
+      },
+      {
+        file: _resolve('../lib/mazey.min.js'),
+        format: 'iife',
+        name: 'mazey',
+        banner,
+        plugins: iifePlugins,
+      },
+    ],
+    plugins: [
+      ...plugins,
+      cleaner({
+        targets: [
+          _resolve('../lib/'),
+        ],
+      }),
+    ],
+    external: [],
+  },
+  dTsConf,
+];
