@@ -42,7 +42,7 @@ webpack.config.js
 webpack.config.dev.js
 jsdoc.config.json
 tsconfig.json
-typing.d.ts
+# typing.d.ts
 global.d.ts
 README_CN.md
 README_ZH.md
