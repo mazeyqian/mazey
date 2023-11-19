@@ -2,6 +2,7 @@
  * @author: Mazey Chu
  */
 import $ from 'jquery';
+import { DefineListeners, BrowserInfo } from './src/typing';
 
 declare global {
   interface PerformanceEntry {
@@ -40,12 +41,12 @@ declare global {
   interface ErrorEvent {
     type?: string;
     time?: number;
-    message: string;
-    filename?: string; // Deprecated, but still supported.
+    readonly message: string;
+    readonly filename: string; // Deprecated, but still supported.
     fileName?: string;
-    lineno?: number; // Deprecated, but still supported.
+    readonly lineno: number; // Deprecated, but still supported.
     line?: number;
-    colno?: number; // Deprecated, but still supported.
+    readonly colno: number; // Deprecated, but still supported.
     column?: number;
     stack?: string;
     name?: string;
