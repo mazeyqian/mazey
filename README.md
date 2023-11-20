@@ -10,17 +10,17 @@ English | [简体中文](https://github.com/mazeyqian/mazey/blob/master/README_Z
 [l-image]: https://img.shields.io/npm/l/mazey
 [l-url]: https://github.com/mazeyqian/mazey
 
-**mazey** is a functional library for daily front-end work. There are already many excellent libraries for front-end development, but creating a file named `utils.js` or `common.js` is generally used to supply common functions in projects. It's boring to copy similar functions across multiple projects. That's why I've created this library and will keep updating it to serve as a reliable resource for front-end needs.
+Mazey is a functional library for daily front-end work. There are already many excellent libraries for front-end development, but creating a file named `utils.js` or `common.js` is generally used to supply common functions in projects. It's boring to copy similar functions across multiple projects. That's why I've created this library and will keep updating it to serve as a reliable resource for front-end needs.
 
 ## Install
 
-Use mazey via [npm](https://www.npmjs.com/package/mazey).
+Use Mazey via [npm](https://www.npmjs.com/package/mazey).
 
 ```shell
 npm install mazey --save
 ```
 
-Use mazey from CDN.
+Use Mazey from CDN.
 
 ```html
 <script type="text/javascript" src="//i.mazey.net/mazey/lib/mazey.min.js"></script>

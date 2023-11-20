@@ -16,8 +16,8 @@ const pkgVersion = process.env.SCRIPTS_NPM_PACKAGE_VERSION || process.env.VERSIO
 const debugMode = process.env.SCRIPTS_NPM_PACKAGE_DEBUG;
 const banner =
   '/*!\n' +
-  ` * mazey v${pkgVersion} https://www.npmjs.com/package/mazey\n` +
-  ` * (c) 2018-${new Date().getFullYear()} Mazey Chu\n` +
+  ` * Mazey v${pkgVersion} https://github.com/mazeyqian/mazey\n` +
+  ` * (c) 2018-${new Date().getFullYear()} Mazey\n` +
   ' * Released under the MIT License.\n' +
   ' */';
 

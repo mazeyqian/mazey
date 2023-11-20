@@ -7,7 +7,8 @@
 
 后除的 JavaScript 函数库，所有的方法都在线上项目中使用过。
 
-**目录**
+<!-- omit from toc -->
+## 目录
 
 - [安装](#安装)
 - [使用](#使用)
@@ -27,7 +28,7 @@
 
 使用 [NPM](https://www.npmjs.com/package/mazey/v/1.4.39) 安装 mazey@1.4.39
 
-```
+```shell
 npm install mazey@1.4.39 --save
 ```
 
@@ -37,7 +38,7 @@ npm install mazey@1.4.39 --save
 
 加载 JavaScript
 
-```
+```javascript
 import { loadScript } from 'mazey';
 
 loadScript({
@@ -60,7 +61,7 @@ loadScript({
 
 加载 CSS
 
-```
+```javascript
 import { loadCSS } from 'mazey';
 
 loadCSS({
@@ -81,7 +82,7 @@ loadCSS({
 
 判断页面是否加载完成（兼容浏览器 `load` 事件已经触发过的情况）
 
-```
+```javascript
 import { loadCSS } from 'mazey';
 
 windowLoaded({ timeout: 30 })
@@ -97,7 +98,7 @@ windowLoaded({ timeout: 30 })
 
 Storage（兼容 JSON 格式，自行转换）
 
-```
+```javascript
 import { setSessionStorage, getSessionStorage, setLocalStorage, getLocalStorage } from 'mazey';
 
 setSessionStorage('test', '123');
@@ -108,7 +109,7 @@ getLocalStorage('test'); // 123
 
 Cookie
 
-```
+```javascript
 import { setCookie, getCookie } from 'mazey';
 
 setCookie('test', '123', 30, 'mazey.net'); // key value day domain
@@ -119,7 +120,7 @@ getCookie('test'); // 123
 
 修改 `class`
 
-```
+```javascript
 import { hasClass, addClass, removeClass } from 'mazey';
 
 const dom = document.querySelector('#box');
@@ -134,7 +135,7 @@ removeClass(dom, 'test');
 
 添加内联样式
 
-```
+```javascript
 import { addInlineStyle } from 'mazey';
 
 // 添加有 id 的内联样式，重复添加会更新内联样式而不是新增
@@ -169,7 +170,7 @@ addInlineStyle({
 
 添加自定义滚动条（适用于用 `transform` 移动的元素）
 
-```
+```javascript
 import { customScrollBarForTransformEle } from 'mazey';
 
 // 使用类名
@@ -195,7 +196,7 @@ customScrollBarForTransformEle({
 
 计算适配容器宽度的图片的尺寸、距离顶部的距离
 
-```
+```javascript
 import { calcContainImageSizeAndPosition } from 'mazey';
 
 // 如果高度不足以占满容器，使其垂直居中；如果高度比容器长，由上向下铺开
@@ -207,7 +208,7 @@ calcContainImageSizeAndPosition({ oriImageWidth: 300, oriImageHeight: 300, viewp
 
 获取加载时间
 
-```
+```javascript
 import { getPerformance } from 'mazey';
 
 // camelCase：true（默认） 以驼峰形式返回数据 / false 以下划线形式返回数据
@@ -239,7 +240,7 @@ getPerformance({ camelCase: true })
 
 计算两个字符串的最长公共子串
 
-```
+```javascript
 import { calLongestCommonSubstring } from 'mazey';
 
 calLongestCommonSubstring('fish', 'finish'); // 3
@@ -247,7 +248,7 @@ calLongestCommonSubstring('fish', 'finish'); // 3
 
 计算两个字符串的最长公共子序列
 
-```
+```javascript
 import { calLongestCommonSubsequence } from 'mazey';
 
 calLongestCommonSubsequence('fish', 'finish'); // 4
@@ -255,7 +256,7 @@ calLongestCommonSubsequence('fish', 'finish'); // 4
 
 命中概率（1% ~ 100%）
 
-```
+```javascript
 import { inRate } from 'mazey';
 
 inRate(0.5); // 0.01 ~ 1 true / false
@@ -275,7 +276,7 @@ console.log(trueCount, falseCount); // 499994 500006
 
 ### 浏览器信息
 
-```
+```javascript
 import { getBrowserType } from 'mazey';
 
 getBrowserType(); // {"engine":"webkit","engineVs":"537.36","platform":"desktop","supporter":"chrome","supporterVs":"85.0.4183.121","system":"windows","systemVs":"10"}
@@ -286,7 +287,7 @@ getBrowserType(); // {"engine":"webkit","engineVs":"537.36","platform":"desktop"
 
 判断是否是安全的 PWA 运行环境
 
-```
+```javascript
 import { isSafePWAEnv } from 'mazey';
 
 isSafePWAEnv(); // true
@@ -296,7 +297,7 @@ isSafePWAEnv(); // true
 
 防抖
 
-```
+```javascript
 import { debounce } from 'mazey';
 
 const foo = debounce(() => {
@@ -306,7 +307,7 @@ const foo = debounce(() => {
 
 判断是否是有效数字
 
-```
+```javascript
 import { isNumber } from 'mazey';
 
 isNumber(123); // true
@@ -322,7 +323,7 @@ isNumber(NaN, { isNaNAsNumber: true, isUnFiniteAsNumber: true }); // true
 
 自定义控制台打印（`console`）
 
-```
+```javascript
 import { genCustomConsole } from 'mazey';
 
 const myConsole = genCustomConsole({ prefix: 'MazeyLog:' });
@@ -336,7 +337,7 @@ myConsole.info('I am object.', { a: 123, b: 456}); // MazeyLog: I am object. {a:
 
 ## 开发
 
-```
+```shell
 # dev
 npm run dev
 
