@@ -1,5 +1,5 @@
 /**
- * @author: Mazey Chu
+ * @author: Mazey
  */
 import $ from 'jquery';
 import { DefineListeners, BrowserInfo } from './src/typing';
