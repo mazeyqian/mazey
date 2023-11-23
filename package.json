@@ -1,30 +1,33 @@
 {
   "name": "mazey",
-  "version": "3.10.1",
+  "version": "3.11.6",
   "description": "A functional library for daily front-end work.",
   "main": "lib/index.cjs.js",
   "module": "lib/index.esm.js",
   "typings": "lib/index.d.ts",
+  "types": "lib/index.d.ts",
   "mainEntryPointFilePath": "lib/index.d.ts",
   "directories": {
     "lib": "./lib"
   },
   "scripts": {
     "dev": "webpack serve --config ./scripts/webpack.config.dev.js --open",
-    "build": "cross-env SCRIPTS_NPM_PACKAGE_DEBUG=\"close\" rollup --config ./scripts/rollup.config.js",
-    "build:debug": "cross-env SCRIPTS_NPM_PACKAGE_DEBUG=\"open\" rollup --config ./scripts/rollup.config.js",
+    "build": "cross-env SCRIPTS_NPM_PACKAGE_DEBUG=close rollup --config ./scripts/rollup.config.js",
+    "build:debug": "cross-env SCRIPTS_NPM_PACKAGE_DEBUG=open rollup --config ./scripts/rollup.config.js",
     "test": "jest",
     "test:debug": "npm run build:debug && npm run test",
-    "lint:fix": "eslint ./src --ext 'ts,tsx' --fix",
+    "lint:fix": "eslint --ext 'js,ts,tsx' --fix ./src ./test ./scripts",
     "docs": "typedoc --readme ./README.md --excludeProtected --excludePrivate --excludeInternal --hideGenerator",
     "preview": "npm run build && npm run test",
-    "release": "npm run preview && cross-env SCRIPTS_NPM_PACKAGE_VERSION=$npm_package_version node ./scripts/release.js"
+    "release": "npm run preview && cross-env SCRIPTS_NPM_PACKAGE_VERSION=$npm_package_version node ./scripts/release.js",
+    "release:win": "bash scripts/env.sh && npm i && npm run release"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mazeyqian/mazey.git"
   },
   "keywords": [
+    "front-end",
     "load",
     "math",
     "url",
@@ -50,9 +53,9 @@
     "typescript"
   ],
   "author": {
-    "name": "Mazey Chu",
+    "name": "Cheng",
     "email": "mazeyqian@gmail.com",
-    "url": "https://blog.mazey.net/"
+    "url": "https://github.com/mazeyqian"
   },
   "license": "MIT",
   "bugs": {
@@ -71,13 +74,13 @@
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
     "@types/jquery": "^3.5.18",
-    "@typescript-eslint/eslint-plugin": "^6.5.0",
-    "@typescript-eslint/parser": "^6.5.0",
+    "@typescript-eslint/eslint-plugin": "^4.22.0",
+    "@typescript-eslint/parser": "^4.22.0",
     "clean-webpack-plugin": "^1.0.1",
     "core-js": "^3.6.5",
     "cross-env": "^7.0.3",
     "date-fns": "^2.29.3",
-    "eslint": "^8.23.0",
+    "eslint": "^6.8.0",
     "eslint-config-standard": "^14.1.0",
     "eslint-plugin-import": "^2.20.1",
     "eslint-plugin-node": "^11.0.0",
@@ -96,6 +99,7 @@
     "rollup-plugin-cleaner": "^1.0.0",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-copy": "^3.4.0",
+    "rollup-plugin-dts": "^4.2.3",
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-typescript2": "^0.30.0",
     "ts-loader": "^8.0.2",

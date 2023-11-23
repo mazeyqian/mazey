@@ -33,6 +33,7 @@ import {
   getCLS,
   getTTFB,
   getPerformance,
+  longestComSubsequence,
 } from '../src/index';
 
 // Sync
@@ -140,6 +141,9 @@ console.log('getScriptQueryParams id', getScriptQueryParam('id', 'jquery'));
 console.log('getScriptQueryParams _', getScriptQueryParam('_', ''));
 console.log('getScriptQueryParams empty', getScriptQueryParam('empty'));
 
+const longestSS = longestComSubsequence('fish', 'finish');
+console.log('longestComSubsequence:', longestSS);
+
 // Async
 (async () => {
   console.log('Detect webp support:', await isSupportWebp());
@@ -186,3 +190,11 @@ console.log('getScriptQueryParams empty', getScriptQueryParam('empty'));
   const ttfb = await getTTFB();
   console.log('getTTFB', ttfb);
 })();
+
+// Event
+$('#btn').on('click', () => {
+  console.log('click');
+  getFID().then(fid => {
+    console.log('Event getFID', fid);
+  });
+});

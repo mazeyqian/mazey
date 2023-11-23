@@ -1,5 +1,5 @@
 /**
- * @author: Mazey Chu
+ * @author: Cheng
  */
 
 export interface BrowserInfo {
@@ -61,7 +61,7 @@ export type LoadScriptReturns = Promise<boolean | string | Error | void>;
 
 export type SimpleType = string | number | boolean | null | undefined;
 export type SimpleObject = {
-  [key: string]: simpleType | simpleType[] | simpleObject | simpleObject[];
+  [key: string]: SimpleType | SimpleType[] | SimpleObject | SimpleObject[];
 };
 
 export type UnknownObject = any; // Record<string, unknown>;

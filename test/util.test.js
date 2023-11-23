@@ -3,7 +3,23 @@
  */
 /* eslint-disable no-undef */
 /* eslint-disable quotes */
-import { isNumber, camelCaseToKebabCase, camelCase2Underscore, mTrim, deepCopyObject, isJsonString, generateRndNum, formatDate, isValidData, isValidEmail, convert10To26, getFriendlyInterval, unsanitize } from '../lib/index.esm';
+import {
+  isNumber,
+  camelCaseToKebabCase,
+  camelCase2Underscore,
+  mTrim,
+  deepCopyObject,
+  isJsonString,
+  generateRndNum,
+  formatDate,
+  isValidData,
+  isValidEmail,
+  isValidPhoneNumber,
+  convert10To26,
+  getFriendlyInterval,
+  unsanitize,
+  waitTime,
+} from '../lib/index.esm';
 
 test('isNumber: Is -1/123/Infinity/NaN Number?', () => {
   expect(isNumber(-1)).toBe(true);
@@ -107,5 +123,37 @@ describe('unsanitize', () => {
   it('should throw an error if the input is not a string', () => {
     const input = 123;
     expect(() => unsanitize(input)).toThrow('Input must be a string');
+  });
+});
+
+describe('waitTime', () => {
+  test('resolves after the specified time has elapsed', async () => {
+    const start = Date.now();
+    await waitTime(1000);
+    const end = Date.now();
+    expect(end - start).toBeGreaterThanOrEqual(1000);
+  });
+});
+
+describe("isValidPhoneNumber", () => {
+  it("should return true for valid phone numbers", () => {
+    expect(isValidPhoneNumber("13800138000")).toBe(true);
+    expect(isValidPhoneNumber("15012345678")).toBe(true);
+    expect(isValidPhoneNumber("19912345678")).toBe(true);
+    expect(isValidPhoneNumber("17612345678")).toBe(true);
+    expect(isValidPhoneNumber("14712345678")).toBe(true);
+    expect(isValidPhoneNumber("11012345678")).toBe(true);
+    expect(isValidPhoneNumber("12012345678")).toBe(true);
+    expect(isValidPhoneNumber("16912345678")).toBe(true);
+    expect(isValidPhoneNumber("10912345678")).toBe(true);
+    expect(isValidPhoneNumber("18012345678")).toBe(true);
+  });
+
+  it("should return false for invalid phone numbers", () => {
+    expect(isValidPhoneNumber("1380013800")).toBe(false);
+    expect(isValidPhoneNumber("138001380000")).toBe(false);
+    expect(isValidPhoneNumber("1380013800a")).toBe(false);
+    expect(isValidPhoneNumber("02345678901")).toBe(false);
+    expect(isValidPhoneNumber("00000000000")).toBe(false);
   });
 });

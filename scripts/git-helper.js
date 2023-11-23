@@ -8,28 +8,30 @@ const execa = require('execa');
  * 
  * Usage:
  * 
- * ```
+ * ```javascript
  * const pkgVersion = process.env.VERSION || require('../package.json').version;
  * release(pkgVersion);
  * ```
  * 
  * It will be more straightforward if you use the development dependence CrossEnv.
  * 
- * ```
+ * ```shell
  * # Install
  * npm i cross-env -D
  * 
  * # scripts
  * cross-env SCRIPTS_NPM_PACKAGE_VERSION=$npm_package_version node ./scripts/release.js
+ * ```
  * 
- * # release.js
+ * ```javascript
+ * // release.js
  * release();
  * ```
  * 
  * @param {string} ver Version
  * @returns {void}
  */
-async function release (ver, { canGenerateToc = false, defaultBranch = 'master' } = {}) {
+async function release (ver, { canGenerateToc = false, defaultBranch = 'main' } = {}) {
   if (!ver) {
     ver = process.env.SCRIPTS_NPM_PACKAGE_VERSION;
   }
@@ -105,7 +107,7 @@ async function gitPush () {
 /**
  * Merge master to current branch.
  */
-async function gitMergeMaster2Release (defaultBranch = 'master') {
+async function gitMergeMaster2Release (defaultBranch = 'main') {
   const currentBranch = await getGitCurrentBranch();
   await execa('git', [ 'checkout', defaultBranch ]);
   await execa('git', [ 'pull' ]);

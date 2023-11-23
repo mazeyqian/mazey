@@ -1,6 +1,6 @@
-English | [简体中文](https://github.com/mazeyqian/mazey/blob/master/README_ZH.md)
+English | [简体中文](https://github.com/mazeyqian/mazey/blob/main/README_ZH.md)
 
-# mazey
+# Mazey
 
 [![NPM version][npm-image]][npm-url]
 [![l][l-image]][l-url]
@@ -10,19 +10,19 @@ English | [简体中文](https://github.com/mazeyqian/mazey/blob/master/README_Z
 [l-image]: https://img.shields.io/npm/l/mazey
 [l-url]: https://github.com/mazeyqian/mazey
 
-**mazey** is a functional library for daily front-end work. There are already many excellent libraries for front-end development, but creating a file named `utils.js` or `common.js` is generally used to supply common functions in projects. It's boring to copy similar functions across multiple projects. That's why I've created this library and will keep updating it to serve as a reliable resource for front-end needs.
+Mazey is a functional library for daily front-end work. There are already many excellent libraries for front-end development, but creating a file named `utils.js` or `common.js` is generally used to supply common functions in projects. It's boring to copy similar functions across multiple projects. That's why I've created this library and will keep updating it to serve as a reliable resource for front-end needs.
 
 ## Install
 
-Use mazey via [npm](https://www.npmjs.com/package/mazey).
+Use Mazey via [npm](https://www.npmjs.com/package/mazey).
 
-```
+```shell
 npm install mazey --save
 ```
 
-Use mazey from CDN.
+Use Mazey from CDN.
 
-```
+```html
 <script type="text/javascript" src="//i.mazey.net/mazey/lib/mazey.min.js"></script>
 ```
 
@@ -34,7 +34,7 @@ Example: Use a function to load JavaScript script.
 
 Import from [npm](https://www.npmjs.com/package/mazey).
 
-```
+```javascript
 import { isNumber } from 'mazey';
 
 const x = Infinity;
@@ -44,7 +44,7 @@ isNumber(x); // <=> typeof x === 'string' && !isNaN(x) && isFinite(x)
 
 Import from CDN.
 
-```
+```html
 <script type="text/javascript" src="//i.mazey.net/mazey/lib/mazey.min.js"></script>
 <script>
   const x = Infinity;
@@ -57,53 +57,53 @@ Import from CDN.
 
 There are some examples maintained by hand below. For more information, please check the [full documentation](https://mazey.cn/t/m).
 
-**Table of Contents**
+### Table of Contents
 
 <!-- toc - begin -->
 - Generated with ❤️
 - [Load Resource](#load-resource)
-  * [loadScript](#loadscript)
-  * [loadScriptIfUndefined](#loadscriptifundefined)
-  * [loadCSS](#loadcss)
-  * [loadImage](#loadimage)
-  * [windowLoaded](#windowloaded)
+  - [loadScript](#loadscript)
+  - [loadScriptIfUndefined](#loadscriptifundefined)
+  - [loadCSS](#loadcss)
+  - [loadImage](#loadimage)
+  - [windowLoaded](#windowloaded)
 - [Util](#util)
-  * [isNumber](#isnumber)
-  * [isJSONString](#isjsonstring)
-  * [isValidData](#isvaliddata)
-  * [genRndNumString](#genrndnumstring)
-  * [formatDate](#formatdate)
-  * [debounce](#debounce)
-  * [throttle](#throttle)
-  * [convertCamelToKebab](#convertcameltokebab)
-  * [convertCamelToUnder](#convertcameltounder)
-  * [deepCopy](#deepcopy)
+  - [isNumber](#isnumber)
+  - [isJSONString](#isjsonstring)
+  - [isValidData](#isvaliddata)
+  - [genRndNumString](#genrndnumstring)
+  - [formatDate](#formatdate)
+  - [debounce](#debounce)
+  - [throttle](#throttle)
+  - [convertCamelToKebab](#convertcameltokebab)
+  - [convertCamelToUnder](#convertcameltounder)
+  - [deepCopy](#deepcopy)
 - [URL](#url)
-  * [getQueryParam](#getqueryparam)
-  * [getUrlParam](#geturlparam)
-  * [getHashQueryParam](#gethashqueryparam)
-  * [getDomain](#getdomain)
-  * [updateQueryParam](#updatequeryparam)
-  * [isValidUrl](#isvalidurl)
-  * [isValidHttpUrl](#isvalidhttpurl)
+  - [getQueryParam](#getqueryparam)
+  - [getUrlParam](#geturlparam)
+  - [getHashQueryParam](#gethashqueryparam)
+  - [getDomain](#getdomain)
+  - [updateQueryParam](#updatequeryparam)
+  - [isValidUrl](#isvalidurl)
+  - [isValidHttpUrl](#isvalidhttpurl)
 - [Cache Data](#cache-data)
-  * [Cookie](#cookie)
-  * [Storage](#storage)
+  - [Cookie](#cookie)
+  - [Storage](#storage)
 - [DOM](#dom)
-  * [addStyle](#addstyle)
-  * [Class](#class)
-  * [newLine](#newline)
+  - [addStyle](#addstyle)
+  - [Class](#class)
+  - [newLine](#newline)
 - [Calculate and Formula](#calculate-and-formula)
-  * [inRate](#inrate)
-  * [longestComSubstring](#longestcomsubstring)
-  * [longestComSubsequence](#longestcomsubsequence)
+  - [inRate](#inrate)
+  - [longestComSubstring](#longestcomsubstring)
+  - [longestComSubsequence](#longestcomsubsequence)
 - [Browser Information](#browser-information)
-  * [getBrowserInfo](#getbrowserinfo)
-  * [isSafePWAEnv](#issafepwaenv)
+  - [getBrowserInfo](#getbrowserinfo)
+  - [isSafePWAEnv](#issafepwaenv)
 - [Web Performance](#web-performance)
-  * [getPerformance](#getperformance)
+  - [getPerformance](#getperformance)
 - [Debug](#debug)
-  * [genCustomConsole](#gencustomconsole)
+  - [genCustomConsole](#gencustomconsole)
 <!-- toc - end -->
 
 ### Load Resource
@@ -112,9 +112,9 @@ There are some examples maintained by hand below. For more information, please c
 
 Load a JavaScript file from the server and execute it.
 
-<!-- ZH: 动态加载 JavaScript 文件 -->
+Usage:
 
-```
+```javascript
 loadScript(
     'http://example.com/static/js/plugin-2.1.1.min.js',
     {
@@ -135,27 +135,41 @@ loadScript(
   );
 ```
 
+Output:
+
+```text
+Load JavaScript script: loaded
+```
+
 #### loadScriptIfUndefined
 
 Load a script from the given URL if it (`window['attribute']`) has not already been loaded.
 
-```js
-loadScriptIfUndefined('jQuery', 'https://example.com/lib/jquery.min.js')
+Usage:
+
+```javascript
+loadScriptIfUndefined('xyz', 'https://example.com/lib/xyz.min.js')
   .then(() => {
-    console.log('jQuery is loaded.');
+    console.log('xyz is loaded.');
   })
   .catch(err => {
-    console.log('Failed to load jQuery.', err);
+    console.log('Failed to load xyz.', err);
   });
+```
+
+Output:
+
+```text
+xyz is loaded.
 ```
 
 #### loadCSS
 
 Load a CSS file from the server.
 
-<!-- ZH: 动态加载 CSS 文件 -->
+Usage:
 
-```
+```javascript
 loadCSS(
     'http://example.com/path/example.css',
     {
@@ -174,6 +188,12 @@ loadCSS(
   );
 ```
 
+Output:
+
+```text
+Load CSS Success: loaded
+```
+
 #### loadImage
 
 Load an image from the given URL.
@@ -182,7 +202,9 @@ The target image will be loaded in the background, and the Promise status will c
 
 Note that this method will not add the image to the DOM.
 
-```js
+Usage:
+
+```javascript
 loadImage('https://example.com/example.png')
   .then((img) => {
     console.log(img);
@@ -196,16 +218,22 @@ loadImage('https://example.com/example.png')
 
 Check whether the page is loaded successfully (Keep the compatibility if the browser's `load` event has been triggered).
 
-<!-- ZH: 页面加载完成 -->
+Usage:
 
-```
+```javascript
 windowLoaded(30) // second
   .then(res => {
-    console.log(`Load Success: ${res}`); // Load Success: load
+    console.log(`Load Success: ${res}`);
   })
   .catch(err => {
     console.log(`Load Timeout or Fail: ${err.message}`);
   });
+```
+
+Output:
+
+```text
+Load Success: load
 ```
 
 ### Util
@@ -214,16 +242,23 @@ windowLoaded(30) // second
 
 Check whether it is a right number.
 
-<!-- ZH: 判断是否有效数字 -->
+Usage:
 
-```
-isNumber(123); // true
-isNumber('123'); // false
+```javascript
+const ret1 = isNumber(123);
+const ret2 = isNumber('123');
 // Default: NaN, Infinity is not Number
-isNumber(Infinity); // false
-isNumber(Infinity, { isInfinityAsNumber: true }); // true
-isNumber(NaN); // false
-isNumber(NaN, { isNaNAsNumber: true, isInfinityAsNumber: true }); // true
+const ret3 = isNumber(Infinity);
+const ret4 = isNumber(Infinity, { isInfinityAsNumber: true });
+const ret5 = isNumber(NaN);
+const ret6 = isNumber(NaN, { isNaNAsNumber: true, isInfinityAsNumber: true });
+console.log(ret1, ret2, ret3, ret4, ret5, ret6);
+```
+
+Output:
+
+```text
+true false false true false true
 ```
 
 #### isJSONString
@@ -232,14 +267,16 @@ Check whether it is a valid JSON string.
 
 Usage:
 
-```
-isJSONString(`['a', 'b', 'c']`);
-isJSONString(`["a", "b", "c"]`);
+```javascript
+const ret1 = isJSONString(`['a', 'b', 'c']`);
+const ret2 = isJSONString(`["a", "b", "c"]`);
+console.log(ret1);
+console.log(ret2);
 ```
 
 Output:
 
-```
+```text
 false
 true
 ```
@@ -250,7 +287,7 @@ Determine the validity of the data.
 
 Usage:
 
-```
+```javascript
 const validData = {
   a: {
     b: {
@@ -270,7 +307,7 @@ console.log('isValidDataResC:', isValidDataResC);
 
 Output:
 
-```
+```text
 isValidDataResA: false
 isValidDataResB: true
 isValidDataResC: false
@@ -280,9 +317,20 @@ isValidDataResC: false
 
 Produce a random string of number, `genRndNumString(7)` => '7658495'.
 
+Usage:
+
+```javascript
+const ret1 = genRndNumString(4);
+const ret2 = genRndNumString(7);
+console.log(ret1);
+console.log(ret2);
 ```
-genRndNumString(4); // '9730'
-genRndNumString(7); // '2262490'
+
+Output:
+
+```text
+9730
+2262490
 ```
 
 #### formatDate
@@ -291,16 +339,20 @@ Return the formatted date string in the given format.
 
 Usage:
 
-```
-console.log('Default formatDate value:', formatDate());
-console.log('String formatDate value:', formatDate('Tue Jan 11 2022 14:12:26 GMT+0800 (China Standard Time)', 'yyyy-MM-dd hh:mm:ss'));
-console.log('Number formatDate value:', formatDate(1641881235000, 'yyyy-MM-dd hh:mm:ss'));
-console.log('Date formatDate value:', formatDate(new Date(2014, 1, 11), 'MM/dd/yyyy'));
+```javascript
+const ret1 = formatDate();
+const ret2 = formatDate('Tue Jan 11 2022 14:12:26 GMT+0800 (China Standard Time)', 'yyyy-MM-dd hh:mm:ss');
+const ret3 = formatDate(1641881235000, 'yyyy-MM-dd hh:mm:ss');
+const ret4 = formatDate(new Date(2014, 1, 11), 'MM/dd/yyyy');
+console.log('Default formatDate value:', ret1);
+console.log('String formatDate value:', ret2);
+console.log('Number formatDate value:', ret3);
+console.log('Date formatDate value:', ret4);
 ```
 
 Output:
 
-```
+```text
 Default formatDate value: 2023-01-11
 String formatDate value: 2022-01-11 14:12:26
 Number formatDate value: 2022-01-11 14:07:15
@@ -311,9 +363,9 @@ Date formatDate value: 02/11/2014
 
 Debounce
 
-<!-- ZH: 去抖 -->
+Usage:
 
-```
+```javascript
 const foo = debounce(() => {
   console.log('The debounced function will only be invoked in 1000 milliseconds, the other invoking will disappear during the wait time.');
 }, 1000, true);
@@ -323,9 +375,9 @@ const foo = debounce(() => {
 
 Throttle
 
-<!-- ZH: 节流 -->
+Usage:
 
-```
+```javascript
 const foo = throttle(() => {
   console.log('The function will be invoked at most once per every wait 1000 milliseconds.');
 }, 1000, { leading: true });
@@ -337,18 +389,40 @@ Reference: [Lodash](https://lodash.com/docs/4.17.15#throttle)
 
 Transfer CamelCase to KebabCase.
 
+Usage:
+
+```javascript
+const ret1 = convertCamelToKebab('ABC');
+const ret2 = convertCamelToKebab('aBC');
+console.log(ret1);
+console.log(ret2);
 ```
-convertCamelToKebab('ABC'); // a-b-c
-convertCamelToKebab('aBC'); // a-b-c
+
+Output:
+
+```text
+a-b-c
+a-b-c
 ```
 
 #### convertCamelToUnder
 
 Transfer CamelCase to Underscore.
 
+Usage:
+
+```javascript
+const ret1 = convertCamelToUnder('ABC');
+const ret2 = convertCamelToUnder('aBC');
+console.log(ret1);
+console.log(ret2);
 ```
-convertCamelToUnder('ABC'); // a_b_c
-convertCamelToUnder('aBC'); // a_b_c
+
+Output:
+
+```text
+a_b_c
+a_b_c
 ```
 
 #### deepCopy
@@ -357,16 +431,18 @@ Copy/Clone Object deeply.
 
 Usage:
 
-```
-deepCopy(['a', 'b', 'c']);
-deepCopy('abc');
+```javascript
+const ret1 = deepCopy(['a', 'b', 'c']);
+const ret2 = deepCopy('abc');
+console.log(ret1);
+console.log(ret2);
 ```
 
 Output:
 
-```
+```text
 ['a', 'b', 'c']
-'abc'
+abc
 ```
 
 ### URL
@@ -375,20 +451,38 @@ Output:
 
 Get the query param's value of the current Web URL(`location.search`).
 
-```
+Usage:
+
+```javascript
 // http://example.com/?t1=1&t2=2&t3=3&t4=4#2333
 // ?t1=1&t2=2&t3=3&t4=4
-getQueryParam('t3'); // 3
-getQueryParam('t4'); // 4
+const p1 = getQueryParam('t3');
+const p2 = getQueryParam('t4');
+console.log(p1, p2);
+```
+
+Output:
+
+```text
+3 4
 ```
 
 #### getUrlParam
 
 Returns the value of the specified query parameter in the input URL.
 
+Usage:
+
+```javascript
+const p1 = getUrlParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't3');
+const p2 = getUrlParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't4');
+console.log(p1, p2);
 ```
-getUrlParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't3'); // Returns '3'
-getUrlParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't4'); // Returns '4'
+
+Output:
+
+```text
+3 4
 ```
 
 #### getHashQueryParam
@@ -397,18 +491,18 @@ Get the hash query param's value of the current Web URL(`location.hash`).
 
 Usage:
 
-```
+```javascript
 // http://example.com/?#2333?t1=1&t2=2&t3=3&t4=4
 // #2333?t1=1&t2=2&t3=3&t4=4
-getHashQueryParam('t3');
-getHashQueryParam('t4');
+const p1 = getHashQueryParam('t3');
+const p2 = getHashQueryParam('t4');
+console.log(p1, p2);
 ```
 
 Output:
 
-```
-3
-4
+```text
+3 4
 ```
 
 #### getDomain
@@ -417,18 +511,24 @@ Get the domain of URL, and other params.
 
 Usage:
 
-```
-getDomain('http://example.com/?t1=1&t2=2&t3=3&t4=4');
-getDomain('http://example.com/test/thanks?t1=1&t2=2&t3=3&t4=4', ['hostname', 'pathname']);
-getDomain('http://example.com:7890/test/thanks', ['hostname']);
-getDomain('http://example.com:7890/test/thanks', ['host']); // With Port
-getDomain('http://example.com:7890/test/thanks', ['origin']);
-getDomain('http://example.com:7890/test/thanks?id=1', ['origin', 'pathname', 'search']);
+```javascript
+const ret1 = getDomain('http://example.com/?t1=1&t2=2&t3=3&t4=4');
+const ret2 = getDomain('http://example.com/test/thanks?t1=1&t2=2&t3=3&t4=4', ['hostname', 'pathname']);
+const ret3 = getDomain('http://example.com:7890/test/thanks', ['hostname']);
+const ret4 = getDomain('http://example.com:7890/test/thanks', ['host']); // With Port
+const ret5 = getDomain('http://example.com:7890/test/thanks', ['origin']);
+const ret6 = getDomain('http://example.com:7890/test/thanks?id=1', ['origin', 'pathname', 'search']);
+console.log(ret1);
+console.log(ret2);
+console.log(ret3);
+console.log(ret4);
+console.log(ret5);
+console.log(ret6);
 ```
 
 Output:
 
-```
+```text
 example.com
 example.com/test/thanks
 example.com
@@ -443,14 +543,16 @@ Update the query param's value of the input URL.
 
 Usage:
 
-```
-updateQueryParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't3', 'three');
-updateQueryParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't4', 'four');
+```javascript
+const ret1 = updateQueryParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't3', 'three');
+const ret2 = updateQueryParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't4', 'four');
+console.log(ret1);
+console.log(ret2);
 ```
 
 Output:
 
-```
+```text
 http://example.com/?t1=1&t2=2&t3=three&t4=4
 http://example.com/?t1=1&t2=2&t3=3&t4=four
 ```
@@ -459,12 +561,21 @@ http://example.com/?t1=1&t2=2&t3=3&t4=four
 
 Checks if the given string is a valid URL, including **scheme URLs**.
 
-```js
-isValidUrl('https://www.example.com'); // true
-isValidUrl('http://example.com/path/exx/ss'); // true
-isValidUrl('https://www.example.com/?q=hello&age=24#world'); // true
-isValidUrl('http://www.example.com/#world?id=9'); // true
-isValidUrl('ftp://example.com'); // true
+Usage:
+
+```javascript
+const ret1 = isValidUrl('https://www.example.com');
+const ret2 = isValidUrl('http://example.com/path/exx/ss');
+const ret3 = isValidUrl('https://www.example.com/?q=hello&age=24#world');
+const ret4 = isValidUrl('http://www.example.com/#world?id=9');
+const ret5 = isValidUrl('ftp://example.com');
+console.log(ret1, ret2, ret3, ret4, ret5);
+```
+
+Output:
+
+```text
+true true true true true
 ```
 
 If you are specifically checking for HTTP/HTTPS URLs, it is recommended to use the `isValidHttpUrl` function instead.
@@ -474,12 +585,21 @@ The `isValidUrl` function matches all scheme URLs, including FTP and other non-H
 
 Check if the given string is a valid HTTP/HTTPS URL.
 
-```js
-isValidHttpUrl('https://www.example.com'); // true
-isValidHttpUrl('http://example.com/path/exx/ss'); // true
-isValidHttpUrl('https://www.example.com/?q=hello&age=24#world'); // true
-isValidHttpUrl('http://www.example.com/#world?id=9'); // true
-isValidHttpUrl('ftp://example.com'); // false
+Usage:
+
+```javascript
+const ret1 = isValidHttpUrl('https://www.example.com');
+const ret2 = isValidHttpUrl('http://example.com/path/exx/ss');
+const ret3 = isValidHttpUrl('https://www.example.com/?q=hello&age=24#world');
+const ret4 = isValidHttpUrl('http://www.example.com/#world?id=9');
+const ret5 = isValidHttpUrl('ftp://example.com');
+console.log(ret1, ret2, ret3, ret4, ret5);
+```
+
+Output:
+
+```text
+true true true true false
 ```
 
 ### Cache Data
@@ -488,24 +608,32 @@ isValidHttpUrl('ftp://example.com'); // false
 
 Handle Cookie.
 
-<!-- ZH: 设置/获取 Cookie -->
+Usage:
 
-```
+```javascript
 setCookie('test', '123', 30, 'example.com'); // key value day domain
-getCookie('test'); // 123
+const ret = getCookie('test');
+console.log(ret);
+```
+
+Output:
+
+```text
+123
 ```
 
 #### Storage
 
 Handle Storage (Keep fit for JSON, it can transfer format automatically).
 
-<!-- ZH: 存储/获取数据到 sessionStorage/localStorage -->
+Usage:
 
-```
+```javascript
 setSessionStorage('test', '123');
-getSessionStorage('test'); // 123
+const ret1 = getSessionStorage('test');
 setLocalStorage('test', '123');
-getLocalStorage('test'); // 123
+const ret2 = getLocalStorage('test');
+console.log(ret1, ret2);
 
 // or package in usage
 const projectName = 'mazey';
@@ -518,17 +646,21 @@ function mGetLocalStorage (key) {
 }
 ```
 
+Output:
+
+```text
+123 123
+```
+
 ### DOM
 
 #### addStyle
 
 Add `<style>` in `<head>`.
 
-<!-- ZH: 添加样式标签; style: 样式标签内的字符串; id: `<style>` 标签的 `id`; 返回: 添加成功/失败 -->
-
 Example 1: Add the `<style>` with `id`, and repeated invoking will update the content instead of adding a new one.
 
-```
+```javascript
 addStyle(
   `
     body {
@@ -548,7 +680,7 @@ addStyle(
 
 Example 2: Add the `<style>` without `id`, and repeated invoking will add a new one.
 
-```
+```javascript
 addStyle(
   `
     body {
@@ -567,7 +699,9 @@ addStyle(
 
 Modify `class`.
 
-```
+Usage:
+
+```javascript
 const dom = document.querySelector('#box');
 
 // Determine `class`
@@ -582,9 +716,20 @@ removeClass(dom, 'test');
 
 Make a new line of HTML.
 
+Usage:
+
+```javascript
+const ret1 = newLine('a\nb\nc');
+const ret2 = newLine('a\n\nbc');
+console.log(ret1);
+console.log(ret2);
 ```
-newLine('a\nb\nc'); // 'a<br />b<br />c'
-newLine('a\n\nbc'); // 'a<br /><br />bc'
+
+Output:
+
+```text
+a<br />b<br />c
+a<br /><br />bc
 ```
 
 ### Calculate and Formula
@@ -593,23 +738,22 @@ newLine('a\n\nbc'); // 'a<br /><br />bc'
 
 Hit probability (1% ~ 100%).
 
-<!-- ZH: 百分位概率 -->
-
 Usage:
 
-```
-inRate(0.5); // 0.01 ~ 1 true/false
+```javascript
+const ret = inRate(0.5); // 0.01 ~ 1 true/false
+console.log(ret);
 ```
 
 Output:
 
-```
+```text
 true
 ```
 
 Example: Test the precision.
 
-```
+```javascript
 // Test
 let trueCount = 0;
 let falseCount = 0;
@@ -629,13 +773,14 @@ Computes the longest common substring of two strings.
 
 Usage:
 
-```
-longestComSubstring('fish', 'finish');
+```javascript
+const ret = longestComSubstring('fish', 'finish');
+console.log(ret);
 ```
 
 Output:
 
-```
+```text
 3
 ```
 
@@ -645,13 +790,14 @@ Computes the longest common subsequence of two strings.
 
 Usage:
 
-```
-longestComSubsequence('fish', 'finish');
+```javascript
+const ret = longestComSubsequence('fish', 'finish');
+console.log(ret);
 ```
 
 Output:
 
-```
+```text
 4
 ```
 
@@ -661,17 +807,16 @@ Output:
 
 Browser Information
 
-<!-- ZH: 返回浏览器信息 https://github.com/JowayYoung/juejin-code/blob/master/browser-type.js -->
-
 Usage:
 
-```
-getBrowserInfo();
+```javascript
+const ret = getBrowserInfo();
+console.log(ret);
 ```
 
 Output:
 
-```
+```text
 {"engine":"webkit","engineVs":"537.36","platform":"desktop","supporter":"chrome","supporterVs":"85.0.4183.121","system":"windows","systemVs":"10"}
 ```
 
@@ -680,7 +825,7 @@ Results:
 | Attribute | Description | Type | Values |
 | :------------ | :------------ | :------------ | :------------ |
 | **system** | System | string | android, ios, windows, macos, linux |
-| systemVs | System version | string | windows: 2000, xp, 2003, vista, 7, 8, 8.1, 10 <br />macos: ... |
+| systemVs | System version | string | Windows: 2000, xp, 2003, vista, 7, 8, 8.1, 10 macOS: ... |
 | platform | Platform | string | desktop, mobile |
 | engine | Engine | string | webkit, gecko, presto, trident |
 | engineVs | Engine version | string | - |
@@ -692,7 +837,7 @@ Results:
 
 Example: Determine the environment of the mobile QQ.
 
-```
+```javascript
 const { system, shell } = getBrowserInfo();
 const isMobileQQ = ['android', 'ios'].includes(system) && ['qq_browser', 'qq_app'].includes(shell);
 ```
@@ -701,17 +846,16 @@ const isMobileQQ = ['android', 'ios'].includes(system) && ['qq_browser', 'qq_app
 
 Detect the margin of Safety. Determine if it is a secure PWA environment that it can run.
 
-<!-- ZH: 判断是否是安全的 PWA 环境 -->
-
 Usage:
 
-```
-isSafePWAEnv();
+```javascript
+const ret = isSafePWAEnv();
+console.log(ret);
 ```
 
 Output:
 
-```
+```text
 true
 ```
 
@@ -723,11 +867,11 @@ Get page load time(`PerformanceNavigationTiming`).
 
 This function uses the [`PerformanceNavigationTiming`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceNavigationTiming) API to get page load time data.
 The `PerformanceNavigationTiming` API provides more accurate and detailed information about page load time than the deprecated [`PerformanceTiming`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming) API.
-If you are using an older browser that does not support `PerformanceNavigationTiming`, you can still use the `PerformanceTiming` API by using the previous version of this library ([`v3.9.7`](https://www.npmjs.com/package/mazey/v/3.9.7)).
+If you are using an older browser that does not support `PerformanceNavigationTiming`, you can still use the `PerformanceTiming` API by using the previous version of this library ([`v3.9.7`](https://github.com/mazeyqian/mazey/releases/tag/v3.9.7)).
 
 Usage:
 
-```
+```javascript
 // `camelCase：false` (Default) Return underline(`a_b`) data.
 // `camelCase：true` Return hump(`aB`) data.
 getPerformance()
@@ -739,7 +883,7 @@ getPerformance()
 
 Output:
 
-```
+```text
 {"source":"PerformanceNavigationTiming","os":"others","os_version":"","device_type":"pc","network":"4g","screen_direction":"","unload_time":0,"redirect_time":0,"dns_time":0,"tcp_time":0,"ssl_time":0,"response_time":2,"download_time":2,"first_paint_time":288,"first_contentful_paint_time":288,"dom_ready_time":0,"onload_time":0,"white_time":0,"render_time":0,"decoded_body_size":718,"encoded_body_size":718}
 ```
 
@@ -765,11 +909,9 @@ Results:
 
 Custom console printing (`console`).
 
-<!-- ZH: 生成自定义控制台打印 -->
-
 Usage:
 
-```
+```javascript
 const myConsole = genCustomConsole('MazeyLog:');
 myConsole.log('I am string.');
 myConsole.info('I am boolean.', true);
@@ -779,7 +921,7 @@ myConsole.info('I am object.', { a: 123, b: 456});
 
 Output:
 
-```
+```text
 MazeyLog: I am string.
 MazeyLog: I am boolean. true
 MazeyLog: I am number. 123 456
@@ -801,33 +943,33 @@ MazeyLog: I am object. {a: 123, b: 456}
 
 ### Scripts
 
-**Install Dependencies**
+Install Dependencies:
 
-```
+```shell
 npm i
 ```
 
-**Development**
+Development:
 
-```
+```shell
 npm run dev
 ```
 
-**Build**
+Build:
 
-```
+```shell
 npm run build
 ```
 
-**Document**
+Document:
 
-```
+```shell
 npm run docs
 ```
 
-**Test**
+Test:
 
-```
+```shell
 npm run test
 ```
 
@@ -846,4 +988,4 @@ npm run test
 
 ## License
 
-This software is released under the terms of the [MIT license](https://github.com/mazeyqian/mazey/blob/master/LICENSE).
+This software is released under the terms of the [MIT license](https://github.com/mazeyqian/mazey/blob/main/LICENSE).

@@ -1,6 +1,9 @@
 /**
- * @author: Mazey Chu
+ * @author: Cheng
  */
+// eslint-disable-next-line spaced-comment
+/// <reference path="../global.d.ts" />
+
 import {
   BrowserInfo,
   DefineListeners,
@@ -31,13 +34,14 @@ import {
  *
  * Usage:
  *
- * ```
- * longestComSubstring('fish', 'finish');
+ * ```javascript
+ * const ret = longestComSubstring('fish', 'finish');
+ * console.log(ret);
  * ```
  *
  * Output:
  *
- * ```
+ * ```text
  * 3
  * ```
  *
@@ -49,8 +53,8 @@ import {
 export function longestComSubstring(aStr: string, bStr: string): number {
   const aLen = aStr.length;
   const bLen = bStr.length;
-  // 创建二维数组并且深拷贝
-  const arr = deepCopyObject(new Array(aLen).fill(new Array(bLen).fill(0)));
+  // Create a two-dimensional array and deep copy it
+  const arr = deepCopy(new Array(aLen).fill(new Array(bLen).fill(0)));
   for (let i = 0; i < aLen; ++i) {
     for (let j = 0; j < bLen; ++j) {
       if (aStr[i] === bStr[j]) {
@@ -62,9 +66,9 @@ export function longestComSubstring(aStr: string, bStr: string): number {
       }
     }
   }
-  // 二维数组转一维数组
+  // Convert the two-dimensional array to a one-dimensional array
   const arr1 = Array.prototype.concat.apply([], arr);
-  // 获取最长公共子串
+  // Get the longest common substring
   const maxLong = Math.max(...arr1);
   return maxLong;
 }
@@ -85,13 +89,14 @@ export function calLongestCommonSubstring(aStr: string, bStr: string): number {
  *
  * Usage:
  *
- * ```
- * longestComSubsequence('fish', 'finish');
+ * ```javascript
+ * const ret = longestComSubsequence('fish', 'finish');
+ * console.log(ret);
  * ```
  *
  * Output:
  *
- * ```
+ * ```text
  * 4
  * ```
  *
@@ -103,8 +108,8 @@ export function calLongestCommonSubstring(aStr: string, bStr: string): number {
 export function longestComSubsequence(aStr: string, bStr: string): number {
   const aLen = aStr.length;
   const bLen = bStr.length;
-  // 创建二维数组并且深拷贝
-  const arr = deepCopyObject(new Array(aLen).fill(new Array(bLen).fill(0)));
+  // Create a two-dimensional array and deep copy it
+  const arr = deepCopy(new Array(aLen).fill(new Array(bLen).fill(0)));
   for (let i = 0; i < aLen; ++i) {
     for (let j = 0; j < bLen; ++j) {
       if (aStr[i] === bStr[j]) {
@@ -125,9 +130,9 @@ export function longestComSubsequence(aStr: string, bStr: string): number {
       }
     }
   }
-  // 二维数组转一维数组
+  // Convert the two-dimensional array to a one-dimensional array
   const arr1 = Array.prototype.concat.apply([], arr);
-  // 获取最长公共子串
+  // Get the longest common subsequence
   const maxLong = Math.max(...arr1);
   return maxLong;
 }
@@ -144,11 +149,20 @@ export function calLongestCommonSubsequence(aStr: string, bStr: string): number 
 /**
  * Get the query param's value of the current Web URL(`location.search`).
  *
- * ```
+ * Usage:
+ *
+ * ```javascript
  * // http://example.com/?t1=1&t2=2&t3=3&t4=4#2333
  * // ?t1=1&t2=2&t3=3&t4=4
- * getQueryParam('t3'); // 3
- * getQueryParam('t4'); // 4
+ * const p1 = getQueryParam('t3');
+ * const p2 = getQueryParam('t4');
+ * console.log(p1, p2);
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * 3 4
  * ```
  *
  * @param {string} param Query param.
@@ -168,10 +182,18 @@ export function getQueryParam(param: string): string {
 /**
  * Returns the value of the specified query parameter in the input URL.
  *
- * @example
+ * Usage:
+ *
+ * ```javascript
+ * const p1 = getUrlParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't3');
+ * const p2 = getUrlParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't4');
+ * console.log(p1, p2);
  * ```
- * getUrlParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't3'); // Returns '3'
- * getUrlParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't4'); // Returns '4'
+ *
+ * Output:
+ *
+ * ```text
+ * 3 4
  * ```
  *
  * @param {string} url The URL string.
@@ -200,14 +222,16 @@ export function getUrlParam(url: string, param: string): string | string[] {
  *
  * Usage:
  *
- * ```
- * updateQueryParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't3', 'three');
- * updateQueryParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't4', 'four');
+ * ```javascript
+ * const ret1 = updateQueryParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't3', 'three');
+ * const ret2 = updateQueryParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't4', 'four');
+ * console.log(ret1);
+ * console.log(ret2);
  * ```
  *
  * Output:
  *
- * ```
+ * ```text
  * http://example.com/?t1=1&t2=2&t3=three&t4=4
  * http://example.com/?t1=1&t2=2&t3=3&t4=four
  * ```
@@ -233,18 +257,18 @@ export function updateQueryParam(url: string, param: string, value: string): str
  *
  * Usage:
  *
- * ```
+ * ```javascript
  * // http://example.com/?#2333?t1=1&t2=2&t3=3&t4=4
  * // #2333?t1=1&t2=2&t3=3&t4=4
- * getHashQueryParam('t3');
- * getHashQueryParam('t4');
+ * const p1 = getHashQueryParam('t3');
+ * const p2 = getHashQueryParam('t4');
+ * console.log(p1, p2);
  * ```
  *
  * Output:
  *
- * ```
- * 3
- * 4
+ * ```text
+ * 3 4
  * ```
  *
  * @param {string} param Query param.
@@ -266,18 +290,24 @@ export function getHashQueryParam(param: string): string {
  *
  * Usage:
  *
- * ```
- * getDomain('http://example.com/?t1=1&t2=2&t3=3&t4=4');
- * getDomain('http://example.com/test/thanks?t1=1&t2=2&t3=3&t4=4', ['hostname', 'pathname']);
- * getDomain('http://example.com:7890/test/thanks', ['hostname']);
- * getDomain('http://example.com:7890/test/thanks', ['host']); // With Port
- * getDomain('http://example.com:7890/test/thanks', ['origin']);
- * getDomain('http://example.com:7890/test/thanks?id=1', ['origin', 'pathname', 'search']);
+ * ```javascript
+ * const ret1 = getDomain('http://example.com/?t1=1&t2=2&t3=3&t4=4');
+ * const ret2 = getDomain('http://example.com/test/thanks?t1=1&t2=2&t3=3&t4=4', ['hostname', 'pathname']);
+ * const ret3 = getDomain('http://example.com:7890/test/thanks', ['hostname']);
+ * const ret4 = getDomain('http://example.com:7890/test/thanks', ['host']); // With Port
+ * const ret5 = getDomain('http://example.com:7890/test/thanks', ['origin']);
+ * const ret6 = getDomain('http://example.com:7890/test/thanks?id=1', ['origin', 'pathname', 'search']);
+ * console.log(ret1);
+ * console.log(ret2);
+ * console.log(ret3);
+ * console.log(ret4);
+ * console.log(ret5);
+ * console.log(ret6);
  * ```
  *
  * Output:
  *
- * ```
+ * ```text
  * example.com
  * example.com/test/thanks
  * example.com
@@ -302,9 +332,20 @@ export function getDomain(url: string, rules = [ 'hostname' ]): string {
 /**
  * Transfer CamelCase to KebabCase.
  *
+ * Usage:
+ *
+ * ```javascript
+ * const ret1 = convertCamelToKebab('ABC');
+ * const ret2 = convertCamelToKebab('aBC');
+ * console.log(ret1);
+ * console.log(ret2);
  * ```
- * convertCamelToKebab('ABC'); // a-b-c
- * convertCamelToKebab('aBC'); // a-b-c
+ *
+ * Output:
+ *
+ * ```text
+ * a-b-c
+ * a-b-c
  * ```
  *
  * @param {string} camelCase 'aBC' or 'ABC'
@@ -328,9 +369,20 @@ export function camelCaseToKebabCase(camelCase: string): string {
 /**
  * Transfer CamelCase to Underscore.
  *
+ * Usage:
+ *
+ * ```javascript
+ * const ret1 = convertCamelToUnder('ABC');
+ * const ret2 = convertCamelToUnder('aBC');
+ * console.log(ret1);
+ * console.log(ret2);
  * ```
- * convertCamelToUnder('ABC'); // a_b_c
- * convertCamelToUnder('aBC'); // a_b_c
+ *
+ * Output:
+ *
+ * ```text
+ * a_b_c
+ * a_b_c
  * ```
  *
  * @param {string} camelCase 'aBC' or 'ABC'
@@ -356,9 +408,20 @@ export function camelCase2Underscore(camelCase: string): string {
  *
  * Note: This method is used to replace the native `String.prototype.trim()`. But it is not necessary to use it in modern browsers.
  *
+ * Usage:
+ *
+ * ```javascript
+ * const ret1 = mTrim(' 1 2 3 ');
+ * const ret2 = mTrim('abc ');
+ * console.log(ret1);
+ * console.log(ret2);
  * ```
- * mTrim(' 1 2 3 '); // '1 2 3'
- * mTrim('abc '); // 'abc'
+ *
+ * Output:
+ *
+ * ```text
+ * 1 2 3
+ * abc
  * ```
  *
  * @param {string} str The string to trim.
@@ -379,9 +442,20 @@ export function mTrim(str: string): string {
 /**
  * Make a new line of HTML.
  *
+ * Usage:
+ *
+ * ```javascript
+ * const ret1 = newLine('a\nb\nc');
+ * const ret2 = newLine('a\n\nbc');
+ * console.log(ret1);
+ * console.log(ret2);
  * ```
- * newLine('a\nb\nc'); // 'a<br />b<br />c'
- * newLine('a\n\nbc'); // 'a<br /><br />bc'
+ *
+ * Output:
+ *
+ * ```text
+ * a<br />b<br />c
+ * a<br /><br />bc
  * ```
  *
  * @param {string} str The string to make a new line.
@@ -401,16 +475,18 @@ export function newLine(str: string): string {
  *
  * Usage:
  *
- * ```
- * deepCopy(['a', 'b', 'c']);
- * deepCopy('abc');
+ * ```javascript
+ * const ret1 = deepCopy(['a', 'b', 'c']);
+ * const ret2 = deepCopy('abc');
+ * console.log(ret1);
+ * console.log(ret2);
  * ```
  *
  * Output:
  *
- * ```
+ * ```text
  * ['a', 'b', 'c']
- * 'abc'
+ * abc
  * ```
  *
  * @param {object} obj The value to clone.
@@ -451,14 +527,16 @@ export function deepCopyObject<T>(obj: T): T {
  *
  * Usage:
  *
- * ```
- * isJSONString(`['a', 'b', 'c']`);
- * isJSONString(`["a", "b", "c"]`);
+ * ```javascript
+ * const ret1 = isJSONString(`['a', 'b', 'c']`);
+ * const ret2 = isJSONString(`["a", "b", "c"]`);
+ * console.log(ret1);
+ * console.log(ret2);
  * ```
  *
  * Output:
  *
- * ```
+ * ```text
  * false
  * true
  * ```
@@ -490,9 +568,20 @@ export function isJsonString(str: string): boolean {
 /**
  * Produce a random string of number, `genRndNumString(7)` => '7658495'.
  *
+ * Usage:
+ *
+ * ```javascript
+ * const ret1 = genRndNumString(4);
+ * const ret2 = genRndNumString(7);
+ * console.log(ret1);
+ * console.log(ret2);
  * ```
- * genRndNumString(4); // '9730'
- * genRndNumString(7); // '2262490'
+ *
+ * Output:
+ *
+ * ```text
+ * 9730
+ * 2262490
  * ```
  *
  * @param {number} n Length
@@ -517,12 +606,27 @@ export function generateRndNum(n = 5): string {
 }
 
 /**
- * 根据时间生成唯一标志的数字 genUniqueNumString() => 1538324722364123
+ * 根据时间生成唯一标志的数字 `genUniqueNumString()` => `1538324722364123`
+ *
+ * Usage:
+ *
+ * ```javascript
+ * const ret1 = genUniqueNumString();
+ * const ret2 = genUniqueNumString(3);
+ * console.log(ret1);
+ * console.log(ret2);
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * 1538324722364123
+ * 1538324722364123
+ * ```
  *
  * @param {number} n 随机数的长度
  * @category Util
  */
-// export function generateUniqueNum(n = 3): string {
 export function genUniqueNumString(n = 3): string {
   const [ now, rnd ] = [ mNow(), generateRndNum(n || 3) ];
   return now + rnd;
@@ -539,6 +643,22 @@ export function generateUniqueNum(n = 3): string {
 
 /**
  * 浮点数转为百分比 0.2 => 20%
+ *
+ * Usage:
+ *
+ * ```javascript
+ * const ret1 = floatToPercent(0.2);
+ * const ret2 = floatToPercent(0.2, 2);
+ * console.log(ret1);
+ * console.log(ret2);
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * 20%
+ * 20.00%
+ * ```
  *
  * @param {number} num 浮点数
  * @param {number} fixSize 保留几位浮点数
@@ -557,6 +677,22 @@ export function floatToPercent(num: number, fixSize = 0): string {
 /**
  * 浮点数保留指定位
  *
+ * Usage:
+ *
+ * ```javascript
+ * const ret1 = floatFixed(0.2);
+ * const ret2 = floatFixed(0.2, 2);
+ * console.log(ret1);
+ * console.log(ret2);
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * 0
+ * 0.20
+ * ```
+ *
  * @category Util
  */
 export function floatFixed(num: string, size = 0): string {
@@ -565,6 +701,12 @@ export function floatFixed(num: string, size = 0): string {
 
 /**
  * 阻止冒泡
+ *
+ * Usage:
+ *
+ * ```javascript
+ * const ret1 = cancelBubble(e);
+ * ```
  *
  * @category Event
  */
@@ -582,7 +724,9 @@ export function cancelBubble(e: Event): void {
 /**
  * Modify `class`.
  *
- * ```
+ * Usage:
+ *
+ * ```javascript
  * const dom = document.querySelector('#box');
  *
  * // Determine `class`
@@ -609,7 +753,9 @@ export function hasClass(obj: HTMLElement, cls: string): boolean {
 /**
  * Modify `class`.
  *
- * ```
+ * Usage:
+ *
+ * ```javascript
  * const dom = document.querySelector('#box');
  *
  * // Determine `class`
@@ -636,7 +782,9 @@ export function addClass(obj: HTMLElement, cls: string): void {
 /**
  * Modify `class`.
  *
- * ```
+ * Usage:
+ *
+ * ```javascript
  * const dom = document.querySelector('#box');
  *
  * // Determine `class`
@@ -664,7 +812,9 @@ export function removeClass(obj: HTMLElement, cls: string): void {
  *
  * ZH: 节流
  *
- * ```
+ * Usage:
+ *
+ * ```javascript
  * const foo = throttle(() => {
  *   console.log('The function will be invoked at most once per every wait 1000 milliseconds.');
  * }, 1000, { leading: true });
@@ -694,6 +844,7 @@ export function throttle<T extends (...args: UnknownFnParams) => UnknownFnReturn
       previous = now;
     }
     const remaining = wait - (now - previous);
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
     context = this;
     args = argRest;
     if (remaining <= 0 || remaining > wait) {
@@ -718,7 +869,9 @@ export function throttle<T extends (...args: UnknownFnParams) => UnknownFnReturn
  *
  * ZH: 去抖
  *
- * ```
+ * Usage:
+ *
+ * ```javascript
  * const foo = debounce(() => {
  *   console.log('The debounced function will only be invoked in 1000 milliseconds, the other invoking will disappear during the wait time.');
  * }, 1000, true);
@@ -747,6 +900,7 @@ export function debounce<T extends (...args: UnknownFnParams) => UnknownFnReturn
     }
   };
   return function(this: unknown, ...argRest: Parameters<T>) {
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
     context = this;
     args = argRest;
     timestamp = mNow();
@@ -769,11 +923,23 @@ const defaultGetFriendlyIntervalOptions = {
 /**
  * 获取间隔时间
  *
- * @example
- * ```js
- * console.log('getFriendlyInterval:', getFriendlyInterval(new Date('2020-03-28 00:09:27'), new Date('2023-04-18 10:54:00'), { type: 'd' })); // 1116
- * console.log('getFriendlyInterval:', getFriendlyInterval(1585325367000, 1681786440000, { type: 'text' })); // 1116 天 10 时 44 分 33 秒
- * console.log('getFriendlyInterval:', getFriendlyInterval('2020-03-28 00:09:27', '2023-04-18 10:54:00', { type: 'text' })); // 1116 天 10 时 44 分 33 秒
+ * Usage:
+ *
+ * ```javascript
+ * const ret1 = getFriendlyInterval(new Date('2020-03-28 00:09:27'), new Date('2023-04-18 10:54:00'), { type: 'd' });
+ * const ret2 = getFriendlyInterval(1585325367000, 1681786440000, { type: 'text' });
+ * const ret3 = getFriendlyInterval('2020-03-28 00:09:27', '2023-04-18 10:54:00', { type: 'text' });
+ * console.log(ret1);
+ * console.log(ret2);
+ * console.log(ret3);
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * 1116
+ * 1116 天 10 时 44 分 33 秒
+ * 1116 天 10 时 44 分 33 秒
  * ```
  *
  * @param {number/Date} start 开始时间戳 1585325367122
@@ -823,14 +989,23 @@ export function getFriendlyInterval(start: number | string | Date = 0, end: numb
  *
  * ZH: 判断是否有效数字
  *
- * ```
- * isNumber(123); // true
- * isNumber('123'); // false
+ * Usage:
+ *
+ * ```javascript
+ * const ret1 = isNumber(123);
+ * const ret2 = isNumber('123');
  * // Default: NaN, Infinity is not Number
- * isNumber(Infinity); // false
- * isNumber(Infinity, { isInfinityAsNumber: true }); // true
- * isNumber(NaN); // false
- * isNumber(NaN, { isNaNAsNumber: true, isInfinityAsNumber: true }); // true
+ * const ret3 = isNumber(Infinity);
+ * const ret4 = isNumber(Infinity, { isInfinityAsNumber: true });
+ * const ret5 = isNumber(NaN);
+ * const ret6 = isNumber(NaN, { isNaNAsNumber: true, isInfinityAsNumber: true });
+ * console.log(ret1, ret2, ret3, ret4, ret5, ret6);
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * true false false true false true
  * ```
  *
  * @param {*} num 被判断的值
@@ -860,6 +1035,14 @@ export function isNumber(num: unknown, options: IsNumberOptions = {}): boolean {
 /**
  * 执行有效函数
  *
+ * Usage:
+ *
+ * ```javascript
+ * const ret = doFn(() => {
+ *  console.log('doFn');
+ * });
+ * ```
+ *
  * @param {function} fn 等待被执行的未知是否有效的函数
  * @category Util
  */
@@ -876,11 +1059,14 @@ export function doFn(fn: AnyFunction, ...params: Parameters<AnyFunction>): Retur
  *
  * ZH: 存储/获取数据到 sessionStorage/localStorage
  *
- * ```
+ * Usage:
+ *
+ * ```javascript
  * setSessionStorage('test', '123');
- * getSessionStorage('test'); // 123
+ * const ret1 = getSessionStorage('test');
  * setLocalStorage('test', '123');
- * getLocalStorage('test'); // 123
+ * const ret2 = getLocalStorage('test');
+ * console.log(ret1, ret2);
  *
  * // or package in usage
  * const projectName = 'mazey';
@@ -891,6 +1077,12 @@ export function doFn(fn: AnyFunction, ...params: Parameters<AnyFunction>): Retur
  * function mGetLocalStorage (key) {
  *   return getLocalStorage(`${projectName}_${key}`);
  * }
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * 123 123
  * ```
  *
  * @param {string} key 键
@@ -908,11 +1100,14 @@ export function setSessionStorage<T>(key: string, value: T | null = null): void 
  *
  * ZH: 存储/获取数据到 sessionStorage/localStorage
  *
- * ```
+ * Usage:
+ *
+ * ```javascript
  * setSessionStorage('test', '123');
- * getSessionStorage('test'); // 123
+ * const ret1 = getSessionStorage('test');
  * setLocalStorage('test', '123');
- * getLocalStorage('test'); // 123
+ * const ret2 = getLocalStorage('test');
+ * console.log(ret1, ret2);
  *
  * // or package in usage
  * const projectName = 'mazey';
@@ -923,6 +1118,12 @@ export function setSessionStorage<T>(key: string, value: T | null = null): void 
  * function mGetLocalStorage (key) {
  *   return getLocalStorage(`${projectName}_${key}`);
  * }
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * 123 123
  * ```
  *
  * @param {string} key 键
@@ -945,11 +1146,14 @@ export function getSessionStorage<T>(key: string): T | null {
  *
  * ZH: 存储/获取数据到 sessionStorage/localStorage
  *
- * ```
+ * Usage:
+ *
+ * ```javascript
  * setSessionStorage('test', '123');
- * getSessionStorage('test'); // 123
+ * const ret1 = getSessionStorage('test');
  * setLocalStorage('test', '123');
- * getLocalStorage('test'); // 123
+ * const ret2 = getLocalStorage('test');
+ * console.log(ret1, ret2);
  *
  * // or package in usage
  * const projectName = 'mazey';
@@ -960,6 +1164,12 @@ export function getSessionStorage<T>(key: string): T | null {
  * function mGetLocalStorage (key) {
  *   return getLocalStorage(`${projectName}_${key}`);
  * }
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * 123 123
  * ```
  *
  * @param {string} key 键
@@ -977,11 +1187,14 @@ export function setLocalStorage<T>(key: string, value: T | null = null): void {
  *
  * ZH: 存储/获取数据到 sessionStorage/localStorage
  *
- * ```
+ * Usage:
+ *
+ * ```javascript
  * setSessionStorage('test', '123');
- * getSessionStorage('test'); // 123
+ * const ret1 = getSessionStorage('test');
  * setLocalStorage('test', '123');
- * getLocalStorage('test'); // 123
+ * const ret2 = getLocalStorage('test');
+ * console.log(ret1, ret2);
  *
  * // or package in usage
  * const projectName = 'mazey';
@@ -994,8 +1207,14 @@ export function setLocalStorage<T>(key: string, value: T | null = null): void {
  * }
  * ```
  *
+ * Output:
+ *
+ * ```text
+ * 123 123
+ * ```
+ *
  * @param {string} key 键
- * @returns {any} 返回值
+ * @returns {void} 返回值
  * @category Cache Data
  */
 export function getLocalStorage<T>(key: string): T | null {
@@ -1014,7 +1233,9 @@ export function getLocalStorage<T>(key: string): T | null {
  *
  * ZH: 动态加载 CSS 文件
  *
- * ```
+ * Usage:
+ *
+ * ```javascript
  * loadCSS(
  *     'http://example.com/path/example.css',
  *     {
@@ -1031,6 +1252,12 @@ export function getLocalStorage<T>(key: string): T | null {
  *       console.error(`Load CSS Fail: ${err.message}`)
  *     }
  *   );
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * Load CSS Success: loaded
  * ```
  *
  * @param {string} url -- css资源路径
@@ -1152,7 +1379,9 @@ export function loadCSS(url: string, options: { id?: string } = { id: '' }): Pro
  *
  * ZH: 动态加载 JavaScript 文件
  *
- * ```
+ * Usage:
+ *
+ * ```javascript
  * loadScript(
  *     'http://example.com/static/js/plugin-2.1.1.min.js',
  *     {
@@ -1171,6 +1400,12 @@ export function loadCSS(url: string, options: { id?: string } = { id: '' }): Pro
  *       console.error(`Load JavaScript script: ${err.message}`)
  *     }
  *   );
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * Load JavaScript script: loaded
  * ```
  *
  * @param {string} url -- JavaScript 资源路径
@@ -1252,6 +1487,19 @@ export function loadScript(
 /**
  * 获取时间戳
  *
+ * Usage:
+ *
+ * ```javascript
+ * const ret = mNow();
+ * console.log(ret);
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * 1585325367122
+ * ```
+ *
  * @category Util
  */
 export function mNow(): number {
@@ -1269,9 +1517,18 @@ export function mNow(): number {
  *
  * ZH: 设置/获取 Cookie
  *
- * ```
+ * Usage:
+ *
+ * ```javascript
  * setCookie('test', '123', 30, 'example.com'); // key value day domain
- * getCookie('test'); // 123
+ * const ret = getCookie('test');
+ * console.log(ret);
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * 123
  * ```
  *
  * @category Cache Data
@@ -1319,9 +1576,18 @@ export function setCookie(name: string, value: string, days?: number, domain?: s
  *
  * ZH: 设置/获取 Cookie
  *
- * ```
+ * Usage:
+ *
+ * ```javascript
  * setCookie('test', '123', 30, 'example.com'); // key value day domain
- * getCookie('test'); // 123
+ * const ret = getCookie('test');
+ * console.log(ret);
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * 123
  * ```
  *
  * @category Cache Data
@@ -1341,6 +1607,19 @@ export function getCookie(name: string): string {
 
 /**
  * Delete a cookie by name.
+ *
+ * Usage:
+ *
+ * ```javascript
+ * const ret = delCookie('test');
+ * console.log(ret);
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * true
+ * ```
  *
  * @param name - The name of the cookie to delete.
  * @returns `true` if the cookie was deleted successfully, `false` otherwise.
@@ -1392,6 +1671,22 @@ function isSupportedEntryType(name: string) {
  * Gets the first contentful paint (FCP) time of a web page using the Performance API.
  * The FCP time is the time it takes for the first piece of content to be painted on the screen.
  *
+ * Usage:
+ *
+ * ```javascript
+ * getFCP().then(
+ *  res => {
+ *   console.log(`FCP: ${res}`);
+ *  }
+ * );
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * FCP: 123
+ * ```
+ *
  * @returns A promise that resolves with the FCP time in milliseconds, or 0 if the 'paint' entry type is not supported.
  * @category Web Performance
  */
@@ -1415,6 +1710,22 @@ export async function getFCP(): Promise<number> {
 /**
  * Gets the first paint (FP) time of a web page using the Performance API.
  * The FP time is the time it takes for the first pixel to be painted on the screen.
+ *
+ * Usage:
+ *
+ * ```javascript
+ * getFP().then(
+ *  res => {
+ *    console.log(`FP: ${res}`);
+ *  }
+ * );
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * FP: 123
+ * ```
  *
  * @returns A promise that resolves with the FP time in milliseconds, or 0 if the 'paint' entry type is not supported.
  * @category Web Performance
@@ -1440,6 +1751,22 @@ export async function getFP(): Promise<number> {
  * Gets the largest contentful paint (LCP) time of a web page using the Performance API.
  * The LCP time is the time it takes for the largest piece of content to be painted on the screen.
  *
+ * Usage:
+ *
+ * ```javascript
+ * getLCP().then(
+ *  res => {
+ *    console.log(`LCP: ${res}`);
+ *  }
+ * );
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * LCP: 123
+ * ```
+ *
  * @returns A promise that resolves with the LCP time in milliseconds, or 0 if the 'largest-contentful-paint' entry type is not supported.
  * @category Web Performance
  */
@@ -1463,6 +1790,22 @@ export async function getLCP(): Promise<number> {
 /**
  * Gets the first input delay (FID) of a web page using the Performance API.
  * The FID is the time it takes for the first user input to be processed by the browser.
+ *
+ * Usage:
+ *
+ * ```javascript
+ * getFID().then(
+ *  res => {
+ *    console.log(`FID: ${res}`);
+ *  }
+ * );
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * FID: 123
+ * ```
  *
  * @returns A promise that resolves with the FID in milliseconds, or 0 if the 'first-input' entry type is not supported.
  * @category Web Performance
@@ -1493,6 +1836,22 @@ export async function getFID(): Promise<number> {
  * Gets the Cumulative Layout Shift (CLS) score of a web page using the Performance API.
  * The CLS score is a measure of how much the page layout shifts during loading.
  *
+ * Usage:
+ *
+ * ```javascript
+ * getCLS().then(
+ *  res => {
+ *    console.log(`CLS: ${res}`);
+ *  }
+ * );
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * CLS: 123
+ * ```
+ *
  * @returns A promise that resolves with the CLS score, or 0 if the 'layout-shift' entry type is not supported.
  * @category Web Performance
  */
@@ -1521,6 +1880,22 @@ export async function getCLS(): Promise<number> {
  * Gets the time to first byte (TTFB) of a web page using the Performance API.
  * The TTFB is the time it takes for the first byte of the response to be received by the browser.
  *
+ * Usage:
+ *
+ * ```javascript
+ * getTTFB().then(
+ *  res => {
+ *    console.log(`TTFB: ${res}`);
+ *  }
+ * );
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * TTFB: 123
+ * ```
+ *
  * @returns The TTFB in milliseconds, or 0 if the navigation timing information is not available.
  * @category Web Performance
  */
@@ -1548,11 +1923,11 @@ export async function getTTFB(): Promise<number> {
  * @remarks
  * This function uses the [`PerformanceNavigationTiming`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceNavigationTiming) API to get page load time data.
  * The `PerformanceNavigationTiming` API provides more accurate and detailed information about page load time than the deprecated [`PerformanceTiming`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming) API.
- * If you are using an older browser that does not support `PerformanceNavigationTiming`, you can still use the `PerformanceTiming` API by using the previous version of this library ([`v3.9.7`](https://www.npmjs.com/package/mazey/v/3.9.7)).
+ * If you are using an older browser that does not support `PerformanceNavigationTiming`, you can still use the `PerformanceTiming` API by using the previous version of this library ([`v3.9.7`](https://github.com/mazeyqian/mazey/releases/tag/v3.9.7)).
  *
  * Usage:
  *
- * ```
+ * ```javascript
  * // `camelCase：false` (Default) Return underline(`a_b`) data.
  * // `camelCase：true` Return hump(`aB`) data.
  * getPerformance()
@@ -1564,7 +1939,7 @@ export async function getTTFB(): Promise<number> {
  *
  * Output:
  *
- * ```
+ * ```text
  * {"source":"PerformanceNavigationTiming","os":"others","os_version":"","device_type":"pc","network":"4g","screen_direction":"","unload_time":0,"redirect_time":0,"dns_time":0,"tcp_time":0,"ssl_time":0,"response_time":2,"download_time":2,"first_paint_time":288,"first_contentful_paint_time":288,"dom_ready_time":0,"onload_time":0,"white_time":0,"render_time":0,"decoded_body_size":718,"encoded_body_size":718}
  * ```
  *
@@ -1597,7 +1972,6 @@ export async function getPerformance(camelCase = false): Promise<WebPerformance 
     return Promise.reject(new Error('performance is not supported'));
   }
   let success: (v: WebPerformance) => void;
-  // let fail: (v: Error) => void;
   const status: Promise<WebPerformance> = new Promise(resolve => {
     [ success ] = [ resolve ];
   });
@@ -1606,7 +1980,6 @@ export async function getPerformance(camelCase = false): Promise<WebPerformance 
   if (isNonEmptyArray(navs)) {
     navigationTiming = navs[0] as PerformanceNavigationTiming;
   }
-  // const navigationTiming = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
   let [
     unloadEventEnd,
     unloadEventStart,
@@ -1684,9 +2057,6 @@ export async function getPerformance(camelCase = false): Promise<WebPerformance 
   } else {
     return Promise.reject(new Error('startTime, navigationStart or fetchStart are required'));
   }
-  // const startTime = navigationStart || fetchStart;
-  // let firstPaintTime: any;
-  // let firstContentfulPaintTime: any;
   const [ firstPaintTime, firstContentfulPaintTime ] = await Promise.all([ getFP(), getFCP() ]);
   // Whether the data has been formed (after the page has finished loading).
   if (isNumber(loadEventEnd) && loadEventEnd > 0) {
@@ -1699,31 +2069,7 @@ export async function getPerformance(camelCase = false): Promise<WebPerformance 
       }, 0);
     });
   }
-  // Get the loading time.
-  // if (window.performance && typeof window.performance.getEntries === 'function') {
-  //   const performanceNavigationTiming: any = (window.performance.getEntries() || [])[0] || {};
-  //   const data: any = {
-  //     // url: encodeURI(location.href),
-  //     // ua: navigator.userAgent,
-  //     os: getOS(),
-  //     osVersion: getOSVersion(),
   function getTiming() {
-    // Get the first render time.
-    // try {
-    //   if (window.performance && Boolean(window.performance.getEntriesByType)) {
-    //     const performance = window.performance;
-    //     const performanceEntries = performance.getEntriesByType('paint');
-    //     performanceEntries.forEach((performanceEntry, i, entries) => {
-    //       const startTime = Math.round(performanceEntry.startTime);
-    //       if (performanceEntry.name === 'first-paint') firstPaintTime = startTime;
-    //       else if (performanceEntry.name === 'first-contentful-paint') firstContentfulPaintTime = startTime;
-    //     });
-    //   } else {
-    //     console.error('paint');
-    //   }
-    // } catch (e) {
-    //   console.error((e as any).message);
-    // }
     // Get the loading time.
     const data: WebPerformance = {
       // url: encodeURI(location.href),
@@ -1753,11 +2099,6 @@ export async function getPerformance(camelCase = false): Promise<WebPerformance 
     // Filter abnormal data.
     Object.keys(data).forEach(k => {
       // Filter out data less than 0.
-      // if (isNumber(data[k]) && data[k] as number < 0) {
-      //   data[k] = 0;
-      // } else {
-      //   data[k] = Math.round(data[k] as number);
-      // }
       if (isNumber(data[k])) {
         if ((data[k] as number) < 0) {
           data[k] = 0;
@@ -1782,15 +2123,6 @@ export async function getPerformance(camelCase = false): Promise<WebPerformance 
     } else {
       success(data);
     }
-    // if (window.performance && typeof window.performance.getEntries === 'function') {
-    //   // const performanceNavigationTiming: any = (window.performance.getEntries() || [])[0] || {};
-    //   // if (startTime > 0) {
-    //   // } else {
-    //   //   fail(new Error('startTime'));
-    //   // }
-    // } else {
-    //   fail(new Error('getEntries'));
-    // }
   }
   // Get the current operating system.
   function getOS() {
@@ -1911,19 +2243,20 @@ export async function getPerformance(camelCase = false): Promise<WebPerformance 
  *
  * Usage:
  *
- * ```
- * inRate(0.5); // 0.01 ~ 1 true/false
+ * ```javascript
+ * const ret = inRate(0.5); // 0.01 ~ 1 true/false
+ * console.log(ret);
  * ```
  *
  * Output:
  *
- * ```
+ * ```text
  * true
  * ```
  *
  * Example: Test the precision.
  *
- * ```
+ * ```javascript
  * // Test
  * let trueCount = 0;
  * let falseCount = 0;
@@ -1955,13 +2288,14 @@ export function inRate(rate: number): boolean {
  *
  * Usage:
  *
- * ```
- * isSafePWAEnv();
+ * ```javascript
+ * const ret = isSafePWAEnv();
+ * console.log(ret);
  * ```
  *
  * Output:
  *
- * ```
+ * ```text
  * true
  * ```
  *
@@ -1973,10 +2307,8 @@ export function isSafePWAEnv(): boolean {
   function isSupportAsyncAwait() {
     let isSupportAsyncAwaitFunc;
     try {
-      // eval("func = async function(){};");
       const fn = new Function('return async function(){};');
       isSupportAsyncAwaitFunc = fn();
-      // console.log('isSupportAsyncAwaitFunc', isSupportAsyncAwaitFunc);
       // 由于async函数的构造器不是全局对象，所以我们需要由下面代码来获取async函数的构造器
       // 具体可以查看以下MDN上有关于AsyncFunction的说明，
       // 地址：https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/AsyncFunction
@@ -2007,13 +2339,14 @@ export function isSafePWAEnv(): boolean {
  *
  * Usage:
  *
- * ```
- * getBrowserInfo();
+ * ```javascript
+ * const ret = getBrowserInfo();
+ * console.log(ret);
  * ```
  *
  * Output:
  *
- * ```
+ * ```text
  * {"engine":"webkit","engineVs":"537.36","platform":"desktop","supporter":"chrome","supporterVs":"85.0.4183.121","system":"windows","systemVs":"10"}
  * ```
  *
@@ -2022,7 +2355,7 @@ export function isSafePWAEnv(): boolean {
  * | Attribute | Description | Type | Values |
  * | :------------ | :------------ | :------------ | :------------ |
  * | **system** | System | string | android, ios, windows, macos, linux |
- * | systemVs | System version | string | windows: 2000, xp, 2003, vista, 7, 8, 8.1, 10 <br />macos: ... |
+ * | systemVs | System version | string | Windows: 2000, xp, 2003, vista, 7, 8, 8.1, 10 macOS: ... |
  * | platform | Platform | string | desktop, mobile |
  * | engine | Engine | string | webkit, gecko, presto, trident |
  * | engineVs | Engine version | string | - |
@@ -2034,7 +2367,7 @@ export function isSafePWAEnv(): boolean {
  *
  * Example: Determine the environment of the mobile QQ.
  *
- * ```
+ * ```javascript
  * const { system, shell } = getBrowserInfo();
  * const isMobileQQ = ['android', 'ios'].includes(system) && ['qq_browser', 'qq_app'].includes(shell);
  * ```
@@ -2254,6 +2587,19 @@ export function getBrowserInfo(): BrowserInfo {
 /**
  * 去除 HTML 标签
  *
+ * Usage:
+ *
+ * ```javascript
+ * const ret = clearHtml('<div>hello world</div>');
+ * console.log(ret);
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * hello world
+ * ```
+ *
  * @param {string} str 带html标签的字符串
  * @returns {string} 字符串
  * @category Util
@@ -2272,7 +2618,20 @@ export function clearHtml(str: string, options: { removeNewLine?: boolean } = {}
 }
 
 /**
- * Sanitizes user input to prevent XSS attacks
+ * Sanitizes user input to prevent XSS attacks.
+ *
+ * Usage:
+ *
+ * ```javascript
+ * const ret = sanitizeInput('<div>hello world</div>');
+ * console.log(ret);
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * &lt;div&gt;hello world&lt;/div&gt;
+ * ```
  *
  * @param input - The input string to sanitize
  * @returns The sanitized input string
@@ -2297,6 +2656,19 @@ export function sanitizeInput(input: string): string {
 /**
  * Reverses the sanitization done by the `sanitizeInput` function.
  *
+ * Usage:
+ *
+ * ```javascript
+ * const ret = unsanitize('&lt;div&gt;hello world&lt;/div&gt;');
+ * console.log(ret);
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * <div>hello world</div>
+ * ```
+ *
  * @param input - The input string to unsanitize
  * @returns The unsanitized input string
  * @category Util
@@ -2320,6 +2692,19 @@ export function unsanitize(input: string): string {
 
 /**
  * 截取字符串，中文算 2 个字节
+ *
+ * Usage:
+ *
+ * ```javascript
+ * const ret = truncateZHString('hello world', 5);
+ * console.log(ret);
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * hello
+ * ```
  *
  * @param {string} str 要截取的字符串
  * @param {number} len
@@ -2371,14 +2756,22 @@ export function cutCHSString(str: string, len: number, hasDot = false): string {
  *
  * ZH: 页面加载完成
  *
- * ```
+ * Usage:
+ *
+ * ```javascript
  * windowLoaded(30) // second
  *   .then(res => {
- *     console.log(`Load Success: ${res}`); // Load Success: load
+ *     console.log(`Load Success: ${res}`);
  *   })
  *   .catch(err => {
  *     console.log(`Load Timeout or Fail: ${err.message}`);
  *   });
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * Load Success: load
  * ```
  *
  * @param {number} timeout 超时时间 / 单位：秒
@@ -2409,7 +2802,7 @@ export function windowLoaded(timeout = 90): Promise<string | Error> {
  *
  * Example 1: Add the `<style>` with `id`, and repeated invoking will update the content instead of adding a new one.
  *
- * ```
+ * ```javascript
  * addStyle(
  *   `
  *     body {
@@ -2429,7 +2822,7 @@ export function windowLoaded(timeout = 90): Promise<string | Error> {
  *
  * Example 2: Add the `<style>` without `id`, and repeated invoking will add a new one.
  *
- * ```
+ * ```javascript
  * addStyle(
  *   `
  *     body {
@@ -2488,7 +2881,7 @@ export function addStyle(style: string, options: { id?: string } = { id: '' }): 
  *
  * Usage:
  *
- * ```
+ * ```javascript
  * const myConsole = genCustomConsole('MazeyLog:');
  * myConsole.log('I am string.');
  * myConsole.info('I am boolean.', true);
@@ -2498,7 +2891,7 @@ export function addStyle(style: string, options: { id?: string } = { id: '' }): 
  *
  * Output:
  *
- * ```
+ * ```text
  * MazeyLog: I am string.
  * MazeyLog: I am boolean. true
  * MazeyLog: I am number. 123 456
@@ -2561,9 +2954,6 @@ export function genCustomConsole(
     const dateStr = todayDateIns.toLocaleDateString(locales, dateOptions);
     return dateStr;
   };
-  // if (showDate) {
-  //   prefix = `${dateStr} ${prefix}`;
-  // }
   methods.forEach(method => {
     newConsole[method] = function(...argu: UnknownFnParams) {
       if (isClosed) {
@@ -2646,6 +3036,19 @@ export function zAxiosIsValidRes(
 /**
  * Verify the validity of a non-empty array.
  *
+ * Usage:
+ *
+ * ```javascript
+ * const ret = isNonEmptyArray([1, 2, 3]);
+ * console.log(ret);
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * true
+ * ```
+ *
  * @category Util
  */
 export function isNonEmptyArray<T>(arr: Array<T>): boolean {
@@ -2661,7 +3064,7 @@ export function isNonEmptyArray<T>(arr: Array<T>): boolean {
  *
  * Usage:
  *
- * ```
+ * ```javascript
  * const validData = {
  *   a: {
  *     b: {
@@ -2681,7 +3084,7 @@ export function isNonEmptyArray<T>(arr: Array<T>): boolean {
  *
  * Output:
  *
- * ```
+ * ```text
  * isValidDataResA: false
  * isValidDataResB: true
  * isValidDataResC: false
@@ -2713,7 +3116,20 @@ export function isValidData(data: UnknownObject, attributes: string[], validValu
 }
 
 /**
- * 语义化文件大小, 把字节转换成正常文件大小.
+ * 语义化文件大小，把字节转换成正常文件大小。
+ *
+ * Usage:
+ *
+ * ```javascript
+ * const ret = getFileSize(1024);
+ * console.log(ret);
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * 1 KB
+ * ```
  *
  * @category Util
  */
@@ -2739,6 +3155,20 @@ export function getFileSize(size: number): string {
 /**
  * Detect webp support.
  *
+ * Usage:
+ *
+ * ```javascript
+ * isSupportWebp().then(res => {
+ *  console.log('isSupportWebp:', res);
+ * });
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * isSupportWebp: true
+ * ```
+ *
  * Reference: [Detect WEBP Support with JavaScript](https://davidwalsh.name/detect-webp)
  *
  * @category Browser Information
@@ -2759,6 +3189,19 @@ export function isSupportWebp(): Promise<boolean> {
 
 /**
  * Generate a Hash Code from a string.
+ *
+ * Usage:
+ *
+ * ```javascript
+ * const ret = genHashCode('hello world');
+ * console.log(ret);
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * 1794106052
+ * ```
  *
  * Reference: [Generate a Hash from string in Javascript](https://stackoverflow.com/questions/7616461/generate-a-hash-from-string-in-javascript-jquery)
  *
@@ -2781,16 +3224,20 @@ export function genHashCode(str: string): number {
  *
  * Usage:
  *
- * ```
- * console.log('Default formatDate value:', formatDate());
- * console.log('String formatDate value:', formatDate('Tue Jan 11 2022 14:12:26 GMT+0800 (China Standard Time)', 'yyyy-MM-dd hh:mm:ss'));
- * console.log('Number formatDate value:', formatDate(1641881235000, 'yyyy-MM-dd hh:mm:ss'));
- * console.log('Date formatDate value:', formatDate(new Date(2014, 1, 11), 'MM/dd/yyyy'));
+ * ```javascript
+ * const ret1 = formatDate();
+ * const ret2 = formatDate('Tue Jan 11 2022 14:12:26 GMT+0800 (China Standard Time)', 'yyyy-MM-dd hh:mm:ss');
+ * const ret3 = formatDate(1641881235000, 'yyyy-MM-dd hh:mm:ss');
+ * const ret4 = formatDate(new Date(2014, 1, 11), 'MM/dd/yyyy');
+ * console.log('Default formatDate value:', ret1);
+ * console.log('String formatDate value:', ret2);
+ * console.log('Number formatDate value:', ret3);
+ * console.log('Date formatDate value:', ret4);
  * ```
  *
  * Output:
  *
- * ```
+ * ```text
  * Default formatDate value: 2023-01-11
  * String formatDate value: 2022-01-11 14:12:26
  * Number formatDate value: 2022-01-11 14:07:15
@@ -2831,6 +3278,12 @@ export function formatDate(dateIns?: Date | number | string, format = 'yyyy-MM-d
 /**
  * Get event container.
  *
+ * Usage:
+ *
+ * ```javascript
+ * const ret = getEventContainer();
+ * ```
+ *
  * @category Event
  * @hidden
  */
@@ -2845,6 +3298,14 @@ export function getDefineListeners(): DefineListeners {
 
 /**
  * Add event.
+ *
+ * Usage:
+ *
+ * ```javascript
+ * addEvent('test', (e) => {
+ *  console.log('test event:', e);
+ * });
+ * ```
  *
  * @param type
  * @param fn
@@ -2862,6 +3323,12 @@ export function addEvent(type: string, fn: UnknownFn): void {
 
 /**
  * Invoke event.
+ *
+ * Usage:
+ *
+ * ```javascript
+ * invokeEvent('test');
+ * ```
  *
  * @param type
  * @category Event
@@ -2882,6 +3349,12 @@ export function invokeEvent(type: string): void {
 
 /**
  * Remove event.
+ *
+ * Usage:
+ *
+ * ```javascript
+ * removeEvent('test');
+ * ```
  *
  * @param type
  * @param fn
@@ -2907,13 +3380,21 @@ export function removeEvent(type: string, fn: UnknownFn): void {
 /**
  * Checks if the given string is a valid URL, including **scheme URLs**.
  *
- * @example
- * ```js
- * isValidUrl('https://www.example.com'); // true
- * isValidUrl('http://example.com/path/exx/ss'); // true
- * isValidUrl('https://www.example.com/?q=hello&age=24#world'); // true
- * isValidUrl('http://www.example.com/#world?id=9'); // true
- * isValidUrl('ftp://example.com'); // true
+ * Usage:
+ *
+ * ```javascript
+ * const ret1 = isValidUrl('https://www.example.com');
+ * const ret2 = isValidUrl('http://example.com/path/exx/ss');
+ * const ret3 = isValidUrl('https://www.example.com/?q=hello&age=24#world');
+ * const ret4 = isValidUrl('http://www.example.com/#world?id=9');
+ * const ret5 = isValidUrl('ftp://example.com');
+ * console.log(ret1, ret2, ret3, ret4, ret5);
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * true true true true true
  * ```
  *
  * @remarks
@@ -2932,13 +3413,21 @@ export function isValidUrl(url: string): boolean {
 /**
  * Check if the given string is a valid HTTP/HTTPS URL.
  *
- * @example
- * ```js
- * isValidHttpUrl('https://www.example.com'); // true
- * isValidHttpUrl('http://example.com/path/exx/ss'); // true
- * isValidHttpUrl('https://www.example.com/?q=hello&age=24#world'); // true
- * isValidHttpUrl('http://www.example.com/#world?id=9'); // true
- * isValidHttpUrl('ftp://example.com'); // false
+ * Usage:
+ *
+ * ```javascript
+ * const ret1 = isValidHttpUrl('https://www.example.com');
+ * const ret2 = isValidHttpUrl('http://example.com/path/exx/ss');
+ * const ret3 = isValidHttpUrl('https://www.example.com/?q=hello&age=24#world');
+ * const ret4 = isValidHttpUrl('http://www.example.com/#world?id=9');
+ * const ret5 = isValidHttpUrl('ftp://example.com');
+ * console.log(ret1, ret2, ret3, ret4, ret5);
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * true true true true false
  * ```
  *
  * @param url
@@ -2953,12 +3442,20 @@ export function isValidHttpUrl(url: string): boolean {
 /**
  * Check if the given string is a mobile phone number.
  *
- * @example
- * ```js
- * console.log(isMobile('13800138000')); // true
- * console.log(isMobile('1380013800')); // false
- * console.log(isMobile('138001380000')); // false
- * console.log(isMobile('1380013800a')); // false
+ * Usage:
+ *
+ * ```javascript
+ * const ret1 = isMobile('13800138000');
+ * const ret2 = isMobile('1380013800');
+ * const ret3 = isMobile('138001380000');
+ * const ret4 = isMobile('1380013800a');
+ * console.log(ret1, ret2, ret3, ret4);
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * true false false false
  * ```
  *
  * @param mobile
@@ -2966,16 +3463,24 @@ export function isValidHttpUrl(url: string): boolean {
  * @category Util
  */
 export function isValidPhoneNumber(mobile: string): boolean {
-  const reg = /^1[3456789]\d{9}$/;
+  const reg = /^1\d{10}$/;
   return reg.test(mobile);
 }
 
 /**
  * Check if the given string is a valid email.
  *
- * @example
- * ```js
- * console.log(isValidEmail('mazeyqian@gmail.com')); // true
+ * Usage:
+ *
+ * ```javascript
+ * const ret = isValidEmail('mazeyqian@gmail.com');
+ * console.log(ret);
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * true
  * ```
  *
  * @param email
@@ -2990,13 +3495,21 @@ export function isValidEmail(email: string): boolean {
 /**
  * Convert a given 10-hex number to a lowercase 26-hex string.
  *
- * @example
- * ```js
- * console.log(convert10To26(1)); // a
- * console.log(convert10To26(26)); // z
- * console.log(convert10To26(27)); // aa
- * console.log(convert10To26(52)); // az
- * console.log(convert10To26(53)); // ba
+ * Usage:
+ *
+ * ```javascript
+ * const ret1 = convert10To26(1);
+ * const ret2 = convert10To26(26);
+ * const ret3 = convert10To26(27);
+ * const ret4 = convert10To26(52);
+ * const ret5 = convert10To26(53);
+ * console.log(ret1, ret2, ret3, ret4, ret5);
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * a z aa az ba
  * ```
  *
  * @param {number} num
@@ -3021,13 +3534,21 @@ export function convert10To26(num: number): string {
  *
  * ZH: 获取文件后缀名
  *
- * @example
- * ```js
- * console.log(getUrlFileType('https://example.com/a/b/c.png')); // png
- * console.log(getUrlFileType('https://example.com/a/b/c.jpg')); // jpg
- * console.log(getUrlFileType('https://example.com/a/b/c.jpeg')); // jpeg
- * console.log(getUrlFileType('/a/b/c.jpeg')); // jpeg
- * console.log(getUrlFileType('https://example.com/a/b/c.v/a')); // ''
+ * Usage:
+ *
+ * ```javascript
+ * const ret1 = getUrlFileType('https://example.com/a/b/c.png');
+ * const ret2 = getUrlFileType('https://example.com/a/b/c.jpg');
+ * const ret3 = getUrlFileType('https://example.com/a/b/c.jpeg');
+ * const ret4 = getUrlFileType('/a/b/c.jpeg');
+ * const ret5 = getUrlFileType('https://example.com/a/b/c.v/a');
+ * console.log(ret1, ret2, ret3, ret4, ret5);
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * png jpg jpeg jpeg ''
  * ```
  *
  * @param url
@@ -3046,12 +3567,6 @@ export function getUrlFileType(url: string): boolean | string {
   if (type[0].length > 1) {
     ret = type[0].substring(1);
   }
-  // if (ret.includes('?')) {
-  //   const arr = ret.split('?');
-  //   if (arr.length > 0) {
-  //     ret = arr[0];
-  //   }
-  // }
   return ret;
 }
 
@@ -3060,8 +3575,9 @@ export function getUrlFileType(url: string): boolean | string {
  * The `src` attribute should contain `width` and/or `height` values in the format "width=100" or "height=100".
  * If jQuery is available, this function uses jQuery to select the images. Otherwise, it uses pure JavaScript.
  *
- * @example
- * ```
+ * Usage:
+ *
+ * ```javascript
  * // Example images with `src` attributes containing `width` and/or `height` values
  * const img1 = document.createElement('img');
  * img1.setAttribute('src', 'https://example.com/example.png?width=2233&height=111');
@@ -3123,27 +3639,35 @@ export function setImgWidHeiBySrc(): boolean {
 }
 
 /**
- * Generate the inline style string from the given parameters, First parameter is the ClassNames, Second parameter is the style array.
+ * Generate the inline style string from the given parameters. The first parameter is the query selector, and the second parameter is the style array.
  *
- * @example
- * ```js
- * console.log(genStyleString('a', [ 'color:red' ])); // '.a{color:red;}'
- * console.log(genStyleString('b', [ 'color:red', 'font-size:12px' ])); // '.b{color:red;font-size:12px;}'
+ * Usage:
+ *
+ * ```javascript
+ * const ret1 = genStyleString('.a', [ 'color:red' ]);
+ * const ret2 = genStyleString('#b', [ 'color:red', 'font-size:12px' ]);
+ * console.log(ret1);
+ * console.log(ret2);
  * ```
  *
- * @param {string} className
- * @param {Array} styleArray
- * @returns {string} Return the inline style string.
+ * Output:
+ *
+ * ```text
+ * .a{color:red;}
+ * #b{color:red;font-size:12px;}
+ * ```
+ *
+ * @param {string} selector
+ * @param {array} styleArray
+ * @returns {string} The inline style string.
  * @category DOM
  */
-export function genStyleString(className: string, styleArray: Array<string>): string {
+export function genStyleString(selector: string, styleArray: Array<string>): string {
   let style = '';
   if (styleArray && styleArray.length > 0) {
-    // It's wrong. Last item will not include `;`.
-    // style = styleArray.join(';');
     style = styleArray.join(';') + ';';
   }
-  return `.${className}{${style}}`;
+  return `${selector}{${style}}`;
 }
 
 /**
@@ -3153,8 +3677,9 @@ export function genStyleString(className: string, styleArray: Array<string>): st
  *
  * Note that this method will not add the image to the DOM.
  *
- * @example
- * ```js
+ * Usage:
+ *
+ * ```javascript
  * loadImage('https://example.com/example.png')
  *   .then((img) => {
  *     console.log(img);
@@ -3192,6 +3717,24 @@ export function getCurrentVersion(): string {
 
 /**
  * Repeatedly fires a callback function with a certain interval until a specified condition is met.
+ *
+ * Usage:
+ *
+ * ```javascript
+ * repeatUntilConditionMet(
+ *   () => {
+ *     console.log('repeatUntilConditionMet');
+ *     return true;
+ *   }, {
+ *     interval: 1000,
+ *     times: 10,
+ *     context: null,
+ *     args: [],
+ *   }, (result) => {
+ *     return result === true;
+ *   }
+ * );
+ * ```
  *
  * @param callback The callback function to fire.
  * @param options An object containing the options for the function.
@@ -3240,15 +3783,22 @@ export function repeatUntilConditionMet<T extends (...args: UnknownFnParams) => 
 /**
  * Load a script from the given URL if it (`window['attribute']`) has not already been loaded.
  *
- * @example
- * ```js
- * loadScriptIfUndefined('jQuery', 'https://example.com/lib/jquery.min.js')
+ * Usage:
+ *
+ * ```javascript
+ * loadScriptIfUndefined('xyz', 'https://example.com/lib/jquery.min.js')
  *   .then(() => {
- *     console.log('jQuery is loaded.');
+ *     console.log('xyz is loaded.');
  *   })
  *   .catch(err => {
- *     console.log('Failed to load jQuery.', err);
+ *     console.log('Failed to load xyz.', err);
  *   });
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * xyz is loaded.
  * ```
  *
  * @param {string} windowAttribute - The name of the window attribute to check (e.g. `jQuery`, `axios`, etc.).
@@ -3265,6 +3815,19 @@ export function loadScriptIfUndefined(windowAttribute: string, url: string): Loa
 
 /**
  * Retrieve a query parameter from a script URL in the browser.
+ *
+ * Usage:
+ *
+ * ```javascript
+ * const ret = getScriptQueryParam('test', 'https://example.com/example.js');
+ * console.log(ret);
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * hello
+ * ```
  *
  * @param param - The name of the query parameter to retrieve.
  * @param matchString - An optional substring to match in the script URL.
@@ -3288,4 +3851,42 @@ export function getScriptQueryParam(param: string, matchString = ''): string {
     }
   }
   return '';
+}
+
+/**
+ * Wait for a specified amount of time.
+ *
+ * Usage:
+ *
+ * ```javascript
+ * waitTime(1000).then((time) => {
+ *  console.log('waitTime:', time);
+ * });
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * waitTime: 1000
+ * ```
+ *
+ * @param time The amount of time to wait, in milliseconds.
+ * @returns A Promise that resolves after the specified time has elapsed.
+ * @category Util
+ */
+export async function waitTime(time: number): Promise<number> {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve(time);
+    }, time);
+  });
+}
+
+/**
+ * Alias of `waitTime`.
+ *
+ * @hidden
+ */
+export async function sleep(time: number): Promise<number> {
+  return waitTime(time);
 }
