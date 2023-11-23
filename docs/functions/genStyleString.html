@@ -17,27 +17,31 @@
 <h1>Function genStyleString</h1></div>
 <section class="tsd-panel">
 <ul class="tsd-signatures">
-<li class="tsd-signature tsd-anchor-link" id="genStyleString"><span class="tsd-kind-call-signature">gen<wbr/>Style<wbr/>String</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">className</span>, <span class="tsd-kind-parameter">styleArray</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><a href="#genStyleString" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><g stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" id="icon-anchor"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></g></svg></a></li>
+<li class="tsd-signature tsd-anchor-link" id="genStyleString"><span class="tsd-kind-call-signature">gen<wbr/>Style<wbr/>String</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">selector</span>, <span class="tsd-kind-parameter">styleArray</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><a href="#genStyleString" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><g stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" id="icon-anchor"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></g></svg></a></li>
 <li class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>Generate the inline style string from the given parameters, First parameter is the ClassNames, Second parameter is the style array.</p>
+<div class="tsd-comment tsd-typography"><p>Generate the inline style string from the given parameters. The first parameter is the query selector, and the second parameter is the style array.</p>
+<p>Usage:</p>
+<pre><code class="language-javascript"><span class="hl-3">const</span><span class="hl-1"> </span><span class="hl-11">ret1</span><span class="hl-1"> = </span><span class="hl-0">genStyleString</span><span class="hl-1">(</span><span class="hl-2">&#39;.a&#39;</span><span class="hl-1">, [ </span><span class="hl-2">&#39;color:red&#39;</span><span class="hl-1"> ]);</span><br/><span class="hl-3">const</span><span class="hl-1"> </span><span class="hl-11">ret2</span><span class="hl-1"> = </span><span class="hl-0">genStyleString</span><span class="hl-1">(</span><span class="hl-2">&#39;#b&#39;</span><span class="hl-1">, [ </span><span class="hl-2">&#39;color:red&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;font-size:12px&#39;</span><span class="hl-1"> ]);</span><br/><span class="hl-10">console</span><span class="hl-1">.</span><span class="hl-0">log</span><span class="hl-1">(</span><span class="hl-10">ret1</span><span class="hl-1">);</span><br/><span class="hl-10">console</span><span class="hl-1">.</span><span class="hl-0">log</span><span class="hl-1">(</span><span class="hl-10">ret2</span><span class="hl-1">);</span>
+</code><button>Copy</button></pre>
+<p>Output:</p>
+<pre><code class="language-text">.a{color:red;}
+#b{color:red;font-size:12px;}
+</code><button>Copy</button></pre>
 </div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5><span class="tsd-kind-parameter">className</span>: <span class="tsd-signature-type">string</span></h5>
+<h5><span class="tsd-kind-parameter">selector</span>: <span class="tsd-signature-type">string</span></h5>
 <div class="tsd-comment tsd-typography"></div></li>
 <li>
 <h5><span class="tsd-kind-parameter">styleArray</span>: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
 <div class="tsd-comment tsd-typography"></div></li></ul></div>
-<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4><p>Return the inline style string.</p>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4><p>The inline style string.</p>
 
-<div class="tsd-comment tsd-typography">
-<h4>Example</h4><pre><code class="language-js"><span class="hl-0">console</span><span class="hl-1">.</span><span class="hl-7">log</span><span class="hl-1">(</span><span class="hl-7">genStyleString</span><span class="hl-1">(</span><span class="hl-2">&#39;a&#39;</span><span class="hl-1">, [ </span><span class="hl-2">&#39;color:red&#39;</span><span class="hl-1"> ])); </span><span class="hl-8">// &#39;.a{color:red;}&#39;</span><br/><span class="hl-0">console</span><span class="hl-1">.</span><span class="hl-7">log</span><span class="hl-1">(</span><span class="hl-7">genStyleString</span><span class="hl-1">(</span><span class="hl-2">&#39;b&#39;</span><span class="hl-1">, [ </span><span class="hl-2">&#39;color:red&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;font-size:12px&#39;</span><span class="hl-1"> ])); </span><span class="hl-8">// &#39;.b{color:red;font-size:12px;}&#39;</span>
-</code><button>Copy</button></pre>
-</div><aside class="tsd-sources">
+<div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d40f814/src/index.ts#L3139">index.ts:3139</a></li></ul></aside></li></ul></section></div>
+<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/c63f094/src/index.ts#L3665">index.ts:3665</a></li></ul></aside></li></ul></section></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
@@ -126,5 +130,6 @@
 <li><a href="truncateZHString.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>truncateZHString</span></a></li>
 <li><a href="unsanitize.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>unsanitize</span></a></li>
 <li><a href="updateQueryParam.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>update<wbr/>Query<wbr/>Param</span></a></li>
+<li><a href="waitTime.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>wait<wbr/>Time</span></a></li>
 <li><a href="windowLoaded.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>window<wbr/>Loaded</span></a></li></ul></nav></div></div></div>
 <div class="overlay"></div></body></html>

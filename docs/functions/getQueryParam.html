@@ -20,7 +20,11 @@
 <li class="tsd-signature tsd-anchor-link" id="getQueryParam"><span class="tsd-kind-call-signature">get<wbr/>Query<wbr/>Param</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">param</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><a href="#getQueryParam" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><g stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" id="icon-anchor"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></g></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Get the query param&#39;s value of the current Web URL(<code>location.search</code>).</p>
-<pre><code><span class="hl-8">// http://example.com/?t1=1&amp;t2=2&amp;t3=3&amp;t4=4#2333</span><br/><span class="hl-8">// ?t1=1&amp;t2=2&amp;t3=3&amp;t4=4</span><br/><span class="hl-7">getQueryParam</span><span class="hl-1">(</span><span class="hl-2">&#39;t3&#39;</span><span class="hl-1">); </span><span class="hl-8">// 3</span><br/><span class="hl-7">getQueryParam</span><span class="hl-1">(</span><span class="hl-2">&#39;t4&#39;</span><span class="hl-1">); </span><span class="hl-8">// 4</span>
+<p>Usage:</p>
+<pre><code class="language-javascript"><span class="hl-12">// http://example.com/?t1=1&amp;t2=2&amp;t3=3&amp;t4=4#2333</span><br/><span class="hl-12">// ?t1=1&amp;t2=2&amp;t3=3&amp;t4=4</span><br/><span class="hl-3">const</span><span class="hl-1"> </span><span class="hl-11">p1</span><span class="hl-1"> = </span><span class="hl-0">getQueryParam</span><span class="hl-1">(</span><span class="hl-2">&#39;t3&#39;</span><span class="hl-1">);</span><br/><span class="hl-3">const</span><span class="hl-1"> </span><span class="hl-11">p2</span><span class="hl-1"> = </span><span class="hl-0">getQueryParam</span><span class="hl-1">(</span><span class="hl-2">&#39;t4&#39;</span><span class="hl-1">);</span><br/><span class="hl-10">console</span><span class="hl-1">.</span><span class="hl-0">log</span><span class="hl-1">(</span><span class="hl-10">p1</span><span class="hl-1">, </span><span class="hl-10">p2</span><span class="hl-1">);</span>
+</code><button>Copy</button></pre>
+<p>Output:</p>
+<pre><code class="language-text">3 4
 </code><button>Copy</button></pre>
 </div>
 <div class="tsd-parameters">
@@ -35,7 +39,7 @@
 
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d40f814/src/index.ts#L158">index.ts:158</a></li></ul></aside></li></ul></section></div>
+<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/c63f094/src/index.ts#L172">index.ts:172</a></li></ul></aside></li></ul></section></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
@@ -124,5 +128,6 @@
 <li><a href="truncateZHString.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>truncateZHString</span></a></li>
 <li><a href="unsanitize.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>unsanitize</span></a></li>
 <li><a href="updateQueryParam.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>update<wbr/>Query<wbr/>Param</span></a></li>
+<li><a href="waitTime.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>wait<wbr/>Time</span></a></li>
 <li><a href="windowLoaded.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>window<wbr/>Loaded</span></a></li></ul></nav></div></div></div>
 <div class="overlay"></div></body></html>

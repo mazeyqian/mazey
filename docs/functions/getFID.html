@@ -21,12 +21,18 @@
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Gets the first input delay (FID) of a web page using the Performance API.
 The FID is the time it takes for the first user input to be processed by the browser.</p>
+<p>Usage:</p>
+<pre><code class="language-javascript"><span class="hl-0">getFID</span><span class="hl-1">().</span><span class="hl-0">then</span><span class="hl-1">(</span><br/><span class="hl-1"> </span><span class="hl-10">res</span><span class="hl-1"> </span><span class="hl-3">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">   </span><span class="hl-10">console</span><span class="hl-1">.</span><span class="hl-0">log</span><span class="hl-1">(</span><span class="hl-2">`FID: </span><span class="hl-3">${</span><span class="hl-10">res</span><span class="hl-3">}</span><span class="hl-2">`</span><span class="hl-1">);</span><br/><span class="hl-1"> }</span><br/><span class="hl-1">);</span>
+</code><button>Copy</button></pre>
+<p>Output:</p>
+<pre><code class="language-text">FID: 123
+</code><button>Copy</button></pre>
 </div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h4><p>A promise that resolves with the FID in milliseconds, or 0 if the &#39;first-input&#39; entry type is not supported.</p>
 
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d40f814/src/index.ts#L1470">index.ts:1470</a></li></ul></aside></li></ul></section></div>
+<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/c63f094/src/index.ts#L1813">index.ts:1813</a></li></ul></aside></li></ul></section></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
@@ -115,5 +121,6 @@ The FID is the time it takes for the first user input to be processed by the bro
 <li><a href="truncateZHString.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>truncateZHString</span></a></li>
 <li><a href="unsanitize.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>unsanitize</span></a></li>
 <li><a href="updateQueryParam.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>update<wbr/>Query<wbr/>Param</span></a></li>
+<li><a href="waitTime.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>wait<wbr/>Time</span></a></li>
 <li><a href="windowLoaded.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>window<wbr/>Loaded</span></a></li></ul></nav></div></div></div>
 <div class="overlay"></div></body></html>

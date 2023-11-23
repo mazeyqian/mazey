@@ -22,13 +22,13 @@
 <div class="tsd-comment tsd-typography"><p>EN: Hit probability (1% ~ 100%).</p>
 <p>ZH: 百分位概率</p>
 <p>Usage:</p>
-<pre><code><span class="hl-7">inRate</span><span class="hl-1">(</span><span class="hl-9">0.5</span><span class="hl-1">); </span><span class="hl-8">// 0.01 ~ 1 true/false</span>
+<pre><code class="language-javascript"><span class="hl-3">const</span><span class="hl-1"> </span><span class="hl-11">ret</span><span class="hl-1"> = </span><span class="hl-0">inRate</span><span class="hl-1">(</span><span class="hl-13">0.5</span><span class="hl-1">); </span><span class="hl-12">// 0.01 ~ 1 true/false</span><br/><span class="hl-10">console</span><span class="hl-1">.</span><span class="hl-0">log</span><span class="hl-1">(</span><span class="hl-10">ret</span><span class="hl-1">);</span>
 </code><button>Copy</button></pre>
 <p>Output:</p>
-<pre><code><span class="hl-5">true</span>
+<pre><code class="language-text">true
 </code><button>Copy</button></pre>
 <p>Example: Test the precision.</p>
-<pre><code><span class="hl-8">// Test</span><br/><span class="hl-5">let</span><span class="hl-1"> </span><span class="hl-0">trueCount</span><span class="hl-1"> = </span><span class="hl-9">0</span><span class="hl-1">;</span><br/><span class="hl-5">let</span><span class="hl-1"> </span><span class="hl-0">falseCount</span><span class="hl-1"> = </span><span class="hl-9">0</span><span class="hl-1">;</span><br/><span class="hl-5">new</span><span class="hl-1"> </span><span class="hl-7">Array</span><span class="hl-1">(</span><span class="hl-9">1000000</span><span class="hl-1">).</span><span class="hl-7">fill</span><span class="hl-1">(</span><span class="hl-9">0</span><span class="hl-1">).</span><span class="hl-7">forEach</span><span class="hl-1">(() </span><span class="hl-5">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-4">if</span><span class="hl-1"> (</span><span class="hl-7">inRate</span><span class="hl-1">(</span><span class="hl-9">0.5</span><span class="hl-1">)) {</span><br/><span class="hl-1">    </span><span class="hl-0">trueCount</span><span class="hl-1">++;</span><br/><span class="hl-1">  } </span><span class="hl-4">else</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-0">falseCount</span><span class="hl-1">++;</span><br/><span class="hl-1">  }</span><br/><span class="hl-1">});</span><br/><span class="hl-0">console</span><span class="hl-1">.</span><span class="hl-7">log</span><span class="hl-1">(</span><span class="hl-0">trueCount</span><span class="hl-1">, </span><span class="hl-0">falseCount</span><span class="hl-1">); </span><span class="hl-8">// 499994 500006</span>
+<pre><code class="language-javascript"><span class="hl-12">// Test</span><br/><span class="hl-3">let</span><span class="hl-1"> </span><span class="hl-10">trueCount</span><span class="hl-1"> = </span><span class="hl-13">0</span><span class="hl-1">;</span><br/><span class="hl-3">let</span><span class="hl-1"> </span><span class="hl-10">falseCount</span><span class="hl-1"> = </span><span class="hl-13">0</span><span class="hl-1">;</span><br/><span class="hl-3">new</span><span class="hl-1"> </span><span class="hl-0">Array</span><span class="hl-1">(</span><span class="hl-13">1000000</span><span class="hl-1">).</span><span class="hl-0">fill</span><span class="hl-1">(</span><span class="hl-13">0</span><span class="hl-1">).</span><span class="hl-0">forEach</span><span class="hl-1">(() </span><span class="hl-3">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-9">if</span><span class="hl-1"> (</span><span class="hl-0">inRate</span><span class="hl-1">(</span><span class="hl-13">0.5</span><span class="hl-1">)) {</span><br/><span class="hl-1">    </span><span class="hl-10">trueCount</span><span class="hl-1">++;</span><br/><span class="hl-1">  } </span><span class="hl-9">else</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-10">falseCount</span><span class="hl-1">++;</span><br/><span class="hl-1">  }</span><br/><span class="hl-1">});</span><br/><span class="hl-10">console</span><span class="hl-1">.</span><span class="hl-0">log</span><span class="hl-1">(</span><span class="hl-10">trueCount</span><span class="hl-1">, </span><span class="hl-10">falseCount</span><span class="hl-1">); </span><span class="hl-12">// 499994 500006</span>
 </code><button>Copy</button></pre>
 </div>
 <div class="tsd-parameters">
@@ -43,7 +43,7 @@
 
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d40f814/src/index.ts#L1944">index.ts:1944</a></li></ul></aside></li></ul></section></div>
+<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/c63f094/src/index.ts#L2277">index.ts:2277</a></li></ul></aside></li></ul></section></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
@@ -132,5 +132,6 @@
 <li><a href="truncateZHString.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>truncateZHString</span></a></li>
 <li><a href="unsanitize.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>unsanitize</span></a></li>
 <li><a href="updateQueryParam.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>update<wbr/>Query<wbr/>Param</span></a></li>
+<li><a href="waitTime.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>wait<wbr/>Time</span></a></li>
 <li><a href="windowLoaded.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>window<wbr/>Loaded</span></a></li></ul></nav></div></div></div>
 <div class="overlay"></div></body></html>

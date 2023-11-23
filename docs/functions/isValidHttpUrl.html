@@ -20,6 +20,12 @@
 <li class="tsd-signature tsd-anchor-link" id="isValidHttpUrl"><span class="tsd-kind-call-signature">is<wbr/>Valid<wbr/>Http<wbr/>Url</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">url</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><a href="#isValidHttpUrl" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><g stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" id="icon-anchor"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></g></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Check if the given string is a valid HTTP/HTTPS URL.</p>
+<p>Usage:</p>
+<pre><code class="language-javascript"><span class="hl-3">const</span><span class="hl-1"> </span><span class="hl-11">ret1</span><span class="hl-1"> = </span><span class="hl-0">isValidHttpUrl</span><span class="hl-1">(</span><span class="hl-2">&#39;https://www.example.com&#39;</span><span class="hl-1">);</span><br/><span class="hl-3">const</span><span class="hl-1"> </span><span class="hl-11">ret2</span><span class="hl-1"> = </span><span class="hl-0">isValidHttpUrl</span><span class="hl-1">(</span><span class="hl-2">&#39;http://example.com/path/exx/ss&#39;</span><span class="hl-1">);</span><br/><span class="hl-3">const</span><span class="hl-1"> </span><span class="hl-11">ret3</span><span class="hl-1"> = </span><span class="hl-0">isValidHttpUrl</span><span class="hl-1">(</span><span class="hl-2">&#39;https://www.example.com/?q=hello&amp;age=24#world&#39;</span><span class="hl-1">);</span><br/><span class="hl-3">const</span><span class="hl-1"> </span><span class="hl-11">ret4</span><span class="hl-1"> = </span><span class="hl-0">isValidHttpUrl</span><span class="hl-1">(</span><span class="hl-2">&#39;http://www.example.com/#world?id=9&#39;</span><span class="hl-1">);</span><br/><span class="hl-3">const</span><span class="hl-1"> </span><span class="hl-11">ret5</span><span class="hl-1"> = </span><span class="hl-0">isValidHttpUrl</span><span class="hl-1">(</span><span class="hl-2">&#39;ftp://example.com&#39;</span><span class="hl-1">);</span><br/><span class="hl-10">console</span><span class="hl-1">.</span><span class="hl-0">log</span><span class="hl-1">(</span><span class="hl-10">ret1</span><span class="hl-1">, </span><span class="hl-10">ret2</span><span class="hl-1">, </span><span class="hl-10">ret3</span><span class="hl-1">, </span><span class="hl-10">ret4</span><span class="hl-1">, </span><span class="hl-10">ret5</span><span class="hl-1">);</span>
+</code><button>Copy</button></pre>
+<p>Output:</p>
+<pre><code class="language-text">true true true true false
+</code><button>Copy</button></pre>
 </div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
@@ -29,12 +35,9 @@
 <div class="tsd-comment tsd-typography"></div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4><p>Return true if the given string is a valid HTTP/HTTPS URL.</p>
 
-<div class="tsd-comment tsd-typography">
-<h4>Example</h4><pre><code class="language-js"><span class="hl-7">isValidHttpUrl</span><span class="hl-1">(</span><span class="hl-2">&#39;https://www.example.com&#39;</span><span class="hl-1">); </span><span class="hl-8">// true</span><br/><span class="hl-7">isValidHttpUrl</span><span class="hl-1">(</span><span class="hl-2">&#39;http://example.com/path/exx/ss&#39;</span><span class="hl-1">); </span><span class="hl-8">// true</span><br/><span class="hl-7">isValidHttpUrl</span><span class="hl-1">(</span><span class="hl-2">&#39;https://www.example.com/?q=hello&amp;age=24#world&#39;</span><span class="hl-1">); </span><span class="hl-8">// true</span><br/><span class="hl-7">isValidHttpUrl</span><span class="hl-1">(</span><span class="hl-2">&#39;http://www.example.com/#world?id=9&#39;</span><span class="hl-1">); </span><span class="hl-8">// true</span><br/><span class="hl-7">isValidHttpUrl</span><span class="hl-1">(</span><span class="hl-2">&#39;ftp://example.com&#39;</span><span class="hl-1">); </span><span class="hl-8">// false</span>
-</code><button>Copy</button></pre>
-</div><aside class="tsd-sources">
+<div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d40f814/src/index.ts#L2948">index.ts:2948</a></li></ul></aside></li></ul></section></div>
+<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/c63f094/src/index.ts#L3437">index.ts:3437</a></li></ul></aside></li></ul></section></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
@@ -123,5 +126,6 @@
 <li><a href="truncateZHString.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>truncateZHString</span></a></li>
 <li><a href="unsanitize.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>unsanitize</span></a></li>
 <li><a href="updateQueryParam.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>update<wbr/>Query<wbr/>Param</span></a></li>
+<li><a href="waitTime.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>wait<wbr/>Time</span></a></li>
 <li><a href="windowLoaded.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>window<wbr/>Loaded</span></a></li></ul></nav></div></div></div>
 <div class="overlay"></div></body></html>

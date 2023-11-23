@@ -21,10 +21,11 @@
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Update the query param&#39;s value of the input URL.</p>
 <p>Usage:</p>
-<pre><code><span class="hl-7">updateQueryParam</span><span class="hl-1">(</span><span class="hl-2">&#39;http://example.com/?t1=1&amp;t2=2&amp;t3=3&amp;t4=4&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;t3&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;three&#39;</span><span class="hl-1">);</span><br/><span class="hl-7">updateQueryParam</span><span class="hl-1">(</span><span class="hl-2">&#39;http://example.com/?t1=1&amp;t2=2&amp;t3=3&amp;t4=4&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;t4&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;four&#39;</span><span class="hl-1">);</span>
+<pre><code class="language-javascript"><span class="hl-3">const</span><span class="hl-1"> </span><span class="hl-11">ret1</span><span class="hl-1"> = </span><span class="hl-0">updateQueryParam</span><span class="hl-1">(</span><span class="hl-2">&#39;http://example.com/?t1=1&amp;t2=2&amp;t3=3&amp;t4=4&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;t3&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;three&#39;</span><span class="hl-1">);</span><br/><span class="hl-3">const</span><span class="hl-1"> </span><span class="hl-11">ret2</span><span class="hl-1"> = </span><span class="hl-0">updateQueryParam</span><span class="hl-1">(</span><span class="hl-2">&#39;http://example.com/?t1=1&amp;t2=2&amp;t3=3&amp;t4=4&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;t4&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;four&#39;</span><span class="hl-1">);</span><br/><span class="hl-10">console</span><span class="hl-1">.</span><span class="hl-0">log</span><span class="hl-1">(</span><span class="hl-10">ret1</span><span class="hl-1">);</span><br/><span class="hl-10">console</span><span class="hl-1">.</span><span class="hl-0">log</span><span class="hl-1">(</span><span class="hl-10">ret2</span><span class="hl-1">);</span>
 </code><button>Copy</button></pre>
 <p>Output:</p>
-<pre><code><span class="hl-11">http</span><span class="hl-1">:</span><span class="hl-8">//example.com/?t1=1&amp;t2=2&amp;t3=three&amp;t4=4</span><br/><span class="hl-11">http</span><span class="hl-1">:</span><span class="hl-8">//example.com/?t1=1&amp;t2=2&amp;t3=3&amp;t4=four</span>
+<pre><code class="language-text">http://example.com/?t1=1&amp;t2=2&amp;t3=three&amp;t4=4
+http://example.com/?t1=1&amp;t2=2&amp;t3=3&amp;t4=four
 </code><button>Copy</button></pre>
 </div>
 <div class="tsd-parameters">
@@ -49,7 +50,7 @@
 
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d40f814/src/index.ts#L221">index.ts:221</a></li></ul></aside></li></ul></section></div>
+<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/c63f094/src/index.ts#L245">index.ts:245</a></li></ul></aside></li></ul></section></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
@@ -138,5 +139,6 @@
 <li><a href="truncateZHString.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>truncateZHString</span></a></li>
 <li><a href="unsanitize.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>unsanitize</span></a></li>
 <li><a href="updateQueryParam.html" class="current"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>update<wbr/>Query<wbr/>Param</span></a></li>
+<li><a href="waitTime.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>wait<wbr/>Time</span></a></li>
 <li><a href="windowLoaded.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>window<wbr/>Loaded</span></a></li></ul></nav></div></div></div>
 <div class="overlay"></div></body></html>

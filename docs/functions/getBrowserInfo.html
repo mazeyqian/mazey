@@ -22,10 +22,10 @@
 <div class="tsd-comment tsd-typography"><p>EN: Browser Information</p>
 <p>ZH: 返回浏览器信息 <a href="https://github.com/JowayYoung/juejin-code/blob/master/browser-type.js">https://github.com/JowayYoung/juejin-code/blob/master/browser-type.js</a></p>
 <p>Usage:</p>
-<pre><code><span class="hl-7">getBrowserInfo</span><span class="hl-1">();</span>
+<pre><code class="language-javascript"><span class="hl-3">const</span><span class="hl-1"> </span><span class="hl-11">ret</span><span class="hl-1"> = </span><span class="hl-0">getBrowserInfo</span><span class="hl-1">();</span><br/><span class="hl-10">console</span><span class="hl-1">.</span><span class="hl-0">log</span><span class="hl-1">(</span><span class="hl-10">ret</span><span class="hl-1">);</span>
 </code><button>Copy</button></pre>
 <p>Output:</p>
-<pre><code><span class="hl-1">{</span><span class="hl-2">&quot;engine&quot;</span><span class="hl-1">:</span><span class="hl-2">&quot;webkit&quot;</span><span class="hl-1">,</span><span class="hl-2">&quot;engineVs&quot;</span><span class="hl-1">:</span><span class="hl-2">&quot;537.36&quot;</span><span class="hl-1">,</span><span class="hl-2">&quot;platform&quot;</span><span class="hl-1">:</span><span class="hl-2">&quot;desktop&quot;</span><span class="hl-1">,</span><span class="hl-2">&quot;supporter&quot;</span><span class="hl-1">:</span><span class="hl-2">&quot;chrome&quot;</span><span class="hl-1">,</span><span class="hl-2">&quot;supporterVs&quot;</span><span class="hl-1">:</span><span class="hl-2">&quot;85.0.4183.121&quot;</span><span class="hl-1">,</span><span class="hl-2">&quot;system&quot;</span><span class="hl-1">:</span><span class="hl-2">&quot;windows&quot;</span><span class="hl-1">,</span><span class="hl-2">&quot;systemVs&quot;</span><span class="hl-1">:</span><span class="hl-2">&quot;10&quot;</span><span class="hl-1">}</span>
+<pre><code class="language-text">{&quot;engine&quot;:&quot;webkit&quot;,&quot;engineVs&quot;:&quot;537.36&quot;,&quot;platform&quot;:&quot;desktop&quot;,&quot;supporter&quot;:&quot;chrome&quot;,&quot;supporterVs&quot;:&quot;85.0.4183.121&quot;,&quot;system&quot;:&quot;windows&quot;,&quot;systemVs&quot;:&quot;10&quot;}
 </code><button>Copy</button></pre>
 <p>Results:</p>
 <table>
@@ -47,7 +47,7 @@
 <td align="left">systemVs</td>
 <td align="left">System version</td>
 <td align="left">string</td>
-<td align="left">windows: 2000, xp, 2003, vista, 7, 8, 8.1, 10 <br />macos: ...</td>
+<td align="left">Windows: 2000, xp, 2003, vista, 7, 8, 8.1, 10 macOS: ...</td>
 </tr>
 <tr>
 <td align="left">platform</td>
@@ -99,14 +99,14 @@
 </tr>
 </tbody></table>
 <p>Example: Determine the environment of the mobile QQ.</p>
-<pre><code><span class="hl-5">const</span><span class="hl-1"> { </span><span class="hl-6">system</span><span class="hl-1">, </span><span class="hl-6">shell</span><span class="hl-1"> } = </span><span class="hl-7">getBrowserInfo</span><span class="hl-1">();</span><br/><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-6">isMobileQQ</span><span class="hl-1"> = [</span><span class="hl-2">&#39;android&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;ios&#39;</span><span class="hl-1">].</span><span class="hl-7">includes</span><span class="hl-1">(</span><span class="hl-0">system</span><span class="hl-1">) &amp;&amp; [</span><span class="hl-2">&#39;qq_browser&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;qq_app&#39;</span><span class="hl-1">].</span><span class="hl-7">includes</span><span class="hl-1">(</span><span class="hl-0">shell</span><span class="hl-1">);</span>
+<pre><code class="language-javascript"><span class="hl-3">const</span><span class="hl-1"> { </span><span class="hl-11">system</span><span class="hl-1">, </span><span class="hl-11">shell</span><span class="hl-1"> } = </span><span class="hl-0">getBrowserInfo</span><span class="hl-1">();</span><br/><span class="hl-3">const</span><span class="hl-1"> </span><span class="hl-11">isMobileQQ</span><span class="hl-1"> = [</span><span class="hl-2">&#39;android&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;ios&#39;</span><span class="hl-1">].</span><span class="hl-0">includes</span><span class="hl-1">(</span><span class="hl-10">system</span><span class="hl-1">) &amp;&amp; [</span><span class="hl-2">&#39;qq_browser&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;qq_app&#39;</span><span class="hl-1">].</span><span class="hl-0">includes</span><span class="hl-1">(</span><span class="hl-10">shell</span><span class="hl-1">);</span>
 </code><button>Copy</button></pre>
 </div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">BrowserInfo</span></h4><p>浏览器信息</p>
 
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d40f814/src/index.ts#L2045">index.ts:2045</a></li></ul></aside></li></ul></section></div>
+<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/c63f094/src/index.ts#L2378">index.ts:2378</a></li></ul></aside></li></ul></section></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
@@ -195,5 +195,6 @@
 <li><a href="truncateZHString.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>truncateZHString</span></a></li>
 <li><a href="unsanitize.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>unsanitize</span></a></li>
 <li><a href="updateQueryParam.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>update<wbr/>Query<wbr/>Param</span></a></li>
+<li><a href="waitTime.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>wait<wbr/>Time</span></a></li>
 <li><a href="windowLoaded.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>window<wbr/>Loaded</span></a></li></ul></nav></div></div></div>
 <div class="overlay"></div></body></html>

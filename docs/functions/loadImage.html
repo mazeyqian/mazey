@@ -22,6 +22,9 @@
 <div class="tsd-comment tsd-typography"><p>Load an image from the given URL.</p>
 <p>The target image will be loaded in the background, and the Promise status will change after the image is loaded. If the image fails to load, the Promise status will change to <code>reject</code> with the error object. If the image is loaded successfully, the Promise status will change to <code>resolve</code> with the image object. This method can be used to preload images and cache them in the browser. It can also be used to implement lazy loading of images.</p>
 <p>Note that this method will not add the image to the DOM.</p>
+<p>Usage:</p>
+<pre><code class="language-javascript"><span class="hl-0">loadImage</span><span class="hl-1">(</span><span class="hl-2">&#39;https://example.com/example.png&#39;</span><span class="hl-1">)</span><br/><span class="hl-1">  .</span><span class="hl-0">then</span><span class="hl-1">((</span><span class="hl-10">img</span><span class="hl-1">) </span><span class="hl-3">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-10">console</span><span class="hl-1">.</span><span class="hl-0">log</span><span class="hl-1">(</span><span class="hl-10">img</span><span class="hl-1">);</span><br/><span class="hl-1">  })</span><br/><span class="hl-1">  .</span><span class="hl-0">catch</span><span class="hl-1">((</span><span class="hl-10">err</span><span class="hl-1">) </span><span class="hl-3">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-10">console</span><span class="hl-1">.</span><span class="hl-0">log</span><span class="hl-1">(</span><span class="hl-10">err</span><span class="hl-1">);</span><br/><span class="hl-1">  });</span>
+</code><button>Copy</button></pre>
 </div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
@@ -33,12 +36,9 @@
 <div class="tsd-comment tsd-typography"></div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type ">HTMLImageElement</span><span class="tsd-signature-symbol">&gt;</span></h4><p>A Promise that resolves with the loaded image or rejects with an error.</p>
 
-<div class="tsd-comment tsd-typography">
-<h4>Example</h4><pre><code class="language-js"><span class="hl-7">loadImage</span><span class="hl-1">(</span><span class="hl-2">&#39;https://example.com/example.png&#39;</span><span class="hl-1">)</span><br/><span class="hl-1">  .</span><span class="hl-7">then</span><span class="hl-1">((</span><span class="hl-0">img</span><span class="hl-1">) </span><span class="hl-5">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-0">console</span><span class="hl-1">.</span><span class="hl-7">log</span><span class="hl-1">(</span><span class="hl-0">img</span><span class="hl-1">);</span><br/><span class="hl-1">  })</span><br/><span class="hl-1">  .</span><span class="hl-7">catch</span><span class="hl-1">((</span><span class="hl-0">err</span><span class="hl-1">) </span><span class="hl-5">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-0">console</span><span class="hl-1">.</span><span class="hl-7">log</span><span class="hl-1">(</span><span class="hl-0">err</span><span class="hl-1">);</span><br/><span class="hl-1">  });</span>
-</code><button>Copy</button></pre>
-</div><aside class="tsd-sources">
+<div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/d40f814/src/index.ts#L3171">index.ts:3171</a></li></ul></aside></li></ul></section></div>
+<li>Defined in <a href="https://github.com/mazeyqian/mazey/blob/c63f094/src/index.ts#L3696">index.ts:3696</a></li></ul></aside></li></ul></section></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
@@ -127,5 +127,6 @@
 <li><a href="truncateZHString.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>truncateZHString</span></a></li>
 <li><a href="unsanitize.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>unsanitize</span></a></li>
 <li><a href="updateQueryParam.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>update<wbr/>Query<wbr/>Param</span></a></li>
+<li><a href="waitTime.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>wait<wbr/>Time</span></a></li>
 <li><a href="windowLoaded.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>window<wbr/>Loaded</span></a></li></ul></nav></div></div></div>
 <div class="overlay"></div></body></html>
