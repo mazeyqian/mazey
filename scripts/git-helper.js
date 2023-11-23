@@ -31,7 +31,7 @@ const execa = require('execa');
  * @param {string} ver Version
  * @returns {void}
  */
-async function release (ver, { canGenerateToc = false, defaultBranch = 'master' } = {}) {
+async function release (ver, { canGenerateToc = false, defaultBranch = 'main' } = {}) {
   if (!ver) {
     ver = process.env.SCRIPTS_NPM_PACKAGE_VERSION;
   }
@@ -107,7 +107,7 @@ async function gitPush () {
 /**
  * Merge master to current branch.
  */
-async function gitMergeMaster2Release (defaultBranch = 'master') {
+async function gitMergeMaster2Release (defaultBranch = 'main') {
   const currentBranch = await getGitCurrentBranch();
   await execa('git', [ 'checkout', defaultBranch ]);
   await execa('git', [ 'pull' ]);

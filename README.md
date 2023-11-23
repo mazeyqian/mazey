@@ -1,4 +1,4 @@
-English | [简体中文](https://github.com/mazeyqian/mazey/blob/master/README_ZH.md)
+English | [简体中文](https://github.com/mazeyqian/mazey/blob/main/README_ZH.md)
 
 # Mazey
 
@@ -988,4 +988,4 @@ npm run test
 
 ## License
 
-This software is released under the terms of the [MIT license](https://github.com/mazeyqian/mazey/blob/master/LICENSE).
+This software is released under the terms of the [MIT license](https://github.com/mazeyqian/mazey/blob/main/LICENSE).
