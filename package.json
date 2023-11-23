@@ -27,6 +27,7 @@
     "url": "git+https://github.com/mazeyqian/mazey.git"
   },
   "keywords": [
+    "front-end",
     "load",
     "math",
     "url",
@@ -52,9 +53,9 @@
     "typescript"
   ],
   "author": {
-    "name": "Mazey",
+    "name": "Cheng",
     "email": "mazeyqian@gmail.com",
-    "url": "https://blog.mazey.net/"
+    "url": "https://github.com/mazeyqian"
   },
   "license": "MIT",
   "bugs": {

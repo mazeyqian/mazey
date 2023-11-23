@@ -190,3 +190,11 @@ console.log('longestComSubsequence:', longestSS);
   const ttfb = await getTTFB();
   console.log('getTTFB', ttfb);
 })();
+
+// Event
+$('#btn').on('click', () => {
+  console.log('click');
+  getFID().then(fid => {
+    console.log('Event getFID', fid);
+  });
+});

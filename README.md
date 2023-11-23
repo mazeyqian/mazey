@@ -1,6 +1,6 @@
 English | [简体中文](https://github.com/mazeyqian/mazey/blob/master/README_ZH.md)
 
-# mazey
+# Mazey
 
 [![NPM version][npm-image]][npm-url]
 [![l][l-image]][l-url]
