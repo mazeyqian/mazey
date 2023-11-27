@@ -16,7 +16,7 @@ Mazey is a functional library for daily front-end work. There are already many e
 
 Use Mazey via [npm](https://www.npmjs.com/package/mazey).
 
-```shell
+```bash
 npm install mazey --save
 ```
 
@@ -934,42 +934,41 @@ MazeyLog: I am object. {a: 123, b: 456}
 
 #### Node.js
 
-- v14.21.3
-- v14.7.0
+- v16.19.0
 
 #### TypeScript
 
-- v4.4.4
+- v5.1.6
 
 ### Scripts
 
 Install Dependencies:
 
-```shell
+```bash
 npm i
 ```
 
 Development:
 
-```shell
+```bash
 npm run dev
 ```
 
 Build:
 
-```shell
+```bash
 npm run build
 ```
 
 Document:
 
-```shell
+```bash
 npm run docs
 ```
 
 Test:
 
-```shell
+```bash
 npm run test
 ```
 
