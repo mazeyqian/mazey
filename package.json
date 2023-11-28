@@ -12,8 +12,8 @@
   },
   "scripts": {
     "dev": "webpack serve --config ./scripts/webpack.config.dev.js --open",
-    "build": "cross-env SCRIPTS_NPM_PACKAGE_DEBUG=close rollup --config ./scripts/rollup.config.js",
-    "build:debug": "cross-env SCRIPTS_NPM_PACKAGE_DEBUG=open rollup --config ./scripts/rollup.config.js",
+    "build": "cross-env SCRIPTS_NPM_PACKAGE_DEBUG=close SCRIPTS_NPM_PACKAGE_VERSION=$npm_package_version rollup --config ./scripts/rollup.config.mjs",
+    "build:debug": "cross-env SCRIPTS_NPM_PACKAGE_DEBUG=open SCRIPTS_NPM_PACKAGE_VERSION=$npm_package_version rollup --config ./scripts/rollup.config.mjs",
     "test": "jest",
     "test:debug": "npm run build:debug && npm run test",
     "lint:fix": "eslint --ext 'js,ts,tsx' --fix ./src ./test ./scripts",
@@ -63,7 +63,7 @@
   },
   "homepage": "https://github.com/mazeyqian/mazey#readme",
   "devDependencies": {
-    "@babel/core": "^7.23.3",
+    "@babel/core": "^7.23.2",
     "@babel/plugin-transform-class-properties": "^7.22.5",
     "@babel/plugin-transform-object-rest-spread": "^7.22.15",
     "@babel/plugin-transform-runtime": "^7.23.2",
