@@ -17,7 +17,7 @@ jobs:
         with:
           node-version: '16.x'
           registry-url: 'https://registry.npmjs.org'
-      - run: npm ci
+      - run: npm i
       - run: npm run build
       - name: Get version
         id: package_version
