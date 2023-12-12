@@ -26,19 +26,23 @@ Use Mazey from CDN.
 <script type="text/javascript" src="//i.mazey.net/mazey/lib/mazey.min.js"></script>
 ```
 
-Of course, you can also download this file and serve it yourself. The file locates at the `lib/mazey.min.js`.
+Of course, you can also download and serve the file `lib/mazey.min.js` yourself.
 
 ## Usage
 
-Example: Use a function to load JavaScript script.
+Example: Use a function to verify if a value is a number suitable for standard calculations and comparisons.
 
 Import from [npm](https://www.npmjs.com/package/mazey).
 
 ```javascript
 import { isNumber } from 'mazey';
 
-const x = Infinity;
-isNumber(x); // <=> typeof x === 'string' && !isNaN(x) && isFinite(x)
+const x = 123;
+isNumber(x); // <=> typeof x === 'number' && !isNaN(x) && isFinite(x)
+// Output: true
+
+const y = Infinity;
+isNumber(y);
 // Output: false
 ```
 
