@@ -1,6 +1,6 @@
 {
   "name": "mazey",
-  "version": "3.11.6",
+  "version": "3.12.0",
   "description": "A functional library for daily front-end work.",
   "main": "lib/index.cjs.js",
   "module": "lib/index.esm.js",
@@ -10,6 +10,8 @@
   "directories": {
     "lib": "./lib"
   },
+  "unpkg": "lib/mazey.min.js",
+  "jsdelivr": "lib/mazey.min.js",
   "scripts": {
     "dev": "webpack serve --config ./scripts/webpack.config.dev.js --open",
     "build": "cross-env SCRIPTS_NPM_PACKAGE_DEBUG=close SCRIPTS_NPM_PACKAGE_VERSION=$npm_package_version rollup --config ./scripts/rollup.config.mjs",
