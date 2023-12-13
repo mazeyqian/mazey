@@ -1,6 +1,6 @@
-⚠️ Note: The document has expired, please check the latest [README.md](./README.md).
+⚠️ Note: The document has expired, please check the latest [README.md](https://github.com/mazeyqian/mazey/blob/v3/README.md).
 
-⚠️ 注意: 此文档只适用于 v1.4.39 版本，[查看 v3.x 版本的文档](./README.md)
+⚠️ 注意: 此文档只适用于 v1.4.39 版本，[查看 v3.x 版本的文档](https://github.com/mazeyqian/mazey/blob/v3/README.md)
 
 <!-- omit from toc -->
 # mazey

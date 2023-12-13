@@ -30,7 +30,7 @@ Of course, you can also download this file and serve it yourself. The file locat
 
 ## Usage
 
-Example: Use a function to load JavaScript script.
+Example: Use a function to verify if a value is a number suitable for standard calculations and comparisons.
 
 Import from [npm](https://www.npmjs.com/package/mazey).
 
