@@ -8,7 +8,7 @@ on:
       - test/v3.12.x/upgrade_deps_mon_nov_27_2023
 
 jobs:
-  build:
+  build-and-publish:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,17 +21,41 @@ jobs:
       - run: npm i
       - run: npm run build
       - run: npm run test
-      - name: Get version
-        id: package_version
-        run: echo "::set-output name=VERSION::$(node -p "require('./package.json').version")"
-      - name: Bump version and push tag
-        id: create_new_tag
-        uses: actions-ecosystem/action-bump-semver@v1
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          current_version: ${{ steps.package_version.outputs.VERSION }}
-          tag_prefix: 'v'
+      # - name: Get version
+      #   id: package_version
+      #   run: echo "::set-output name=VERSION::$(node -p "require('./package.json').version")"
+      # - name: Bump version and push tag
+      #   id: create_new_tag
+      #   uses: actions-ecosystem/action-bump-semver@v1
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     current_version: ${{ steps.package_version.outputs.VERSION }}
+      #     tag_prefix: 'v'
       - name: Publish
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+  tag:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+      - name: Generate Git Tag
+        id: generate_tag
+        run: |
+          VERSION_PREFIX="v"
+          VERSION_MAJOR_MINOR_PATCH=$(node -p "require('./package.json').version")
+          NEW_TAG="${VERSION_PREFIX}${VERSION_MAJOR_MINOR_PATCH}"
+          echo "Generated new tag: $NEW_TAG"
+          echo "NEW_TAG=$NEW_TAG" >> $GITHUB_ENV
+
+      - name: Push Git Tag
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git tag $NEW_TAG
+          git push origin $NEW_TAG
