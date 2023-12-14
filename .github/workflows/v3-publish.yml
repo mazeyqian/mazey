@@ -1,4 +1,4 @@
-name: V3 Publish
+name: v3 Publish
 
 on:
   push:
