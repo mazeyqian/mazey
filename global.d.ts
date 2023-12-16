@@ -1,5 +1,5 @@
 /**
- * @author: Cheng
+ * @author Cheng
  */
 import $ from 'jquery';
 import { DefineListeners, BrowserInfo } from './src/typing';

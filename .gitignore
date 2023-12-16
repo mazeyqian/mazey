@@ -5,6 +5,7 @@ test/unit/coverage
 test/e2e/reports
 lib/index.*
 lib/typing.*
+lib/mazey.*
 
 # Cache folders
 .sass-cache/

@@ -4,6 +4,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable quotes */
 import { isValidUrl, getUrlFileType, isValidHttpUrl } from '../lib/index.esm';
+// import { isValidUrl, getUrlFileType, isValidHttpUrl } from '../src/index';
 
 const validUrls = [
   'https://www.example.com/events/#&product=browser',
@@ -79,5 +80,24 @@ describe('isValidHttpUrl', () => {
     expect(isValidHttpUrl('http://ssssssssssss')).toBe(false);
     expect(isValidHttpUrl(`https://this-shouldn't.match@example.com`)).toBe(false);
     expect(isValidHttpUrl('abcdef')).toBe(false);
+  });
+
+  it('should return true for valid URLs when strict is false', () => {
+    expect(isValidHttpUrl('//www.example.com', { strict: false })).toBe(true);
+    expect(isValidHttpUrl('http://example.com/path/exx/ss', { strict: false })).toBe(true);
+    expect(isValidHttpUrl('//www.example.com/?q=hello&age=24#world', { strict: false })).toBe(true);
+    expect(isValidHttpUrl('https://www.example.com/#world?id=9', { strict: false })).toBe(true);
+    expect(isValidHttpUrl('//example.com:8080', { strict: false })).toBe(true);
+    expect(isValidHttpUrl('//www.example.com/哈哈哈哈哈', { strict: false })).toBe(true);
+  });
+
+  it('should return false for invalid URLs when strict is false', () => {
+    expect(isValidHttpUrl('ftp://example.com', { strict: false })).toBe(false);
+    expect(isValidHttpUrl('example.com', { strict: false })).toBe(false);
+    expect(isValidHttpUrl('www.example.com', { strict: false })).toBe(false);
+    expect(isValidHttpUrl('v=0618', { strict: false })).toBe(false);
+    expect(isValidHttpUrl('http://ssssssssssss', { strict: false })).toBe(false);
+    expect(isValidHttpUrl(`https://this-shouldn't.match@example.com`, { strict: false })).toBe(false);
+    expect(isValidHttpUrl('abcdef', { strict: false })).toBe(false);
   });
 });

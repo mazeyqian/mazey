@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable no-undef */
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { _resolve } = require('./build-helper');
 
 module.exports = {
@@ -14,7 +14,10 @@ module.exports = {
     path: _resolve('../dist'),
   },
   devServer: {
-    contentBase: _resolve('../dist'),
+    static: {
+      directory: _resolve('../dist'),
+    },
+    // contentBase: _resolve('../dist'),
     allowedHosts: [
       '.mazey.net',
     ],
@@ -33,9 +36,9 @@ module.exports = {
       filename: _resolve('../dist/index.html'),
       template: _resolve('../examples/index.html'),
       inject: true,
-      chunksSortMode: 'dependency',
+      // chunksSortMode: 'dependency',
     }),
-    new CleanWebpackPlugin([ _resolve('../dist') ]),
+    new CleanWebpackPlugin({ cleanOnceBeforeBuildPatterns: [ _resolve('../dist') ] }),
   ],
   resolve: {
     extensions: [ '.tsx', '.ts', '.js' ],

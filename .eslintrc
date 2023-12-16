@@ -29,6 +29,7 @@
     "object-curly-spacing": ["warn", "always"],
     "array-bracket-spacing": ["warn", "always"],
     "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/triple-slash-reference": "off"
   }
 }
