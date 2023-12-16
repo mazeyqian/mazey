@@ -21,16 +21,6 @@ jobs:
       - run: npm i
       - run: npm run build
       - run: npm run test
-      # - name: Get version
-      #   id: package_version
-      #   run: echo "::set-output name=VERSION::$(node -p "require('./package.json').version")"
-      # - name: Bump version and push tag
-      #   id: create_new_tag
-      #   uses: actions-ecosystem/action-bump-semver@v1
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      #     current_version: ${{ steps.package_version.outputs.VERSION }}
-      #     tag_prefix: 'v'
       - name: Publish
         run: npm publish
         env:

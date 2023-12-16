@@ -83,7 +83,7 @@ if (debugMode !== 'open') {
     terser({ // https://github.com/terser/terser
       format: {
         // https://github.com/terser/terser#format-options
-        comments: /^!\n\s\*\smazey/, // 'some', // `false` to omit comments in the output
+        comments: /^!\n\s\*\sMazey/, // 'some', // `false` to omit comments in the output
       },
     }),
   );

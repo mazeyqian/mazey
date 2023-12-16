@@ -2,7 +2,7 @@ English | [简体中文](https://github.com/mazeyqian/mazey/blob/main/README_ZH.
 
 # Mazey
 
-[![NPM version][npm-image]][npm-url]
+[![npm version][npm-image]][npm-url]
 [![l][l-image]][l-url]
 
 [npm-image]: https://img.shields.io/npm/v/mazey
