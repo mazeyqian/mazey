@@ -1,6 +1,6 @@
 {
   "name": "mazey",
-  "version": "3.12.3",
+  "version": "4.0.0",
   "description": "A functional library for daily front-end work.",
   "main": "lib/index.cjs.js",
   "module": "lib/index.esm.js",
@@ -10,8 +10,6 @@
   "directories": {
     "lib": "./lib"
   },
-  "unpkg": "lib/mazey.min.js",
-  "jsdelivr": "lib/mazey.min.js",
   "unpkg": "lib/mazey.min.js",
   "jsdelivr": "lib/mazey.min.js",
   "scripts": {
