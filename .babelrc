@@ -4,14 +4,15 @@
       "targets": {
         "browsers": ["> 1%", "last 2 versions", "android>4.0"]
       },
-      "useBuiltIns": "usage",
-      "corejs": 3
+      "useBuiltIns": "entry",
+      "corejs": 3,
+      "exclude": ["@babel/plugin-transform-typeof-symbol"]
     }],
     "@babel/typescript"
   ],
   "plugins": [
-		"@babel/proposal-class-properties",
-		"@babel/proposal-object-rest-spread",
+		"@babel/plugin-transform-class-properties",
+		"@babel/plugin-transform-object-rest-spread",
 		[
       "@babel/plugin-transform-runtime",
       {

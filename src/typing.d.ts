@@ -1,5 +1,5 @@
 /**
- * @author: Cheng
+ * @author Cheng
  */
 
 export interface BrowserInfo {

@@ -1,18 +1,31 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable no-undef */
 // import json from '@rollup/plugin-json'
-import babel from 'rollup-plugin-babel';
+import { babel } from '@rollup/plugin-babel';
+import commonjs from '@rollup/plugin-commonjs';
 import rollupTypescript from 'rollup-plugin-typescript2';
 import { DEFAULT_EXTENSIONS } from '@babel/core';
-import commonjs from 'rollup-plugin-commonjs';
 import cleaner from 'rollup-plugin-cleaner';
-import { terser } from 'rollup-plugin-terser';
-import dts from 'rollup-plugin-dts';
+import terser from '@rollup/plugin-terser';
+import { dts } from 'rollup-plugin-dts';
+// import { version as pkgJSONVersion } from '../package.json';
 // import replace from '@rollup/plugin-replace';
 // import copy from 'rollup-plugin-copy';
 
-const { _resolve } = require('./build-helper');
-const pkgVersion = process.env.SCRIPTS_NPM_PACKAGE_VERSION || process.env.VERSION || require('../package.json').version;
+// const path = require('path');
+// const _resolve = (_path) => path.resolve(__dirname, _path);
+
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const _resolve = (_path) => path.resolve(__dirname, _path);
+
+// const { _resolve } = require('./build-helper');
+const pkgVersion = process.env.SCRIPTS_NPM_PACKAGE_VERSION || process.env.VERSION || 'unknown'; // || require('../package.json').version;
 const debugMode = process.env.SCRIPTS_NPM_PACKAGE_DEBUG;
 const banner =
   '/*!\n' +
@@ -37,14 +50,15 @@ const plugins = [
     include: /node_modules/,
   }),
   babel({
-    runtimeHelpers: true,
+    babelHelpers: 'runtime',
     // 只转换源代码，不运行外部依赖
-    exclude: 'node_modules/**',
+    exclude: '**/node_modules/**',
     // babel 默认不支持 ts 需要手动添加
     extensions: [
       ...DEFAULT_EXTENSIONS,
       '.ts',
     ],
+    // skipPreflightCheck: true,
   }),
   // dts(),
   // uglify(),
@@ -69,7 +83,7 @@ if (debugMode !== 'open') {
     terser({ // https://github.com/terser/terser
       format: {
         // https://github.com/terser/terser#format-options
-        comments: /^!\n\s\*\smazey/, // 'some', // `false` to omit comments in the output
+        comments: /^!\n\s\*\sMazey/, // 'some', // `false` to omit comments in the output
       },
     }),
   );
