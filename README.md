@@ -38,12 +38,10 @@ Import from [npm](https://www.npmjs.com/package/mazey).
 import { isNumber } from 'mazey';
 
 const x = 123;
-isNumber(x); // <=> typeof x === 'number' && !isNaN(x) && isFinite(x)
-// Output: true
-
 const y = Infinity;
-isNumber(y);
-// Output: false
+// <=> typeof x === 'number' && !isNaN(x) && isFinite(x)
+isNumber(x); // Output: true
+isNumber(y); // Output: false
 ```
 
 Import from CDN.
@@ -52,8 +50,8 @@ Import from CDN.
 <script type="text/javascript" src="//i.mazey.net/mazey/lib/mazey.min.js"></script>
 <script>
   const x = Infinity;
-  mazey.isNumber(x, { isInfinityAsNumber: true }); // <=> typeof x === 'string' && !isNaN(x)
-  // Output: true
+  // <=> typeof x === 'string' && !isNaN(x)
+  mazey.isNumber(x, { isInfinityAsNumber: true }); // Output: true
 </script>
 ```
 
