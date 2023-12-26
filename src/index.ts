@@ -3072,11 +3072,9 @@ export function isNonEmptyArray<T>(arr: Array<T>): boolean {
  *     }
  *   }
  * };
- *
  * const isValidDataResA = isValidData(validData, ['a', 'b', 'c'], 2333);
  * const isValidDataResB = isValidData(validData, ['a', 'b', 'c'], 413);
  * const isValidDataResC = isValidData(validData, ['d', 'd'], 413);
- *
  * console.log('isValidDataResA:', isValidDataResA);
  * console.log('isValidDataResB:', isValidDataResB);
  * console.log('isValidDataResC:', isValidDataResC);
