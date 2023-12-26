@@ -14,7 +14,7 @@ on:
       - 'test/**'
 
 jobs:
-  build:
+  build-and-test:
 
     runs-on: ubuntu-latest
 
