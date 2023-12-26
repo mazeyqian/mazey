@@ -9,6 +9,7 @@ on:
       - main
       - master
       - 'feat/**'
+      - 'feature/**'
       - 'fix/**'
       - 'test/**'
 
