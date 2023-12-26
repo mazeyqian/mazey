@@ -5,7 +5,7 @@ on:
     branches:
       - main
       - master
-      - test/v3.12.x/upgrade_deps_mon_nov_27_2023
+      - v4
 
 jobs:
   build-and-publish:
