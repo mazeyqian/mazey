@@ -2,7 +2,7 @@ English | [简体中文](https://github.com/mazeyqian/mazey/blob/main/README_ZH.
 
 # Mazey
 
-[![NPM version][npm-image]][npm-url]
+[![npm version][npm-image]][npm-url]
 [![l][l-image]][l-url]
 
 [npm-image]: https://img.shields.io/npm/v/mazey
@@ -16,7 +16,7 @@ Mazey is a functional library for daily front-end work. There are already many e
 
 Use Mazey via [npm](https://www.npmjs.com/package/mazey).
 
-```shell
+```bash
 npm install mazey --save
 ```
 
@@ -26,20 +26,22 @@ Use Mazey from CDN.
 <script type="text/javascript" src="//i.mazey.net/mazey/lib/mazey.min.js"></script>
 ```
 
-Of course, you can also download this file and serve it yourself. The file locates at the `lib/mazey.min.js`.
+Of course, you can also download and serve the file [lib/mazey.min.js](https://cdn.jsdelivr.net/npm/mazey@latest/lib/mazey.min.js) yourself.
 
 ## Usage
 
-Example: Use a function to load JavaScript script.
+Example: Use a function to verify if a value is a number suitable for standard calculations and comparisons.
 
 Import from [npm](https://www.npmjs.com/package/mazey).
 
 ```javascript
 import { isNumber } from 'mazey';
 
-const x = Infinity;
-isNumber(x); // <=> typeof x === 'string' && !isNaN(x) && isFinite(x)
-// Output: false
+const x = 123;
+const y = Infinity;
+// <=> typeof x === 'number' && !isNaN(x) && isFinite(x)
+isNumber(x); // Output: true
+isNumber(y); // Output: false
 ```
 
 Import from CDN.
@@ -48,8 +50,8 @@ Import from CDN.
 <script type="text/javascript" src="//i.mazey.net/mazey/lib/mazey.min.js"></script>
 <script>
   const x = Infinity;
-  mazey.isNumber(x, { isInfinityAsNumber: true }); // <=> typeof x === 'string' && !isNaN(x)
-  // Output: true
+  // <=> typeof x === 'string' && !isNaN(x)
+  mazey.isNumber(x, { isInfinityAsNumber: true }); // Output: true
 </script>
 ```
 
@@ -295,11 +297,9 @@ const validData = {
     }
   }
 };
-
 const isValidDataResA = isValidData(validData, ['a', 'b', 'c'], 2333);
 const isValidDataResB = isValidData(validData, ['a', 'b', 'c'], 413);
 const isValidDataResC = isValidData(validData, ['d', 'd'], 413);
-
 console.log('isValidDataResA:', isValidDataResA);
 console.log('isValidDataResB:', isValidDataResB);
 console.log('isValidDataResC:', isValidDataResC);
@@ -934,42 +934,41 @@ MazeyLog: I am object. {a: 123, b: 456}
 
 #### Node.js
 
-- v14.21.3
-- v14.7.0
+- v16.19.0
 
 #### TypeScript
 
-- v4.4.4
+- v5.1.6
 
 ### Scripts
 
 Install Dependencies:
 
-```shell
+```bash
 npm i
 ```
 
 Development:
 
-```shell
+```bash
 npm run dev
 ```
 
 Build:
 
-```shell
+```bash
 npm run build
 ```
 
 Document:
 
-```shell
+```bash
 npm run docs
 ```
 
 Test:
 
-```shell
+```bash
 npm run test
 ```
 
