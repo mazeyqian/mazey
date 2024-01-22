@@ -3,7 +3,7 @@
  */
 /* eslint-disable no-undef */
 /* eslint-disable quotes */
-import { isValidUrl, getUrlFileType, isValidHttpUrl } from '../lib/index.esm';
+import { isValidUrl, getUrlFileType, isValidHttpUrl, updateQueryParam } from '../lib/index.esm';
 // import { isValidUrl, getUrlFileType, isValidHttpUrl } from '../src/index';
 
 const validUrls = [
@@ -100,4 +100,31 @@ describe('isValidHttpUrl', () => {
     expect(isValidHttpUrl(`https://this-shouldn't.match@example.com`, { strict: false })).toBe(false);
     expect(isValidHttpUrl('abcdef', { strict: false })).toBe(false);
   });
+});
+
+// Test case 1: URL with existing query parameter
+test('Update existing query parameter in URL', () => {
+  const url = 'https://example.com/page?param1=value1&param2=value2';
+  const param = 'param1';
+  const value = 'updatedValue';
+  const updatedUrl = updateQueryParam(url, param, value);
+  expect(updatedUrl).toBe('https://example.com/page?param1=updatedValue&param2=value2');
+});
+
+// Test case 2: URL without existing query parameter
+test('Add new query parameter to URL', () => {
+  const url = 'https://example.com/page';
+  const param = 'param1';
+  const value = 'newValue';
+  const updatedUrl = updateQueryParam(url, param, value);
+  expect(updatedUrl).toBe('https://example.com/page?param1=newValue');
+});
+
+// Test case 3: URL with hash fragment
+test('Update query parameter in URL with hash fragment', () => {
+  const url = 'https://example.com/page#section1';
+  const param = 'param1';
+  const value = 'updatedValue';
+  const updatedUrl = updateQueryParam(url, param, value);
+  expect(updatedUrl).toBe('https://example.com/page?param1=updatedValue#section1');
 });

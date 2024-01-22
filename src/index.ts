@@ -243,12 +243,18 @@ export function getUrlParam(url: string, param: string): string | string[] {
  * @category URL
  */
 export function updateQueryParam(url: string, param: string, value: string): string {
-  const re = new RegExp('([?&])' + param + '=.*?(&|$)', 'i');
-  const separator = url.indexOf('?') !== -1 ? '&' : '?';
-  if (url.match(re)) {
-    return url.replace(re, '$1' + param + '=' + value + '$2');
+  if (url.includes('#')) {
+    const urlObj = new URL(url);
+    urlObj.searchParams.set(param, value);
+    return urlObj.toString();
   } else {
-    return url + separator + param + '=' + value;
+    const re = new RegExp('([?&])' + param + '=.*?(&|$)', 'i');
+    const separator = url.indexOf('?') !== -1 ? '&' : '?';
+    if (url.match(re)) {
+      return url.replace(re, '$1' + param + '=' + value + '$2');
+    } else {
+      return url + separator + param + '=' + value;
+    }
   }
 }
 
