@@ -201,8 +201,9 @@ export function getQueryParam(param: string): string {
  * @returns {string|string[]} The value of the specified query parameter, or an empty string if the parameter is not found.
  * @category URL
  */
-export function getUrlParam(url: string, param: string): string | string[] {
+export function getUrlParam(url: string, param: string, options: { returnArray?: boolean } = {}): string | string[] {
   const result: UrlParams = {};
+  let res: string | string[] = '';
   url.replace(/\??(\w+)=([^&]*)&?/g, function(_: string, k: string, v: string): string {
     if (result[k] !== undefined) {
       const t = result[k];
@@ -214,7 +215,21 @@ export function getUrlParam(url: string, param: string): string | string[] {
     // Return an empty string to satisfy the signature of the replace method
     return '';
   });
-  return result[param] || '';
+  // return result[param] || '';
+  res = result[param] || '';
+  if (options.returnArray) {
+    if (Array.isArray(res)) {
+      return res;
+    } else {
+      return [ res ];
+    }
+  } else {
+    if (Array.isArray(res)) {
+      return res[0];
+    } else {
+      return res;
+    }
+  }
 }
 
 /**
