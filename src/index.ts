@@ -198,6 +198,8 @@ export function getQueryParam(param: string): string {
  *
  * @param {string} url The URL string.
  * @param {string} param The query parameter to retrieve the value for.
+ * @param {object} options The options object.
+ * @param {boolean} options.returnArray Whether to return an array of values for the specified query parameter. Default is false.
  * @returns {string|string[]} The value of the specified query parameter, or an empty string if the parameter is not found.
  * @category URL
  */
@@ -217,18 +219,10 @@ export function getUrlParam(url: string, param: string, options: { returnArray?:
   });
   // return result[param] || '';
   res = result[param] || '';
-  if (options.returnArray) {
-    if (Array.isArray(res)) {
-      return res;
-    } else {
-      return [ res ];
-    }
+  if (Array.isArray(res)) {
+    return options.returnArray ? res : res[0];
   } else {
-    if (Array.isArray(res)) {
-      return res[0];
-    } else {
-      return res;
-    }
+    return options.returnArray ? [ res ] : res;
   }
 }
 
