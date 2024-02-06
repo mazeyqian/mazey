@@ -3,7 +3,7 @@
  */
 /* eslint-disable no-undef */
 /* eslint-disable quotes */
-import { isValidUrl, getUrlFileType, isValidHttpUrl, updateQueryParam } from '../lib/index.esm';
+import { isValidUrl, getUrlFileType, isValidHttpUrl, updateQueryParam, getUrlParam } from '../lib/index.esm';
 // import { isValidUrl, getUrlFileType, isValidHttpUrl } from '../src/index';
 
 const validUrls = [
@@ -127,4 +127,37 @@ test('Update query parameter in URL with hash fragment', () => {
   const value = 'updatedValue';
   const updatedUrl = updateQueryParam(url, param, value);
   expect(updatedUrl).toBe('https://example.com/page?param1=updatedValue#section1');
+});
+
+// Test case 1: Single value parameter
+test('getUrlParam - Single value parameter', () => {
+  const url = 'https://example.com/?param1=value1&param2=value2';
+  const param = 'param1';
+  const result = getUrlParam(url, param);
+  expect(result).toBe('value1');
+});
+
+// Test case 2: Single value parameter
+test('getUrlParam - Array value parameter', () => {
+  const url = 'https://example.com/?param1=value1&param2=value2#path?param1=value1&param2=val2val';
+  const param = 'param1';
+  const result = getUrlParam(url, param);
+  expect(result).toEqual('value1');
+});
+
+// Test case 3: Return array option
+test('getUrlParam - Return array option', () => {
+  const url = 'https://example.com/?param1=value1&param1=value2';
+  const param = 'param1';
+  const options = { returnArray: true };
+  const result = getUrlParam(url, param, options);
+  expect(result).toEqual([ 'value1', 'value2' ]);
+});
+
+// Test case 4: Non-existing parameter
+test('getUrlParam - Non-existing parameter', () => {
+  const url = 'https://example.com/?param1=value1&param2=value2';
+  const param = 'param3';
+  const result = getUrlParam(url, param);
+  expect(result).toBe('');
 });

@@ -198,11 +198,14 @@ export function getQueryParam(param: string): string {
  *
  * @param {string} url The URL string.
  * @param {string} param The query parameter to retrieve the value for.
+ * @param {object} options The options object.
+ * @param {boolean} options.returnArray Whether to return an array of values for the specified query parameter. Default is false.
  * @returns {string|string[]} The value of the specified query parameter, or an empty string if the parameter is not found.
  * @category URL
  */
-export function getUrlParam(url: string, param: string): string | string[] {
+export function getUrlParam(url: string, param: string, options: { returnArray?: boolean } = {}): string | string[] {
   const result: UrlParams = {};
+  let res: string | string[] = '';
   url.replace(/\??(\w+)=([^&]*)&?/g, function(_: string, k: string, v: string): string {
     if (result[k] !== undefined) {
       const t = result[k];
@@ -214,7 +217,13 @@ export function getUrlParam(url: string, param: string): string | string[] {
     // Return an empty string to satisfy the signature of the replace method
     return '';
   });
-  return result[param] || '';
+  // return result[param] || '';
+  res = result[param] || '';
+  if (Array.isArray(res)) {
+    return options.returnArray ? res : res[0];
+  } else {
+    return options.returnArray ? [ res ] : res;
+  }
 }
 
 /**
