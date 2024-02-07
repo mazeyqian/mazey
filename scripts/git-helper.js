@@ -50,7 +50,7 @@ async function release (ver, { canGenerateToc = false, defaultBranch = 'main' } 
   // Commit
   await gitCommit(`${releaseVersion} stage`);
   // Marge
-  await gitMergeMaster2Release(defaultBranch);
+  await gitMergeMain2Release(defaultBranch);
   // Build
   await execa('npm', [ 'run', 'preview' ]);
   await execa('npm', [ 'publish' ]);
@@ -105,15 +105,22 @@ async function gitPush () {
 }
 
 /**
- * Merge master to current branch.
+ * Merge main to current branch.
  */
-async function gitMergeMaster2Release (defaultBranch = 'main') {
+async function gitMergeMain2Release (defaultBranch = 'main') {
   const currentBranch = await getGitCurrentBranch();
   await execa('git', [ 'checkout', defaultBranch ]);
   await execa('git', [ 'pull' ]);
   await execa('git', [ 'checkout', currentBranch ]);
   await execa('git', [ 'merge', defaultBranch ]);
   return true;
+}
+
+/**
+ * Alias of `gitMergeMain2Release`.
+ */
+async function gitMergeMaster2Release (defaultBranch = 'main') {
+  return await gitMergeMain2Release(defaultBranch);
 }
 
 /**
@@ -148,7 +155,8 @@ async function gitCommit (releaseVersion = 0) {
 module.exports = {
   release,
   gitPush,
-  gitMergeMaster2Release,
+  gitMergeMaster2Release, // Deprecated
+  gitMergeMain2Release,
   getGitCurrentBranch,
   gitCommit,
   gitTagPush,
