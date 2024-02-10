@@ -23,7 +23,7 @@ export type TestUa = (regexp: RegExp) => boolean;
 export type TestVs = (regexp: RegExp) => string;
 
 export interface UrlParams {
-  [key: string]: string | string[];
+  [key: string]: string[];
 }
 
 export type ThrottleFunc<T extends (...args: any[]) => any> = (...args: Parameters<T>) => ReturnType<T> | null;

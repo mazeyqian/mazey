@@ -203,26 +203,31 @@ export function getQueryParam(param: string): string {
  * @returns {string|string[]} The value of the specified query parameter, or an empty string if the parameter is not found.
  * @category URL
  */
-export function getUrlParam(url: string, param: string, options: { returnArray?: boolean } = {}): string | string[] {
-  const result: UrlParams = {};
-  let res: string | string[] = '';
-  url.replace(/\??(\w+)=([^&]*)&?/g, function(_: string, k: string, v: string): string {
-    if (result[k] !== undefined) {
-      const t = result[k];
-      // Cast `t` to `string[]` to ensure that `concat` receives an array
-      result[k] = ([] as string[]).concat(t, v);
-    } else {
-      result[k] = v;
-    }
-    // Return an empty string to satisfy the signature of the replace method
-    return '';
-  });
-  // return result[param] || '';
-  res = result[param] || '';
-  if (Array.isArray(res)) {
-    return options.returnArray ? res : res[0];
+export function getUrlParam(url: string, param: string, options: { returnArray?: boolean } = {}): string | string[] | null {
+  let res: string | string[] | null = null;
+  if (url.includes('#')) {
+    const urlObj = new URL(url);
+    res = urlObj.searchParams.getAll(param);
   } else {
-    return options.returnArray ? [ res ] : res;
+    const result: UrlParams = {};
+    url.replace(/\??(\w+)=([^&]*)&?/g, function(_: string, key: string, val: string): string {
+      if (result[ key ] !== undefined) {
+        result[ key ].push(val);
+      } else {
+        result[ key ] = [ val ];
+      }
+      return '';
+    });
+    res = result[ param ] || [];
+  }
+  if (options.returnArray) {
+    return res;
+  } else {
+    if (res.length) {
+      return res[ 0 ];
+    } else {
+      return null;      
+    }
   }
 }
 
