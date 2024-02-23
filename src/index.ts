@@ -28,6 +28,8 @@ import {
 } from './typing';
 // import { deepCopy } from './util';
 
+// export * from './calc';
+
 /**
  * Get the query param's value of the current Web URL(`location.search`).
  *
