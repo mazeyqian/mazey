@@ -26,9 +26,9 @@ import {
   UnknownFn,
   UnknownWindow,
 } from './typing';
-// import { deepCopy } from './util';
 
-// export * from './calc';
+export * from './calc';
+export * from './util';
 
 /**
  * Get the query param's value of the current Web URL(`location.search`).
