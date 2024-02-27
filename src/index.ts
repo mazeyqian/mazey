@@ -32,47 +32,6 @@ export * from './util';
 export * from './url';
 
 /**
- * Update the query param's value of the input URL.
- *
- * Usage:
- *
- * ```javascript
- * const ret1 = updateQueryParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't3', 'three');
- * const ret2 = updateQueryParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't4', 'four');
- * console.log(ret1);
- * console.log(ret2);
- * ```
- *
- * Output:
- *
- * ```text
- * http://example.com/?t1=1&t2=2&t3=three&t4=4
- * http://example.com/?t1=1&t2=2&t3=3&t4=four
- * ```
- *
- * @param {string} url URL string.
- * @param {string} param Query param.
- * @param {string} value Param's value.
- * @returns {string} URL.
- * @category URL
- */
-export function updateQueryParam(url: string, param: string, value: string): string {
-  if (url.includes('#')) {
-    const urlObj = new URL(url);
-    urlObj.searchParams.set(param, value);
-    return urlObj.toString();
-  } else {
-    const re = new RegExp('([?&])' + param + '=.*?(&|$)', 'i');
-    const separator = url.indexOf('?') !== -1 ? '&' : '?';
-    if (url.match(re)) {
-      return url.replace(re, '$1' + param + '=' + value + '$2');
-    } else {
-      return url + separator + param + '=' + value;
-    }
-  }
-}
-
-/**
  * Get the hash query param's value of the current Web URL(`location.hash`).
  *
  * Usage:
