@@ -125,3 +125,36 @@ export function updateQueryParam(url: string, param: string, value: string): str
     }
   }
 }
+
+/**
+ * Get the hash query param's value of the current Web URL(`location.hash`).
+ *
+ * Usage:
+ *
+ * ```javascript
+ * // http://example.com/?#2333?t1=1&t2=2&t3=3&t4=4
+ * // #2333?t1=1&t2=2&t3=3&t4=4
+ * const p1 = getHashQueryParam('t3');
+ * const p2 = getHashQueryParam('t4');
+ * console.log(p1, p2);
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * 3 4
+ * ```
+ *
+ * @param {string} param Query param.
+ * @returns {string} value
+ * @category URL
+ */
+export function getHashQueryParam(param: string): string {
+  const hashs = location.hash.split('?');
+  if (hashs.length === 1) {
+    return '';
+  }
+  const reg = new RegExp(`(^|&)${param}=([^&]*)(&|$)`);
+  const ret = hashs[1].match(reg);
+  return ret ? ret[2] : '';
+}
