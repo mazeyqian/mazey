@@ -32,43 +32,6 @@ export * from './util';
 export * from './url';
 
 /**
- * Transfer CamelCase to KebabCase.
- *
- * Usage:
- *
- * ```javascript
- * const ret1 = convertCamelToKebab('ABC');
- * const ret2 = convertCamelToKebab('aBC');
- * console.log(ret1);
- * console.log(ret2);
- * ```
- *
- * Output:
- *
- * ```text
- * a-b-c
- * a-b-c
- * ```
- *
- * @param {string} camelCase 'aBC' or 'ABC'
- * @returns {string} 'a-b-c'
- * @category Util
- */
-export function convertCamelToKebab(camelCase: string): string {
-  const kebabCase = camelCase.replace(/([A-Z])/g, '-$1').toLowerCase();
-  return kebabCase[0] === '-' ? kebabCase.substring(1) : kebabCase;
-}
-
-/**
- * Alias of `convertCamelToKebab`
- *
- * @hidden
- */
-export function camelCaseToKebabCase(camelCase: string): string {
-  return convertCamelToKebab(camelCase);
-}
-
-/**
  * Transfer CamelCase to Underscore.
  *
  * Usage:
