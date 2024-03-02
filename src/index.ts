@@ -26,6 +26,7 @@ import {
   UnknownFn,
   UnknownWindow,
 } from './typing';
+import { camelCase2Underscore } from './util';
 
 export * from './calc';
 export * from './util';
