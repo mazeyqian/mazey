@@ -32,43 +32,6 @@ export * from './util';
 export * from './url';
 
 /**
- * Transfer CamelCase to Underscore.
- *
- * Usage:
- *
- * ```javascript
- * const ret1 = convertCamelToUnder('ABC');
- * const ret2 = convertCamelToUnder('aBC');
- * console.log(ret1);
- * console.log(ret2);
- * ```
- *
- * Output:
- *
- * ```text
- * a_b_c
- * a_b_c
- * ```
- *
- * @param {string} camelCase 'aBC' or 'ABC'
- * @returns {string} 'a_b_c'
- * @category Util
- */
-export function convertCamelToUnder(camelCase: string): string {
-  const kebabCase = camelCase.replace(/([A-Z])/g, '_$1').toLowerCase();
-  return kebabCase[0] === '_' ? kebabCase.substring(1) : kebabCase;
-}
-
-/**
- * Alias of `convertCamelToUnder`
- *
- * @hidden
- */
-export function camelCase2Underscore(camelCase: string): string {
-  return convertCamelToUnder(camelCase);
-}
-
-/**
  * Remove leading and trailing whitespace or specified characters from string.
  *
  * Note: This method is used to replace the native `String.prototype.trim()`. But it is not necessary to use it in modern browsers.
