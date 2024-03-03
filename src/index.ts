@@ -33,42 +33,6 @@ export * from './util';
 export * from './url';
 
 /**
- * Remove leading and trailing whitespace or specified characters from string.
- *
- * Note: This method is used to replace the native `String.prototype.trim()`. But it is not necessary to use it in modern browsers.
- *
- * Usage:
- *
- * ```javascript
- * const ret1 = mTrim(' 1 2 3 ');
- * const ret2 = mTrim('abc ');
- * console.log(ret1);
- * console.log(ret2);
- * ```
- *
- * Output:
- *
- * ```text
- * 1 2 3
- * abc
- * ```
- *
- * @param {string} str The string to trim.
- * @returns {string} Trimmed string.
- * @category Util
- * @hidden
- */
-export function mTrim(str: string): string {
-  str = str.replace(/^\s+/, ''); // 去除头部空格
-  let end = str.length - 1;
-  const ws = /\s/;
-  while (ws.test(str.charAt(end))) {
-    end--; // 最后一个非空格字符的索引
-  }
-  return str.slice(0, end + 1);
-}
-
-/**
  * Make a new line of HTML.
  *
  * Usage:
