@@ -161,3 +161,46 @@ export function mTrim(str: string): string {
   }
   return str.slice(0, end + 1);
 }
+
+/**
+ * Check whether it is a valid JSON string.
+ *
+ * Usage:
+ *
+ * ```javascript
+ * const ret1 = isJSONString(`['a', 'b', 'c']`);
+ * const ret2 = isJSONString(`["a", "b", "c"]`);
+ * console.log(ret1);
+ * console.log(ret2);
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * false
+ * true
+ * ```
+ *
+ * @param {string} str The string to check.
+ * @returns {boolean} Return the result of checking.
+ * @category Util
+ */
+export function isJSONString(str: string): boolean {
+  try {
+    if (typeof JSON.parse(str) === 'object') {
+      return true;
+    }
+  } catch (e) {
+    /* pass */
+  }
+  return false;
+}
+
+/**
+ * Alias of `isJSONString`
+ *
+ * @hidden
+ */
+export function isJsonString(str: string): boolean {
+  return isJSONString(str);
+}
