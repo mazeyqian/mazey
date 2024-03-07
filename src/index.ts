@@ -26,52 +26,12 @@ import {
   UnknownFn,
   UnknownWindow,
 } from './typing';
-import { camelCase2Underscore } from './util';
+import { camelCase2Underscore, generateRndNum } from './util';
 
 export * from './calc';
 export * from './util';
 export * from './url';
 export * from './dom';
-
-/**
- * Produce a random string of number, `genRndNumString(7)` => '7658495'.
- *
- * Usage:
- *
- * ```javascript
- * const ret1 = genRndNumString(4);
- * const ret2 = genRndNumString(7);
- * console.log(ret1);
- * console.log(ret2);
- * ```
- *
- * Output:
- *
- * ```text
- * 9730
- * 2262490
- * ```
- *
- * @param {number} n Length
- * @returns {string} Return the random string.
- * @category Util
- */
-export function genRndNumString(n = 5): string {
-  let ret = '';
-  while (n--) {
-    ret += Math.floor(Math.random() * 10);
-  }
-  return ret;
-}
-
-/**
- * Alias of `genRndNumString`
- *
- * @hidden
- */
-export function generateRndNum(n = 5): string {
-  return genRndNumString(n);
-}
 
 /**
  * 根据时间生成唯一标志的数字 `genUniqueNumString()` => `1538324722364123`
