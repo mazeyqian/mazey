@@ -26,48 +26,12 @@ import {
   UnknownFn,
   UnknownWindow,
 } from './typing';
-import { camelCase2Underscore, generateRndNum } from './util';
+import { camelCase2Underscore, mNow } from './util';
 
 export * from './calc';
 export * from './util';
 export * from './url';
 export * from './dom';
-
-/**
- * 根据时间生成唯一标志的数字 `genUniqueNumString()` => `1538324722364123`
- *
- * Usage:
- *
- * ```javascript
- * const ret1 = genUniqueNumString();
- * const ret2 = genUniqueNumString(3);
- * console.log(ret1);
- * console.log(ret2);
- * ```
- *
- * Output:
- *
- * ```text
- * 1538324722364123
- * 1538324722364123
- * ```
- *
- * @param {number} n 随机数的长度
- * @category Util
- */
-export function genUniqueNumString(n = 3): string {
-  const [ now, rnd ] = [ mNow(), generateRndNum(n || 3) ];
-  return now + rnd;
-}
-
-/**
- * Alias of `genUniqueNumString`
- *
- * @hidden
- */
-export function generateUniqueNum(n = 3): string {
-  return genUniqueNumString(n);
-}
 
 /**
  * 浮点数转为百分比 0.2 => 20%
@@ -910,34 +874,6 @@ export function loadScript(
       setTimeout(fail.bind(null, 'timeout'), timeout);
     }
   });
-}
-
-/**
- * 获取时间戳
- *
- * Usage:
- *
- * ```javascript
- * const ret = mNow();
- * console.log(ret);
- * ```
- *
- * Output:
- *
- * ```text
- * 1585325367122
- * ```
- *
- * @category Util
- */
-export function mNow(): number {
-  let ret = 0;
-  if (Date.now) {
-    ret = Date.now();
-  } else {
-    ret = new Date().getTime();
-  }
-  return ret;
 }
 
 /**

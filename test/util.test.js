@@ -19,6 +19,7 @@ import {
   getFriendlyInterval,
   unsanitize,
   waitTime,
+  genUniqueNumString,
 } from '../lib/index.esm';
 
 test('isNumber: Is -1/123/Infinity/NaN Number?', () => {
@@ -155,5 +156,17 @@ describe("isValidPhoneNumber", () => {
     expect(isValidPhoneNumber("1380013800a")).toBe(false);
     expect(isValidPhoneNumber("02345678901")).toBe(false);
     expect(isValidPhoneNumber("00000000000")).toBe(false);
+  });
+});
+
+describe('genUniqueNumString', () => {
+  it('should generate a unique number string with default length', () => {
+    const result = genUniqueNumString();
+    expect(result.length).toBe(16);
+  });
+
+  it('should generate a unique number string with custom length', () => {
+    const result = genUniqueNumString(5);
+    expect(result.length).toBe(18);
   });
 });
