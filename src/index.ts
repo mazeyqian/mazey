@@ -34,39 +34,6 @@ export * from './url';
 export * from './dom';
 
 /**
- * 浮点数转为百分比 0.2 => 20%
- *
- * Usage:
- *
- * ```javascript
- * const ret1 = floatToPercent(0.2);
- * const ret2 = floatToPercent(0.2, 2);
- * console.log(ret1);
- * console.log(ret2);
- * ```
- *
- * Output:
- *
- * ```text
- * 20%
- * 20.00%
- * ```
- *
- * @param {number} num 浮点数
- * @param {number} fixSize 保留几位浮点数
- * @category Util
- */
-export function floatToPercent(num: number, fixSize = 0): string {
-  let ret = '';
-  if (fixSize) {
-    ret = (num * 100).toFixed(fixSize);
-  } else {
-    ret = String(Math.floor(num * 100));
-  }
-  return `${ret}%`;
-}
-
-/**
  * 浮点数保留指定位
  *
  * Usage:

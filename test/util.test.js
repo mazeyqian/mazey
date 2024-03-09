@@ -20,6 +20,7 @@ import {
   unsanitize,
   waitTime,
   genUniqueNumString,
+  floatToPercent,
 } from '../lib/index.esm';
 
 test('isNumber: Is -1/123/Infinity/NaN Number?', () => {
@@ -168,5 +169,17 @@ describe('genUniqueNumString', () => {
   it('should generate a unique number string with custom length', () => {
     const result = genUniqueNumString(5);
     expect(result.length).toBe(18);
+  });
+});
+
+describe('floatToPercent', () => {
+  it('should convert a float number to a percentage string', () => {
+    expect(floatToPercent(0.5)).toBe('50%');
+    expect(floatToPercent(0.12345, 2)).toBe('12.35%');
+    expect(floatToPercent(0.9999, 3)).toBe('99.990%');
+  });
+
+  it('should handle fixSize parameter as optional', () => {
+    expect(floatToPercent(0.75)).toBe('75%');
   });
 });
