@@ -21,6 +21,7 @@ import {
   waitTime,
   genUniqueNumString,
   floatToPercent,
+  floatFixed,
 } from '../lib/index.esm';
 
 test('isNumber: Is -1/123/Infinity/NaN Number?', () => {
@@ -181,5 +182,22 @@ describe('floatToPercent', () => {
 
   it('should handle fixSize parameter as optional', () => {
     expect(floatToPercent(0.75)).toBe('75%');
+  });
+});
+
+describe('floatFixed', () => {
+  it('should return a fixed number with default precision', () => {
+    const result = floatFixed('3.14159');
+    expect(result).toBe('3');
+  });
+
+  it('should return a fixed number with custom precision', () => {
+    const result = floatFixed('3.14159', 2);
+    expect(result).toBe('3.14');
+  });
+
+  it('should return a fixed number with zero precision', () => {
+    const result = floatFixed('3.14159', 0);
+    expect(result).toBe('3');
   });
 });

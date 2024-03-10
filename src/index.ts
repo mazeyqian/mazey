@@ -34,31 +34,6 @@ export * from './url';
 export * from './dom';
 
 /**
- * 浮点数保留指定位
- *
- * Usage:
- *
- * ```javascript
- * const ret1 = floatFixed(0.2);
- * const ret2 = floatFixed(0.2, 2);
- * console.log(ret1);
- * console.log(ret2);
- * ```
- *
- * Output:
- *
- * ```text
- * 0
- * 0.20
- * ```
- *
- * @category Util
- */
-export function floatFixed(num: string, size = 0): string {
-  return parseFloat(num).toFixed(size);
-}
-
-/**
  * 阻止冒泡
  *
  * Usage:
