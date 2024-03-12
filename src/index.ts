@@ -52,35 +52,6 @@ export * from './event';
  *
  * @category DOM
  */
-export function hasClass(obj: HTMLElement, cls: string): boolean {
-  const oriCls = obj.className; // 获取对象的class值
-  const oriClsArr = oriCls.split(/\s+/); // 分隔空格转换成数组
-  for (let i = 0; i < oriClsArr.length; i++) {
-    if (oriClsArr[i] === cls) {
-      return true; // 若匹配到class则返回True
-    }
-  }
-  return false; // 否则返回False
-}
-
-/**
- * Modify `class`.
- *
- * Usage:
- *
- * ```javascript
- * const dom = document.querySelector('#box');
- *
- * // Determine `class`
- * hasClass(dom, 'test');
- * // Add `class`
- * addClass(dom, 'test');
- * // Remove `class`
- * removeClass(dom, 'test');
- * ```
- *
- * @category DOM
- */
 export function addClass(obj: HTMLElement, cls: string): void {
   const oriCls = obj.className;
   let space = '';

@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 /* eslint-disable no-undef */
-import { genStyleString, newLine, getDomain, getBrowserInfo } from '../lib/index.esm';
+import { genStyleString, newLine, getDomain, getBrowserInfo, hasClass } from '../lib/index.esm';
 
 test('newLine: Transfer \'a\nb\nc\' to \'a<br />b<br />c\'?', () => {
   expect(newLine('a\nb\nc')).toBe('a<br />b<br />c');
@@ -72,4 +72,35 @@ describe('genStyleString', () => {
     const result = genStyleString(selector, styleArray);
     expect(result).toEqual(expected);
   });
+});
+
+// Test case 1: Object has the specified class
+test('Object has the specified class', () => {
+  const obj = document.createElement('div');
+  obj.className = 'foo bar baz';
+  const cls = 'bar';
+  expect(hasClass(obj, cls)).toBe(true);
+});
+
+// Test case 2: Object does not have the specified class
+test('Object does not have the specified class', () => {
+  const obj = document.createElement('div');
+  obj.className = 'foo baz';
+  const cls = 'bar';
+  expect(hasClass(obj, cls)).toBe(false);
+});
+
+// Test case 3: Object has multiple classes and one of them matches the specified class
+test('Object has multiple classes and one of them matches the specified class', () => {
+  const obj = document.createElement('div');
+  obj.className = 'foo bar baz';
+  const cls = 'baz';
+  expect(hasClass(obj, cls)).toBe(true);
+});
+
+// Test case 4: Object has no classes
+test('Object has no classes', () => {
+  const obj = document.createElement('div');
+  const cls = 'bar';
+  expect(hasClass(obj, cls)).toBe(false);
 });
