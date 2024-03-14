@@ -57,3 +57,40 @@ export function hasClass(obj: HTMLElement, cls: string): boolean {
   }
   return false; // 否则返回False
 }
+
+/**
+ * Modify `class`.
+ *
+ * Usage:
+ *
+ * ```javascript
+ * const dom = document.querySelector('#box');
+ *
+ * // Determine `class`
+ * hasClass(dom, 'test');
+ * // Add `class`
+ * addClass(dom, 'test');
+ * // Remove `class`
+ * removeClass(dom, 'test');
+ * ```
+ *
+ * @category DOM
+ */
+export function addClass(obj: HTMLElement, cls: string): void {
+  const oriCls = obj.className;
+  // should not add duplicate classes
+  const oriClsArr = oriCls.split(/\s+/);
+  for (let i = 0; i < oriClsArr.length; i++) {
+    if (oriClsArr[i] === cls) {
+      return;
+    }
+  }
+  // Origin logic
+  let space = '';
+  let newCls = ''; // 获取对象的class值
+  if (oriCls !== '') {
+    space = ' '; // 若原来的class不为空，跟一个空格
+  }
+  newCls = oriCls + space + cls; // 将新的class加进去
+  obj.className = newCls; // 替换新class
+}

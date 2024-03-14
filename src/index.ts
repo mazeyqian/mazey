@@ -52,35 +52,6 @@ export * from './event';
  *
  * @category DOM
  */
-export function addClass(obj: HTMLElement, cls: string): void {
-  const oriCls = obj.className;
-  let space = '';
-  let newCls = ''; // 获取对象的class值
-  if (oriCls !== '') {
-    space = ' '; // 若原来的class不为空，跟一个空格
-  }
-  newCls = oriCls + space + cls; // 将新的class加进去
-  obj.className = newCls; // 替换新class
-}
-
-/**
- * Modify `class`.
- *
- * Usage:
- *
- * ```javascript
- * const dom = document.querySelector('#box');
- *
- * // Determine `class`
- * hasClass(dom, 'test');
- * // Add `class`
- * addClass(dom, 'test');
- * // Remove `class`
- * removeClass(dom, 'test');
- * ```
- *
- * @category DOM
- */
 export function removeClass(obj: HTMLElement, cls: string): void {
   const oriCls = obj.className;
   let newCls; // 获取对象的class值

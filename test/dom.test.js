@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 /* eslint-disable no-undef */
-import { genStyleString, newLine, getDomain, getBrowserInfo, hasClass } from '../lib/index.esm';
+import { genStyleString, newLine, getDomain, getBrowserInfo, hasClass, addClass } from '../lib/index.esm';
 
 test('newLine: Transfer \'a\nb\nc\' to \'a<br />b<br />c\'?', () => {
   expect(newLine('a\nb\nc')).toBe('a<br />b<br />c');
@@ -103,4 +103,45 @@ test('Object has no classes', () => {
   const obj = document.createElement('div');
   const cls = 'bar';
   expect(hasClass(obj, cls)).toBe(false);
+});
+
+describe('addClass', () => {
+  it('should add a class to the element', () => {
+    // Arrange
+    const element = document.createElement('div');
+    const className = 'test-class';
+
+    // Act
+    addClass(element, className);
+
+    // Assert
+    expect(element.className).toContain(className);
+  });
+
+  it('should not add duplicate classes', () => {
+    // Arrange
+    const element = document.createElement('div');
+    const className = 'test-class';
+
+    // Act
+    addClass(element, className);
+    addClass(element, className);
+
+    // Assert
+    expect(element.className.split(' ')).toEqual([className]);
+  });
+
+  it('should handle elements with existing classes', () => {
+    // Arrange
+    const element = document.createElement('div');
+    element.className = 'existing-class';
+    const className = 'test-class';
+
+    // Act
+    addClass(element, className);
+
+    // Assert
+    expect(element.className).toContain(className);
+    expect(element.className).toContain('existing-class');
+  });
 });

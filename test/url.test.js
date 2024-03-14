@@ -2,9 +2,7 @@
  * @jest-environment node
  */
 /* eslint-disable no-undef */
-/* eslint-disable quotes */
 import { isValidUrl, getUrlFileType, isValidHttpUrl, updateQueryParam, getUrlParam } from '../lib/index.esm';
-// import { isValidUrl, getUrlFileType, isValidHttpUrl } from '../src/index';
 
 const validUrls = [
   'https://www.example.com/events/#&product=browser',

@@ -2,7 +2,6 @@
  * @jest-environment node
  */
 /* eslint-disable no-undef */
-/* eslint-disable quotes */
 import {
   isNumber,
   camelCaseToKebabCase,
@@ -34,47 +33,47 @@ test('isNumber: Is -1/123/Infinity/NaN Number?', () => {
   expect(isNumber(NaN, { isNaNAsNumber: true, isInfinityAsNumber: true })).toBe(true);
 });
 
-test(`camelCaseToKebabCase: Transfer 'aBC' to 'a-b-c'?`, () => {
+test('camelCaseToKebabCase: Transfer \'aBC\' to \'a-b-c\'?', () => {
   expect(camelCaseToKebabCase('aBC')).toBe('a-b-c');
 });
 
-test(`camelCase2Underscore: Transfer 'ABC' to 'a_b_c'?`, () => {
+test('camelCase2Underscore: Transfer \'ABC\' to \'a_b_c\'?', () => {
   expect(camelCase2Underscore('ABC')).toBe('a_b_c');
 });
 
-test(`mTrim: Transfer ' 1 2 3 ' to '1 2 3'?`, () => {
+test('mTrim: Transfer \' 1 2 3 \' to \'1 2 3\'?', () => {
   expect(mTrim(' 1 2 3 ')).toBe('1 2 3');
 });
 
-test(`mTrim: Transfer 'abc ' to 'abc'?`, () => {
+test('mTrim: Transfer \'abc \' to \'abc\'?', () => {
   expect(mTrim('abc ')).toBe('abc');
 });
 
-test(`deepCopyObject: Transfer 'abc' to 'abc'?`, () => {
+test('deepCopyObject: Transfer \'abc\' to \'abc\'?', () => {
   expect(deepCopyObject('abc')).toBe('abc');
 });
 
-test(`isJsonString: Is '['a', 'b', 'c']' a valid JSON string?`, () => {
-  expect(isJsonString(`['a', 'b', 'c']`)).toBe(false);
+test('isJsonString: Is \'[\'a\', \'b\', \'c\']\' a valid JSON string?', () => {
+  expect(isJsonString('[\'a\', \'b\', \'c\']')).toBe(false);
 });
 
-test(`isJsonString: Is '["a", "b", "c"]' a valid JSON string?`, () => {
-  expect(isJsonString(`["a", "b", "c"]`)).toBe(true);
+test('isJsonString: Is \'["a", "b", "c"]\' a valid JSON string?', () => {
+  expect(isJsonString('["a", "b", "c"]')).toBe(true);
 });
 
-test(`generateRndNum: Can it produce an empty string?`, () => {
+test('generateRndNum: Can it produce an empty string?', () => {
   expect(generateRndNum(0)).toBe('');
 });
 
-test(`formatDate: String formatDate value?`, () => {
+test('formatDate: String formatDate value?', () => {
   expect(formatDate('Tue Jan 11 2022 14:12:26 GMT+0800 (China Standard Time)', 'yyyy-MM-dd hh:mm:ss').length).toBe(19);
 });
 
-test(`formatDate: Number formatDate value?`, () => {
+test('formatDate: Number formatDate value?', () => {
   expect(formatDate(1641881235000, 'yyyy-MM-dd hh:mm:ss').length).toBe(19);
 });
 
-test(`isValidData: Check the valid value?`, () => {
+test('isValidData: Check the valid value?', () => {
   expect(isValidData({
     a: {
       b: {
@@ -84,7 +83,7 @@ test(`isValidData: Check the valid value?`, () => {
   }, [ 'a', 'b', 'c' ], 413)).toBe(true);
 });
 
-test(`isValidEmail: Check the valid email?`, () => {
+test('isValidEmail: Check the valid email?', () => {
   expect(isValidEmail('mazeyqian@gmail.com')).toBe(true);
   expect(isValidEmail('test-1-2-3@example.com')).toBe(true);
 });
@@ -138,26 +137,26 @@ describe('waitTime', () => {
   });
 });
 
-describe("isValidPhoneNumber", () => {
-  it("should return true for valid phone numbers", () => {
-    expect(isValidPhoneNumber("13800138000")).toBe(true);
-    expect(isValidPhoneNumber("15012345678")).toBe(true);
-    expect(isValidPhoneNumber("19912345678")).toBe(true);
-    expect(isValidPhoneNumber("17612345678")).toBe(true);
-    expect(isValidPhoneNumber("14712345678")).toBe(true);
-    expect(isValidPhoneNumber("11012345678")).toBe(true);
-    expect(isValidPhoneNumber("12012345678")).toBe(true);
-    expect(isValidPhoneNumber("16912345678")).toBe(true);
-    expect(isValidPhoneNumber("10912345678")).toBe(true);
-    expect(isValidPhoneNumber("18012345678")).toBe(true);
+describe('isValidPhoneNumber', () => {
+  it('should return true for valid phone numbers', () => {
+    expect(isValidPhoneNumber('13800138000')).toBe(true);
+    expect(isValidPhoneNumber('15012345678')).toBe(true);
+    expect(isValidPhoneNumber('19912345678')).toBe(true);
+    expect(isValidPhoneNumber('17612345678')).toBe(true);
+    expect(isValidPhoneNumber('14712345678')).toBe(true);
+    expect(isValidPhoneNumber('11012345678')).toBe(true);
+    expect(isValidPhoneNumber('12012345678')).toBe(true);
+    expect(isValidPhoneNumber('16912345678')).toBe(true);
+    expect(isValidPhoneNumber('10912345678')).toBe(true);
+    expect(isValidPhoneNumber('18012345678')).toBe(true);
   });
 
-  it("should return false for invalid phone numbers", () => {
-    expect(isValidPhoneNumber("1380013800")).toBe(false);
-    expect(isValidPhoneNumber("138001380000")).toBe(false);
-    expect(isValidPhoneNumber("1380013800a")).toBe(false);
-    expect(isValidPhoneNumber("02345678901")).toBe(false);
-    expect(isValidPhoneNumber("00000000000")).toBe(false);
+  it('should return false for invalid phone numbers', () => {
+    expect(isValidPhoneNumber('1380013800')).toBe(false);
+    expect(isValidPhoneNumber('138001380000')).toBe(false);
+    expect(isValidPhoneNumber('1380013800a')).toBe(false);
+    expect(isValidPhoneNumber('02345678901')).toBe(false);
+    expect(isValidPhoneNumber('00000000000')).toBe(false);
   });
 });
 
