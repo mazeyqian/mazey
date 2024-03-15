@@ -30,7 +30,7 @@ export function newLine(str: string): string {
 }
 
 /**
- * Modify `class`.
+ * Modify `class`: determine `class`.
  *
  * Usage:
  *
@@ -59,7 +59,7 @@ export function hasClass(obj: HTMLElement, cls: string): boolean {
 }
 
 /**
- * Modify `class`.
+ * Modify `class`: add `class`.
  *
  * Usage:
  *
@@ -93,4 +93,32 @@ export function addClass(obj: HTMLElement, cls: string): void {
   }
   newCls = oriCls + space + cls; // 将新的class加进去
   obj.className = newCls; // 替换新class
+}
+
+/**
+ * Modify `class`: remove `class`.
+ *
+ * Usage:
+ *
+ * ```javascript
+ * const dom = document.querySelector('#box');
+ *
+ * // Determine `class`
+ * hasClass(dom, 'test');
+ * // Add `class`
+ * addClass(dom, 'test');
+ * // Remove `class`
+ * removeClass(dom, 'test');
+ * ```
+ *
+ * @category DOM
+ */
+export function removeClass(obj: HTMLElement, cls: string): void {
+  const oriCls = obj.className;
+  let newCls; // 获取对象的class值
+  newCls = ' ' + oriCls + ' '; // 前后加空格
+  newCls = newCls.replace(/(\s+)/gi, ' '); // 将多余的空格替换成一个空格
+  newCls = newCls.replace(' ' + cls + ' ', ' '); // 将加了前后空格的cls替换成空格' '
+  newCls = newCls.replace(/(^\s+)|(\s+$)/g, ''); // 去掉前后空格
+  obj.className = newCls;
 }

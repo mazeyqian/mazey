@@ -35,34 +35,6 @@ export * from './dom';
 export * from './event';
 
 /**
- * Modify `class`.
- *
- * Usage:
- *
- * ```javascript
- * const dom = document.querySelector('#box');
- *
- * // Determine `class`
- * hasClass(dom, 'test');
- * // Add `class`
- * addClass(dom, 'test');
- * // Remove `class`
- * removeClass(dom, 'test');
- * ```
- *
- * @category DOM
- */
-export function removeClass(obj: HTMLElement, cls: string): void {
-  const oriCls = obj.className;
-  let newCls; // 获取对象的class值
-  newCls = ' ' + oriCls + ' '; // 前后加空格
-  newCls = newCls.replace(/(\s+)/gi, ' '); // 将多余的空格替换成一个空格
-  newCls = newCls.replace(' ' + cls + ' ', ' '); // 将加了前后空格的cls替换成空格' '
-  newCls = newCls.replace(/(^\s+)|(\s+$)/g, ''); // 去掉前后空格
-  obj.className = newCls;
-}
-
-/**
  * EN: Throttle
  *
  * ZH: 节流

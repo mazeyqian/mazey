@@ -2,7 +2,15 @@
  * @jest-environment jsdom
  */
 /* eslint-disable no-undef */
-import { genStyleString, newLine, getDomain, getBrowserInfo, hasClass, addClass } from '../lib/index.esm';
+import {
+  genStyleString,
+  newLine,
+  getDomain,
+  getBrowserInfo,
+  hasClass,
+  addClass,
+  removeClass,
+} from '../lib/index.esm';
 
 test('newLine: Transfer \'a\nb\nc\' to \'a<br />b<br />c\'?', () => {
   expect(newLine('a\nb\nc')).toBe('a<br />b<br />c');
@@ -143,5 +151,31 @@ describe('addClass', () => {
     // Assert
     expect(element.className).toContain(className);
     expect(element.className).toContain('existing-class');
+  });
+});
+
+describe('removeClass', () => {
+  it('should remove the specified class from the element', () => {
+    // Create a dummy element with a class
+    const element = document.createElement('div');
+    element.className = 'foo bar baz';
+
+    // Call the removeClass function
+    removeClass(element, 'bar');
+
+    // Assert that the class has been removed
+    expect(element.className).toBe('foo baz');
+  });
+
+  it('should not modify the class if the specified class is not present', () => {
+    // Create a dummy element with a class
+    const element = document.createElement('div');
+    element.className = 'foo bar baz';
+
+    // Call the removeClass function with a class that is not present
+    removeClass(element, 'qux');
+
+    // Assert that the class remains unchanged
+    expect(element.className).toBe('foo bar baz');
   });
 });
