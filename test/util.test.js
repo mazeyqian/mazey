@@ -21,6 +21,7 @@ import {
   genUniqueNumString,
   floatToPercent,
   floatFixed,
+  throttle,
 } from '../lib/index.esm';
 
 test('isNumber: Is -1/123/Infinity/NaN Number?', () => {
@@ -199,4 +200,32 @@ describe('floatFixed', () => {
     const result = floatFixed('3.14159', 0);
     expect(result).toBe('3');
   });
+});
+
+// Test case 1: Throttled function should be called only once within the specified wait time
+test('Throttled function should be called only once within the specified wait time', () => {
+  const mockFn = jest.fn();
+  const throttledFn = throttle(mockFn, 100);
+
+  // Call the throttled function multiple times within the wait time
+  throttledFn();
+  throttledFn();
+  throttledFn();
+
+  // The mock function should be called only once
+  expect(mockFn).toHaveBeenCalledTimes(1);
+});
+
+// Test case 2: Throttled function should respect the leading and trailing options
+test('Throttled function should respect the leading and trailing options', () => {
+  const mockFn = jest.fn();
+  const throttledFn = throttle(mockFn, 100, { leading: false, trailing: false });
+
+  // Call the throttled function multiple times within the wait time
+  throttledFn();
+  throttledFn();
+  throttledFn();
+
+  // The mock function should not be called
+  expect(mockFn).not.toHaveBeenCalled();
 });

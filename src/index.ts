@@ -10,7 +10,7 @@ import {
   TestUa,
   TestVs,
   // UrlParams,
-  ThrottleFunc,
+  // ThrottleFunc,
   DebounceFunc,
   IsNumberOptions,
   AnyFunction,
@@ -33,63 +33,6 @@ export * from './util';
 export * from './url';
 export * from './dom';
 export * from './event';
-
-/**
- * EN: Throttle
- *
- * ZH: 节流
- *
- * Usage:
- *
- * ```javascript
- * const foo = throttle(() => {
- *   console.log('The function will be invoked at most once per every wait 1000 milliseconds.');
- * }, 1000, { leading: true });
- * ```
- *
- * Reference: [Lodash](https://lodash.com/docs/4.17.15#throttle)
- *
- * @category Util
- */
-export function throttle<T extends (...args: UnknownFnParams) => UnknownFnReturn>(func: T, wait: number, options: { leading?: boolean; trailing?: boolean } = {}): ThrottleFunc<T> {
-  options = Object.assign({}, options);
-  let context: unknown | null = null;
-  let args: Parameters<T> | null = null;
-  let timeout: ReturnType<typeof setTimeout> | null = null;
-  let [ result, previous ] = [ null, 0 ];
-  const later = function(this: unknown) {
-    previous = options.leading === false ? 0 : mNow();
-    timeout = null;
-    result = func.apply(this as T, args!);
-    if (!timeout) {
-      context = args = null;
-    }
-  };
-  return function(this: unknown, ...argRest: Parameters<T>) {
-    const now = mNow();
-    if (!previous && options.leading === false) {
-      previous = now;
-    }
-    const remaining = wait - (now - previous);
-    // eslint-disable-next-line @typescript-eslint/no-this-alias
-    context = this;
-    args = argRest;
-    if (remaining <= 0 || remaining > wait) {
-      if (timeout) {
-        clearTimeout(timeout);
-        timeout = null;
-      }
-      previous = now;
-      result = func.apply(context as T, args!);
-      if (!timeout) {
-        context = args = null;
-      }
-    } else if (!timeout && options.trailing !== false) {
-      timeout = setTimeout(later.bind(context), remaining);
-    }
-    return result;
-  };
-}
 
 /**
  * EN: Debounce
