@@ -11,7 +11,7 @@ import {
   TestVs,
   // UrlParams,
   // ThrottleFunc,
-  DebounceFunc,
+  // DebounceFunc,
   IsNumberOptions,
   AnyFunction,
   ZResResponse,
@@ -26,65 +26,16 @@ import {
   UnknownFn,
   UnknownWindow,
 } from './typing';
-import { camelCase2Underscore, mNow } from './util';
+import {
+  camelCase2Underscore,
+  // mNow,
+} from './util';
 
 export * from './calc';
 export * from './util';
 export * from './url';
 export * from './dom';
 export * from './event';
-
-/**
- * EN: Debounce
- *
- * ZH: 去抖
- *
- * Usage:
- *
- * ```javascript
- * const foo = debounce(() => {
- *   console.log('The debounced function will only be invoked in 1000 milliseconds, the other invoking will disappear during the wait time.');
- * }, 1000, true);
- * ```
- *
- * @category Util
- */
-export function debounce<T extends (...args: UnknownFnParams) => UnknownFnReturn>(func: T, wait: number, immediate?: boolean): DebounceFunc<T> {
-  let context: unknown | null = null;
-  let timeout: ReturnType<typeof setTimeout> | null = null;
-  let timestamp: number | null = null;
-  let args: Parameters<T> | null = null;
-  let result: ReturnType<T> | null = null;
-  const later = function() {
-    const last = mNow() - (timestamp as number);
-    if (last < wait && last >= 0) {
-      timeout = setTimeout(later, wait - last);
-    } else {
-      timeout = null;
-      if (!immediate) {
-        result = func.apply(context as T, args!);
-        if (!timeout) {
-          context = args = null;
-        }
-      }
-    }
-  };
-  return function(this: unknown, ...argRest: Parameters<T>) {
-    // eslint-disable-next-line @typescript-eslint/no-this-alias
-    context = this;
-    args = argRest;
-    timestamp = mNow();
-    const callNow = immediate && !timeout;
-    if (!timeout) {
-      timeout = setTimeout(later, wait);
-    }
-    if (callNow) {
-      result = func.apply(context as T, args!);
-      context = args = null;
-    }
-    return result as ReturnType<T>;
-  };
-}
 
 const defaultGetFriendlyIntervalOptions = {
   type: 'd',

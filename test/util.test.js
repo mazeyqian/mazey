@@ -22,6 +22,7 @@ import {
   floatToPercent,
   floatFixed,
   throttle,
+  debounce,
 } from '../lib/index.esm';
 
 test('isNumber: Is -1/123/Infinity/NaN Number?', () => {
@@ -228,4 +229,47 @@ test('Throttled function should respect the leading and trailing options', () =>
 
   // The mock function should not be called
   expect(mockFn).not.toHaveBeenCalled();
+});
+
+describe('debounce', () => {
+  // Mock function for testing
+  const mockFn = jest.fn();
+  
+  beforeEach(() => {
+    jest.useFakeTimers();
+    mockFn.mockClear();
+  });
+
+  it('should debounce the function call', () => {
+    const debouncedFn = debounce(mockFn, 100);
+
+    // Call the debounced function multiple times within the debounce period
+    debouncedFn();
+    debouncedFn();
+    debouncedFn();
+
+    // Fast-forward time by 100ms
+    jest.advanceTimersByTime(100);
+
+    // The debounced function should only be called once
+    expect(mockFn).toHaveBeenCalledTimes(1);
+  });
+
+  it('should immediately invoke the function if immediate flag is set', () => {
+    const debouncedFn = debounce(mockFn, 100, true);
+
+    // Call the debounced function multiple times within the debounce period
+    debouncedFn();
+    debouncedFn();
+    debouncedFn();
+
+    // The debounced function should be called immediately
+    expect(mockFn).toHaveBeenCalledTimes(1);
+
+    // Fast-forward time by 100ms
+    jest.advanceTimersByTime(100);
+
+    // The debounced function should not be called again
+    expect(mockFn).toHaveBeenCalledTimes(1);
+  });
 });

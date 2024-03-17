@@ -1,4 +1,4 @@
-import { SimpleObject, ThrottleFunc, MazeyFnParams, MazeyFnReturn } from './typing';
+import { SimpleObject, ThrottleFunc, DebounceFunc, MazeyFnParams, MazeyFnReturn } from './typing';
 
 /**
  * Copy/Clone Object deeply.
@@ -421,5 +421,57 @@ export function throttle<T extends (...args: MazeyFnParams) => MazeyFnReturn>(fu
       timeout = setTimeout(later.bind(context), remaining);
     }
     return result;
+  };
+}
+
+/**
+ * EN: Debounce
+ *
+ * ZH: 去抖
+ *
+ * Usage:
+ *
+ * ```javascript
+ * const foo = debounce(() => {
+ *   console.log('The debounced function will only be invoked in 1000 milliseconds, the other invoking will disappear during the wait time.');
+ * }, 1000, true);
+ * ```
+ *
+ * @category Util
+ */
+export function debounce<T extends (...args: MazeyFnParams) => MazeyFnReturn>(func: T, wait: number, immediate?: boolean): DebounceFunc<T> {
+  let context: unknown | null = null;
+  let timeout: ReturnType<typeof setTimeout> | null = null;
+  let timestamp: number | null = null;
+  let args: Parameters<T> | null = null;
+  let result: ReturnType<T> | null = null;
+  const later = function() {
+    const last = mNow() - (timestamp as number);
+    if (last < wait && last >= 0) {
+      timeout = setTimeout(later, wait - last);
+    } else {
+      timeout = null;
+      if (!immediate) {
+        result = func.apply(context as T, args!);
+        if (!timeout) {
+          context = args = null;
+        }
+      }
+    }
+  };
+  return function(this: unknown, ...argRest: Parameters<T>) {
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
+    context = this;
+    args = argRest;
+    timestamp = mNow();
+    const callNow = immediate && !timeout;
+    if (!timeout) {
+      timeout = setTimeout(later, wait);
+    }
+    if (callNow) {
+      result = func.apply(context as T, args!);
+      context = args = null;
+    }
+    return result as ReturnType<T>;
   };
 }
