@@ -1,4 +1,4 @@
-import { SimpleObject, ThrottleFunc, DebounceFunc, MazeyFnParams, MazeyFnReturn } from './typing';
+import { SimpleObject, ThrottleFunc, DebounceFunc, MazeyFnParams, MazeyFnReturn, IsNumberOptions } from './typing';
 
 /**
  * Copy/Clone Object deeply.
@@ -474,4 +474,120 @@ export function debounce<T extends (...args: MazeyFnParams) => MazeyFnReturn>(fu
     }
     return result as ReturnType<T>;
   };
+}
+
+const defaultGetFriendlyIntervalOptions = {
+  type: 'd',
+};
+
+/**
+ * 获取间隔时间
+ *
+ * Usage:
+ *
+ * ```javascript
+ * const ret1 = getFriendlyInterval(new Date('2020-03-28 00:09:27'), new Date('2023-04-18 10:54:00'), { type: 'd' });
+ * const ret2 = getFriendlyInterval(1585325367000, 1681786440000, { type: 'text' });
+ * const ret3 = getFriendlyInterval('2020-03-28 00:09:27', '2023-04-18 10:54:00', { type: 'text' });
+ * console.log(ret1);
+ * console.log(ret2);
+ * console.log(ret3);
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * 1116
+ * 1116 天 10 时 44 分 33 秒
+ * 1116 天 10 时 44 分 33 秒
+ * ```
+ *
+ * @param {number/Date} start 开始时间戳 1585325367122
+ * @param {number/Date} end 结束时间戳 1585325367122
+ * @param {string} options.type 返回类型 d: 2(天) text: 2 天 4 时...
+ * @returns {string/number} 取决于 type
+ * @category Util
+ */
+export function getFriendlyInterval(start: number | string | Date = 0, end: number | string | Date = 0, options: { type?: string } = defaultGetFriendlyIntervalOptions): number | string {
+  options = Object.assign(defaultGetFriendlyIntervalOptions, options);
+  const { type } = options;
+  if (!isNumber(start)) start = new Date(start).getTime();
+  if (!isNumber(end)) end = new Date(end).getTime();
+  const t = Number(end) - Number(start);
+  let ret = '';
+  let [ d, h, m, s ] = new Array(4).fill(0);
+  const zhD = decodeURIComponent('%20%E5%A4%A9%20'); // ' 天 '
+  const zhH = decodeURIComponent('%20%E6%97%B6%20'); // ' 时 '
+  const zhM = decodeURIComponent('%20%E5%88%86%20'); // ' 分 '
+  const zhS = decodeURIComponent('%20%E7%A7%92'); // ' 秒'
+  if (t >= 0) {
+    d = Math.floor(t / 1000 / 60 / 60 / 24);
+    h = Math.floor(t / 1000 / 60 / 60);
+    m = Math.floor(t / 1000 / 60);
+    s = Math.floor(t / 1000);
+    switch (type) {
+      case 'd':
+        ret = d;
+        break;
+      case 'text':
+        d = Math.floor(t / 1000 / 60 / 60 / 24);
+        h = Math.floor((t / 1000 / 60 / 60) % 24);
+        m = Math.floor((t / 1000 / 60) % 60);
+        s = Math.floor((t / 1000) % 60);
+        // ret = d + ' 天 ' + h + ' 时 ' + m + ' 分 ' + s + ' 秒';
+        ret = d + zhD + h + zhH + m + zhM + s + zhS;
+        break;
+      default:
+        ret = s;
+    }
+  }
+  return ret;
+}
+
+/**
+ * EN: Check whether it is a right number.
+ *
+ * ZH: 判断是否有效数字
+ *
+ * Usage:
+ *
+ * ```javascript
+ * const ret1 = isNumber(123);
+ * const ret2 = isNumber('123');
+ * // Default: NaN, Infinity is not Number
+ * const ret3 = isNumber(Infinity);
+ * const ret4 = isNumber(Infinity, { isInfinityAsNumber: true });
+ * const ret5 = isNumber(NaN);
+ * const ret6 = isNumber(NaN, { isNaNAsNumber: true, isInfinityAsNumber: true });
+ * console.log(ret1, ret2, ret3, ret4, ret5, ret6);
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * true false false true false true
+ * ```
+ *
+ * @param {*} num 被判断的值
+ * @param {boolean} options.isNaNAsNumber 是否 NaN 算数字（默认不算）
+ * @param {boolean} options.isInfinityAsNumber 是否 无限 算数字（默认不算）
+ * @returns {boolean} true 是数字
+ * @category Util
+ */
+export function isNumber(num: unknown, options: IsNumberOptions = {}): boolean {
+  const { isNaNAsNumber = false, isInfinityAsNumber = false, isUnFiniteAsNumber = false } = options;
+  if (typeof num !== 'number') {
+    return false;
+  }
+  if (!(isInfinityAsNumber === true || isUnFiniteAsNumber === true) && !isFinite(num)) {
+    return false;
+  }
+  // Be compatible with previous versions.
+  // if (!isUnFiniteAsNumber && !isFinite(num)) {
+  //   return false;
+  // }
+  if (!isNaNAsNumber && isNaN(num)) {
+    return false;
+  }
+  return true;
 }
