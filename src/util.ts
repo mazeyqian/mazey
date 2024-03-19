@@ -1,4 +1,4 @@
-import { SimpleObject, ThrottleFunc, DebounceFunc, MazeyFnParams, MazeyFnReturn, IsNumberOptions } from './typing';
+import { SimpleObject, ThrottleFunc, DebounceFunc, MazeyFnParams, MazeyFnReturn, IsNumberOptions, MazeyFunction } from './typing';
 
 /**
  * Copy/Clone Object deeply.
@@ -590,4 +590,26 @@ export function isNumber(num: unknown, options: IsNumberOptions = {}): boolean {
     return false;
   }
   return true;
+}
+
+/**
+ * 执行有效函数
+ *
+ * Usage:
+ *
+ * ```javascript
+ * const ret = doFn(() => {
+ *  console.log('doFn');
+ * });
+ * ```
+ *
+ * @param {function} fn 等待被执行的未知是否有效的函数
+ * @category Util
+ */
+export function doFn(fn: MazeyFunction, ...params: Parameters<MazeyFunction>): ReturnType<MazeyFunction> | null {
+  let ret: ReturnType<MazeyFunction> | null = null;
+  if (fn && typeof fn === 'function') {
+    ret = fn(...params);
+  }
+  return ret;
 }

@@ -23,6 +23,7 @@ import {
   floatFixed,
   throttle,
   debounce,
+  doFn,
 } from '../lib/index.esm';
 
 test('isNumber: Is -1/123/Infinity/NaN Number?', () => {
@@ -271,5 +272,27 @@ describe('debounce', () => {
 
     // The debounced function should not be called again
     expect(mockFn).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe('doFn', () => {
+  // Define a sample function for testing
+  function add(a, b) {
+    return a + b;
+  }
+
+  it('should call the provided function with the given parameters', () => {
+    const result = doFn(add, 2, 3);
+    expect(result).toBe(5);
+  });
+
+  it('should return null if the provided function is null', () => {
+    const result = doFn(null, 2, 3);
+    expect(result).toBeNull();
+  });
+
+  it('should return null if the provided function is not a function', () => {
+    const result = doFn('not a function', 2, 3);
+    expect(result).toBeNull();
   });
 });

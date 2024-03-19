@@ -69,9 +69,10 @@ export type UnknownFnParams = any[]; // | Record<string, unknown> | string | num
 export type UnknownFnReturn = any;
 export type UnknownFn = (...args: UnknownFnParams) => UnknownFnReturn;
 
-export type MazeyFnParams = any[]; // | Record<string, unknown> | string | number | boolean | null | undefined;
-export type MazeyFnReturn = any;
-
 export interface UnknownWindow {
   [key: string]: any;
 }
+
+export type MazeyFnParams = any[]; // | Record<string, unknown> | string | number | boolean | null | undefined;
+export type MazeyFnReturn = any;
+export type MazeyFunction = (...args: any[]) => any;

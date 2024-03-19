@@ -13,7 +13,7 @@ import {
   // ThrottleFunc,
   // DebounceFunc,
   // IsNumberOptions,
-  AnyFunction,
+  // AnyFunction,
   ZResResponse,
   ZResIsValidResOptions,
   RepeatUntilOptions,
@@ -29,6 +29,7 @@ import {
 import {
   camelCase2Underscore,
   isNumber,
+  doFn,
   // mNow,
 } from './util';
 
@@ -37,28 +38,6 @@ export * from './util';
 export * from './url';
 export * from './dom';
 export * from './event';
-
-/**
- * 执行有效函数
- *
- * Usage:
- *
- * ```javascript
- * const ret = doFn(() => {
- *  console.log('doFn');
- * });
- * ```
- *
- * @param {function} fn 等待被执行的未知是否有效的函数
- * @category Util
- */
-export function doFn(fn: AnyFunction, ...params: Parameters<AnyFunction>): ReturnType<AnyFunction> | null {
-  let ret: ReturnType<AnyFunction> | null = null;
-  if (fn && typeof fn === 'function') {
-    ret = fn(...params);
-  }
-  return ret;
-}
 
 /**
  * EN: Handle Storage (Keep fit for JSON, it can transfer format automatically).
