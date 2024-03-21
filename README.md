@@ -88,7 +88,7 @@ There are some examples maintained by hand below. For more information, please c
   - [updateQueryParam](#updatequeryparam)
   - [isValidUrl](#isvalidurl)
   - [isValidHttpUrl](#isvalidhttpurl)
-- [Cache Data](#cache-data)
+- [Store](#cache-data)
   - [Cookie](#cookie)
   - [Storage](#storage)
 - [DOM](#dom)
@@ -602,7 +602,7 @@ Output:
 true true true true false
 ```
 
-### Cache Data
+### Store
 
 #### Cookie
 
