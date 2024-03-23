@@ -6,6 +6,7 @@ import {
   setSessionStorage,
   getSessionStorage,
   setLocalStorage,
+  getLocalStorage,
 } from '../lib/index.esm';
 
 describe('setSessionStorage', () => {
@@ -76,5 +77,22 @@ describe('setLocalStorage', () => {
     const storedValue = localStorage.getItem(key);
 
     expect(storedValue).toBeNull();
+  });
+});
+
+describe('getLocalStorage', () => {
+  it('should get localStorage correctly: string', () => {
+    localStorage.setItem('test', '"test"');
+    expect(getLocalStorage('test')).toBe('test');
+  });
+
+  it('should get localStorage correctly: object', () => {
+    localStorage.setItem('test', '{"a":1}');
+    expect(getLocalStorage('test')).toEqual({ a: 1 });
+  });
+
+  it('should get localStorage correctly: array', () => {
+    localStorage.setItem('test', '[1,2,3]');
+    expect(getLocalStorage('test')).toEqual([ 1, 2, 3 ]);
   });
 });
