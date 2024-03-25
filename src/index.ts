@@ -29,9 +29,10 @@ import {
 import {
   camelCase2Underscore,
   isNumber,
-  doFn,
+  // doFn,
   // mNow,
 } from './util';
+import { loadScript } from './load';
 
 export * from './calc';
 export * from './util';
@@ -40,116 +41,6 @@ export * from './dom';
 export * from './event';
 export * from './store';
 export * from './load';
-
-/**
- * EN: Load a JavaScript file from the server and execute it.
- *
- * ZH: 动态加载 JavaScript 文件
- *
- * Usage:
- *
- * ```javascript
- * loadScript(
- *     'http://example.com/static/js/plugin-2.1.1.min.js',
- *     {
- *       id: 'iamid', // (Optional) script ID, default none
- *       timeout: 5000, // (Optional) timeout, default `5000`
- *       isDefer: false, // (Optional) defer, default `false`
- *     }
- *   )
- *   .then(
- *     res => {
- *       console.log(`Load JavaScript script: ${res}`);
- *     }
- *   )
- *   .catch(
- *     err => {
- *       console.error(`Load JavaScript script: ${err.message}`)
- *     }
- *   );
- * ```
- *
- * Output:
- *
- * ```text
- * Load JavaScript script: loaded
- * ```
- *
- * @param {string} url -- JavaScript 资源路径
- * @param {string} options.id -- DOM ID
- * @param {function} options.callback -- 加载后回调函数
- * @param {number} options.timeout -- 超时时长
- * @param {boolean} options.isDefer -- 是否添加 defer 标签
- * @returns {Promise<string>} -- true 成功
- * @category Load
- */
-export function loadScript(
-  url: string,
-  options: {
-    id?: string;
-    callback?: (...params: UnknownFnParams) => UnknownFnReturn;
-    timeout?: number;
-    isDefer?: boolean;
-  } = {
-    id: '',
-    callback: function() {
-      /* pass */
-    },
-    timeout: 5000,
-    isDefer: false,
-  }
-): LoadScriptReturns {
-  const { id, callback, timeout, isDefer } = Object.assign(
-    {
-      id: '',
-      callback: function() {
-        /* pass */
-      },
-      timeout: 5000,
-      isDefer: false,
-    },
-    options
-  );
-  let success: (v: string) => void;
-  let fail: (v: string) => void;
-  const script: HTMLScriptElement = document.createElement('script');
-  if (!script) {
-    Promise.reject('Not support create script element');
-  }
-  // 如果没有 script 标签，那么代码就不会运行。可以利用这一事实，在页面的第一个 script 标签上使用 insertBefore()。
-  const firstScript: HTMLScriptElement = document.getElementsByTagName('script')[0];
-  script.type = 'text/javascript';
-  if (isDefer) {
-    script.defer = true; // 'defer';
-  }
-  if (id) {
-    script.id = id;
-  }
-  if (script.readyState) {
-    // IE
-    script.onreadystatechange = function() {
-      if (script.readyState === 'loaded' || script.readyState === 'complete') {
-        script.onreadystatechange = null;
-        doFn(callback);
-        doFn(success, 'loaded');
-      }
-    };
-  } else {
-    // Others
-    script.onload = function() {
-      doFn(callback);
-      doFn(success, 'loaded');
-    };
-  }
-  script.src = url;
-  firstScript && firstScript.parentNode.insertBefore(script, firstScript);
-  return new Promise((resolve, reject) => {
-    [ success, fail ] = [ resolve, reject ];
-    if (timeout) {
-      setTimeout(fail.bind(null, 'timeout'), timeout);
-    }
-  });
-}
 
 /**
  * EN: Handle Cookie.
