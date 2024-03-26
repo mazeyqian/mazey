@@ -7,6 +7,8 @@ import {
   getSessionStorage,
   setLocalStorage,
   getLocalStorage,
+  getCookie,
+  setCookie,
 } from '../lib/index.esm';
 
 describe('setSessionStorage', () => {
@@ -94,5 +96,39 @@ describe('getLocalStorage', () => {
   it('should get localStorage correctly: array', () => {
     localStorage.setItem('test', '[1,2,3]');
     expect(getLocalStorage('test')).toEqual([ 1, 2, 3 ]);
+  });
+});
+
+describe('getCookie', () => {
+  beforeEach(() => {
+    // Set up any necessary test setup here
+    document.cookie = 'cookie1=value1';
+    document.cookie = 'cookie2=value2';
+  });
+
+  afterEach(() => {
+    // Clean up any changes made during the tests here
+    document.cookie = '';
+  });
+
+  it('should return the value of the specified cookie', () => {
+    expect(getCookie('cookie1')).toBe('value1');
+    expect(getCookie('cookie2')).toBe('value2');
+  });
+
+  it('should return an empty string if the cookie does not exist', () => {
+    expect(getCookie('nonexistent')).toBe('');
+  });
+});
+
+describe('setCookie', () => {
+  beforeEach(() => {
+    // Clear any existing cookies before each test
+    document.cookie = '';
+  });
+
+  it('should set a cookie with the provided name and value', () => {
+    setCookie('myCookie', 'myValue');
+    expect(document.cookie).toContain('myCookie=myValue');
   });
 });
