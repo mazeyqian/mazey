@@ -43,49 +43,6 @@ export * from './store';
 export * from './load';
 
 /**
- * Delete a cookie by name.
- *
- * Usage:
- *
- * ```javascript
- * const ret = delCookie('test');
- * console.log(ret);
- * ```
- *
- * Output:
- *
- * ```text
- * true
- * ```
- *
- * @param name - The name of the cookie to delete.
- * @returns `true` if the cookie was deleted successfully, `false` otherwise.
- * @category Store
- */
-export function delCookie(name: string): boolean {
-  const cookies = document.cookie.split(';');
-
-  for (let i = 0; i < cookies.length; i++) {
-    const cookie = cookies[i].trim();
-
-    if (cookie.startsWith(`${name}=`)) {
-      const cookieParts = cookie.split('=');
-      const cookieName = cookieParts[0];
-      // const cookieValue = cookieParts[1];
-
-      const expires = new Date();
-      expires.setTime(expires.getTime() - 1);
-
-      document.cookie = `${cookieName}=;expires=${expires.toUTCString()}`;
-
-      return true;
-    }
-  }
-
-  return false;
-}
-
-/**
  * @hidden
  */
 interface WebPerformance {

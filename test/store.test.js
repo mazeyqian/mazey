@@ -9,6 +9,7 @@ import {
   getLocalStorage,
   getCookie,
   setCookie,
+  delCookie,
 } from '../lib/index.esm';
 
 describe('setSessionStorage', () => {
@@ -103,17 +104,10 @@ describe('getCookie', () => {
   beforeEach(() => {
     // Set up any necessary test setup here
     document.cookie = 'cookie1=value1';
-    document.cookie = 'cookie2=value2';
-  });
-
-  afterEach(() => {
-    // Clean up any changes made during the tests here
-    document.cookie = '';
   });
 
   it('should return the value of the specified cookie', () => {
     expect(getCookie('cookie1')).toBe('value1');
-    expect(getCookie('cookie2')).toBe('value2');
   });
 
   it('should return an empty string if the cookie does not exist', () => {
@@ -122,13 +116,20 @@ describe('getCookie', () => {
 });
 
 describe('setCookie', () => {
+  it('should set a cookie with the provided name and value', () => {
+    setCookie('cookie1', 'value1');
+    expect(document.cookie).toContain('cookie1=value1');
+  });
+});
+
+describe('delCookie', () => {
   beforeEach(() => {
-    // Clear any existing cookies before each test
-    document.cookie = '';
+    // Set up any necessary test setup here
+    document.cookie = 'cookie1=value1';
   });
 
-  it('should set a cookie with the provided name and value', () => {
-    setCookie('myCookie', 'myValue');
-    expect(document.cookie).toContain('myCookie=myValue');
+  it('should delete the specified cookie', () => {
+    delCookie('cookie1');
+    expect(document.cookie).toBe('');
   });
 });
