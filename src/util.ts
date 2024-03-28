@@ -613,3 +613,29 @@ export function doFn(fn: MazeyFunction, ...params: Parameters<MazeyFunction>): R
   }
   return ret;
 }
+
+/**
+ * Verify the validity of a non-empty array.
+ *
+ * Usage:
+ *
+ * ```javascript
+ * const ret = isNonEmptyArray([1, 2, 3]);
+ * console.log(ret);
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * true
+ * ```
+ *
+ * @category Util
+ */
+export function isNonEmptyArray<T>(arr: Array<T>): boolean {
+  let ret = false;
+  if (Array.isArray(arr) && arr.length) {
+    ret = true;
+  }
+  return ret;
+}

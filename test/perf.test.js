@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 /* eslint-disable no-undef */
-import { getFCP, getFP, getLCP, getFID, getCLS, getTTFB, getPerformance } from '../lib/index.esm';
+import { getFCP, getFP, getLCP, getFID, getCLS, getTTFB, getPerformance, isSupportedEntryType } from '../lib/index.esm';
 
 describe('Web Performance Metrics', () => {
   it('should return FCP time in milliseconds', async () => {
@@ -39,5 +39,47 @@ describe('Web Performance Metrics', () => {
 describe('getPerformanceStatus', () => {
   it('returns an object with performance data', () => {
     return expect(getPerformance()).rejects.toThrow('navigation is not supported');
+  });
+});
+
+describe('isSupportedEntryType', () => {
+  it('should return true if the entry type is supported', () => {
+    // Arrange
+    const name = 'navigation';
+    window.PerformanceObserver = {
+      supportedEntryTypes: [ 'navigation', 'paint', 'resource' ],
+    };
+
+    // Act
+    const result = isSupportedEntryType(name);
+
+    // Assert
+    expect(result).toBe(true);
+  });
+
+  it('should return false if the entry type is not supported', () => {
+    // Arrange
+    const name = 'longtask';
+    window.PerformanceObserver = {
+      supportedEntryTypes: [ 'navigation', 'paint', 'resource' ],
+    };
+
+    // Act
+    const result = isSupportedEntryType(name);
+
+    // Assert
+    expect(result).toBe(false);
+  });
+
+  it('should return false if PerformanceObserver is not supported', () => {
+    // Arrange
+    const name = 'navigation';
+    window.PerformanceObserver = undefined;
+
+    // Act
+    const result = isSupportedEntryType(name);
+
+    // Assert
+    expect(result).toBe(false);
   });
 });

@@ -24,6 +24,7 @@ import {
   throttle,
   debounce,
   doFn,
+  isNonEmptyArray,
 } from '../lib/index.esm';
 
 test('isNumber: Is -1/123/Infinity/NaN Number?', () => {
@@ -294,5 +295,25 @@ describe('doFn', () => {
   it('should return null if the provided function is not a function', () => {
     const result = doFn('not a function', 2, 3);
     expect(result).toBeNull();
+  });
+});
+
+describe('isNonEmptyArray', () => {
+  it('should return true for a non-empty array', () => {
+    const arr = [ 1, 2, 3 ];
+    const result = isNonEmptyArray(arr);
+    expect(result).toBe(true);
+  });
+
+  it('should return false for an empty array', () => {
+    const arr = [];
+    const result = isNonEmptyArray(arr);
+    expect(result).toBe(false);
+  });
+
+  it('should return false for a non-array value', () => {
+    const value = 'not an array';
+    const result = isNonEmptyArray(value);
+    expect(result).toBe(false);
   });
 });

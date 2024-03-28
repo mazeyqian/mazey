@@ -5,6 +5,7 @@
 /// <reference path="../global.d.ts" />
 
 import {
+  WebPerformance,
   BrowserInfo,
   DefineListeners,
   TestUa,
@@ -27,12 +28,14 @@ import {
   UnknownWindow,
 } from './typing';
 import {
+  isNonEmptyArray,
   camelCase2Underscore,
   isNumber,
   // doFn,
   // mNow,
 } from './util';
 import { loadScript } from './load';
+import { isSupportedEntryType, getFCP } from './perf';
 
 export * from './calc';
 export * from './util';
@@ -41,65 +44,7 @@ export * from './dom';
 export * from './event';
 export * from './store';
 export * from './load';
-
-/**
- * @hidden
- */
-interface WebPerformance {
-  [key: string]: string | number;
-}
-
-function isSupportedEntryType(name: string) {
-  let supportedEntryTypes: readonly string[] = [];
-  const perfObs = window.PerformanceObserver;
-  if (!perfObs) {
-    return false;
-  }
-  if (isNonEmptyArray(perfObs.supportedEntryTypes as unknown[])) {
-    supportedEntryTypes = perfObs.supportedEntryTypes;
-  }
-  return supportedEntryTypes.includes(name);
-}
-
-/**
- * Gets the first contentful paint (FCP) time of a web page using the Performance API.
- * The FCP time is the time it takes for the first piece of content to be painted on the screen.
- *
- * Usage:
- *
- * ```javascript
- * getFCP().then(
- *  res => {
- *   console.log(`FCP: ${res}`);
- *  }
- * );
- * ```
- *
- * Output:
- *
- * ```text
- * FCP: 123
- * ```
- *
- * @returns A promise that resolves with the FCP time in milliseconds, or 0 if the 'paint' entry type is not supported.
- * @category Web Performance
- */
-export async function getFCP(): Promise<number> {
-  if (!isSupportedEntryType('paint')) {
-    return 0;
-  }
-  return new Promise(resolve => {
-    const observer = new PerformanceObserver(list => {
-      const entries = list.getEntries();
-      const fcpIns = entries.find(entry => entry.name === 'first-contentful-paint');
-      if (fcpIns) {
-        observer.disconnect();
-        resolve(Math.round(fcpIns.startTime));
-      }
-    });
-    observer.observe({ type: 'paint', buffered: true });
-  });
-}
+export * from './perf';
 
 /**
  * Gets the first paint (FP) time of a web page using the Performance API.
@@ -122,7 +67,7 @@ export async function getFCP(): Promise<number> {
  * ```
  *
  * @returns A promise that resolves with the FP time in milliseconds, or 0 if the 'paint' entry type is not supported.
- * @category Web Performance
+ * @category Perf
  */
 export async function getFP(): Promise<number> {
   if (!isSupportedEntryType('paint')) {
@@ -162,7 +107,7 @@ export async function getFP(): Promise<number> {
  * ```
  *
  * @returns A promise that resolves with the LCP time in milliseconds, or 0 if the 'largest-contentful-paint' entry type is not supported.
- * @category Web Performance
+ * @category Perf
  */
 export async function getLCP(): Promise<number> {
   if (!isSupportedEntryType('largest-contentful-paint')) {
@@ -202,7 +147,7 @@ export async function getLCP(): Promise<number> {
  * ```
  *
  * @returns A promise that resolves with the FID in milliseconds, or 0 if the 'first-input' entry type is not supported.
- * @category Web Performance
+ * @category Perf
  */
 export async function getFID(): Promise<number> {
   if (!isSupportedEntryType('first-input')) {
@@ -247,7 +192,7 @@ export async function getFID(): Promise<number> {
  * ```
  *
  * @returns A promise that resolves with the CLS score, or 0 if the 'layout-shift' entry type is not supported.
- * @category Web Performance
+ * @category Perf
  */
 export async function getCLS(): Promise<number> {
   if (!isSupportedEntryType('layout-shift')) {
@@ -291,7 +236,7 @@ export async function getCLS(): Promise<number> {
  * ```
  *
  * @returns The TTFB in milliseconds, or 0 if the navigation timing information is not available.
- * @category Web Performance
+ * @category Perf
  */
 export async function getTTFB(): Promise<number> {
   if (!isSupportedEntryType('navigation')) {
@@ -355,7 +300,7 @@ export async function getTTFB(): Promise<number> {
  *
  * @param {boolean} camelCase -- false（默认） 以下划线形式返回数据 true 以驼峰形式返回数据
  * @returns {Promise<object>} 加载数据
- * @category Web Performance
+ * @category Perf
  */
 export async function getPerformance(camelCase = false): Promise<WebPerformance | Error> {
   if (!isSupportedEntryType('navigation')) {
@@ -1423,32 +1368,6 @@ export function zAxiosIsValidRes(
     if (resData && validCode.includes(resData.code)) {
       ret = true;
     }
-  }
-  return ret;
-}
-
-/**
- * Verify the validity of a non-empty array.
- *
- * Usage:
- *
- * ```javascript
- * const ret = isNonEmptyArray([1, 2, 3]);
- * console.log(ret);
- * ```
- *
- * Output:
- *
- * ```text
- * true
- * ```
- *
- * @category Util
- */
-export function isNonEmptyArray<T>(arr: Array<T>): boolean {
-  let ret = false;
-  if (Array.isArray(arr) && arr.length) {
-    ret = true;
   }
   return ret;
 }
