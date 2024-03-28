@@ -2,7 +2,9 @@
  * @jest-environment node
  */
 /* eslint-disable no-undef */
-import { isValidUrl, getUrlFileType, isValidHttpUrl, updateQueryParam, getUrlParam } from '../lib/index.esm';
+import {
+  isValidUrl, getUrlFileType, isValidHttpUrl, updateQueryParam, getUrlParam, 
+} from '../lib/index.esm';
 
 const validUrls = [
   'https://www.example.com/events/#&product=browser',
@@ -76,7 +78,7 @@ describe('isValidHttpUrl', () => {
     expect(isValidHttpUrl('www.example.com')).toBe(false);
     expect(isValidHttpUrl('v=0618')).toBe(false);
     expect(isValidHttpUrl('http://ssssssssssss')).toBe(false);
-    expect(isValidHttpUrl(`https://this-shouldn't.match@example.com`)).toBe(false);
+    expect(isValidHttpUrl('https://this-shouldn\'t.match@example.com')).toBe(false);
     expect(isValidHttpUrl('abcdef')).toBe(false);
   });
 
@@ -95,7 +97,7 @@ describe('isValidHttpUrl', () => {
     expect(isValidHttpUrl('www.example.com', { strict: false })).toBe(false);
     expect(isValidHttpUrl('v=0618', { strict: false })).toBe(false);
     expect(isValidHttpUrl('http://ssssssssssss', { strict: false })).toBe(false);
-    expect(isValidHttpUrl(`https://this-shouldn't.match@example.com`, { strict: false })).toBe(false);
+    expect(isValidHttpUrl('https://this-shouldn\'t.match@example.com', { strict: false })).toBe(false);
     expect(isValidHttpUrl('abcdef', { strict: false })).toBe(false);
   });
 });

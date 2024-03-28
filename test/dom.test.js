@@ -136,7 +136,7 @@ describe('addClass', () => {
     addClass(element, className);
 
     // Assert
-    expect(element.className.split(' ')).toEqual([className]);
+    expect(element.className.split(' ')).toEqual([ className ]);
   });
 
   it('should handle elements with existing classes', () => {

@@ -1,4 +1,6 @@
-import { SimpleObject, ThrottleFunc, DebounceFunc, MazeyFnParams, MazeyFnReturn, IsNumberOptions, MazeyFunction } from './typing';
+import {
+  SimpleObject, ThrottleFunc, DebounceFunc, MazeyFnParams, MazeyFnReturn, IsNumberOptions, MazeyFunction, 
+} from './typing';
 
 /**
  * Copy/Clone Object deeply.

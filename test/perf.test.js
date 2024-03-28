@@ -2,7 +2,9 @@
  * @jest-environment jsdom
  */
 /* eslint-disable no-undef */
-import { getFCP, getFP, getLCP, getFID, getCLS, getTTFB, getPerformance, isSupportedEntryType } from '../lib/index.esm';
+import {
+  getFCP, getFP, getLCP, getFID, getCLS, getTTFB, getPerformance, isSupportedEntryType, 
+} from '../lib/index.esm';
 
 describe('Web Performance Metrics', () => {
   it('should return FCP time in milliseconds', async () => {
