@@ -2,7 +2,6 @@
  * @jest-environment node
  */
 /* eslint-disable no-undef */
-/* eslint-disable quotes */
 import {
   isNumber,
   camelCaseToKebabCase,
@@ -19,6 +18,13 @@ import {
   getFriendlyInterval,
   unsanitize,
   waitTime,
+  genUniqueNumString,
+  floatToPercent,
+  floatFixed,
+  throttle,
+  debounce,
+  doFn,
+  isNonEmptyArray,
 } from '../lib/index.esm';
 
 test('isNumber: Is -1/123/Infinity/NaN Number?', () => {
@@ -31,47 +37,47 @@ test('isNumber: Is -1/123/Infinity/NaN Number?', () => {
   expect(isNumber(NaN, { isNaNAsNumber: true, isInfinityAsNumber: true })).toBe(true);
 });
 
-test(`camelCaseToKebabCase: Transfer 'aBC' to 'a-b-c'?`, () => {
+test('camelCaseToKebabCase: Transfer \'aBC\' to \'a-b-c\'?', () => {
   expect(camelCaseToKebabCase('aBC')).toBe('a-b-c');
 });
 
-test(`camelCase2Underscore: Transfer 'ABC' to 'a_b_c'?`, () => {
+test('camelCase2Underscore: Transfer \'ABC\' to \'a_b_c\'?', () => {
   expect(camelCase2Underscore('ABC')).toBe('a_b_c');
 });
 
-test(`mTrim: Transfer ' 1 2 3 ' to '1 2 3'?`, () => {
+test('mTrim: Transfer \' 1 2 3 \' to \'1 2 3\'?', () => {
   expect(mTrim(' 1 2 3 ')).toBe('1 2 3');
 });
 
-test(`mTrim: Transfer 'abc ' to 'abc'?`, () => {
+test('mTrim: Transfer \'abc \' to \'abc\'?', () => {
   expect(mTrim('abc ')).toBe('abc');
 });
 
-test(`deepCopyObject: Transfer 'abc' to 'abc'?`, () => {
+test('deepCopyObject: Transfer \'abc\' to \'abc\'?', () => {
   expect(deepCopyObject('abc')).toBe('abc');
 });
 
-test(`isJsonString: Is '['a', 'b', 'c']' a valid JSON string?`, () => {
-  expect(isJsonString(`['a', 'b', 'c']`)).toBe(false);
+test('isJsonString: Is \'[\'a\', \'b\', \'c\']\' a valid JSON string?', () => {
+  expect(isJsonString('[\'a\', \'b\', \'c\']')).toBe(false);
 });
 
-test(`isJsonString: Is '["a", "b", "c"]' a valid JSON string?`, () => {
-  expect(isJsonString(`["a", "b", "c"]`)).toBe(true);
+test('isJsonString: Is \'["a", "b", "c"]\' a valid JSON string?', () => {
+  expect(isJsonString('["a", "b", "c"]')).toBe(true);
 });
 
-test(`generateRndNum: Can it produce an empty string?`, () => {
+test('generateRndNum: Can it produce an empty string?', () => {
   expect(generateRndNum(0)).toBe('');
 });
 
-test(`formatDate: String formatDate value?`, () => {
+test('formatDate: String formatDate value?', () => {
   expect(formatDate('Tue Jan 11 2022 14:12:26 GMT+0800 (China Standard Time)', 'yyyy-MM-dd hh:mm:ss').length).toBe(19);
 });
 
-test(`formatDate: Number formatDate value?`, () => {
+test('formatDate: Number formatDate value?', () => {
   expect(formatDate(1641881235000, 'yyyy-MM-dd hh:mm:ss').length).toBe(19);
 });
 
-test(`isValidData: Check the valid value?`, () => {
+test('isValidData: Check the valid value?', () => {
   expect(isValidData({
     a: {
       b: {
@@ -81,7 +87,7 @@ test(`isValidData: Check the valid value?`, () => {
   }, [ 'a', 'b', 'c' ], 413)).toBe(true);
 });
 
-test(`isValidEmail: Check the valid email?`, () => {
+test('isValidEmail: Check the valid email?', () => {
   expect(isValidEmail('mazeyqian@gmail.com')).toBe(true);
   expect(isValidEmail('test-1-2-3@example.com')).toBe(true);
 });
@@ -135,25 +141,179 @@ describe('waitTime', () => {
   });
 });
 
-describe("isValidPhoneNumber", () => {
-  it("should return true for valid phone numbers", () => {
-    expect(isValidPhoneNumber("13800138000")).toBe(true);
-    expect(isValidPhoneNumber("15012345678")).toBe(true);
-    expect(isValidPhoneNumber("19912345678")).toBe(true);
-    expect(isValidPhoneNumber("17612345678")).toBe(true);
-    expect(isValidPhoneNumber("14712345678")).toBe(true);
-    expect(isValidPhoneNumber("11012345678")).toBe(true);
-    expect(isValidPhoneNumber("12012345678")).toBe(true);
-    expect(isValidPhoneNumber("16912345678")).toBe(true);
-    expect(isValidPhoneNumber("10912345678")).toBe(true);
-    expect(isValidPhoneNumber("18012345678")).toBe(true);
+describe('isValidPhoneNumber', () => {
+  it('should return true for valid phone numbers', () => {
+    expect(isValidPhoneNumber('13800138000')).toBe(true);
+    expect(isValidPhoneNumber('15012345678')).toBe(true);
+    expect(isValidPhoneNumber('19912345678')).toBe(true);
+    expect(isValidPhoneNumber('17612345678')).toBe(true);
+    expect(isValidPhoneNumber('14712345678')).toBe(true);
+    expect(isValidPhoneNumber('11012345678')).toBe(true);
+    expect(isValidPhoneNumber('12012345678')).toBe(true);
+    expect(isValidPhoneNumber('16912345678')).toBe(true);
+    expect(isValidPhoneNumber('10912345678')).toBe(true);
+    expect(isValidPhoneNumber('18012345678')).toBe(true);
   });
 
-  it("should return false for invalid phone numbers", () => {
-    expect(isValidPhoneNumber("1380013800")).toBe(false);
-    expect(isValidPhoneNumber("138001380000")).toBe(false);
-    expect(isValidPhoneNumber("1380013800a")).toBe(false);
-    expect(isValidPhoneNumber("02345678901")).toBe(false);
-    expect(isValidPhoneNumber("00000000000")).toBe(false);
+  it('should return false for invalid phone numbers', () => {
+    expect(isValidPhoneNumber('1380013800')).toBe(false);
+    expect(isValidPhoneNumber('138001380000')).toBe(false);
+    expect(isValidPhoneNumber('1380013800a')).toBe(false);
+    expect(isValidPhoneNumber('02345678901')).toBe(false);
+    expect(isValidPhoneNumber('00000000000')).toBe(false);
+  });
+});
+
+describe('genUniqueNumString', () => {
+  it('should generate a unique number string with default length', () => {
+    const result = genUniqueNumString();
+    expect(result.length).toBe(16);
+  });
+
+  it('should generate a unique number string with custom length', () => {
+    const result = genUniqueNumString(5);
+    expect(result.length).toBe(18);
+  });
+});
+
+describe('floatToPercent', () => {
+  it('should convert a float number to a percentage string', () => {
+    expect(floatToPercent(0.5)).toBe('50%');
+    expect(floatToPercent(0.12345, 2)).toBe('12.35%');
+    expect(floatToPercent(0.9999, 3)).toBe('99.990%');
+  });
+
+  it('should handle fixSize parameter as optional', () => {
+    expect(floatToPercent(0.75)).toBe('75%');
+  });
+});
+
+describe('floatFixed', () => {
+  it('should return a fixed number with default precision', () => {
+    const result = floatFixed('3.14159');
+    expect(result).toBe('3');
+  });
+
+  it('should return a fixed number with custom precision', () => {
+    const result = floatFixed('3.14159', 2);
+    expect(result).toBe('3.14');
+  });
+
+  it('should return a fixed number with zero precision', () => {
+    const result = floatFixed('3.14159', 0);
+    expect(result).toBe('3');
+  });
+});
+
+// Test case 1: Throttled function should be called only once within the specified wait time
+test('Throttled function should be called only once within the specified wait time', () => {
+  const mockFn = jest.fn();
+  const throttledFn = throttle(mockFn, 100);
+
+  // Call the throttled function multiple times within the wait time
+  throttledFn();
+  throttledFn();
+  throttledFn();
+
+  // The mock function should be called only once
+  expect(mockFn).toHaveBeenCalledTimes(1);
+});
+
+// Test case 2: Throttled function should respect the leading and trailing options
+test('Throttled function should respect the leading and trailing options', () => {
+  const mockFn = jest.fn();
+  const throttledFn = throttle(mockFn, 100, { leading: false, trailing: false });
+
+  // Call the throttled function multiple times within the wait time
+  throttledFn();
+  throttledFn();
+  throttledFn();
+
+  // The mock function should not be called
+  expect(mockFn).not.toHaveBeenCalled();
+});
+
+describe('debounce', () => {
+  // Mock function for testing
+  const mockFn = jest.fn();
+  
+  beforeEach(() => {
+    jest.useFakeTimers();
+    mockFn.mockClear();
+  });
+
+  it('should debounce the function call', () => {
+    const debouncedFn = debounce(mockFn, 100);
+
+    // Call the debounced function multiple times within the debounce period
+    debouncedFn();
+    debouncedFn();
+    debouncedFn();
+
+    // Fast-forward time by 100ms
+    jest.advanceTimersByTime(100);
+
+    // The debounced function should only be called once
+    expect(mockFn).toHaveBeenCalledTimes(1);
+  });
+
+  it('should immediately invoke the function if immediate flag is set', () => {
+    const debouncedFn = debounce(mockFn, 100, true);
+
+    // Call the debounced function multiple times within the debounce period
+    debouncedFn();
+    debouncedFn();
+    debouncedFn();
+
+    // The debounced function should be called immediately
+    expect(mockFn).toHaveBeenCalledTimes(1);
+
+    // Fast-forward time by 100ms
+    jest.advanceTimersByTime(100);
+
+    // The debounced function should not be called again
+    expect(mockFn).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe('doFn', () => {
+  // Define a sample function for testing
+  function add(a, b) {
+    return a + b;
+  }
+
+  it('should call the provided function with the given parameters', () => {
+    const result = doFn(add, 2, 3);
+    expect(result).toBe(5);
+  });
+
+  it('should return null if the provided function is null', () => {
+    const result = doFn(null, 2, 3);
+    expect(result).toBeNull();
+  });
+
+  it('should return null if the provided function is not a function', () => {
+    const result = doFn('not a function', 2, 3);
+    expect(result).toBeNull();
+  });
+});
+
+describe('isNonEmptyArray', () => {
+  it('should return true for a non-empty array', () => {
+    const arr = [ 1, 2, 3 ];
+    const result = isNonEmptyArray(arr);
+    expect(result).toBe(true);
+  });
+
+  it('should return false for an empty array', () => {
+    const arr = [];
+    const result = isNonEmptyArray(arr);
+    expect(result).toBe(false);
+  });
+
+  it('should return false for a non-array value', () => {
+    const value = 'not an array';
+    const result = isNonEmptyArray(value);
+    expect(result).toBe(false);
   });
 });

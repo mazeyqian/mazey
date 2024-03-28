@@ -2,7 +2,6 @@
  * @jest-environment node
  */
 /* eslint-disable no-undef */
-/* eslint-disable quotes */
 import {
   longestComSubstring,
   longestComSubsequence,

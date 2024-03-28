@@ -2,7 +2,15 @@
  * @jest-environment jsdom
  */
 /* eslint-disable no-undef */
-import { genStyleString, newLine, getDomain, getBrowserInfo } from '../lib/index.esm';
+import {
+  genStyleString,
+  newLine,
+  getDomain,
+  getBrowserInfo,
+  hasClass,
+  addClass,
+  removeClass,
+} from '../lib/index.esm';
 
 test('newLine: Transfer \'a\nb\nc\' to \'a<br />b<br />c\'?', () => {
   expect(newLine('a\nb\nc')).toBe('a<br />b<br />c');
@@ -71,5 +79,103 @@ describe('genStyleString', () => {
     const expected = '.d.e.f{color:blue;font-weight:bold;}';
     const result = genStyleString(selector, styleArray);
     expect(result).toEqual(expected);
+  });
+});
+
+// Test case 1: Object has the specified class
+test('Object has the specified class', () => {
+  const obj = document.createElement('div');
+  obj.className = 'foo bar baz';
+  const cls = 'bar';
+  expect(hasClass(obj, cls)).toBe(true);
+});
+
+// Test case 2: Object does not have the specified class
+test('Object does not have the specified class', () => {
+  const obj = document.createElement('div');
+  obj.className = 'foo baz';
+  const cls = 'bar';
+  expect(hasClass(obj, cls)).toBe(false);
+});
+
+// Test case 3: Object has multiple classes and one of them matches the specified class
+test('Object has multiple classes and one of them matches the specified class', () => {
+  const obj = document.createElement('div');
+  obj.className = 'foo bar baz';
+  const cls = 'baz';
+  expect(hasClass(obj, cls)).toBe(true);
+});
+
+// Test case 4: Object has no classes
+test('Object has no classes', () => {
+  const obj = document.createElement('div');
+  const cls = 'bar';
+  expect(hasClass(obj, cls)).toBe(false);
+});
+
+describe('addClass', () => {
+  it('should add a class to the element', () => {
+    // Arrange
+    const element = document.createElement('div');
+    const className = 'test-class';
+
+    // Act
+    addClass(element, className);
+
+    // Assert
+    expect(element.className).toContain(className);
+  });
+
+  it('should not add duplicate classes', () => {
+    // Arrange
+    const element = document.createElement('div');
+    const className = 'test-class';
+
+    // Act
+    addClass(element, className);
+    addClass(element, className);
+
+    // Assert
+    expect(element.className.split(' ')).toEqual([ className ]);
+  });
+
+  it('should handle elements with existing classes', () => {
+    // Arrange
+    const element = document.createElement('div');
+    element.className = 'existing-class';
+    const className = 'test-class';
+
+    // Act
+    addClass(element, className);
+
+    // Assert
+    expect(element.className).toContain(className);
+    expect(element.className).toContain('existing-class');
+  });
+});
+
+describe('removeClass', () => {
+  it('should remove the specified class from the element', () => {
+    // Create a dummy element with a class
+    const element = document.createElement('div');
+    element.className = 'foo bar baz';
+
+    // Call the removeClass function
+    removeClass(element, 'bar');
+
+    // Assert that the class has been removed
+    expect(element.className).toBe('foo baz');
+  });
+
+  it('should not modify the class if the specified class is not present', () => {
+    // Create a dummy element with a class
+    const element = document.createElement('div');
+    element.className = 'foo bar baz';
+
+    // Call the removeClass function with a class that is not present
+    removeClass(element, 'qux');
+
+    // Assert that the class remains unchanged
+    expect(element.className).toBe('foo bar baz');
   });
 });

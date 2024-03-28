@@ -3,9 +3,10 @@ node_modules/
 dist/
 test/unit/coverage
 test/e2e/reports
-lib/index.*
-lib/typing.*
-lib/mazey.*
+# lib/index.*
+# lib/typing.*
+# lib/mazey.*
+lib/
 
 # Cache folders
 .sass-cache/
