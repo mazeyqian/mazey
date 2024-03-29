@@ -35,7 +35,7 @@ import {
   // mNow,
 } from './util';
 import { loadScript } from './load';
-import { isSupportedEntryType, getFCP } from './perf';
+import { isSupportedEntryType, getFCP, getFP } from './perf';
 
 export * from './calc';
 export * from './util';
@@ -45,46 +45,6 @@ export * from './event';
 export * from './store';
 export * from './load';
 export * from './perf';
-
-/**
- * Gets the first paint (FP) time of a web page using the Performance API.
- * The FP time is the time it takes for the first pixel to be painted on the screen.
- *
- * Usage:
- *
- * ```javascript
- * getFP().then(
- *  res => {
- *    console.log(`FP: ${res}`);
- *  }
- * );
- * ```
- *
- * Output:
- *
- * ```text
- * FP: 123
- * ```
- *
- * @returns A promise that resolves with the FP time in milliseconds, or 0 if the 'paint' entry type is not supported.
- * @category Perf
- */
-export async function getFP(): Promise<number> {
-  if (!isSupportedEntryType('paint')) {
-    return 0;
-  }
-  return new Promise(resolve => {
-    const observer = new PerformanceObserver(list => {
-      const entries = list.getEntries();
-      const fpIns = entries.find(entry => entry.name === 'first-paint');
-      if (fpIns) {
-        observer.disconnect();
-        resolve(Math.round(fpIns.startTime));
-      }
-    });
-    observer.observe({ type: 'paint', buffered: true });
-  });
-}
 
 /**
  * Gets the largest contentful paint (LCP) time of a web page using the Performance API.
