@@ -40,7 +40,7 @@ export function newLine(str: string): string {
  * // Determine `class`
  * hasClass(dom, 'test');
  * // Add `class`
- * addClass(dom, 'test');
+ * setClass(dom, 'test');
  * // Remove `class`
  * removeClass(dom, 'test');
  * ```
@@ -69,14 +69,14 @@ export function hasClass(obj: HTMLElement, cls: string): boolean {
  * // Determine `class`
  * hasClass(dom, 'test');
  * // Add `class`
- * addClass(dom, 'test');
+ * setClass(dom, 'test');
  * // Remove `class`
  * removeClass(dom, 'test');
  * ```
  *
  * @category DOM
  */
-export function addClass(obj: HTMLElement, cls: string): void {
+export function setClass(obj: HTMLElement, cls: string): void {
   const oriCls = obj.className;
   // should not add duplicate classes
   const oriClsArr = oriCls.split(/\s+/);
@@ -96,6 +96,15 @@ export function addClass(obj: HTMLElement, cls: string): void {
 }
 
 /**
+ * Alias of `setClass`
+ *
+ * @hidden
+ */
+export function addClass(obj: HTMLElement, cls: string): void {
+  setClass(obj, cls);
+}
+
+/**
  * Modify `class`: remove `class`.
  *
  * Usage:
@@ -106,7 +115,7 @@ export function addClass(obj: HTMLElement, cls: string): void {
  * // Determine `class`
  * hasClass(dom, 'test');
  * // Add `class`
- * addClass(dom, 'test');
+ * setClass(dom, 'test');
  * // Remove `class`
  * removeClass(dom, 'test');
  * ```

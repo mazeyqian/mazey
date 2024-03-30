@@ -8,7 +8,7 @@ import {
   getDomain,
   getBrowserInfo,
   hasClass,
-  addClass,
+  setClass,
   removeClass,
 } from '../lib/index.esm';
 
@@ -113,14 +113,14 @@ test('Object has no classes', () => {
   expect(hasClass(obj, cls)).toBe(false);
 });
 
-describe('addClass', () => {
+describe('setClass', () => {
   it('should add a class to the element', () => {
     // Arrange
     const element = document.createElement('div');
     const className = 'test-class';
 
     // Act
-    addClass(element, className);
+    setClass(element, className);
 
     // Assert
     expect(element.className).toContain(className);
@@ -132,8 +132,8 @@ describe('addClass', () => {
     const className = 'test-class';
 
     // Act
-    addClass(element, className);
-    addClass(element, className);
+    setClass(element, className);
+    setClass(element, className);
 
     // Assert
     expect(element.className.split(' ')).toEqual([ className ]);
@@ -146,7 +146,7 @@ describe('addClass', () => {
     const className = 'test-class';
 
     // Act
-    addClass(element, className);
+    setClass(element, className);
 
     // Assert
     expect(element.className).toContain(className);
