@@ -47,46 +47,6 @@ export * from './load';
 export * from './perf';
 
 /**
- * Gets the largest contentful paint (LCP) time of a web page using the Performance API.
- * The LCP time is the time it takes for the largest piece of content to be painted on the screen.
- *
- * Usage:
- *
- * ```javascript
- * getLCP().then(
- *  res => {
- *    console.log(`LCP: ${res}`);
- *  }
- * );
- * ```
- *
- * Output:
- *
- * ```text
- * LCP: 123
- * ```
- *
- * @returns A promise that resolves with the LCP time in milliseconds, or 0 if the 'largest-contentful-paint' entry type is not supported.
- * @category Perf
- */
-export async function getLCP(): Promise<number> {
-  if (!isSupportedEntryType('largest-contentful-paint')) {
-    return 0;
-  }
-  return new Promise(resolve => {
-    const observer = new PerformanceObserver(list => {
-      const entries = list.getEntries();
-      const lcpIns = entries.find(entry => entry.entryType === 'largest-contentful-paint');
-      if (lcpIns) {
-        observer.disconnect();
-        resolve(Math.round(lcpIns.startTime));
-      }
-    });
-    observer.observe({ type: 'largest-contentful-paint', buffered: true });
-  });
-}
-
-/**
  * Gets the first input delay (FID) of a web page using the Performance API.
  * The FID is the time it takes for the first user input to be processed by the browser.
  *
