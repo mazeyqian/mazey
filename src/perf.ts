@@ -134,3 +134,48 @@ export async function getLCP(): Promise<number> {
     observer.observe({ type: 'largest-contentful-paint', buffered: true });
   });
 }
+
+/**
+ * Gets the first input delay (FID) of a web page using the Performance API.
+ * The FID is the time it takes for the first user input to be processed by the browser.
+ *
+ * Usage:
+ *
+ * ```javascript
+ * getFID().then(
+ *  res => {
+ *    console.log(`FID: ${res}`);
+ *  }
+ * );
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * FID: 123
+ * ```
+ *
+ * @returns A promise that resolves with the FID in milliseconds, or 0 if the 'first-input' entry type is not supported.
+ * @category Perf
+ */
+export async function getFID(): Promise<number> {
+  if (!isSupportedEntryType('first-input')) {
+    return 0;
+  }
+  return new Promise(resolve => {
+    const observer = new PerformanceObserver(list => {
+      const entries = list.getEntries();
+      const fidIns = entries.find(entry => entry.entryType === 'first-input');
+      if (fidIns) {
+        observer.disconnect();
+        const ps = fidIns.processingStart;
+        if (ps) {
+          resolve(Math.round(fidIns.processingStart - fidIns.startTime));
+        } else {
+          resolve(0);
+        }
+      }
+    });
+    observer.observe({ type: 'first-input', buffered: true });
+  });
+}
