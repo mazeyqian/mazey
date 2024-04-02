@@ -47,50 +47,6 @@ export * from './load';
 export * from './perf';
 
 /**
- * Gets the Cumulative Layout Shift (CLS) score of a web page using the Performance API.
- * The CLS score is a measure of how much the page layout shifts during loading.
- *
- * Usage:
- *
- * ```javascript
- * getCLS().then(
- *  res => {
- *    console.log(`CLS: ${res}`);
- *  }
- * );
- * ```
- *
- * Output:
- *
- * ```text
- * CLS: 123
- * ```
- *
- * @returns A promise that resolves with the CLS score, or 0 if the 'layout-shift' entry type is not supported.
- * @category Perf
- */
-export async function getCLS(): Promise<number> {
-  if (!isSupportedEntryType('layout-shift')) {
-    return 0;
-  }
-  return new Promise(resolve => {
-    const observer = new PerformanceObserver(list => {
-      const entries = list.getEntries();
-      const clsScore = entries.reduce((score, entry) => {
-        let ev = 0;
-        if (isNumber(entry.value)) {
-          ev = entry.value as number;
-        }
-        return score + ev;
-      }, 0);
-      observer.disconnect();
-      resolve(clsScore);
-    });
-    observer.observe({ type: 'layout-shift', buffered: true });
-  });
-}
-
-/**
  * Gets the time to first byte (TTFB) of a web page using the Performance API.
  * The TTFB is the time it takes for the first byte of the response to be received by the browser.
  *
