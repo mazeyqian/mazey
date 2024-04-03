@@ -100,6 +100,36 @@ describe('getLocalStorage', () => {
   });
 });
 
+describe('setLocalStorage&getLocalStorage', () => {
+  it('should set/get localStorage correctly: string', () => {
+    setLocalStorage('test', 'test');
+    expect(getLocalStorage('test')).toBe('test');
+  });
+
+  it('should set/get localStorage correctly: object', () => {
+    setLocalStorage('test', { a: 1 });
+    expect(getLocalStorage('test')).toEqual({ a: 1 });
+  });
+
+  it('should set/get localStorage correctly: array', () => {
+    setLocalStorage('test', [ 1, 2, 3 ]);
+    expect(getLocalStorage('test')).toEqual([ 1, 2, 3 ]);
+  });
+
+  it('should set/get localStorage correctly: number', () => {
+    setLocalStorage('test', 1);
+    const res = getLocalStorage('test');
+    expect(typeof res).toBe('number');
+    expect(res).toBe(1);
+  });
+
+  it('should return null for non-existent keys', () => {
+    const key = 'nonExistentKey';
+    const retrievedValue = getLocalStorage(key);
+    expect(retrievedValue).toBeNull();
+  });
+});
+
 describe('getCookie', () => {
   beforeEach(() => {
     // Set up any necessary test setup here
