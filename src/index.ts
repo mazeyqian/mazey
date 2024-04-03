@@ -47,45 +47,6 @@ export * from './load';
 export * from './perf';
 
 /**
- * Gets the time to first byte (TTFB) of a web page using the Performance API.
- * The TTFB is the time it takes for the first byte of the response to be received by the browser.
- *
- * Usage:
- *
- * ```javascript
- * getTTFB().then(
- *  res => {
- *    console.log(`TTFB: ${res}`);
- *  }
- * );
- * ```
- *
- * Output:
- *
- * ```text
- * TTFB: 123
- * ```
- *
- * @returns The TTFB in milliseconds, or 0 if the navigation timing information is not available.
- * @category Perf
- */
-export async function getTTFB(): Promise<number> {
-  if (!isSupportedEntryType('navigation')) {
-    return 0;
-  }
-  if (!window.performance || !window.performance.getEntriesByType) {
-    return 0;
-  }
-  const navigationTiming = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
-  let ttfb = 0;
-  if (!navigationTiming) {
-    return 0;
-  }
-  ttfb = navigationTiming.responseStart - navigationTiming.requestStart;
-  return Math.round(ttfb);
-}
-
-/**
  * EN: Get page load time(`PerformanceNavigationTiming`).
  *
  * ZH: 获取页面加载相关的各项数据
