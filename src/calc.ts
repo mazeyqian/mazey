@@ -47,7 +47,7 @@ export function longestComSubstring(aStr: string, bStr: string): number {
 }
 
 /**
- * Alias of `longestComSubstring`
+ * Alias of `longestComSubstring`.
  *
  * @hidden
  */
@@ -111,10 +111,64 @@ export function longestComSubsequence(aStr: string, bStr: string): number {
 }
 
 /**
- * Alias of `longestComSubsequence`
+ * Alias of `longestComSubsequence`.
  *
  * @hidden
  */
 export function calLongestCommonSubsequence(aStr: string, bStr: string): number {
   return longestComSubsequence(aStr, bStr);
+}
+
+/**
+ * EN: Hit probability (1% ~ 100%).
+ *
+ * ZH: 百分位概率
+ *
+ * Usage:
+ *
+ * ```javascript
+ * const ret = isHit(0.5); // 0.01 ~ 1 true/false
+ * console.log(ret);
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * true
+ * ```
+ *
+ * Example: Test the precision.
+ *
+ * ```javascript
+ * // Test
+ * let trueCount = 0;
+ * let falseCount = 0;
+ * new Array(1000000).fill(0).forEach(() => {
+ *   if (isHit(0.5)) {
+ *     trueCount++;
+ *   } else {
+ *     falseCount++;
+ *   }
+ * });
+ * console.log(trueCount, falseCount); // 499994 500006
+ * ```
+ *
+ * @param {number} rate -- 0.1 ~ 1 => 1% ~ 100%
+ * @returns {boolean} true 命中
+ * @category Calculate and Formula
+ */
+export function isHit(rate: number): boolean {
+  if (Math.random() < rate) {
+    return true;
+  }
+  return false;
+}
+
+/**
+ * Alias of `isHit`.
+ *
+ * @hidden
+ */
+export function inRate(rate: number): boolean {
+  return isHit(rate);
 }

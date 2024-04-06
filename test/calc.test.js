@@ -5,6 +5,7 @@
 import {
   longestComSubstring,
   longestComSubsequence,
+  inRate,
 } from '../lib/index.esm';
 
 describe('longestComSubstring', () => {
@@ -48,5 +49,17 @@ describe('longestComSubsequence', () => {
 
   it('should return 2 for "abc" and "bc"', () => {
     expect(longestComSubsequence('abc', 'bc')).toEqual(2);
+  });
+});
+
+describe('inRate', () => {
+  it('should hit at least 400 times out of 1000 tests with a probability of 0.5', () => {
+    let trueCount = 0;
+    for (let i = 0; i < 1000; i++) {
+      if (inRate(0.5)) {
+        trueCount++;
+      }
+    }
+    expect(trueCount).toBeGreaterThan(400);
   });
 });

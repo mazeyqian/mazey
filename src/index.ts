@@ -47,51 +47,6 @@ export * from './load';
 export * from './perf';
 
 /**
- * EN: Hit probability (1% ~ 100%).
- *
- * ZH: 百分位概率
- *
- * Usage:
- *
- * ```javascript
- * const ret = inRate(0.5); // 0.01 ~ 1 true/false
- * console.log(ret);
- * ```
- *
- * Output:
- *
- * ```text
- * true
- * ```
- *
- * Example: Test the precision.
- *
- * ```javascript
- * // Test
- * let trueCount = 0;
- * let falseCount = 0;
- * new Array(1000000).fill(0).forEach(() => {
- *   if (inRate(0.5)) {
- *     trueCount++;
- *   } else {
- *     falseCount++;
- *   }
- * });
- * console.log(trueCount, falseCount); // 499994 500006
- * ```
- *
- * @param {number} rate -- 0.1 ~ 1 => 1% ~ 100%
- * @returns {boolean} true 命中
- * @category Calculate and Formula
- */
-export function inRate(rate: number): boolean {
-  if (Math.random() < rate) {
-    return true;
-  }
-  return false;
-}
-
-/**
  * EN: Detect the margin of Safety. Determine if it is a secure PWA environment that it can run.
  *
  * ZH: 判断是否是安全的 PWA 环境
@@ -553,7 +508,7 @@ export function truncateZHString(str: string, len: number, hasDot = false): stri
 }
 
 /**
- * Alias of `truncateZHString`
+ * Alias of `truncateZHString`.
  *
  * @hidden
  */
