@@ -1,5 +1,5 @@
-import { isNonEmptyArray, isNumber, camelCase2Underscore } from './util';
-import type { WebPerformance } from './typing';
+import { isNonEmptyArray, isNumber, camelCase2Underscore } from "./util";
+import type { WebPerformance } from "./typing";
 
 /**
  * @hidden
@@ -40,19 +40,19 @@ export function isSupportedEntryType(name: string) {
  * @category Perf
  */
 export async function getFCP(): Promise<number> {
-  if (!isSupportedEntryType('paint')) {
+  if (!isSupportedEntryType("paint")) {
     return 0;
   }
   return new Promise(resolve => {
     const observer = new PerformanceObserver(list => {
       const entries = list.getEntries();
-      const fcpIns = entries.find(entry => entry.name === 'first-contentful-paint');
+      const fcpIns = entries.find(entry => entry.name === "first-contentful-paint");
       if (fcpIns) {
         observer.disconnect();
         resolve(Math.round(fcpIns.startTime));
       }
     });
-    observer.observe({ type: 'paint', buffered: true });
+    observer.observe({ type: "paint", buffered: true });
   });
 }
 
@@ -80,19 +80,19 @@ export async function getFCP(): Promise<number> {
  * @category Perf
  */
 export async function getFP(): Promise<number> {
-  if (!isSupportedEntryType('paint')) {
+  if (!isSupportedEntryType("paint")) {
     return 0;
   }
   return new Promise(resolve => {
     const observer = new PerformanceObserver(list => {
       const entries = list.getEntries();
-      const fpIns = entries.find(entry => entry.name === 'first-paint');
+      const fpIns = entries.find(entry => entry.name === "first-paint");
       if (fpIns) {
         observer.disconnect();
         resolve(Math.round(fpIns.startTime));
       }
     });
-    observer.observe({ type: 'paint', buffered: true });
+    observer.observe({ type: "paint", buffered: true });
   });
 }
 
@@ -120,19 +120,19 @@ export async function getFP(): Promise<number> {
  * @category Perf
  */
 export async function getLCP(): Promise<number> {
-  if (!isSupportedEntryType('largest-contentful-paint')) {
+  if (!isSupportedEntryType("largest-contentful-paint")) {
     return 0;
   }
   return new Promise(resolve => {
     const observer = new PerformanceObserver(list => {
       const entries = list.getEntries();
-      const lcpIns = entries.find(entry => entry.entryType === 'largest-contentful-paint');
+      const lcpIns = entries.find(entry => entry.entryType === "largest-contentful-paint");
       if (lcpIns) {
         observer.disconnect();
         resolve(Math.round(lcpIns.startTime));
       }
     });
-    observer.observe({ type: 'largest-contentful-paint', buffered: true });
+    observer.observe({ type: "largest-contentful-paint", buffered: true });
   });
 }
 
@@ -160,13 +160,13 @@ export async function getLCP(): Promise<number> {
  * @category Perf
  */
 export async function getFID(): Promise<number> {
-  if (!isSupportedEntryType('first-input')) {
+  if (!isSupportedEntryType("first-input")) {
     return 0;
   }
   return new Promise(resolve => {
     const observer = new PerformanceObserver(list => {
       const entries = list.getEntries();
-      const fidIns = entries.find(entry => entry.entryType === 'first-input');
+      const fidIns = entries.find(entry => entry.entryType === "first-input");
       if (fidIns) {
         observer.disconnect();
         const ps = fidIns.processingStart;
@@ -177,7 +177,7 @@ export async function getFID(): Promise<number> {
         }
       }
     });
-    observer.observe({ type: 'first-input', buffered: true });
+    observer.observe({ type: "first-input", buffered: true });
   });
 }
 
@@ -205,7 +205,7 @@ export async function getFID(): Promise<number> {
  * @category Perf
  */
 export async function getCLS(): Promise<number> {
-  if (!isSupportedEntryType('layout-shift')) {
+  if (!isSupportedEntryType("layout-shift")) {
     return 0;
   }
   return new Promise(resolve => {
@@ -221,7 +221,7 @@ export async function getCLS(): Promise<number> {
       observer.disconnect();
       resolve(clsScore);
     });
-    observer.observe({ type: 'layout-shift', buffered: true });
+    observer.observe({ type: "layout-shift", buffered: true });
   });
 }
 
@@ -249,13 +249,13 @@ export async function getCLS(): Promise<number> {
  * @category Perf
  */
 export async function getTTFB(): Promise<number> {
-  if (!isSupportedEntryType('navigation')) {
+  if (!isSupportedEntryType("navigation")) {
     return 0;
   }
   if (!window.performance || !window.performance.getEntriesByType) {
     return 0;
   }
-  const navigationTiming = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
+  const navigationTiming = performance.getEntriesByType("navigation")[0] as PerformanceNavigationTiming;
   let ttfb = 0;
   if (!navigationTiming) {
     return 0;
@@ -313,19 +313,19 @@ export async function getTTFB(): Promise<number> {
  * @category Perf
  */
 export async function getPerformance(camelCase = false): Promise<WebPerformance | Error> {
-  if (!isSupportedEntryType('navigation')) {
-    return Promise.reject(new Error('navigation is not supported'));
+  if (!isSupportedEntryType("navigation")) {
+    return Promise.reject(new Error("navigation is not supported"));
   }
   const performance = window.performance;
-  if (!(performance && typeof performance.getEntries === 'function' && typeof performance.getEntriesByType === 'function')) {
-    return Promise.reject(new Error('performance is not supported'));
+  if (!(performance && typeof performance.getEntries === "function" && typeof performance.getEntriesByType === "function")) {
+    return Promise.reject(new Error("performance is not supported"));
   }
   let success: (v: WebPerformance) => void;
   const status: Promise<WebPerformance> = new Promise(resolve => {
     [ success ] = [ resolve ];
   });
   let navigationTiming: PerformanceNavigationTiming | null = null;
-  const navs = performance.getEntriesByType('navigation');
+  const navs = performance.getEntriesByType("navigation");
   if (isNonEmptyArray(navs)) {
     navigationTiming = navs[0] as PerformanceNavigationTiming;
   }
@@ -351,9 +351,9 @@ export async function getPerformance(camelCase = false): Promise<WebPerformance 
     encodedBodySize,
   ] = new Array(19).fill(0);
   const timing = performance.timing;
-  let source = '';
+  let source = "";
   if (navigationTiming) {
-    source = 'PerformanceNavigationTiming';
+    source = "PerformanceNavigationTiming";
     ({ decodedBodySize, encodedBodySize } = navigationTiming);
     ({
       unloadEventEnd,
@@ -375,7 +375,7 @@ export async function getPerformance(camelCase = false): Promise<WebPerformance 
       fetchStart,
     } = navigationTiming);
   } else if (timing) {
-    source = 'PerformanceTiming';
+    source = "PerformanceTiming";
     ({
       unloadEventEnd,
       unloadEventStart,
@@ -396,7 +396,7 @@ export async function getPerformance(camelCase = false): Promise<WebPerformance 
       fetchStart,
     } = timing);
   } else {
-    return Promise.reject(new Error('NavigationTiming and Timing are not supported'));
+    return Promise.reject(new Error("NavigationTiming and Timing are not supported"));
   }
   let startTime = 0;
   if (isNumber(navigationStart)) {
@@ -404,14 +404,14 @@ export async function getPerformance(camelCase = false): Promise<WebPerformance 
   } else if (isNumber(fetchStart)) {
     startTime = fetchStart;
   } else {
-    return Promise.reject(new Error('startTime, navigationStart or fetchStart are required'));
+    return Promise.reject(new Error("startTime, navigationStart or fetchStart are required"));
   }
   const [ firstPaintTime, firstContentfulPaintTime ] = await Promise.all([ getFP(), getFCP() ]);
   // Whether the data has been formed (after the page has finished loading).
   if (isNumber(loadEventEnd) && loadEventEnd > 0) {
     getTiming();
   } else {
-    window.addEventListener('load', function() {
+    window.addEventListener("load", function() {
       // Cannot affect the final time calculation.
       window.setTimeout(function() {
         getTiming();
@@ -475,24 +475,24 @@ export async function getPerformance(camelCase = false): Promise<WebPerformance 
   // Get the current operating system.
   function getOS() {
     let os;
-    if (navigator.userAgent.indexOf('Android') > -1 || navigator.userAgent.indexOf('Linux') > -1) {
-      os = 'android';
-    } else if (navigator.userAgent.indexOf('iPhone') > -1) {
-      os = 'ios';
-    } else if (navigator.userAgent.indexOf('Windows Phone') > -1) {
-      os = 'wp';
+    if (navigator.userAgent.indexOf("Android") > -1 || navigator.userAgent.indexOf("Linux") > -1) {
+      os = "android";
+    } else if (navigator.userAgent.indexOf("iPhone") > -1) {
+      os = "ios";
+    } else if (navigator.userAgent.indexOf("Windows Phone") > -1) {
+      os = "wp";
     } else {
-      os = 'others';
+      os = "others";
     }
     return os;
   }
   // Get the operating system version.
   function getOSVersion() {
-    let OSVision: string | undefined = '';
+    let OSVision: string | undefined = "";
     const u = navigator.userAgent;
-    const isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; // Android
+    const isAndroid = u.indexOf("Android") > -1 || u.indexOf("Linux") > -1; // Android
     const isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); // iOS 终端
-    const uas = navigator.userAgent.split(';');
+    const uas = navigator.userAgent.split(";");
     if (uas.length < 2) return OSVision;
     const validUaStr = uas[1];
     if (!validUaStr) return OSVision;
@@ -502,73 +502,73 @@ export async function getPerformance(camelCase = false): Promise<WebPerformance 
     if (isIOS) {
       OSVision = (validUaStr.match(/(\d+)_(\d+)_?(\d+)?/) || [])[0];
     }
-    if (!OSVision) OSVision = '';
+    if (!OSVision) OSVision = "";
     return OSVision;
   }
   // Get the device type.
   function getDeviceType() {
     let deviceType;
     const sUserAgent = navigator.userAgent.toLowerCase();
-    const bIsIpad = sUserAgent.match(/(ipad)/i) && 'ipad';
-    const bIsIphoneOs = sUserAgent.match(/iphone os/i) && 'iphone os';
-    const bIsMidp = sUserAgent.match(/midp/i) && 'midp';
-    const bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) && 'rv:1.2.3.4';
-    const bIsUc = sUserAgent.match(/ucweb/i) && 'ucweb';
-    const bIsAndroid = sUserAgent.match(/android/i) && 'android';
-    const bIsCE = sUserAgent.match(/windows ce/i) && 'windows ce';
-    const bIsWM = sUserAgent.match(/windows mobile/i) && 'windows mobile';
+    const bIsIpad = sUserAgent.match(/(ipad)/i) && "ipad";
+    const bIsIphoneOs = sUserAgent.match(/iphone os/i) && "iphone os";
+    const bIsMidp = sUserAgent.match(/midp/i) && "midp";
+    const bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) && "rv:1.2.3.4";
+    const bIsUc = sUserAgent.match(/ucweb/i) && "ucweb";
+    const bIsAndroid = sUserAgent.match(/android/i) && "android";
+    const bIsCE = sUserAgent.match(/windows ce/i) && "windows ce";
+    const bIsWM = sUserAgent.match(/windows mobile/i) && "windows mobile";
     if (!(bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM)) {
-      deviceType = 'pc'; // pc
+      deviceType = "pc"; // pc
     } else if (bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) {
-      deviceType = 'phone'; // phone
+      deviceType = "phone"; // phone
     } else if (bIsIpad) {
-      deviceType = 'ipad'; // ipad
+      deviceType = "ipad"; // ipad
     } else {
       deviceType = undefined;
     }
-    if (!deviceType) deviceType = '';
+    if (!deviceType) deviceType = "";
     return deviceType;
   }
   // Get the network status.
   function getNetWork() {
-    let netWork: string | undefined = '';
+    let netWork: string | undefined = "";
     const nav = window.navigator;
     if (nav.connection && nav.connection.effectiveType) {
       switch (nav.connection.effectiveType) {
-        case 'wifi':
-          netWork = 'wifi'; // wifi
+        case "wifi":
+          netWork = "wifi"; // wifi
           break;
-        case '4g':
-          netWork = '4g'; // 4g
+        case "4g":
+          netWork = "4g"; // 4g
           break;
-        case '2g':
-          netWork = '2g'; // 2g
+        case "2g":
+          netWork = "2g"; // 2g
           break;
-        case '3g':
-          netWork = '3g'; // 3g
+        case "3g":
+          netWork = "3g"; // 3g
           break;
-        case 'ethernet':
-          netWork = 'ethernet'; // ethernet
+        case "ethernet":
+          netWork = "ethernet"; // ethernet
           break;
-        case 'default':
+        case "default":
           netWork = undefined; // 未知
           break;
       }
     }
-    if (!netWork) netWork = '';
+    if (!netWork) netWork = "";
     return netWork;
   }
   // Get the screen orientation status.
   function getOrientationStatu() {
-    let orientationStatu = '';
+    let orientationStatu = "";
     if (window.screen && window.screen.orientation && window.screen.orientation.angle) {
       if (window.screen.orientation.angle === 180 || window.screen.orientation.angle === 0) {
         // 竖屏
-        orientationStatu = '|';
+        orientationStatu = "|";
       }
       if (window.screen.orientation.angle === 90 || window.screen.orientation.angle === -90) {
         // 横屏
-        orientationStatu = '-';
+        orientationStatu = "-";
       }
     }
     return orientationStatu;

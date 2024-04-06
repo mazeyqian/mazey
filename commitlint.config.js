@@ -1,27 +1,27 @@
 /* eslint-disable no-undef */
 module.exports = {
-  extends: ['@commitlint/config-conventional'],
+  extends: [ "@commitlint/config-conventional" ],
   rules: {
-    'type-enum': [
+    "type-enum": [
       2,
-      'always',
+      "always",
       [
-        'add',
-        'update',
-        'delete',
-        'feat',
-        'fix',
-        'merge',
-        'chore',
-        'docs',
-        'style',
-        'refactor',
-        'perf',
-        'revert',
-        'test',
-        'release'
-      ]
+        "add",
+        "update",
+        "delete",
+        "feat",
+        "fix",
+        "merge",
+        "chore",
+        "docs",
+        "style",
+        "refactor",
+        "perf",
+        "revert",
+        "test",
+        "release",
+      ],
     ],
-    'subject-case': [0, 'never', ['lower-case']]
-  }
+    "subject-case": [ 0, "never", [ "lower-case" ] ],
+  },
 };

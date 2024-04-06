@@ -194,16 +194,16 @@ export function getLocalStorage<T>(key: string): T | null {
  * @category Store
  */
 export function getCookie(name: string): string {
-  const nameEQ = name + '=';
-  const ca = document.cookie.split(';');
+  const nameEQ = name + "=";
+  const ca = document.cookie.split(";");
   for (let i = 0; i < ca.length; i++) {
     let c = ca[i];
-    while (c.charAt(0) == ' ') {
+    while (c.charAt(0) == " ") {
       c = c.substring(1, c.length);
     }
     if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
   }
-  return '';
+  return "";
 }
 
 /**
@@ -232,14 +232,14 @@ export function setCookie(name: string, value: string, days?: number, domain?: s
   if (days) {
     const date = new Date();
     date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-    expires = '; expires=' + date.toUTCString();
+    expires = "; expires=" + date.toUTCString();
   } else {
-    expires = '';
+    expires = "";
   }
   const host = location.host;
-  if (host.split('.').length === 1) {
+  if (host.split(".").length === 1) {
     // no "." in a domain - it's localhost or something similar
-    document.cookie = name + '=' + value + expires + '; path=/';
+    document.cookie = name + "=" + value + expires + "; path=/";
   } else {
     // Remember the cookie on all subdomains.
     //
@@ -250,16 +250,16 @@ export function setCookie(name: string, value: string, days?: number, domain?: s
     // If the cookie will not be set, it means ".com"
     // is a top level domain and we need to
     // set the cookie to ".foo.com"
-    domainParts = host.split('.');
+    domainParts = host.split(".");
     domainParts.shift();
-    domain = domain || '.' + domainParts.join('.');
-    document.cookie = name + '=' + value + expires + '; path=/; domain=' + domain;
+    domain = domain || "." + domainParts.join(".");
+    document.cookie = name + "=" + value + expires + "; path=/; domain=" + domain;
     // check if cookie was successfuly set to the given domain
     // (otherwise it was a Top-Level Domain)
     if (getCookie(name) === null || getCookie(name) !== value) {
       // append "." to current domain
-      domain = domain || '.' + host;
-      document.cookie = name + '=' + value + expires + '; path=/; domain=' + domain;
+      domain = domain || "." + host;
+      document.cookie = name + "=" + value + expires + "; path=/; domain=" + domain;
     }
   }
 }
@@ -285,11 +285,11 @@ export function setCookie(name: string, value: string, days?: number, domain?: s
  * @category Store
  */
 export function delCookie(name: string): boolean {
-  const cookies = document.cookie.split(';');
+  const cookies = document.cookie.split(";");
   for (let i = 0; i < cookies.length; i++) {
     const cookie = cookies[i].trim();
     if (cookie.startsWith(`${name}=`)) {
-      const cookieParts = cookie.split('=');
+      const cookieParts = cookie.split("=");
       const cookieName = cookieParts[0];
       const expires = new Date();
       expires.setTime(expires.getTime() - 1);

@@ -1,6 +1,6 @@
 import {
   SimpleObject, ThrottleFunc, DebounceFunc, MazeyFnParams, MazeyFnReturn, IsNumberOptions, MazeyFunction, 
-} from './typing';
+} from "./typing";
 
 /**
  * Copy/Clone Object deeply.
@@ -27,12 +27,12 @@ import {
  */
 export function deepCopy<T>(obj: T): T {
   // Jugde whether it is a primitive type
-  if (typeof obj !== 'object') {
+  if (typeof obj !== "object") {
     return obj;
   }
   // Judge whether its key-value is simple type, string | number | boolean | null | undefined
   // ...rest
-  const simpleTypes = [ 'string', 'number', 'boolean', 'undefined' ];
+  const simpleTypes = [ "string", "number", "boolean", "undefined" ];
   const values = Object.values(obj as SimpleObject);
   const isSimpleTypeObj = values.every(v => simpleTypes.includes(typeof v));
   if (isSimpleTypeObj) {
@@ -46,7 +46,7 @@ export function deepCopy<T>(obj: T): T {
 }
 
 /**
- * Alias of `deepCopy`
+ * Alias of `deepCopy`.
  *
  * @hidden
  */
@@ -78,12 +78,12 @@ export function deepCopyObject<T>(obj: T): T {
  * @category Util
  */
 export function convertCamelToKebab(camelCase: string): string {
-  const kebabCase = camelCase.replace(/([A-Z])/g, '-$1').toLowerCase();
-  return kebabCase[0] === '-' ? kebabCase.substring(1) : kebabCase;
+  const kebabCase = camelCase.replace(/([A-Z])/g, "-$1").toLowerCase();
+  return kebabCase[0] === "-" ? kebabCase.substring(1) : kebabCase;
 }
 
 /**
- * Alias of `convertCamelToKebab`
+ * Alias of `convertCamelToKebab`.
  *
  * @hidden
  */
@@ -115,12 +115,12 @@ export function camelCaseToKebabCase(camelCase: string): string {
  * @category Util
  */
 export function convertCamelToUnder(camelCase: string): string {
-  const kebabCase = camelCase.replace(/([A-Z])/g, '_$1').toLowerCase();
-  return kebabCase[0] === '_' ? kebabCase.substring(1) : kebabCase;
+  const kebabCase = camelCase.replace(/([A-Z])/g, "_$1").toLowerCase();
+  return kebabCase[0] === "_" ? kebabCase.substring(1) : kebabCase;
 }
 
 /**
- * Alias of `convertCamelToUnder`
+ * Alias of `convertCamelToUnder`.
  *
  * @hidden
  */
@@ -155,7 +155,7 @@ export function camelCase2Underscore(camelCase: string): string {
  * @hidden
  */
 export function mTrim(str: string): string {
-  str = str.replace(/^\s+/, ''); // 去除头部空格
+  str = str.replace(/^\s+/, ""); // 去除头部空格
   let end = str.length - 1;
   const ws = /\s/;
   while (ws.test(str.charAt(end))) {
@@ -189,7 +189,7 @@ export function mTrim(str: string): string {
  */
 export function isJSONString(str: string): boolean {
   try {
-    if (typeof JSON.parse(str) === 'object') {
+    if (typeof JSON.parse(str) === "object") {
       return true;
     }
   } catch (e) {
@@ -199,7 +199,7 @@ export function isJSONString(str: string): boolean {
 }
 
 /**
- * Alias of `isJSONString`
+ * Alias of `isJSONString`.
  *
  * @hidden
  */
@@ -231,7 +231,7 @@ export function isJsonString(str: string): boolean {
  * @category Util
  */
 export function genRndNumString(n = 5): string {
-  let ret = '';
+  let ret = "";
   while (n--) {
     ret += Math.floor(Math.random() * 10);
   }
@@ -239,7 +239,7 @@ export function genRndNumString(n = 5): string {
 }
 
 /**
- * Alias of `genRndNumString`
+ * Alias of `genRndNumString`.
  *
  * @hidden
  */
@@ -275,7 +275,7 @@ export function genUniqueNumString(n = 3): string {
 }
 
 /**
- * Alias of `genUniqueNumString`
+ * Alias of `genUniqueNumString`.
  *
  * @hidden
  */
@@ -335,7 +335,7 @@ export function mNow(): number {
  * @category Util
  */
 export function floatToPercent(num: number, fixSize = 0): string {
-  let ret = '';
+  let ret = "";
   if (fixSize) {
     ret = (num * 100).toFixed(fixSize);
   } else {
@@ -479,7 +479,7 @@ export function debounce<T extends (...args: MazeyFnParams) => MazeyFnReturn>(fu
 }
 
 const defaultGetFriendlyIntervalOptions = {
-  type: 'd',
+  type: "d",
 };
 
 /**
@@ -516,22 +516,22 @@ export function getFriendlyInterval(start: number | string | Date = 0, end: numb
   if (!isNumber(start)) start = new Date(start).getTime();
   if (!isNumber(end)) end = new Date(end).getTime();
   const t = Number(end) - Number(start);
-  let ret = '';
+  let ret = "";
   let [ d, h, m, s ] = new Array(4).fill(0);
-  const zhD = decodeURIComponent('%20%E5%A4%A9%20'); // ' 天 '
-  const zhH = decodeURIComponent('%20%E6%97%B6%20'); // ' 时 '
-  const zhM = decodeURIComponent('%20%E5%88%86%20'); // ' 分 '
-  const zhS = decodeURIComponent('%20%E7%A7%92'); // ' 秒'
+  const zhD = decodeURIComponent("%20%E5%A4%A9%20"); // ' 天 '
+  const zhH = decodeURIComponent("%20%E6%97%B6%20"); // ' 时 '
+  const zhM = decodeURIComponent("%20%E5%88%86%20"); // ' 分 '
+  const zhS = decodeURIComponent("%20%E7%A7%92"); // ' 秒'
   if (t >= 0) {
     d = Math.floor(t / 1000 / 60 / 60 / 24);
     h = Math.floor(t / 1000 / 60 / 60);
     m = Math.floor(t / 1000 / 60);
     s = Math.floor(t / 1000);
     switch (type) {
-      case 'd':
+      case "d":
         ret = d;
         break;
-      case 'text':
+      case "text":
         d = Math.floor(t / 1000 / 60 / 60 / 24);
         h = Math.floor((t / 1000 / 60 / 60) % 24);
         m = Math.floor((t / 1000 / 60) % 60);
@@ -578,7 +578,7 @@ export function getFriendlyInterval(start: number | string | Date = 0, end: numb
  */
 export function isNumber(num: unknown, options: IsNumberOptions = {}): boolean {
   const { isNaNAsNumber = false, isInfinityAsNumber = false, isUnFiniteAsNumber = false } = options;
-  if (typeof num !== 'number') {
+  if (typeof num !== "number") {
     return false;
   }
   if (!(isInfinityAsNumber === true || isUnFiniteAsNumber === true) && !isFinite(num)) {
@@ -610,7 +610,7 @@ export function isNumber(num: unknown, options: IsNumberOptions = {}): boolean {
  */
 export function doFn(fn: MazeyFunction, ...params: Parameters<MazeyFunction>): ReturnType<MazeyFunction> | null {
   let ret: ReturnType<MazeyFunction> | null = null;
-  if (fn && typeof fn === 'function') {
+  if (fn && typeof fn === "function") {
     ret = fn(...params);
   }
   return ret;

@@ -26,25 +26,25 @@ import {
   UnknownObject,
   UnknownFn,
   UnknownWindow,
-} from './typing';
+} from "./typing";
 import {
   isNonEmptyArray,
   // camelCase2Underscore,
   // isNumber,
   // doFn,
   // mNow,
-} from './util';
-import { loadScript } from './load';
+} from "./util";
+import { loadScript } from "./load";
 // import { isSupportedEntryType, getFCP, getFP } from './perf';
 
-export * from './calc';
-export * from './util';
-export * from './url';
-export * from './dom';
-export * from './event';
-export * from './store';
-export * from './load';
-export * from './perf';
+export * from "./calc";
+export * from "./util";
+export * from "./url";
+export * from "./dom";
+export * from "./event";
+export * from "./store";
+export * from "./load";
+export * from "./perf";
 
 /**
  * EN: Detect the margin of Safety. Determine if it is a secure PWA environment that it can run.
@@ -72,7 +72,7 @@ export function isSafePWAEnv(): boolean {
   function isSupportAsyncAwait() {
     let isSupportAsyncAwaitFunc;
     try {
-      const fn = new Function('return async function(){};');
+      const fn = new Function("return async function(){};");
       isSupportAsyncAwaitFunc = fn();
       // 由于async函数的构造器不是全局对象，所以我们需要由下面代码来获取async函数的构造器
       // 具体可以查看以下MDN上有关于AsyncFunction的说明，
@@ -84,14 +84,14 @@ export function isSafePWAEnv(): boolean {
   }
   // 判断是否支持 Promise
   function isSupportPromise() {
-    if (typeof Promise !== 'undefined' && Promise.toString().indexOf('[native code]') !== -1) {
+    if (typeof Promise !== "undefined" && Promise.toString().indexOf("[native code]") !== -1) {
       return true;
     }
     return false;
   }
   // 浏览器信息
   const BrowserType = getBrowserInfo();
-  if ('serviceWorker' in navigator && isSupportAsyncAwait() && isSupportPromise() && Boolean(window.fetch) && Boolean(window.indexedDB) && Boolean(window.caches) && !BrowserType['shell']) {
+  if ("serviceWorker" in navigator && isSupportAsyncAwait() && isSupportPromise() && Boolean(window.fetch) && Boolean(window.indexedDB) && Boolean(window.caches) && !BrowserType["shell"]) {
     return true;
   }
   return false;
@@ -142,18 +142,18 @@ export function isSafePWAEnv(): boolean {
  */
 export function getBrowserInfo(): BrowserInfo {
   // Cache
-  if (window.MAZEY_BROWSER_INFO && typeof window.MAZEY_BROWSER_INFO === 'object') {
+  if (window.MAZEY_BROWSER_INFO && typeof window.MAZEY_BROWSER_INFO === "object") {
     // console.log('getBrowserInfo cache');
     return window.MAZEY_BROWSER_INFO;
   }
   let browserInfo: BrowserInfo = {
-    engine: '', // webkit gecko presto trident
-    engineVs: '',
-    platform: '', // desktop mobile
-    supporter: '', // chrome safari firefox opera iexplore edge
-    supporterVs: '',
-    system: '', // windows macos linux android ios
-    systemVs: '',
+    engine: "", // webkit gecko presto trident
+    engineVs: "",
+    platform: "", // desktop mobile
+    supporter: "", // chrome safari firefox opera iexplore edge
+    supporterVs: "",
+    system: "", // windows macos linux android ios
+    systemVs: "",
   };
   try {
     // 权重：系统 + 系统版本 > 平台 > 内核 + 载体 + 内核版本 + 载体版本 > 外壳 + 外壳版本
@@ -163,38 +163,38 @@ export function getBrowserInfo(): BrowserInfo {
     }
     const testUa: TestUa = regexp => regexp.test(ua);
     const testVs: TestVs = regexp => {
-      let ret = '';
+      let ret = "";
       const matchRes = ua.match(regexp); // ['os 13_2_3']
       // Confirm the Safety of the match result
       if (matchRes && isNonEmptyArray(matchRes)) {
         ret = matchRes.toString();
-        ret = ret.replace(/[^0-9|_.]/g, ''); // 1323
-        ret = ret.replace(/_/g, '.'); // 13.2.3
+        ret = ret.replace(/[^0-9|_.]/g, ""); // 1323
+        ret = ret.replace(/_/g, "."); // 13.2.3
       }
       return ret;
     };
     // System
-    let system = '';
+    let system = "";
     // Apple Device Type
-    let appleType = '';
+    let appleType = "";
     if (testUa(/windows|win32|win64|wow32|wow64/g)) {
-      system = 'windows'; // windows系统
+      system = "windows"; // windows系统
     } else if (testUa(/macintosh|macintel/g)) {
-      system = 'macos'; // macos系统
+      system = "macos"; // macos系统
     } else if (testUa(/x11/g)) {
-      system = 'linux'; // linux系统
+      system = "linux"; // linux系统
     } else if (testUa(/android|adr/g)) {
-      system = 'android'; // android系统
+      system = "android"; // android系统
     } else if (testUa(/ios|iphone|ipad|ipod|iwatch/g)) {
-      system = 'ios'; // ios系统
+      system = "ios"; // ios系统
       if (testUa(/ipad/g)) {
-        appleType = 'ipad';
+        appleType = "ipad";
       } else if (testUa(/iphone/g)) {
-        appleType = 'iphone';
+        appleType = "iphone";
       } else if (testUa(/iwatch/g)) {
-        appleType = 'iwatch';
+        appleType = "iwatch";
       } else if (testUa(/ipod/g)) {
-        appleType = 'ipod';
+        appleType = "ipod";
       }
     }
     browserInfo = {
@@ -203,30 +203,30 @@ export function getBrowserInfo(): BrowserInfo {
       appleType,
     };
     // System Version
-    let systemVs = '';
-    if (system === 'windows') {
+    let systemVs = "";
+    if (system === "windows") {
       if (testUa(/windows nt 5.0|windows 2000/g)) {
-        systemVs = '2000';
+        systemVs = "2000";
       } else if (testUa(/windows nt 5.1|windows xp/g)) {
-        systemVs = 'xp';
+        systemVs = "xp";
       } else if (testUa(/windows nt 5.2|windows 2003/g)) {
-        systemVs = '2003';
+        systemVs = "2003";
       } else if (testUa(/windows nt 6.0|windows vista/g)) {
-        systemVs = 'vista';
+        systemVs = "vista";
       } else if (testUa(/windows nt 6.1|windows 7/g)) {
-        systemVs = '7';
+        systemVs = "7";
       } else if (testUa(/windows nt 6.2|windows 8/g)) {
-        systemVs = '8';
+        systemVs = "8";
       } else if (testUa(/windows nt 6.3|windows 8.1/g)) {
-        systemVs = '8.1';
+        systemVs = "8.1";
       } else if (testUa(/windows nt 10.0|windows 10/g)) {
-        systemVs = '10';
+        systemVs = "10";
       }
-    } else if (system === 'macos') {
+    } else if (system === "macos") {
       systemVs = testVs(/os x [\d._]+/g);
-    } else if (system === 'android') {
+    } else if (system === "android") {
       systemVs = testVs(/android [\d._]+/g); // 8.0
-    } else if (system === 'ios') {
+    } else if (system === "ios") {
       systemVs = testVs(/os [\d._]+/g); // 13.2.3 13.3
     }
     browserInfo = {
@@ -234,39 +234,39 @@ export function getBrowserInfo(): BrowserInfo {
       systemVs,
     };
     // Platform
-    let platform = '';
-    if (system === 'windows' || system === 'macos' || system === 'linux') {
-      platform = 'desktop'; // 桌面端
-    } else if (system === 'android' || system === 'ios' || testUa(/mobile/g)) {
-      platform = 'mobile'; // 移动端
+    let platform = "";
+    if (system === "windows" || system === "macos" || system === "linux") {
+      platform = "desktop"; // 桌面端
+    } else if (system === "android" || system === "ios" || testUa(/mobile/g)) {
+      platform = "mobile"; // 移动端
     }
     browserInfo = {
       ...browserInfo,
       platform,
     };
     // Engine and Shell
-    let engine = '';
-    let supporter = '';
+    let engine = "";
+    let supporter = "";
     if (testUa(/applewebkit/g)) {
-      engine = 'webkit'; // webkit内核
+      engine = "webkit"; // webkit内核
       if (testUa(/edge/g)) {
-        supporter = 'edge'; // edge浏览器
+        supporter = "edge"; // edge浏览器
       } else if (testUa(/opr/g)) {
-        supporter = 'opera'; // opera浏览器
+        supporter = "opera"; // opera浏览器
       } else if (testUa(/chrome/g)) {
-        supporter = 'chrome'; // chrome浏览器
+        supporter = "chrome"; // chrome浏览器
       } else if (testUa(/safari/g)) {
-        supporter = 'safari'; // safari浏览器
+        supporter = "safari"; // safari浏览器
       }
     } else if (testUa(/gecko/g) && testUa(/firefox/g)) {
-      engine = 'gecko'; // gecko内核
-      supporter = 'firefox'; // firefox浏览器
+      engine = "gecko"; // gecko内核
+      supporter = "firefox"; // firefox浏览器
     } else if (testUa(/presto/g)) {
-      engine = 'presto'; // presto内核
-      supporter = 'opera'; // opera浏览器
+      engine = "presto"; // presto内核
+      supporter = "opera"; // opera浏览器
     } else if (testUa(/trident|compatible|msie/g)) {
-      engine = 'trident'; // trident内核
-      supporter = 'iexplore'; // iexplore浏览器
+      engine = "trident"; // trident内核
+      supporter = "iexplore"; // iexplore浏览器
     }
     browserInfo = {
       ...browserInfo,
@@ -274,14 +274,14 @@ export function getBrowserInfo(): BrowserInfo {
       supporter,
     };
     // Engine Version
-    let engineVs = '';
-    if (engine === 'webkit') {
+    let engineVs = "";
+    if (engine === "webkit") {
       engineVs = testVs(/applewebkit\/[\d._]+/g);
-    } else if (engine === 'gecko') {
+    } else if (engine === "gecko") {
       engineVs = testVs(/gecko\/[\d._]+/g);
-    } else if (engine === 'presto') {
+    } else if (engine === "presto") {
       engineVs = testVs(/presto\/[\d._]+/g);
-    } else if (engine === 'trident') {
+    } else if (engine === "trident") {
       engineVs = testVs(/trident\/[\d._]+/g);
     }
     browserInfo = {
@@ -289,18 +289,18 @@ export function getBrowserInfo(): BrowserInfo {
       engineVs,
     };
     // Supporter Version
-    let supporterVs = '';
-    if (supporter === 'chrome') {
+    let supporterVs = "";
+    if (supporter === "chrome") {
       supporterVs = testVs(/chrome\/[\d._]+/g);
-    } else if (supporter === 'safari') {
+    } else if (supporter === "safari") {
       supporterVs = testVs(/version\/[\d._]+/g);
-    } else if (supporter === 'firefox') {
+    } else if (supporter === "firefox") {
       supporterVs = testVs(/firefox\/[\d._]+/g);
-    } else if (supporter === 'opera') {
+    } else if (supporter === "opera") {
       supporterVs = testVs(/opr\/[\d._]+/g);
-    } else if (supporter === 'iexplore') {
+    } else if (supporter === "iexplore") {
       supporterVs = testVs(/(msie [\d._]+)|(rv:[\d._]+)/g);
-    } else if (supporter === 'edge') {
+    } else if (supporter === "edge") {
       supporterVs = testVs(/edge\/[\d._]+/g);
     }
     browserInfo = {
@@ -308,33 +308,33 @@ export function getBrowserInfo(): BrowserInfo {
       supporterVs,
     };
     // Shell Name and Shell Version
-    let shell = '';
-    let shellVs = '';
+    let shell = "";
+    let shellVs = "";
     if (testUa(/micromessenger/g)) {
-      shell = 'wechat'; // 微信浏览器
+      shell = "wechat"; // 微信浏览器
       shellVs = testVs(/micromessenger\/[\d._]+/g);
     } else if (testUa(/qqbrowser/g)) {
-      shell = 'qq_browser'; // QQ Browser
+      shell = "qq_browser"; // QQ Browser
       shellVs = testVs(/qqbrowser\/[\d._]+/g);
     } else if (testUa(/\sqq/g)) {
-      shell = 'qq_app'; // QQ APP
+      shell = "qq_app"; // QQ APP
     } else if (testUa(/ucbrowser/g)) {
-      shell = 'uc'; // UC浏览器
+      shell = "uc"; // UC浏览器
       shellVs = testVs(/ucbrowser\/[\d._]+/g);
     } else if (testUa(/qihu 360se/g)) {
-      shell = '360'; // 360浏览器(无版本)
+      shell = "360"; // 360浏览器(无版本)
     } else if (testUa(/2345explorer/g)) {
-      shell = '2345'; // 2345浏览器
+      shell = "2345"; // 2345浏览器
       shellVs = testVs(/2345explorer\/[\d._]+/g);
     } else if (testUa(/metasr/g)) {
-      shell = 'sougou'; // 搜狗浏览器(无版本)
+      shell = "sougou"; // 搜狗浏览器(无版本)
     } else if (testUa(/lbbrowser/g)) {
-      shell = 'liebao'; // 猎豹浏览器(无版本)
+      shell = "liebao"; // 猎豹浏览器(无版本)
     } else if (testUa(/maxthon/g)) {
-      shell = 'maxthon'; // 遨游浏览器
+      shell = "maxthon"; // 遨游浏览器
       shellVs = testVs(/maxthon\/[\d._]+/g);
     } else if (testUa(/biliapp/g)) {
-      shell = 'bilibili'; // 哔哩哔哩
+      shell = "bilibili"; // 哔哩哔哩
     }
     browserInfo = {
       ...browserInfo,
@@ -344,7 +344,7 @@ export function getBrowserInfo(): BrowserInfo {
     window.MAZEY_BROWSER_INFO = browserInfo;
     return browserInfo;
   } catch (err) {
-    console.warn('MazeyCon:', err);
+    console.warn("MazeyCon:", err);
     return browserInfo;
   }
 }
@@ -371,11 +371,11 @@ export function getBrowserInfo(): BrowserInfo {
  */
 export function clearHtml(str: string, options: { removeNewLine?: boolean } = {}): string {
   const { removeNewLine = false } = options;
-  let ret = '';
+  let ret = "";
   if (str) {
-    ret = str.replace(/<\/?.+?>/g, '');
+    ret = str.replace(/<\/?.+?>/g, "");
     if (removeNewLine) {
-      ret = ret.replace(/[\r\n]/g, '');
+      ret = ret.replace(/[\r\n]/g, "");
     }
   }
   return ret;
@@ -405,15 +405,15 @@ export function clearHtml(str: string, options: { removeNewLine?: boolean } = {}
 export function sanitizeInput(input: string): string {
   const regex = /[&<>"'/]/g;
   const replacements: { [key: string]: string } = {
-    '&': '&amp;',
-    '<': '&lt;',
-    '>': '&gt;',
-    '"': '&quot;',
-    '\'': '&#x27;',
-    '/': '&#x2F;',
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    "\"": "&quot;",
+    "'": "&#x27;",
+    "/": "&#x2F;",
   };
-  if (typeof input !== 'string') {
-    throw new Error('Input must be a string');
+  if (typeof input !== "string") {
+    throw new Error("Input must be a string");
   }
   return input.replace(regex, (match: keyof typeof replacements) => replacements[match]);
 }
@@ -441,15 +441,15 @@ export function sanitizeInput(input: string): string {
 export function unsanitize(input: string): string {
   const regex = /(&amp;|&lt;|&gt;|&quot;|&#x27;|&#x2F;)/g;
   const replacements: { [key: string]: string } = {
-    '&amp;': '&',
-    '&lt;': '<',
-    '&gt;': '>',
-    '&quot;': '"',
-    '&#x27;': '\'',
-    '&#x2F;': '/',
+    "&amp;": "&",
+    "&lt;": "<",
+    "&gt;": ">",
+    "&quot;": "\"",
+    "&#x27;": "'",
+    "&#x2F;": "/",
   };
-  if (typeof input !== 'string') {
-    throw new Error('Input must be a string');
+  if (typeof input !== "string") {
+    throw new Error("Input must be a string");
     // console.error('Input must be a string');
   }
   return input.replace(regex, (match: keyof typeof replacements) => replacements[match]);
@@ -478,15 +478,15 @@ export function unsanitize(input: string): string {
  * @category Util
  */
 export function truncateZHString(str: string, len: number, hasDot = false): string {
-  if (str == '' || !str) {
-    return '';
+  if (str == "" || !str) {
+    return "";
   } else {
     let newLength = 0;
-    let newStr = '';
+    let newStr = "";
     // eslint-disable-next-line no-control-regex
     const chineseRegex = /[^\x00-\xff]/g;
-    let singleChar = '';
-    const strLength = str.replace(chineseRegex, '**').length;
+    let singleChar = "";
+    const strLength = str.replace(chineseRegex, "**").length;
     for (let i = 0; i < strLength; i++) {
       singleChar = str.charAt(i).toString();
       if (singleChar.match(chineseRegex) != null) {
@@ -501,7 +501,7 @@ export function truncateZHString(str: string, len: number, hasDot = false): stri
     }
 
     if (hasDot && strLength > len) {
-      newStr += '...';
+      newStr += "...";
     }
     return newStr;
   }
@@ -550,13 +550,13 @@ export function windowLoaded(timeout = 90): Promise<string | Error> {
     loaded = resolve;
     loadFail = reject;
   });
-  if (document.readyState === 'complete') {
-    loaded('complete');
+  if (document.readyState === "complete") {
+    loaded("complete");
   } else {
-    window.addEventListener('load', () => loaded('load'));
+    window.addEventListener("load", () => loaded("load"));
   }
   // 超过 timeout 秒后加载失败
-  setTimeout(() => loadFail(Error('timeout')), timeout * 1000);
+  setTimeout(() => loadFail(Error("timeout")), timeout * 1000);
   return status;
 }
 
@@ -604,7 +604,7 @@ export function windowLoaded(timeout = 90): Promise<string | Error> {
  *
  * @category DOM
  */
-export function addStyle(style: string, options: { id?: string } = { id: '' }): boolean {
+export function addStyle(style: string, options: { id?: string } = { id: "" }): boolean {
   // console.log('_ style', style);
   // console.log('_ options', options);
   if (!style) {
@@ -613,16 +613,16 @@ export function addStyle(style: string, options: { id?: string } = { id: '' }): 
   // 创建 style 文档碎片
   const styleFrag = document.createDocumentFragment();
   let idDom: HTMLElement | null = null;
-  let domId = '';
+  let domId = "";
   // Custom Style
-  const customStyle = document.createElement('style');
+  const customStyle = document.createElement("style");
   // 如果需要 ID
   if (options.id) {
     domId = `${options.id}`;
     idDom = document.getElementById(domId);
     // 如果 Dom 不存在，插入 style
     if (!idDom) {
-      customStyle.setAttribute('id', options.id);
+      customStyle.setAttribute("id", options.id);
       customStyle.innerHTML = style;
       styleFrag.appendChild(customStyle);
       document.head.appendChild(styleFrag);
@@ -671,7 +671,7 @@ export function addStyle(style: string, options: { id?: string } = { id: '' }): 
  * @category Debug
  */
 export function genCustomConsole(
-  prefix = '',
+  prefix = "",
   options: {
     isClosed?: boolean;
     showWrap?: boolean;
@@ -683,7 +683,7 @@ export function genCustomConsole(
     isClosed: false,
     showWrap: false,
     showDate: false,
-    locales: 'en-US',
+    locales: "en-US",
     logFn: () => undefined,
     errorFn: () => undefined,
   }
@@ -693,25 +693,25 @@ export function genCustomConsole(
       isClosed: false,
       showWrap: false,
       showDate: false,
-      locales: 'en-US',
+      locales: "en-US",
       logFn: () => undefined,
       errorFn: () => undefined,
     },
     options
   );
-  const methods = [ 'log', 'info', 'warn', 'error' ];
+  const methods = [ "log", "info", "warn", "error" ];
   const newConsole = Object.create(null);
   // https://stackoverflow.com/questions/3552461/how-do-i-format-a-date-in-javascript
   const formatDate = () => {
     const dateOptions: Intl.DateTimeFormatOptions = {
-      weekday: 'short',
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-      hour: 'numeric',
+      weekday: "short",
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+      hour: "numeric",
       // hourCycle: 'h24',
-      minute: 'numeric',
-      second: 'numeric',
+      minute: "numeric",
+      second: "numeric",
     };
     const todayDateIns = new Date();
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString
@@ -726,9 +726,9 @@ export function genCustomConsole(
       }
       let elaboratePrefix = prefix;
       let datePrefix = prefix;
-      if (typeof prefix === 'string' && prefix.length >= 2) {
+      if (typeof prefix === "string" && prefix.length >= 2) {
         const len = prefix.length;
-        if (prefix[len - 1] === ':') {
+        if (prefix[len - 1] === ":") {
           elaboratePrefix = prefix.substring(0, len - 1);
         } else {
           elaboratePrefix = prefix;
@@ -749,10 +749,10 @@ export function genCustomConsole(
       } else {
         console[method](...argu);
       }
-      if (method === 'log') {
+      if (method === "log") {
         logFn();
       }
-      if (method === 'error') {
+      if (method === "error") {
         errorFn();
       }
       if (showWrap) {
@@ -786,7 +786,7 @@ export function zAxiosIsValidRes(
     options
   );
   if (validStatusRange.length !== 2) {
-    console.error('valid validStatusRange is required');
+    console.error("valid validStatusRange is required");
   }
   let ret = false;
   if (res && res.status && validStatusRange.length === 2 && res.status >= validStatusRange[0] && res.status < validStatusRange[1]) {
@@ -835,11 +835,11 @@ export function zAxiosIsValidRes(
  */
 export function isValidData(data: UnknownObject, attributes: string[], validValue: SimpleType): boolean {
   let ret = false;
-  if (typeof data !== 'object') {
+  if (typeof data !== "object") {
     return ret;
   }
   const foundRet = attributes.reduce((foundValue, curr) => {
-    if (typeof foundValue[curr] !== 'undefined') {
+    if (typeof foundValue[curr] !== "undefined") {
       foundValue = foundValue[curr];
     } else {
       return Object.create(null);
@@ -872,21 +872,21 @@ export function isValidData(data: UnknownObject, attributes: string[], validValu
  */
 export function getFileSize(size: number): string {
   const toCeilStr: (v: number) => string = n => String(Math.ceil(n));
-  if (!size) return '';
+  if (!size) return "";
   const num = 1024.0; // byte
   if (size < num) {
-    return size + ' B';
+    return size + " B";
   }
   if (size < Math.pow(num, 2)) {
-    return toCeilStr(size / num) + ' KB';
+    return toCeilStr(size / num) + " KB";
   } // kb
   if (size < Math.pow(num, 3)) {
-    return toCeilStr(size / Math.pow(num, 2)) + ' MB';
+    return toCeilStr(size / Math.pow(num, 2)) + " MB";
   } // M
   if (size < Math.pow(num, 4)) {
-    return toCeilStr(size / Math.pow(num, 3)) + ' G';
+    return toCeilStr(size / Math.pow(num, 3)) + " G";
   } // G
-  return toCeilStr(size / Math.pow(num, 4)) + ' T';
+  return toCeilStr(size / Math.pow(num, 4)) + " T";
 }
 
 /**
@@ -919,7 +919,7 @@ export function isSupportWebp(): Promise<boolean> {
     img.onerror = () => {
       resolve(false);
     };
-    img.src = 'data:image/webp;base64,UklGRh4AAABXRUJQVlA4TBEAAAAvAAAAAAfQ//73v/+BiOh/AAA=';
+    img.src = "data:image/webp;base64,UklGRh4AAABXRUJQVlA4TBEAAAAvAAAAAAfQ//73v/+BiOh/AAA=";
   };
   return new Promise(fn);
 }
@@ -986,7 +986,7 @@ export function genHashCode(str: string): number {
  * @returns {string} Return the formatted date string.
  * @category Util
  */
-export function formatDate(dateIns?: Date | number | string, format = 'yyyy-MM-dd'): string {
+export function formatDate(dateIns?: Date | number | string, format = "yyyy-MM-dd"): string {
   if (!dateIns) {
     dateIns = new Date();
   }
@@ -996,15 +996,15 @@ export function formatDate(dateIns?: Date | number | string, format = 'yyyy-MM-d
   } = {
     yyyy: tempDate.getFullYear(),
     MM: tempDate.getMonth() + 1,
-    dd: tempDate.getDate() < 10 ? '0' + tempDate.getDate() : tempDate.getDate(),
-    hh: tempDate.getHours() < 10 ? '0' + tempDate.getHours() : tempDate.getHours(),
-    mm: tempDate.getMinutes() < 10 ? '0' + tempDate.getMinutes() : tempDate.getMinutes(),
-    ss: tempDate.getSeconds() < 10 ? '0' + tempDate.getSeconds() : tempDate.getSeconds(),
+    dd: tempDate.getDate() < 10 ? "0" + tempDate.getDate() : tempDate.getDate(),
+    hh: tempDate.getHours() < 10 ? "0" + tempDate.getHours() : tempDate.getHours(),
+    mm: tempDate.getMinutes() < 10 ? "0" + tempDate.getMinutes() : tempDate.getMinutes(),
+    ss: tempDate.getSeconds() < 10 ? "0" + tempDate.getSeconds() : tempDate.getSeconds(),
   };
-  let tempFormat = format || 'yyyy-MM-dd';
+  let tempFormat = format || "yyyy-MM-dd";
   Object.keys(o).forEach(key => {
     let value = o[key];
-    if (key === 'MM' && Number(value) <= 9) {
+    if (key === "MM" && Number(value) <= 9) {
       value = `0${value}`;
     }
     tempFormat = tempFormat.replace(key, String(value));
@@ -1026,7 +1026,7 @@ export function formatDate(dateIns?: Date | number | string, format = 'yyyy-MM-d
  */
 export function getDefineListeners(): DefineListeners {
   let defineListeners = window.MAZEY_DEFINE_LISTENERS;
-  if (typeof defineListeners !== 'object') {
+  if (typeof defineListeners !== "object") {
     defineListeners = {};
     window.MAZEY_DEFINE_LISTENERS = defineListeners;
   }
@@ -1050,10 +1050,10 @@ export function getDefineListeners(): DefineListeners {
  */
 export function addEvent(type: string, fn: UnknownFn): void {
   const defineListeners = getDefineListeners();
-  if (typeof defineListeners[type] === 'undefined') {
+  if (typeof defineListeners[type] === "undefined") {
     defineListeners[type] = [];
   }
-  if (typeof fn === 'function') {
+  if (typeof fn === "function") {
     defineListeners[type].push(fn);
   }
 }
@@ -1075,7 +1075,7 @@ export function invokeEvent(type: string): void {
   const arrayEvent = defineListeners[type];
   if (arrayEvent instanceof Array) {
     for (let i = 0, length = arrayEvent.length; i < length; i++) {
-      if (typeof arrayEvent[i] === 'function') {
+      if (typeof arrayEvent[i] === "function") {
         arrayEvent[i]({
           type: type,
         });
@@ -1100,8 +1100,8 @@ export function invokeEvent(type: string): void {
 export function removeEvent(type: string, fn: UnknownFn): void {
   const defineListeners = getDefineListeners();
   const arrayEvent = defineListeners[type];
-  if (typeof type === 'string' && arrayEvent instanceof Array) {
-    if (typeof fn === 'function') {
+  if (typeof type === "string" && arrayEvent instanceof Array) {
+    if (typeof fn === "function") {
       for (let i = 0, length = arrayEvent.length; i < length; i++) {
         if (arrayEvent[i] === fn) {
           defineListeners[type].splice(i, 1);
@@ -1259,7 +1259,7 @@ export function isValidEmail(email: string): boolean {
  * @category Util
  */
 export function convert10To26(num: number): string {
-  let result = '';
+  let result = "";
   while (num > 0) {
     let remainder = num % 26;
     if (remainder === 0) {
@@ -1298,8 +1298,8 @@ export function convert10To26(num: number): string {
  * @category URL
  */
 export function getUrlFileType(url: string): boolean | string {
-  let ret = '';
-  if (typeof url != 'string' || url == '') {
+  let ret = "";
+  if (typeof url != "string" || url == "") {
     return ret;
   }
   const type = /\.[^/?#]+$/.exec(url);
@@ -1338,14 +1338,14 @@ export function setImgWidHeiBySrc(): boolean {
   const $ = window.jQuery || window.$;
   if ($) {
     // Use jQuery to select all images on the page
-    const images = $('img');
+    const images = $("img");
     if (!(images && images.length)) return false;
     images.each(function() {
       const $this = $(this);
       if (!$this) return;
       // Get the `src` attribute of the image
-      const src = $this.attr('src');
-      const canMatch = src && typeof src === 'string' && src.length;
+      const src = $this.attr("src");
+      const canMatch = src && typeof src === "string" && src.length;
       if (!canMatch) return;
       // Use regular expressions to extract the `width` and `height` values from the `src` attribute
       const width = src.match(/width=([0-9]+[a-z%]*)/);
@@ -1357,15 +1357,15 @@ export function setImgWidHeiBySrc(): boolean {
     return true;
   } else {
     // Use pure JavaScript to select all images on the page
-    const images = document.getElementsByTagName('img');
+    const images = document.getElementsByTagName("img");
     if (images.length > 0) {
       // Loop through each image and set its width and height based on the `src` attribute
       Array.from(images).forEach(function(img) {
         const $this = img;
         if (!$this) return;
         // Get the `src` attribute of the image
-        const src = $this.getAttribute('src');
-        const canMatch = src && typeof src === 'string' && src.length;
+        const src = $this.getAttribute("src");
+        const canMatch = src && typeof src === "string" && src.length;
         if (!canMatch) return;
         // Use regular expressions to extract the `width` and `height` values from the `src` attribute
         const width = src.match(/width=([0-9]+[a-z%]*)/);
@@ -1405,9 +1405,9 @@ export function setImgWidHeiBySrc(): boolean {
  * @category DOM
  */
 export function genStyleString(selector: string, styleArray: Array<string>): string {
-  let style = '';
+  let style = "";
   if (styleArray && styleArray.length > 0) {
-    style = styleArray.join(';') + ';';
+    style = styleArray.join(";") + ";";
   }
   return `${selector}{${style}}`;
 }
@@ -1454,7 +1454,7 @@ export function loadImage(url: string): Promise<HTMLImageElement> {
  * @hidden
  */
 export function getCurrentVersion(): string {
-  return 'v3';
+  return "v3";
 }
 
 /**
@@ -1507,16 +1507,16 @@ export function repeatUntilConditionMet<T extends (...args: UnknownFnParams) => 
     }, interval);
   };
 
-  if (typeof callback !== 'function') {
-    console.error('Expected a function.');
+  if (typeof callback !== "function") {
+    console.error("Expected a function.");
   }
 
-  if (typeof interval !== 'number' || interval < 0) {
-    console.error('Expected a non-negative number for interval.');
+  if (typeof interval !== "number" || interval < 0) {
+    console.error("Expected a non-negative number for interval.");
   }
 
-  if (typeof times !== 'number' || times < 0) {
-    console.error('Expected a non-negative number for times.');
+  if (typeof times !== "number" || times < 0) {
+    console.error("Expected a non-negative number for times.");
   }
 
   clearAndInvokeNext();
@@ -1550,7 +1550,7 @@ export function repeatUntilConditionMet<T extends (...args: UnknownFnParams) => 
  */
 export function loadScriptIfUndefined(windowAttribute: string, url: string): LoadScriptReturns {
   if ((window as UnknownWindow)[windowAttribute]) {
-    return Promise.resolve('defined');
+    return Promise.resolve("defined");
   }
   return loadScript(url);
 }
@@ -1577,14 +1577,14 @@ export function loadScriptIfUndefined(windowAttribute: string, url: string): Loa
  * @returns The decoded value of the specified query parameter, or an empty string if no matching parameter is found.
  * @category URL
  */
-export function getScriptQueryParam(param: string, matchString = ''): string {
+export function getScriptQueryParam(param: string, matchString = ""): string {
   if (!matchString) {
-    matchString = '.js';
+    matchString = ".js";
   }
   const paramRegExp = new RegExp(`[?&]${param}=([^&]*)`);
   const scriptTags = document.querySelectorAll(`script[src*="${matchString}"]`);
   for (let i = 0; i < scriptTags.length; i++) {
-    const src = scriptTags[i].getAttribute('src');
+    const src = scriptTags[i].getAttribute("src");
     if (src && src.indexOf(matchString) !== -1) {
       const match = src.match(paramRegExp);
       if (match) {
@@ -1592,7 +1592,7 @@ export function getScriptQueryParam(param: string, matchString = ''): string {
       }
     }
   }
-  return '';
+  return "";
 }
 
 /**

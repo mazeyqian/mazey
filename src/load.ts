@@ -1,5 +1,5 @@
-import { MazeyFnParams, MazeyFnReturn, LoadScriptReturns } from './typing';
-import { doFn } from './util';
+import { MazeyFnParams, MazeyFnReturn, LoadScriptReturns } from "./typing";
+import { doFn } from "./util";
 
 /**
  * EN: Load a CSS file from the server.
@@ -38,7 +38,7 @@ import { doFn } from './util';
  * @returns {Promise<string>} true -- 加载成功
  * @category Load
  */
-export function loadCSS(url: string, options: { id?: string } = { id: '' }): Promise<unknown> {
+export function loadCSS(url: string, options: { id?: string } = { id: "" }): Promise<unknown> {
   const { id } = options;
   let success: (v: boolean | string) => void;
   let fail: (v: Error) => void = () => undefined;
@@ -48,22 +48,22 @@ export function loadCSS(url: string, options: { id?: string } = { id: '' }): Pro
   // const tempCB = (typeof callback === 'function' ? callback : function () { });
   const callback = function() {
     // doFn(success, true);
-    success('loaded');
+    success("loaded");
   };
-  let node: HTMLLinkElement | null = document.createElement('link');
+  let node: HTMLLinkElement | null = document.createElement("link");
   if (!node) {
-    fail(new Error('Not support create link element'));
+    fail(new Error("Not support create link element"));
   }
-  const supportOnload = 'onload' in node;
-  const isOldWebKit = +navigator.userAgent.replace(/.*(?:AppleWebKit|AndroidWebKit)\/?(\d+).*/i, '$1') < 536; // webkit旧内核做特殊处理
+  const supportOnload = "onload" in node;
+  const isOldWebKit = +navigator.userAgent.replace(/.*(?:AppleWebKit|AndroidWebKit)\/?(\d+).*/i, "$1") < 536; // webkit旧内核做特殊处理
   const protectNum = 300000; // 阈值10分钟，一秒钟执行 pollCss 500 次
-  node.rel = 'stylesheet';
-  node.type = 'text/css';
+  node.rel = "stylesheet";
+  node.type = "text/css";
   node.href = url;
-  if (typeof id !== 'undefined') {
+  if (typeof id !== "undefined") {
     node.id = id;
   }
-  document.getElementsByTagName('head')[0].appendChild(node);
+  document.getElementsByTagName("head")[0].appendChild(node);
   // for Old WebKit and Old Firefox
   if (isOldWebKit || !supportOnload) {
     // Begin after node insertion
@@ -130,7 +130,7 @@ export function loadCSS(url: string, options: { id?: string } = { id: '' }): Pro
         // The value of `ex.name` is changed from "NS_ERROR_DOM_SECURITY_ERR"
         // to "SecurityError" since Firefox 13.0. But Firefox is less than 9.0
         // in here, So it is ok to just rely on "NS_ERROR_DOM_SECURITY_ERR"
-        if (err.name === 'NS_ERROR_DOM_SECURITY_ERR') {
+        if (err.name === "NS_ERROR_DOM_SECURITY_ERR") {
           isLoaded = true;
         }
       }
@@ -197,7 +197,7 @@ export function loadScript(
     timeout?: number;
     isDefer?: boolean;
   } = {
-    id: '',
+    id: "",
     callback: function() {
       /* pass */
     },
@@ -207,7 +207,7 @@ export function loadScript(
 ): LoadScriptReturns {
   const { id, callback, timeout, isDefer } = Object.assign(
     {
-      id: '',
+      id: "",
       callback: function() {
         /* pass */
       },
@@ -218,13 +218,13 @@ export function loadScript(
   );
   let success: (v: string) => void;
   let fail: (v: string) => void;
-  const script: HTMLScriptElement = document.createElement('script');
+  const script: HTMLScriptElement = document.createElement("script");
   if (!script) {
-    Promise.reject('Not support create script element');
+    Promise.reject("Not support create script element");
   }
   // 如果没有 script 标签，那么代码就不会运行。可以利用这一事实，在页面的第一个 script 标签上使用 insertBefore()。
-  const firstScript: HTMLScriptElement = document.getElementsByTagName('script')[0];
-  script.type = 'text/javascript';
+  const firstScript: HTMLScriptElement = document.getElementsByTagName("script")[0];
+  script.type = "text/javascript";
   if (isDefer) {
     script.defer = true; // 'defer';
   }
@@ -234,17 +234,17 @@ export function loadScript(
   if (script.readyState) {
     // IE
     script.onreadystatechange = function() {
-      if (script.readyState === 'loaded' || script.readyState === 'complete') {
+      if (script.readyState === "loaded" || script.readyState === "complete") {
         script.onreadystatechange = null;
         doFn(callback);
-        doFn(success, 'loaded');
+        doFn(success, "loaded");
       }
     };
   } else {
     // Others
     script.onload = function() {
       doFn(callback);
-      doFn(success, 'loaded');
+      doFn(success, "loaded");
     };
   }
   script.src = url;
@@ -252,7 +252,7 @@ export function loadScript(
   return new Promise((resolve, reject) => {
     [ success, fail ] = [ resolve, reject ];
     if (timeout) {
-      setTimeout(fail.bind(null, 'timeout'), timeout);
+      setTimeout(fail.bind(null, "timeout"), timeout);
     }
   });
 }

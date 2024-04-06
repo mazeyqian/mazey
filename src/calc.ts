@@ -1,4 +1,4 @@
-import { deepCopy } from './util';
+import { deepCopy } from "./util";
 
 /**
  * EN: Computes the longest common substring of two strings.

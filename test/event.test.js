@@ -2,10 +2,10 @@
  * @jest-environment jsdom
  */
 /* eslint-disable no-undef */
-import { cancelBubble } from '../lib/index.esm';
+import { cancelBubble } from "../lib/index.esm";
 
-describe('cancelBubble', () => {
-  it('should call stopPropagation if available', () => {
+describe("cancelBubble", () => {
+  it("should call stopPropagation if available", () => {
     const eventMock = {
       stopPropagation: jest.fn(),
       cancelBubble: false,
@@ -17,7 +17,7 @@ describe('cancelBubble', () => {
     expect(eventMock.cancelBubble).toBe(false);
   });
 
-  it('should set cancelBubble to true if stopPropagation is not available', () => {
+  it("should set cancelBubble to true if stopPropagation is not available", () => {
     const eventMock = {
       stopPropagation: undefined,
       cancelBubble: false,

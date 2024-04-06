@@ -1,4 +1,4 @@
-import { UrlParams } from './typing';
+import { UrlParams } from "./typing";
 
 /**
  * Get the query param's value of the current Web URL(`location.search`).
@@ -24,13 +24,13 @@ import { UrlParams } from './typing';
  * @category URL
  */
 export function getQueryParam(param: string): string {
-  const reg = new RegExp('(^|&)' + param + '=([^&]*)(&|$)');
+  const reg = new RegExp("(^|&)" + param + "=([^&]*)(&|$)");
   const r = location.search.substring(1).match(reg);
   if (r !== null) {
     // return decodeURIComponent(unescape(r[2]));
     return decodeURIComponent(r[2]);
   }
-  return '';
+  return "";
 }
 
 /**
@@ -59,7 +59,7 @@ export function getQueryParam(param: string): string {
  */
 export function getUrlParam(url: string, param: string, options: { returnArray?: boolean } = {}): string | string[] | null {
   let res: string | string[] | null = null;
-  if (url.includes('#')) {
+  if (url.includes("#")) {
     const urlObj = new URL(url);
     res = urlObj.searchParams.getAll(param);
   } else {
@@ -70,7 +70,7 @@ export function getUrlParam(url: string, param: string, options: { returnArray?:
       } else {
         result[ key ] = [ val ];
       }
-      return '';
+      return "";
     });
     res = result[ param ] || [];
   }
@@ -111,17 +111,17 @@ export function getUrlParam(url: string, param: string, options: { returnArray?:
  * @category URL
  */
 export function updateQueryParam(url: string, param: string, value: string): string {
-  if (url.includes('#')) {
+  if (url.includes("#")) {
     const urlObj = new URL(url);
     urlObj.searchParams.set(param, value);
     return urlObj.toString();
   } else {
-    const re = new RegExp('([?&])' + param + '=.*?(&|$)', 'i');
-    const separator = url.indexOf('?') !== -1 ? '&' : '?';
+    const re = new RegExp("([?&])" + param + "=.*?(&|$)", "i");
+    const separator = url.indexOf("?") !== -1 ? "&" : "?";
     if (url.match(re)) {
-      return url.replace(re, '$1' + param + '=' + value + '$2');
+      return url.replace(re, "$1" + param + "=" + value + "$2");
     } else {
-      return url + separator + param + '=' + value;
+      return url + separator + param + "=" + value;
     }
   }
 }
@@ -150,13 +150,13 @@ export function updateQueryParam(url: string, param: string, value: string): str
  * @category URL
  */
 export function getHashQueryParam(param: string): string {
-  const hashs = location.hash.split('?');
+  const hashs = location.hash.split("?");
   if (hashs.length === 1) {
-    return '';
+    return "";
   }
   const reg = new RegExp(`(^|&)${param}=([^&]*)(&|$)`);
   const ret = hashs[1].match(reg);
-  return ret ? ret[2] : '';
+  return ret ? ret[2] : "";
 }
 
 /**
@@ -194,11 +194,11 @@ export function getHashQueryParam(param: string): string {
  * @param {array} rules Object.keys(location), ['href', 'origin', 'protocol', 'host', 'hostname', 'port', 'pathname', 'search', 'hash'], ['hostname', 'pathname'] = 'km.mazey.net/plugins/servlet/mobile'
  * @category URL
  */
-export function getDomain(url: string, rules = [ 'hostname' ]): string {
-  const aEl: HTMLAnchorElement = document.createElement('a');
+export function getDomain(url: string, rules = [ "hostname" ]): string {
+  const aEl: HTMLAnchorElement = document.createElement("a");
   aEl.href = url;
   return rules.reduce((ret, v) => {
     ret += aEl[v as keyof HTMLAnchorElement];
     return ret;
-  }, '');
+  }, "");
 }

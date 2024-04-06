@@ -23,10 +23,10 @@
  */
 export function newLine(str: string): string {
   if (!str) {
-    return '';
+    return "";
   }
-  const reg = new RegExp('\\n', 'g');
-  return str.replace(reg, '<br />');
+  const reg = new RegExp("\\n", "g");
+  return str.replace(reg, "<br />");
 }
 
 /**
@@ -86,17 +86,17 @@ export function setClass(obj: HTMLElement, cls: string): void {
     }
   }
   // Origin logic
-  let space = '';
-  let newCls = ''; // 获取对象的class值
-  if (oriCls !== '') {
-    space = ' '; // 若原来的class不为空，跟一个空格
+  let space = "";
+  let newCls = ""; // 获取对象的class值
+  if (oriCls !== "") {
+    space = " "; // 若原来的class不为空，跟一个空格
   }
   newCls = oriCls + space + cls; // 将新的class加进去
   obj.className = newCls; // 替换新class
 }
 
 /**
- * Alias of `setClass`
+ * Alias of `setClass`.
  *
  * @hidden
  */
@@ -125,9 +125,9 @@ export function addClass(obj: HTMLElement, cls: string): void {
 export function removeClass(obj: HTMLElement, cls: string): void {
   const oriCls = obj.className;
   let newCls; // 获取对象的class值
-  newCls = ' ' + oriCls + ' '; // 前后加空格
-  newCls = newCls.replace(/(\s+)/gi, ' '); // 将多余的空格替换成一个空格
-  newCls = newCls.replace(' ' + cls + ' ', ' '); // 将加了前后空格的cls替换成空格' '
-  newCls = newCls.replace(/(^\s+)|(\s+$)/g, ''); // 去掉前后空格
+  newCls = " " + oriCls + " "; // 前后加空格
+  newCls = newCls.replace(/(\s+)/gi, " "); // 将多余的空格替换成一个空格
+  newCls = newCls.replace(" " + cls + " ", " "); // 将加了前后空格的cls替换成空格' '
+  newCls = newCls.replace(/(^\s+)|(\s+$)/g, ""); // 去掉前后空格
   obj.className = newCls;
 }
