@@ -1,4 +1,4 @@
-import { MazeyFnParams, MazeyFnReturn, LoadScriptReturns } from "./typing";
+import type { MazeyFnParams, MazeyFnReturn, LoadScriptReturns } from "./typing";
 import { doFn } from "./util";
 
 /**

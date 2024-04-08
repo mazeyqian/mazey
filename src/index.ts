@@ -4,7 +4,7 @@
 // eslint-disable-next-line spaced-comment
 /// <reference path="../global.d.ts" />
 
-import {
+import type {
   // WebPerformance,
   // BrowserInfo,
   DefineListeners,
@@ -48,12 +48,12 @@ export * from "./perf";
 export * from "./browser";
 
 /**
- * 去除 HTML 标签
+ * Remove HTML tags from a string, and optionally newline characters.
  *
  * Usage:
  *
  * ```javascript
- * const ret = clearHtml('<div>hello world</div>');
+ * const ret = removeHtml('<div>hello world</div>');
  * console.log(ret);
  * ```
  *
@@ -63,11 +63,11 @@ export * from "./browser";
  * hello world
  * ```
  *
- * @param {string} str 带html标签的字符串
+ * @param {string} str 带 HTML 标签的字符串
  * @returns {string} 字符串
  * @category Util
  */
-export function clearHtml(str: string, options: { removeNewLine?: boolean } = {}): string {
+export function removeHtml(str: string, options: { removeNewLine?: boolean } = {}): string {
   const { removeNewLine = false } = options;
   let ret = "";
   if (str) {
@@ -77,7 +77,15 @@ export function clearHtml(str: string, options: { removeNewLine?: boolean } = {}
     }
   }
   return ret;
-  // return str.replace(/<\/?.+?>/g, '').replace(/[\r\n]/g, '');
+}
+
+/**
+ * Alias of `removeHtml`.
+ *
+ * @hidden
+ */
+export function clearHtml(str: string, options: { removeNewLine?: boolean } = {}): string {
+  return removeHtml(str, options);
 }
 
 /**

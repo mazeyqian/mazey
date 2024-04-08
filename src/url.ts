@@ -1,4 +1,4 @@
-import { UrlParams } from "./typing";
+import type { UrlParams } from "./typing";
 
 /**
  * Get the query param's value of the current Web URL(`location.search`).
