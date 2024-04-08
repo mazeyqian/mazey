@@ -130,7 +130,7 @@ export function sanitizeInput(input: string): string {
  * Usage:
  *
  * ```javascript
- * const ret = unsanitize('&lt;div&gt;hello world&lt;/div&gt;');
+ * const ret = unsanitizeInput('&lt;div&gt;hello world&lt;/div&gt;');
  * console.log(ret);
  * ```
  *
@@ -144,7 +144,7 @@ export function sanitizeInput(input: string): string {
  * @returns The unsanitized input string
  * @category Util
  */
-export function unsanitize(input: string): string {
+export function unsanitizeInput(input: string): string {
   const regex = /(&amp;|&lt;|&gt;|&quot;|&#x27;|&#x2F;)/g;
   const replacements: { [key: string]: string } = {
     "&amp;": "&",
@@ -159,6 +159,15 @@ export function unsanitize(input: string): string {
     // console.error('Input must be a string');
   }
   return input.replace(regex, (match: keyof typeof replacements) => replacements[match]);
+}
+
+/**
+ * Alias of `unsanitizeInput`.
+ *
+ * @hidden
+ */
+export function unsanitize(str: string): string {
+  return unsanitizeInput(str);
 }
 
 /**
