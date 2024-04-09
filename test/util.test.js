@@ -26,6 +26,7 @@ import {
   doFn,
   isNonEmptyArray,
   removeHtml,
+  convertKebabToCamel,
 } from "../lib/index.esm";
 
 test("isNumber: Is -1/123/Infinity/NaN Number?", () => {
@@ -345,6 +346,43 @@ describe("removeHtml", () => {
     const input = "Hello, world!";
     const expected = "Hello, world!";
     const result = removeHtml(input);
+    expect(result).toEqual(expected);
+  });
+});
+
+describe("convertKebabToCamel", () => {
+  it("should convert kebab case to camel case", () => {
+    const kebabCase = "hello-world";
+    const expected = "helloWorld";
+    const result = convertKebabToCamel(kebabCase);
+    expect(result).toEqual(expected);
+  });
+
+  it("should handle multiple hyphens in kebab case", () => {
+    const kebabCase = "my-awesome-component";
+    const expected = "myAwesomeComponent";
+    const result = convertKebabToCamel(kebabCase);
+    expect(result).toEqual(expected);
+  });
+
+  it("should handle kebab case with leading hyphen", () => {
+    const kebabCase = "-start-with-hyphen";
+    const expected = "StartWithHyphen";
+    const result = convertKebabToCamel(kebabCase);
+    expect(result).toEqual(expected);
+  });
+
+  it("should handle kebab case with trailing hyphen", () => {
+    const kebabCase = "end-with-hyphen-";
+    const expected = "endWithHyphen";
+    const result = convertKebabToCamel(kebabCase);
+    expect(result).toEqual(expected);
+  });
+
+  it("should return an empty string for empty input", () => {
+    const kebabCase = "";
+    const expected = "";
+    const result = convertKebabToCamel(kebabCase);
     expect(result).toEqual(expected);
   });
 });

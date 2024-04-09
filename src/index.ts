@@ -1007,7 +1007,7 @@ export function getUrlFileType(url: string): boolean | string {
  * @returns {boolean} - Returns `true` if images were found and their dimensions were set, otherwise `false`.
  * @category DOM
  */
-export function setImgWidHeiBySrc(): boolean {
+export function setImgSizeBySrc(): boolean {
   // Use jQuery if available, otherwise fall back to pure JavaScript
   const $ = window.jQuery || window.$;
   if ($) {
@@ -1052,6 +1052,14 @@ export function setImgWidHeiBySrc(): boolean {
     }
   }
   return false;
+}
+/**
+ * Alias of `setImgSizeBySrc`.
+ * 
+ * @hidden
+ */
+export function setImgWidHeiBySrc(): boolean {
+  return setImgSizeBySrc();
 }
 
 /**

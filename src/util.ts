@@ -83,6 +83,18 @@ export function convertCamelToKebab(camelCase: string): string {
 }
 
 /**
+ * Convert CamelCase to KebabCase.
+ * 
+ * @param {string} kebabCase 
+ * @returns {string}
+ * @category Util
+ */
+export function convertKebabToCamel(kebabCase: string): string {
+  const camelCase = kebabCase.replace(/-([a-z])/g, (_all, letter) => letter.toUpperCase());
+  return camelCase.endsWith("-") ? camelCase.slice(0, -1) : camelCase;
+}
+
+/**
  * Alias of `convertCamelToKebab`.
  *
  * @hidden
