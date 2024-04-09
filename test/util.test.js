@@ -25,6 +25,7 @@ import {
   debounce,
   doFn,
   isNonEmptyArray,
+  removeHtml,
 } from "../lib/index.esm";
 
 test("isNumber: Is -1/123/Infinity/NaN Number?", () => {
@@ -315,5 +316,35 @@ describe("isNonEmptyArray", () => {
     const value = "not an array";
     const result = isNonEmptyArray(value);
     expect(result).toBe(false);
+  });
+});
+
+describe("removeHtml", () => {
+  it("should remove HTML tags from a string", () => {
+    const input = "<p>Hello, <strong>world!</strong></p>";
+    const expected = "Hello, world!";
+    const result = removeHtml(input);
+    expect(result).toEqual(expected);
+  });
+
+  it("should remove HTML tags and new lines from a string", () => {
+    const input = "<p>Hello,<br>world!</p>";
+    const expected = "Hello,world!";
+    const result = removeHtml(input, { removeNewLine: true });
+    expect(result).toEqual(expected);
+  });
+
+  it("should return an empty string if input is empty", () => {
+    const input = "";
+    const expected = "";
+    const result = removeHtml(input);
+    expect(result).toEqual(expected);
+  });
+
+  it("should return the input string if it does not contain any HTML tags", () => {
+    const input = "Hello, world!";
+    const expected = "Hello, world!";
+    const result = removeHtml(input);
+    expect(result).toEqual(expected);
   });
 });

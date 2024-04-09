@@ -681,3 +681,44 @@ export function convertToHtmlBreaks(str: string): string {
 export function newLine(str: string): string {
   return convertToHtmlBreaks(str);
 }
+
+/**
+ * Remove HTML tags from a string, and optionally newline characters.
+ *
+ * Usage:
+ *
+ * ```javascript
+ * const ret = removeHtml('<div>hello world</div>');
+ * console.log(ret);
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * hello world
+ * ```
+ *
+ * @param {string} str 带 HTML 标签的字符串
+ * @returns {string} 字符串
+ * @category Util
+ */
+export function removeHtml(str: string, options: { removeNewLine?: boolean } = {}): string {
+  const { removeNewLine = false } = options;
+  let ret = "";
+  if (str) {
+    ret = str.replace(/<\/?.+?>/g, "");
+    if (removeNewLine) {
+      ret = ret.replace(/[\r\n]/g, "");
+    }
+  }
+  return ret;
+}
+
+/**
+ * Alias of `removeHtml`.
+ *
+ * @hidden
+ */
+export function clearHtml(str: string, options: { removeNewLine?: boolean } = {}): string {
+  return removeHtml(str, options);
+}
