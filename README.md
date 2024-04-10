@@ -223,7 +223,7 @@ Check whether the page is loaded successfully (Keep the compatibility if the bro
 Usage:
 
 ```javascript
-windowLoaded(30) // second
+windowLoaded() // second
   .then(res => {
     console.log(`Load Success: ${res}`);
   })

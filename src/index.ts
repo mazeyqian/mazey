@@ -162,7 +162,7 @@ export function cutCHSString(str: string, len: number, hasDot = false): string {
  * Usage:
  *
  * ```javascript
- * windowLoaded(30) // second
+ * windowLoaded()
  *   .then(res => {
  *     console.log(`Load Success: ${res}`);
  *   })
