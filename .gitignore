@@ -7,6 +7,7 @@ test/e2e/reports
 # lib/typing.*
 # lib/mazey.*
 lib/
+coverage/
 
 # Cache folders
 .sass-cache/
