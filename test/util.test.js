@@ -27,6 +27,7 @@ import {
   isNonEmptyArray,
   removeHtml,
   convertKebabToCamel,
+  sanitizeInput,
 } from "../lib/index.esm";
 
 test("isNumber: Is -1/123/Infinity/NaN Number?", () => {
@@ -384,5 +385,28 @@ describe("convertKebabToCamel", () => {
     const expected = "";
     const result = convertKebabToCamel(kebabCase);
     expect(result).toEqual(expected);
+  });
+});
+
+describe("sanitizeInput", () => {
+  it("should replace special characters with their corresponding HTML entities", () => {
+    const input = "Hello <script>alert(\"XSS\");</script>";
+    const expectedOutput = "Hello &lt;script&gt;alert(&quot;XSS&quot;);&lt;&#x2F;script&gt;";
+    expect(sanitizeInput(input)).toEqual(expectedOutput);
+  });
+
+  it("should not modify the input if it does not contain any special characters", () => {
+    const input = "Hello World!";
+    expect(sanitizeInput(input)).toEqual(input);
+  });
+
+  it("should handle empty input", () => {
+    const input = "";
+    expect(sanitizeInput(input)).toEqual(input);
+  });
+
+  it("should throw an error if the input is not a string", () => {
+    const input = 123;
+    expect(() => sanitizeInput(input)).toThrow("Input must be a string");
   });
 });

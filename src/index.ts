@@ -48,42 +48,6 @@ export * from "./perf";
 export * from "./browser";
 
 /**
- * Sanitizes user input to prevent XSS attacks.
- *
- * Usage:
- *
- * ```javascript
- * const ret = sanitizeInput('<div>hello world</div>');
- * console.log(ret);
- * ```
- *
- * Output:
- *
- * ```text
- * &lt;div&gt;hello world&lt;/div&gt;
- * ```
- *
- * @param input - The input string to sanitize
- * @returns The sanitized input string
- * @category Util
- */
-export function sanitizeInput(input: string): string {
-  const regex = /[&<>"'/]/g;
-  const replacements: { [key: string]: string } = {
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    "\"": "&quot;",
-    "'": "&#x27;",
-    "/": "&#x2F;",
-  };
-  if (typeof input !== "string") {
-    throw new Error("Input must be a string");
-  }
-  return input.replace(regex, (match: keyof typeof replacements) => replacements[match]);
-}
-
-/**
  * Reverses the sanitization done by the `sanitizeInput` function.
  *
  * Usage:
@@ -738,13 +702,13 @@ export function addEvent(type: string, fn: UnknownFn): void {
  * Usage:
  *
  * ```javascript
- * invokeEvent('test');
+ * fireEvent('test');
  * ```
  *
  * @param type
  * @category Event
  */
-export function invokeEvent(type: string): void {
+export function fireEvent(type: string): void {
   const defineListeners = getDefineListeners();
   const arrayEvent = defineListeners[type];
   if (arrayEvent instanceof Array) {
@@ -756,6 +720,15 @@ export function invokeEvent(type: string): void {
       }
     }
   }
+}
+
+/**
+ * Alias of `fireEvent`.
+ * 
+ * @hidden
+ */
+export function invokeEvent(type: string): void {
+  fireEvent(type);
 }
 
 /**

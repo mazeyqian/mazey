@@ -612,20 +612,29 @@ export function isNumber(num: unknown, options: IsNumberOptions = {}): boolean {
  * Usage:
  *
  * ```javascript
- * const ret = doFn(() => {
- *  console.log('doFn');
+ * const ret = invokeFn(() => {
+ *  console.log('invokeFn');
  * });
  * ```
  *
  * @param {function} fn 等待被执行的未知是否有效的函数
  * @category Util
  */
-export function doFn(fn: MazeyFunction, ...params: Parameters<MazeyFunction>): ReturnType<MazeyFunction> | null {
+export function invokeFn(fn: MazeyFunction, ...params: Parameters<MazeyFunction>): ReturnType<MazeyFunction> | null {
   let ret: ReturnType<MazeyFunction> | null = null;
   if (fn && typeof fn === "function") {
     ret = fn(...params);
   }
   return ret;
+}
+
+/**
+ * Alias of `invokeFn`.
+ * 
+ * @hidden
+ */
+export function doFn(fn: MazeyFunction, ...params: Parameters<MazeyFunction>): ReturnType<MazeyFunction> | null {
+  return invokeFn(fn, ...params);
 }
 
 /**
@@ -733,4 +742,40 @@ export function removeHtml(str: string, options: { removeNewLine?: boolean } = {
  */
 export function clearHtml(str: string, options: { removeNewLine?: boolean } = {}): string {
   return removeHtml(str, options);
+}
+
+/**
+ * Sanitizes user input to prevent XSS attacks.
+ *
+ * Usage:
+ *
+ * ```javascript
+ * const ret = sanitizeInput('<div>hello world</div>');
+ * console.log(ret);
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * &lt;div&gt;hello world&lt;/div&gt;
+ * ```
+ *
+ * @param input - The input string to sanitize
+ * @returns The sanitized input string
+ * @category Util
+ */
+export function sanitizeInput(input: string): string {
+  const regex = /[&<>"'/]/g;
+  const replacements: { [key: string]: string } = {
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    "\"": "&quot;",
+    "'": "&#x27;",
+    "/": "&#x2F;",
+  };
+  if (typeof input !== "string") {
+    throw new Error("Input must be a string");
+  }
+  return input.replace(regex, (match: keyof typeof replacements) => replacements[match]);
 }
