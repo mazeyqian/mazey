@@ -48,52 +48,6 @@ export * from "./perf";
 export * from "./browser";
 
 /**
- * Reverses the sanitization done by the `sanitizeInput` function.
- *
- * Usage:
- *
- * ```javascript
- * const ret = unsanitizeInput('&lt;div&gt;hello world&lt;/div&gt;');
- * console.log(ret);
- * ```
- *
- * Output:
- *
- * ```text
- * <div>hello world</div>
- * ```
- *
- * @param input - The input string to unsanitize
- * @returns The unsanitized input string
- * @category Util
- */
-export function unsanitizeInput(input: string): string {
-  const regex = /(&amp;|&lt;|&gt;|&quot;|&#x27;|&#x2F;)/g;
-  const replacements: { [key: string]: string } = {
-    "&amp;": "&",
-    "&lt;": "<",
-    "&gt;": ">",
-    "&quot;": "\"",
-    "&#x27;": "'",
-    "&#x2F;": "/",
-  };
-  if (typeof input !== "string") {
-    throw new Error("Input must be a string");
-    // console.error('Input must be a string');
-  }
-  return input.replace(regex, (match: keyof typeof replacements) => replacements[match]);
-}
-
-/**
- * Alias of `unsanitizeInput`.
- *
- * @hidden
- */
-export function unsanitize(str: string): string {
-  return unsanitizeInput(str);
-}
-
-/**
  * 截取字符串，中文算 2 个字节
  *
  * Usage:
