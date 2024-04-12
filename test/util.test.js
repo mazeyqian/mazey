@@ -29,6 +29,7 @@ import {
   convertKebabToCamel,
   sanitizeInput,
   unsanitizeInput,
+  truncateZHString,
 } from "../lib/index.esm";
 
 test("isNumber: Is -1/123/Infinity/NaN Number?", () => {
@@ -432,5 +433,35 @@ describe("unsanitizeInput", () => {
   it("should throw an error if the input is not a string", () => {
     const input = 123;
     expect(() => unsanitizeInput(input)).toThrow("Input must be a string");
+  });
+});
+
+describe("truncateZHString", () => {
+  it("should truncate a Chinese string with a specified length", () => {
+    const str = "你好，世界！";
+    const len = 5;
+    const result = truncateZHString(str, len);
+    expect(result).toBe("你好");
+  });
+
+  it("should truncate a Chinese string and add ellipsis when hasDot is true", () => {
+    const str = "你好，世界！";
+    const len = 5;
+    const result = truncateZHString(str, len, true);
+    expect(result).toBe("你好...");
+  });
+
+  it("should return an empty string when the input string is empty", () => {
+    const str = "";
+    const len = 10;
+    const result = truncateZHString(str, len);
+    expect(result).toBe("");
+  });
+
+  it("should return an empty string when the input string is null", () => {
+    const str = null;
+    const len = 10;
+    const result = truncateZHString(str, len);
+    expect(result).toBe("");
   });
 });

@@ -825,3 +825,64 @@ export function unsanitizeInput(input: string): string {
 export function unsanitize(str: string): string {
   return unsanitizeInput(str);
 }
+
+/**
+ * 截取字符串，中文算 2 个字节
+ *
+ * Usage:
+ *
+ * ```javascript
+ * const ret = truncateZHString('hello world', 5);
+ * console.log(ret);
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * hello
+ * ```
+ *
+ * @param {string} str 要截取的字符串
+ * @param {number} len
+ * @param {boolean} hasDot
+ * @returns {string} 返回截取后的字符串
+ * @category Util
+ */
+export function truncateZHString(str: string, len: number, hasDot = false): string {
+  if (str == "" || !str) {
+    return "";
+  } else {
+    let newLength = 0;
+    let newStr = "";
+    // eslint-disable-next-line no-control-regex
+    const chineseRegex = /[^\x00-\xff]/g;
+    let singleChar = "";
+    const strLength = str.replace(chineseRegex, "**").length;
+    for (let i = 0; i < strLength; i++) {
+      singleChar = str.charAt(i).toString();
+      if (singleChar.match(chineseRegex) != null) {
+        newLength += 2;
+      } else {
+        newLength++;
+      }
+      if (newLength > len) {
+        break;
+      }
+      newStr += singleChar;
+    }
+
+    if (hasDot && strLength > len) {
+      newStr += "...";
+    }
+    return newStr;
+  }
+}
+
+/**
+ * Alias of `truncateZHString`.
+ *
+ * @hidden
+ */
+export function cutCHSString(str: string, len: number, hasDot = false): string {
+  return truncateZHString(str, len, hasDot);
+}
