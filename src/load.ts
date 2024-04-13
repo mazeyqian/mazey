@@ -256,3 +256,47 @@ export function loadScript(
     }
   });
 }
+
+/**
+ * EN: Check whether the page is loaded successfully (Keep the compatibility if the browser's `load` event has been triggered).
+ *
+ * ZH: 页面加载完成
+ *
+ * Usage:
+ *
+ * ```javascript
+ * windowLoaded()
+ *   .then(res => {
+ *     console.log(`Load Success: ${res}`);
+ *   })
+ *   .catch(err => {
+ *     console.log(`Load Timeout or Fail: ${err.message}`);
+ *   });
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * Load Success: load
+ * ```
+ *
+ * @param {number} timeout 超时时间 / 单位：秒
+ * @returns {Promise<string>} document is loaded? 'complete' 'load' / 'timeout'
+ * @category Load
+ */
+export function windowLoaded(timeout = 90): Promise<string | Error> {
+  let loaded: (value: string) => void = () => undefined;
+  let loadFail: (value: Error) => void;
+  const status = new Promise((resolve: (value: string) => void, reject: (value: Error) => void) => {
+    loaded = resolve;
+    loadFail = reject;
+  });
+  if (document.readyState === "complete") {
+    loaded("complete");
+  } else {
+    window.addEventListener("load", () => loaded("load"));
+  }
+  // 超过 timeout 秒后加载失败
+  setTimeout(() => loadFail(Error("timeout")), timeout * 1000);
+  return status;
+}
