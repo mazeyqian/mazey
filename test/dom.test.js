@@ -10,6 +10,7 @@ import {
   hasClass,
   setClass,
   removeClass,
+  addStyle,
 } from "../lib/index.esm";
 
 test("newLine: Transfer 'a\nb\nc' to 'a<br />b<br />c'?", () => {
@@ -177,5 +178,54 @@ describe("removeClass", () => {
 
     // Assert that the class remains unchanged
     expect(element.className).toBe("foo bar baz");
+  });
+});
+
+describe("addStyle", () => {
+  beforeEach(() => {
+    // Clear the document head before each test
+    document.head.innerHTML = "";
+  });
+
+  it("should add style to the document head without an ID", () => {
+    const style = "body { background-color: red; }";
+    const result = addStyle(style);
+    
+    expect(result).toBe(true);
+    expect(document.head.innerHTML).toContain(style);
+  });
+
+  it("should add style to the document head with a new ID", () => {
+    const style = "body { background-color: blue; }";
+    const options = { id: "custom-style" };
+    const result = addStyle(style, options);
+    
+    expect(result).toBe(true);
+    expect(document.head.innerHTML).toContain(style);
+    expect(document.getElementById(options.id)?.innerHTML).toBe(style);
+  });
+
+  it("should update existing style with the same ID", () => {
+    const style1 = "body { background-color: green; }";
+    const style2 = "body { background-color: yellow; }";
+    const options = { id: "custom-style" };
+
+    // Add initial style
+    addStyle(style1, options);
+
+    // Update style
+    const result = addStyle(style2, options);
+
+    expect(result).toBe(true);
+    expect(document.head.innerHTML).toContain(style2);
+    expect(document.getElementById(options.id)?.innerHTML).toBe(style2);
+  });
+
+  it("should return false if style is empty", () => {
+    const style = "";
+    const result = addStyle(style);
+    
+    expect(result).toBe(false);
+    expect(document.head.innerHTML).toBe("");
   });
 });

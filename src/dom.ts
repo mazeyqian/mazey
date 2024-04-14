@@ -100,3 +100,82 @@ export function removeClass(obj: HTMLElement, cls: string): void {
   newCls = newCls.replace(/(^\s+)|(\s+$)/g, ""); // 去掉前后空格
   obj.className = newCls;
 }
+
+/**
+ * EN: Add `<style>` in `<head>`.
+ *
+ * ZH: 添加样式标签; style: 样式标签内的字符串; id: `<style>` 标签的 `id`; 返回: 添加成功/失败
+ *
+ * Example 1: Add the `<style>` with `id`, and repeated invoking will update the content instead of adding a new one.
+ *
+ * ```javascript
+ * addStyle(
+ *   `
+ *     body {
+ *       background-color: #333;
+ *     }
+ *   `,
+ *   {
+ *     id: 'test',
+ *   }
+ * );
+ * // <style id="test">
+ * //   body {
+ * //     background-color: #333;
+ * //   }
+ * // </style>
+ * ```
+ *
+ * Example 2: Add the `<style>` without `id`, and repeated invoking will add a new one.
+ *
+ * ```javascript
+ * addStyle(
+ *   `
+ *     body {
+ *       background-color: #444;
+ *     }
+ *   `
+ * );
+ * // <style>
+ * //   body {
+ * //     background-color: #444;
+ * //   }
+ * // </style>
+ * ```
+ *
+ * @category DOM
+ */
+export function addStyle(style: string, options: { id?: string } = { id: "" }): boolean {
+  // console.log('_ style', style);
+  // console.log('_ options', options);
+  if (!style) {
+    return false;
+  }
+  // 创建 style 文档碎片
+  const styleFrag = document.createDocumentFragment();
+  let idDom: HTMLElement | null = null;
+  let domId = "";
+  // Custom Style
+  const customStyle = document.createElement("style");
+  // 如果需要 ID
+  if (options.id) {
+    domId = `${options.id}`;
+    idDom = document.getElementById(domId);
+    // 如果 Dom 不存在，插入 style
+    if (!idDom) {
+      customStyle.setAttribute("id", options.id);
+      customStyle.innerHTML = style;
+      styleFrag.appendChild(customStyle);
+      document.head.appendChild(styleFrag);
+    } else {
+      // 如果 Dom 存在，直接更新
+      idDom.innerHTML = style;
+    }
+  } else {
+    // 不需要 ID，直接添加新标签
+    customStyle.innerHTML = style;
+    styleFrag.appendChild(customStyle);
+    document.head.appendChild(styleFrag);
+  }
+  return true;
+}
