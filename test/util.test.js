@@ -3,33 +3,23 @@
  */
 /* eslint-disable no-undef */
 import {
-  isNumber,
-  camelCaseToKebabCase,
-  camelCase2Underscore,
-  mTrim,
+  camelCaseToKebabCase, camelCase2Underscore,
   deepCopyObject,
-  isJsonString,
   generateRndNum,
   formatDate,
-  isValidData,
-  isValidEmail,
-  isValidPhoneNumber,
-  convert10To26,
+  isJsonString, isNumber,
+  isValidData, isValidEmail, isValidPhoneNumber, isNonEmptyArray,
   getFriendlyInterval,
-  unsanitize,
   waitTime,
   genUniqueNumString,
-  floatToPercent,
-  floatFixed,
-  throttle,
-  debounce,
-  doFn,
-  isNonEmptyArray,
+  floatToPercent, floatFixed,
+  throttle, debounce,
+  doFn, mTrim,
   removeHtml,
-  convertKebabToCamel,
-  sanitizeInput,
-  unsanitizeInput,
+  convertKebabToCamel, convert10To26,
+  unsanitize, sanitizeInput, unsanitizeInput,
   truncateZHString,
+  zAxiosIsValidRes,
 } from "../lib/index.esm";
 
 test("isNumber: Is -1/123/Infinity/NaN Number?", () => {
@@ -463,5 +453,46 @@ describe("truncateZHString", () => {
     const len = 10;
     const result = truncateZHString(str, len);
     expect(result).toBe("");
+  });
+});
+
+describe("zAxiosIsValidRes", () => {
+  it("should return true if res is valid", () => {
+    const res = {
+      status: 200,
+      data: {
+        code: 0,
+      },
+    };
+    const isValid = zAxiosIsValidRes(res);
+    expect(isValid).toBe(true);
+  });
+
+  it("should return false if res is undefined", () => {
+    const res = undefined;
+    const isValid = zAxiosIsValidRes(res);
+    expect(isValid).toBe(false);
+  });
+
+  it("should return false if res status is outside validStatusRange", () => {
+    const res = {
+      status: 400,
+      data: {
+        code: 0,
+      },
+    };
+    const isValid = zAxiosIsValidRes(res);
+    expect(isValid).toBe(false);
+  });
+
+  it("should return false if res data code is not in validCode", () => {
+    const res = {
+      status: 200,
+      data: {
+        code: 1,
+      },
+    };
+    const isValid = zAxiosIsValidRes(res);
+    expect(isValid).toBe(false);
   });
 });

@@ -15,8 +15,6 @@ import type {
   // DebounceFunc,
   // IsNumberOptions,
   // AnyFunction,
-  ZResResponse,
-  ZResIsValidResOptions,
   RepeatUntilOptions,
   LoadScriptReturns,
   SimpleType,
@@ -47,41 +45,6 @@ export * from "./load";
 export * from "./perf";
 export * from "./browser";
 export * from "./debug";
-
-/**
- * Verify the validity of axios response.
- *
- * Reference: [Handling Errors](https://axios-http.com/docs/handling_errors)
- *
- * @category Util
- * @hidden
- */
-export function zAxiosIsValidRes(
-  res: ZResResponse | undefined,
-  options: ZResIsValidResOptions = {
-    validStatusRange: [ 200, 300 ],
-    validCode: [ 0 ],
-  }
-): boolean {
-  const { validStatusRange, validCode } = Object.assign(
-    {
-      validStatusRange: [ 200, 300 ],
-      validCode: [ 0 ],
-    },
-    options
-  );
-  if (validStatusRange.length !== 2) {
-    console.error("valid validStatusRange is required");
-  }
-  let ret = false;
-  if (res && res.status && validStatusRange.length === 2 && res.status >= validStatusRange[0] && res.status < validStatusRange[1]) {
-    const resData = res.data;
-    if (resData && validCode.includes(resData.code)) {
-      ret = true;
-    }
-  }
-  return ret;
-}
 
 /**
  * Determine the validity of the data.
