@@ -270,7 +270,7 @@ export function setCookie(name: string, value: string, days?: number, domain?: s
  * Usage:
  *
  * ```javascript
- * const ret = delCookie('test');
+ * const ret = removeCookie('test');
  * console.log(ret);
  * ```
  *
@@ -284,7 +284,7 @@ export function setCookie(name: string, value: string, days?: number, domain?: s
  * @returns `true` if the cookie was deleted successfully, `false` otherwise.
  * @category Store
  */
-export function delCookie(name: string): boolean {
+export function removeCookie(name: string): boolean {
   const cookies = document.cookie.split(";");
   for (let i = 0; i < cookies.length; i++) {
     const cookie = cookies[i].trim();
@@ -298,4 +298,13 @@ export function delCookie(name: string): boolean {
     }
   }
   return false;
+}
+
+/**
+ * Alias of `removeCookie`.
+ * 
+ * @hidden
+ */
+export function delCookie(name: string): void {
+  removeCookie(name);
 }

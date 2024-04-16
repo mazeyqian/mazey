@@ -9,7 +9,7 @@
  * // Determine `class`
  * hasClass(dom, 'test');
  * // Add `class`
- * setClass(dom, 'test');
+ * addClass(dom, 'test');
  * // Remove `class`
  * removeClass(dom, 'test');
  * ```
@@ -38,14 +38,14 @@ export function hasClass(obj: HTMLElement, cls: string): boolean {
  * // Determine `class`
  * hasClass(dom, 'test');
  * // Add `class`
- * setClass(dom, 'test');
+ * addClass(dom, 'test');
  * // Remove `class`
  * removeClass(dom, 'test');
  * ```
  *
  * @category DOM
  */
-export function setClass(obj: HTMLElement, cls: string): void {
+export function addClass(obj: HTMLElement, cls: string): void {
   const oriCls = obj.className;
   // should not add duplicate classes
   const oriClsArr = oriCls.split(/\s+/);
@@ -65,12 +65,12 @@ export function setClass(obj: HTMLElement, cls: string): void {
 }
 
 /**
- * Alias of `setClass`.
+ * Alias of `addClass`.
  *
  * @hidden
  */
-export function addClass(obj: HTMLElement, cls: string): void {
-  setClass(obj, cls);
+export function setClass(obj: HTMLElement, cls: string): void {
+  addClass(obj, cls);
 }
 
 /**
@@ -84,7 +84,7 @@ export function addClass(obj: HTMLElement, cls: string): void {
  * // Determine `class`
  * hasClass(dom, 'test');
  * // Add `class`
- * setClass(dom, 'test');
+ * addClass(dom, 'test');
  * // Remove `class`
  * removeClass(dom, 'test');
  * ```
