@@ -1,7 +1,8 @@
 import type {
-  SimpleObject, ThrottleFunc, DebounceFunc, MazeyFnParams, MazeyFnReturn, IsNumberOptions, MazeyFunction,
-  ZResResponse,
-  ZResIsValidResOptions,
+  ThrottleFunc, DebounceFunc, IsNumberOptions,
+  ZResResponse, ZResIsValidResOptions,
+  SimpleObject, SimpleType,
+  MazeyObject, MazeyFnParams, MazeyFnReturn, MazeyFunction,
 } from "./typing";
 
 /**
@@ -920,6 +921,60 @@ export function zAxiosIsValidRes(
     if (resData && validCode.includes(resData.code)) {
       ret = true;
     }
+  }
+  return ret;
+}
+
+/**
+ * Determine the validity of the data.
+ *
+ * Usage:
+ *
+ * ```javascript
+ * const validData = {
+ *   a: {
+ *     b: {
+ *       c: 413
+ *     }
+ *   }
+ * };
+ * const isValidDataResA = isValidData(validData, ['a', 'b', 'c'], 2333);
+ * const isValidDataResB = isValidData(validData, ['a', 'b', 'c'], 413);
+ * const isValidDataResC = isValidData(validData, ['d', 'd'], 413);
+ * console.log('isValidDataResA:', isValidDataResA);
+ * console.log('isValidDataResB:', isValidDataResB);
+ * console.log('isValidDataResC:', isValidDataResC);
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * isValidDataResA: false
+ * isValidDataResB: true
+ * isValidDataResC: false
+ * ```
+ *
+ * @param {any} data Original Data
+ * @param {string[]} attributes Data Attributes
+ * @param {any} validValue Given Value for verifying.
+ * @returns {boolean} Return TRUE if the data is valid.
+ * @category Util
+ */
+export function isValidData(data: MazeyObject, attributes: string[], validValue: SimpleType): boolean {
+  let ret = false;
+  if (typeof data !== "object") {
+    return ret;
+  }
+  const foundRet = attributes.reduce((foundValue, curr) => {
+    if (typeof foundValue[curr] !== "undefined") {
+      foundValue = foundValue[curr];
+    } else {
+      return Object.create(null);
+    }
+    return foundValue;
+  }, data);
+  if (foundRet === validValue) {
+    ret = true;
   }
   return ret;
 }
