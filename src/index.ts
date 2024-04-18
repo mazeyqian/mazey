@@ -47,43 +47,6 @@ export * from "./browser";
 export * from "./debug";
 
 /**
- * 语义化文件大小，把字节转换成正常文件大小。
- *
- * Usage:
- *
- * ```javascript
- * const ret = getFileSize(1024);
- * console.log(ret);
- * ```
- *
- * Output:
- *
- * ```text
- * 1 KB
- * ```
- *
- * @category Util
- */
-export function getFileSize(size: number): string {
-  const toCeilStr: (v: number) => string = n => String(Math.ceil(n));
-  if (!size) return "";
-  const num = 1024.0; // byte
-  if (size < num) {
-    return size + " B";
-  }
-  if (size < Math.pow(num, 2)) {
-    return toCeilStr(size / num) + " KB";
-  } // kb
-  if (size < Math.pow(num, 3)) {
-    return toCeilStr(size / Math.pow(num, 2)) + " MB";
-  } // M
-  if (size < Math.pow(num, 4)) {
-    return toCeilStr(size / Math.pow(num, 3)) + " G";
-  } // G
-  return toCeilStr(size / Math.pow(num, 4)) + " T";
-}
-
-/**
  * Detect webp support.
  *
  * Usage:
