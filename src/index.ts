@@ -47,41 +47,6 @@ export * from "./browser";
 export * from "./debug";
 
 /**
- * Detect webp support.
- *
- * Usage:
- *
- * ```javascript
- * isSupportWebp().then(res => {
- *  console.log('isSupportWebp:', res);
- * });
- * ```
- *
- * Output:
- *
- * ```text
- * isSupportWebp: true
- * ```
- *
- * Reference: [Detect WEBP Support with JavaScript](https://davidwalsh.name/detect-webp)
- *
- * @category Browser Information
- */
-export function isSupportWebp(): Promise<boolean> {
-  const fn = (resolve: (v: boolean) => void) => {
-    const img = new Image();
-    img.onload = () => {
-      resolve(img.width > 0 && img.height > 0);
-    };
-    img.onerror = () => {
-      resolve(false);
-    };
-    img.src = "data:image/webp;base64,UklGRh4AAABXRUJQVlA4TBEAAAAvAAAAAAfQ//73v/+BiOh/AAA=";
-  };
-  return new Promise(fn);
-}
-
-/**
  * Generate a Hash Code from a string.
  *
  * Usage:

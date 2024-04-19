@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 /* eslint-disable no-undef */
-import { isSafePWAEnv, getBrowserInfo } from "../lib/index.esm";
+import { isSafePWAEnv, getBrowserInfo, isSupportWebp } from "../lib/index.esm";
 
 describe("isSafePWAEnv", () => {
   it("should return true when all conditions are met", () => {
@@ -36,5 +36,67 @@ describe("getBrowserInfo", () => {
     // Test the shell information
     expect(browserInfo.shell).toBeDefined();
     expect(browserInfo.shellVs).toBeDefined();
+  });
+});
+
+describe("isSupportWebp", () => {
+  it("should return true if webp is supported", async () => {
+    // Mock the Image class
+    class MockImage {
+      width = 100;
+      height = 100;
+      onload = () => {};
+      onerror = () => {};
+      src = "";
+
+      constructor() {
+        setTimeout(() => {
+          if (this.onload) {
+            this.onload();
+          }
+        }, 100);
+      }
+    }
+
+    // Replace the global Image with the MockImage
+    const originalImage = global.Image;
+    global.Image = MockImage;
+
+    const result = await isSupportWebp();
+
+    // Restore the original Image
+    global.Image = originalImage;
+
+    expect(result).toBe(true);
+  });
+
+  it("should return false if webp is not supported", async () => {
+    // Mock the Image class
+    class MockImage {
+      width = 0;
+      height = 0;
+      onload = () => {};
+      onerror = () => {};
+      src = "";
+
+      constructor() {
+        setTimeout(() => {
+          if (this.onerror) {
+            this.onerror();
+          }
+        }, 100);
+      }
+    }
+
+    // Replace the global Image with the MockImage
+    const originalImage = global.Image;
+    global.Image = MockImage;
+
+    const result = await isSupportWebp();
+
+    // Restore the original Image
+    global.Image = originalImage;
+
+    expect(result).toBe(false);
   });
 });
