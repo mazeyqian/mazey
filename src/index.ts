@@ -47,38 +47,6 @@ export * from "./browser";
 export * from "./debug";
 
 /**
- * Generate a Hash Code from a string.
- *
- * Usage:
- *
- * ```javascript
- * const ret = genHashCode('hello world');
- * console.log(ret);
- * ```
- *
- * Output:
- *
- * ```text
- * 1794106052
- * ```
- *
- * Reference: [Generate a Hash from string in Javascript](https://stackoverflow.com/questions/7616461/generate-a-hash-from-string-in-javascript-jquery)
- *
- * @category Util
- */
-export function genHashCode(str: string): number {
-  let hash = 0,
-    i,
-    chr;
-  for (i = 0; i < str.length; i++) {
-    chr = str.charCodeAt(i);
-    hash = (hash << 5) - hash + chr;
-    hash |= 0;
-  }
-  return hash;
-}
-
-/**
  * Return the formatted date string in the given format.
  *
  * Usage:

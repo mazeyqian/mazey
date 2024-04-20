@@ -10,7 +10,7 @@ import {
   isValidData, isValidEmail, isValidPhoneNumber, isNonEmptyArray,
   getFriendlyInterval, getFileSize,
   waitTime,
-  genUniqueNumString, generateRndNum,
+  genUniqueNumString, generateRndNum, genHashCode,
   floatToPercent, floatFixed,
   throttle, debounce,
   doFn, mTrim,
@@ -496,38 +496,49 @@ describe("zAxiosIsValidRes", () => {
   });
 });
 
-describe('getFileSize', () => {
-  it('should return the correct file size in bytes', () => {
-    expect(getFileSize(100)).toBe('100 B');
-    expect(getFileSize(1023)).toBe('1023 B');
+describe("getFileSize", () => {
+  it("should return the correct file size in bytes", () => {
+    expect(getFileSize(100)).toBe("100 B");
+    expect(getFileSize(1023)).toBe("1023 B");
   });
 
-  it('should return the correct file size in kilobytes', () => {
-    expect(getFileSize(1024)).toBe('1 KB');
-    expect(getFileSize(2048)).toBe('2 KB');
-    expect(getFileSize(3072)).toBe('3 KB');
+  it("should return the correct file size in kilobytes", () => {
+    expect(getFileSize(1024)).toBe("1 KB");
+    expect(getFileSize(2048)).toBe("2 KB");
+    expect(getFileSize(3072)).toBe("3 KB");
   });
 
-  it('should return the correct file size in megabytes', () => {
-    expect(getFileSize(1048576)).toBe('1 MB');
-    expect(getFileSize(2097152)).toBe('2 MB');
-    expect(getFileSize(3145728)).toBe('3 MB');
+  it("should return the correct file size in megabytes", () => {
+    expect(getFileSize(1048576)).toBe("1 MB");
+    expect(getFileSize(2097152)).toBe("2 MB");
+    expect(getFileSize(3145728)).toBe("3 MB");
   });
 
-  it('should return the correct file size in gigabytes', () => {
-    expect(getFileSize(1073741824)).toBe('1 G');
-    expect(getFileSize(2147483648)).toBe('2 G');
-    expect(getFileSize(3221225472)).toBe('3 G');
+  it("should return the correct file size in gigabytes", () => {
+    expect(getFileSize(1073741824)).toBe("1 G");
+    expect(getFileSize(2147483648)).toBe("2 G");
+    expect(getFileSize(3221225472)).toBe("3 G");
   });
 
-  it('should return the correct file size in terabytes', () => {
-    expect(getFileSize(1099511627776)).toBe('1 T');
-    expect(getFileSize(2199023255552)).toBe('2 T');
-    expect(getFileSize(3298534883328)).toBe('3 T');
+  it("should return the correct file size in terabytes", () => {
+    expect(getFileSize(1099511627776)).toBe("1 T");
+    expect(getFileSize(2199023255552)).toBe("2 T");
+    expect(getFileSize(3298534883328)).toBe("3 T");
   });
 
-  it('should return an empty string for invalid file sizes', () => {
-    expect(getFileSize(0)).toBe('');
-    expect(getFileSize(-100)).toBe('');
+  it("should return an empty string for invalid file sizes", () => {
+    expect(getFileSize(0)).toBe("");
+    expect(getFileSize(-100)).toBe("");
+  });
+});
+
+describe("genHashCode", () => {
+  it("should return 0 for an empty string", () => {
+    const str = "";
+    const expectedHash = 0;
+
+    const actualHash = genHashCode(str);
+
+    expect(actualHash).toBe(expectedHash);
   });
 });
