@@ -5,35 +5,18 @@
 /// <reference path="../global.d.ts" />
 
 import type {
-  // WebPerformance,
-  // BrowserInfo,
-  DefineListeners,
-  // TestUa,
-  // TestVs,
-  // UrlParams,
-  // ThrottleFunc,
-  // DebounceFunc,
-  // IsNumberOptions,
-  // AnyFunction,
   RepeatUntilOptions,
   LoadScriptReturns,
-  // SimpleType,
-  // SimpleObject,
   UnknownFnParams,
   UnknownFnReturn,
-  // UnknownObject,
   UnknownFn,
   UnknownWindow,
 } from "./typing";
 import {
   isNonEmptyArray,
-  // camelCase2Underscore,
-  // isNumber,
-  // doFn,
-  // mNow,
 } from "./util";
 import { loadScript } from "./load";
-// import { isSupportedEntryType, getFCP, getFP } from './perf';
+import { getDefineListeners } from "./event";
 
 export * from "./calc";
 export * from "./util";
@@ -45,27 +28,6 @@ export * from "./load";
 export * from "./perf";
 export * from "./browser";
 export * from "./debug";
-
-/**
- * Get event container.
- *
- * Usage:
- *
- * ```javascript
- * const ret = getEventContainer();
- * ```
- *
- * @category Event
- * @hidden
- */
-export function getDefineListeners(): DefineListeners {
-  let defineListeners = window.MAZEY_DEFINE_LISTENERS;
-  if (typeof defineListeners !== "object") {
-    defineListeners = {};
-    window.MAZEY_DEFINE_LISTENERS = defineListeners;
-  }
-  return defineListeners;
-}
 
 /**
  * Add event.

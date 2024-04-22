@@ -1,3 +1,5 @@
+import type { DefineListeners } from "./typing";
+
 /**
  * 阻止冒泡
  *
@@ -18,4 +20,25 @@ export function cancelBubble(e: Event): void {
     // IE
     ev.cancelBubble = true;
   }
+}
+
+/**
+ * Get event container.
+ *
+ * Usage:
+ *
+ * ```javascript
+ * const ret = getEventContainer();
+ * ```
+ *
+ * @category Event
+ * @hidden
+ */
+export function getDefineListeners(): DefineListeners {
+  let defineListeners = window.MAZEY_DEFINE_LISTENERS;
+  if (typeof defineListeners !== "object") {
+    defineListeners = {};
+    window.MAZEY_DEFINE_LISTENERS = defineListeners;
+  }
+  return defineListeners;
 }
