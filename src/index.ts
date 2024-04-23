@@ -9,14 +9,14 @@ import type {
   LoadScriptReturns,
   UnknownFnParams,
   UnknownFnReturn,
-  UnknownFn,
+  // UnknownFn,
   UnknownWindow,
 } from "./typing";
 import {
   isNonEmptyArray,
 } from "./util";
 import { loadScript } from "./load";
-import { getDefineListeners } from "./event";
+// import { getDefineListeners } from "./event";
 
 export * from "./calc";
 export * from "./util";
@@ -28,96 +28,6 @@ export * from "./load";
 export * from "./perf";
 export * from "./browser";
 export * from "./debug";
-
-/**
- * Add event.
- *
- * Usage:
- *
- * ```javascript
- * addEvent('test', (e) => {
- *  console.log('test event:', e);
- * });
- * ```
- *
- * @param type
- * @param fn
- * @category Event
- */
-export function addEvent(type: string, fn: UnknownFn): void {
-  const defineListeners = getDefineListeners();
-  if (typeof defineListeners[type] === "undefined") {
-    defineListeners[type] = [];
-  }
-  if (typeof fn === "function") {
-    defineListeners[type].push(fn);
-  }
-}
-
-/**
- * Invoke event.
- *
- * Usage:
- *
- * ```javascript
- * fireEvent('test');
- * ```
- *
- * @param type
- * @category Event
- */
-export function fireEvent(type: string): void {
-  const defineListeners = getDefineListeners();
-  const arrayEvent = defineListeners[type];
-  if (arrayEvent instanceof Array) {
-    for (let i = 0, length = arrayEvent.length; i < length; i++) {
-      if (typeof arrayEvent[i] === "function") {
-        arrayEvent[i]({
-          type: type,
-        });
-      }
-    }
-  }
-}
-
-/**
- * Alias of `fireEvent`.
- * 
- * @hidden
- */
-export function invokeEvent(type: string): void {
-  fireEvent(type);
-}
-
-/**
- * Remove event.
- *
- * Usage:
- *
- * ```javascript
- * removeEvent('test');
- * ```
- *
- * @param type
- * @param fn
- * @category Event
- */
-export function removeEvent(type: string, fn: UnknownFn): void {
-  const defineListeners = getDefineListeners();
-  const arrayEvent = defineListeners[type];
-  if (typeof type === "string" && arrayEvent instanceof Array) {
-    if (typeof fn === "function") {
-      for (let i = 0, length = arrayEvent.length; i < length; i++) {
-        if (arrayEvent[i] === fn) {
-          defineListeners[type].splice(i, 1);
-          break;
-        }
-      }
-    } else {
-      delete defineListeners[type];
-    }
-  }
-}
 
 /**
  * Checks if the given string is a valid URL, including **scheme URLs**.

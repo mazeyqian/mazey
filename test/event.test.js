@@ -2,7 +2,10 @@
  * @jest-environment jsdom
  */
 /* eslint-disable no-undef */
-import { cancelBubble, getDefineListeners } from "../lib/index.esm";
+import {
+  cancelBubble, getDefineListeners,
+  addEvent, fireEvent, invokeEvent, removeEvent,
+} from "../lib/index.esm";
 
 describe("cancelBubble", () => {
   it("should call stopPropagation if available", () => {
@@ -55,3 +58,56 @@ describe("getDefineListeners", () => {
     expect(defineListeners).toEqual({});
   });
 });
+
+describe('Event System', () => {
+  // Mock function to use as event handler
+  const mockFn = jest.fn();
+
+  // Reset the mock and the MAZEY_DEFINE_LISTENERS before each test
+  beforeEach(() => {
+    mockFn.mockReset();
+    window.MAZEY_DEFINE_LISTENERS = {};
+  });
+
+  test('getDefineListeners initializes and retrieves the event listeners object', () => {
+    const defineListeners = getDefineListeners();
+    expect(defineListeners).toEqual({});
+    expect(window.MAZEY_DEFINE_LISTENERS).toBe(defineListeners);
+  });
+
+  test('addEvent adds a new event listener', () => {
+    addEvent('test', mockFn);
+    const defineListeners = getDefineListeners();
+    expect(defineListeners['test']).toEqual([mockFn]);
+  });
+
+  test('fireEvent invokes the event listeners for an event', () => {
+    addEvent('test', mockFn);
+    fireEvent('test');
+    expect(mockFn).toHaveBeenCalledWith({ type: 'test' });
+  });
+
+  test('invokeEvent is an alias for fireEvent and invokes the event listeners', () => {
+    addEvent('test', mockFn);
+    invokeEvent('test');
+    expect(mockFn).toHaveBeenCalledWith({ type: 'test' });
+  });
+
+  test('removeEvent removes a specific event listener', () => {
+    addEvent('test', mockFn);
+    const anotherMock = jest.fn();
+    addEvent('test', anotherMock);
+
+    removeEvent('test', mockFn);
+    const defineListeners = getDefineListeners();
+    expect(defineListeners['test']).toEqual([anotherMock]);
+  });
+
+  test('removeEvent clears all listeners for an event type if no function is provided', () => {
+    addEvent('test', mockFn);
+    removeEvent('test');
+    const defineListeners = getDefineListeners();
+    expect(defineListeners['test']).toBeUndefined();
+  });
+});
+
