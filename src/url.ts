@@ -202,3 +202,36 @@ export function getDomain(url: string, rules = [ "hostname" ]): string {
     return ret;
   }, "");
 }
+
+/**
+ * Checks if the given string is a valid URL, including **scheme URLs**.
+ *
+ * Usage:
+ *
+ * ```javascript
+ * const ret1 = isValidUrl('https://www.example.com');
+ * const ret2 = isValidUrl('http://example.com/path/exx/ss');
+ * const ret3 = isValidUrl('https://www.example.com/?q=hello&age=24#world');
+ * const ret4 = isValidUrl('http://www.example.com/#world?id=9');
+ * const ret5 = isValidUrl('ftp://example.com');
+ * console.log(ret1, ret2, ret3, ret4, ret5);
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * true true true true true
+ * ```
+ *
+ * @remarks
+ * If you are specifically checking for HTTP/HTTPS URLs, it is recommended to use the `isValidHttpUrl` function instead.
+ * The `isValidUrl` function matches all scheme URLs, including FTP and other non-HTTP schemes.
+ *
+ * @param url - The URL to check.
+ * @returns Returns `true` if the given string is a valid URL, else `false`.
+ * @category URL
+ */
+export function isValidUrl(url: string): boolean {
+  const reg = /^[a-zA-Z0-9]+:\/\/[-a-zA-Z0-9@:%._+~#=]{1,256}\b([-a-zA-Z0-9\u4E00-\u9FA5()!@:%_+.~#?&//=]*)$/;
+  return reg.test(url);
+}
