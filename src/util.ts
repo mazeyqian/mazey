@@ -1103,3 +1103,31 @@ export function formatDate(dateIns?: Date | number | string, format = "yyyy-MM-d
   });
   return tempFormat;
 }
+
+/**
+ * Check if the given string is a mobile phone number.
+ *
+ * Usage:
+ *
+ * ```javascript
+ * const ret1 = isMobile('13800138000');
+ * const ret2 = isMobile('1380013800');
+ * const ret3 = isMobile('138001380000');
+ * const ret4 = isMobile('1380013800a');
+ * console.log(ret1, ret2, ret3, ret4);
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * true false false false
+ * ```
+ *
+ * @param mobile
+ * @returns {boolean} Return true if the given string is a mobile phone number.
+ * @category Util
+ */
+export function isValidPhoneNumber(mobile: string): boolean {
+  const reg = /^1\d{10}$/;
+  return reg.test(mobile);
+}
