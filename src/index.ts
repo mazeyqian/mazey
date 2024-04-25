@@ -12,9 +12,7 @@ import type {
   // UnknownFn,
   UnknownWindow,
 } from "./typing";
-import {
-  isNonEmptyArray,
-} from "./util";
+import { isNonEmptyArray } from "./util";
 import { loadScript } from "./load";
 // import { getDefineListeners } from "./event";
 
