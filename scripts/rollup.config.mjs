@@ -75,7 +75,6 @@ const plugins = [
 
 const iifePlugins = [];
 
-// console.log('debugMode:', debugMode);
 if (debugMode !== "open") {
   iifePlugins.push(
     // Add minification.
@@ -110,7 +109,19 @@ const dTsConf = {
   external: [],
 };
 
-// console.log('dTsConf:', dTsConf);
+const gTsConf = {
+  input: _resolve("../global.d.ts"),
+  output: [
+    {
+      file: _resolve("../lib/global.d.ts"),
+      format: "es",
+    },
+  ],
+  plugins: [
+    dts(),
+  ],
+  external: [],
+};
 
 // https://rollupjs.org/guide/en/
 export default [
@@ -149,4 +160,5 @@ export default [
     external: [],
   },
   dTsConf,
+  gTsConf,
 ];
