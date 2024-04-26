@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable no-undef */
-// import json from '@rollup/plugin-json'
 import { babel } from "@rollup/plugin-babel";
 import commonjs from "@rollup/plugin-commonjs";
 import rollupTypescript from "rollup-plugin-typescript2";
@@ -8,24 +7,14 @@ import { DEFAULT_EXTENSIONS } from "@babel/core";
 import cleaner from "rollup-plugin-cleaner";
 import terser from "@rollup/plugin-terser";
 import { dts } from "rollup-plugin-dts";
-// import { version as pkgJSONVersion } from '../package.json';
-// import replace from '@rollup/plugin-replace';
-// import copy from 'rollup-plugin-copy';
-
-// const path = require('path');
-// const _resolve = (_path) => path.resolve(__dirname, _path);
-
 import path from "path";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-
 const _resolve = (_path) => path.resolve(__dirname, _path);
-
-// const { _resolve } = require('./build-helper');
-const pkgVersion = process.env.SCRIPTS_NPM_PACKAGE_VERSION || process.env.VERSION || "unknown"; // || require('../package.json').version;
+const pkgVersion = process.env.SCRIPTS_NPM_PACKAGE_VERSION || process.env.VERSION || "unknown";
 const debugMode = process.env.SCRIPTS_NPM_PACKAGE_DEBUG;
 const banner =
   "/*!\n" +
@@ -33,61 +22,23 @@ const banner =
   ` * (c) 2018-${new Date().getFullYear()} Cheng\n` +
   " * Released under the MIT License.\n" +
   " */";
-
 const plugins = [
-  // replace({
-  //   __MAZEY_NPM_PACKAGE_VERSION__: pkgVersion,
-  // }),
-  // Remove the `lib` directory before rebuilding.
-  // https://github.com/aMarCruz/rollup-plugin-cleanup
-  // cleaner({
-  //   targets: [
-  //     _resolve('../lib/'),
-  //   ],
-  // }),
   rollupTypescript(),
   commonjs({
     include: /node_modules/,
   }),
   babel({
     babelHelpers: "runtime",
-    // 只转换源代码，不运行外部依赖
+    // Just convert the source code, don't run external dependencies.
     exclude: "**/node_modules/**",
-    // babel 默认不支持 ts 需要手动添加
+    // Babel does not support TypeScript by default; it needs to be manually added.
     extensions: [
       ...DEFAULT_EXTENSIONS,
       ".ts",
     ],
-    // skipPreflightCheck: true,
   }),
-  // dts(),
-  // uglify(),
-  // https://www.npmjs.com/package/rollup-plugin-copy
-  // copy({
-  //   targets: [
-  //     {
-  //       src: _resolve('../src/t.html'),
-  //       dest: _resolve('../docs'),
-  //     },
-  //   ],
-  // }),
 ];
-
 const iifePlugins = [];
-
-if (debugMode !== "open") {
-  iifePlugins.push(
-    // Add minification.
-    // https://github.com/TrySound/rollup-plugin-terser
-    terser({ // https://github.com/terser/terser
-      format: {
-        // https://github.com/terser/terser#format-options
-        comments: /^!\n\s\*\sMazey/, // 'some', // `false` to omit comments in the output
-      },
-    }),
-  );
-}
-
 const dTsConf = {
   input: _resolve("../src/typing.d.ts"),
   // https://rollupjs.org/guide/en/#outputformat
@@ -98,17 +49,10 @@ const dTsConf = {
     },
   ],
   plugins: [
-    // ...plugins,
-    // cleaner({
-    //   targets: [
-    //     _resolve('../lib/index.d.ts'),
-    //   ],
-    // }),
     dts(),
   ],
   external: [],
 };
-
 const gTsConf = {
   input: _resolve("../global.d.ts"),
   output: [
@@ -122,6 +66,19 @@ const gTsConf = {
   ],
   external: [],
 };
+
+if (debugMode !== "open") {
+  iifePlugins.push(
+    // Add minification.
+    // https://github.com/TrySound/rollup-plugin-terser
+    terser({ // https://github.com/terser/terser
+      format: {
+        // https://github.com/terser/terser#format-options
+        comments: /^!\n\s\*\sMazey/,
+      },
+    }),
+  );
+}
 
 // https://rollupjs.org/guide/en/
 export default [
