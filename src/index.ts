@@ -9,12 +9,10 @@ import type {
   LoadScriptReturns,
   UnknownFnParams,
   UnknownFnReturn,
-  // UnknownFn,
   UnknownWindow,
 } from "./typing";
 import { isNonEmptyArray } from "./util";
 import { loadScript } from "./load";
-// import { getDefineListeners } from "./event";
 
 export * from "./calc";
 export * from "./util";
@@ -26,40 +24,6 @@ export * from "./load";
 export * from "./perf";
 export * from "./browser";
 export * from "./debug";
-
-/**
- * Check if the given string is a valid HTTP/HTTPS URL.
- *
- * Usage:
- *
- * ```javascript
- * const ret1 = isValidHttpUrl('https://www.example.com');
- * const ret2 = isValidHttpUrl('http://example.com/path/exx/ss');
- * const ret3 = isValidHttpUrl('https://www.example.com/?q=hello&age=24#world');
- * const ret4 = isValidHttpUrl('http://www.example.com/#world?id=9');
- * const ret5 = isValidHttpUrl('//example.com/a/b/c?q=1', { strict: false });
- * const ret6 = isValidHttpUrl('ftp://example.com');
- * console.log(ret1, ret2, ret3, ret4, ret5, ret6);
- * ```
- *
- * Output:
- *
- * ```text
- * true true true true true false
- * ```
- *
- * @param url
- * @param options.strict - If `true`, the function only matches standard HTTP/HTTPS URLs. Default is `true`. If `false`, the function also matches protocol-relative URLs, such as `//example.com`.
- * @returns {boolean} Return true if the given string is a valid HTTP/HTTPS URL.
- * @category URL
- */
-export function isValidHttpUrl(url: string, options: { strict: boolean } = { strict: true }): boolean {
-  let reg = /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9\u4E00-\u9FA5()!@:%_+.~#?&//=]*)/;
-  if (!options.strict) {
-    reg = /^(https?:)?\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9\u4E00-\u9FA5()!@:%_+.~#?&//=]*)/;
-  }
-  return reg.test(url);
-}
 
 /**
  * Check if the given string is a valid email.
