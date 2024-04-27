@@ -835,7 +835,7 @@ export function unsanitize(str: string): string {
  * Usage:
  *
  * ```javascript
- * const ret = truncateZHString('hello world', 5);
+ * const ret = cutZHString('hello world', 5);
  * console.log(ret);
  * ```
  *
@@ -847,11 +847,13 @@ export function unsanitize(str: string): string {
  *
  * @param {string} str 要截取的字符串
  * @param {number} len
- * @param {boolean} hasDot
+ * @param {boolean} options.hasDot
+ * @param {string} options.dotText
  * @returns {string} 返回截取后的字符串
  * @category Util
  */
-export function truncateZHString(str: string, len: number, hasDot = false): string {
+export function cutZHString(str: string, len: number, options: { hasDot?: boolean, dotText?: string } = { hasDot: false, dotText: "..." }): string {
+  options = Object.assign({ hasDot: false, dotText: "..." }, options);
   if (str == "" || !str) {
     return "";
   } else {
@@ -874,11 +876,36 @@ export function truncateZHString(str: string, len: number, hasDot = false): stri
       newStr += singleChar;
     }
 
-    if (hasDot && strLength > len) {
-      newStr += "...";
+    if (options.hasDot && strLength > len) {
+      newStr += options.dotText; // "...";
     }
     return newStr;
   }
+}
+
+/**
+ * Alias of `cutZHString`.
+ * 
+ * Usage:
+ *
+ * ```javascript
+ * const ret = truncateZHString('hello world', 5);
+ * console.log(ret);
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * hello
+ * 
+ * @param {string} str 要截取的字符串
+ * @param {number} len
+ * @param {boolean} hasDot
+ * @returns {string} 返回截取后的字符串
+ * @hidden
+ */
+export function truncateZHString(str: string, len: number, hasDot = false): string {
+  return cutZHString(str, len, { hasDot });
 }
 
 /**
@@ -1130,4 +1157,29 @@ export function formatDate(dateIns?: Date | number | string, format = "yyyy-MM-d
 export function isValidPhoneNumber(mobile: string): boolean {
   const reg = /^1\d{10}$/;
   return reg.test(mobile);
+}
+
+/**
+ * Check if the given string is a valid email.
+ *
+ * Usage:
+ *
+ * ```javascript
+ * const ret = isValidEmail('mazeyqian@gmail.com');
+ * console.log(ret);
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * true
+ * ```
+ *
+ * @param email
+ * @returns {boolean} Return true if the given string is a valid email.
+ * @category Util
+ */
+export function isValidEmail(email: string): boolean {
+  const reg = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return reg.test(email);
 }

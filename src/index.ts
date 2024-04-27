@@ -26,31 +26,6 @@ export * from "./browser";
 export * from "./debug";
 
 /**
- * Check if the given string is a valid email.
- *
- * Usage:
- *
- * ```javascript
- * const ret = isValidEmail('mazeyqian@gmail.com');
- * console.log(ret);
- * ```
- *
- * Output:
- *
- * ```text
- * true
- * ```
- *
- * @param email
- * @returns {boolean} Return true if the given string is a valid email.
- * @category Util
- */
-export function isValidEmail(email: string): boolean {
-  const reg = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  return reg.test(email);
-}
-
-/**
  * Convert a given 10-hex number to a lowercase 26-hex string.
  *
  * Usage:
