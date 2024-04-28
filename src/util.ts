@@ -1183,3 +1183,40 @@ export function isValidEmail(email: string): boolean {
   const reg = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return reg.test(email);
 }
+
+/**
+ * Convert a given 10-hex number to a lowercase 26-hex string.
+ *
+ * Usage:
+ *
+ * ```javascript
+ * const ret1 = convert10To26(1);
+ * const ret2 = convert10To26(26);
+ * const ret3 = convert10To26(27);
+ * const ret4 = convert10To26(52);
+ * const ret5 = convert10To26(53);
+ * console.log(ret1, ret2, ret3, ret4, ret5);
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * a z aa az ba
+ * ```
+ *
+ * @param {number} num
+ * @returns {string} Return a lowercase 26-hex string.
+ * @category Util
+ */
+export function convert10To26(num: number): string {
+  let result = "";
+  while (num > 0) {
+    let remainder = num % 26;
+    if (remainder === 0) {
+      remainder = 26;
+    }
+    result = String.fromCharCode(remainder + 96) + result;
+    num = (num - remainder) / 26;
+  }
+  return result;
+}
