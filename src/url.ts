@@ -269,3 +269,44 @@ export function isValidHttpUrl(url: string, options: { strict: boolean } = { str
   }
   return reg.test(url);
 }
+
+/**
+ * EN: Get the file type of the url.
+ *
+ * ZH: 获取文件后缀名
+ *
+ * Usage:
+ *
+ * ```javascript
+ * const ret1 = getUrlFileType('https://example.com/a/b/c.png');
+ * const ret2 = getUrlFileType('https://example.com/a/b/c.jpg');
+ * const ret3 = getUrlFileType('https://example.com/a/b/c.jpeg');
+ * const ret4 = getUrlFileType('/a/b/c.jpeg');
+ * const ret5 = getUrlFileType('https://example.com/a/b/c.v/a');
+ * console.log(ret1, ret2, ret3, ret4, ret5);
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * png jpg jpeg jpeg ''
+ * ```
+ *
+ * @param url
+ * @returns
+ * @category URL
+ */
+export function getUrlFileType(url: string): boolean | string {
+  let ret = "";
+  if (typeof url != "string" || url == "") {
+    return ret;
+  }
+  const type = /\.[^/?#]+$/.exec(url);
+  if (!type) {
+    return ret;
+  }
+  if (type[0].length > 1) {
+    ret = type[0].substring(1);
+  }
+  return ret;
+}
