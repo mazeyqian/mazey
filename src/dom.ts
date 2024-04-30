@@ -1,3 +1,5 @@
+import { isNonEmptyArray } from "./util";
+
 /**
  * Modify `class`: determine `class`.
  *
@@ -178,4 +180,81 @@ export function addStyle(style: string, options: { id?: string } = { id: "" }): 
     document.head.appendChild(styleFrag);
   }
   return true;
+}
+
+/**
+ * Sets the width and height of all images on the page based on their `src` attribute.
+ * The `src` attribute should contain `width` and/or `height` values in the format "width=100" or "height=100".
+ * If jQuery is available, this function uses jQuery to select the images. Otherwise, it uses pure JavaScript.
+ *
+ * Usage:
+ *
+ * ```javascript
+ * // Example images with `src` attributes containing `width` and/or `height` values
+ * const img1 = document.createElement('img');
+ * img1.setAttribute('src', 'https://example.com/example.png?width=2233&height=111');
+ * document.body.appendChild(img1);
+ *
+ * const img2 = document.createElement('img');
+ * img2.setAttribute('src', 'https://example.com/example.png?width=100%&height=auto');
+ * document.body.appendChild(img2);
+ * ```
+ *
+ * @returns {boolean} - Returns `true` if images were found and their dimensions were set, otherwise `false`.
+ * @category DOM
+ */
+export function setImgSizeBySrc(): boolean {
+  // Use jQuery if available, otherwise fall back to pure JavaScript
+  const $ = window.jQuery || window.$;
+  if ($) {
+    // Use jQuery to select all images on the page
+    const images = $("img");
+    if (!(images && images.length)) return false;
+    images.each(function() {
+      const $this = $(this);
+      if (!$this) return;
+      // Get the `src` attribute of the image
+      const src = $this.attr("src");
+      const canMatch = src && typeof src === "string" && src.length;
+      if (!canMatch) return;
+      // Use regular expressions to extract the `width` and `height` values from the `src` attribute
+      const width = src.match(/width=([0-9]+[a-z%]*)/);
+      const height = src.match(/height=([0-9]+[a-z%]*)/);
+      // Set the width and height of the image using jQuery's `width()` and `height()` methods
+      if (width && isNonEmptyArray(width) && width[1]) $this.width(width[1]);
+      if (height && isNonEmptyArray(height) && height[1]) $this.height(height[1]);
+    });
+    return true;
+  } else {
+    // Use pure JavaScript to select all images on the page
+    const images = document.getElementsByTagName("img");
+    if (images.length > 0) {
+      // Loop through each image and set its width and height based on the `src` attribute
+      Array.from(images).forEach(function(img) {
+        const $this = img;
+        if (!$this) return;
+        // Get the `src` attribute of the image
+        const src = $this.getAttribute("src");
+        const canMatch = src && typeof src === "string" && src.length;
+        if (!canMatch) return;
+        // Use regular expressions to extract the `width` and `height` values from the `src` attribute
+        const width = src.match(/width=([0-9]+[a-z%]*)/);
+        const height = src.match(/height=([0-9]+[a-z%]*)/);
+        // Set the width and height of the image using the `style.width` and `style.height` properties
+        if (width && isNonEmptyArray(width) && width[1]) $this.style.width = width[1];
+        if (height && isNonEmptyArray(height) && height[1]) $this.style.height = height[1];
+      });
+      return true;
+    }
+  }
+  return false;
+}
+
+/**
+ * Alias of `setImgSizeBySrc`.
+ * 
+ * @hidden
+ */
+export function setImgWidHeiBySrc(): boolean {
+  return setImgSizeBySrc();
 }

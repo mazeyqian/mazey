@@ -3,14 +3,9 @@
  */
 /* eslint-disable no-undef */
 import {
-  genStyleString,
-  newLine,
-  getDomain,
-  getBrowserInfo,
-  hasClass,
-  setClass,
-  removeClass,
-  addStyle,
+  genStyleString, getDomain, getBrowserInfo,
+  setClass, setImgSizeBySrc,
+  newLine, hasClass, removeClass, addStyle,
 } from "../lib/index.esm";
 
 test("newLine: Transfer 'a\nb\nc' to 'a<br />b<br />c'?", () => {
@@ -227,5 +222,38 @@ describe("addStyle", () => {
     
     expect(result).toBe(false);
     expect(document.head.innerHTML).toBe("");
+  });
+});
+
+describe("setImgSizeBySrc", () => {
+  beforeEach(() => {
+    // Setup a mock document body for each test
+    document.body.innerHTML = `
+      <img src="image1.jpg?width=100px&height=200px" />
+      <img src="image2.jpg?width=50%&height=75%" />
+      <img src="image3.jpg" />
+    `;
+  });
+
+  it("should set image sizes using vanilla JavaScript if jQuery is not available", () => {
+    expect(setImgSizeBySrc()).toBe(true);
+    const images = document.getElementsByTagName("img");
+    expect(images[0].style.width).toBe("100px");
+    expect(images[0].style.height).toBe("200px");
+    expect(images[1].style.width).toBe("50%");
+    expect(images[1].style.height).toBe("75%");
+  });
+
+  it("should return false if no images are present", () => {
+    document.body.innerHTML = ""; // Clear the body
+    expect(setImgSizeBySrc()).toBe(false);
+  });
+
+  it("should handle images without width and height parameters in their src", () => {
+    document.body.innerHTML = "<img src=\"image3.jpg\" />";
+    expect(setImgSizeBySrc()).toBe(true);
+    const image = document.getElementsByTagName("img")[0];
+    expect(image.style.width).toBeFalsy();
+    expect(image.style.height).toBeFalsy();
   });
 });
