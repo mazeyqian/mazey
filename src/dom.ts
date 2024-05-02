@@ -258,3 +258,35 @@ export function setImgSizeBySrc(): boolean {
 export function setImgWidHeiBySrc(): boolean {
   return setImgSizeBySrc();
 }
+
+/**
+ * Generate the inline style string from the given parameters. The first parameter is the query selector, and the second parameter is the style array.
+ *
+ * Usage:
+ *
+ * ```javascript
+ * const ret1 = genStyleString('.a', [ 'color:red' ]);
+ * const ret2 = genStyleString('#b', [ 'color:red', 'font-size:12px' ]);
+ * console.log(ret1);
+ * console.log(ret2);
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * .a{color:red;}
+ * #b{color:red;font-size:12px;}
+ * ```
+ *
+ * @param {string} selector
+ * @param {array} styleArray
+ * @returns {string} The inline style string.
+ * @category DOM
+ */
+export function genStyleString(selector: string, styleArray: Array<string>): string {
+  let style = "";
+  if (styleArray && styleArray.length > 0) {
+    style = styleArray.join(";") + ";";
+  }
+  return `${selector}{${style}}`;
+}

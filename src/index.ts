@@ -26,38 +26,6 @@ export * from "./browser";
 export * from "./debug";
 
 /**
- * Generate the inline style string from the given parameters. The first parameter is the query selector, and the second parameter is the style array.
- *
- * Usage:
- *
- * ```javascript
- * const ret1 = genStyleString('.a', [ 'color:red' ]);
- * const ret2 = genStyleString('#b', [ 'color:red', 'font-size:12px' ]);
- * console.log(ret1);
- * console.log(ret2);
- * ```
- *
- * Output:
- *
- * ```text
- * .a{color:red;}
- * #b{color:red;font-size:12px;}
- * ```
- *
- * @param {string} selector
- * @param {array} styleArray
- * @returns {string} The inline style string.
- * @category DOM
- */
-export function genStyleString(selector: string, styleArray: Array<string>): string {
-  let style = "";
-  if (styleArray && styleArray.length > 0) {
-    style = styleArray.join(";") + ";";
-  }
-  return `${selector}{${style}}`;
-}
-
-/**
  * Load an image from the given URL.
  *
  * The target image will be loaded in the background, and the Promise status will change after the image is loaded. If the image fails to load, the Promise status will change to `reject` with the error object. If the image is loaded successfully, the Promise status will change to `resolve` with the image object. This method can be used to preload images and cache them in the browser. It can also be used to implement lazy loading of images.
