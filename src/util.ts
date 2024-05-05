@@ -1220,3 +1220,12 @@ export function convert10To26(num: number): string {
   }
   return result;
 }
+
+/**
+ * Get the current version.
+ *
+ * @hidden
+ */
+export function getCurrentVersion(): string {
+  return "v4";
+}

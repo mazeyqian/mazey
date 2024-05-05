@@ -26,15 +26,6 @@ export * from "./browser";
 export * from "./debug";
 
 /**
- * Get the current version.
- *
- * @hidden
- */
-export function getCurrentVersion(): string {
-  return "v4";
-}
-
-/**
  * Repeatedly fires a callback function with a certain interval until a specified condition is met.
  *
  * Usage:

@@ -8,7 +8,7 @@ import {
   formatDate,
   isJsonString, isNumber,
   isValidData, isValidEmail, isValidPhoneNumber, isNonEmptyArray,
-  getFriendlyInterval, getFileSize,
+  getFriendlyInterval, getFileSize, getCurrentVersion,
   waitTime,
   genUniqueNumString, generateRndNum, genHashCode,
   floatToPercent, floatFixed,
@@ -540,5 +540,12 @@ describe("genHashCode", () => {
     const actualHash = genHashCode(str);
 
     expect(actualHash).toBe(expectedHash);
+  });
+});
+
+describe("getCurrentVersion", () => {
+  it("should return current version", () => {
+    const version = getCurrentVersion();
+    expect(version).toBe("v4");
   });
 });
