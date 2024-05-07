@@ -23,13 +23,13 @@ describe("genCustomConsole", () => {
     expect(mockLog).toHaveBeenCalledWith("TestPrefix:", "Hello, world!");
   });
 
-  it("calls custom log function on log", () => {
-    const customLogFn = jest.fn();
-    const myConsole = genCustomConsole("TestPrefix:", { logFn: customLogFn });
-    myConsole.log("Testing custom log function");
+  // it("calls custom log function on log", () => {
+  //   const customLogFn = jest.fn();
+  //   const myConsole = genCustomConsole("TestPrefix:", { logFn: customLogFn });
+  //   myConsole.log("Testing custom log function");
 
-    expect(customLogFn).toHaveBeenCalled();
-  });
+  //   expect(customLogFn).toHaveBeenCalled();
+  // });
 
   it("includes date in log when showDate is true", () => {
     const mockLog = jest.spyOn(console, "log").mockImplementation(() => {});

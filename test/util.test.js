@@ -4,7 +4,7 @@
 /* eslint-disable no-undef */
 import {
   camelCaseToKebabCase, camelCase2Underscore,
-  deepCopyObject,
+  deepCopyObject, repeatUntilConditionMet,
   formatDate,
   isJsonString, isNumber,
   isValidData, isValidEmail, isValidPhoneNumber, isNonEmptyArray,
@@ -547,5 +547,38 @@ describe("getCurrentVersion", () => {
   it("should return current version", () => {
     const version = getCurrentVersion();
     expect(version).toBe("v4");
+  });
+});
+
+describe("repeatUntilConditionMet error handling", () => {
+  let consoleSpy;
+
+  beforeEach(() => {
+    consoleSpy = jest.spyOn(console, "error").mockImplementation(() => {});
+  });
+
+  afterEach(() => {
+    consoleSpy.mockRestore();
+  });
+
+  it("should log an error if callback is not a function", () => {
+    repeatUntilConditionMet("notAFunction", {}, () => true);
+    expect(console.error).toHaveBeenCalledWith("Expected a function.");
+  });
+
+  it("should log an error if interval is not a non-negative number", () => {
+    repeatUntilConditionMet(() => true, { interval: "notANumber" }, () => true);
+    expect(console.error).toHaveBeenCalledWith("Expected a non-negative number for interval.");
+    
+    repeatUntilConditionMet(() => true, { interval: -1 }, () => true);
+    expect(console.error).toHaveBeenCalledWith("Expected a non-negative number for interval.");
+  });
+
+  it("should log an error if times is not a non-negative number", () => {
+    repeatUntilConditionMet(() => true, { times: "notANumber" }, () => true);
+    expect(console.error).toHaveBeenCalledWith("Expected a non-negative number for times.");
+    
+    repeatUntilConditionMet(() => true, { times: -1 }, () => true);
+    expect(console.error).toHaveBeenCalledWith("Expected a non-negative number for times.");
   });
 });

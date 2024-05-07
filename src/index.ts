@@ -5,13 +5,12 @@
 /// <reference path="../global.d.ts" />
 
 import type {
-  RepeatUntilOptions,
+  // RepeatUntilOptions,
   LoadScriptReturns,
-  UnknownFnParams,
-  UnknownFnReturn,
+  // UnknownFnParams,
+  // UnknownFnReturn,
   UnknownWindow,
 } from "./typing";
-// import { isNonEmptyArray } from "./util";
 import { loadScript } from "./load";
 
 export * from "./calc";
@@ -24,71 +23,6 @@ export * from "./load";
 export * from "./perf";
 export * from "./browser";
 export * from "./debug";
-
-/**
- * Repeatedly fires a callback function with a certain interval until a specified condition is met.
- *
- * Usage:
- *
- * ```javascript
- * repeatUntilConditionMet(
- *   () => {
- *     console.log('repeatUntilConditionMet');
- *     return true;
- *   }, {
- *     interval: 1000,
- *     times: 10,
- *     context: null,
- *     args: [],
- *   }, (result) => {
- *     return result === true;
- *   }
- * );
- * ```
- *
- * @param callback The callback function to fire.
- * @param options An object containing the options for the function.
- * @param options.interval The interval between each firing of the callback function, in milliseconds. Defaults to 1000.
- * @param options.times The maximum number of times to fire the callback function. Defaults to 10.
- * @param options.context The context to use when calling the callback function. Defaults to null.
- * @param options.args An array of arguments to pass to the callback function.
- * @param condition A function that takes the result of the callback function as its argument and returns a boolean value indicating whether the condition has been met. Defaults to a function that always returns true.
- * @category Util
- */
-export function repeatUntilConditionMet<T extends (...args: UnknownFnParams) => UnknownFnReturn>(
-  callback: T,
-  options: RepeatUntilOptions = {},
-  condition: (result: ReturnType<T>) => boolean = res => {
-    return res === true;
-  }
-): void {
-  const { interval = 1000, times = 10, context, args } = options;
-  let count = 0;
-
-  const clearAndInvokeNext = () => {
-    setTimeout(async () => {
-      const result = await callback.apply(context, args as UnknownFnParams);
-      if (condition(result) || ++count >= times) {
-        return;
-      }
-      clearAndInvokeNext();
-    }, interval);
-  };
-
-  if (typeof callback !== "function") {
-    console.error("Expected a function.");
-  }
-
-  if (typeof interval !== "number" || interval < 0) {
-    console.error("Expected a non-negative number for interval.");
-  }
-
-  if (typeof times !== "number" || times < 0) {
-    console.error("Expected a non-negative number for times.");
-  }
-
-  clearAndInvokeNext();
-}
 
 /**
  * Load a script from the given URL if it (`window['attribute']`) has not already been loaded.
