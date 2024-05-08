@@ -79,6 +79,10 @@ export type MazeyFnReturn = any;
 export type MazeyFunction = (...args: any[]) => any;
 export type MazeyFn = (...args: UnknownFnParams) => UnknownFnReturn;
 
+export interface MazeyWindow {
+  [key: string]: any;
+}
+
 export interface WebPerformance {
   [key: string]: string | number;
 }

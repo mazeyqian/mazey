@@ -4,14 +4,11 @@
 // eslint-disable-next-line spaced-comment
 /// <reference path="../global.d.ts" />
 
-import type {
-  // RepeatUntilOptions,
-  LoadScriptReturns,
-  // UnknownFnParams,
-  // UnknownFnReturn,
-  UnknownWindow,
-} from "./typing";
-import { loadScript } from "./load";
+// import type {
+//   LoadScriptReturns,
+//   UnknownWindow,
+// } from "./typing";
+// import { loadScript } from "./load";
 
 export * from "./calc";
 export * from "./util";
@@ -23,39 +20,6 @@ export * from "./load";
 export * from "./perf";
 export * from "./browser";
 export * from "./debug";
-
-/**
- * Load a script from the given URL if it (`window['attribute']`) has not already been loaded.
- *
- * Usage:
- *
- * ```javascript
- * loadScriptIfUndefined('xyz', 'https://example.com/lib/jquery.min.js')
- *   .then(() => {
- *     console.log('xyz is loaded.');
- *   })
- *   .catch(err => {
- *     console.log('Failed to load xyz.', err);
- *   });
- * ```
- *
- * Output:
- *
- * ```text
- * xyz is loaded.
- * ```
- *
- * @param {string} windowAttribute - The name of the window attribute to check (e.g. `jQuery`, `axios`, etc.).
- * @param {string} url - The URL of the script to load.
- * @returns {Promise} A Promise that resolves when the script has been loaded.
- * @category Load
- */
-export function loadScriptIfUndefined(windowAttribute: string, url: string): LoadScriptReturns {
-  if ((window as UnknownWindow)[windowAttribute]) {
-    return Promise.resolve("defined");
-  }
-  return loadScript(url);
-}
 
 /**
  * Retrieve a query parameter from a script URL in the browser.

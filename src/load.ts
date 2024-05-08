@@ -1,4 +1,6 @@
-import type { MazeyFnParams, MazeyFnReturn, LoadScriptReturns } from "./typing";
+import type {
+  MazeyFnParams, MazeyFnReturn, LoadScriptReturns, MazeyWindow, 
+} from "./typing";
 import { doFn } from "./util";
 
 /**
@@ -335,4 +337,37 @@ export function loadImage(url: string): Promise<HTMLImageElement> {
     };
     img.src = url;
   });
+}
+
+/**
+ * Load a script from the given URL if it (`window['attribute']`) has not already been loaded.
+ *
+ * Usage:
+ *
+ * ```javascript
+ * loadScriptIfUndefined('xyz', 'https://example.com/lib/jquery.min.js')
+ *   .then(() => {
+ *     console.log('xyz is loaded.');
+ *   })
+ *   .catch(err => {
+ *     console.log('Failed to load xyz.', err);
+ *   });
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * xyz is loaded.
+ * ```
+ *
+ * @param {string} windowAttribute - The name of the window attribute to check (e.g. `jQuery`, `axios`, etc.).
+ * @param {string} url - The URL of the script to load.
+ * @returns {Promise} A Promise that resolves when the script has been loaded.
+ * @category Load
+ */
+export function loadScriptIfUndefined(windowAttribute: string, url: string): LoadScriptReturns {
+  if ((window as MazeyWindow)[windowAttribute]) {
+    return Promise.resolve("defined");
+  }
+  return loadScript(url);
 }
