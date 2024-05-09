@@ -1,9 +1,10 @@
 /**
- * @jest-environment node
+ * @jest-environment jsdom
  */
 /* eslint-disable no-undef */
 import {
-  isValidUrl, getUrlFileType, isValidHttpUrl, updateQueryParam, getUrlParam, 
+  isValidUrl, getUrlFileType, isValidHttpUrl, updateQueryParam, getUrlParam,
+  getScriptQueryParam,
 } from "../lib/index.esm";
 
 const validUrls = [
@@ -178,5 +179,50 @@ describe("getUrlParam", () => {
     const param = "param2";
     const result = getUrlParam(url, param);
     expect(result).toBe("value2");
+  });
+});
+
+describe("getScriptQueryParam", () => {
+  // Mock script tags in the document
+  const originalQuerySelectorAll = document.querySelectorAll;
+  beforeEach(() => {
+    document.querySelectorAll = jest.fn();
+  });
+
+  afterEach(() => {
+    document.querySelectorAll = originalQuerySelectorAll;
+  });
+
+  it("should return the correct query parameter value", () => {
+    document.querySelectorAll.mockReturnValue([
+      { getAttribute: () => "https://example.com/example.js?test=hello" },
+    ]);
+    const result = getScriptQueryParam("test");
+    expect(result).toBe("hello");
+  });
+
+  it("should return an empty string if the parameter is not found", () => {
+    document.querySelectorAll.mockReturnValue([
+      { getAttribute: () => "https://example.com/example.js" },
+    ]);
+    const result = getScriptQueryParam("test");
+    expect(result).toBe("");
+  });
+
+  it("should only match scripts with the specified substring in their src attribute", () => {
+    document.querySelectorAll.mockReturnValue([
+      { getAttribute: () => "https://example.com/example.js?test=hello" },
+      { getAttribute: () => "https://another-example.com/script.js?test=world" },
+    ]);
+    const result = getScriptQueryParam("test", "example.com");
+    expect(result).toBe("hello");
+  });
+
+  it("should decode URI components in the returned value", () => {
+    document.querySelectorAll.mockReturnValue([
+      { getAttribute: () => "https://example.com/example.js?test=hello%20world" },
+    ]);
+    const result = getScriptQueryParam("test");
+    expect(result).toBe("hello world");
   });
 });
