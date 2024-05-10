@@ -1295,3 +1295,41 @@ export function repeatUntilConditionMet<T extends (...args: MazeyFnParams) => Ma
 
   clearAndInvokeNext();
 }
+
+/**
+ * Wait for a specified amount of time.
+ *
+ * Usage:
+ *
+ * ```javascript
+ * waitTime(1000).then((time) => {
+ *  console.log('waitTime:', time);
+ * });
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * waitTime: 1000
+ * ```
+ *
+ * @param time The amount of time to wait, in milliseconds.
+ * @returns A Promise that resolves after the specified time has elapsed.
+ * @category Util
+ */
+export async function waitTime(time: number): Promise<number> {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve(time);
+    }, time);
+  });
+}
+
+/**
+ * Alias of `waitTime`.
+ *
+ * @hidden
+ */
+export async function sleep(time: number): Promise<number> {
+  return waitTime(time);
+}
