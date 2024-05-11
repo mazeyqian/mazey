@@ -1,7 +1,7 @@
 import type { DefineListeners, MazeyFn } from "./typing";
 
 /**
- * 阻止冒泡
+ * Prevent bubbling.
  *
  * Usage:
  *
