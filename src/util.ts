@@ -264,7 +264,9 @@ export function generateRndNum(n = 5): string {
 }
 
 /**
- * 根据时间生成唯一标志的数字 `genUniqueNumString()` => `1538324722364123`
+ * EN: Generate a unique identifier number based on time: `genUniqueNumString()` => `1538324722364123`
+ * 
+ * ZH: 根据时间生成唯一标志的数字：`genUniqueNumString()` => `1538324722364123`
  *
  * Usage:
  *
