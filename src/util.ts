@@ -302,7 +302,9 @@ export function generateUniqueNum(n = 3): string {
 }
 
 /**
- * 获取时间戳
+ * EN: Get timestamp.
+ * 
+ * ZH: 获取时间戳
  *
  * Usage:
  *
