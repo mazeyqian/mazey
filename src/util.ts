@@ -332,7 +332,9 @@ export function mNow(): number {
 }
 
 /**
- * 浮点数转为百分比 0.2 => 20%
+ * EN: Floating point number to percentage 0.2 => 20%
+ * 
+ * ZH: 浮点数转为百分比 0.2 => 20%
  *
  * Usage:
  *
