@@ -55,7 +55,7 @@ export function isSafePWAEnv(): boolean {
 /**
  * EN: Browser Information
  *
- * ZH: 返回浏览器信息 https://github.com/JowayYoung/juejin-code/blob/master/browser-type.js
+ * ZH: 返回浏览器信息
  *
  * Usage:
  *
