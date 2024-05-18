@@ -2,18 +2,18 @@
 node_modules/
 
 # Build outputs
-/dist/
-/lib/
-/coverage/
+dist/
+lib/
+coverage/
 
 # Test reports
-/test/unit/coverage/
-/test/e2e/reports/
+test/unit/coverage/
+test/e2e/reports/
 
 # Cache folders
 .sass-cache/
-/temp/
-/undefined/
+temp/
+undefined/
 
 # Editor directories and files
 .idea/

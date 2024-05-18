@@ -54,7 +54,7 @@ const dTsConf = {
   external: [],
 };
 const gTsConf = {
-  input: _resolve("../global.d.ts"),
+  input: _resolve("../types/global.d.ts"),
   output: [
     {
       file: _resolve("../lib/global.d.ts"),

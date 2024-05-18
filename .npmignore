@@ -9,7 +9,8 @@ temp/
 src/
 examples/
 images/
-scripts/
+coverage/
+types/
 
 # Specific script subdirectories
 scripts/convert/

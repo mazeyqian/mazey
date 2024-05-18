@@ -1,8 +1,6 @@
 /**
  * @author Cheng
  */
-// eslint-disable-next-line spaced-comment
-/// <reference path="../global.d.ts" />
 
 export * from "./calc";
 export * from "./util";
