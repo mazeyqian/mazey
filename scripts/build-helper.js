@@ -1,30 +1,30 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable no-undef */
-const path = require('path');
+const path = require("path");
 const _resolve = (_path) => path.resolve(__dirname, _path);
-const format = require('date-fns/format');
-const toc = require('markdown-toc');
-const fs = require('fs');
+const format = require("date-fns/format");
+const toc = require("markdown-toc");
+const fs = require("fs");
 // Generate version: 20210308.072903
 const genVersion = () => {
   const d = new Date();
-  const version = format(d, 'yyyyMMdd.HHmmss');
+  const version = format(d, "yyyyMMdd.HHmmss");
   return version;
 };
 const version = genVersion();
 const defaultHiddenHeadings = [
-  'mazey',
-  'Install',
-  'Usage',
-  'Contributing',
-  'License',
-  'API Examples',
-  'Development Environment',
-  'Returns',
-  'Scripts',
-  'Node.js',
-  'TypeScript',
-  'Table of Contents',
+  "mazey",
+  "Install",
+  "Usage",
+  "Contributing",
+  "License",
+  "API Examples",
+  "Development Environment",
+  "Returns",
+  "Scripts",
+  "Node.js",
+  "TypeScript",
+  "Table of Contents",
 ];
 
 /**
@@ -34,16 +34,16 @@ const defaultHiddenHeadings = [
  * @param {array} options.hiddenHeadings Hidden headings.
  * @returns {void}
  */
-const generateToc = (path = '../README.md', options = {
+const generateToc = (path = "../README.md", options = {
   hiddenHeadings: defaultHiddenHeadings,
 }) => {
-  console.log('Generating Table of Contents...');
+  console.log("Generating Table of Contents...");
   options = Object.assign({
     hiddenHeadings: defaultHiddenHeadings,
   }, options);
   const RMFilePath = _resolve(path);
   // https://melvingeorge.me/blog/get-all-the-contents-from-file-as-string-nodejs
-  console.log('running...');
+  console.log("running...");
   const buffer = fs.readFileSync(RMFilePath);
   const fileContent = buffer.toString();
   // https://github.com/jonschlinkert/markdown-toc
@@ -54,19 +54,19 @@ const generateToc = (path = '../README.md', options = {
   };
   let tocContent = toc(fileContent, {
     filter: removeUnnecessaryHeadings,
-    bullets: [ '-', '-' ],
+    bullets: [ "-", "-" ],
   }).content;
-  tocContent = tocContent.replace(/[ ]{4}/gm, '');
-  tocContent = '<!-- toc - begin -->\n' + '- Generated with ❤️\n' + tocContent;
-  tocContent = tocContent + '\n<!-- toc - end -->';
+  tocContent = tocContent.replace(/[ ]{4}/gm, "");
+  tocContent = "<!-- toc - begin -->\n" + "- Generated with ❤️\n" + tocContent;
+  tocContent = tocContent + "\n<!-- toc - end -->";
   // Insert to file.
   // https://stackoverflow.com/questions/14177087/replace-a-string-in-a-file-with-nodejs
   let newFileContent = fileContent;
   // https://stackoverflow.com/questions/1979884/how-to-use-javascript-regex-over-multiple-lines
   newFileContent = newFileContent.replace(/<!-- toc - begin -->[\s\S]*<!-- toc - end -->/gm, tocContent);
-  console.log('running...');
+  console.log("running...");
   fs.writeFileSync(RMFilePath, newFileContent);
-  console.log('Generating Table of Contents is done.');
+  console.log("Generating Table of Contents is done.");
 };
 
 module.exports = {
