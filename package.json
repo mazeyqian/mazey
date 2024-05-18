@@ -23,7 +23,7 @@
     "docs": "typedoc --readme ./README.md --excludeProtected --excludePrivate --excludeInternal --hideGenerator",
     "preview": "npm run build && npm run test",
     "release": "npm run preview && cross-env SCRIPTS_NPM_PACKAGE_VERSION=$npm_package_version node ./scripts/release.js",
-    "release:win": "bash scripts/env.sh && npm i --registry=https://registry.npmmirror.com && npm run release"
+    "release:win": "bash scripts/env-win.sh && npm i --registry=https://registry.npmmirror.com && npm run release"
   },
   "repository": {
     "type": "git",
