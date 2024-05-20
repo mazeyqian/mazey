@@ -367,7 +367,9 @@ export function floatToPercent(num: number, fixSize = 0): string {
 }
 
 /**
- * 浮点数保留指定位
+ * EN: Keep the specified number of decimal places for floating-point numbers.
+ * 
+ * ZH: 浮点数保留指定位
  *
  * Usage:
  *
