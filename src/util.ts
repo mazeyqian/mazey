@@ -507,7 +507,9 @@ const defaultGetFriendlyIntervalOptions = {
 };
 
 /**
- * 获取间隔时间
+ * EN: Get interval time.
+ * 
+ * ZH: 获取间隔时间
  *
  * Usage:
  *
