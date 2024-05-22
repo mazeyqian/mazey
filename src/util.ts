@@ -621,7 +621,9 @@ export function isNumber(num: unknown, options: IsNumberOptions = {}): boolean {
 }
 
 /**
- * 执行有效函数
+ * EN: Invoke effective function.
+ * 
+ * ZH: 执行有效函数
  *
  * Usage:
  *
