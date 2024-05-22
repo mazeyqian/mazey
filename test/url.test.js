@@ -4,7 +4,7 @@
 /* eslint-disable no-undef */
 import {
   isValidUrl, getUrlFileType, isValidHttpUrl, updateQueryParam, getUrlParam,
-  getScriptQueryParam,
+  getScriptQueryParam, convertObjectToQuery,
 } from "../lib/index.esm";
 
 const validUrls = [
@@ -224,5 +224,36 @@ describe("getScriptQueryParam", () => {
     ]);
     const result = getScriptQueryParam("test");
     expect(result).toBe("hello world");
+  });
+});
+
+describe("convertObjectToQuery", () => {
+  it("should convert an object to a query string", () => {
+    const obj = {
+      name: "John",
+      age: "30",
+      city: "New_York",
+    };
+    const expected = "?name=John&age=30&city=New_York";
+    const result = convertObjectToQuery(obj);
+    expect(result).toEqual(expected);
+  });
+
+  it("should handle empty object", () => {
+    const obj = {};
+    const expected = "";
+    const result = convertObjectToQuery(obj);
+    expect(result).toEqual(expected);
+  });
+
+  it("should handle special characters in values", () => {
+    const obj = {
+      name: "John_Doe",
+      age: "30",
+      city: "New_York",
+    };
+    const expected = "?name=John_Doe&age=30&city=New_York";
+    const result = convertObjectToQuery(obj);
+    expect(result).toEqual(expected);
   });
 });
