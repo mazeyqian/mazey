@@ -843,7 +843,9 @@ export function unsanitize(str: string): string {
 }
 
 /**
- * 截取字符串，中文算 2 个字节
+ * EN: Truncate string, Chinese characters count as 2 bytes.
+ * 
+ * ZH: 截取字符串，中文算 2 个字节
  *
  * Usage:
  *
