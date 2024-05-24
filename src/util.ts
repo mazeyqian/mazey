@@ -725,7 +725,7 @@ export function newLine(str: string): string {
  * Usage:
  *
  * ```javascript
- * const ret = removeHtml('<div>hello world</div>');
+ * const ret = removeHTML('<div>hello world</div>');
  * console.log(ret);
  * ```
  *
@@ -739,7 +739,7 @@ export function newLine(str: string): string {
  * @returns {string} 字符串
  * @category Util
  */
-export function removeHtml(str: string, options: { removeNewLine?: boolean } = {}): string {
+export function removeHTML(str: string, options: { removeNewLine?: boolean } = {}): string {
   const { removeNewLine = false } = options;
   let ret = "";
   if (str) {
@@ -752,12 +752,30 @@ export function removeHtml(str: string, options: { removeNewLine?: boolean } = {
 }
 
 /**
- * Alias of `removeHtml`.
+ * Alias of `removeHTML`.
+ * 
+ * @hidden
+ */
+export function removeHtml(str: string, options: { removeNewLine?: boolean } = {}): string {
+  return removeHTML(str, options);
+}
+
+/**
+ * Alias of `removeHTML`.
+ *
+ * @hidden
+ */
+export function clearHTML(str: string, options: { removeNewLine?: boolean } = {}): string {
+  return removeHTML(str, options);
+}
+
+/**
+ * Alias of `removeHTML`.
  *
  * @hidden
  */
 export function clearHtml(str: string, options: { removeNewLine?: boolean } = {}): string {
-  return removeHtml(str, options);
+  return removeHTML(str, options);
 }
 
 /**
