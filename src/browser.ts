@@ -4,7 +4,7 @@ import { isNonEmptyArray } from "./util";
 /**
  * EN: Detect the margin of Safety. Determine if it is a secure PWA environment that it can run.
  *
- * ZH: 判断是否是安全的 PWA 环境
+ * ZH: 判断是否是安全的 PWA 环境。
  *
  * Usage:
  *
@@ -55,7 +55,7 @@ export function isSafePWAEnv(): boolean {
 /**
  * EN: Browser Information
  *
- * ZH: 返回浏览器信息
+ * ZH: 返回浏览器信息。
  *
  * Usage:
  *

@@ -273,7 +273,7 @@ export function isValidHttpUrl(url: string, options: { strict: boolean } = { str
 /**
  * EN: Get the file type of the url.
  *
- * ZH: 获取文件后缀名
+ * ZH: 获取文件后缀名。
  *
  * Usage:
  *

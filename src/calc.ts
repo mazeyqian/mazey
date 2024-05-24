@@ -3,7 +3,7 @@ import { deepCopy } from "./util";
 /**
  * EN: Computes the longest common substring of two strings.
  *
- * ZH: 计算两个字符串的最长公共子串
+ * ZH: 计算两个字符串的最长公共子串。
  *
  * Usage:
  *
@@ -58,7 +58,7 @@ export function calLongestCommonSubstring(aStr: string, bStr: string): number {
 /**
  * EN: Computes the longest common subsequence of two strings.
  *
- * ZH: 计算两个字符串的最长公共子序列
+ * ZH: 计算两个字符串的最长公共子序列。
  *
  * Usage:
  *
@@ -122,7 +122,7 @@ export function calLongestCommonSubsequence(aStr: string, bStr: string): number 
 /**
  * EN: Hit probability (1% ~ 100%).
  *
- * ZH: 百分位概率
+ * ZH: 百分位概率。
  *
  * Usage:
  *

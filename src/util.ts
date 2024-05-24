@@ -266,7 +266,7 @@ export function generateRndNum(n = 5): string {
 /**
  * EN: Generate a unique identifier number based on time: `genUniqueNumString()` => `1538324722364123`
  * 
- * ZH: 根据时间生成唯一标志的数字：`genUniqueNumString()` => `1538324722364123`
+ * ZH: 根据时间生成唯一标志的数字：`genUniqueNumString()` => `1538324722364123`。
  *
  * Usage:
  *
@@ -304,7 +304,7 @@ export function generateUniqueNum(n = 3): string {
 /**
  * EN: Get timestamp.
  * 
- * ZH: 获取时间戳
+ * ZH: 获取时间戳。
  *
  * Usage:
  *
@@ -334,7 +334,7 @@ export function mNow(): number {
 /**
  * EN: Floating point number to percentage 0.2 => 20%
  * 
- * ZH: 浮点数转为百分比 0.2 => 20%
+ * ZH: 浮点数转为百分比 0.2 => 20%。
  *
  * Usage:
  *
@@ -369,7 +369,7 @@ export function floatToPercent(num: number, fixSize = 0): string {
 /**
  * EN: Keep the specified number of decimal places for floating-point numbers.
  * 
- * ZH: 浮点数保留指定位
+ * ZH: 浮点数保留指定位。
  *
  * Usage:
  *
@@ -394,9 +394,9 @@ export function floatFixed(num: string, size = 0): string {
 }
 
 /**
- * EN: Throttle
+ * EN: Throttle, used to limit the frequency of function execution over time.
  *
- * ZH: 节流
+ * ZH: 节流，用于限制函数在一段时间内的执行频率。
  *
  * Usage:
  *
@@ -451,9 +451,9 @@ export function throttle<T extends (...args: MazeyFnParams) => MazeyFnReturn>(fu
 }
 
 /**
- * EN: Debounce
+ * EN: Debounce, used to delay the execution of a function until a specified time has passed since the last invocation.
  *
- * ZH: 去抖
+ * ZH: 防抖，用于在最后一次调用后的指定时间内延迟函数的执行。
  *
  * Usage:
  *
@@ -509,7 +509,7 @@ const defaultGetFriendlyIntervalOptions = {
 /**
  * EN: Get interval time.
  * 
- * ZH: 获取间隔时间
+ * ZH: 获取间隔时间。
  *
  * Usage:
  *
@@ -575,7 +575,7 @@ export function getFriendlyInterval(start: number | string | Date = 0, end: numb
 /**
  * EN: Check whether it is a right number.
  *
- * ZH: 判断是否有效数字
+ * ZH: 判断是否有效数字。
  *
  * Usage:
  *
@@ -623,7 +623,7 @@ export function isNumber(num: unknown, options: IsNumberOptions = {}): boolean {
 /**
  * EN: Invoke effective function.
  * 
- * ZH: 执行有效函数
+ * ZH: 执行有效函数。
  *
  * Usage:
  *
@@ -845,7 +845,7 @@ export function unsanitize(str: string): string {
 /**
  * EN: Truncate string, Chinese characters count as 2 bytes.
  * 
- * ZH: 截取字符串，中文算 2 个字节
+ * ZH: 截取字符串，中文算 2 个字节。
  *
  * Usage:
  *
@@ -1022,7 +1022,9 @@ export function isValidData(data: MazeyObject, attributes: string[], validValue:
 }
 
 /**
- * 语义化文件大小，把字节转换成正常文件大小。
+ * EN: Semantic file size, convert bytes into a readable file size.
+ * 
+ * ZH: 语义化文件大小，把字节转换成正常文件大小。
  *
  * Usage:
  *
