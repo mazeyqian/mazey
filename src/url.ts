@@ -381,3 +381,27 @@ export function convertObjectToQuery(obj: { [key: string]: string }): string {
   }
   return res.slice(0, -1);
 }
+
+/**
+ * Convert an HTTP URL to an HTTPS URL.
+ * 
+ * Usage:
+ * 
+ * ```javascript
+ * const ret = convertHttpToHttps('http://example.com');
+ * console.log(ret);
+ * ```
+ * 
+ * Output:
+ * 
+ * ```text
+ * https://example.com
+ * ```
+ * 
+ * @param url - The HTTP URL to convert to HTTPS.
+ * @returns The HTTPS URL.
+ * @category URL
+ */
+export function convertHttpToHttps(url: string): string {
+  return url.replace(/^http:/, "https:");
+}
