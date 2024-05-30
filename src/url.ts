@@ -405,3 +405,12 @@ export function convertObjectToQuery(obj: { [key: string]: string }): string {
 export function convertHttpToHttps(url: string): string {
   return url.replace(/^http:/, "https:");
 }
+
+/**
+ * Alias of `convertHttpToHttps`.
+ * 
+ * @hidden
+ */
+export function replaceHttp(url: string): string {
+  return convertHttpToHttps(url);
+}
