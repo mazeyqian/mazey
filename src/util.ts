@@ -1117,8 +1117,8 @@ export function genHashCode(str: string): number {
  *
  * ```javascript
  * const ret1 = formatDate();
- * const ret2 = formatDate('Tue Jan 11 2022 14:12:26 GMT+0800 (China Standard Time)', 'yyyy-MM-dd hh:mm:ss');
- * const ret3 = formatDate(1641881235000, 'yyyy-MM-dd hh:mm:ss');
+ * const ret2 = formatDate('Tue Jan 11 2022 14:12:26 GMT+0800 (China Standard Time)', 'yyyy-MM-dd hh:mm:ss a');
+ * const ret3 = formatDate(1641881235000, 'yyyy-MM-dd hh:mm:ss a');
  * const ret4 = formatDate(new Date(2014, 1, 11), 'MM/dd/yyyy');
  * console.log('Default formatDate value:', ret1);
  * console.log('String formatDate value:', ret2);
@@ -1130,8 +1130,8 @@ export function genHashCode(str: string): number {
  *
  * ```text
  * Default formatDate value: 2023-01-11
- * String formatDate value: 2022-01-11 14:12:26
- * Number formatDate value: 2022-01-11 14:07:15
+ * String formatDate value: 2022-01-11 02:12:26 PM
+ * Number formatDate value: 2022-01-11 02:07:15 PM
  * Date formatDate value: 02/11/2014
  * ```
  *
@@ -1145,15 +1145,18 @@ export function formatDate(dateIns?: Date | number | string, format = "yyyy-MM-d
     dateIns = new Date();
   }
   const tempDate = new Date(dateIns);
+  const hours = tempDate.getHours();
   const o: {
     [key: string]: string | number;
   } = {
     yyyy: tempDate.getFullYear(),
     MM: tempDate.getMonth() + 1,
     dd: tempDate.getDate() < 10 ? "0" + tempDate.getDate() : tempDate.getDate(),
-    hh: tempDate.getHours() < 10 ? "0" + tempDate.getHours() : tempDate.getHours(),
+    HH: hours < 10 ? "0" + hours : hours,
+    hh: ((hours % 12) || 12) < 10 ? "0" + ((hours % 12) || 12) : (hours % 12) || 12,
     mm: tempDate.getMinutes() < 10 ? "0" + tempDate.getMinutes() : tempDate.getMinutes(),
     ss: tempDate.getSeconds() < 10 ? "0" + tempDate.getSeconds() : tempDate.getSeconds(),
+    a: hours < 12 ? "AM" : "PM",
   };
   let tempFormat = format || "yyyy-MM-dd";
   Object.keys(o).forEach(key => {
