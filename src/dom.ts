@@ -47,9 +47,15 @@ export function hasClass(obj: HTMLElement, cls: string): boolean {
  *
  * @category DOM
  */
-export function addClass(obj: HTMLElement, cls: string): void {
+export function addClass(obj: HTMLElement, cls: string | string[]): void {
+  if (Array.isArray(cls)) {
+    cls.forEach((item) => {
+      obj.classList.add(item);
+    });
+    return;
+  }
   const oriCls = obj.className;
-  // should not add duplicate classes
+  // Should not add duplicate classes.
   const oriClsArr = oriCls.split(/\s+/);
   for (let i = 0; i < oriClsArr.length; i++) {
     if (oriClsArr[i] === cls) {
@@ -58,12 +64,12 @@ export function addClass(obj: HTMLElement, cls: string): void {
   }
   // Origin logic
   let space = "";
-  let newCls = ""; // 获取对象的class值
+  let newCls = ""; // 获取对象的 class 值
   if (oriCls !== "") {
-    space = " "; // 若原来的class不为空，跟一个空格
+    space = " "; // 若原来的 class 不为空，跟一个空格
   }
-  newCls = oriCls + space + cls; // 将新的class加进去
-  obj.className = newCls; // 替换新class
+  newCls = oriCls + space + cls; // 将新的 class 加进去
+  obj.className = newCls; // 替换新 class
 }
 
 /**
