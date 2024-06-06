@@ -1,4 +1,6 @@
-import type { BrowserInfo, TestUa, TestVs } from "./typing";
+import type {
+  BrowserInfo, MazeyObject, TestUa, TestVs, 
+} from "./typing";
 import { isNonEmptyArray } from "./util";
 
 /**
@@ -329,7 +331,7 @@ export function getBrowserInfo(): BrowserInfo {
  */
 export function genBrowserAttrs(prefix = ""): string[] {
   const keys = [ "system", "platform", "engine", "supporter", "shell", "appleType" ];
-  const info = getBrowserInfo();
+  const info = getBrowserInfo() as MazeyObject;
   const attrs: string[] = [];
   keys.forEach((key: string) => {
     const val = info[key];

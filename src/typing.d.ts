@@ -13,7 +13,6 @@ export interface BrowserInfo {
   shell: string; // wechat qq uc 360 2345 sougou liebao maxthon
   shellVs: string;
   appleType: string;
-  [key: string]: string;
 }
 
 export interface DefineListeners {
@@ -65,20 +64,11 @@ export type SimpleObject = {
   [key: string]: SimpleType | SimpleType[] | SimpleObject | SimpleObject[];
 };
 
-export type UnknownObject = any; // Record<string, unknown>;
-export type UnknownFnParams = any[]; // | Record<string, unknown> | string | number | boolean | null | undefined;
-export type UnknownFnReturn = any;
-export type UnknownFn = (...args: UnknownFnParams) => UnknownFnReturn;
-
-export interface UnknownWindow {
-  [key: string]: any;
-}
-
-export type MazeyObject = any; // Record<string, unknown>;
-export type MazeyFnParams = any[]; // | Record<string, unknown> | string | number | boolean | null | undefined;
+export type MazeyObject = any;
+export type MazeyFnParams = any[];
 export type MazeyFnReturn = any;
 export type MazeyFunction = (...args: any[]) => any;
-export type MazeyFn = (...args: UnknownFnParams) => UnknownFnReturn;
+export type MazeyFn = (...args: MazeyFnParams) => MazeyFnReturn;
 
 export interface MazeyWindow {
   [key: string]: any;
