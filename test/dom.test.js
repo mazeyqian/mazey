@@ -4,7 +4,7 @@
 /* eslint-disable no-undef */
 import {
   genStyleString, getDomain, getBrowserInfo,
-  setClass, setImgSizeBySrc,
+  setClass, setImgSizeBySrc, addClass,
   newLine, hasClass, removeClass, addStyle,
 } from "../lib/index.esm";
 
@@ -255,5 +255,47 @@ describe("setImgSizeBySrc", () => {
     const image = document.getElementsByTagName("img")[0];
     expect(image.style.width).toBeFalsy();
     expect(image.style.height).toBeFalsy();
+  });
+});
+
+describe("addClass", () => {
+  let mockElement;
+
+  beforeEach(() => {
+    mockElement = document.createElement("div");
+  });
+
+  test("adds a single class to the element", () => {
+    addClass(mockElement, "test");
+    expect(mockElement.className).toBe("test");
+  });
+
+  test("adds multiple classes to the element", () => {
+    addClass(mockElement, [ "test1", "test2" ]);
+    expect(mockElement.className).toBe("test1 test2");
+  });
+
+  test("does not add duplicate classes", () => {
+    mockElement.className = "test";
+    addClass(mockElement, "test");
+    expect(mockElement.className).toBe("test");
+  });
+
+  test("adds a class to an element with existing classes", () => {
+    mockElement.className = "existing-class";
+    addClass(mockElement, "test");
+    expect(mockElement.className).toBe("existing-class test");
+  });
+
+  test("adds multiple classes to an element with existing classes", () => {
+    mockElement.className = "existing-class";
+    addClass(mockElement, [ "test1", "test2" ]);
+    expect(mockElement.className).toBe("existing-class test1 test2");
+  });
+
+  test("does not add duplicate classes when adding multiple classes", () => {
+    mockElement.className = "test1 test2";
+    addClass(mockElement, [ "test1", "test3" ]);
+    expect(mockElement.className).toBe("test1 test2 test3");
   });
 });
