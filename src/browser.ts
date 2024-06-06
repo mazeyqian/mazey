@@ -109,6 +109,9 @@ export function getBrowserInfo(): BrowserInfo {
     supporterVs: "",
     system: "", // windows macos linux android ios
     systemVs: "",
+    shell: "",
+    shellVs: "",
+    appleType: "",
   };
   try {
     // 权重：系统 + 系统版本 > 平台 > 内核 + 载体 + 内核版本 + 载体版本 > 外壳 + 外壳版本
@@ -299,9 +302,45 @@ export function getBrowserInfo(): BrowserInfo {
     window.MAZEY_BROWSER_INFO = browserInfo;
     return browserInfo;
   } catch (err) {
-    console.warn("MazeyCon:", err);
+    console.warn("[Mazey]", err);
     return browserInfo;
   }
+}
+
+/**
+ * Generate browser attributes.
+ * 
+ * Usage:
+ * 
+ * ```javascript
+ * const attrs = genBrowserAttrs();
+ * console.log(attrs);
+ * ```
+ * 
+ * Output:
+ * 
+ * ```text
+ * ["windows", "desktop", "webkit", "chrome"]
+ * ```
+ * 
+ * @param {string} prefix
+ * @returns {array} Browser attributes
+ * @category Browser Information
+ */
+export function genBrowserAttrs(prefix = ""): string[] {
+  const keys = [ "system", "platform", "engine", "supporter", "shell", "appleType" ];
+  const info = getBrowserInfo();
+  const attrs: string[] = [];
+  keys.forEach((key: string) => {
+    const val = info[key];
+    if (val) {
+      if (prefix && prefix.length > 0) {
+        prefix = `${prefix}-`;
+      }
+      attrs.push(`${prefix}${val}`);
+    }
+  });
+  return attrs;
 }
 
 /**

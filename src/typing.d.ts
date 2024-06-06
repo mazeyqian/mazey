@@ -10,9 +10,10 @@ export interface BrowserInfo {
   supporterVs: string;
   system: string; // windows macos linux android ios
   systemVs: string;
-  shell?: string; // wechat qq uc 360 2345 sougou liebao maxthon
-  shellVs?: string;
-  appleType?: string;
+  shell: string; // wechat qq uc 360 2345 sougou liebao maxthon
+  shellVs: string;
+  appleType: string;
+  [key: string]: string;
 }
 
 export interface DefineListeners {
