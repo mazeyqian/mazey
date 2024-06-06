@@ -1,4 +1,6 @@
+import type { MazeyElement } from "./typing";
 import { isNonEmptyArray } from "./util";
+import { cusCon } from "./debug";
 
 /**
  * Modify `class`: determine `class`.
@@ -18,7 +20,11 @@ import { isNonEmptyArray } from "./util";
  *
  * @category DOM
  */
-export function hasClass(obj: HTMLElement, cls: string): boolean {
+export function hasClass(obj: MazeyElement, cls: string): boolean {
+  if (!obj) {
+    cusCon.error("The element is not exist.");
+    return false;
+  }
   const oriCls = obj.className; // 获取对象的class值
   const oriClsArr = oriCls.split(/\s+/); // 分隔空格转换成数组
   for (let i = 0; i < oriClsArr.length; i++) {
@@ -47,7 +53,11 @@ export function hasClass(obj: HTMLElement, cls: string): boolean {
  *
  * @category DOM
  */
-export function addClass(obj: HTMLElement, cls: string | string[]): void {
+export function addClass(obj: MazeyElement, cls: string | string[]): void {
+  if (!obj) {
+    cusCon.error("The element is not exist.");
+    return;
+  }
   if (Array.isArray(cls)) {
     cls.forEach((item) => {
       obj.classList.add(item);
@@ -99,7 +109,11 @@ export function setClass(obj: HTMLElement, cls: string): void {
  *
  * @category DOM
  */
-export function removeClass(obj: HTMLElement, cls: string): void {
+export function removeClass(obj: MazeyElement, cls: string): void {
+  if (!obj) {
+    cusCon.error("The element is not exist.");
+    return;
+  }
   const oriCls = obj.className;
   let newCls; // 获取对象的class值
   newCls = " " + oriCls + " "; // 前后加空格

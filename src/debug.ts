@@ -123,3 +123,8 @@ export function genCustomConsole(
   });
   return newConsole;
 }
+
+/**
+ * @hidden
+ */
+export const cusCon = genCustomConsole("[Mazey]");
