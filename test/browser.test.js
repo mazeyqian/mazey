@@ -2,7 +2,9 @@
  * @jest-environment jsdom
  */
 /* eslint-disable no-undef */
-import { isSafePWAEnv, getBrowserInfo, isSupportWebp } from "../lib/index.esm";
+import {
+  isSafePWAEnv, getBrowserInfo, isSupportWebp, genBrowserAttrs, 
+} from "../lib/index.esm";
 
 describe("isSafePWAEnv", () => {
   it("should return true when all conditions are met", () => {
@@ -98,5 +100,17 @@ describe("isSupportWebp", () => {
     global.Image = originalImage;
 
     expect(result).toBe(false);
+  });
+});
+
+describe("genBrowserAttrs", () => {
+  test("returns an array of browser attributes without a prefix", () => {
+    const attrs = genBrowserAttrs();
+    expect(attrs).toEqual([ "webkit" ]);
+  });
+
+  test("returns an array of browser attributes with a prefix", () => {
+    const attrs = genBrowserAttrs("m");
+    expect(attrs).toEqual([ "m-webkit" ]);
   });
 });
