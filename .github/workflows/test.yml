@@ -9,11 +9,13 @@ on:
       - main
       - master
       - 'feat/**'
+      - 'feature/**'
       - 'fix/**'
       - 'test/**'
+      - 'chore/**'
 
 jobs:
-  build:
+  build-and-test:
 
     runs-on: ubuntu-latest
 
