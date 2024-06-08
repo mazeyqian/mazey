@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable no-undef */
 // Git Helper
-const execa = require("execa");
+const { execa } = require("execa");
 
 /**
  * Release this project with version by `process.env.VERSION` or `package.json`.
