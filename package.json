@@ -1,6 +1,6 @@
 {
   "name": "mazey",
-  "version": "4.3.3-alpha-202406080518pm",
+  "version": "4.3.3-alpha-202406080522pm",
   "description": "A functional library for daily front-end work.",
   "main": "lib/index.cjs.js",
   "module": "lib/index.esm.js",
@@ -92,7 +92,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-standard": "^4.1.0",
-    "execa": "^7.2.0",
+    "execa": "^5.1.1",
     "html-webpack-plugin": "^5.5.3",
     "husky": "^8.0.3",
     "jest": "^29.7.0",
