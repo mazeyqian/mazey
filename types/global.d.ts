@@ -1,8 +1,8 @@
 /**
  * @author Cheng
  */
-import $ from 'jquery';
-import { DefineListeners, BrowserInfo } from './src/typing';
+import $ from "jquery";
+import { DefineListeners, BrowserInfo } from "../src/typing";
 
 declare global {
   interface PerformanceEntry {
