@@ -25,14 +25,14 @@ export function hasClass(obj: MazeyElement, cls: string): boolean {
     cusCon.error("The element is not exist.");
     return false;
   }
-  const oriCls = obj.className; // 获取对象的class值
+  const oriCls = obj.className; // 获取对象的 class 值
   const oriClsArr = oriCls.split(/\s+/); // 分隔空格转换成数组
   for (let i = 0; i < oriClsArr.length; i++) {
     if (oriClsArr[i] === cls) {
-      return true; // 若匹配到class则返回True
+      return true; // 若匹配到 class 则返回 True
     }
   }
-  return false; // 否则返回False
+  return false; // 否则返回 False
 }
 
 /**
@@ -132,7 +132,7 @@ export function removeClass(obj: MazeyElement, cls: string): void {
     return;
   }
   const oriCls = obj.className;
-  let newCls; // 获取对象的class值
+  let newCls; // 获取对象的 class 值
   newCls = " " + oriCls + " "; // 前后加空格
   newCls = newCls.replace(/(\s+)/gi, " "); // 将多余的空格替换成一个空格
   newCls = newCls.replace(" " + cls + " ", " "); // 将加了前后空格的 cls 替换成空格 " "
