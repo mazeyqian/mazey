@@ -36,37 +36,52 @@ export function hasClass(obj: MazeyElement, cls: string): boolean {
 }
 
 /**
- * Modify `class`: add `class`.
+ * Add `class` to the element. The second parameter can be a single class name or an array of class names.
  *
- * Usage:
+ * Basic Usage:
  *
  * ```javascript
  * import { addClass } from "mazey";
  * 
- * const dom = document.querySelector("#box");
- *
- * // Determine `class`
- * hasClass(dom, "test");
- * // Add `class`
- * addClass(dom, "test");
- * // Remove `class`
- * removeClass(dom, "test");
+ * const ele = document.querySelector("#box");
+ * addClass(ele, "test");
+ * ```
+ * 
+ * Output:
+ * 
+ * ```html
+ * <div id="box" class="test"></div>
+ * ```
+ * 
+ * Advanced Usage:
+ * 
+ * ```javascript
+ * import { addClass, genBrowserAttrs } from "mazey";
+ * 
+ * const ele = document.querySelector("html");
+ * addClass(ele, genBrowserAttrs());
+ * ```
+ * 
+ * Output:
+ * 
+ * ```html
+ * <html class="windows desktop webkit chrome"></html>
  * ```
  *
  * @category DOM
  */
-export function addClass(obj: MazeyElement, cls: string | string[]): void {
-  if (!obj) {
+export function addClass(ele: MazeyElement, cls: string | string[]): void {
+  if (!ele) {
     cusCon.error("The element is not exist.");
     return;
   }
   if (Array.isArray(cls)) {
     cls.forEach((item) => {
-      obj.classList.add(item);
+      ele.classList.add(item);
     });
     return;
   }
-  const oriCls = obj.className;
+  const oriCls = ele.className;
   // Should not add duplicate classes.
   const oriClsArr = oriCls.split(/\s+/);
   for (let i = 0; i < oriClsArr.length; i++) {
@@ -81,7 +96,7 @@ export function addClass(obj: MazeyElement, cls: string | string[]): void {
     space = " "; // 若原来的 class 不为空，跟一个空格
   }
   newCls = oriCls + space + cls; // 将新的 class 加进去
-  obj.className = newCls; // 替换新 class
+  ele.className = newCls; // 替换新 class
 }
 
 /**
@@ -89,8 +104,8 @@ export function addClass(obj: MazeyElement, cls: string | string[]): void {
  *
  * @hidden
  */
-export function setClass(obj: HTMLElement, cls: string): void {
-  addClass(obj, cls);
+export function setClass(ele: HTMLElement, cls: string): void {
+  addClass(ele, cls);
 }
 
 /**
