@@ -8,14 +8,14 @@ import { cusCon } from "./debug";
  * Usage:
  *
  * ```javascript
- * const dom = document.querySelector('#box');
+ * const dom = document.querySelector("#box");
  *
  * // Determine `class`
- * hasClass(dom, 'test');
+ * hasClass(dom, "test");
  * // Add `class`
- * addClass(dom, 'test');
+ * addClass(dom, "test");
  * // Remove `class`
- * removeClass(dom, 'test');
+ * removeClass(dom, "test");
  * ```
  *
  * @category DOM
@@ -41,14 +41,16 @@ export function hasClass(obj: MazeyElement, cls: string): boolean {
  * Usage:
  *
  * ```javascript
- * const dom = document.querySelector('#box');
+ * import { addClass } from "mazey";
+ * 
+ * const dom = document.querySelector("#box");
  *
  * // Determine `class`
- * hasClass(dom, 'test');
+ * hasClass(dom, "test");
  * // Add `class`
- * addClass(dom, 'test');
+ * addClass(dom, "test");
  * // Remove `class`
- * removeClass(dom, 'test');
+ * removeClass(dom, "test");
  * ```
  *
  * @category DOM
@@ -97,14 +99,14 @@ export function setClass(obj: HTMLElement, cls: string): void {
  * Usage:
  *
  * ```javascript
- * const dom = document.querySelector('#box');
+ * const dom = document.querySelector("#box");
  *
  * // Determine `class`
- * hasClass(dom, 'test');
+ * hasClass(dom, "test");
  * // Add `class`
- * addClass(dom, 'test');
+ * addClass(dom, "test");
  * // Remove `class`
- * removeClass(dom, 'test');
+ * removeClass(dom, "test");
  * ```
  *
  * @category DOM
@@ -118,7 +120,7 @@ export function removeClass(obj: MazeyElement, cls: string): void {
   let newCls; // 获取对象的class值
   newCls = " " + oriCls + " "; // 前后加空格
   newCls = newCls.replace(/(\s+)/gi, " "); // 将多余的空格替换成一个空格
-  newCls = newCls.replace(" " + cls + " ", " "); // 将加了前后空格的cls替换成空格' '
+  newCls = newCls.replace(" " + cls + " ", " "); // 将加了前后空格的 cls 替换成空格 " "
   newCls = newCls.replace(/(^\s+)|(\s+$)/g, ""); // 去掉前后空格
   obj.className = newCls;
 }
@@ -138,7 +140,7 @@ export function removeClass(obj: MazeyElement, cls: string): void {
  *     }
  *   `,
  *   {
- *     id: 'test',
+ *     id: "test",
  *   }
  * );
  * // <style id="test">
@@ -168,8 +170,6 @@ export function removeClass(obj: MazeyElement, cls: string): void {
  * @category DOM
  */
 export function addStyle(style: string, options: { id?: string } = { id: "" }): boolean {
-  // console.log('_ style', style);
-  // console.log('_ options', options);
   if (!style) {
     return false;
   }
@@ -211,12 +211,12 @@ export function addStyle(style: string, options: { id?: string } = { id: "" }): 
  *
  * ```javascript
  * // Example images with `src` attributes containing `width` and/or `height` values
- * const img1 = document.createElement('img');
- * img1.setAttribute('src', 'https://example.com/example.png?width=2233&height=111');
+ * const img1 = document.createElement("img");
+ * img1.setAttribute("src", "https://example.com/example.png?width=2233&height=111");
  * document.body.appendChild(img1);
  *
- * const img2 = document.createElement('img');
- * img2.setAttribute('src', 'https://example.com/example.png?width=100%&height=auto');
+ * const img2 = document.createElement("img");
+ * img2.setAttribute("src", "https://example.com/example.png?width=100%&height=auto");
  * document.body.appendChild(img2);
  * ```
  *
@@ -285,8 +285,8 @@ export function setImgWidHeiBySrc(): boolean {
  * Usage:
  *
  * ```javascript
- * const ret1 = genStyleString('.a', [ 'color:red' ]);
- * const ret2 = genStyleString('#b', [ 'color:red', 'font-size:12px' ]);
+ * const ret1 = genStyleString(".a", [ "color:red" ]);
+ * const ret2 = genStyleString("#b", [ "color:red", "font-size:12px" ]);
  * console.log(ret1);
  * console.log(ret2);
  * ```
