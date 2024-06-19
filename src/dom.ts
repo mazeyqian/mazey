@@ -8,6 +8,8 @@ import { cusCon } from "./debug";
  * Usage:
  *
  * ```javascript
+ * import { hasClass, addClass, removeClass } from "mazey";
+ * 
  * const dom = document.querySelector("#box");
  *
  * // Determine `class`
