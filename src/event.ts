@@ -49,9 +49,18 @@ export function getDefineListeners(): DefineListeners {
  * Usage:
  *
  * ```javascript
- * addEvent('test', (e) => {
- *  console.log('test event:', e);
+ * import { addEvent } from "mazey";
+ * 
+ * addEvent("test", (e) => {
+ *  console.log("test event:", e);
  * });
+ * fireEvent("test");
+ * ```
+ * 
+ * Output:
+ * 
+ * ```javascript
+ * test event: { type: "test" }
  * ```
  *
  * @param type
@@ -74,7 +83,7 @@ export function addEvent(type: string, fn: MazeyFn): void {
  * Usage:
  *
  * ```javascript
- * fireEvent('test');
+ * fireEvent("test");
  * ```
  *
  * @param type
@@ -109,7 +118,7 @@ export function invokeEvent(type: string): void {
  * Usage:
  *
  * ```javascript
- * removeEvent('test');
+ * removeEvent("test");
  * ```
  *
  * @param type
