@@ -11,7 +11,6 @@ import { cusCon } from "./debug";
  * import { hasClass, addClass, removeClass } from "mazey";
  * 
  * const dom = document.querySelector("#box");
- *
  * // Determine `class`
  * hasClass(dom, "test");
  * // Add `class`
@@ -116,8 +115,9 @@ export function setClass(ele: HTMLElement, cls: string): void {
  * Usage:
  *
  * ```javascript
+ * import { hasClass, addClass, removeClass } from "mazey";
+ * 
  * const dom = document.querySelector("#box");
- *
  * // Determine `class`
  * hasClass(dom, "test");
  * // Add `class`
@@ -147,9 +147,13 @@ export function removeClass(obj: MazeyElement, cls: string): void {
  *
  * ZH: 添加样式标签; style: 样式标签内的字符串; id: `<style>` 标签的 `id`; 返回: 添加成功/失败。
  *
+ * Usage:
+ * 
  * Example 1: Add the `<style>` with `id`, and repeated invoking will update the content instead of adding a new one.
  *
  * ```javascript
+ * import { addStyle } from "mazey";
+ * 
  * addStyle(
  *   `
  *     body {
@@ -160,16 +164,23 @@ export function removeClass(obj: MazeyElement, cls: string): void {
  *     id: "test",
  *   }
  * );
- * // <style id="test">
- * //   body {
- * //     background-color: #333;
- * //   }
- * // </style>
+ * ```
+ * 
+ * Output:
+ * 
+ * ```html
+ * <style id="test">
+ *   body {
+ *     background-color: #333;
+ *   }
+ * </style>
  * ```
  *
  * Example 2: Add the `<style>` without `id`, and repeated invoking will add a new one.
  *
  * ```javascript
+ * import { addStyle } from "mazey";
+ * 
  * addStyle(
  *   `
  *     body {
@@ -177,13 +188,18 @@ export function removeClass(obj: MazeyElement, cls: string): void {
  *     }
  *   `
  * );
- * // <style>
- * //   body {
- * //     background-color: #444;
- * //   }
- * // </style>
  * ```
- *
+ * 
+ * Output:
+ * 
+ * ```html
+ * <style>
+ *   body {
+ *     background-color: #444;
+ *   }
+ * </style>
+ * ```
+ * 
  * @category DOM
  */
 export function addStyle(style: string, options: { id?: string } = { id: "" }): boolean {
