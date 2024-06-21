@@ -1,4 +1,4 @@
-import type { UrlParams } from "./typing";
+import type { MultiValueUrlParams, SingleValueUrlParams } from "./typing";
 
 /**
  * Get the query param's value of the current Web URL(`location.search`).
@@ -33,6 +33,42 @@ export function getQueryParam(param: string): string {
 }
 
 /**
+ * Get the all query params of the current Web URL(`location.search`).
+ * 
+ * Usage:
+ * 
+ * ```javascript
+ * // http://example.com/?t1=1&t2=2&t3=3&t4=4#2333
+ * // ?t1=1&t2=2&t3=3&t4=4
+ * const ret = getAllQueryParams();
+ * console.log(ret);
+ * ```
+ * 
+ * Output:
+ * 
+ * ```text
+ * { t1: '1', t2: '2', t3: '3', t4: '4' }
+ * ```
+ * 
+ * @param {string} url Optional, The URL string.
+ * @returns {object} The query params object.
+ * @category URL
+ */
+export function getAllQueryParams(url: string = ""): SingleValueUrlParams {
+  if (url === "") {
+    url = location.search;
+  }
+  const result: SingleValueUrlParams = {};
+  url.replace(/\??(\w+)=([^&]*)&?/g, function(_: string, key: string, val: string): string {
+    if (result[ key ] === undefined) {
+      result[ key ] = decodeURIComponent(val);
+    }
+    return "";
+  });
+  return result;
+}
+
+/**
  * Returns the value of the specified query parameter in the input URL.
  *
  * Usage:
@@ -62,7 +98,7 @@ export function getUrlParam(url: string, param: string, options: { returnArray?:
     const urlObj = new URL(url);
     res = urlObj.searchParams.getAll(param);
   } else {
-    const result: UrlParams = {};
+    const result: MultiValueUrlParams = {};
     url.replace(/\??(\w+)=([^&]*)&?/g, function(_: string, key: string, val: string): string {
       if (result[ key ] !== undefined) {
         result[ key ].push(val);
