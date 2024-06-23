@@ -701,11 +701,11 @@ export function isNonEmptyArray<T>(arr: Array<T>): boolean {
  * true false false false
  * ```
  * 
- * @param {unknown} obj The object to verify.
+ * @param {MazeyObject} obj The object to verify.
  * @returns {boolean} Return TRUE if the object is a pure object.
  * @category Util
  */
-export function isPureObject(obj: unknown): boolean {
+export function isPureObject(obj: MazeyObject): boolean {
   const c1 = Boolean(obj);
   const c2 = typeof obj === "object";
   const c3 = Object.prototype.toString.call(obj) === "[object Object]";
