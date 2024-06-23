@@ -680,6 +680,39 @@ export function isNonEmptyArray<T>(arr: Array<T>): boolean {
 }
 
 /**
+ * Verify the validity of a pure object.
+ * 
+ * Usage:
+ * 
+ * ```javascript
+ * import { isPureObject } from 'mazey';
+ * 
+ * const ret1 = isPureObject({ a: 1 });
+ * const ret2 = isPureObject('abc');
+ * const ret3 = isPureObject(null);
+ * const ret4 = isPureObject([]);
+ * 
+ * console.log(ret1, ret2, ret3, ret4);
+ * ```
+ * 
+ * Output:
+ * 
+ * ```text
+ * true false false false
+ * ```
+ * 
+ * @param {unknown} obj The object to verify.
+ * @returns {boolean} Return TRUE if the object is a pure object.
+ * @category Util
+ */
+export function isPureObject(obj: unknown): boolean {
+  const c1 = Boolean(obj);
+  const c2 = typeof obj === "object";
+  const c3 = Object.prototype.toString.call(obj) === "[object Object]";
+  return c1 && c2 && c3;
+}
+
+/**
  * Convert newline characters `\n` into HTML line breaks `<br />`.
  *
  * Usage:
