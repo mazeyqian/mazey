@@ -6,7 +6,7 @@ import {
   camelCaseToKebabCase, camelCase2Underscore,
   deepCopyObject, repeatUntilConditionMet,
   formatDate,
-  isJsonString, isNumber, isPureObject,
+  isJsonString, isNumber, isPureObject, isNonEmptyObject,
   isValidData, isValidEmail, isValidPhoneNumber, isNonEmptyArray,
   getFriendlyInterval, getFileSize, getCurrentVersion,
   waitTime,
@@ -625,6 +625,32 @@ describe("repeatUntilConditionMet error handling", () => {
     
     repeatUntilConditionMet(() => true, { times: -1 }, () => true);
     expect(console.error).toHaveBeenCalledWith("Expected a non-negative number for times.");
+  });
+});
+
+describe("isNonEmptyObject", () => {
+  it("should return true for an empty object", () => {
+    const obj = {};
+    const result = isNonEmptyObject(obj);
+    expect(result).toBe(false);
+  });
+
+  it("should return false for a non-empty object", () => {
+    const obj = { key: "value" };
+    const result = isNonEmptyObject(obj);
+    expect(result).toBe(true);
+  });
+
+  it("should return false for a non-object value", () => {
+    const value = "not an object";
+    const result = isNonEmptyObject(value);
+    expect(result).toBe(false);
+  });
+
+  it("should return true for a number-string object", () => {
+    const value = { 1: "1" };
+    const result = isNonEmptyObject(value);
+    expect(result).toBe(true);
   });
 });
 
