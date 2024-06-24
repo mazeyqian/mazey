@@ -1,6 +1,6 @@
 import type { MazeyElement } from "./typing";
 import { isNonEmptyArray } from "./util";
-import { cusCon } from "./debug";
+import { mazeyCon } from "./debug";
 
 /**
  * Modify `class`: determine `class`.
@@ -23,7 +23,7 @@ import { cusCon } from "./debug";
  */
 export function hasClass(obj: MazeyElement, cls: string): boolean {
   if (!obj) {
-    cusCon.error("The element is not exist.");
+    mazeyCon.error("The element is not exist.");
     return false;
   }
   const oriCls = obj.className; // 获取对象的 class 值
@@ -73,7 +73,7 @@ export function hasClass(obj: MazeyElement, cls: string): boolean {
  */
 export function addClass(ele: MazeyElement, cls: string | string[]): void {
   if (!ele) {
-    cusCon.error("The element is not exist.");
+    mazeyCon.error("The element is not exist.");
     return;
   }
   if (Array.isArray(cls)) {
@@ -130,7 +130,7 @@ export function setClass(ele: HTMLElement, cls: string): void {
  */
 export function removeClass(obj: MazeyElement, cls: string): void {
   if (!obj) {
-    cusCon.error("The element is not exist.");
+    mazeyCon.error("The element is not exist.");
     return;
   }
   const oriCls = obj.className;

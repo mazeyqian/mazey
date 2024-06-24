@@ -127,4 +127,4 @@ export function genCustomConsole(
 /**
  * @hidden
  */
-export const cusCon = genCustomConsole("[Mazey]");
+export const mazeyCon = genCustomConsole("[Mazey]");
