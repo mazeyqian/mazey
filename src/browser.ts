@@ -1,4 +1,4 @@
-import { cusCon } from "./debug";
+import { mazeyCon } from "./debug";
 import type {
   BrowserInfo, MazeyObject, TestUa, TestVs, 
 } from "./typing";
@@ -305,7 +305,7 @@ export function getBrowserInfo(): BrowserInfo {
     window.MAZEY_BROWSER_INFO = browserInfo;
     return browserInfo;
   } catch (err) {
-    cusCon.warn(err);
+    mazeyCon.warn(err);
     return browserInfo;
   }
 }
