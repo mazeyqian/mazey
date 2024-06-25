@@ -222,23 +222,37 @@ export function getHashQueryParam(param: string): string {
 }
 
 function checkIfURLIsSupported(url: string = "") {
-  if (!window.URL) {
+  const URL = window.URL;
+  if (!URL) {
     return false;
   }
-  if (!window.URL.canParse) {
+  if (!URL.canParse) {
     return false;
   }
-  if (typeof window.URL.canParse !== "function") {
+  if (typeof URL.canParse !== "function") {
     return false;
   }
   try {
-    const u = new window.URL("b", "http://a");
+    const u = new URL("b", "http://a");
     u.pathname = "c d";
-    return Boolean((u.href === "http://a/c%20d") && u.searchParams && window.URL.canParse(url));
+    return (u.href === "http://a/c%20d") && Boolean(u.searchParams) && URL.canParse(url);
   } catch (e) {
     return false;
   }
 }
+
+// function checkIfURLSearchParamsSupported() {
+//   try {
+//     const URLSearchParams = window.URLSearchParams;
+//     return (
+//       new URLSearchParams("?a=1").toString() === "a=1" &&
+//       typeof URLSearchParams.prototype.set === "function" &&
+//       typeof URLSearchParams.prototype.entries === "function"
+//     );
+//   } catch (e) {
+//     return false;
+//   }
+// }
 
 /**
  * Get the domain of URL, and other params.
