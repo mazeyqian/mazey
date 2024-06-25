@@ -343,3 +343,8 @@ export function genStyleString(selector: string, styleArray: Array<string>): str
   }
   return `${selector}{${style}}`;
 }
+
+export function getPageMeta(name: string): string {
+  if (!document.querySelector) return "";
+  return document.querySelector(`meta[name="${name}"]`)?.getAttribute("content") || "";
+}
