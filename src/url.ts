@@ -1,3 +1,4 @@
+// import { mazeyCon } from "./debug";
 import type { MultiValueUrlParams, SingleValueUrlParams } from "./typing";
 
 /**
@@ -120,6 +121,32 @@ export function getUrlParam(url: string, param: string, options: { returnArray?:
   }
 }
 
+export function getUrlHost(url: string): string {
+  let ret = "";
+  if (!isValidHttpUrl(url) && isValidHttpUrl(url, { strict: false }) && url.indexOf("//") === 0) {
+    url = "https:" + url;
+  }
+  // mazeyCon.log("url", url);
+  if (checkIfURLIsSupported(url)) {
+    const urlObj = new URL(url);
+    ret = urlObj.host;
+  }
+  return ret;
+}
+
+export function getUrlPath(url: string): string {
+  let ret = "";
+  if (!isValidHttpUrl(url) && isValidHttpUrl(url, { strict: false }) && url.indexOf("//") === 0) {
+    url = "https:" + url;
+  }
+  // mazeyCon.log("url", url);
+  if (checkIfURLIsSupported(url)) {
+    const urlObj = new URL(url);
+    ret = urlObj.pathname;
+  }
+  return ret;
+}
+
 /**
  * Update the query param's value of the input URL.
  *
@@ -194,6 +221,25 @@ export function getHashQueryParam(param: string): string {
   return ret ? ret[2] : "";
 }
 
+function checkIfURLIsSupported(url: string = "") {
+  if (!window.URL) {
+    return false;
+  }
+  if (!window.URL.canParse) {
+    return false;
+  }
+  if (typeof window.URL.canParse !== "function") {
+    return false;
+  }
+  try {
+    const u = new window.URL("b", "http://a");
+    u.pathname = "c d";
+    return Boolean((u.href === "http://a/c%20d") && u.searchParams && window.URL.canParse(url));
+  } catch (e) {
+    return false;
+  }
+}
+
 /**
  * Get the domain of URL, and other params.
  *
@@ -230,12 +276,21 @@ export function getHashQueryParam(param: string): string {
  * @category URL
  */
 export function getDomain(url: string, rules = [ "hostname" ]): string {
-  const aEl: HTMLAnchorElement = document.createElement("a");
-  aEl.href = url;
-  return rules.reduce((ret, v) => {
-    ret += aEl[v as keyof HTMLAnchorElement];
-    return ret;
-  }, "");
+  if (checkIfURLIsSupported(url)) {
+    const u = new window.URL(url);
+    // mazeyCon.log(u);
+    return rules.reduce((ret, v) => {
+      ret += u[v as keyof URL];
+      return ret;
+    }, "");
+  } else {
+    const aEl: HTMLAnchorElement = document.createElement("a");
+    aEl.href = url;
+    return rules.reduce((ret, v) => {
+      ret += aEl[v as keyof HTMLAnchorElement];
+      return ret;
+    }, "");
+  }
 }
 
 /**
