@@ -713,6 +713,26 @@ export function isPureObject(obj: MazeyObject): boolean {
 }
 
 /**
+ * Verify the validity of a non-empty object.
+ * 
+ * Usage:
+ * 
+ * ```javascript
+ * import { isNonEmptyObject } from "mazey";
+ * 
+ * const ret1 = isNonEmptyObject({ a: 1 });
+ * const ret2 = isNonEmptyObject({});
+ * const ret3 = isNonEmptyObject('abc');
+ * const ret4 = isNonEmptyObject(null);
+ * console.log(ret1, ret2, ret3, ret4);
+ * ```
+ * 
+ * Output:
+ * 
+ * ```text
+ * true false false false
+ * ```
+ * 
  * @param obj 
  * @returns 
  */
