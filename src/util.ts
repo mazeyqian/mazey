@@ -12,8 +12,8 @@ import type {
  * Usage:
  *
  * ```javascript
- * const ret1 = deepCopy(['a', 'b', 'c']);
- * const ret2 = deepCopy('abc');
+ * const ret1 = deepCopy(["a", "b", "c"]);
+ * const ret2 = deepCopy("abc");
  * console.log(ret1);
  * console.log(ret2);
  * ```
@@ -21,7 +21,7 @@ import type {
  * Output:
  *
  * ```text
- * ['a', 'b', 'c']
+ * ["a", "b", "c"]
  * abc
  * ```
  *
@@ -40,12 +40,10 @@ export function deepCopy<T>(obj: T): T {
   const values = Object.values(obj as SimpleObject);
   const isSimpleTypeObj = values.every(v => simpleTypes.includes(typeof v));
   if (isSimpleTypeObj) {
-    // console.log('it is isSimpleTypeObj');
     return {
       ...obj,
     };
   }
-  // console.log('it is not isSimpleTypeObj');
   return JSON.parse(JSON.stringify(obj));
 }
 
@@ -722,7 +720,7 @@ export function isPureObject(obj: MazeyObject): boolean {
  * 
  * const ret1 = isNonEmptyObject({ a: 1 });
  * const ret2 = isNonEmptyObject({});
- * const ret3 = isNonEmptyObject('abc');
+ * const ret3 = isNonEmptyObject("abc");
  * const ret4 = isNonEmptyObject(null);
  * console.log(ret1, ret2, ret3, ret4);
  * ```
