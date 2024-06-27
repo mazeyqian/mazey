@@ -4,6 +4,8 @@ import type {
 } from "./typing";
 import { isNonEmptyArray } from "./util";
 
+let pwaSupport = "";
+
 /**
  * EN: Detect the margin of Safety. Determine if it is a secure PWA environment that it can run.
  *
@@ -26,14 +28,18 @@ import { isNonEmptyArray } from "./util";
  * @category Browser Information
  */
 export function isSafePWAEnv(): boolean {
+  if (pwaSupport) {
+    // mazeyCon.log("isSafePWAEnv cache");
+    return pwaSupport === "pwa";
+  }
   // 判断是否支持 async await
   function isSupportAsyncAwait() {
     let isSupportAsyncAwaitFunc;
     try {
       const fn = new Function("return async function(){};");
       isSupportAsyncAwaitFunc = fn();
-      // 由于async函数的构造器不是全局对象，所以我们需要由下面代码来获取async函数的构造器
-      // 具体可以查看以下MDN上有关于AsyncFunction的说明，
+      // 由于 async 函数的构造器不是全局对象，所以我们需要由下面代码来获取async函数的构造器
+      // 具体可以查看以下 MDN 上有关于 AsyncFunction 的说明
       // 地址：https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/AsyncFunction
       return Object.getPrototypeOf(isSupportAsyncAwaitFunc).constructor != null;
     } catch (e) {
@@ -50,8 +56,10 @@ export function isSafePWAEnv(): boolean {
   // 浏览器信息
   const BrowserType = getBrowserInfo();
   if ("serviceWorker" in navigator && isSupportAsyncAwait() && isSupportPromise() && Boolean(window.fetch) && Boolean(window.indexedDB) && Boolean(window.caches) && !BrowserType["shell"]) {
+    pwaSupport = "pwa";
     return true;
   }
+  pwaSupport = "no-pwa";
   return false;
 }
 
@@ -101,7 +109,7 @@ export function isSafePWAEnv(): boolean {
 export function getBrowserInfo(): BrowserInfo {
   // Cache
   if (window.MAZEY_BROWSER_INFO && typeof window.MAZEY_BROWSER_INFO === "object") {
-    // console.log('getBrowserInfo cache');
+    // mazeyCon.log("getBrowserInfo cache");
     return window.MAZEY_BROWSER_INFO;
   }
   let browserInfo: BrowserInfo = {
@@ -347,6 +355,8 @@ export function genBrowserAttrs(prefix = "", separator = "-"): string[] {
   return attrs;
 }
 
+let webpSupport = "";
+
 /**
  * Detect webp support.
  *
@@ -369,12 +379,19 @@ export function genBrowserAttrs(prefix = "", separator = "-"): string[] {
  * @category Browser Information
  */
 export function isSupportWebp(): Promise<boolean> {
+  if (webpSupport) {
+    // mazeyCon.log("isSupportWebp cache");
+    return Promise.resolve(webpSupport === "webp");
+  }
   const fn = (resolve: (v: boolean) => void) => {
     const img = new Image();
     img.onload = () => {
-      resolve(img.width > 0 && img.height > 0);
+      const ret = img.width > 0 && img.height > 0;
+      webpSupport = ret ? "webp" : "no-webp";
+      resolve(ret);
     };
     img.onerror = () => {
+      webpSupport = "no-webp";
       resolve(false);
     };
     img.src = "data:image/webp;base64,UklGRh4AAABXRUJQVlA4TBEAAAAvAAAAAAfQ//73v/+BiOh/AAA=";

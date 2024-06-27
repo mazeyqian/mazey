@@ -344,6 +344,32 @@ export function genStyleString(selector: string, styleArray: Array<string>): str
   return `${selector}{${style}}`;
 }
 
+/**
+ * Get the value of the meta tag by the given name.
+ * 
+ * Usage:
+ * 
+ * ```html
+ * <meta name="keywords" content="mazey,web,front-end">
+ * ```
+ * 
+ * ```javascript
+ * import { getPageMeta } from "mazey";
+ * 
+ * const keywords = getPageMeta("keywords");
+ * console.log(keywords);
+ * ```
+ * 
+ * Output:
+ * 
+ * ```text
+ * mazey,web,front-end
+ * ```
+ * 
+ * @param {string} name - The name of the meta tag.
+ * @returns {string} The content of the meta tag.
+ * @category DOM
+ */
 export function getPageMeta(name: string): string {
   if (!document.querySelector) return "";
   return document.querySelector(`meta[name="${name}"]`)?.getAttribute("content") || "";
