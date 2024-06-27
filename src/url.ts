@@ -493,6 +493,28 @@ function checkIfURLIsSupported(url: string = "") {
 //   }
 // }
 
+/**
+ * Get the host of the URL.
+ * 
+ * Usage:
+ * 
+ * ```javascript
+ * import { getUrlHost } from "mazey";
+ * 
+ * const ret = getUrlHost('https://example.com/path/to/page');
+ * console.log(ret);
+ * ```
+ * 
+ * Output:
+ * 
+ * ```text
+ * example.com
+ * ```
+ * 
+ * @param url - The URL to get the host from.
+ * @returns The host of the URL.
+ * @category URL
+ */
 export function getUrlHost(url: string): string {
   let ret = "";
   if (!isValidHttpUrl(url) && isValidHttpUrl(url, { strict: false }) && url.indexOf("//") === 0) {
@@ -505,6 +527,28 @@ export function getUrlHost(url: string): string {
   return ret;
 }
 
+/**
+ * Get the path of the URL.
+ * 
+ * Usage:
+ * 
+ * ```javascript
+ * import { getUrlPath } from "mazey";
+ * 
+ * const ret = getUrlPath('https://example.com/path/to/page');
+ * console.log(ret);
+ * ```
+ * 
+ * Output:
+ * 
+ * ```text
+ * /path/to/page
+ * ```
+ * 
+ * @param url - The URL to get the path from.
+ * @returns The path of the URL.
+ * @category URL
+ */
 export function getUrlPath(url: string): string {
   let ret = "";
   if (!isValidHttpUrl(url) && isValidHttpUrl(url, { strict: false }) && url.indexOf("//") === 0) {
