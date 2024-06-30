@@ -100,7 +100,7 @@ export function isSafePWAEnv(): boolean {
  *
  * ```javascript
  * const { system, shell } = getBrowserInfo();
- * const isMobileQQ = ['android', 'ios'].includes(system) && ['qq_browser', 'qq_app'].includes(shell);
+ * const isMobileQQ = ["android", "ios"].includes(system) && ["qq_browser", "qq_app"].includes(shell);
  * ```
  *
  * @returns 浏览器信息
@@ -133,7 +133,7 @@ export function getBrowserInfo(): BrowserInfo {
     const testUa: TestUa = regexp => regexp.test(ua);
     const testVs: TestVs = regexp => {
       let ret = "";
-      const matchRes = ua.match(regexp); // ['os 13_2_3']
+      const matchRes = ua.match(regexp); // ["os 13_2_3"]
       // Confirm the Safety of the match result
       if (matchRes && isNonEmptyArray(matchRes)) {
         ret = matchRes.toString();
@@ -364,7 +364,7 @@ let webpSupport = "";
  *
  * ```javascript
  * isSupportWebp().then(res => {
- *  console.log('isSupportWebp:', res);
+ *  console.log("isSupportWebp:", res);
  * });
  * ```
  *
