@@ -1435,3 +1435,35 @@ export async function waitTime(time: number): Promise<number> {
 export async function sleep(time: number): Promise<number> {
   return waitTime(time);
 }
+
+let runtimeEnv = "";
+
+/**
+ * Determine if it is a browser environment.
+ *
+ * Usage:
+ *
+ * ```javascript
+ * const ret = isBrowser();
+ * console.log(ret);
+ * ```
+ *
+ * Output:
+ *
+ * ```text
+ * true
+ * ```
+ *
+ * @returns {boolean} true Yes
+ * @category Browser Information
+ */
+export function isBrowser(): boolean {
+  if (runtimeEnv) {
+    return runtimeEnv === "browser";
+  }
+  const isInBrowser = typeof window !== "undefined";
+  if (isInBrowser) {
+    runtimeEnv = "browser";
+  }
+  return isInBrowser;
+}

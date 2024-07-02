@@ -5,7 +5,7 @@
 import {
   camelCaseToKebabCase, camelCase2Underscore,
   deepCopyObject, repeatUntilConditionMet,
-  formatDate,
+  formatDate, isBrowser,
   isJsonString, isNumber, isPureObject, isNonEmptyObject,
   isValidData, isValidEmail, isValidPhoneNumber, isNonEmptyArray,
   getFriendlyInterval, getFileSize, getCurrentVersion,
@@ -677,7 +677,7 @@ test("Non-object values", () => {
 
 // Test case 4: Arrays
 test("Arrays", () => {
-  const arr = [1, 2, 3];
+  const arr = [ 1, 2, 3 ];
   expect(isPureObject(arr)).toBe(false);
 });
 
@@ -685,4 +685,11 @@ test("Arrays", () => {
 test("Functions", () => {
   const func = () => {};
   expect(isPureObject(func)).toBe(false);
+});
+
+describe("isBrowser function", () => {
+  it("should return false if running in a node environment", () => {
+    const result = isBrowser();
+    expect(result).toBe(false);
+  });
 });
