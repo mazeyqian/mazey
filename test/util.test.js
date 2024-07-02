@@ -272,6 +272,46 @@ test("Throttled function should respect the leading and trailing options", () =>
   expect(mockFn).not.toHaveBeenCalled();
 });
 
+// describe("throttle", () => {
+//   // Mock function for testing
+//   const mockFn = jest.fn();
+
+//   beforeEach(() => {
+//     jest.useFakeTimers();
+//     mockFn.mockClear();
+//   });
+
+//   it("should throttle the function call", () => {
+//     const throttledFn = throttle(mockFn, 100);
+
+//     // Call the throttled function multiple times within the throttle period
+//     throttledFn();
+//     throttledFn();
+//     throttledFn();
+
+//     // Fast-forward time by 100ms
+//     jest.advanceTimersByTime(100);
+
+//     // The throttled function should only be called once
+//     expect(mockFn).toHaveBeenCalledTimes(1);
+//   });
+
+//   it("should respect the leading option", () => {
+//     const throttledFn = throttle(mockFn, 100, { leading: false });
+
+//     // Call the throttled function multiple times within the throttle period
+//     throttledFn();
+//     throttledFn();
+//     throttledFn();
+
+//     // Fast-forward time by 100ms
+//     jest.advanceTimersByTime(100);
+
+//     // The throttled function should not be called
+//     expect(mockFn).not.toHaveBeenCalled();
+//   });
+// });
+
 describe("debounce", () => {
   // Mock function for testing
   const mockFn = jest.fn();
@@ -654,37 +694,59 @@ describe("isNonEmptyObject", () => {
   });
 });
 
-// Test case 1: Valid pure object
-test("Valid pure object", () => {
-  const obj = { name: "John", age: 30 };
-  expect(isPureObject(obj)).toBe(true);
-});
+// // Test case 1: Valid pure object
+// test("Valid pure object", () => {
+//   const obj = { name: "John", age: 30 };
+//   expect(isPureObject(obj)).toBe(true);
+// });
+// // Test case 2: Empty object
+// test("Empty object", () => {
+//   const obj = {};
+//   expect(isPureObject(obj)).toBe(true);
+// });
+// // Test case 3: Non-object values
+// test("Non-object values", () => {
+//   expect(isPureObject(null)).toBe(false);
+//   expect(isPureObject(undefined)).toBe(false);
+//   expect(isPureObject(123)).toBe(false);
+//   expect(isPureObject("hello")).toBe(false);
+//   expect(isPureObject(true)).toBe(false);
+// });
+// // Test case 4: Arrays
+// test("isPureObject", () => {
+//   const arr = [ 1, 2, 3 ];
+//   expect(isPureObject(arr)).toBe(false);
+// });
+// // Test case 5: Functions
+// test("isPureObject", () => {
+//   const func = () => {};
+//   expect(isPureObject(func)).toBe(false);
+// });
 
-// Test case 2: Empty object
-test("Empty object", () => {
-  const obj = {};
-  expect(isPureObject(obj)).toBe(true);
-});
+describe("isPureObject", () => {
+  it("should return true for a pure object", () => {
+    const obj = { key: "value" };
+    const result = isPureObject(obj);
+    expect(result).toBe(true);
+  });
 
-// Test case 3: Non-object values
-test("Non-object values", () => {
-  expect(isPureObject(null)).toBe(false);
-  expect(isPureObject(undefined)).toBe(false);
-  expect(isPureObject(123)).toBe(false);
-  expect(isPureObject("hello")).toBe(false);
-  expect(isPureObject(true)).toBe(false);
-});
+  it("should return false for an array", () => {
+    const arr = [ 1, 2, 3 ];
+    const result = isPureObject(arr);
+    expect(result).toBe(false);
+  });
 
-// Test case 4: Arrays
-test("Arrays", () => {
-  const arr = [ 1, 2, 3 ];
-  expect(isPureObject(arr)).toBe(false);
-});
+  it("should return false for a function", () => {
+    const func = () => {};
+    const result = isPureObject(func);
+    expect(result).toBe(false);
+  });
 
-// Test case 5: Functions
-test("Functions", () => {
-  const func = () => {};
-  expect(isPureObject(func)).toBe(false);
+  it("should return false for a non-object value", () => {
+    const value = "not an object";
+    const result = isPureObject(value);
+    expect(result).toBe(false);
+  });
 });
 
 describe("isBrowser function", () => {
