@@ -5,20 +5,15 @@
 import {
   camelCaseToKebabCase, camelCase2Underscore,
   deepCopyObject, repeatUntilConditionMet,
-  formatDate, isBrowser,
+  formatDate, isBrowser, waitTime,
   isJsonString, isNumber, isPureObject, isNonEmptyObject,
   isValidData, isValidEmail, isValidPhoneNumber, isNonEmptyArray,
   getFriendlyInterval, getFileSize, getCurrentVersion,
-  waitTime,
   genUniqueNumString, generateRndNum, genHashCode,
-  floatToPercent, floatFixed,
-  throttle, debounce,
-  doFn, mTrim,
-  removeHtml,
-  convertKebabToCamel, convert10To26,
+  floatToPercent, floatFixed, throttle, debounce,
+  doFn, mTrim, removeHtml, truncateZHString,
+  convertKebabToCamel, convert10To26, zAxiosIsValidRes,
   unsanitize, sanitizeInput, unsanitizeInput,
-  truncateZHString,
-  zAxiosIsValidRes,
 } from "../lib/index.esm";
 
 test("isNumber: Is -1/123/Infinity/NaN Number?", () => {
