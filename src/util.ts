@@ -1,7 +1,7 @@
 import type {
   ThrottleFunc, DebounceFunc, IsNumberOptions,
   ZResResponse, ZResIsValidResOptions,
-  SimpleObject, SimpleType,
+  SimpleObject, SimpleType, MazeyDate,
   MazeyObject, MazeyFnParams, MazeyFnReturn, MazeyFunction,
   RepeatUntilOptions,
 } from "./typing";
@@ -1201,12 +1201,12 @@ export function genHashCode(str: string): number {
  * Date formatDate value: 02/11/2014
  * ```
  *
- * @param {Date|number|string} dateIns Original Date
+ * @param {MazeyDate} dateIns Original Date
  * @param {string} format Format String
  * @returns {string} Return the formatted date string.
  * @category Util
  */
-export function formatDate(dateIns?: Date | number | string, format = "yyyy-MM-dd"): string {
+export function formatDate(dateIns?: MazeyDate, format = "yyyy-MM-dd"): string {
   if (!dateIns) {
     dateIns = new Date();
   }
