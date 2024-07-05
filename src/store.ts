@@ -6,14 +6,14 @@
  * Usage:
  *
  * ```javascript
- * setSessionStorage('test', '123');
- * const ret1 = getSessionStorage('test');
- * setLocalStorage('test', '123');
- * const ret2 = getLocalStorage('test');
+ * setSessionStorage("test", "123");
+ * const ret1 = getSessionStorage("test");
+ * setLocalStorage("test", "123");
+ * const ret2 = getLocalStorage("test");
  * console.log(ret1, ret2);
  *
  * // or package in usage
- * const projectName = 'mazey';
+ * const projectName = "mazey";
  * function mSetLocalStorage (key, value) {
  *   return setLocalStorage(`${projectName}_${key}`, value);
  * }
@@ -47,14 +47,14 @@ export function setSessionStorage<T>(key: string, value: T | null = null): void 
  * Usage:
  *
  * ```javascript
- * setSessionStorage('test', '123');
- * const ret1 = getSessionStorage('test');
- * setLocalStorage('test', '123');
- * const ret2 = getLocalStorage('test');
+ * setSessionStorage("test", "123");
+ * const ret1 = getSessionStorage("test");
+ * setLocalStorage("test", "123");
+ * const ret2 = getLocalStorage("test");
  * console.log(ret1, ret2);
  *
  * // or package in usage
- * const projectName = 'mazey';
+ * const projectName = "mazey";
  * function mSetLocalStorage (key, value) {
  *   return setLocalStorage(`${projectName}_${key}`, value);
  * }
@@ -93,14 +93,14 @@ export function getSessionStorage<T>(key: string): T | null {
  * Usage:
  *
  * ```javascript
- * setSessionStorage('test', '123');
- * const ret1 = getSessionStorage('test');
- * setLocalStorage('test', '123');
- * const ret2 = getLocalStorage('test');
+ * setSessionStorage("test", "123");
+ * const ret1 = getSessionStorage("test");
+ * setLocalStorage("test", "123");
+ * const ret2 = getLocalStorage("test");
  * console.log(ret1, ret2);
  *
  * // or package in usage
- * const projectName = 'mazey';
+ * const projectName = "mazey";
  * function mSetLocalStorage (key, value) {
  *   return setLocalStorage(`${projectName}_${key}`, value);
  * }
@@ -134,14 +134,14 @@ export function setLocalStorage<T>(key: string, value: T | null = null): void {
  * Usage:
  *
  * ```javascript
- * setSessionStorage('test', '123');
- * const ret1 = getSessionStorage('test');
- * setLocalStorage('test', '123');
- * const ret2 = getLocalStorage('test');
+ * setSessionStorage("test", "123");
+ * const ret1 = getSessionStorage("test");
+ * setLocalStorage("test", "123");
+ * const ret2 = getLocalStorage("test");
  * console.log(ret1, ret2);
  *
  * // or package in usage
- * const projectName = 'mazey';
+ * const projectName = "mazey";
  * function mSetLocalStorage (key, value) {
  *   return setLocalStorage(`${projectName}_${key}`, value);
  * }
@@ -180,8 +180,8 @@ export function getLocalStorage<T>(key: string): T | null {
  * Usage:
  *
  * ```javascript
- * setCookie('test', '123', 30, 'example.com'); // key value day domain
- * const ret = getCookie('test');
+ * setCookie("test", "123", 30, "example.com"); // key value day domain
+ * const ret = getCookie("test");
  * console.log(ret);
  * ```
  *
@@ -214,8 +214,8 @@ export function getCookie(name: string): string {
  * Usage:
  *
  * ```javascript
- * setCookie('test', '123', 30, 'example.com'); // key value day domain
- * const ret = getCookie('test');
+ * setCookie("test", "123", 30, "example.com"); // key value day domain
+ * const ret = getCookie("test");
  * console.log(ret);
  * ```
  *
@@ -270,7 +270,7 @@ export function setCookie(name: string, value: string, days?: number, domain?: s
  * Usage:
  *
  * ```javascript
- * const ret = removeCookie('test');
+ * const ret = removeCookie("test");
  * console.log(ret);
  * ```
  *
