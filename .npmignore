@@ -9,11 +9,19 @@ temp/
 src/
 examples/
 images/
-scripts/convert/
+coverage/
+types/
 
-# .
-.idea
-.vscode
+# Specific script subdirectories
+scripts/convert/
+scripts/shell/
+
+# Editors & IDEs settings
+.idea/
+.vscode/
+*.sublime*
+
+# Code Linters & Formatters
 .editorconfig
 .eslintignore
 .lintstagedrc
@@ -24,17 +32,19 @@ scripts/convert/
 .eslintrc
 .npmrc
 
-# *
+# Configurations
 *.yml
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 
-# Files
+# Dependency Lock Files
 yarn.lock
 yarn-error.log
 package-lock.json
+
+# Configuration Files
 api-extractor.json
 commitlint.config.js
 rollup.config.js
@@ -42,9 +52,14 @@ webpack.config.js
 webpack.config.dev.js
 jsdoc.config.json
 tsconfig.json
-# typing.d.ts
-global.d.ts
+
+# Documentation in other languages
 README_CN.md
 README_ZH.md
-scripts/README.md
-scripts/env.sh
+
+# Global TypeScript definitions
+/global.d.ts
+
+# System files
+.DS_Store
+Thumbs.db

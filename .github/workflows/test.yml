@@ -12,6 +12,7 @@ on:
       - 'feature/**'
       - 'fix/**'
       - 'test/**'
+      - 'chore/**'
 
 jobs:
   build-and-test:
