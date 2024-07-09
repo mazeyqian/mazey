@@ -62,8 +62,8 @@ export function deepCopyObject<T>(obj: T): T {
  * Usage:
  *
  * ```javascript
- * const ret1 = convertCamelToKebab('ABC');
- * const ret2 = convertCamelToKebab('aBC');
+ * const ret1 = convertCamelToKebab("ABC");
+ * const ret2 = convertCamelToKebab("aBC");
  * console.log(ret1);
  * console.log(ret2);
  * ```
@@ -75,8 +75,8 @@ export function deepCopyObject<T>(obj: T): T {
  * a-b-c
  * ```
  *
- * @param {string} camelCase 'aBC' or 'ABC'
- * @returns {string} 'a-b-c'
+ * @param {string} camelCase "aBC" or "ABC"
+ * @returns {string} "a-b-c"
  * @category Util
  */
 export function convertCamelToKebab(camelCase: string): string {
@@ -111,8 +111,8 @@ export function camelCaseToKebabCase(camelCase: string): string {
  * Usage:
  *
  * ```javascript
- * const ret1 = convertCamelToUnder('ABC');
- * const ret2 = convertCamelToUnder('aBC');
+ * const ret1 = convertCamelToUnder("ABC");
+ * const ret2 = convertCamelToUnder("aBC");
  * console.log(ret1);
  * console.log(ret2);
  * ```
@@ -124,8 +124,8 @@ export function camelCaseToKebabCase(camelCase: string): string {
  * a_b_c
  * ```
  *
- * @param {string} camelCase 'aBC' or 'ABC'
- * @returns {string} 'a_b_c'
+ * @param {string} camelCase "aBC" or "ABC"
+ * @returns {string} "a_b_c"
  * @category Util
  */
 export function convertCamelToUnder(camelCase: string): string {
@@ -150,8 +150,8 @@ export function camelCase2Underscore(camelCase: string): string {
  * Usage:
  *
  * ```javascript
- * const ret1 = mTrim(' 1 2 3 ');
- * const ret2 = mTrim('abc ');
+ * const ret1 = mTrim(" 1 2 3 ");
+ * const ret2 = mTrim("abc ");
  * console.log(ret1);
  * console.log(ret2);
  * ```
@@ -222,7 +222,7 @@ export function isJsonString(str: string): boolean {
 }
 
 /**
- * Produce a random string of number, `genRndNumString(7)` => '7658495'.
+ * Produce a random string of number, `genRndNumString(7)` => "7658495".
  *
  * Usage:
  *
@@ -400,7 +400,7 @@ export function floatFixed(num: string, size = 0): string {
  *
  * ```javascript
  * const foo = throttle(() => {
- *   console.log('The function will be invoked at most once per every wait 1000 milliseconds.');
+ *   console.log("The function will be invoked at most once per every wait 1000 milliseconds.");
  * }, 1000, { leading: true });
  * ```
  *
@@ -457,7 +457,7 @@ export function throttle<T extends (...args: MazeyFnParams) => MazeyFnReturn>(fu
  *
  * ```javascript
  * const foo = debounce(() => {
- *   console.log('The debounced function will only be invoked in 1000 milliseconds, the other invoking will disappear during the wait time.');
+ *   console.log("The debounced function will only be invoked in 1000 milliseconds, the other invoking will disappear during the wait time.");
  * }, 1000, true);
  * ```
  *
@@ -512,9 +512,9 @@ const defaultGetFriendlyIntervalOptions = {
  * Usage:
  *
  * ```javascript
- * const ret1 = getFriendlyInterval(new Date('2020-03-28 00:09:27'), new Date('2023-04-18 10:54:00'), { type: 'd' });
- * const ret2 = getFriendlyInterval(1585325367000, 1681786440000, { type: 'text' });
- * const ret3 = getFriendlyInterval('2020-03-28 00:09:27', '2023-04-18 10:54:00', { type: 'text' });
+ * const ret1 = getFriendlyInterval(new Date("2020-03-28 00:09:27"), new Date("2023-04-18 10:54:00"), { type: "d" });
+ * const ret2 = getFriendlyInterval(1585325367000, 1681786440000, { type: "text" });
+ * const ret3 = getFriendlyInterval("2020-03-28 00:09:27", "2023-04-18 10:54:00", { type: "text" });
  * console.log(ret1);
  * console.log(ret2);
  * console.log(ret3);
@@ -543,10 +543,10 @@ export function getFriendlyInterval(start: number | string | Date = 0, end: numb
   const t = Number(end) - Number(start);
   let ret = "";
   let [ d, h, m, s ] = new Array(4).fill(0);
-  const zhD = dec("%20%E5%A4%A9%20"); // ' 天 '
-  const zhH = dec("%20%E6%97%B6%20"); // ' 时 '
-  const zhM = dec("%20%E5%88%86%20"); // ' 分 '
-  const zhS = dec("%20%E7%A7%92"); // ' 秒'
+  const zhD = dec("%20%E5%A4%A9%20"); // " 天 "
+  const zhH = dec("%20%E6%97%B6%20"); // " 时 "
+  const zhM = dec("%20%E5%88%86%20"); // " 分 "
+  const zhS = dec("%20%E7%A7%92"); // " 秒"
   if (t >= 0) {
     d = Math.floor(t / 1000 / 60 / 60 / 24);
     h = Math.floor(t / 1000 / 60 / 60);
@@ -561,7 +561,6 @@ export function getFriendlyInterval(start: number | string | Date = 0, end: numb
         h = Math.floor((t / 1000 / 60 / 60) % 24);
         m = Math.floor((t / 1000 / 60) % 60);
         s = Math.floor((t / 1000) % 60);
-        // ret = d + ' 天 ' + h + ' 时 ' + m + ' 分 ' + s + ' 秒';
         ret = d + zhD + h + zhH + m + zhM + s + zhS;
         break;
       default:
@@ -580,7 +579,7 @@ export function getFriendlyInterval(start: number | string | Date = 0, end: numb
  *
  * ```javascript
  * const ret1 = isNumber(123);
- * const ret2 = isNumber('123');
+ * const ret2 = isNumber("123");
  * // Default: NaN, Infinity is not Number
  * const ret3 = isNumber(Infinity);
  * const ret4 = isNumber(Infinity, { isInfinityAsNumber: true });
@@ -628,7 +627,7 @@ export function isNumber(num: unknown, options: IsNumberOptions = {}): boolean {
  *
  * ```javascript
  * const ret = invokeFn(() => {
- *  console.log('invokeFn');
+ *  console.log("invokeFn");
  * });
  * ```
  *
@@ -684,10 +683,10 @@ export function isNonEmptyArray<T>(arr: Array<T>): boolean {
  * Usage:
  * 
  * ```javascript
- * import { isPureObject } from 'mazey';
+ * import { isPureObject } from "mazey";
  * 
  * const ret1 = isPureObject({ a: 1 });
- * const ret2 = isPureObject('abc');
+ * const ret2 = isPureObject("abc");
  * const ret3 = isPureObject(null);
  * const ret4 = isPureObject([]);
  * 
@@ -751,8 +750,8 @@ export function isNonEmptyObject(obj: MazeyObject): boolean {
  * Usage:
  *
  * ```javascript
- * const ret1 = convertToHtmlBreaks('a\nb\nc');
- * const ret2 = convertToHtmlBreaks('a\n\nbc');
+ * const ret1 = convertToHtmlBreaks("a\nb\nc");
+ * const ret2 = convertToHtmlBreaks("a\n\nbc");
  * console.log(ret1);
  * console.log(ret2);
  * ```
@@ -791,7 +790,7 @@ export function newLine(str: string): string {
  * Usage:
  *
  * ```javascript
- * const ret = removeHTML('<div>hello world</div>');
+ * const ret = removeHTML("<div>hello world</div>");
  * console.log(ret);
  * ```
  *
@@ -850,7 +849,7 @@ export function clearHtml(str: string, options: { removeNewLine?: boolean } = {}
  * Usage:
  *
  * ```javascript
- * const ret = sanitizeInput('<div>hello world</div>');
+ * const ret = sanitizeInput("<div>hello world</div>");
  * console.log(ret);
  * ```
  *
@@ -886,7 +885,7 @@ export function sanitizeInput(input: string): string {
  * Usage:
  *
  * ```javascript
- * const ret = unsanitizeInput('&lt;div&gt;hello world&lt;/div&gt;');
+ * const ret = unsanitizeInput("&lt;div&gt;hello world&lt;/div&gt;");
  * console.log(ret);
  * ```
  *
@@ -912,7 +911,6 @@ export function unsanitizeInput(input: string): string {
   };
   if (typeof input !== "string") {
     throw new Error("Input must be a string");
-    // console.error('Input must be a string');
   }
   return input.replace(regex, (match: keyof typeof replacements) => replacements[match]);
 }
@@ -934,7 +932,7 @@ export function unsanitize(str: string): string {
  * Usage:
  *
  * ```javascript
- * const ret = cutZHString('hello world', 5);
+ * const ret = cutZHString("hello world", 5);
  * console.log(ret);
  * ```
  *
@@ -988,7 +986,7 @@ export function cutZHString(str: string, len: number, options: { hasDot?: boolea
  * Usage:
  *
  * ```javascript
- * const ret = truncateZHString('hello world', 5);
+ * const ret = truncateZHString("hello world", 5);
  * console.log(ret);
  * ```
  *
@@ -1064,12 +1062,12 @@ export function zAxiosIsValidRes(
  *     }
  *   }
  * };
- * const isValidDataResA = isValidData(validData, ['a', 'b', 'c'], 2333);
- * const isValidDataResB = isValidData(validData, ['a', 'b', 'c'], 413);
- * const isValidDataResC = isValidData(validData, ['d', 'd'], 413);
- * console.log('isValidDataResA:', isValidDataResA);
- * console.log('isValidDataResB:', isValidDataResB);
- * console.log('isValidDataResC:', isValidDataResC);
+ * const isValidDataResA = isValidData(validData, ["a", "b", "c"], 2333);
+ * const isValidDataResB = isValidData(validData, ["a", "b", "c"], 413);
+ * const isValidDataResC = isValidData(validData, ["d", "d"], 413);
+ * console.log("isValidDataResA:", isValidDataResA);
+ * console.log("isValidDataResB:", isValidDataResB);
+ * console.log("isValidDataResC:", isValidDataResC);
  * ```
  *
  * Output:
@@ -1150,7 +1148,7 @@ export function getFileSize(size: number): string {
  * Usage:
  *
  * ```javascript
- * const ret = genHashCode('hello world');
+ * const ret = genHashCode("hello world");
  * console.log(ret);
  * ```
  *
@@ -1183,13 +1181,13 @@ export function genHashCode(str: string): number {
  *
  * ```javascript
  * const ret1 = formatDate();
- * const ret2 = formatDate('Tue Jan 11 2022 14:12:26 GMT+0800 (China Standard Time)', 'yyyy-MM-dd hh:mm:ss a');
- * const ret3 = formatDate(1641881235000, 'yyyy-MM-dd hh:mm:ss a');
- * const ret4 = formatDate(new Date(2014, 1, 11), 'MM/dd/yyyy');
- * console.log('Default formatDate value:', ret1);
- * console.log('String formatDate value:', ret2);
- * console.log('Number formatDate value:', ret3);
- * console.log('Date formatDate value:', ret4);
+ * const ret2 = formatDate("Tue Jan 11 2022 14:12:26 GMT+0800 (China Standard Time)", "yyyy-MM-dd hh:mm:ss a");
+ * const ret3 = formatDate(1641881235000, "yyyy-MM-dd hh:mm:ss a");
+ * const ret4 = formatDate(new Date(2014, 1, 11), "MM/dd/yyyy");
+ * console.log("Default formatDate value:", ret1);
+ * console.log("String formatDate value:", ret2);
+ * console.log("Number formatDate value:", ret3);
+ * console.log("Date formatDate value:", ret4);
  * ```
  *
  * Output:
@@ -1241,10 +1239,10 @@ export function formatDate(dateIns?: MazeyDate, format = "yyyy-MM-dd"): string {
  * Usage:
  *
  * ```javascript
- * const ret1 = isMobile('13800138000');
- * const ret2 = isMobile('1380013800');
- * const ret3 = isMobile('138001380000');
- * const ret4 = isMobile('1380013800a');
+ * const ret1 = isMobile("13800138000");
+ * const ret2 = isMobile("1380013800");
+ * const ret3 = isMobile("138001380000");
+ * const ret4 = isMobile("1380013800a");
  * console.log(ret1, ret2, ret3, ret4);
  * ```
  *
@@ -1269,7 +1267,7 @@ export function isValidPhoneNumber(mobile: string): boolean {
  * Usage:
  *
  * ```javascript
- * const ret = isValidEmail('mazeyqian@gmail.com');
+ * const ret = isValidEmail("mazeyqian@gmail.com");
  * console.log(ret);
  * ```
  *
@@ -1342,7 +1340,7 @@ export function getCurrentVersion(): string {
  * ```javascript
  * repeatUntilConditionMet(
  *   () => {
- *     console.log('repeatUntilConditionMet');
+ *     console.log("repeatUntilConditionMet");
  *     return true;
  *   }, {
  *     interval: 1000,
@@ -1406,7 +1404,7 @@ export function repeatUntilConditionMet<T extends (...args: MazeyFnParams) => Ma
  *
  * ```javascript
  * waitTime(1000).then((time) => {
- *  console.log('waitTime:', time);
+ *  console.log("waitTime:", time);
  * });
  * ```
  *
