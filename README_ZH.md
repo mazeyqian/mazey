@@ -96,7 +96,7 @@ windowLoaded({ timeout: 30 })
 
 ### 存储数据
 
-Storage（兼容 JSON 格式，自行转换）：
+Storage（兼容 JSON 格式，自动转换）：
 
 ```javascript
 import { setSessionStorage, getSessionStorage, setLocalStorage, getLocalStorage } from 'mazey';
