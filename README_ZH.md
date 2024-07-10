@@ -114,7 +114,7 @@ Cookie：
 ```javascript
 import { setCookie, getCookie } from "mazey";
 
-setCookie("test", "123", 30, "mazey.net"); // key value day domain
+setCookie("test", "123", 30, "example.com"); // key value day domain
 getCookie("test"); // 123
 ```
 
