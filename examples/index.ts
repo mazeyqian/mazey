@@ -63,7 +63,7 @@ console.log("String formatDate value:", formatDate("Tue Jan 11 2022 14:12:26 GMT
 // 2022-01-11 14:12:26
 console.log("Number formatDate value:", formatDate(1641881235000, "yyyy-MM-dd hh:mm:ss"));
 // 2022-01-11 14:07:15
-// (new Date(2014, 1, 11), 'MM/dd/yyyy')
+// (new Date(2014, 1, 11), "MM/dd/yyyy")
 console.log("Date formatDate value:", formatDate(new Date(2014, 1, 11), "MM/dd/yyyy"));
 // Date formatDate value: 02/11/2014
 const validData = {
