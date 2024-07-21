@@ -5,20 +5,15 @@
 import {
   camelCaseToKebabCase, camelCase2Underscore,
   deepCopyObject, repeatUntilConditionMet,
-  formatDate, isBrowser,
+  formatDate, isBrowser, waitTime, isArray,
   isJsonString, isNumber, isPureObject, isNonEmptyObject,
   isValidData, isValidEmail, isValidPhoneNumber, isNonEmptyArray,
   getFriendlyInterval, getFileSize, getCurrentVersion,
-  waitTime,
   genUniqueNumString, generateRndNum, genHashCode,
-  floatToPercent, floatFixed,
-  throttle, debounce,
-  doFn, mTrim,
-  removeHtml,
-  convertKebabToCamel, convert10To26,
+  floatToPercent, floatFixed, throttle, debounce,
+  doFn, mTrim, removeHtml, truncateZHString,
+  convertKebabToCamel, convert10To26, zAxiosIsValidRes,
   unsanitize, sanitizeInput, unsanitizeInput,
-  truncateZHString,
-  zAxiosIsValidRes,
 } from "../lib/index.esm";
 
 test("isNumber: Is -1/123/Infinity/NaN Number?", () => {
@@ -694,35 +689,6 @@ describe("isNonEmptyObject", () => {
   });
 });
 
-// // Test case 1: Valid pure object
-// test("Valid pure object", () => {
-//   const obj = { name: "John", age: 30 };
-//   expect(isPureObject(obj)).toBe(true);
-// });
-// // Test case 2: Empty object
-// test("Empty object", () => {
-//   const obj = {};
-//   expect(isPureObject(obj)).toBe(true);
-// });
-// // Test case 3: Non-object values
-// test("Non-object values", () => {
-//   expect(isPureObject(null)).toBe(false);
-//   expect(isPureObject(undefined)).toBe(false);
-//   expect(isPureObject(123)).toBe(false);
-//   expect(isPureObject("hello")).toBe(false);
-//   expect(isPureObject(true)).toBe(false);
-// });
-// // Test case 4: Arrays
-// test("isPureObject", () => {
-//   const arr = [ 1, 2, 3 ];
-//   expect(isPureObject(arr)).toBe(false);
-// });
-// // Test case 5: Functions
-// test("isPureObject", () => {
-//   const func = () => {};
-//   expect(isPureObject(func)).toBe(false);
-// });
-
 describe("isPureObject", () => {
   it("should return true for a pure object", () => {
     const obj = { key: "value" };
@@ -745,6 +711,20 @@ describe("isPureObject", () => {
   it("should return false for a non-object value", () => {
     const value = "not an object";
     const result = isPureObject(value);
+    expect(result).toBe(false);
+  });
+});
+
+describe("isArray", () => {
+  it("should return true for an array", () => {
+    const arr = [ 1, 2, 3 ];
+    const result = isArray(arr);
+    expect(result).toBe(true);
+  });
+
+  it("should return false for a non-array value", () => {
+    const value = "not an array";
+    const result = isArray(value);
     expect(result).toBe(false);
   });
 });
