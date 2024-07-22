@@ -14,6 +14,7 @@ import {
   doFn, mTrim, removeHtml, truncateZHString,
   convertKebabToCamel, convert10To26, zAxiosIsValidRes,
   unsanitize, sanitizeInput, unsanitizeInput,
+  isFunction, isString, isBoolean, isUdfOrNul,
 } from "../lib/index.esm";
 
 test("isNumber: Is -1/123/Infinity/NaN Number?", () => {
@@ -725,6 +726,68 @@ describe("isArray", () => {
   it("should return false for a non-array value", () => {
     const value = "not an array";
     const result = isArray(value);
+    expect(result).toBe(false);
+  });
+});
+
+describe("isString", () => {
+  it("should return true for a string", () => {
+    const str = "Hello, world!";
+    const result = isString(str);
+    expect(result).toBe(true);
+  });
+
+  it("should return false for a non-string value", () => {
+    const value = 123;
+    const result = isString(value);
+    expect(result).toBe(false);
+  });
+});
+
+describe("isFunction", () => {
+  it("should return true for a function", () => {
+    const func = () => {};
+    const result = isFunction(func);
+    expect(result).toBe(true);
+  });
+
+  it("should return false for a non-function value", () => {
+    const value = "not a function";
+    const result = isFunction(value);
+    expect(result).toBe(false);
+  });
+});
+
+describe("isBoolean", () => {
+  it("should return true for a boolean", () => {
+    const bool = true;
+    const result = isBoolean(bool);
+    expect(result).toBe(true);
+  });
+
+  it("should return false for a non-boolean value", () => {
+    const value = "not a boolean";
+    const result = isBoolean(value);
+    expect(result).toBe(false);
+  });
+});
+
+describe("isUdfOrNul", () => {
+  it("should return true for undefined", () => {
+    const value = undefined;
+    const result = isUdfOrNul(value);
+    expect(result).toBe(true);
+  });
+
+  it("should return true for null", () => {
+    const value = null;
+    const result = isUdfOrNul(value);
+    expect(result).toBe(true);
+  });
+
+  it("should return false for a non-undefined and non-null value", () => {
+    const value = "not undefined or null";
+    const result = isUdfOrNul(value);
     expect(result).toBe(false);
   });
 });
