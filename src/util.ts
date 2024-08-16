@@ -134,6 +134,32 @@ export function convertCamelToUnder(camelCase: string): string {
 }
 
 /**
+ * Convert Underscore to CamelCase.
+ *
+ * Usage:
+ *
+ * ```javascript
+ * const ret1 = convertUnderToCamel("a_b_c");
+ * const ret2 = convertUnderToCamel("a_bb_cc");
+ * console.log(ret1, ret2);
+ * ```
+ * 
+ * Output:
+ * 
+ * ```text
+ * aBC aBbCc
+ * ```
+ *
+ * @param {string} underCase "a_bb_cc"
+ * @returns {string} "aBbCc"
+ * @category Util
+ */
+export function convertUnderToCamel(underCase: string): string {
+  const camelCase = underCase.replace(/_([a-z])/g, (_all, letter) => letter.toUpperCase());
+  return camelCase;
+}
+
+/**
  * Alias of `convertCamelToUnder`.
  *
  * @hidden
