@@ -85,10 +85,24 @@ export function convertCamelToKebab(camelCase: string): string {
 }
 
 /**
- * Convert CamelCase to KebabCase.
+ * Convert KebabCase to CamelCase.
  * 
- * @param {string} kebabCase 
- * @returns {string}
+ * Usage:
+ * 
+ * ```javascript
+ * const ret1 = convertKebabToCamel("a-b-c");
+ * const ret2 = convertKebabToCamel("a-bb-cc");
+ * console.log(ret1, ret2);
+ * ```
+ * 
+ * Output:
+ * 
+ * ```text
+ * aBC aBbCc
+ * ```
+ * 
+ * @param {string} kebabCase "a-bb-cc"
+ * @returns {string} "aBbCc"
  * @category Util
  */
 export function convertKebabToCamel(kebabCase: string): string {
