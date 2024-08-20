@@ -25,7 +25,7 @@ npm install mazey --save
 Use Mazey from CDN.
 
 ```html
-<script type="text/javascript" src="//i.mazey.net/mazey/lib/mazey.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mazey@latest/lib/mazey.min.js"></script>
 ```
 
 Of course, you can also download and serve the file [lib/mazey.min.js](https://cdn.jsdelivr.net/npm/mazey@latest/lib/mazey.min.js) yourself.
