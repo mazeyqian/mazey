@@ -64,9 +64,9 @@ export function isSafePWAEnv(): boolean {
 }
 
 /**
- * EN: Browser Information
+ * EN: Provides detailed information about the browser.
  *
- * ZH: 返回浏览器信息。
+ * ZH: 返回有关浏览器的详细信息。
  *
  * Usage:
  *
@@ -103,7 +103,8 @@ export function isSafePWAEnv(): boolean {
  * const isMobileQQ = ["android", "ios"].includes(system) && ["qq_browser", "qq_app"].includes(shell);
  * ```
  *
- * @returns 浏览器信息
+ * @environment Browser
+ * @returns Browser information
  * @category Browser Information
  */
 export function getBrowserInfo(): BrowserInfo {
@@ -147,15 +148,15 @@ export function getBrowserInfo(): BrowserInfo {
     // Apple Device Type
     let appleType = "";
     if (testUa(/windows|win32|win64|wow32|wow64/g)) {
-      system = "windows"; // windows系统
+      system = "windows"; // windows 系统
     } else if (testUa(/macintosh|macintel/g)) {
-      system = "macos"; // macos系统
+      system = "macos"; // macos 系统
     } else if (testUa(/x11/g)) {
-      system = "linux"; // linux系统
+      system = "linux"; // linux 系统
     } else if (testUa(/android|adr/g)) {
-      system = "android"; // android系统
+      system = "android"; // android 系统
     } else if (testUa(/ios|iphone|ipad|ipod|iwatch/g)) {
-      system = "ios"; // ios系统
+      system = "ios"; // ios 系统
       if (testUa(/ipad/g)) {
         appleType = "ipad";
       } else if (testUa(/iphone/g)) {
@@ -217,25 +218,25 @@ export function getBrowserInfo(): BrowserInfo {
     let engine = "";
     let supporter = "";
     if (testUa(/applewebkit/g)) {
-      engine = "webkit"; // webkit内核
+      engine = "webkit"; // webkit 内核
       if (testUa(/edge/g)) {
-        supporter = "edge"; // edge浏览器
+        supporter = "edge"; // edge 浏览器
       } else if (testUa(/opr/g)) {
-        supporter = "opera"; // opera浏览器
+        supporter = "opera"; // opera 浏览器
       } else if (testUa(/chrome/g)) {
-        supporter = "chrome"; // chrome浏览器
+        supporter = "chrome"; // chrome 浏览器
       } else if (testUa(/safari/g)) {
-        supporter = "safari"; // safari浏览器
+        supporter = "safari"; // safari 浏览器
       }
     } else if (testUa(/gecko/g) && testUa(/firefox/g)) {
-      engine = "gecko"; // gecko内核
-      supporter = "firefox"; // firefox浏览器
+      engine = "gecko"; // gecko 内核
+      supporter = "firefox"; // firefox 浏览器
     } else if (testUa(/presto/g)) {
-      engine = "presto"; // presto内核
-      supporter = "opera"; // opera浏览器
+      engine = "presto"; // presto 内核
+      supporter = "opera"; // opera 浏览器
     } else if (testUa(/trident|compatible|msie/g)) {
-      engine = "trident"; // trident内核
-      supporter = "iexplore"; // iexplore浏览器
+      engine = "trident"; // trident 内核
+      supporter = "iexplore"; // iexplore 浏览器
     }
     browserInfo = {
       ...browserInfo,
@@ -288,12 +289,12 @@ export function getBrowserInfo(): BrowserInfo {
     } else if (testUa(/\sqq/g)) {
       shell = "qq_app"; // QQ APP
     } else if (testUa(/ucbrowser/g)) {
-      shell = "uc"; // UC浏览器
+      shell = "uc"; // UC 浏览器
       shellVs = testVs(/ucbrowser\/[\d._]+/g);
     } else if (testUa(/qihu 360se/g)) {
-      shell = "360"; // 360浏览器(无版本)
+      shell = "360"; // 360 浏览器(无版本)
     } else if (testUa(/2345explorer/g)) {
-      shell = "2345"; // 2345浏览器
+      shell = "2345"; // 2345 浏览器
       shellVs = testVs(/2345explorer\/[\d._]+/g);
     } else if (testUa(/metasr/g)) {
       shell = "sougou"; // 搜狗浏览器(无版本)
