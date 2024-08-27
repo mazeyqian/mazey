@@ -14,6 +14,8 @@ let pwaSupport = "";
  * Usage:
  *
  * ```javascript
+ * import { isSafePWAEnv } from "mazey";
+ * 
  * const ret = isSafePWAEnv();
  * console.log(ret);
  * ```
@@ -24,12 +26,12 @@ let pwaSupport = "";
  * true
  * ```
  *
+ * @environment Browser
  * @returns {boolean} true 是
  * @category Browser Information
  */
 export function isSafePWAEnv(): boolean {
   if (pwaSupport) {
-    // mazeyCon.log("isSafePWAEnv cache");
     return pwaSupport === "pwa";
   }
   // 判断是否支持 async await
@@ -38,7 +40,7 @@ export function isSafePWAEnv(): boolean {
     try {
       const fn = new Function("return async function(){};");
       isSupportAsyncAwaitFunc = fn();
-      // 由于 async 函数的构造器不是全局对象，所以我们需要由下面代码来获取async函数的构造器
+      // 由于 async 函数的构造器不是全局对象，所以我们需要由下面代码来获取 async 函数的构造器
       // 具体可以查看以下 MDN 上有关于 AsyncFunction 的说明
       // 地址：https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/AsyncFunction
       return Object.getPrototypeOf(isSupportAsyncAwaitFunc).constructor != null;
