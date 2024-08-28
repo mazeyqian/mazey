@@ -73,6 +73,8 @@ export function isSafePWAEnv(): boolean {
  * Usage:
  *
  * ```javascript
+ * import { getBrowserInfo } from "mazey";
+ * 
  * const ret = getBrowserInfo();
  * console.log(ret);
  * ```
