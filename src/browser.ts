@@ -324,11 +324,15 @@ export function getBrowserInfo(): BrowserInfo {
 }
 
 /**
- * Generate browser attributes.
+ * EN: Generate browser attributes.
+ * 
+ * ZH: 生成浏览器属性。
  * 
  * Usage:
  * 
  * ```javascript
+ * import { genBrowserAttrs } from "mazey";
+ * 
  * const attrs = genBrowserAttrs();
  * console.log(attrs);
  * ```
@@ -339,6 +343,7 @@ export function getBrowserInfo(): BrowserInfo {
  * ["windows", "desktop", "webkit", "chrome"]
  * ```
  * 
+ * @environment Browser
  * @param {string} prefix
  * @returns {array} Browser attributes
  * @category Browser Information
