@@ -373,6 +373,8 @@ let webpSupport = "";
  * Usage:
  *
  * ```javascript
+ * import { isSupportWebp } from "mazey";
+ * 
  * isSupportWebp().then(res => {
  *  console.log("isSupportWebp:", res);
  * });
