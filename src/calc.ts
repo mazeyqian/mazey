@@ -8,6 +8,8 @@ import { deepCopy } from "./util";
  * Usage:
  *
  * ```javascript
+ * import { longestComSubstring } from "mazey";
+ * 
  * const ret = longestComSubstring("fish", "finish");
  * console.log(ret);
  * ```
