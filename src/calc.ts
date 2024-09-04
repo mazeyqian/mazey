@@ -65,6 +65,8 @@ export function calLongestCommonSubstring(aStr: string, bStr: string): number {
  * Usage:
  *
  * ```javascript
+ * import { longestComSubsequence } from "mazey";
+ * 
  * const ret = longestComSubsequence("fish", "finish");
  * console.log(ret);
  * ```
