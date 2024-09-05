@@ -164,7 +164,7 @@ export function calLongestCommonSubsequence(aStr: string, bStr: string): number 
  * 499994 500006
  * ```
  *
- * @param {number} rate -- 0.1 ~ 1 => 1% ~ 100%
+ * @param {number} rate 0.1 ~ 1 => 1% ~ 100%
  * @returns {boolean} true 命中
  * @category Calculate and Formula
  */
