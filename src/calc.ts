@@ -131,6 +131,8 @@ export function calLongestCommonSubsequence(aStr: string, bStr: string): number 
  * Usage:
  *
  * ```javascript
+ * import { isHit } from "mazey";
+ * 
  * const ret = isHit(0.5); // 0.01 ~ 1 true/false
  * console.log(ret);
  * ```
