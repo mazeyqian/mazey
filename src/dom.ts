@@ -242,13 +242,14 @@ export function addStyle(style: string, options: { id?: string } = { id: "" }): 
  *
  * Usage:
  *
+ * ```html
+ * <img src="image.jpg?width=100px&height=200px">
+ * ```
+ * 
  * ```javascript
  * import { setImgSizeBySrc } from "mazey";
  * 
  * setImgSizeBySrc();
- * 
- * // The following images will be resized:
- * // <img src="image.jpg?width=100px&height=200px">
  * ```
  * 
  * Output:
