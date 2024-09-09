@@ -243,14 +243,18 @@ export function addStyle(style: string, options: { id?: string } = { id: "" }): 
  * Usage:
  *
  * ```javascript
- * // Example images with `src` attributes containing `width` and/or `height` values
- * const img1 = document.createElement("img");
- * img1.setAttribute("src", "https://example.com/example.png?width=2233&height=111");
- * document.body.appendChild(img1);
- *
- * const img2 = document.createElement("img");
- * img2.setAttribute("src", "https://example.com/example.png?width=100%&height=auto");
- * document.body.appendChild(img2);
+ * import { setImgSizeBySrc } from "mazey";
+ * 
+ * setImgSizeBySrc();
+ * 
+ * // The following images will be resized:
+ * // <img src="image.jpg?width=100px&height=200px">
+ * ```
+ * 
+ * Output:
+ * 
+ * ```html
+ * <img src="image.jpg?width=100px&height=200px" width="100px" height="200px">
  * ```
  *
  * @returns {boolean} - Returns `true` if images were found and their dimensions were set, otherwise `false`.
