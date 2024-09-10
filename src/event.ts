@@ -6,6 +6,8 @@ import type { DefineListeners, MazeyFn, MazeyObject } from "./typing";
  * Usage:
  *
  * ```javascript
+ * import { cancelBubble } from "mazey";
+ * 
  * const ret1 = cancelBubble(e);
  * ```
  *
