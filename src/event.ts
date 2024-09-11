@@ -25,12 +25,21 @@ export function cancelBubble(e: Event): void {
 }
 
 /**
- * Get event container.
+ * Get the defined listeners.
  *
  * Usage:
  *
  * ```javascript
- * const ret = getEventContainer();
+ * import { getDefineListeners } from "mazey";
+ * 
+ * const ret = getDefineListeners();
+ * console.log(ret);
+ * ```
+ * 
+ * Output:
+ * 
+ * ```text
+ * {}
  * ```
  *
  * @category Event
