@@ -94,6 +94,8 @@ export function addEvent(type: string, fn: MazeyFn): void {
  * Usage:
  *
  * ```javascript
+ * import { fireEvent } from "mazey";
+ * 
  * fireEvent("test");
  * ```
  *
