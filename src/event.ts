@@ -130,6 +130,8 @@ export function invokeEvent(type: string): void {
  * Usage:
  *
  * ```javascript
+ * import { removeEvent } from "mazey";
+ * 
  * removeEvent("test");
  * ```
  *
