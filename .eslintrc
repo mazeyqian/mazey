@@ -11,7 +11,7 @@
   ],
   "rules": {
     "semi": ["warn", "always"],
-    "quotes": ["warn", "single"],
+    "quotes": ["warn", "double"],
     "indent": ["warn", 2, { "SwitchCase": 1 }],
     "comma-dangle": ["warn", "always-multiline"],
     "eol-last": ["warn", "always"],
@@ -30,6 +30,9 @@
     "array-bracket-spacing": ["warn", "always"],
     "@typescript-eslint/no-non-null-assertion": "off",
     "@typescript-eslint/no-explicit-any": "off",
-    "@typescript-eslint/triple-slash-reference": "off"
+    "@typescript-eslint/triple-slash-reference": "off",
+    "object-curly-newline": ["warn", {
+      "ImportDeclaration": { "multiline": true, "minProperties": 4 }
+    }]
   }
 }

@@ -88,7 +88,7 @@ There are some examples maintained by hand below. For more information, please c
   - [updateQueryParam](#updatequeryparam)
   - [isValidUrl](#isvalidurl)
   - [isValidHttpUrl](#isvalidhttpurl)
-- [Cache Data](#cache-data)
+- [Store](#cache-data)
   - [Cookie](#cookie)
   - [Storage](#storage)
 - [DOM](#dom)
@@ -223,7 +223,7 @@ Check whether the page is loaded successfully (Keep the compatibility if the bro
 Usage:
 
 ```javascript
-windowLoaded(30) // second
+windowLoaded()
   .then(res => {
     console.log(`Load Success: ${res}`);
   })
@@ -602,7 +602,7 @@ Output:
 true true true true false
 ```
 
-### Cache Data
+### Store
 
 #### Cookie
 

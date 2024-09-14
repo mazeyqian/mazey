@@ -72,3 +72,17 @@ export type UnknownFn = (...args: UnknownFnParams) => UnknownFnReturn;
 export interface UnknownWindow {
   [key: string]: any;
 }
+
+export type MazeyObject = any; // Record<string, unknown>;
+export type MazeyFnParams = any[]; // | Record<string, unknown> | string | number | boolean | null | undefined;
+export type MazeyFnReturn = any;
+export type MazeyFunction = (...args: any[]) => any;
+export type MazeyFn = (...args: UnknownFnParams) => UnknownFnReturn;
+
+export interface MazeyWindow {
+  [key: string]: any;
+}
+
+export interface WebPerformance {
+  [key: string]: string | number;
+}

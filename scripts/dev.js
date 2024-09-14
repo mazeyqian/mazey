@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable @typescript-eslint/no-var-requires */
 // const execa = require('execa');
-const { generateToc } = require('./build-helper');
+const { generateToc } = require("./build-helper");
 
 (async () => {
   // const { stdout: pushMsg = '' } = await execa('git', ['push'], { stdio: 'pipe' })
