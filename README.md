@@ -932,13 +932,10 @@ MazeyLog: I am object. {a: 123, b: 456}
 
 ### Development Environment
 
-#### Node.js
-
-- v16.19.0
-
-#### TypeScript
-
-- v5.1.6
+| Dependency | Version  |
+|------------|----------|
+| Node.js    | v16.19.0 |
+| TypeScript | v5.1.6   |
 
 ### Scripts
 
@@ -960,16 +957,16 @@ Build:
 npm run build
 ```
 
-Document:
-
-```bash
-npm run docs
-```
-
 Test:
 
 ```bash
 npm run test
+```
+
+Document:
+
+```bash
+npm run docs
 ```
 
 ### Returns
