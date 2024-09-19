@@ -1,7 +1,7 @@
 /**
  * EN: Handle Storage (Keep fit for JSON, it can transfer format automatically).
  *
- * ZH: 存储/获取数据到 sessionStorage/localStorage
+ * ZH: 存储/获取数据到 sessionStorage/localStorage。
  *
  * Usage:
  *
@@ -42,7 +42,7 @@ export function setSessionStorage<T>(key: string, value: T | null = null): void 
 /**
  * EN: Handle Storage (Keep fit for JSON, it can transfer format automatically).
  *
- * ZH: 存储/获取数据到 sessionStorage/localStorage
+ * ZH: 存储/获取数据到 sessionStorage/localStorage。
  *
  * Usage:
  *
@@ -88,7 +88,7 @@ export function getSessionStorage<T>(key: string): T | null {
 /**
  * EN: Handle Storage (Keep fit for JSON, it can transfer format automatically).
  *
- * ZH: 存储/获取数据到 sessionStorage/localStorage
+ * ZH: 存储/获取数据到 sessionStorage/localStorage。
  *
  * Usage:
  *
@@ -129,7 +129,7 @@ export function setLocalStorage<T>(key: string, value: T | null = null): void {
 /**
  * EN: Handle Storage (Keep fit for JSON, it can transfer format automatically).
  *
- * ZH: 存储/获取数据到 sessionStorage/localStorage
+ * ZH: 存储/获取数据到 sessionStorage/localStorage。
  *
  * Usage:
  *
@@ -175,7 +175,7 @@ export function getLocalStorage<T>(key: string): T | null {
 /**
  * EN: Handle Cookie.
  *
- * ZH: 设置/获取 Cookie
+ * ZH: 设置/获取 Cookie。
  *
  * Usage:
  *
@@ -209,7 +209,7 @@ export function getCookie(name: string): string {
 /**
  * EN: Handle Cookie.
  *
- * ZH: 设置/获取 Cookie
+ * ZH: 设置/获取 Cookie。
  *
  * Usage:
  *

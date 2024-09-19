@@ -6,7 +6,7 @@ import { doFn } from "./util";
 /**
  * EN: Load a CSS file from the server.
  *
- * ZH: 动态加载 CSS 文件
+ * ZH: 动态加载 CSS 文件。
  *
  * Usage:
  *
@@ -152,7 +152,7 @@ export function loadCSS(url: string, options: { id?: string } = { id: "" }): Pro
 /**
  * EN: Load a JavaScript file from the server and execute it.
  *
- * ZH: 动态加载 JavaScript 文件
+ * ZH: 动态加载 JavaScript 文件。
  *
  * Usage:
  *
@@ -262,7 +262,7 @@ export function loadScript(
 /**
  * EN: Check whether the page is loaded successfully (Keep the compatibility if the browser's `load` event has been triggered).
  *
- * ZH: 页面加载完成
+ * ZH: 页面加载完成。
  *
  * Usage:
  *

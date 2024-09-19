@@ -106,7 +106,7 @@ export function removeClass(obj: HTMLElement, cls: string): void {
 /**
  * EN: Add `<style>` in `<head>`.
  *
- * ZH: 添加样式标签; style: 样式标签内的字符串; id: `<style>` 标签的 `id`; 返回: 添加成功/失败
+ * ZH: 添加样式标签; style: 样式标签内的字符串; id: `<style>` 标签的 `id`; 返回: 添加成功/失败。
  *
  * Example 1: Add the `<style>` with `id`, and repeated invoking will update the content instead of adding a new one.
  *

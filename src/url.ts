@@ -273,7 +273,7 @@ export function isValidHttpUrl(url: string, options: { strict: boolean } = { str
 /**
  * EN: Get the file type of the url.
  *
- * ZH: 获取文件后缀名
+ * ZH: 获取文件后缀名。
  *
  * Usage:
  *
@@ -349,4 +349,68 @@ export function getScriptQueryParam(param: string, matchString = ""): string {
     }
   }
   return "";
+}
+
+/**
+ * Convert an object to a query string.
+ * 
+ * Usage:
+ * 
+ * ```javascript
+ * const ret = convertObjectToQuery({ t1: '1', t2: '2', t3: '3', t4: '4' });
+ * console.log(ret);
+ * ```
+ * 
+ * Output:
+ * 
+ * ```text
+ * ?t1=1&t2=2&t3=3&t4=4
+ * ```
+ * 
+ * @param obj - The object to convert to a query string.
+ * @returns The query string.
+ * @category URL
+ */
+export function convertObjectToQuery(obj: { [key: string]: string }): string {
+  if (obj && Object.keys(obj).length === 0) {
+    return "";
+  }
+  let res: string = "?";
+  for (const i in obj) {
+    res += `${i}=${obj[i]}&`;
+  }
+  return res.slice(0, -1);
+}
+
+/**
+ * Convert an HTTP URL to an HTTPS URL.
+ * 
+ * Usage:
+ * 
+ * ```javascript
+ * const ret = convertHttpToHttps('http://example.com');
+ * console.log(ret);
+ * ```
+ * 
+ * Output:
+ * 
+ * ```text
+ * https://example.com
+ * ```
+ * 
+ * @param url - The HTTP URL to convert to HTTPS.
+ * @returns The HTTPS URL.
+ * @category URL
+ */
+export function convertHttpToHttps(url: string): string {
+  return url.replace(/^http:/, "https:");
+}
+
+/**
+ * Alias of `convertHttpToHttps`.
+ * 
+ * @hidden
+ */
+export function replaceHttp(url: string): string {
+  return convertHttpToHttps(url);
 }

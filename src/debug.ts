@@ -3,7 +3,7 @@ import type { MazeyFnParams } from "./typing";
 /**
  * EN: Custom console printing (`console`).
  *
- * ZH: 生成自定义控制台打印
+ * ZH: 生成自定义控制台打印。
  *
  * Usage:
  *

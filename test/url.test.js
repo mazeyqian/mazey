@@ -4,7 +4,7 @@
 /* eslint-disable no-undef */
 import {
   isValidUrl, getUrlFileType, isValidHttpUrl, updateQueryParam, getUrlParam,
-  getScriptQueryParam,
+  getScriptQueryParam, convertObjectToQuery, convertHttpToHttps,
 } from "../lib/index.esm";
 
 const validUrls = [
@@ -224,5 +224,80 @@ describe("getScriptQueryParam", () => {
     ]);
     const result = getScriptQueryParam("test");
     expect(result).toBe("hello world");
+  });
+});
+
+describe("convertObjectToQuery", () => {
+  it("should convert an object to a query string", () => {
+    const obj = {
+      name: "John",
+      age: "30",
+      city: "New_York",
+    };
+    const expected = "?name=John&age=30&city=New_York";
+    const result = convertObjectToQuery(obj);
+    expect(result).toEqual(expected);
+  });
+
+  it("should handle empty object", () => {
+    const obj = {};
+    const expected = "";
+    const result = convertObjectToQuery(obj);
+    expect(result).toEqual(expected);
+  });
+
+  it("should handle special characters in values", () => {
+    const obj = {
+      name: "John_Doe",
+      age: "30",
+      city: "New_York",
+    };
+    const expected = "?name=John_Doe&age=30&city=New_York";
+    const result = convertObjectToQuery(obj);
+    expect(result).toEqual(expected);
+  });
+});
+
+describe("convertHttpToHttps", () => {
+  test("converts an HTTP URL to an HTTPS URL", () => {
+    const url = "http://example.com";
+    const expected = "https://example.com";
+    expect(convertHttpToHttps(url)).toBe(expected);
+  });
+
+  test("does not change an HTTPS URL", () => {
+    const url = "https://example.com";
+    const expected = "https://example.com";
+    expect(convertHttpToHttps(url)).toBe(expected);
+  });
+
+  test("handles URLs with paths correctly", () => {
+    const url = "http://example.com/path/to/resource";
+    const expected = "https://example.com/path/to/resource";
+    expect(convertHttpToHttps(url)).toBe(expected);
+  });
+
+  test("handles URLs with query parameters correctly", () => {
+    const url = "http://example.com/path?name=value";
+    const expected = "https://example.com/path?name=value";
+    expect(convertHttpToHttps(url)).toBe(expected);
+  });
+
+  test("handles URLs with ports correctly", () => {
+    const url = "http://example.com:8080";
+    const expected = "https://example.com:8080";
+    expect(convertHttpToHttps(url)).toBe(expected);
+  });
+
+  test("does not alter non-http URLs", () => {
+    const url = "ftp://example.com";
+    const expected = "ftp://example.com";
+    expect(convertHttpToHttps(url)).toBe(expected);
+  });
+
+  test("returns the same URL if it does not start with http:", () => {
+    const url = "example.com";
+    const expected = "example.com";
+    expect(convertHttpToHttps(url)).toBe(expected);
   });
 });

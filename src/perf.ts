@@ -267,7 +267,7 @@ export async function getTTFB(): Promise<number> {
 /**
  * EN: Get page load time(`PerformanceNavigationTiming`).
  *
- * ZH: 获取页面加载相关的各项数据
+ * ZH: 获取页面加载相关的各项数据。
  *
  * @remarks
  * This function uses the [`PerformanceNavigationTiming`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceNavigationTiming) API to get page load time data.
