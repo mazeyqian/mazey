@@ -65,10 +65,55 @@ test("generateRndNum: Can it produce an empty string?", () => {
 
 test("formatDate: String formatDate value?", () => {
   expect(formatDate("Tue Jan 11 2022 14:12:26 GMT+0800 (China Standard Time)", "yyyy-MM-dd hh:mm:ss").length).toBe(19);
+  expect(formatDate(new Date(2022, 0, 11, 14, 12, 26), "yyyy-MM-dd hh:mm:ss")).toBe("2022-01-11 02:12:26");
 });
 
 test("formatDate: Number formatDate value?", () => {
   expect(formatDate(1641881235000, "yyyy-MM-dd hh:mm:ss").length).toBe(19);
+  expect(formatDate(new Date(2022, 0, 11, 14, 7, 15), "yyyy-MM-dd hh:mm:ss")).toBe("2022-01-11 02:07:15");
+});
+
+test("formatDate: String formatDate value with 12-hour format and AM/PM", () => {
+  expect(formatDate("Tue Jan 11 2022 14:12:26 GMT+0800 (China Standard Time)", "yyyy-MM-dd hh:mm:ss a").length).toBe(22);
+  expect(formatDate(new Date(2022, 0, 11, 14, 12, 26), "yyyy-MM-dd hh:mm:ss a")).toBe("2022-01-11 02:12:26 PM");
+});
+
+test("formatDate: Number formatDate value with 12-hour format and AM/PM", () => {
+  expect(formatDate(1641881235000, "yyyy-MM-dd hh:mm:ss a").length).toBe(22);
+  expect(formatDate(new Date(2022, 0, 11, 14, 7, 15), "yyyy-MM-dd hh:mm:ss a")).toBe("2022-01-11 02:07:15 PM");
+});
+
+test("formatDate: Date object formatDate value with 12-hour format and AM/PM", () => {
+  expect(formatDate(new Date(2014, 1, 11, 14, 30), "MM/dd/yyyy hh:mm a").length).toBe(19);
+  expect(formatDate(new Date(2014, 1, 11, 14, 30), "MM/dd/yyyy hh:mm a")).toBe("02/11/2014 02:30 PM");
+});
+
+test("formatDate: String formatDate value with 24-hour format", () => {
+  expect(formatDate("Tue Jan 11 2022 14:12:26 GMT+0800 (China Standard Time)", "yyyy-MM-dd HH:mm:ss").length).toBe(19);
+  expect(formatDate(new Date(2022, 0, 11, 14, 12, 26), "yyyy-MM-dd HH:mm:ss")).toBe("2022-01-11 14:12:26");
+});
+
+test("formatDate: Number formatDate value with 24-hour format", () => {
+  expect(formatDate(1641881235000, "yyyy-MM-dd HH:mm:ss").length).toBe(19);
+  expect(formatDate(new Date(2022, 0, 11, 14, 7, 15), "yyyy-MM-dd HH:mm:ss")).toBe("2022-01-11 14:07:15");
+});
+
+test("formatDate: Date object formatDate value with 24-hour format", () => {
+  expect(formatDate(new Date(2014, 1, 11, 14, 30), "MM/dd/yyyy HH:mm:ss")).toBe("02/11/2014 14:30:00");
+});
+
+test("formatDate: Edge case - 12:00:00 PM", () => {
+  expect(formatDate(new Date(2022, 0, 11, 12, 0, 0), "yyyy-MM-dd hh:mm:ss a")).toBe("2022-01-11 12:00:00 PM");
+  expect(formatDate(new Date(2022, 0, 11, 12, 0, 0), "yyyy-MM-dd HH:mm:ss")).toBe("2022-01-11 12:00:00");
+});
+
+test("formatDate: Edge case - 12:00:00 AM", () => {
+  expect(formatDate(new Date(2022, 0, 11, 0, 0, 0), "yyyy-MM-dd hh:mm:ss a")).toBe("2022-01-11 12:00:00 AM");
+  expect(formatDate(new Date(2022, 0, 11, 0, 0, 0), "yyyy-MM-dd HH:mm:ss")).toBe("2022-01-11 00:00:00");
+});
+
+test("formatDate: Edge case - Start of the day", () => {
+  expect(formatDate(new Date(2024, 0, 1, 0, 0, 0), "yyyy-MM-dd HH:mm:ss")).toBe("2024-01-01 00:00:00");
 });
 
 test("isValidData: Check the valid value?", () => {
