@@ -329,17 +329,18 @@ export function getBrowserInfo(): BrowserInfo {
  * @returns {array} Browser attributes
  * @category Browser Information
  */
-export function genBrowserAttrs(prefix = ""): string[] {
+export function genBrowserAttrs(prefix = "", separator = "-"): string[] {
   const keys = [ "system", "platform", "engine", "supporter", "shell", "appleType" ];
   const info = getBrowserInfo() as MazeyObject;
   const attrs: string[] = [];
   keys.forEach((key: string) => {
     const val = info[key];
     if (val) {
+      let rPre = "";
       if (prefix && prefix.length > 0) {
-        prefix = `${prefix}-`;
+        rPre = `${prefix}${separator}`;
       }
-      attrs.push(`${prefix}${val}`);
+      attrs.push(`${rPre}${val}`);
     }
   });
   return attrs;
