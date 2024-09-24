@@ -77,3 +77,5 @@ export interface MazeyWindow {
 export interface WebPerformance {
   [key: string]: string | number;
 }
+
+export type MazeyElement = HTMLElement | null;
