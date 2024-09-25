@@ -88,7 +88,7 @@ There are some examples maintained by hand below. For more information, please c
   - [updateQueryParam](#updatequeryparam)
   - [isValidUrl](#isvalidurl)
   - [isValidHttpUrl](#isvalidhttpurl)
-- [Store](#cache-data)
+- [Store](#store)
   - [Cookie](#cookie)
   - [Storage](#storage)
 - [DOM](#dom)
