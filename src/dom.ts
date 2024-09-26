@@ -8,14 +8,15 @@ import { cusCon } from "./debug";
  * Usage:
  *
  * ```javascript
- * const dom = document.querySelector('#box');
- *
+ * import { hasClass, addClass, removeClass } from "mazey";
+ * 
+ * const dom = document.querySelector("#box");
  * // Determine `class`
- * hasClass(dom, 'test');
+ * hasClass(dom, "test");
  * // Add `class`
- * addClass(dom, 'test');
+ * addClass(dom, "test");
  * // Remove `class`
- * removeClass(dom, 'test');
+ * removeClass(dom, "test");
  * ```
  *
  * @category DOM
@@ -25,46 +26,63 @@ export function hasClass(obj: MazeyElement, cls: string): boolean {
     cusCon.error("The element is not exist.");
     return false;
   }
-  const oriCls = obj.className; // 获取对象的class值
+  const oriCls = obj.className; // 获取对象的 class 值
   const oriClsArr = oriCls.split(/\s+/); // 分隔空格转换成数组
   for (let i = 0; i < oriClsArr.length; i++) {
     if (oriClsArr[i] === cls) {
-      return true; // 若匹配到class则返回True
+      return true; // 若匹配到 class 则返回 True
     }
   }
-  return false; // 否则返回False
+  return false; // 否则返回 False
 }
 
 /**
- * Modify `class`: add `class`.
+ * Add `class` to the element. The second parameter can be a single class name or an array of class names.
  *
- * Usage:
+ * Basic Usage:
  *
  * ```javascript
- * const dom = document.querySelector('#box');
- *
- * // Determine `class`
- * hasClass(dom, 'test');
- * // Add `class`
- * addClass(dom, 'test');
- * // Remove `class`
- * removeClass(dom, 'test');
+ * import { addClass } from "mazey";
+ * 
+ * const ele = document.querySelector("#box");
+ * addClass(ele, "test");
+ * ```
+ * 
+ * Output:
+ * 
+ * ```html
+ * <div id="box" class="test"></div>
+ * ```
+ * 
+ * Advanced Usage:
+ * 
+ * ```javascript
+ * import { addClass, genBrowserAttrs } from "mazey";
+ * 
+ * const ele = document.querySelector("html");
+ * addClass(ele, genBrowserAttrs());
+ * ```
+ * 
+ * Output:
+ * 
+ * ```html
+ * <html class="windows desktop webkit chrome"></html>
  * ```
  *
  * @category DOM
  */
-export function addClass(obj: MazeyElement, cls: string | string[]): void {
-  if (!obj) {
+export function addClass(ele: MazeyElement, cls: string | string[]): void {
+  if (!ele) {
     cusCon.error("The element is not exist.");
     return;
   }
   if (Array.isArray(cls)) {
     cls.forEach((item) => {
-      obj.classList.add(item);
+      ele.classList.add(item);
     });
     return;
   }
-  const oriCls = obj.className;
+  const oriCls = ele.className;
   // Should not add duplicate classes.
   const oriClsArr = oriCls.split(/\s+/);
   for (let i = 0; i < oriClsArr.length; i++) {
@@ -79,7 +97,7 @@ export function addClass(obj: MazeyElement, cls: string | string[]): void {
     space = " "; // 若原来的 class 不为空，跟一个空格
   }
   newCls = oriCls + space + cls; // 将新的 class 加进去
-  obj.className = newCls; // 替换新 class
+  ele.className = newCls; // 替换新 class
 }
 
 /**
@@ -87,8 +105,8 @@ export function addClass(obj: MazeyElement, cls: string | string[]): void {
  *
  * @hidden
  */
-export function setClass(obj: HTMLElement, cls: string): void {
-  addClass(obj, cls);
+export function setClass(ele: HTMLElement, cls: string): void {
+  addClass(ele, cls);
 }
 
 /**
@@ -97,14 +115,15 @@ export function setClass(obj: HTMLElement, cls: string): void {
  * Usage:
  *
  * ```javascript
- * const dom = document.querySelector('#box');
- *
+ * import { hasClass, addClass, removeClass } from "mazey";
+ * 
+ * const dom = document.querySelector("#box");
  * // Determine `class`
- * hasClass(dom, 'test');
+ * hasClass(dom, "test");
  * // Add `class`
- * addClass(dom, 'test');
+ * addClass(dom, "test");
  * // Remove `class`
- * removeClass(dom, 'test');
+ * removeClass(dom, "test");
  * ```
  *
  * @category DOM
@@ -115,10 +134,10 @@ export function removeClass(obj: MazeyElement, cls: string): void {
     return;
   }
   const oriCls = obj.className;
-  let newCls; // 获取对象的class值
+  let newCls; // 获取对象的 class 值
   newCls = " " + oriCls + " "; // 前后加空格
   newCls = newCls.replace(/(\s+)/gi, " "); // 将多余的空格替换成一个空格
-  newCls = newCls.replace(" " + cls + " ", " "); // 将加了前后空格的cls替换成空格' '
+  newCls = newCls.replace(" " + cls + " ", " "); // 将加了前后空格的 cls 替换成空格 " "
   newCls = newCls.replace(/(^\s+)|(\s+$)/g, ""); // 去掉前后空格
   obj.className = newCls;
 }
@@ -128,9 +147,13 @@ export function removeClass(obj: MazeyElement, cls: string): void {
  *
  * ZH: 添加样式标签; style: 样式标签内的字符串; id: `<style>` 标签的 `id`; 返回: 添加成功/失败。
  *
+ * Usage:
+ * 
  * Example 1: Add the `<style>` with `id`, and repeated invoking will update the content instead of adding a new one.
  *
  * ```javascript
+ * import { addStyle } from "mazey";
+ * 
  * addStyle(
  *   `
  *     body {
@@ -138,19 +161,26 @@ export function removeClass(obj: MazeyElement, cls: string): void {
  *     }
  *   `,
  *   {
- *     id: 'test',
+ *     id: "test",
  *   }
  * );
- * // <style id="test">
- * //   body {
- * //     background-color: #333;
- * //   }
- * // </style>
+ * ```
+ * 
+ * Output:
+ * 
+ * ```html
+ * <style id="test">
+ *   body {
+ *     background-color: #333;
+ *   }
+ * </style>
  * ```
  *
  * Example 2: Add the `<style>` without `id`, and repeated invoking will add a new one.
  *
  * ```javascript
+ * import { addStyle } from "mazey";
+ * 
  * addStyle(
  *   `
  *     body {
@@ -158,18 +188,21 @@ export function removeClass(obj: MazeyElement, cls: string): void {
  *     }
  *   `
  * );
- * // <style>
- * //   body {
- * //     background-color: #444;
- * //   }
- * // </style>
  * ```
- *
+ * 
+ * Output:
+ * 
+ * ```html
+ * <style>
+ *   body {
+ *     background-color: #444;
+ *   }
+ * </style>
+ * ```
+ * 
  * @category DOM
  */
 export function addStyle(style: string, options: { id?: string } = { id: "" }): boolean {
-  // console.log('_ style', style);
-  // console.log('_ options', options);
   if (!style) {
     return false;
   }
@@ -211,12 +244,12 @@ export function addStyle(style: string, options: { id?: string } = { id: "" }): 
  *
  * ```javascript
  * // Example images with `src` attributes containing `width` and/or `height` values
- * const img1 = document.createElement('img');
- * img1.setAttribute('src', 'https://example.com/example.png?width=2233&height=111');
+ * const img1 = document.createElement("img");
+ * img1.setAttribute("src", "https://example.com/example.png?width=2233&height=111");
  * document.body.appendChild(img1);
  *
- * const img2 = document.createElement('img');
- * img2.setAttribute('src', 'https://example.com/example.png?width=100%&height=auto');
+ * const img2 = document.createElement("img");
+ * img2.setAttribute("src", "https://example.com/example.png?width=100%&height=auto");
  * document.body.appendChild(img2);
  * ```
  *
@@ -285,8 +318,8 @@ export function setImgWidHeiBySrc(): boolean {
  * Usage:
  *
  * ```javascript
- * const ret1 = genStyleString('.a', [ 'color:red' ]);
- * const ret2 = genStyleString('#b', [ 'color:red', 'font-size:12px' ]);
+ * const ret1 = genStyleString(".a", [ "color:red" ]);
+ * const ret2 = genStyleString("#b", [ "color:red", "font-size:12px" ]);
  * console.log(ret1);
  * console.log(ret2);
  * ```
