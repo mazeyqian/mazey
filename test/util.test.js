@@ -6,7 +6,7 @@ import {
   camelCaseToKebabCase, camelCase2Underscore,
   deepCopyObject, repeatUntilConditionMet,
   formatDate,
-  isJsonString, isNumber,
+  isJsonString, isNumber, isPureObject,
   isValidData, isValidEmail, isValidPhoneNumber, isNonEmptyArray,
   getFriendlyInterval, getFileSize, getCurrentVersion,
   waitTime,
@@ -626,4 +626,37 @@ describe("repeatUntilConditionMet error handling", () => {
     repeatUntilConditionMet(() => true, { times: -1 }, () => true);
     expect(console.error).toHaveBeenCalledWith("Expected a non-negative number for times.");
   });
+});
+
+// Test case 1: Valid pure object
+test("Valid pure object", () => {
+  const obj = { name: "John", age: 30 };
+  expect(isPureObject(obj)).toBe(true);
+});
+
+// Test case 2: Empty object
+test("Empty object", () => {
+  const obj = {};
+  expect(isPureObject(obj)).toBe(true);
+});
+
+// Test case 3: Non-object values
+test("Non-object values", () => {
+  expect(isPureObject(null)).toBe(false);
+  expect(isPureObject(undefined)).toBe(false);
+  expect(isPureObject(123)).toBe(false);
+  expect(isPureObject("hello")).toBe(false);
+  expect(isPureObject(true)).toBe(false);
+});
+
+// Test case 4: Arrays
+test("Arrays", () => {
+  const arr = [1, 2, 3];
+  expect(isPureObject(arr)).toBe(false);
+});
+
+// Test case 5: Functions
+test("Functions", () => {
+  const func = () => {};
+  expect(isPureObject(func)).toBe(false);
 });
