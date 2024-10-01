@@ -713,6 +713,20 @@ export function isPureObject(obj: MazeyObject): boolean {
 }
 
 /**
+ * @param obj 
+ * @returns 
+ */
+export function isNonEmptyObject(obj: MazeyObject): boolean {
+  if (!isPureObject(obj)) {
+    return false;
+  }
+  if (Object.keys(obj).length === 0) {
+    return false;
+  }
+  return true;
+}
+
+/**
  * Convert newline characters `\n` into HTML line breaks `<br />`.
  *
  * Usage:
