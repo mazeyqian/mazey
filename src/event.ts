@@ -1,4 +1,4 @@
-import type { DefineListeners, MazeyFn } from "./typing";
+import type { DefineListeners, MazeyFn, MazeyObject } from "./typing";
 
 /**
  * Prevent bubbling.
@@ -78,7 +78,7 @@ export function addEvent(type: string, fn: MazeyFn): void {
 }
 
 /**
- * Invoke event.
+ * Fire/Invoke event.
  *
  * Usage:
  *
@@ -86,16 +86,18 @@ export function addEvent(type: string, fn: MazeyFn): void {
  * fireEvent("test");
  * ```
  *
- * @param type
+ * @param type The event type.
+ * @param params The event parameters.
  * @category Event
  */
-export function fireEvent(type: string): void {
+export function fireEvent(type: string, params: MazeyObject = {}): void {
   const defineListeners = getDefineListeners();
   const arrayEvent = defineListeners[type];
   if (arrayEvent instanceof Array) {
     for (let i = 0, length = arrayEvent.length; i < length; i++) {
       if (typeof arrayEvent[i] === "function") {
         arrayEvent[i]({
+          ...params,
           type: type,
         });
       }

@@ -121,32 +121,6 @@ export function getUrlParam(url: string, param: string, options: { returnArray?:
   }
 }
 
-export function getUrlHost(url: string): string {
-  let ret = "";
-  if (!isValidHttpUrl(url) && isValidHttpUrl(url, { strict: false }) && url.indexOf("//") === 0) {
-    url = "https:" + url;
-  }
-  // mazeyCon.log("url", url);
-  if (checkIfURLIsSupported(url)) {
-    const urlObj = new URL(url);
-    ret = urlObj.host;
-  }
-  return ret;
-}
-
-export function getUrlPath(url: string): string {
-  let ret = "";
-  if (!isValidHttpUrl(url) && isValidHttpUrl(url, { strict: false }) && url.indexOf("//") === 0) {
-    url = "https:" + url;
-  }
-  // mazeyCon.log("url", url);
-  if (checkIfURLIsSupported(url)) {
-    const urlObj = new URL(url);
-    ret = urlObj.pathname;
-  }
-  return ret;
-}
-
 /**
  * Update the query param's value of the input URL.
  *
@@ -220,39 +194,6 @@ export function getHashQueryParam(param: string): string {
   const ret = hashs[1].match(reg);
   return ret ? ret[2] : "";
 }
-
-function checkIfURLIsSupported(url: string = "") {
-  const URL = window.URL;
-  if (!URL) {
-    return false;
-  }
-  if (!URL.canParse) {
-    return false;
-  }
-  if (typeof URL.canParse !== "function") {
-    return false;
-  }
-  try {
-    const u = new URL("b", "http://a");
-    u.pathname = "c d";
-    return (u.href === "http://a/c%20d") && Boolean(u.searchParams) && URL.canParse(url);
-  } catch (e) {
-    return false;
-  }
-}
-
-// function checkIfURLSearchParamsSupported() {
-//   try {
-//     const URLSearchParams = window.URLSearchParams;
-//     return (
-//       new URLSearchParams("?a=1").toString() === "a=1" &&
-//       typeof URLSearchParams.prototype.set === "function" &&
-//       typeof URLSearchParams.prototype.entries === "function"
-//     );
-//   } catch (e) {
-//     return false;
-//   }
-// }
 
 /**
  * Get the domain of URL, and other params.
@@ -517,4 +458,105 @@ export function convertHttpToHttps(url: string): string {
  */
 export function replaceHttp(url: string): string {
   return convertHttpToHttps(url);
+}
+
+function checkIfURLIsSupported(url: string = "") {
+  const URL = window.URL;
+  if (!URL) {
+    return false;
+  }
+  if (!URL.canParse) {
+    return false;
+  }
+  if (typeof URL.canParse !== "function") {
+    return false;
+  }
+  try {
+    const u = new URL("b", "http://a");
+    u.pathname = "c d";
+    return (u.href === "http://a/c%20d") && Boolean(u.searchParams) && URL.canParse(url);
+  } catch (e) {
+    return false;
+  }
+}
+
+// function checkIfURLSearchParamsSupported() {
+//   try {
+//     const URLSearchParams = window.URLSearchParams;
+//     return (
+//       new URLSearchParams("?a=1").toString() === "a=1" &&
+//       typeof URLSearchParams.prototype.set === "function" &&
+//       typeof URLSearchParams.prototype.entries === "function"
+//     );
+//   } catch (e) {
+//     return false;
+//   }
+// }
+
+/**
+ * Get the host of the URL.
+ * 
+ * Usage:
+ * 
+ * ```javascript
+ * import { getUrlHost } from "mazey";
+ * 
+ * const ret = getUrlHost('https://example.com/path/to/page');
+ * console.log(ret);
+ * ```
+ * 
+ * Output:
+ * 
+ * ```text
+ * example.com
+ * ```
+ * 
+ * @param url - The URL to get the host from.
+ * @returns The host of the URL.
+ * @category URL
+ */
+export function getUrlHost(url: string): string {
+  let ret = "";
+  if (!isValidHttpUrl(url) && isValidHttpUrl(url, { strict: false }) && url.indexOf("//") === 0) {
+    url = "https:" + url;
+  }
+  if (checkIfURLIsSupported(url)) {
+    const urlObj = new URL(url);
+    ret = urlObj.host;
+  }
+  return ret;
+}
+
+/**
+ * Get the path of the URL.
+ * 
+ * Usage:
+ * 
+ * ```javascript
+ * import { getUrlPath } from "mazey";
+ * 
+ * const ret = getUrlPath('https://example.com/path/to/page');
+ * console.log(ret);
+ * ```
+ * 
+ * Output:
+ * 
+ * ```text
+ * /path/to/page
+ * ```
+ * 
+ * @param url - The URL to get the path from.
+ * @returns The path of the URL.
+ * @category URL
+ */
+export function getUrlPath(url: string): string {
+  let ret = "";
+  if (!isValidHttpUrl(url) && isValidHttpUrl(url, { strict: false }) && url.indexOf("//") === 0) {
+    url = "https:" + url;
+  }
+  if (checkIfURLIsSupported(url)) {
+    const urlObj = new URL(url);
+    ret = urlObj.pathname;
+  }
+  return ret;
 }

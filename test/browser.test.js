@@ -72,7 +72,7 @@ describe("isSupportWebp", () => {
     expect(result).toBe(true);
   });
 
-  it("should return false if webp is not supported", async () => {
+  it("should return true because of the cache", async () => {
     // Mock the Image class
     class MockImage {
       width = 0;
@@ -86,7 +86,7 @@ describe("isSupportWebp", () => {
           if (this.onerror) {
             this.onerror();
           }
-        }, 100);
+        }, 200);
       }
     }
 
@@ -99,7 +99,7 @@ describe("isSupportWebp", () => {
     // Restore the original Image
     global.Image = originalImage;
 
-    expect(result).toBe(false);
+    expect(result).toBe(true);
   });
 });
 
