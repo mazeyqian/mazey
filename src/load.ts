@@ -12,9 +12,9 @@ import { doFn } from "./util";
  *
  * ```javascript
  * loadCSS(
- *     'http://example.com/path/example.css',
+ *     "http://example.com/path/example.css",
  *     {
- *       id: 'iamid', // Optional, link ID, default none
+ *       id: "iamid", // Optional, link ID, default none
  *     }
  *   )
  *   .then(
@@ -47,9 +47,7 @@ export function loadCSS(url: string, options: { id?: string } = { id: "" }): Pro
   const status = new Promise((resolve, reject) => {
     [ success, fail ] = [ resolve, reject ];
   });
-  // const tempCB = (typeof callback === 'function' ? callback : function () { });
   const callback = function() {
-    // doFn(success, true);
     success("loaded");
   };
   let node: HTMLLinkElement | null = document.createElement("link");
@@ -158,9 +156,9 @@ export function loadCSS(url: string, options: { id?: string } = { id: "" }): Pro
  *
  * ```javascript
  * loadScript(
- *     'http://example.com/static/js/plugin-2.1.1.min.js',
+ *     "http://example.com/static/js/plugin-2.1.1.min.js",
  *     {
- *       id: 'iamid', // (Optional) script ID, default none
+ *       id: "iamid", // (Optional) script ID, default none
  *       timeout: 5000, // (Optional) timeout, default `5000`
  *       isDefer: false, // (Optional) defer, default `false`
  *     }
@@ -228,7 +226,7 @@ export function loadScript(
   const firstScript: HTMLScriptElement = document.getElementsByTagName("script")[0];
   script.type = "text/javascript";
   if (isDefer) {
-    script.defer = true; // 'defer';
+    script.defer = true; // "defer";
   }
   if (id) {
     script.id = id;
@@ -283,7 +281,7 @@ export function loadScript(
  * ```
  *
  * @param {number} timeout 超时时间 / 单位：秒
- * @returns {Promise<string>} document is loaded? 'complete' 'load' / 'timeout'
+ * @returns {Promise<string>} document is loaded? "complete" "load" / "timeout"
  * @category Load
  */
 export function windowLoaded(timeout = 90): Promise<string | Error> {
@@ -313,7 +311,7 @@ export function windowLoaded(timeout = 90): Promise<string | Error> {
  * Usage:
  *
  * ```javascript
- * loadImage('https://example.com/example.png')
+ * loadImage("https://example.com/example.png")
  *   .then((img) => {
  *     console.log(img);
  *   })
@@ -340,17 +338,17 @@ export function loadImage(url: string): Promise<HTMLImageElement> {
 }
 
 /**
- * Load a script from the given URL if it (`window['attribute']`) has not already been loaded.
+ * Load a script from the given URL if it (`window["attribute"]`) has not already been loaded.
  *
  * Usage:
  *
  * ```javascript
- * loadScriptIfUndefined('xyz', 'https://example.com/lib/jquery.min.js')
+ * loadScriptIfUndefined("xyz", "https://example.com/lib/xyz.min.js")
  *   .then(() => {
- *     console.log('xyz is loaded.');
+ *     console.log("xyz is loaded.");
  *   })
  *   .catch(err => {
- *     console.log('Failed to load xyz.', err);
+ *     console.log("Failed to load xyz.", err);
  *   });
  * ```
  *
