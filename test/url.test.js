@@ -17,6 +17,7 @@ const validUrls = [
   "https://example.com/qwe/e?bar=baz&inss=33&qa",
   "http://example.com#home?id=1&name=33",
   "http://example.com?foo=bar&name=名字&age=24",
+  "http://example.com?foo=bar&name=？？一；&age=24",
   "http://.example.com",
   "http://example?foo=bar",
   "http://example.",

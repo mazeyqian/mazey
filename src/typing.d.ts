@@ -83,3 +83,5 @@ export interface WebPerformance {
 }
 
 export type MazeyElement = HTMLElement | null;
+
+export type MazeyDate = Date | string | number;

@@ -36,7 +36,7 @@ export function isSupportedEntryType(name: string) {
  * FCP: 123
  * ```
  *
- * @returns A promise that resolves with the FCP time in milliseconds, or 0 if the 'paint' entry type is not supported.
+ * @returns A promise that resolves with the FCP time in milliseconds, or 0 if the "paint" entry type is not supported.
  * @category Perf
  */
 export async function getFCP(): Promise<number> {
@@ -76,7 +76,7 @@ export async function getFCP(): Promise<number> {
  * FP: 123
  * ```
  *
- * @returns A promise that resolves with the FP time in milliseconds, or 0 if the 'paint' entry type is not supported.
+ * @returns A promise that resolves with the FP time in milliseconds, or 0 if the "paint" entry type is not supported.
  * @category Perf
  */
 export async function getFP(): Promise<number> {
@@ -116,7 +116,7 @@ export async function getFP(): Promise<number> {
  * LCP: 123
  * ```
  *
- * @returns A promise that resolves with the LCP time in milliseconds, or 0 if the 'largest-contentful-paint' entry type is not supported.
+ * @returns A promise that resolves with the LCP time in milliseconds, or 0 if the "largest-contentful-paint" entry type is not supported.
  * @category Perf
  */
 export async function getLCP(): Promise<number> {
@@ -156,7 +156,7 @@ export async function getLCP(): Promise<number> {
  * FID: 123
  * ```
  *
- * @returns A promise that resolves with the FID in milliseconds, or 0 if the 'first-input' entry type is not supported.
+ * @returns A promise that resolves with the FID in milliseconds, or 0 if the "first-input" entry type is not supported.
  * @category Perf
  */
 export async function getFID(): Promise<number> {
@@ -201,7 +201,7 @@ export async function getFID(): Promise<number> {
  * CLS: 123
  * ```
  *
- * @returns A promise that resolves with the CLS score, or 0 if the 'layout-shift' entry type is not supported.
+ * @returns A promise that resolves with the CLS score, or 0 if the "layout-shift" entry type is not supported.
  * @category Perf
  */
 export async function getCLS(): Promise<number> {
