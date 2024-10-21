@@ -11,6 +11,8 @@ import { doFn } from "./util";
  * Usage:
  *
  * ```javascript
+ * import { loadCSS } from "mazey";
+ * 
  * loadCSS(
  *     "http://example.com/path/example.css",
  *     {
