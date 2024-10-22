@@ -169,6 +169,8 @@ const defaultLoadScriptOptions = {
  * Usage:
  *
  * ```javascript
+ * import { loadScript } from "mazey";
+ * 
  * loadScript(
  *     "http://example.com/static/js/plugin-2.1.1.min.js",
  *     {
