@@ -287,6 +287,8 @@ export function loadScript(
  * Usage:
  *
  * ```javascript
+ * import { windowLoaded } from "mazey";
+ * 
  * windowLoaded()
  *   .then(res => {
  *     console.log(`Load Success: ${res}`);
@@ -302,7 +304,7 @@ export function loadScript(
  * Load Success: load
  * ```
  *
- * @param {number} timeout 超时时间 / 单位：秒
+ * @param {number} timeout 超时时间 / 单位：毫秒
  * @returns {Promise<string>} document is loaded? "complete" "load" / "timeout"
  * @category Load
  */
