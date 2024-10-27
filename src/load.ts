@@ -304,11 +304,11 @@ export function loadScript(
  * Load Success: load
  * ```
  *
- * @param {number} timeout 超时时间 / 单位：毫秒
+ * @param {number} timeout 超时时间 / 单位：毫秒，默认：30000(30 秒)
  * @returns {Promise<string>} document is loaded? "complete" "load" / "timeout"
  * @category Load
  */
-export function windowLoaded(timeout = 90): Promise<string | Error> {
+export function windowLoaded(timeout = 30000): Promise<string | Error> {
   let loaded: (value: string) => void = () => undefined;
   let loadFail: (value: Error) => void;
   const status = new Promise((resolve: (value: string) => void, reject: (value: Error) => void) => {
@@ -321,7 +321,7 @@ export function windowLoaded(timeout = 90): Promise<string | Error> {
     window.addEventListener("load", () => loaded("load"));
   }
   // 超过 timeout 秒后加载失败
-  setTimeout(() => loadFail(Error("timeout")), timeout * 1000);
+  setTimeout(() => loadFail(Error("timeout")), timeout);
   return status;
 }
 
