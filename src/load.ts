@@ -335,6 +335,8 @@ export function windowLoaded(timeout = 30000): Promise<string | Error> {
  * Usage:
  *
  * ```javascript
+ * import { loadImage } from "mazey";
+ * 
  * loadImage("https://example.com/example.png")
  *   .then((img) => {
  *     console.log(img);
