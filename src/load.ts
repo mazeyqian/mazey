@@ -369,6 +369,8 @@ export function loadImage(url: string): Promise<HTMLImageElement> {
  * Usage:
  *
  * ```javascript
+ * import { loadScriptIfUndefined } from "mazey";
+ * 
  * loadScriptIfUndefined("xyz", "https://example.com/lib/xyz.min.js")
  *   .then(() => {
  *     console.log("xyz is loaded.");
