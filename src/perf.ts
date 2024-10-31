@@ -23,6 +23,8 @@ export function isSupportedEntryType(name: string) {
  * Usage:
  *
  * ```javascript
+ * import { getFCP } from "mazey";
+ * 
  * getFCP().then(
  *  res => {
  *   console.log(`FCP: ${res}`);
