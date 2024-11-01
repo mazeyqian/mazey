@@ -65,6 +65,8 @@ export async function getFCP(): Promise<number> {
  * Usage:
  *
  * ```javascript
+ * import { getFP } from "mazey";
+ * 
  * getFP().then(
  *  res => {
  *    console.log(`FP: ${res}`);
