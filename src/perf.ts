@@ -107,6 +107,8 @@ export async function getFP(): Promise<number> {
  * Usage:
  *
  * ```javascript
+ * import { getLCP } from "mazey";
+ * 
  * getLCP().then(
  *  res => {
  *    console.log(`LCP: ${res}`);
