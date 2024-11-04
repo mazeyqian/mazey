@@ -149,6 +149,8 @@ export async function getLCP(): Promise<number> {
  * Usage:
  *
  * ```javascript
+ * import { getFID } from "mazey";
+ * 
  * getFID().then(
  *  res => {
  *    console.log(`FID: ${res}`);
