@@ -196,6 +196,8 @@ export async function getFID(): Promise<number> {
  * Usage:
  *
  * ```javascript
+ * import { getCLS } from "mazey";
+ * 
  * getCLS().then(
  *  res => {
  *    console.log(`CLS: ${res}`);
