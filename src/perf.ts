@@ -242,6 +242,8 @@ export async function getCLS(): Promise<number> {
  * Usage:
  *
  * ```javascript
+ * import { getTTFB } from "mazey";
+ * 
  * getTTFB().then(
  *  res => {
  *    console.log(`TTFB: ${res}`);
