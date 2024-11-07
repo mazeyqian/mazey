@@ -289,6 +289,8 @@ export async function getTTFB(): Promise<number> {
  * Usage:
  *
  * ```javascript
+ * import { getPerformance } from "mazey";
+ * 
  * // `camelCase：false` (Default) Return underline(`a_b`) data.
  * // `camelCase：true` Return hump(`aB`) data.
  * getPerformance()
