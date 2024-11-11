@@ -188,6 +188,8 @@ export function getLocalStorage<T>(key: string): T | null {
  * Usage:
  *
  * ```javascript
+ * import { setCookie, getCookie } from "mazey";
+ * 
  * setCookie("test", "123", 30, "example.com"); // key value day domain
  * const ret = getCookie("test");
  * console.log(ret);
