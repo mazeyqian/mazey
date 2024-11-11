@@ -97,6 +97,8 @@ export function getSessionStorage<T>(key: string): T | null {
  * Usage:
  *
  * ```javascript
+ * import { setSessionStorage, getSessionStorage, setLocalStorage, getLocalStorage } from "mazey";
+ * 
  * setSessionStorage("test", "123");
  * const ret1 = getSessionStorage("test");
  * setLocalStorage("test", "123");
