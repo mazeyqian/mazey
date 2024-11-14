@@ -282,6 +282,8 @@ export function setCookie(name: string, value: string, days?: number, domain?: s
  * Usage:
  *
  * ```javascript
+ * import { removeCookie } from "mazey";
+ * 
  * const ret = removeCookie("test");
  * console.log(ret);
  * ```
