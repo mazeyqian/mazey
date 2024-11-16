@@ -41,6 +41,8 @@ export function getQueryParam(param: string): string {
  * Usage:
  * 
  * ```javascript
+ * import { getAllQueryParams } from "mazey";
+ * 
  * // http://example.com/?t1=1&t2=2&t3=3&t4=4#2333
  * // ?t1=1&t2=2&t3=3&t4=4
  * const ret = getAllQueryParams();
