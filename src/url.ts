@@ -79,6 +79,8 @@ export function getAllQueryParams(url: string = ""): SingleValueUrlParams {
  * Usage:
  *
  * ```javascript
+ * import { getUrlParam } from "mazey";
+ * 
  * const p1 = getUrlParam("http://example.com/?t1=1&t2=2&t3=3&t4=4", "t3");
  * const p2 = getUrlParam("http://example.com/?t1=1&t2=2&t3=3&t4=4", "t4");
  * console.log(p1, p2);
