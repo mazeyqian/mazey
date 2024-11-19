@@ -133,6 +133,8 @@ export function getUrlParam(url: string, param: string, options: { returnArray?:
  * Usage:
  *
  * ```javascript
+ * import { updateQueryParam } from "mazey";
+ * 
  * const ret1 = updateQueryParam("http://example.com/?t1=1&t2=2&t3=3&t4=4", "t3", "three");
  * const ret2 = updateQueryParam("http://example.com/?t1=1&t2=2&t3=3&t4=4", "t4", "four");
  * console.log(ret1);
