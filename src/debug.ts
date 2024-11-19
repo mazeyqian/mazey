@@ -8,20 +8,20 @@ import type { MazeyFnParams } from "./typing";
  * Usage:
  *
  * ```javascript
- * const myConsole = genCustomConsole('MazeyLog:');
- * myConsole.log('I am string.');
- * myConsole.info('I am boolean.', true);
- * myConsole.info('I am number.', 123, 456);
- * myConsole.info('I am object.', { a: 123, b: 456});
+ * const myConsole = genCustomConsole("[MazeyLog]");
+ * myConsole.log("I am string.");
+ * myConsole.info("I am boolean.", true);
+ * myConsole.info("I am number.", 123, 456);
+ * myConsole.info("I am object.", { a: 123, b: 456});
  * ```
  *
  * Output:
  *
  * ```text
- * MazeyLog: I am string.
- * MazeyLog: I am boolean. true
- * MazeyLog: I am number. 123 456
- * MazeyLog: I am object. {a: 123, b: 456}
+ * [MazeyLog] I am string.
+ * [MazeyLog] I am boolean. true
+ * [MazeyLog] I am number. 123 456
+ * [MazeyLog] I am object. {a: 123, b: 456}
  * ```
  *
  * @param {string} prefix 前缀
@@ -70,7 +70,7 @@ export function genCustomConsole(
       month: "short",
       day: "numeric",
       hour: "numeric",
-      // hourCycle: 'h24',
+      // hourCycle: "h24",
       minute: "numeric",
       second: "numeric",
     };
@@ -128,3 +128,24 @@ export function genCustomConsole(
  * @hidden
  */
 export const mazeyCon = genCustomConsole("[Mazey]");
+
+/**
+ * EN: Print logs with Time.
+ * 
+ * ZH: 打印带有时间的日志。
+ * 
+ * Usage:
+ * 
+ * ```javascript
+ * timeCon("I am string.");
+ * ```
+ * 
+ * Output:
+ * 
+ * ```text
+ * 2024年11月2日周六 09:24:40 I am string.
+ * ```
+ * 
+ * @hidden
+ */
+export const timeCon = genCustomConsole("", { showDate: true, locales: "zh-CN" });

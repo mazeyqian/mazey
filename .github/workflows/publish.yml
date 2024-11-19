@@ -39,7 +39,6 @@ jobs:
           NEW_TAG="${VERSION_PREFIX}${VERSION_MAJOR_MINOR_PATCH}"
           echo "Generated new tag: $NEW_TAG"
           echo "NEW_TAG=$NEW_TAG" >> $GITHUB_ENV
-
       - name: Push Git Tag
         run: |
           git config user.name "GitHub Actions"

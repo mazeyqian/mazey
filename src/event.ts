@@ -90,16 +90,13 @@ export function addEvent(type: string, fn: MazeyFn): void {
  * @param params The event parameters.
  * @category Event
  */
-export function fireEvent(type: string, params: MazeyObject = {}): void {
+export function fireEvent(type: string, params?: MazeyObject): void {
   const defineListeners = getDefineListeners();
   const arrayEvent = defineListeners[type];
   if (arrayEvent instanceof Array) {
     for (let i = 0, length = arrayEvent.length; i < length; i++) {
       if (typeof arrayEvent[i] === "function") {
-        arrayEvent[i]({
-          ...params,
-          type: type,
-        });
+        params === undefined ? arrayEvent[i]() : arrayEvent[i](params);
       }
     }
   }
