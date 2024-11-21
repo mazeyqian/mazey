@@ -176,6 +176,8 @@ export function updateQueryParam(url: string, param: string, value: string): str
  * Usage:
  *
  * ```javascript
+ * import { getHashQueryParam } from "mazey";
+ * 
  * // http://example.com/?#2333?t1=1&t2=2&t3=3&t4=4
  * // #2333?t1=1&t2=2&t3=3&t4=4
  * const p1 = getHashQueryParam("t3");
