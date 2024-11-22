@@ -211,6 +211,8 @@ export function getHashQueryParam(param: string): string {
  * Usage:
  *
  * ```javascript
+ * import { getDomain } from "mazey";
+ * 
  * const ret1 = getDomain("http://example.com/?t1=1&t2=2&t3=3&t4=4");
  * const ret2 = getDomain("http://example.com/test/thanks?t1=1&t2=2&t3=3&t4=4", ["hostname", "pathname"]);
  * const ret3 = getDomain("http://example.com:7890/test/thanks", ["hostname"]);
