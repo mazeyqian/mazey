@@ -266,6 +266,8 @@ export function getDomain(url: string, rules = [ "hostname" ]): string {
  * Usage:
  *
  * ```javascript
+ * import { isValidUrl } from "mazey";
+ * 
  * const ret1 = isValidUrl("https://www.example.com");
  * const ret2 = isValidUrl("http://example.com/path/exx/ss");
  * const ret3 = isValidUrl("https://www.example.com/?q=hello&age=24#world");
