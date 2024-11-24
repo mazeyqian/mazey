@@ -301,6 +301,8 @@ export function isValidUrl(url: string): boolean {
  * Usage:
  *
  * ```javascript
+ * import { isValidHttpUrl } from "mazey";
+ * 
  * const ret1 = isValidHttpUrl("https://www.example.com");
  * const ret2 = isValidHttpUrl("http://example.com/path/exx/ss");
  * const ret3 = isValidHttpUrl("https://www.example.com/?q=hello&age=24#world");
