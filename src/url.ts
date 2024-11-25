@@ -339,6 +339,8 @@ export function isValidHttpUrl(url: string, options: { strict: boolean } = { str
  * Usage:
  *
  * ```javascript
+ * import { getUrlFileType } from "mazey";
+ * 
  * const ret1 = getUrlFileType("https://example.com/a/b/c.png");
  * const ret2 = getUrlFileType("https://example.com/a/b/c.jpg");
  * const ret3 = getUrlFileType("https://example.com/a/b/c.jpeg");
