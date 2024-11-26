@@ -380,6 +380,8 @@ export function getUrlFileType(url: string): boolean | string {
  * Usage:
  *
  * ```javascript
+ * import { getScriptQueryParam } from "mazey";
+ * 
  * const ret = getScriptQueryParam("test", "https://example.com/example.js");
  * console.log(ret);
  * ```
