@@ -422,6 +422,8 @@ export function getScriptQueryParam(param: string, matchString = ""): string {
  * Usage:
  * 
  * ```javascript
+ * import { convertObjectToQuery } from "mazey";
+ * 
  * const ret = convertObjectToQuery({ t1: "1", t2: "2", t3: "3", t4: "4" });
  * console.log(ret);
  * ```
