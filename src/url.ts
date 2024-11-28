@@ -455,6 +455,8 @@ export function convertObjectToQuery(obj: { [key: string]: string }): string {
  * Usage:
  * 
  * ```javascript
+ * import { convertHttpToHttps } from "mazey";
+ * 
  * const ret = convertHttpToHttps("http://example.com");
  * console.log(ret);
  * ```
