@@ -12,6 +12,8 @@ import type {
  * Usage:
  *
  * ```javascript
+ * import { deepCopy } from "mazey";
+ * 
  * const ret1 = deepCopy(["a", "b", "c"]);
  * const ret2 = deepCopy("abc");
  * console.log(ret1);
