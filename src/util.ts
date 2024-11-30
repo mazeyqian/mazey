@@ -32,11 +32,11 @@ import type {
  * @category Util
  */
 export function deepCopy<T>(obj: T): T {
-  // Jugde whether it is a primitive type
+  // Check whether it is a primitive type
   if (typeof obj !== "object") {
     return obj;
   }
-  // Judge whether its key-value is simple type, string | number | boolean | null | undefined
+  // Check whether its key-value is simple type, string | number | boolean | null | undefined
   // ...rest
   const simpleTypes = [ "string", "number", "boolean", "undefined" ];
   const values = Object.values(obj as SimpleObject);
@@ -64,6 +64,8 @@ export function deepCopyObject<T>(obj: T): T {
  * Usage:
  *
  * ```javascript
+ * import { convertCamelToKebab } from "mazey";
+ * 
  * const ret1 = convertCamelToKebab("ABC");
  * const ret2 = convertCamelToKebab("aBC");
  * console.log(ret1);
