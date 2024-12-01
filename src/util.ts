@@ -59,7 +59,7 @@ export function deepCopyObject<T>(obj: T): T {
 }
 
 /**
- * Transfer CamelCase to KebabCase.
+ * Convert CamelCase to KebabCase.
  *
  * Usage:
  *
@@ -94,6 +94,8 @@ export function convertCamelToKebab(camelCase: string): string {
  * Usage:
  * 
  * ```javascript
+ * import { convertKebabToCamel } from "mazey";
+ * 
  * const ret1 = convertKebabToCamel("a-b-c");
  * const ret2 = convertKebabToCamel("a-bb-cc");
  * console.log(ret1, ret2);
