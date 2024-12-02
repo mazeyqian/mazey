@@ -126,11 +126,13 @@ export function camelCaseToKebabCase(camelCase: string): string {
 }
 
 /**
- * Transfer CamelCase to Underscore.
+ * Convert CamelCase to Underscore.
  *
  * Usage:
  *
  * ```javascript
+ * import { convertCamelToUnder } from "mazey";
+ * 
  * const ret1 = convertCamelToUnder("ABC");
  * const ret2 = convertCamelToUnder("aBC");
  * console.log(ret1);
