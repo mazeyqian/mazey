@@ -161,6 +161,8 @@ export function convertCamelToUnder(camelCase: string): string {
  * Usage:
  *
  * ```javascript
+ * import { convertUnderToCamel } from "mazey";
+ * 
  * const ret1 = convertUnderToCamel("a_b_c");
  * const ret2 = convertUnderToCamel("a_bb_cc");
  * console.log(ret1, ret2);
