@@ -200,6 +200,8 @@ export function camelCase2Underscore(camelCase: string): string {
  * Usage:
  *
  * ```javascript
+ * import { mTrim } from "mazey";
+ * 
  * const ret1 = mTrim(" 1 2 3 ");
  * const ret2 = mTrim("abc ");
  * console.log(ret1);
