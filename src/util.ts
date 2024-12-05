@@ -236,6 +236,8 @@ export function mTrim(str: string): string {
  * Usage:
  *
  * ```javascript
+ * import { isJSONString } from "mazey";
+ * 
  * const ret1 = isJSONString(`['a', 'b', 'c']`);
  * const ret2 = isJSONString(`["a", "b", "c"]`);
  * console.log(ret1);
