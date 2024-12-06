@@ -276,11 +276,13 @@ export function isJsonString(str: string): boolean {
 }
 
 /**
- * Produce a random string of number, `genRndNumString(7)` => "7658495".
+ * Generate a random string of number, `genRndNumString(7)` => "7658495".
  *
  * Usage:
  *
  * ```javascript
+ * import { genRndNumString } from "mazey";
+ * 
  * const ret1 = genRndNumString(4);
  * const ret2 = genRndNumString(7);
  * console.log(ret1);
