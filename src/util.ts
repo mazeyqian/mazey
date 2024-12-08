@@ -325,6 +325,8 @@ export function generateRndNum(n = 5): string {
  * Usage:
  *
  * ```javascript
+ * import { genUniqueNumString } from "mazey";
+ * 
  * const ret1 = genUniqueNumString();
  * const ret2 = genUniqueNumString(3);
  * console.log(ret1);
