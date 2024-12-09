@@ -365,6 +365,8 @@ export function generateUniqueNum(n = 3): string {
  * Usage:
  *
  * ```javascript
+ * import { mNow } from "mazey";
+ * 
  * const ret = mNow();
  * console.log(ret);
  * ```
