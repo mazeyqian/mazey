@@ -397,6 +397,8 @@ export function mNow(): number {
  * Usage:
  *
  * ```javascript
+ * import { floatToPercent } from "mazey";
+ * 
  * const ret1 = floatToPercent(0.2);
  * const ret2 = floatToPercent(0.2, 2);
  * console.log(ret1);
