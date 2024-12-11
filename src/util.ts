@@ -434,6 +434,8 @@ export function floatToPercent(num: number, fixSize = 0): string {
  * Usage:
  *
  * ```javascript
+ * import { floatFixed } from "mazey";
+ * 
  * const ret1 = floatFixed(0.2);
  * const ret2 = floatFixed(0.2, 2);
  * console.log(ret1);
