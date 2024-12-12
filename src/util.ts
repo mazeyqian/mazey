@@ -463,6 +463,8 @@ export function floatFixed(num: string, size = 0): string {
  * Usage:
  *
  * ```javascript
+ * import { throttle } from "mazey";
+ * 
  * const foo = throttle(() => {
  *   console.log("The function will be invoked at most once per every wait 1000 milliseconds.");
  * }, 1000, { leading: true });
