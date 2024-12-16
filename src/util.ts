@@ -580,6 +580,8 @@ const defaultGetFriendlyIntervalOptions = {
  * Usage:
  *
  * ```javascript
+ * import { getFriendlyInterval } from "mazey";
+ * 
  * const ret1 = getFriendlyInterval(new Date("2020-03-28 00:09:27"), new Date("2023-04-18 10:54:00"), { type: "d" });
  * const ret2 = getFriendlyInterval(1585325367000, 1681786440000, { type: "text" });
  * const ret3 = getFriendlyInterval("2020-03-28 00:09:27", "2023-04-18 10:54:00", { type: "text" });
