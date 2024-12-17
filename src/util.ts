@@ -648,6 +648,8 @@ export function getFriendlyInterval(start: number | string | Date = 0, end: numb
  * Usage:
  *
  * ```javascript
+ * import { isNumber } from "mazey";
+ * 
  * const ret1 = isNumber(123);
  * const ret2 = isNumber("123");
  * // Default: NaN, Infinity is not Number
