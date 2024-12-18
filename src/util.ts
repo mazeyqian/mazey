@@ -698,6 +698,8 @@ export function isNumber(num: unknown, options: IsNumberOptions = {}): boolean {
  * Usage:
  *
  * ```javascript
+ * import { invokeFn } from "mazey";
+ * 
  * const ret = invokeFn(() => {
  *  console.log("invokeFn");
  * });
