@@ -731,6 +731,8 @@ export function doFn(fn: MazeyFunction, ...params: Parameters<MazeyFunction>): R
  * Usage:
  *
  * ```javascript
+ * import { isNonEmptyArray } from "mazey";
+ * 
  * const ret = isNonEmptyArray([1, 2, 3]);
  * console.log(ret);
  * ```
