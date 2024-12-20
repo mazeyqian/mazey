@@ -975,6 +975,8 @@ export function isNonEmptyObject(obj: MazeyObject): boolean {
  * Usage:
  *
  * ```javascript
+ * import { convertToHtmlBreaks } from "mazey";
+ * 
  * const ret1 = convertToHtmlBreaks("a\nb\nc");
  * const ret2 = convertToHtmlBreaks("a\n\nbc");
  * console.log(ret1);
