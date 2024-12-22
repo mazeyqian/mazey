@@ -1017,6 +1017,8 @@ export function newLine(str: string): string {
  * Usage:
  *
  * ```javascript
+ * import { removeHTML } from "mazey";
+ * 
  * const ret = removeHTML("<div>hello world</div>");
  * console.log(ret);
  * ```
