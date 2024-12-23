@@ -1078,6 +1078,8 @@ export function clearHtml(str: string, options: { removeNewLine?: boolean } = {}
  * Usage:
  *
  * ```javascript
+ * import { sanitizeInput } from "mazey";
+ * 
  * const ret = sanitizeInput("<div>hello world</div>");
  * console.log(ret);
  * ```
