@@ -1116,6 +1116,8 @@ export function sanitizeInput(input: string): string {
  * Usage:
  *
  * ```javascript
+ * import { unsanitizeInput } from "mazey";
+ * 
  * const ret = unsanitizeInput("&lt;div&gt;hello world&lt;/div&gt;");
  * console.log(ret);
  * ```
