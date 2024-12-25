@@ -1165,6 +1165,8 @@ export function unsanitize(str: string): string {
  * Usage:
  *
  * ```javascript
+ * import { cutZHString } from "mazey";
+ * 
  * const ret = cutZHString("hello world", 5);
  * console.log(ret);
  * ```
