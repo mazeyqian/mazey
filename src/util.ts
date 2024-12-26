@@ -1221,6 +1221,8 @@ export function cutZHString(str: string, len: number, options: { hasDot?: boolea
  * Usage:
  *
  * ```javascript
+ * import { truncateZHString } from "mazey";
+ * 
  * const ret = truncateZHString("hello world", 5);
  * console.log(ret);
  * ```
