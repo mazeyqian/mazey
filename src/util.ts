@@ -1292,6 +1292,8 @@ export function zAxiosIsValidRes(
  * Usage:
  *
  * ```javascript
+ * import { isValidData } from "mazey";
+ * 
  * const validData = {
  *   a: {
  *     b: {
