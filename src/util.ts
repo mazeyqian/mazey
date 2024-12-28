@@ -1350,6 +1350,8 @@ export function isValidData(data: MazeyObject, attributes: string[], validValue:
  * Usage:
  *
  * ```javascript
+ * import { getFileSize } from "mazey";
+ * 
  * const ret = getFileSize(1024);
  * console.log(ret);
  * ```
