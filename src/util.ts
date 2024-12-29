@@ -1389,6 +1389,8 @@ export function getFileSize(size: number): string {
  * Usage:
  *
  * ```javascript
+ * import { genHashCode } from "mazey";
+ * 
  * const ret = genHashCode("hello world");
  * console.log(ret);
  * ```
