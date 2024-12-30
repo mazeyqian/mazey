@@ -1423,6 +1423,8 @@ export function genHashCode(str: string): number {
  * Usage:
  *
  * ```javascript
+ * import { formatDate } from "mazey";
+ * 
  * const ret1 = formatDate();
  * const ret2 = formatDate("Tue Jan 11 2022 14:12:26 GMT+0800 (China Standard Time)", "yyyy-MM-dd hh:mm:ss a");
  * const ret3 = formatDate(1641881235000, "yyyy-MM-dd hh:mm:ss a");
