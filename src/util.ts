@@ -1484,6 +1484,8 @@ export function formatDate(dateIns?: MazeyDate, format = "yyyy-MM-dd"): string {
  * Usage:
  *
  * ```javascript
+ * import { isMobile } from "mazey";
+ * 
  * const ret1 = isMobile("13800138000");
  * const ret2 = isMobile("1380013800");
  * const ret3 = isMobile("138001380000");
