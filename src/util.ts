@@ -1514,6 +1514,8 @@ export function isValidPhoneNumber(mobile: string): boolean {
  * Usage:
  *
  * ```javascript
+ * import { isValidEmail } from "mazey";
+ * 
  * const ret = isValidEmail("mazeyqian@gmail.com");
  * console.log(ret);
  * ```
