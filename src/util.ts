@@ -1541,6 +1541,8 @@ export function isValidEmail(email: string): boolean {
  * Usage:
  *
  * ```javascript
+ * import { convert10To26 } from "mazey";
+ * 
  * const ret1 = convert10To26(1);
  * const ret2 = convert10To26(26);
  * const ret3 = convert10To26(27);
