@@ -1589,6 +1589,8 @@ export function getCurrentVersion(): string {
  * Usage:
  *
  * ```javascript
+ * import { repeatUntilConditionMet } from "mazey";
+ * 
  * repeatUntilConditionMet(
  *   () => {
  *     console.log("repeatUntilConditionMet");
