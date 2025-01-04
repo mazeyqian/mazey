@@ -1656,6 +1656,8 @@ export function repeatUntilConditionMet<T extends (...args: MazeyFnParams) => Ma
  * Usage:
  *
  * ```javascript
+ * import { waitTime } from "mazey";
+ * 
  * waitTime(1000).then((time) => {
  *  console.log("waitTime:", time);
  * });
