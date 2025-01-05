@@ -1698,6 +1698,8 @@ let runtimeEnv = "";
  * Usage:
  *
  * ```javascript
+ * import { isBrowser } from "mazey";
+ * 
  * const ret = isBrowser();
  * console.log(ret);
  * ```
