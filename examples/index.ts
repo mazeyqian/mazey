@@ -1,6 +1,6 @@
 import {
   getUrlParam, updateQueryParam, getHashQueryParam, getDomain,
-  camelCaseToKebabCase, camelCase2Underscore,
+  camelCaseToKebabCase, camelCase2Underscore, timeCon,
   generateRndNum, genHashCode, inRate, genCustomConsole,
   isNonEmptyArray, isValidData, isSupportWebp, isNumber,
   getFileSize, getScriptQueryParam,
@@ -39,6 +39,8 @@ const genLogWithString = genCustomConsole("[GenLogWithString]", {
   isStringifyObject: true,
 });
 genLogWithString.log({ a: 1, b: 2 });
+timeCon.log("test?");
+timeCon.log({ a: 1, b: 2 });
 // const s011101 = ;
 console.log("Default formatDate value:", formatDate());
 // 2022-01-11
