@@ -35,6 +35,10 @@ const genLog = genCustomConsole("GenLog:", {
   locales: "zh-CN",
 });
 genLog.log("test?");
+const genLogWithString = genCustomConsole("[GenLogWithString]", {
+  isStringifyObject: true,
+});
+genLogWithString.log({ a: 1, b: 2 });
 // const s011101 = ;
 console.log("Default formatDate value:", formatDate());
 // 2022-01-11
