@@ -935,7 +935,7 @@ MazeyLog: I am object. {a: 123, b: 456}
 
 | Dependency | Version  |
 |------------|----------|
-| Node.js    | v16.19.0 |
+| Node.js    | v16.19.0, v18.12.1 |
 | TypeScript | v5.1.6   |
 
 ### Scripts

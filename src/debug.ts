@@ -1,4 +1,15 @@
 import type { MazeyFnParams } from "./typing";
+import { isPureObject } from "./util";
+
+const defaultGenCustomConsoleOptions = {
+  isClosed: false,
+  showWrap: false,
+  showDate: false,
+  locales: "en-US",
+  isStringifyObject: false,
+  logFn: () => undefined,
+  errorFn: () => undefined,
+};
 
 /**
  * EN: Custom console printing (`console`).
@@ -8,11 +19,13 @@ import type { MazeyFnParams } from "./typing";
  * Usage:
  *
  * ```javascript
- * const myConsole = genCustomConsole("[MazeyLog]");
- * myConsole.log("I am string.");
- * myConsole.info("I am boolean.", true);
- * myConsole.info("I am number.", 123, 456);
- * myConsole.info("I am object.", { a: 123, b: 456});
+ * import { genCustomConsole } from "mazey";
+ * 
+ * const cusConsole = genCustomConsole("[MazeyLog]");
+ * cusConsole.log("I am string.");
+ * cusConsole.info("I am boolean.", true);
+ * cusConsole.info("I am number.", 123, 456);
+ * cusConsole.info("I am object.", { a: 123, b: 456});
  * ```
  *
  * Output:
@@ -24,11 +37,16 @@ import type { MazeyFnParams } from "./typing";
  * [MazeyLog] I am object. {a: 123, b: 456}
  * ```
  *
- * @param {string} prefix 前缀
- * @param {string} locales A locale string.
- * @param {function} logFn The function with Log.
- * @param {function} errorFn The function with Error.
- * @returns {object} 新实例
+ * @param {string} prefix The prefix string.
+ * @param {object} options The options object.
+ * @param {boolean} options.isClosed Whether to close the console.
+ * @param {boolean} options.showWrap Whether to show the wrap.
+ * @param {boolean} options.showDate Whether to show the date.
+ * @param {string} options.locales A locale string.
+ * @param {boolean} options.isStringifyObject Whether to stringify the object.
+ * @param {function} options.logFn The function with Log.
+ * @param {function} options.errorFn The function with Error.
+ * @returns {object} The custom console object.
  * @category Debug
  */
 export function genCustomConsole(
@@ -38,25 +56,16 @@ export function genCustomConsole(
     showWrap?: boolean;
     showDate?: boolean;
     locales?: string;
+    isStringifyObject?: boolean;
     logFn?: () => void;
     errorFn?: () => void;
   } = {
-    isClosed: false,
-    showWrap: false,
-    showDate: false,
-    locales: "en-US",
-    logFn: () => undefined,
-    errorFn: () => undefined,
+    ...defaultGenCustomConsoleOptions,
   }
 ): Console {
-  const { isClosed, showWrap, showDate, locales, logFn, errorFn } = Object.assign(
+  const { isClosed, showWrap, showDate, locales, isStringifyObject, logFn, errorFn } = Object.assign(
     {
-      isClosed: false,
-      showWrap: false,
-      showDate: false,
-      locales: "en-US",
-      logFn: () => undefined,
-      errorFn: () => undefined,
+      ...defaultGenCustomConsoleOptions,
     },
     options
   );
@@ -105,6 +114,14 @@ export function genCustomConsole(
           datePrefix = `${formatDate()}`;
         }
       }
+      if (isStringifyObject) {
+        argu = argu.map(item => {
+          if (isPureObject(item)) {
+            return JSON.stringify(item);
+          }
+          return item;
+        });
+      }
       if (prefix || showDate) {
         console[method](datePrefix, ...argu);
       } else {
@@ -148,4 +165,4 @@ export const mazeyCon = genCustomConsole("[Mazey]");
  * 
  * @hidden
  */
-export const timeCon = genCustomConsole("", { showDate: true, locales: "zh-CN" });
+export const timeCon = genCustomConsole("", { showDate: true, locales: "zh-CN", isStringifyObject: true });
