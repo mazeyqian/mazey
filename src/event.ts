@@ -6,6 +6,8 @@ import type { DefineListeners, MazeyFn, MazeyObject } from "./typing";
  * Usage:
  *
  * ```javascript
+ * import { cancelBubble } from "mazey";
+ * 
  * const ret1 = cancelBubble(e);
  * ```
  *
@@ -23,12 +25,21 @@ export function cancelBubble(e: Event): void {
 }
 
 /**
- * Get event container.
+ * Get the defined listeners.
  *
  * Usage:
  *
  * ```javascript
- * const ret = getEventContainer();
+ * import { getDefineListeners } from "mazey";
+ * 
+ * const ret = getDefineListeners();
+ * console.log(ret);
+ * ```
+ * 
+ * Output:
+ * 
+ * ```text
+ * {}
  * ```
  *
  * @category Event
@@ -83,6 +94,8 @@ export function addEvent(type: string, fn: MazeyFn): void {
  * Usage:
  *
  * ```javascript
+ * import { fireEvent } from "mazey";
+ * 
  * fireEvent("test");
  * ```
  *
@@ -90,16 +103,13 @@ export function addEvent(type: string, fn: MazeyFn): void {
  * @param params The event parameters.
  * @category Event
  */
-export function fireEvent(type: string, params: MazeyObject = {}): void {
+export function fireEvent(type: string, params?: MazeyObject): void {
   const defineListeners = getDefineListeners();
   const arrayEvent = defineListeners[type];
   if (arrayEvent instanceof Array) {
     for (let i = 0, length = arrayEvent.length; i < length; i++) {
       if (typeof arrayEvent[i] === "function") {
-        arrayEvent[i]({
-          ...params,
-          type: type,
-        });
+        params === undefined ? arrayEvent[i]() : arrayEvent[i](params);
       }
     }
   }
@@ -120,6 +130,8 @@ export function invokeEvent(type: string): void {
  * Usage:
  *
  * ```javascript
+ * import { removeEvent } from "mazey";
+ * 
  * removeEvent("test");
  * ```
  *
