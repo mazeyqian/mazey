@@ -7,7 +7,7 @@
 <!-- omit from toc -->
 # Mazey
 
-后除的 JavaScript 函数库，所有的方法都在线上项目中使用过。
+除除的 JavaScript 函数库，所有的方法都在线上项目中使用过。
 
 <!-- omit from toc -->
 ## 目录
