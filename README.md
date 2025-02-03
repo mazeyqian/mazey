@@ -1,3 +1,5 @@
+<!-- markdownlint-disable MD041 -->
+
 English | [简体中文](https://github.com/mazeyqian/mazey/blob/main/README_ZH.md)
 
 # Mazey
@@ -35,11 +37,11 @@ Example: Use a function to verify if a value is a number suitable for standard c
 Import from [npm](https://www.npmjs.com/package/mazey).
 
 ```javascript
-import { isNumber } from 'mazey';
+import { isNumber } from "mazey";
 
 const x = 123;
 const y = Infinity;
-// <=> typeof x === 'number' && !isNaN(x) && isFinite(x)
+// <=> typeof x === "number" && !isNaN(x) && isFinite(x)
 isNumber(x); // Output: true
 isNumber(y); // Output: false
 ```
@@ -50,7 +52,7 @@ Import from CDN.
 <script type="text/javascript" src="//i.mazey.net/mazey/lib/mazey.min.js"></script>
 <script>
   const x = Infinity;
-  // <=> typeof x === 'string' && !isNaN(x)
+  // <=> typeof x === "string" && !isNaN(x)
   mazey.isNumber(x, { isInfinityAsNumber: true }); // Output: true
 </script>
 ```
@@ -118,9 +120,9 @@ Usage:
 
 ```javascript
 loadScript(
-    'http://example.com/static/js/plugin-2.1.1.min.js',
+    "http://example.com/static/js/plugin-2.1.1.min.js",
     {
-      id: 'iamid', // (Optional) script ID, default none
+      id: "iamid", // (Optional) script ID, default none
       timeout: 5000, // (Optional) timeout, default `5000`
       isDefer: false, // (Optional) defer, default `false`
     }
@@ -145,17 +147,17 @@ Load JavaScript script: loaded
 
 #### loadScriptIfUndefined
 
-Load a script from the given URL if it (`window['attribute']`) has not already been loaded.
+Load a script from the given URL if it (`window["attribute"]`) has not already been loaded.
 
 Usage:
 
 ```javascript
-loadScriptIfUndefined('xyz', 'https://example.com/lib/xyz.min.js')
+loadScriptIfUndefined("xyz", "https://example.com/lib/xyz.min.js")
   .then(() => {
-    console.log('xyz is loaded.');
+    console.log("xyz is loaded.");
   })
   .catch(err => {
-    console.log('Failed to load xyz.', err);
+    console.log("Failed to load xyz.", err);
   });
 ```
 
@@ -173,9 +175,9 @@ Usage:
 
 ```javascript
 loadCSS(
-    'http://example.com/path/example.css',
+    "https://example.com/path/example.css",
     {
-      id: 'iamid', // Optional, link ID, default none
+      id: "iamid", // Optional, link ID, default none
     }
   )
   .then(
@@ -207,7 +209,7 @@ Note that this method will not add the image to the DOM.
 Usage:
 
 ```javascript
-loadImage('https://example.com/example.png')
+loadImage("https://example.com/example.png")
   .then((img) => {
     console.log(img);
   })
@@ -248,7 +250,7 @@ Usage:
 
 ```javascript
 const ret1 = isNumber(123);
-const ret2 = isNumber('123');
+const ret2 = isNumber("123");
 // Default: NaN, Infinity is not Number
 const ret3 = isNumber(Infinity);
 const ret4 = isNumber(Infinity, { isInfinityAsNumber: true });
@@ -297,12 +299,12 @@ const validData = {
     }
   }
 };
-const isValidDataResA = isValidData(validData, ['a', 'b', 'c'], 2333);
-const isValidDataResB = isValidData(validData, ['a', 'b', 'c'], 413);
-const isValidDataResC = isValidData(validData, ['d', 'd'], 413);
-console.log('isValidDataResA:', isValidDataResA);
-console.log('isValidDataResB:', isValidDataResB);
-console.log('isValidDataResC:', isValidDataResC);
+const isValidDataResA = isValidData(validData, ["a", "b", "c"], 2333);
+const isValidDataResB = isValidData(validData, ["a", "b", "c"], 413);
+const isValidDataResC = isValidData(validData, ["d", "d"], 413);
+console.log("isValidDataResA:", isValidDataResA);
+console.log("isValidDataResB:", isValidDataResB);
+console.log("isValidDataResC:", isValidDataResC);
 ```
 
 Output:
@@ -315,7 +317,7 @@ isValidDataResC: false
 
 #### genRndNumString
 
-Produce a random string of number, `genRndNumString(7)` => '7658495'.
+Produce a random string of number, `genRndNumString(7)` => "7658495".
 
 Usage:
 
@@ -341,13 +343,13 @@ Usage:
 
 ```javascript
 const ret1 = formatDate();
-const ret2 = formatDate('Tue Jan 11 2022 14:12:26 GMT+0800 (China Standard Time)', 'yyyy-MM-dd hh:mm:ss');
-const ret3 = formatDate(1641881235000, 'yyyy-MM-dd hh:mm:ss');
-const ret4 = formatDate(new Date(2014, 1, 11), 'MM/dd/yyyy');
-console.log('Default formatDate value:', ret1);
-console.log('String formatDate value:', ret2);
-console.log('Number formatDate value:', ret3);
-console.log('Date formatDate value:', ret4);
+const ret2 = formatDate("Tue Jan 11 2022 14:12:26 GMT+0800 (China Standard Time)", "yyyy-MM-dd hh:mm:ss");
+const ret3 = formatDate(1641881235000, "yyyy-MM-dd hh:mm:ss");
+const ret4 = formatDate(new Date(2014, 1, 11), "MM/dd/yyyy");
+console.log("Default formatDate value:", ret1);
+console.log("String formatDate value:", ret2);
+console.log("Number formatDate value:", ret3);
+console.log("Date formatDate value:", ret4);
 ```
 
 Output:
@@ -367,7 +369,7 @@ Usage:
 
 ```javascript
 const foo = debounce(() => {
-  console.log('The debounced function will only be invoked in 1000 milliseconds, the other invoking will disappear during the wait time.');
+  console.log("The debounced function will only be invoked in 1000 milliseconds, the other invoking will disappear during the wait time.");
 }, 1000, true);
 ```
 
@@ -379,7 +381,7 @@ Usage:
 
 ```javascript
 const foo = throttle(() => {
-  console.log('The function will be invoked at most once per every wait 1000 milliseconds.');
+  console.log("The function will be invoked at most once per every wait 1000 milliseconds.");
 }, 1000, { leading: true });
 ```
 
@@ -392,8 +394,8 @@ Transfer CamelCase to KebabCase.
 Usage:
 
 ```javascript
-const ret1 = convertCamelToKebab('ABC');
-const ret2 = convertCamelToKebab('aBC');
+const ret1 = convertCamelToKebab("ABC");
+const ret2 = convertCamelToKebab("aBC");
 console.log(ret1);
 console.log(ret2);
 ```
@@ -412,8 +414,8 @@ Transfer CamelCase to Underscore.
 Usage:
 
 ```javascript
-const ret1 = convertCamelToUnder('ABC');
-const ret2 = convertCamelToUnder('aBC');
+const ret1 = convertCamelToUnder("ABC");
+const ret2 = convertCamelToUnder("aBC");
 console.log(ret1);
 console.log(ret2);
 ```
@@ -432,8 +434,8 @@ Copy/Clone Object deeply.
 Usage:
 
 ```javascript
-const ret1 = deepCopy(['a', 'b', 'c']);
-const ret2 = deepCopy('abc');
+const ret1 = deepCopy(["a", "b", "c"]);
+const ret2 = deepCopy("abc");
 console.log(ret1);
 console.log(ret2);
 ```
@@ -441,7 +443,7 @@ console.log(ret2);
 Output:
 
 ```text
-['a', 'b', 'c']
+["a", "b", "c"]
 abc
 ```
 
@@ -456,8 +458,8 @@ Usage:
 ```javascript
 // http://example.com/?t1=1&t2=2&t3=3&t4=4#2333
 // ?t1=1&t2=2&t3=3&t4=4
-const p1 = getQueryParam('t3');
-const p2 = getQueryParam('t4');
+const p1 = getQueryParam("t3");
+const p2 = getQueryParam("t4");
 console.log(p1, p2);
 ```
 
@@ -474,8 +476,8 @@ Returns the value of the specified query parameter in the input URL.
 Usage:
 
 ```javascript
-const p1 = getUrlParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't3');
-const p2 = getUrlParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't4');
+const p1 = getUrlParam("https://example.com/?t1=1&t2=2&t3=3&t4=4", "t3");
+const p2 = getUrlParam("https://example.com/?t1=1&t2=2&t3=3&t4=4", "t4");
 console.log(p1, p2);
 ```
 
@@ -494,8 +496,8 @@ Usage:
 ```javascript
 // http://example.com/?#2333?t1=1&t2=2&t3=3&t4=4
 // #2333?t1=1&t2=2&t3=3&t4=4
-const p1 = getHashQueryParam('t3');
-const p2 = getHashQueryParam('t4');
+const p1 = getHashQueryParam("t3");
+const p2 = getHashQueryParam("t4");
 console.log(p1, p2);
 ```
 
@@ -512,12 +514,12 @@ Get the domain of URL, and other params.
 Usage:
 
 ```javascript
-const ret1 = getDomain('http://example.com/?t1=1&t2=2&t3=3&t4=4');
-const ret2 = getDomain('http://example.com/test/thanks?t1=1&t2=2&t3=3&t4=4', ['hostname', 'pathname']);
-const ret3 = getDomain('http://example.com:7890/test/thanks', ['hostname']);
-const ret4 = getDomain('http://example.com:7890/test/thanks', ['host']); // With Port
-const ret5 = getDomain('http://example.com:7890/test/thanks', ['origin']);
-const ret6 = getDomain('http://example.com:7890/test/thanks?id=1', ['origin', 'pathname', 'search']);
+const ret1 = getDomain("http://example.com/?t1=1&t2=2&t3=3&t4=4");
+const ret2 = getDomain("http://example.com/test/thanks?t1=1&t2=2&t3=3&t4=4", ["hostname", "pathname"]);
+const ret3 = getDomain("http://example.com:7890/test/thanks", ["hostname"]);
+const ret4 = getDomain("http://example.com:7890/test/thanks", ["host"]); // With Port
+const ret5 = getDomain("http://example.com:7890/test/thanks", ["origin"]);
+const ret6 = getDomain("http://example.com:7890/test/thanks?id=1", ["origin", "pathname", "search"]);
 console.log(ret1);
 console.log(ret2);
 console.log(ret3);
@@ -544,8 +546,8 @@ Update the query param's value of the input URL.
 Usage:
 
 ```javascript
-const ret1 = updateQueryParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't3', 'three');
-const ret2 = updateQueryParam('http://example.com/?t1=1&t2=2&t3=3&t4=4', 't4', 'four');
+const ret1 = updateQueryParam("http://example.com/?t1=1&t2=2&t3=3&t4=4", "t3", "three");
+const ret2 = updateQueryParam("http://example.com/?t1=1&t2=2&t3=3&t4=4", "t4", "four");
 console.log(ret1);
 console.log(ret2);
 ```
@@ -564,11 +566,11 @@ Checks if the given string is a valid URL, including **scheme URLs**.
 Usage:
 
 ```javascript
-const ret1 = isValidUrl('https://www.example.com');
-const ret2 = isValidUrl('http://example.com/path/exx/ss');
-const ret3 = isValidUrl('https://www.example.com/?q=hello&age=24#world');
-const ret4 = isValidUrl('http://www.example.com/#world?id=9');
-const ret5 = isValidUrl('ftp://example.com');
+const ret1 = isValidUrl("https://www.example.com");
+const ret2 = isValidUrl("http://example.com/path/exx/ss");
+const ret3 = isValidUrl("https://www.example.com/?q=hello&age=24#world");
+const ret4 = isValidUrl("http://www.example.com/#world?id=9");
+const ret5 = isValidUrl("ftp://example.com");
 console.log(ret1, ret2, ret3, ret4, ret5);
 ```
 
@@ -588,11 +590,11 @@ Check if the given string is a valid HTTP/HTTPS URL.
 Usage:
 
 ```javascript
-const ret1 = isValidHttpUrl('https://www.example.com');
-const ret2 = isValidHttpUrl('http://example.com/path/exx/ss');
-const ret3 = isValidHttpUrl('https://www.example.com/?q=hello&age=24#world');
-const ret4 = isValidHttpUrl('http://www.example.com/#world?id=9');
-const ret5 = isValidHttpUrl('ftp://example.com');
+const ret1 = isValidHttpUrl("https://www.example.com");
+const ret2 = isValidHttpUrl("http://example.com/path/exx/ss");
+const ret3 = isValidHttpUrl("https://www.example.com/?q=hello&age=24#world");
+const ret4 = isValidHttpUrl("http://www.example.com/#world?id=9");
+const ret5 = isValidHttpUrl("ftp://example.com");
 console.log(ret1, ret2, ret3, ret4, ret5);
 ```
 
@@ -611,8 +613,8 @@ Handle Cookie.
 Usage:
 
 ```javascript
-setCookie('test', '123', 30, 'example.com'); // key value day domain
-const ret = getCookie('test');
+setCookie("test", "123", 30, "example.com"); // key value day domain
+const ret = getCookie("test");
 console.log(ret);
 ```
 
@@ -629,14 +631,14 @@ Handle Storage (Keep fit for JSON, it can transfer format automatically).
 Usage:
 
 ```javascript
-setSessionStorage('test', '123');
-const ret1 = getSessionStorage('test');
-setLocalStorage('test', '123');
-const ret2 = getLocalStorage('test');
+setSessionStorage("test", "123");
+const ret1 = getSessionStorage("test");
+setLocalStorage("test", "123");
+const ret2 = getLocalStorage("test");
 console.log(ret1, ret2);
 
 // or package in usage
-const projectName = 'mazey';
+const projectName = "mazey";
 function mSetLocalStorage (key, value) {
   return setLocalStorage(`${projectName}_${key}`, value);
 }
@@ -668,7 +670,7 @@ addStyle(
     }
   `,
   {
-    id: 'test',
+    id: "test",
   }
 );
 // <style id="test">
@@ -702,14 +704,14 @@ Modify `class`.
 Usage:
 
 ```javascript
-const dom = document.querySelector('#box');
+const dom = document.querySelector("#box");
 
 // Determine `class`
-hasClass(dom, 'test');
+hasClass(dom, "test");
 // Add `class`
-addClass(dom, 'test');
+addClass(dom, "test");
 // Remove `class`
-removeClass(dom, 'test');
+removeClass(dom, "test");
 ```
 
 #### newLine
@@ -719,8 +721,8 @@ Make a new line of HTML.
 Usage:
 
 ```javascript
-const ret1 = newLine('a\nb\nc');
-const ret2 = newLine('a\n\nbc');
+const ret1 = newLine("a\nb\nc");
+const ret2 = newLine("a\n\nbc");
 console.log(ret1);
 console.log(ret2);
 ```
@@ -774,7 +776,7 @@ Computes the longest common substring of two strings.
 Usage:
 
 ```javascript
-const ret = longestComSubstring('fish', 'finish');
+const ret = longestComSubstring("fish", "finish");
 console.log(ret);
 ```
 
@@ -791,7 +793,7 @@ Computes the longest common subsequence of two strings.
 Usage:
 
 ```javascript
-const ret = longestComSubsequence('fish', 'finish');
+const ret = longestComSubsequence("fish", "finish");
 console.log(ret);
 ```
 
@@ -839,7 +841,7 @@ Example: Determine the environment of the mobile QQ.
 
 ```javascript
 const { system, shell } = getBrowserInfo();
-const isMobileQQ = ['android', 'ios'].includes(system) && ['qq_browser', 'qq_app'].includes(shell);
+const isMobileQQ = ["android", "ios"].includes(system) && ["qq_browser", "qq_app"].includes(shell);
 ```
 
 #### isSafePWAEnv
@@ -912,11 +914,11 @@ Custom console printing (`console`).
 Usage:
 
 ```javascript
-const myConsole = genCustomConsole('MazeyLog:');
-myConsole.log('I am string.');
-myConsole.info('I am boolean.', true);
-myConsole.info('I am number.', 123, 456);
-myConsole.info('I am object.', { a: 123, b: 456});
+const myConsole = genCustomConsole("MazeyLog:");
+myConsole.log("I am string.");
+myConsole.info("I am boolean.", true);
+myConsole.info("I am number.", 123, 456);
+myConsole.info("I am object.", { a: 123, b: 456});
 ```
 
 Output:
