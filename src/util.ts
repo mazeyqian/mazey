@@ -711,6 +711,35 @@ export function isPureObject(obj: MazeyObject): boolean {
 }
 
 /**
+ * Verify the validity of an array.
+ * 
+ * Usage:
+ * 
+ * ```javascript
+ * import { isArray } from "mazey";
+ * 
+ * const ret1 = isArray([1, 2, 3]);
+ * const ret2 = isArray({ a: 1 });
+ * const ret3 = isArray("abc");
+ * const ret4 = isArray(null);
+ * console.log(ret1, ret2, ret3, ret4);
+ * ```
+ * 
+ * Output:
+ * 
+ * ```text
+ * true false false false
+ * ```
+ * 
+ * @param {MazeyObject} obj The object to verify.
+ * @returns {boolean} Return TRUE if the object is an array.
+ * @category Util
+ */
+export function isArray(obj: MazeyObject): boolean {
+  return Object.prototype.toString.call(obj) === "[object Array]";
+}
+
+/**
  * Verify the validity of a non-empty object.
  * 
  * Usage:
