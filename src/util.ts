@@ -711,6 +711,119 @@ export function isPureObject(obj: MazeyObject): boolean {
 }
 
 /**
+ * Verify the validity of a function.
+ * 
+ * Usage:
+ * 
+ * ```javascript
+ * import { isFunction } from "mazey";
+ * 
+ * const ret1 = isFunction(() => {});
+ * const ret2 = isFunction("abc");
+ * const ret3 = isFunction(null);
+ * console.log(ret1, ret2, ret3);
+ * ```
+ * 
+ * Output:
+ * 
+ * ```text
+ * true false false
+ * ```
+ * 
+ * @param {MazeyObject} fn The function to verify.
+ * @returns {boolean} Return TRUE if the object is a function.
+ * @category Util
+ */
+export function isFunction(fn: MazeyObject): boolean {
+  return typeof fn === "function";
+}
+
+/**
+ * Verify the validity of a string.
+ * 
+ * Usage:
+ * 
+ * ```javascript
+ * import { isString } from "mazey";
+ * 
+ * const ret1 = isString("abc");
+ * const ret2 = isString({ a: 1 });
+ * const ret3 = isString(null);
+ * console.log(ret1, ret2, ret3);
+ * ```
+ * 
+ * Output:
+ * 
+ * ```text
+ * true false false
+ * ```
+ * 
+ * @param {MazeyObject} str The string to verify.
+ * @returns {boolean} Return TRUE if the object is a string.
+ * @category Util
+ */
+export function isString(str: MazeyObject): boolean {
+  return typeof str === "string";
+}
+
+/**
+ * Verify the validity of a boolean.
+ * 
+ * Usage:
+ * 
+ * ```javascript
+ * import { isBoolean } from "mazey";
+ * 
+ * const ret1 = isBoolean(true);
+ * const ret2 = isBoolean({ a: 1 });
+ * const ret3 = isBoolean("abc");
+ * const ret4 = isBoolean(null);
+ * console.log(ret1, ret2, ret3, ret4);
+ * ```
+ * 
+ * Output:
+ * 
+ * ```text
+ * true false false false
+ * ```
+ * 
+ * @param {MazeyObject} bool The boolean to verify.
+ * @returns {boolean} Return TRUE if the object is a boolean.
+ * @category Util
+ */
+export function isBoolean(bool: MazeyObject): boolean {
+  return typeof bool === "boolean";
+}
+
+/**
+ * Verify the validity of a value.
+ * 
+ * Usage:
+ * 
+ * ```javascript
+ * import { isUdfOrNul } from "mazey";
+ * 
+ * const ret1 = isUdfOrNul(undefined);
+ * const ret2 = isUdfOrNul(null);
+ * const ret3 = isUdfOrNul("abc");
+ * console.log(ret1, ret2, ret3);
+ * ```
+ * 
+ * Output:
+ * 
+ * ```text
+ * true true false
+ * ```
+ * 
+ * @param {MazeyObject} val The value to verify.
+ * @returns {boolean} Return TRUE if the object is undefined or null.
+ * @category Util
+ */
+export function isUdfOrNul(val: MazeyObject): boolean {
+  return val === undefined || val === null;
+}
+
+/**
  * Verify the validity of an array.
  * 
  * Usage:
