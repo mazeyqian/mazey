@@ -11,6 +11,8 @@ import { doFn } from "./util";
  * Usage:
  *
  * ```javascript
+ * import { loadCSS } from "mazey";
+ * 
  * loadCSS(
  *     "http://example.com/path/example.css",
  *     {
@@ -55,8 +57,8 @@ export function loadCSS(url: string, options: { id?: string } = { id: "" }): Pro
     fail(new Error("Not support create link element"));
   }
   const supportOnload = "onload" in node;
-  const isOldWebKit = +navigator.userAgent.replace(/.*(?:AppleWebKit|AndroidWebKit)\/?(\d+).*/i, "$1") < 536; // webkit旧内核做特殊处理
-  const protectNum = 300000; // 阈值10分钟，一秒钟执行 pollCss 500 次
+  const isOldWebKit = +navigator.userAgent.replace(/.*(?:AppleWebKit|AndroidWebKit)\/?(\d+).*/i, "$1") < 536; // webkit 旧内核做特殊处理
+  const protectNum = 300000; // 阈值 10 分钟，一秒钟执行 pollCss 500 次
   node.rel = "stylesheet";
   node.type = "text/css";
   node.href = url;
@@ -93,7 +95,7 @@ export function loadCSS(url: string, options: { id?: string } = { id: "" }): Pro
     node = null;
     callback();
   }
-  // 循环判断css是否已加载成功
+  // 循环判断 CSS 是否已加载成功
   /*
    * @param node -- link节点
    * @param callback -- 回调函数
@@ -137,7 +139,7 @@ export function loadCSS(url: string, options: { id?: string } = { id: "" }): Pro
     }
     setTimeout(function() {
       if (isLoaded) {
-        // 延迟20ms是为了给下载的样式留够渲染的时间
+        // 延迟 20ms 是为了给下载的样式留够渲染的时间
         callback();
       } else {
         pollCss(node, callback, step);
@@ -147,6 +149,18 @@ export function loadCSS(url: string, options: { id?: string } = { id: "" }): Pro
   return status;
 }
 
+const defaultLoadScriptOptions = {
+  id: "",
+  callback: function() {
+    /* pass */
+  },
+  timeout: 5000,
+  isDefer: false,
+  isAsync: false,
+  isCrossOrigin: false,
+  attributes: null,
+};
+
 /**
  * EN: Load a JavaScript file from the server and execute it.
  *
@@ -155,12 +169,13 @@ export function loadCSS(url: string, options: { id?: string } = { id: "" }): Pro
  * Usage:
  *
  * ```javascript
+ * import { loadScript } from "mazey";
+ * 
  * loadScript(
  *     "http://example.com/static/js/plugin-2.1.1.min.js",
  *     {
  *       id: "iamid", // (Optional) script ID, default none
  *       timeout: 5000, // (Optional) timeout, default `5000`
- *       isDefer: false, // (Optional) defer, default `false`
  *     }
  *   )
  *   .then(
@@ -170,7 +185,7 @@ export function loadCSS(url: string, options: { id?: string } = { id: "" }): Pro
  *   )
  *   .catch(
  *     err => {
- *       console.error(`Load JavaScript script: ${err.message}`)
+ *       console.error(`Load JavaScript script: ${err.message}`);
  *     }
  *   );
  * ```
@@ -186,6 +201,9 @@ export function loadCSS(url: string, options: { id?: string } = { id: "" }): Pro
  * @param {function} options.callback -- 加载后回调函数
  * @param {number} options.timeout -- 超时时长
  * @param {boolean} options.isDefer -- 是否添加 defer 标签
+ * @param {boolean} options.isAsync -- 是否添加 async 标签
+ * @param {boolean} options.isCrossOrigin -- 是否跨域
+ * @param {object} options.attributes -- 其他属性
  * @returns {Promise<string>} -- true 成功
  * @category Load
  */
@@ -196,23 +214,16 @@ export function loadScript(
     callback?: (...params: MazeyFnParams) => MazeyFnReturn;
     timeout?: number;
     isDefer?: boolean;
+    isAsync?: boolean;
+    isCrossOrigin?: boolean;
+    attributes?: Record<string, string> | null;
   } = {
-    id: "",
-    callback: function() {
-      /* pass */
-    },
-    timeout: 5000,
-    isDefer: false,
+    ...defaultLoadScriptOptions,
   }
 ): LoadScriptReturns {
-  const { id, callback, timeout, isDefer } = Object.assign(
+  const { id, callback, timeout, isDefer, isAsync, isCrossOrigin, attributes } = Object.assign(
     {
-      id: "",
-      callback: function() {
-        /* pass */
-      },
-      timeout: 5000,
-      isDefer: false,
+      ...defaultLoadScriptOptions,
     },
     options
   );
@@ -228,8 +239,19 @@ export function loadScript(
   if (isDefer) {
     script.defer = true; // "defer";
   }
+  if (isAsync) {
+    script.async = true; // "async";
+  }
+  if (isCrossOrigin) {
+    script.crossOrigin = "anonymous";
+  }
   if (id) {
     script.id = id;
+  }
+  if (attributes) {
+    Object.keys(attributes).forEach(key => {
+      script.setAttribute(key, attributes[key]);
+    });
   }
   if (script.readyState) {
     // IE
@@ -265,6 +287,8 @@ export function loadScript(
  * Usage:
  *
  * ```javascript
+ * import { windowLoaded } from "mazey";
+ * 
  * windowLoaded()
  *   .then(res => {
  *     console.log(`Load Success: ${res}`);
@@ -280,11 +304,11 @@ export function loadScript(
  * Load Success: load
  * ```
  *
- * @param {number} timeout 超时时间 / 单位：秒
+ * @param {number} timeout 超时时间 / 单位：毫秒，默认：30000(30 秒)
  * @returns {Promise<string>} document is loaded? "complete" "load" / "timeout"
  * @category Load
  */
-export function windowLoaded(timeout = 90): Promise<string | Error> {
+export function windowLoaded(timeout = 30000): Promise<string | Error> {
   let loaded: (value: string) => void = () => undefined;
   let loadFail: (value: Error) => void;
   const status = new Promise((resolve: (value: string) => void, reject: (value: Error) => void) => {
@@ -297,7 +321,7 @@ export function windowLoaded(timeout = 90): Promise<string | Error> {
     window.addEventListener("load", () => loaded("load"));
   }
   // 超过 timeout 秒后加载失败
-  setTimeout(() => loadFail(Error("timeout")), timeout * 1000);
+  setTimeout(() => loadFail(Error("timeout")), timeout);
   return status;
 }
 
@@ -311,6 +335,8 @@ export function windowLoaded(timeout = 90): Promise<string | Error> {
  * Usage:
  *
  * ```javascript
+ * import { loadImage } from "mazey";
+ * 
  * loadImage("https://example.com/example.png")
  *   .then((img) => {
  *     console.log(img);
@@ -343,6 +369,8 @@ export function loadImage(url: string): Promise<HTMLImageElement> {
  * Usage:
  *
  * ```javascript
+ * import { loadScriptIfUndefined } from "mazey";
+ * 
  * loadScriptIfUndefined("xyz", "https://example.com/lib/xyz.min.js")
  *   .then(() => {
  *     console.log("xyz is loaded.");
