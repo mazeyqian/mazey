@@ -85,10 +85,24 @@ export function convertCamelToKebab(camelCase: string): string {
 }
 
 /**
- * Convert CamelCase to KebabCase.
+ * Convert KebabCase to CamelCase.
  * 
- * @param {string} kebabCase 
- * @returns {string}
+ * Usage:
+ * 
+ * ```javascript
+ * const ret1 = convertKebabToCamel("a-b-c");
+ * const ret2 = convertKebabToCamel("a-bb-cc");
+ * console.log(ret1, ret2);
+ * ```
+ * 
+ * Output:
+ * 
+ * ```text
+ * aBC aBbCc
+ * ```
+ * 
+ * @param {string} kebabCase "a-bb-cc"
+ * @returns {string} "aBbCc"
  * @category Util
  */
 export function convertKebabToCamel(kebabCase: string): string {
@@ -131,6 +145,32 @@ export function camelCaseToKebabCase(camelCase: string): string {
 export function convertCamelToUnder(camelCase: string): string {
   const kebabCase = camelCase.replace(/([A-Z])/g, "_$1").toLowerCase();
   return kebabCase[0] === "_" ? kebabCase.substring(1) : kebabCase;
+}
+
+/**
+ * Convert Underscore to CamelCase.
+ *
+ * Usage:
+ *
+ * ```javascript
+ * const ret1 = convertUnderToCamel("a_b_c");
+ * const ret2 = convertUnderToCamel("a_bb_cc");
+ * console.log(ret1, ret2);
+ * ```
+ * 
+ * Output:
+ * 
+ * ```text
+ * aBC aBbCc
+ * ```
+ *
+ * @param {string} underCase "a_bb_cc"
+ * @returns {string} "aBbCc"
+ * @category Util
+ */
+export function convertUnderToCamel(underCase: string): string {
+  const camelCase = underCase.replace(/_([a-z])/g, (_all, letter) => letter.toUpperCase());
+  return camelCase;
 }
 
 /**
