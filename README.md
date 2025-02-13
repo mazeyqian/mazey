@@ -134,7 +134,7 @@ loadScript(
   )
   .catch(
     err => {
-      console.error(`Load JavaScript script: ${err.message}`)
+      console.error(`Load JavaScript script: ${err.message}`);
     }
   );
 ```

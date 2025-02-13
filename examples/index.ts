@@ -1,38 +1,17 @@
 import {
-  isNumber,
-  getUrlParam,
-  updateQueryParam,
-  getHashQueryParam,
-  getDomain,
-  camelCaseToKebabCase,
-  camelCase2Underscore,
-  generateRndNum,
-  isNonEmptyArray,
-  getFileSize,
-  isSupportWebp,
-  genHashCode,
-  debounce,
-  genCustomConsole,
-  formatDate,
-  isValidData,
-  getFriendlyInterval,
-  getBrowserInfo,
+  getUrlParam, updateQueryParam, getHashQueryParam, getDomain,
+  camelCaseToKebabCase, camelCase2Underscore,
+  generateRndNum, genHashCode, inRate, genCustomConsole,
+  isNonEmptyArray, isValidData, isSupportWebp, isNumber,
+  getFileSize, getScriptQueryParam,
+  debounce, formatDate,
+  getFriendlyInterval, getBrowserInfo,
   repeatUntilConditionMet,
-  inRate,
-  loadScriptIfUndefined,
-  deepCopyObject,
-  deepCopy,
-  setCookie,
-  getCookie,
-  delCookie,
-  getScriptQueryParam,
-  getFCP,
-  getFP,
-  getLCP,
-  getFID,
-  getCLS,
-  getTTFB,
-  getPerformance,
+  loadScript, loadScriptIfUndefined,
+  deepCopyObject, deepCopy,
+  setCookie, getCookie, delCookie,
+  getFCP, getFP, getLCP, getFID,
+  getCLS, getTTFB, getPerformance,
   longestComSubsequence,
 } from "../src/index";
 
@@ -73,15 +52,12 @@ const validData = {
     },
   },
 };
-
 const isValidDataResA = isValidData(validData, [ "a", "b", "c" ], 2333);
 const isValidDataResB = isValidData(validData, [ "a", "b", "c" ], 413);
 const isValidDataResC = isValidData(validData, [ "d", "d" ], 413);
-
 console.log("isValidDataResA:", isValidDataResA);
 console.log("isValidDataResB:", isValidDataResB);
 console.log("isValidDataResC:", isValidDataResC);
-
 // isValidDataResA: false
 // isValidDataResB: true
 // isValidDataResC: false
@@ -112,6 +88,20 @@ loadScriptIfUndefined("$", "https://i.mazey.net/lib/jquery/3.1.1/jquery.min.js")
   .catch(err => {
     console.log("loadScriptIfUndefined fail", err);
   });
+const loadScriptOptions = {
+  id: "load-aug",
+  callback: function() {
+    /* pass */
+  },
+  timeout: 5000,
+  isDefer: true,
+  isAsync: true,
+  isCrossOrigin: true,
+  attributes: { onece: "onece-9977", class: "diy-script" },
+};
+loadScript("//i.mazey.net/lib/layer/mobile/layer.js", {
+  ...loadScriptOptions,
+});
 
 const obj = {
   a: 1,
