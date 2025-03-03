@@ -172,7 +172,6 @@ const defaultLoadScriptOptions = {
  *     {
  *       id: "iamid", // (Optional) script ID, default none
  *       timeout: 5000, // (Optional) timeout, default `5000`
- *       isDefer: false, // (Optional) defer, default `false`
  *     }
  *   )
  *   .then(

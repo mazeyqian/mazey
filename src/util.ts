@@ -812,12 +812,12 @@ export function isString(str: MazeyObject): boolean {
  * Usage:
  * 
  * ```javascript
- * import { isBoolean } from "mazey";
+ * import { isBool } from "mazey";
  * 
- * const ret1 = isBoolean(true);
- * const ret2 = isBoolean({ a: 1 });
- * const ret3 = isBoolean("abc");
- * const ret4 = isBoolean(null);
+ * const ret1 = isBool(true);
+ * const ret2 = isBool({ a: 1 });
+ * const ret3 = isBool("abc");
+ * const ret4 = isBool(null);
  * console.log(ret1, ret2, ret3, ret4);
  * ```
  * 
@@ -831,8 +831,15 @@ export function isString(str: MazeyObject): boolean {
  * @returns {boolean} Return TRUE if the object is a boolean.
  * @category Util
  */
-export function isBoolean(bool: MazeyObject): boolean {
+export function isBool(bool: MazeyObject): boolean {
   return typeof bool === "boolean";
+}
+
+/**
+ * Alias of `isBool`.
+ */
+export function isBoolean(bool: MazeyObject): boolean {
+  return isBool(bool);
 }
 
 /**
