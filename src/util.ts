@@ -12,6 +12,8 @@ import type {
  * Usage:
  *
  * ```javascript
+ * import { deepCopy } from "mazey";
+ * 
  * const ret1 = deepCopy(["a", "b", "c"]);
  * const ret2 = deepCopy("abc");
  * console.log(ret1);
@@ -30,11 +32,11 @@ import type {
  * @category Util
  */
 export function deepCopy<T>(obj: T): T {
-  // Jugde whether it is a primitive type
+  // Check whether it is a primitive type
   if (typeof obj !== "object") {
     return obj;
   }
-  // Judge whether its key-value is simple type, string | number | boolean | null | undefined
+  // Check whether its key-value is simple type, string | number | boolean | null | undefined
   // ...rest
   const simpleTypes = [ "string", "number", "boolean", "undefined" ];
   const values = Object.values(obj as SimpleObject);
@@ -57,11 +59,13 @@ export function deepCopyObject<T>(obj: T): T {
 }
 
 /**
- * Transfer CamelCase to KebabCase.
+ * Convert CamelCase to KebabCase.
  *
  * Usage:
  *
  * ```javascript
+ * import { convertCamelToKebab } from "mazey";
+ * 
  * const ret1 = convertCamelToKebab("ABC");
  * const ret2 = convertCamelToKebab("aBC");
  * console.log(ret1);
@@ -90,6 +94,8 @@ export function convertCamelToKebab(camelCase: string): string {
  * Usage:
  * 
  * ```javascript
+ * import { convertKebabToCamel } from "mazey";
+ * 
  * const ret1 = convertKebabToCamel("a-b-c");
  * const ret2 = convertKebabToCamel("a-bb-cc");
  * console.log(ret1, ret2);
@@ -120,11 +126,13 @@ export function camelCaseToKebabCase(camelCase: string): string {
 }
 
 /**
- * Transfer CamelCase to Underscore.
+ * Convert CamelCase to Underscore.
  *
  * Usage:
  *
  * ```javascript
+ * import { convertCamelToUnder } from "mazey";
+ * 
  * const ret1 = convertCamelToUnder("ABC");
  * const ret2 = convertCamelToUnder("aBC");
  * console.log(ret1);
@@ -153,6 +161,8 @@ export function convertCamelToUnder(camelCase: string): string {
  * Usage:
  *
  * ```javascript
+ * import { convertUnderToCamel } from "mazey";
+ * 
  * const ret1 = convertUnderToCamel("a_b_c");
  * const ret2 = convertUnderToCamel("a_bb_cc");
  * console.log(ret1, ret2);
@@ -190,6 +200,8 @@ export function camelCase2Underscore(camelCase: string): string {
  * Usage:
  *
  * ```javascript
+ * import { mTrim } from "mazey";
+ * 
  * const ret1 = mTrim(" 1 2 3 ");
  * const ret2 = mTrim("abc ");
  * console.log(ret1);
@@ -224,6 +236,8 @@ export function mTrim(str: string): string {
  * Usage:
  *
  * ```javascript
+ * import { isJSONString } from "mazey";
+ * 
  * const ret1 = isJSONString(`['a', 'b', 'c']`);
  * const ret2 = isJSONString(`["a", "b", "c"]`);
  * console.log(ret1);
@@ -262,11 +276,13 @@ export function isJsonString(str: string): boolean {
 }
 
 /**
- * Produce a random string of number, `genRndNumString(7)` => "7658495".
+ * Generate a random string of number, `genRndNumString(7)` => "7658495".
  *
  * Usage:
  *
  * ```javascript
+ * import { genRndNumString } from "mazey";
+ * 
  * const ret1 = genRndNumString(4);
  * const ret2 = genRndNumString(7);
  * console.log(ret1);
@@ -309,6 +325,8 @@ export function generateRndNum(n = 5): string {
  * Usage:
  *
  * ```javascript
+ * import { genUniqueNumString } from "mazey";
+ * 
  * const ret1 = genUniqueNumString();
  * const ret2 = genUniqueNumString(3);
  * console.log(ret1);
@@ -347,6 +365,8 @@ export function generateUniqueNum(n = 3): string {
  * Usage:
  *
  * ```javascript
+ * import { mNow } from "mazey";
+ * 
  * const ret = mNow();
  * console.log(ret);
  * ```
@@ -377,6 +397,8 @@ export function mNow(): number {
  * Usage:
  *
  * ```javascript
+ * import { floatToPercent } from "mazey";
+ * 
  * const ret1 = floatToPercent(0.2);
  * const ret2 = floatToPercent(0.2, 2);
  * console.log(ret1);
@@ -412,6 +434,8 @@ export function floatToPercent(num: number, fixSize = 0): string {
  * Usage:
  *
  * ```javascript
+ * import { floatFixed } from "mazey";
+ * 
  * const ret1 = floatFixed(0.2);
  * const ret2 = floatFixed(0.2, 2);
  * console.log(ret1);
@@ -439,6 +463,8 @@ export function floatFixed(num: string, size = 0): string {
  * Usage:
  *
  * ```javascript
+ * import { throttle } from "mazey";
+ * 
  * const foo = throttle(() => {
  *   console.log("The function will be invoked at most once per every wait 1000 milliseconds.");
  * }, 1000, { leading: true });
@@ -496,6 +522,8 @@ export function throttle<T extends (...args: MazeyFnParams) => MazeyFnReturn>(fu
  * Usage:
  *
  * ```javascript
+ * import { debounce } from "mazey";
+ * 
  * const foo = debounce(() => {
  *   console.log("The debounced function will only be invoked in 1000 milliseconds, the other invoking will disappear during the wait time.");
  * }, 1000, true);
@@ -552,6 +580,8 @@ const defaultGetFriendlyIntervalOptions = {
  * Usage:
  *
  * ```javascript
+ * import { getFriendlyInterval } from "mazey";
+ * 
  * const ret1 = getFriendlyInterval(new Date("2020-03-28 00:09:27"), new Date("2023-04-18 10:54:00"), { type: "d" });
  * const ret2 = getFriendlyInterval(1585325367000, 1681786440000, { type: "text" });
  * const ret3 = getFriendlyInterval("2020-03-28 00:09:27", "2023-04-18 10:54:00", { type: "text" });
@@ -618,6 +648,8 @@ export function getFriendlyInterval(start: number | string | Date = 0, end: numb
  * Usage:
  *
  * ```javascript
+ * import { isNumber } from "mazey";
+ * 
  * const ret1 = isNumber(123);
  * const ret2 = isNumber("123");
  * // Default: NaN, Infinity is not Number
@@ -666,6 +698,8 @@ export function isNumber(num: unknown, options: IsNumberOptions = {}): boolean {
  * Usage:
  *
  * ```javascript
+ * import { invokeFn } from "mazey";
+ * 
  * const ret = invokeFn(() => {
  *  console.log("invokeFn");
  * });
@@ -697,6 +731,8 @@ export function doFn(fn: MazeyFunction, ...params: Parameters<MazeyFunction>): R
  * Usage:
  *
  * ```javascript
+ * import { isNonEmptyArray } from "mazey";
+ * 
  * const ret = isNonEmptyArray([1, 2, 3]);
  * console.log(ret);
  * ```
@@ -939,6 +975,8 @@ export function isNonEmptyObject(obj: MazeyObject): boolean {
  * Usage:
  *
  * ```javascript
+ * import { convertToHtmlBreaks } from "mazey";
+ * 
  * const ret1 = convertToHtmlBreaks("a\nb\nc");
  * const ret2 = convertToHtmlBreaks("a\n\nbc");
  * console.log(ret1);
@@ -979,6 +1017,8 @@ export function newLine(str: string): string {
  * Usage:
  *
  * ```javascript
+ * import { removeHTML } from "mazey";
+ * 
  * const ret = removeHTML("<div>hello world</div>");
  * console.log(ret);
  * ```
@@ -1038,6 +1078,8 @@ export function clearHtml(str: string, options: { removeNewLine?: boolean } = {}
  * Usage:
  *
  * ```javascript
+ * import { sanitizeInput } from "mazey";
+ * 
  * const ret = sanitizeInput("<div>hello world</div>");
  * console.log(ret);
  * ```
@@ -1074,6 +1116,8 @@ export function sanitizeInput(input: string): string {
  * Usage:
  *
  * ```javascript
+ * import { unsanitizeInput } from "mazey";
+ * 
  * const ret = unsanitizeInput("&lt;div&gt;hello world&lt;/div&gt;");
  * console.log(ret);
  * ```
@@ -1121,6 +1165,8 @@ export function unsanitize(str: string): string {
  * Usage:
  *
  * ```javascript
+ * import { cutZHString } from "mazey";
+ * 
  * const ret = cutZHString("hello world", 5);
  * console.log(ret);
  * ```
@@ -1175,6 +1221,8 @@ export function cutZHString(str: string, len: number, options: { hasDot?: boolea
  * Usage:
  *
  * ```javascript
+ * import { truncateZHString } from "mazey";
+ * 
  * const ret = truncateZHString("hello world", 5);
  * console.log(ret);
  * ```
@@ -1244,6 +1292,8 @@ export function zAxiosIsValidRes(
  * Usage:
  *
  * ```javascript
+ * import { isValidData } from "mazey";
+ * 
  * const validData = {
  *   a: {
  *     b: {
@@ -1300,6 +1350,8 @@ export function isValidData(data: MazeyObject, attributes: string[], validValue:
  * Usage:
  *
  * ```javascript
+ * import { getFileSize } from "mazey";
+ * 
  * const ret = getFileSize(1024);
  * console.log(ret);
  * ```
@@ -1337,6 +1389,8 @@ export function getFileSize(size: number): string {
  * Usage:
  *
  * ```javascript
+ * import { genHashCode } from "mazey";
+ * 
  * const ret = genHashCode("hello world");
  * console.log(ret);
  * ```
@@ -1369,6 +1423,8 @@ export function genHashCode(str: string): number {
  * Usage:
  *
  * ```javascript
+ * import { formatDate } from "mazey";
+ * 
  * const ret1 = formatDate();
  * const ret2 = formatDate("Tue Jan 11 2022 14:12:26 GMT+0800 (China Standard Time)", "yyyy-MM-dd hh:mm:ss a");
  * const ret3 = formatDate(1641881235000, "yyyy-MM-dd hh:mm:ss a");
@@ -1428,6 +1484,8 @@ export function formatDate(dateIns?: MazeyDate, format = "yyyy-MM-dd"): string {
  * Usage:
  *
  * ```javascript
+ * import { isMobile } from "mazey";
+ * 
  * const ret1 = isMobile("13800138000");
  * const ret2 = isMobile("1380013800");
  * const ret3 = isMobile("138001380000");
@@ -1456,6 +1514,8 @@ export function isValidPhoneNumber(mobile: string): boolean {
  * Usage:
  *
  * ```javascript
+ * import { isValidEmail } from "mazey";
+ * 
  * const ret = isValidEmail("mazeyqian@gmail.com");
  * console.log(ret);
  * ```
@@ -1481,6 +1541,8 @@ export function isValidEmail(email: string): boolean {
  * Usage:
  *
  * ```javascript
+ * import { convert10To26 } from "mazey";
+ * 
  * const ret1 = convert10To26(1);
  * const ret2 = convert10To26(26);
  * const ret3 = convert10To26(27);
@@ -1527,6 +1589,8 @@ export function getCurrentVersion(): string {
  * Usage:
  *
  * ```javascript
+ * import { repeatUntilConditionMet } from "mazey";
+ * 
  * repeatUntilConditionMet(
  *   () => {
  *     console.log("repeatUntilConditionMet");
@@ -1592,6 +1656,8 @@ export function repeatUntilConditionMet<T extends (...args: MazeyFnParams) => Ma
  * Usage:
  *
  * ```javascript
+ * import { waitTime } from "mazey";
+ * 
  * waitTime(1000).then((time) => {
  *  console.log("waitTime:", time);
  * });
@@ -1632,6 +1698,8 @@ let runtimeEnv = "";
  * Usage:
  *
  * ```javascript
+ * import { isBrowser } from "mazey";
+ * 
  * const ret = isBrowser();
  * console.log(ret);
  * ```
