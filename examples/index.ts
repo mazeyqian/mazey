@@ -1,6 +1,6 @@
 import {
   getUrlParam, updateQueryParam, getHashQueryParam, getDomain,
-  camelCaseToKebabCase, camelCase2Underscore,
+  camelCaseToKebabCase, camelCase2Underscore, timeCon,
   generateRndNum, genHashCode, inRate, genCustomConsole,
   isNonEmptyArray, isValidData, isSupportWebp, isNumber,
   getFileSize, getScriptQueryParam,
@@ -35,6 +35,7 @@ const genLog = genCustomConsole("GenLog:", {
   locales: "zh-CN",
 });
 genLog.log("test?");
+timeCon.log("test?");
 // const s011101 = ;
 console.log("Default formatDate value:", formatDate());
 // 2022-01-11
